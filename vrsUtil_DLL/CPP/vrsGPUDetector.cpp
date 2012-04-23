@@ -25,34 +25,46 @@ namespace vrsUtil
 		std::cerr << gc->getWindowingSystemInterface()->getNumScreens() << std::endl;
 		std::cerr << "******************" << std::endl;
 
-		DISPLAY_DEVICE dd;
 
-		dd.cb = sizeof(DISPLAY_DEVICE);
+		DISPLAY_DEVICE GCardDevice;
+		GCardDevice.cb = sizeof(DISPLAY_DEVICE);
 
 		DWORD deviceNum = 0;
-		while( EnumDisplayDevices(NULL, deviceNum, &dd, 0) ){
+		//Check all the devices with attached monitors. 
+		//Attached monitors should be first in the list, so dont
+		//check more devices then there are monitors
+		while( EnumDisplayDevices(NULL, deviceNum, &GCardDevice, 0) && 
+			(deviceNum < gc->getWindowingSystemInterface()->getNumScreens()) )
+		{
 			
-			std::cout << "Device Name: " << dd.DeviceName << std::endl;
-			std::cout << "Device String: " << dd.DeviceString << std::endl;
-			std::cout << "State Flags: " << dd.StateFlags << std::endl;
-			std::cout << "DeviceID: " << dd.DeviceID << std::endl;
-			std::cout << "DeviceKey: " << dd.DeviceKey+42 << std::endl;
+			/*std::cout << "Device Name: " << GCardDevice.DeviceName << std::endl;
+			std::cout << "Device String: " << GCardDevice.DeviceString << std::endl;
+			std::cout << "State Flags: " << GCardDevice.StateFlags << std::endl;
+			std::cout << "DeviceID: " << GCardDevice.DeviceID << std::endl;
+			std::cout << "DeviceKey: " << GCardDevice.DeviceKey << std::endl;*/
 
-			DISPLAY_DEVICE newdd = {0};
-			newdd.cb = sizeof(DISPLAY_DEVICE);
+			//Isolate the Graphics Card Device Key
+			std::string CardDeviceKey(GCardDevice.DeviceKey);
+			int KeyStart = CardDeviceKey.find("{");
+			int KeyEnd = CardDeviceKey.find("}") - KeyStart + 1;
+			std::cout << "DeviceKey: " << CardDeviceKey.substr(KeyStart, KeyEnd) << std::endl;
+
+			DISPLAY_DEVICE MonitorDevice = {0};
+			MonitorDevice.cb = sizeof(DISPLAY_DEVICE);
 			DWORD monitorNum = 0;
-			while ( EnumDisplayDevices(dd.DeviceName, monitorNum, &newdd, 0))
+			while ( EnumDisplayDevices(GCardDevice.DeviceName, monitorNum, &MonitorDevice, 0))
 			{
-				std::cout << "	Device Name: " << newdd.DeviceName << std::endl;
-				std::cout << "	Device String: " << newdd.DeviceString << std::endl;
-				std::cout << "	State Flags: " << newdd.StateFlags << std::endl;
-				std::cout << "	DeviceID: " << newdd.DeviceID << std::endl;
-				std::cout << "	DeviceKey: " << newdd.DeviceKey+42 << std::endl;
+				/*std::cout << "	Device Name: " << MonitorDevice.DeviceName << std::endl;
+				std::cout << "	Device String: " << MonitorDevice.DeviceString << std::endl;
+				std::cout << "	State Flags: " << MonitorDevice.StateFlags << std::endl;*/
+				std::cout << "	DeviceID: " << MonitorDevice.DeviceID << std::endl;
+				//std::cout << "	DeviceKey: " << MonitorDevice.DeviceKey << std::endl;
 				monitorNum++;
 			}
 			puts("");
 			deviceNum++;
 		}
+
 		#endif
 	}
 }
