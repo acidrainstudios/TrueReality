@@ -33,7 +33,7 @@ namespace vrsUtil
 	void Logo( void )
 	{
 
-		#ifdef WIN32
+		#ifdef _WIN32
 			#ifndef _DEBUG
 			system("cls");
 			#endif
