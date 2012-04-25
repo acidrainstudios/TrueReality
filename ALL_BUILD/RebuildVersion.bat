@@ -1,4 +1,6 @@
 @echo off
-echo ******Deleting Old Version Files******
+echo ******
+echo Deleting Old Version Files
+echo ******
 
 cscript DeleteVerFiles.vbs
