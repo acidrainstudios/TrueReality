@@ -66,7 +66,36 @@ namespace vrsUtil
 		}
 
 		#endif
+
 	}
 }
 
 #endif // vrsGPUDetector_CPP
+
+
+
+//For X11 this might be a way to do the same:
+
+/* screenno - returns the number of screens connected to the current display
+ */
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <X11/Xlib.h>
+//
+//int main(int argc, char *argv[]) 
+//{
+//        Display * display;
+//        char * displayName;
+//        int screenNo = 0;
+//
+//        displayName = getenv("DISPLAY");
+//        display = XOpenDisplay(displayName);
+//        
+//		screenNo = ScreenCount(display);
+//        
+//		printf("%d", screenNo);
+//        
+//		XCloseDisplay(display);
+//        return 0;
+//}
