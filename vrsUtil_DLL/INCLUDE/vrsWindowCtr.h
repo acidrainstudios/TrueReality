@@ -20,7 +20,7 @@
 
 
 #ifndef vrsWindowCtr_H
-#define vrsWindowCtr_H
+#define vrsWindowCtr_H 1
 
 #include "export.h"
 

@@ -198,6 +198,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CPP\vrsGPUDetectorWin32.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\CPP\vrsGPUDetectorX11.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CPP\vrsLogo.cpp"
 				>
 			</File>
