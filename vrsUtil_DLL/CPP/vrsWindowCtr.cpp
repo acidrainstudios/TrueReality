@@ -20,7 +20,7 @@
 
 
 #ifndef vrsWindowCtr_CPP
-#define vrsWindowCtr_CPP
+#define vrsWindowCtr_CPP 1
 
 #include <windows.h>
 

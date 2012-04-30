@@ -17,8 +17,9 @@
 * 
 * @author Maxim Serebrennik 
 *////////////////////////////////////////////////////////////////////////////////
+
 #ifndef vrsGPUDetector_H
-#define vrsGPUDetector_H
+#define vrsGPUDetector_H 1
 
 #include "export.h"
 
@@ -32,6 +33,16 @@ namespace vrsUtil
 	class VRS_UTIL_EXPORT vrsGPUDetector: public dtCore::Base
 	{
 	public:
+		
+		/**
+		* Holds the Configuration of Win and GPUs
+		*/
+		struct ScrGPUCfg {
+		int ScrNum;
+		int GPUNum;
+		std::string GCardID;
+		};
+
 		/**
 		* Constructor
 		*/
@@ -41,14 +52,41 @@ namespace vrsUtil
 		* Destructor
 		*/
 		~vrsGPUDetector(void){};
+
+		/**
+		* Returns the Number of Screens Attached to the computer
+		*/
+		int GetNumOfScreens(void){return mNumberOfScr;}
+
 		
 
 	private:
 
 		/**
-		* Detects the GPU configuration
+		* Detects the GPU configuration (General)
 		*/
 		void DetectGPUMonitorConfig(void);
+
+		#ifdef _WIN32
+		/**
+		* Detects the GPU configuration (Winows Specific)
+		*/
+		void DetectGPUMonitorConfigWin32(void);
+		#endif
+
+		#ifndef _WIN32
+		/**
+		* Needs to be coded
+		* Detects the GPU configuration (Linux Specific)
+		*/
+		void DetectGPUMonitorConfigX11(void);
+		#endif
+
+		//Number of screens attached to the computer
+		unsigned int mNumberOfScr;
+
+		//Holds the GPU - Window information
+		std::vector<ScrGPUCfg> ScrGPUConfig;	
 	};
 
 
