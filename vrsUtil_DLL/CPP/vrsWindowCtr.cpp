@@ -154,10 +154,7 @@ namespace vrsUtil
 		if(mDspSettings.get() == NULL)
 		{
 			mDspSettings = osg::DisplaySettings::instance();
-		}
-			
-		vrsGPUDetector GPUMon;
-				
+		}				
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -167,6 +164,8 @@ namespace vrsUtil
 		{
 			//Display the VR-Sim Starting Text
 			Logo();
+
+			vrsGPUDetector GPUMon;
 
 			//Create a parser instance
 			osg::ArgumentParser parser(&argc, argv);

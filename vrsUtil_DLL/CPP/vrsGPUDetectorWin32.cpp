@@ -41,7 +41,8 @@ namespace vrsUtil
 		int KeyStart = 0;
 		int KeyEnd = 0;
 		while( EnumDisplayDevices(NULL, deviceNum, &GCardDevice, 0))
-		{			
+		{	
+
 			//Isolate the Graphics Card Device Key
 			std::string CardDeviceKey(GCardDevice.DeviceKey);
 			KeyStart = CardDeviceKey.find("{");
@@ -90,7 +91,7 @@ namespace vrsUtil
 		{
 			std::cout << "WinNum: " << ScrGPUConfig[i].ScrNum << " GPU Num: " << ScrGPUConfig[i].GPUNum << " GCard ID: " << ScrGPUConfig[i].GCardID << std::endl;
 		}
-
+		std::cout << std::endl;
 		#endif
 	}
 	#endif

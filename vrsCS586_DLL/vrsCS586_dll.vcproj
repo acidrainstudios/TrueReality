@@ -78,7 +78,7 @@
 				AdditionalLibraryDirectories="&quot;$(DELTA_ROOT)\Lib\Debug&quot;;&quot;$(DELTA_ROOT)\ext\lib\&quot;;&quot;$(OutDir)&quot;;..\..\ext\lib;&quot;..\..\lib\Debug\..\$(OutDir)&quot;"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="Debug\vrsCS586d.pdb"
+				ProgramDatabaseFile="$(IntDir)\vrsCS586d.pdb"
 				ImportLibrary="$(DELTA_ROOT)\lib\Debug\vrsCS586d.lib"
 			/>
 			<Tool
