@@ -78,7 +78,7 @@
 				AdditionalLibraryDirectories="&quot;$(DELTA_ROOT)\Lib\Debug&quot;;&quot;$(DELTA_ROOT)\ext\lib\&quot;;&quot;$(OutDir)&quot;;&quot;$(DELTA_ROOT)\dtPhysics2010_06_11_A\lib&quot;;&quot;$(DELTA_ROOT)\dtPhysics2010_06_11_A\ext\lib\win32&quot;"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="Debug\vrsWtrNoised.pdb"
+				ProgramDatabaseFile="$(IntDir)\vrsWtrNoised.pdb"
 				ImportLibrary="$(DELTA_ROOT)\lib\Debug\vrsWtrNoised.lib"
 			/>
 			<Tool

@@ -78,7 +78,7 @@
 				AdditionalLibraryDirectories="&quot;$(DELTA_ROOT)\Lib\Debug&quot;;&quot;$(DELTA_ROOT)\ext\lib\&quot;;&quot;$(OutDir)&quot;;..\..\ext\lib;&quot;..\..\lib\Debug\..\$(OutDir)&quot;"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="Debug\vrsTrackerd.pdb"
+				ProgramDatabaseFile="$(IntDir)\vrsTrackerd.pdb"
 				ImportLibrary="$(DELTA_ROOT)\lib\Debug\vrsTrackerd.lib"
 			/>
 			<Tool
