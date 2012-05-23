@@ -31,11 +31,11 @@ namespace vrsUtil
 {
 	void vrsGPUDetector::DetectGPUMonitorConfigX11(void)
 	{
+
 		//For X11 this might be a way to do the same:
 
 		/* screenno - returns the number of screens connected to the current display
 		 */
-
 		
 		//
 		//int main(int argc, char *argv[]) 
@@ -54,6 +54,18 @@ namespace vrsUtil
 		//		XCloseDisplay(display);
 		//        return 0;
 		//}
+
+		//Temp result until a true x11 GPU detector is made
+		for(unsigned int i = 0; i < mNumberOfScr; i++)
+		{
+			//Fill out Screen Data Set each screen to a different GPU
+			//This will force each window create its own context (Not the best case)
+			ScrGPUCfg ScrCfg;
+			ScrCfg.GPUNum = i;
+			ScrCfg.ScrNum = i;
+			ScrCfg.GCardID = i;
+			ScrGPUConfig.push_back(ScrCfg);
+		}
 
 	}
 	

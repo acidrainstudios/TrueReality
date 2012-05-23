@@ -1,4 +1,4 @@
-#define FILEVER					1,0,0,0369
-//Do Not Remove				1,0,0,0369
-#define STRFILEVER				"1,0,0,0369"
-//Do Not Remove			"1,0,0,0369"
+#define FILEVER					1,0,0,0371
+//Do Not Remove				1,0,0,0371
+#define STRFILEVER				"1,0,0,0371"
+//Do Not Remove			"1,0,0,0371"
