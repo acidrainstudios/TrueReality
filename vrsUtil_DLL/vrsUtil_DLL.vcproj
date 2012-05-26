@@ -194,6 +194,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\CPP\vrsConfigParser.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CPP\vrsGPUDetector.cpp"
 				>
 			</File>
@@ -229,6 +233,10 @@
 			>
 			<File
 				RelativePath=".\INCLUDE\export.h"
+				>
+			</File>
+			<File
+				RelativePath=".\INCLUDE\vrsConfigParser.h"
 				>
 			</File>
 			<File
