@@ -56,9 +56,9 @@ namespace vrsUtil
 				//Fill out Screen Data (Set all GPU IDs to 0)				
 				ScrGPUCfg ScrCfg;
 				ScrCfg.GPUNum = 0;
-				ScrCfg.ScrNum = ScrGPUConfig.size();
+				ScrCfg.ScrNum = mScrGPUConfig.size();
 				ScrCfg.GCardID = CardDeviceKey.substr(KeyStart, KeyEnd);
-				ScrGPUConfig.push_back(ScrCfg);
+				mScrGPUConfig.push_back(ScrCfg);
 
 				monitorNum++;
 			}
@@ -66,17 +66,17 @@ namespace vrsUtil
 		}
 
 		//Compare the GCard IDs, and label the corect GPU IDs
-		for (unsigned int i=0; i<ScrGPUConfig.size(); i++)
+		for (unsigned int i=0; i<mScrGPUConfig.size(); i++)
 		{
-			for (unsigned int j=i+1; j<ScrGPUConfig.size(); j++)
+			for (unsigned int j=i+1; j<mScrGPUConfig.size(); j++)
 			{
-				if (ScrGPUConfig[j].GCardID == ScrGPUConfig[i].GCardID)
+				if (mScrGPUConfig[j].GCardID == mScrGPUConfig[i].GCardID)
 				{
-					ScrGPUConfig[j].GPUNum = ScrGPUConfig[i].GPUNum;
+					mScrGPUConfig[j].GPUNum = mScrGPUConfig[i].GPUNum;
 				}	
 				else
 				{
-					ScrGPUConfig[j].GPUNum = (ScrGPUConfig[i].GPUNum + 1);
+					mScrGPUConfig[j].GPUNum = (mScrGPUConfig[i].GPUNum + 1);
 				}
 			}
 		}
@@ -87,9 +87,9 @@ namespace vrsUtil
 		std::cerr << mNumberOfScr << std::endl;
 		std::cerr << "******************" << std::endl;
 
-		for(unsigned int i=0; i<ScrGPUConfig.size(); i++)
+		for(unsigned int i=0; i<mScrGPUConfig.size(); i++)
 		{
-			std::cout << "WinNum: " << ScrGPUConfig[i].ScrNum << " GPU Num: " << ScrGPUConfig[i].GPUNum << " GCard ID: " << ScrGPUConfig[i].GCardID << std::endl;
+			std::cout << "WinNum: " << mScrGPUConfig[i].ScrNum << " GPU Num: " << mScrGPUConfig[i].GPUNum << " GCard ID: " << mScrGPUConfig[i].GCardID << std::endl;
 		}
 		std::cout << std::endl;
 		#endif

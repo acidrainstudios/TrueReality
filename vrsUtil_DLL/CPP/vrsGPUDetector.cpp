@@ -23,7 +23,7 @@ namespace vrsUtil
 		mNumberOfScr = gc->getWindowingSystemInterface()->getNumScreens();
 
 		//Make room for the detected screens
-		ScrGPUConfig.reserve(mNumberOfScr);
+		mScrGPUConfig.reserve(mNumberOfScr);
 
 	#ifdef _WIN32
 		DetectGPUMonitorConfigWin32();
