@@ -2,7 +2,7 @@
 #ifndef vrsWindow_CPP
 #define vrsWindow_CPP
 
-#include "..\\Include\vrsWindowCtr.h"
+#include "..\\Include\vrsWindowCtr_OLD.h"
 
 vrsWindowCtr::vrsWindowCtr(void):
 			//_Window(0), 
