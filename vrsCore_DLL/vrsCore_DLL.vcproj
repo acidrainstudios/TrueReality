@@ -283,7 +283,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsWindowCtr.cpp"
+				RelativePath=".\CPP\vrsWindowCtr_OLD.cpp"
 				>
 			</File>
 		</Filter>
@@ -351,7 +351,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Include\vrsWindowCtr.h"
+				RelativePath=".\Include\vrsWindowCtr_OLD.h"
 				>
 			</File>
 		</Filter>
