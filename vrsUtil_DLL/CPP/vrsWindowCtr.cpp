@@ -80,7 +80,7 @@ namespace vrsUtil
 	{
 		if (!mInitialised)
 		{
-			//See if the user included any Window Setup realted Args
+			//See if the user included any Window Setup related Args
 			ParseWinArgs(argc, argv);
 
 
