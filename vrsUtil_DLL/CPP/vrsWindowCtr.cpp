@@ -22,8 +22,6 @@
 #ifndef vrsWindowCtr_CPP
 #define vrsWindowCtr_CPP 1
 
-#include <windows.h>
-
 #include "..\\Include\vrsWindowCtr.h"
 #include "..\\Include\vrsMath.h"
 #include "..\\Include\vrsTextColor.h"
