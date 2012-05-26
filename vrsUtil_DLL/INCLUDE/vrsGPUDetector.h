@@ -58,7 +58,10 @@ namespace vrsUtil
 		*/
 		int GetNumOfScreens(void){return mNumberOfScr;}
 
-		
+		/**
+		* Returns the GPU Number that should be used for the given screen
+		*/
+		int GetGPUOfScrNum(int ScreenNum){return mScrGPUConfig[ScreenNum].GPUNum;}
 
 	private:
 
@@ -86,7 +89,7 @@ namespace vrsUtil
 		unsigned int mNumberOfScr;
 
 		//Holds the GPU - Window information
-		std::vector<ScrGPUCfg> ScrGPUConfig;	
+		std::vector<ScrGPUCfg> mScrGPUConfig;	
 	};
 
 

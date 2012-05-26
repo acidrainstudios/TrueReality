@@ -64,7 +64,7 @@ namespace vrsUtil
 			ScrCfg.GPUNum = i;
 			ScrCfg.ScrNum = i;
 			ScrCfg.GCardID = i;
-			ScrGPUConfig.push_back(ScrCfg);
+			mScrGPUConfig.push_back(ScrCfg);
 		}
 
 	}
