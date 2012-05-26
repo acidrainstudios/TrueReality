@@ -24,13 +24,13 @@
 
 #include "export.h"
 
+#include <osg/Referenced>
+
 #include <dtGame/gameapplication.h>
 #include <dtCore/DeltaWin.h>
 #include <dtCore/Camera.h>
 #include <dtCore/Scene.h>
 #include <dtCore/View.h>
-
-#include <dtCore/Base.h>
 
 #include <vector>
 
@@ -70,7 +70,7 @@ namespace vrsUtil
     * Creates and Controls multi-window setups for VR-Sim Lab
 	* and handles Visual Stereo Setup
     */
-	class VRS_UTIL_EXPORT vrsWindowCtr: public dtCore::Base
+	class VRS_UTIL_EXPORT vrsWindowCtr: public osg::Referenced
 	{
 	protected:
 		
