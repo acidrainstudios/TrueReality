@@ -39,7 +39,12 @@ int main(int argc, char** argv)
 	dtUtil::LogFile::SetTitle("VR-Sim Lab Log File");
 	
 	//Set the Maximum level of Log msg outputs
+	#ifdef _DEBUG
 	dtUtil::Log::GetInstance().SetAllLogLevels(dtUtil::Log::LOG_DEBUG);
+	#else
+	dtUtil::Log::GetInstance().SetAllLogLevels(dtUtil::Log::LOG_ERROR);
+	#endif
+	
 	
 	// Setup the aplicatin search paths...
 	std::string dataPath = dtUtil::GetDeltaDataPathList();
@@ -62,6 +67,8 @@ int main(int argc, char** argv)
 								deltaPath + "/Bin/Content/StaticMeshes;" +
 								deltaPath + "/Bin/Content/Terrains;" +
 								deltaPath + "/Bin/Content/Textures");
+
+	LOG_INFO("Path list is: " + dtUtil::GetDataFilePathList() );
 
 	//Set the Config File name
 	std::string configFileName(deltaPath + "/Bin/config.xml");
