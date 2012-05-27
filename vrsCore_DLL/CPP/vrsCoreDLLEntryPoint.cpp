@@ -87,10 +87,6 @@ namespace vrsCore
 	void vrsCoreDLLEntryPoint::OnStartup(dtGame::GameApplication& app)
 	{		
 
-	#ifdef _DEBUG
-		LOG_ALWAYS("Path list is: " + dtUtil::GetDataFilePathList() );
-	#endif //_DEBUG
-
 		// Load the map we created in STAGE.
 		app.GetGameManager()->ChangeMap(mMapName);
 
