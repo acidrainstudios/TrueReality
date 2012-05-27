@@ -23,8 +23,33 @@
 
 #include "..\\Include\vrsConfigParser.h"
 
+#include <iostream>
+
+#include <dtUtil/datapathutils.h>
+
 namespace vrsUtil
 {
+	// Ctor
+	vrsConfigParser::vrsConfigParser(const std::string& configFileName)
+	{
+		SetConfigFileName(configFileName);	
+	}
+
+	// Sets the Config File Name
+	void vrsConfigParser::SetConfigFileName(const std::string& configFileName)
+	{
+		mConfigFileName = configFileName;
+		SetConfigFilePath(dtUtil::GetDeltaRootPath() + "/Bin/" + mConfigFileName);	
+	}
+
+	// Sets the Full Config File Name and Path
+	void vrsConfigParser::SetConfigFilePath(const std::string &configFilePath)
+	{
+		mConfigFilePath = configFilePath;
+		#ifdef _DEBUG
+			std::cout << "VRSim Config File: " << mConfigFilePath << std::endl;
+		#endif
+	}
 
 }
 

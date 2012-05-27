@@ -24,6 +24,8 @@
 
 #include "export.h"
 
+#include <vector>
+
 #include <osg/Referenced>
 
 #include <dtGame/gameapplication.h>
@@ -32,7 +34,8 @@
 #include <dtCore/Scene.h>
 #include <dtCore/View.h>
 
-#include <vector>
+#include "vrsConfigParser.h"
+
 
 namespace vrsUtil
 {
@@ -166,7 +169,12 @@ namespace vrsUtil
 		/**
 		* Display Settings
 		*/
-		osg::ref_ptr<osg::DisplaySettings> mDspSettings;					
+		osg::ref_ptr<osg::DisplaySettings> mDspSettings;	
+
+		/**
+		* XML Config Settings Parser
+		*/
+		vrsConfigParser mVRSimConfig;
 
 		/**
 		* Hold the instance of the aplication class
