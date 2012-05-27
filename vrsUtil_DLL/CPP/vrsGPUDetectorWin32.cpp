@@ -24,8 +24,9 @@
 #include "..\\Include\vrsGPUDetector.h"
 
 #include <windows.h>
-
 #include <iostream>
+
+#include <dtUtil/log.h>
 
 #include <osgViewer/CompositeViewer>
 
