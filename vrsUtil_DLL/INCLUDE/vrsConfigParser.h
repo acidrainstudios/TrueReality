@@ -21,8 +21,58 @@
 #ifndef vrsConfigParser_H
 #define vrsConfigParser_H 1
 
+#include "export.h"
+
+#include <string>
+
+#include <osg/Referenced>
+
+
+
 namespace vrsUtil
 {
+	/**
+	* This class parses all the config option from VRSimCfg.xml
+	* It uses other classes to pull in each individual section of the XML file
+	*/
+	class VRS_UTIL_EXPORT vrsConfigParser: public osg::Referenced
+	{
+	public:
+
+		/**
+		* Constructor
+		*/
+		vrsConfigParser(const std::string& configFileName = "VRSimCfg.xml");
+
+		/**
+		* Sets a new Config File Name
+		*/
+		void SetConfigFileName(const std::string& configFileName);
+
+		/**
+		* Gets the Config File Name
+		*/
+		const std::string& GetConfigFileName(){return mConfigFileName;}
+
+		/**
+		* Sets a new Config File Path
+		*/
+		void SetConfigFilePath(const std::string& configFilePath);
+
+		/**
+		* Gets the Config File Path
+		*/
+		const std::string& GetConfigFilePath(){return mConfigFilePath;}
+
+	private:
+
+		//Holds the Name of the Config File
+		std::string mConfigFileName;
+
+		//Holds the full Path and Name of the Config File
+		std::string mConfigFilePath;
+	
+	};
 
 }
 
