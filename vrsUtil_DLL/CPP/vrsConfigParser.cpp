@@ -26,6 +26,7 @@
 #include <iostream>
 
 #include <dtUtil/datapathutils.h>
+#include <dtUtil/log.h>
 
 namespace vrsUtil
 {
@@ -47,7 +48,7 @@ namespace vrsUtil
 	{
 		mConfigFilePath = configFilePath;
 		#ifdef _DEBUG
-			std::cout << "VRSim Config File: " << mConfigFilePath << std::endl;
+			LOG_INFO("VRSim Config File: " + mConfigFilePath + '\n');
 		#endif
 	}
 

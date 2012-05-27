@@ -37,7 +37,10 @@ int main(int argc, char** argv)
 	dtUtil::LogFile::SetFileName("VRSimLog.html");
 
 	dtUtil::LogFile::SetTitle("VR-Sim Lab Log File");
-
+	
+	//Set the Maximum level of Log msg outputs
+	dtUtil::Log::GetInstance().SetAllLogLevels(dtUtil::Log::LOG_DEBUG);
+	
 	// Setup the aplicatin search paths...
 	std::string dataPath = dtUtil::GetDeltaDataPathList();
 	std::string deltaPath = dtUtil::GetDeltaRootPath();
