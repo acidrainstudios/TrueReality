@@ -3,9 +3,11 @@
 
 #include "..\\Include\vrsGPUDetector.h"
 
-#include <iostream>
+#include <sstream>
 
 #include <osgViewer/CompositeViewer>
+
+#include <dtUtil/log.h>
 
 namespace vrsUtil
 {
@@ -27,10 +29,24 @@ namespace vrsUtil
 
 	#ifdef _WIN32
 		DetectGPUMonitorConfigWin32();
-	#endif
-		
-	#ifndef _WIN32
+	#else
 		DetectGPUMonitorConfigX11();
+	#endif
+
+	#ifdef _DEBUG
+		//Debug Screen Info Printout
+		std::stringstream LogPrintout;
+
+		LogPrintout << "\nNumber of screens: ";
+		LogPrintout << mNumberOfScr << std::endl;
+		LogPrintout << "******************" << std::endl;
+
+		for(unsigned int i=0; i<mScrGPUConfig.size(); i++)
+		{
+			LogPrintout << "WinNum: " << mScrGPUConfig[i].ScrNum << " GPU Num: " << mScrGPUConfig[i].GPUNum << " GCard ID: " << mScrGPUConfig[i].GCardID << std::endl;
+		}
+		LogPrintout << std::endl;
+		LOG_INFO(LogPrintout.str());
 	#endif
 	}
 }

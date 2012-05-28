@@ -26,8 +26,6 @@
 #include <windows.h>
 #include <iostream>
 
-#include <dtUtil/log.h>
-
 #include <osgViewer/CompositeViewer>
 
 namespace vrsUtil
@@ -81,19 +79,6 @@ namespace vrsUtil
 				}
 			}
 		}
-
-		#ifdef _DEBUG
-		//Debug Screen Info Printout
-		std::cerr << "Number of screens: ";
-		std::cerr << mNumberOfScr << std::endl;
-		std::cerr << "******************" << std::endl;
-
-		for(unsigned int i=0; i<mScrGPUConfig.size(); i++)
-		{
-			std::cout << "WinNum: " << mScrGPUConfig[i].ScrNum << " GPU Num: " << mScrGPUConfig[i].GPUNum << " GCard ID: " << mScrGPUConfig[i].GCardID << std::endl;
-		}
-		std::cout << std::endl;
-		#endif
 	}
 	#endif
 }
