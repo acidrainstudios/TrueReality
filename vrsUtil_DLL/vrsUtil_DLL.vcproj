@@ -198,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CPP\vrsConfigSchema.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CPP\vrsGPUDetector.cpp"
 				>
 			</File>
@@ -237,6 +241,10 @@
 			</File>
 			<File
 				RelativePath=".\INCLUDE\vrsConfigParser.h"
+				>
+			</File>
+			<File
+				RelativePath=".\INCLUDE\vrsConfigSchema.h"
 				>
 			</File>
 			<File

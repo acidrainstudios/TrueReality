@@ -82,7 +82,6 @@ namespace vrsUtil
 			ParseWinArgs(argc, argv);
 
 
-
 			//Create our App
 			mApp = new dtGame::GameApplication(argc, argv, configFileName);
 		}
