@@ -22,7 +22,7 @@
 
 
 #ifndef VRSUTILDLL_EXPORT_H
-#define VRSUTILDLL_EXPORT_H
+#define VRSUTILDLL_EXPORT_H 1
 
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
