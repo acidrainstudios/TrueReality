@@ -202,6 +202,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CPP\vrsConfigWriter.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CPP\vrsGPUDetector.cpp"
 				>
 			</File>
@@ -245,6 +249,10 @@
 			</File>
 			<File
 				RelativePath=".\INCLUDE\vrsConfigSchema.h"
+				>
+			</File>
+			<File
+				RelativePath=".\INCLUDE\vrsConfigWriter.h"
 				>
 			</File>
 			<File
