@@ -22,11 +22,11 @@
 #ifndef vrsWindowCtr_CPP
 #define vrsWindowCtr_CPP 1
 
-#include <vrsUtil_DLL\vrsWindowCtr.h>
-#include <vrsUtil_DLL\vrsMath.h>
-#include <vrsUtil_DLL\vrsTextColor.h>
-#include <vrsUtil_DLL\vrsLogo.h>
-#include <vrsUtil_DLL\vrsGPUDetector.h>
+#include <vrsUtil\vrsWindowCtr.h>
+#include <vrsUtil\vrsMath.h>
+#include <vrsUtil\vrsTextColor.h>
+#include <vrsUtil\vrsLogo.h>
+#include <vrsUtil\vrsGPUDetector.h>
 
 #include <osgViewer/GraphicsWindow>
 #include <osg/LightSource>

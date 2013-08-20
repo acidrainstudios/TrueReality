@@ -21,7 +21,7 @@
 #define vrsGPUDetectorWin32_CPP 1
 
 #ifdef _WIN32
-#include "..\\Include\vrsGPUDetector.h"
+#include <vrsUtil\vrsGPUDetector.h>
 
 #include <windows.h>
 #include <iostream>

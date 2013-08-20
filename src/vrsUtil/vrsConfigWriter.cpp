@@ -21,7 +21,7 @@
 #ifndef vrsConfigWriter_CPP
 #define vrsConfigWriter_CPP 1
 
-#include "..\\Include\vrsConfigWriter.h"
+#include <vrsUtil\vrsConfigWriter.h>
 #include <xercesc/util/XMLString.hpp>
 
 using namespace XERCES_CPP_NAMESPACE;

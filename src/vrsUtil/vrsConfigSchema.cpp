@@ -21,7 +21,7 @@
 #ifndef vrsConfigSchema_CPP
 #define vrsConfigSchema_CPP 1
 
-#include "..\\Include\vrsConfigSchema.h"
+#include <vrsUtil\vrsConfigSchema.h>
 
 
 namespace vrsUtil

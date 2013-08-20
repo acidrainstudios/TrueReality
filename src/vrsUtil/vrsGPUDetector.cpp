@@ -1,7 +1,7 @@
 #ifndef vrsGPUDetector_CPP
 #define vrsGPUDetector_CPP 1
 
-#include "..\\Include\vrsGPUDetector.h"
+#include <vrsUtil\vrsGPUDetector.h>
 
 #include <sstream>
 

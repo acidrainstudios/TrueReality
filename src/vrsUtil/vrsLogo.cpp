@@ -25,8 +25,8 @@
 #include <iostream>
 
 #include "..\\..\\vrsVersionCTR\ProdVerNo.h"
-#include "..\\INCLUDE\vrsTextColor.h"
-#include "..\\Include\vrsLogo.h"
+#include <vrsUtil\vrsTextColor.h>
+#include <vrsUtil\vrsLogo.h>
 
 namespace vrsUtil
 {

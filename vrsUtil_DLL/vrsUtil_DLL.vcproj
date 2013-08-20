@@ -43,7 +43,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000 /MP"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(DELTA_ROOT)\inc;$(DELTA_ROOT)\ext\inc"
+				AdditionalIncludeDirectories="$(DELTA_ROOT)\inc;$(DELTA_ROOT)\ext\inc;C:\MyMainData\Development\VRSimLab\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;NOMINMAX;VRS_UTIL_LIBRARY"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -129,7 +129,7 @@
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="false"
 				FavorSizeOrSpeed="0"
-				AdditionalIncludeDirectories="$(DELTA_ROOT)\inc;$(DELTA_ROOT)\ext\inc"
+				AdditionalIncludeDirectories="$(DELTA_ROOT)\inc;$(DELTA_ROOT)\ext\inc;C:\MyMainData\Development\VRSimLab\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;NOMINMAX;VRS_UTIL_LIBRARY"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="false"
@@ -194,43 +194,43 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\CPP\vrsConfigParser.cpp"
+				RelativePath="..\src\vrsUtil\vrsConfigParser.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsConfigSchema.cpp"
+				RelativePath="..\src\vrsUtil\vrsConfigSchema.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsConfigWriter.cpp"
+				RelativePath="..\src\vrsUtil\vrsConfigWriter.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsGPUDetector.cpp"
+				RelativePath="..\src\vrsUtil\vrsGPUDetector.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsGPUDetectorWin32.cpp"
+				RelativePath="..\src\vrsUtil\vrsGPUDetectorWin32.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsGPUDetectorX11.cpp"
+				RelativePath="..\src\vrsUtil\vrsGPUDetectorX11.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsLogo.cpp"
+				RelativePath="..\src\vrsUtil\vrsLogo.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsMath.cpp"
+				RelativePath="..\src\vrsUtil\vrsMath.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsTextColor.cpp"
+				RelativePath="..\src\vrsUtil\vrsTextColor.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\CPP\vrsWindowCtr.cpp"
+				RelativePath="..\src\vrsUtil\vrsWindowCtr.cpp"
 				>
 			</File>
 		</Filter>
@@ -240,39 +240,39 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\INCLUDE\export.h"
+				RelativePath="..\include\vrsUtil\export.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsConfigParser.h"
+				RelativePath="..\include\vrsUtil\vrsConfigParser.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsConfigSchema.h"
+				RelativePath="..\include\vrsUtil\vrsConfigSchema.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsConfigWriter.h"
+				RelativePath="..\include\vrsUtil\vrsConfigWriter.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsGPUDetector.h"
+				RelativePath="..\include\vrsUtil\vrsGPUDetector.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsLogo.h"
+				RelativePath="..\include\vrsUtil\vrsLogo.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsMath.h"
+				RelativePath="..\include\vrsUtil\vrsMath.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsTextColor.h"
+				RelativePath="..\include\vrsUtil\vrsTextColor.h"
 				>
 			</File>
 			<File
-				RelativePath=".\INCLUDE\vrsWindowCtr.h"
+				RelativePath="..\include\vrsUtil\vrsWindowCtr.h"
 				>
 			</File>
 		</Filter>
