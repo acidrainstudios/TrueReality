@@ -21,7 +21,7 @@
 #ifndef vrsConfigParser_CPP
 #define vrsConfigParser_CPP 1
 
-#include "..\\Include\vrsConfigParser.h"
+#include <vrsUtil\vrsConfigParser.h>
 
 #include <iostream>
 

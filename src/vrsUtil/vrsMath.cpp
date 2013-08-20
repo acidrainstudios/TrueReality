@@ -27,7 +27,7 @@
 #include <dtCore/refptr.h>
 #include <dtCore/uniqueid.h>
 
-#include "..\\Include\vrsMath.h"
+#include <vrsUtil\vrsMath.h>
 
 namespace vrsUtil
 {

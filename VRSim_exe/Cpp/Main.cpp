@@ -27,7 +27,7 @@
 #include <dtUtil/datapathutils.h>
 #include <dtUtil/log.h>
 
-#include "..\\..\\vrsUtil_DLL\Include\vrsWindowCtr.h"
+#include <vrsUtil\vrsWindowCtr.h>
 
 #include <iostream>
 

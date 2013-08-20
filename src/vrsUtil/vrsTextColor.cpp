@@ -22,7 +22,7 @@
 #ifndef vrsTextColor_CPP
 #define vrsTextColor_CPP
 
-#include "..\\Include\vrsTextColor.h"
+#include <vrsUtil\vrsTextColor.h>
 
 #if defined(_WIN32)
 
