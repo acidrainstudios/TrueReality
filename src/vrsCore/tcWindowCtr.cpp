@@ -1,7 +1,9 @@
 #ifndef tcWindow_CPP
 #define tcWindow_CPP
 
-#include "..\\Include\tcWindowCtr.h"
+#include <vrsCore\tcWindowCtr.h>
+
+#include <dtUtil/Exception.h>
 
 tcWindowCtr::tcWindowCtr(void):
 			//_Window(0), 
@@ -138,9 +140,7 @@ bool tcWindowCtr::MakeWin(int NumOfWindows, bool Overwrite)
 	   
 			if (gc.valid() == false)
 			{
-			throw dtUtil::Exception(dtCore::ExceptionEnum::INVALID_CONTEXT,
-				"The graphics context could not be created.",
-				__FILE__, __LINE__ );
+				throw dtUtil::Exception("The graphics context could not be created.", __FILE__, __LINE__ );
 			}
 	   
 			// Create the Graphics Window

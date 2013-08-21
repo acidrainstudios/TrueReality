@@ -21,7 +21,7 @@
 #ifndef COREDLL_MY_GAME_ENTRY_POINT_CPP
 #define COREDLL_MY_GAME_ENTRY_POINT_CPP
 
-#include "..\\Include\vrsCoreDLLEntryPoint.h"
+#include <vrsCore\vrsCoreDLLEntryPoint.h>
 
 #include <iostream>
 
@@ -37,8 +37,8 @@
 
 #include <osg/ArgumentParser>
 
-#include "..\\Include\InputComponent.h"
-#include "..\\Include\ControllerComponent.h"
+#include <vrsCore\InputComponent.h>
+#include <vrsCore\ControllerComponent.h>
 
 namespace vrsCore
 {

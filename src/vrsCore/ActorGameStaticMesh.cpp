@@ -21,7 +21,7 @@
 #ifndef COREDLL_GAME_STATIC_MESH_ACTOR_CPP
 #define COREDLL_GAME_STATIC_MESH_ACTOR_CPP
 
-#include "..\\Include\ActorGameStaticMesh.h"
+#include <vrsCore\ActorGameStaticMesh.h>
 
 namespace vrsCore
 {

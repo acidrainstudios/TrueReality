@@ -22,7 +22,7 @@
 #ifndef COREDLL_CONTROLLER_COMPONENT_CPP
 #define COREDLL_CONTROLLER_COMPONENT_CPP
 
-#include "..\\Include\ControllerComponent.h"
+#include <vrsCore\ControllerComponent.h>
 namespace vrsCore
 {
 

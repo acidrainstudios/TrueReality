@@ -22,7 +22,7 @@
 #define COREDLL_PAGED_TERRAIN_ACTOR_CPP
 
 
-#include "..\\Include\ActorPagedTerrain.h"
+#include <vrsCore\ActorPagedTerrain.h>
 
 namespace vrsCore
 {

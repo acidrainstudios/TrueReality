@@ -1,7 +1,7 @@
 #ifndef tcWindow_H
 #define tcWindow_H
 
-#include "..\\..\\vrsUtil_DLL\Include\vrsMath.h"
+#include <vrsUtil\vrsMath.h>
 
 #include <dtCore/deltawin.h>
 #include <dtCore/camera.h>
@@ -20,7 +20,6 @@
 #include <osgViewer/CompositeViewer>
 #include <osgViewer/GraphicsWindow>
 
-#include <prefix/dtcoreprefix-src.h>
 #include <dtUtil/log.h>
 #include <dtCore/exceptionenum.h>
 

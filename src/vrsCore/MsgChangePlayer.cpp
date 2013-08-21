@@ -22,7 +22,7 @@
 #ifndef COREDLL_MSG_CHANGE_PLAYER_CPP
 #define COREDLL_MSG_CHANGE_PLAYER_CPP
 
-#include "..\\Include\MsgChangePlayer.h"
+#include <vrsCore\MsgChangePlayer.h>
 namespace vrsCore
 {
 	///////////////////////////////////////////////////////////////////////////////

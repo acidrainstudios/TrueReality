@@ -22,7 +22,7 @@
 #ifndef COREDLL_INPUT_COMPONENT_CPP
 #define COREDLL_INPUT_COMPONENT_CPP
 
-#include "..\\Include\InputComponent.h"
+#include <vrsCore\InputComponent.h>
 
 namespace vrsCore
 {
