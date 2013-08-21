@@ -21,7 +21,7 @@
 #ifndef COREDLL_GENERIC_ACTOR_CPP
 #define COREDLL_GENERIC_ACTOR_CPP
 
-#include "..\\Include\ActorGeneric.h"
+#include <vrsCore\ActorGeneric.h>
 
 namespace vrsCore
 {

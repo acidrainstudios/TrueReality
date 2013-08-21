@@ -22,7 +22,7 @@
 #ifndef COREDLL_ACTORS_REGISTRY_CPP
 #define COREDLL_ACTORS_REGISTRY_CPP
 
-#include "..\\Include\vrsCoreActorsRegistry.h"
+#include <vrsCore\vrsCoreActorsRegistry.h>
 
 namespace vrsCore
 {

@@ -21,7 +21,7 @@
 #ifndef COREDLL_OBJECT_ACTOR_CPP
 #define COREDLL_OBJECT_ACTOR_CPP
 
-#include "..\\Include\ActorObject.h"
+#include <vrsCore\ActorObject.h>
 
 namespace vrsCore
 {

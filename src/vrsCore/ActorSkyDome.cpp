@@ -21,7 +21,7 @@
 #ifndef COREDLL_SKYDOME_ACTOR_CPP
 #define COREDLL_SKYDOME_ACTOR_CPP
 
-#include "..\\Include\ActorSkyDome.h"
+#include <vrsCore\ActorSkyDome.h>
 
 namespace vrsCore
 {

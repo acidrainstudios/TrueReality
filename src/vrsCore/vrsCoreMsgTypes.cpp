@@ -23,7 +23,7 @@
 #define COREDLL_MSG_TYPES_CPP
 
 
-#include "..\\Include\vrsCoreMsgTypes.h"
+#include <vrsCore\vrsCoreMsgTypes.h>
 
 namespace vrsCore
 {

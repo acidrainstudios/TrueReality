@@ -21,7 +21,7 @@
 #ifndef COREDLL_ENUM_CPP
 #define COREDLL_ENUM_CPP
 
-#include "..\\Include\ActorObject.h"
+#include <vrsCore\ActorObject.h>
 
 namespace vrsCore
 {

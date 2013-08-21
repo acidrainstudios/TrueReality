@@ -22,7 +22,8 @@
 #ifndef COREDLL_MSG_CHANGE_FOCUS_CPP
 #define COREDLL_MSG_CHANGE_FOCUS_CPP
 
-#include "..\\Include\MsgChangeFocus.h"
+#include <vrsCore\MsgChangeFocus.h>
+
 namespace vrsCore
 {
 	///////////////////////////////////////////////////////////////////////////////
