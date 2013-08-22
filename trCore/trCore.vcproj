@@ -223,63 +223,63 @@
 			Name="Source Files"
 			>
 			<File
-				RelativePath="..\src\vrsCore\ActorGameStaticMesh.cpp"
+				RelativePath="..\src\trCore\ActorGameStaticMesh.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\ActorGeneric.cpp"
+				RelativePath="..\src\trCore\ActorGeneric.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\ActorObject.cpp"
+				RelativePath="..\src\trCore\ActorObject.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\ActorPagedTerrain.cpp"
+				RelativePath="..\src\trCore\ActorPagedTerrain.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\ActorSkyDome.cpp"
+				RelativePath="..\src\trCore\ActorSkyDome.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\ControllerComponent.cpp"
+				RelativePath="..\src\trCore\ControllerComponent.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\InputComponent.cpp"
+				RelativePath="..\src\trCore\InputComponent.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\MsgChangeFocus.cpp"
+				RelativePath="..\src\trCore\MsgChangeFocus.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\MsgChangePlayer.cpp"
+				RelativePath="..\src\trCore\MsgChangePlayer.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\tcWindowCtr.cpp"
+				RelativePath="..\src\trCore\tcWindowCtr.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\vrsCoreActorsRegistry.cpp"
+				RelativePath="..\src\trCore\vrsCoreActorsRegistry.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\vrsCoreDLLEntryPoint.cpp"
+				RelativePath="..\src\trCore\vrsCoreDLLEntryPoint.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\vrsCoreEnum.cpp"
+				RelativePath="..\src\trCore\vrsCoreEnum.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\vrsCoreMsgTypes.cpp"
+				RelativePath="..\src\trCore\vrsCoreMsgTypes.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\vrsCore\vrsWindowCtr_OLD.cpp"
+				RelativePath="..\src\trCore\vrsWindowCtr_OLD.cpp"
 				>
 			</File>
 		</Filter>
@@ -287,71 +287,71 @@
 			Name="Header Files"
 			>
 			<File
-				RelativePath="..\include\vrsCore\ActorGameStaticMesh.h"
+				RelativePath="..\include\trCore\ActorGameStaticMesh.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\ActorGeneric.h"
+				RelativePath="..\include\trCore\ActorGeneric.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\ActorObject.h"
+				RelativePath="..\include\trCore\ActorObject.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\ActorPagedTerrain.h"
+				RelativePath="..\include\trCore\ActorPagedTerrain.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\ActorSkyDome.h"
+				RelativePath="..\include\trCore\ActorSkyDome.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\ControllerComponent.h"
+				RelativePath="..\include\trCore\ControllerComponent.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\export.h"
+				RelativePath="..\include\trCore\export.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\InputComponent.h"
+				RelativePath="..\include\trCore\InputComponent.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\MsgChangeFocus.h"
+				RelativePath="..\include\trCore\MsgChangeFocus.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\MsgChangePlayer.h"
+				RelativePath="..\include\trCore\MsgChangePlayer.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\tcWindowCtr.h"
+				RelativePath="..\include\trCore\tcWindowCtr.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\vrsCoreActorsRegistry.h"
+				RelativePath="..\include\trCore\vrsCoreActorsRegistry.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\vrsCoreDLLEntryPoint.h"
+				RelativePath="..\include\trCore\vrsCoreDLLEntryPoint.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\vrsCoreEnum.h"
+				RelativePath="..\include\trCore\vrsCoreEnum.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\vrsCoreGameEvents.h"
+				RelativePath="..\include\trCore\vrsCoreGameEvents.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\vrsCoreMsgTypes.h"
+				RelativePath="..\include\trCore\vrsCoreMsgTypes.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\vrsCore\vrsWindowCtr_OLD.h"
+				RelativePath="..\include\trCore\vrsWindowCtr_OLD.h"
 				>
 			</File>
 		</Filter>
