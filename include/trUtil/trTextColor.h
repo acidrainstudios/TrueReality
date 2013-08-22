@@ -20,39 +20,29 @@
 */
 
 
-#ifndef vrsMath_H
-#define vrsMath_H
+#ifndef trTextColor_H
+#define trTextColor_H
+
 
 
 #include "export.h"
 
-#include <osg/Math>
-
 namespace trUtil
-{	
+{
+	enum VRS_UTIL_EXPORT TXT_COLOR {
+		BLUE	=	0,
+		GREEN	=	1,
+		RED		=	2,
+		YELLOW	=	3,
+		WHITE	=	4,
+		CYAN	=	5,
+		MAGENTA	=	6,
+		GRAY	=	7
+	};
 
-	// Pi
-	static const double	Pi = osg::PI;
-	
-	// 1/PI
-	static const double ONE_OVER_PI = 1.0/Pi;
-
-	// Pi/180
-	static const double ONE80_OVER_PI = (180.0*ONE_OVER_PI);
-
-	// Takes a Value X and outputs its Sin and Cos by reference
-	void VRS_UTIL_EXPORT SinCos(double x, double & SinVal, double & CosVal);
-
-	// Takes Degrees and converts them to Radians
-	double VRS_UTIL_EXPORT Deg2Rad(double Degree);
-
-	// Takes Degrees and converts them to Radians
-	float VRS_UTIL_EXPORT Deg2Rad(float Degree);
-
-	// Checks if State is = to 0, less then 0 or greater, and outputs -1, 0, 1
-	double VRS_UTIL_EXPORT CheckState(double State);
+	// Changes Text color in the consol window....
+	void VRS_UTIL_EXPORT SetTxtColor(TXT_COLOR TextColor);
 
 }
 
-
-#endif // vrsMath_H
+#endif // trTextColor_H

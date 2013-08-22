@@ -20,13 +20,13 @@
 */
 
 
-#ifndef vrsLogo_CPP
-#define vrsLogo_CPP
+#ifndef trLogo_CPP
+#define trLogo_CPP
 
 #include <iostream>
 
-#include <trUtil\vrsTextColor.h>
-#include <trUtil\vrsLogo.h>
+#include <trUtil\trTextColor.h>
+#include <trUtil\trLogo.h>
 
 namespace trUtil
 {
@@ -97,4 +97,4 @@ namespace trUtil
 	}
 }
 
-#endif // vrsLogo_CPP
+#endif // trLogo_CPP

@@ -19,8 +19,8 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef vrsConfigSchema_H
-#define vrsConfigSchema_H 1
+#ifndef trConfigSchema_H
+#define trConfigSchema_H 1
 
 #include "export.h"
 
@@ -29,7 +29,7 @@
 namespace trUtil
 {
 	// defines API used to model the XML schema for the config file.
-	struct VRS_UTIL_EXPORT vrsConfigSchema
+	struct VRS_UTIL_EXPORT trConfigSchema
 	{
 	public:
 		static const std::string SCREEN_CFG;
@@ -66,4 +66,4 @@ namespace trUtil
 }
 
 
-#endif // vrsConfigSchema_H
+#endif // trConfigSchema_H

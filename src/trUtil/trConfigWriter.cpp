@@ -19,28 +19,28 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef vrsConfigWriter_CPP
-#define vrsConfigWriter_CPP 1
+#ifndef trConfigWriter_CPP
+#define trConfigWriter_CPP 1
 
-#include <trUtil\vrsConfigWriter.h>
+#include <trUtil\trConfigWriter.h>
 #include <xercesc/util/XMLString.hpp>
 
 using namespace XERCES_CPP_NAMESPACE;
 
 namespace trUtil
 {
-	void vrsConfigWriter::WriteCfg(const std::string &filename)
+	void trConfigWriter::WriteCfg(const std::string &filename)
 	{
 
 	}
 
-	vrsConfigWriter::SchemaModel::SchemaModel()
+	trConfigWriter::SchemaModel::SchemaModel()
 	{
 		//WINDOW = XMLString::transcode( ApplicationConfigSchema::WINDOW.c_str() );
 		
 	}
 
-	vrsConfigWriter::SchemaModel::~SchemaModel()
+	trConfigWriter::SchemaModel::~SchemaModel()
 	{
 		XMLString::release( &SCREEN_CFG);
 
@@ -78,4 +78,4 @@ namespace trUtil
 }
 
 
-#endif // vrsConfigWriter_CPP
+#endif // trConfigWriter_CPP

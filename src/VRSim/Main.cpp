@@ -28,7 +28,7 @@
 #include <dtUtil/datapathutils.h>
 #include <dtUtil/log.h>
 
-#include <trUtil\vrsWindowCtr.h>
+#include <trUtil\trWindowCtr.h>
 
 #include <iostream>
 
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 	try
 	{
 		//Create our Window Controller
-		osg::ref_ptr<trUtil::vrsWindowCtr> WinCtr = trUtil::vrsWindowCtr::GetInstance();
+		osg::ref_ptr<trUtil::trWindowCtr> WinCtr = trUtil::trWindowCtr::GetInstance();
 
 		//Create our Application Class
 		osg::ref_ptr <dtGame::GameApplication> app = WinCtr->CreateApp(argc, argv, configFileName);

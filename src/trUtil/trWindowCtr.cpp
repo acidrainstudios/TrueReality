@@ -20,14 +20,14 @@
 */
 
 
-#ifndef vrsWindowCtr_CPP
-#define vrsWindowCtr_CPP 1
+#ifndef trWindowCtr_CPP
+#define trWindowCtr_CPP 1
 
-#include <trUtil\vrsWindowCtr.h>
-#include <trUtil\vrsMath.h>
-#include <trUtil\vrsTextColor.h>
-#include <trUtil\vrsLogo.h>
-#include <trUtil\vrsGPUDetector.h>
+#include <trUtil\trWindowCtr.h>
+#include <trUtil\trMath.h>
+#include <trUtil\trTextColor.h>
+#include <trUtil\trLogo.h>
+#include <trUtil\trGPUDetector.h>
 
 #include <osgViewer/GraphicsWindow>
 #include <osg/LightSource>
@@ -46,7 +46,7 @@
 
 namespace trUtil
 {
-	vrsWindowCtr::vrsWindowCtr(void)
+	trWindowCtr::trWindowCtr(void)
 	:mInitialised(false)
 	,mFullScreenMode(true)
 	,mApp(NULL)
@@ -61,21 +61,21 @@ namespace trUtil
 
 	///////////////////////////////////////////////////////////////////////////////
 	//Init out Static Var
-	vrsWindowCtr* vrsWindowCtr::mInstance = NULL;
+	trWindowCtr* trWindowCtr::mInstance = NULL;
 
 	///////////////////////////////////////////////////////////////////////////////
 	//Create an Instance of Window Ctr
-	vrsWindowCtr* vrsWindowCtr::GetInstance()
+	trWindowCtr* trWindowCtr::GetInstance()
 	{
 		if(mInstance == NULL)
 		{
-			mInstance = new vrsWindowCtr;
+			mInstance = new trWindowCtr;
 		}
 		return mInstance;
 	}
 	///////////////////////////////////////////////////////////////////////////////
 	//Create our app, with custom windows
-	dtGame::GameApplication* vrsWindowCtr::CreateApp(int argc, char** argv, const std::string& configFileName, SCR_TYPE SetUpType)
+	dtGame::GameApplication* trWindowCtr::CreateApp(int argc, char** argv, const std::string& configFileName, SCR_TYPE SetUpType)
 	{
 		if (!mInitialised)
 		{
@@ -90,7 +90,7 @@ namespace trUtil
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	WindowDataContainer* vrsWindowCtr::GetWindowData(unsigned int WindowNumber)
+	WindowDataContainer* trWindowCtr::GetWindowData(unsigned int WindowNumber)
 	{
 		if (WindowNumber <= mWindowData.size())
 		{
@@ -103,7 +103,7 @@ namespace trUtil
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	void vrsWindowCtr::GenerateWindows(void)
+	void trWindowCtr::GenerateWindows(void)
 	{
 		dtCore::DeltaWin::DeltaWinTraits win2Traits;
 
@@ -115,13 +115,13 @@ namespace trUtil
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////
-	void vrsWindowCtr::mCreateWindow(void)
+	void trWindowCtr::mCreateWindow(void)
 	{
 
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	void vrsWindowCtr::GenerateDefWinProps(void)
+	void trWindowCtr::GenerateDefWinProps(void)
 	{
 		//Create 6 WindowTraits that can be customised at will later
 		for(int i = 0; i < MAX_WINDOWS_POSSIBLE; i++)
@@ -156,14 +156,14 @@ namespace trUtil
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	void vrsWindowCtr::ParseWinArgs(int argc, char** argv)
+	void trWindowCtr::ParseWinArgs(int argc, char** argv)
 	{
 		try
 		{
 			//Display the VR-Sim Starting Text
 			Logo();
 
-			vrsGPUDetector GPUMon;
+			trGPUDetector GPUMon;
 
 			//Create a parser instance
 			osg::ArgumentParser parser(&argc, argv);
@@ -284,7 +284,7 @@ namespace trUtil
 
 	
 	//Destructor
-	vrsWindowCtr::~vrsWindowCtr(void)
+	trWindowCtr::~trWindowCtr(void)
 	{
 		try
 		{
@@ -303,4 +303,4 @@ namespace trUtil
 
 }
 
-#endif // vrsWindowCtr_CPP
+#endif // trWindowCtr_CPP
