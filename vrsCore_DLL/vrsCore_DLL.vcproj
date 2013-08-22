@@ -27,7 +27,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="call VersionNo.bat"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
