@@ -26,7 +26,7 @@
 
 #include <string>
 
-namespace vrsUtil
+namespace trUtil
 {
 	// defines API used to model the XML schema for the config file.
 	struct VRS_UTIL_EXPORT vrsConfigSchema

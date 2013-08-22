@@ -22,12 +22,12 @@
 #ifndef vrsConfigWriter_CPP
 #define vrsConfigWriter_CPP 1
 
-#include <vrsUtil\vrsConfigWriter.h>
+#include <trUtil\vrsConfigWriter.h>
 #include <xercesc/util/XMLString.hpp>
 
 using namespace XERCES_CPP_NAMESPACE;
 
-namespace vrsUtil
+namespace trUtil
 {
 	void vrsConfigWriter::WriteCfg(const std::string &filename)
 	{

@@ -25,10 +25,10 @@
 
 #include <iostream>
 
-#include <vrsUtil\vrsTextColor.h>
-#include <vrsUtil\vrsLogo.h>
+#include <trUtil\vrsTextColor.h>
+#include <trUtil\vrsLogo.h>
 
-namespace vrsUtil
+namespace trUtil
 {
 	void Logo( void )
 	{
@@ -39,11 +39,11 @@ namespace vrsUtil
 			#endif
 		#endif
 		
-		vrsUtil::SetTxtColor(vrsUtil::BLUE);
+		trUtil::SetTxtColor(trUtil::BLUE);
 		std::cout << "    ***********************************************************************\n " << std::endl;
-		vrsUtil::SetTxtColor(vrsUtil::RED);
+		trUtil::SetTxtColor(trUtil::RED);
 		std::cout << "                        ---------------------------- " << std::endl;
-		vrsUtil::SetTxtColor(vrsUtil::YELLOW);
+		trUtil::SetTxtColor(trUtil::YELLOW);
 		std::cout << "                       Virtual Reality Simulation Lab\n " << std::endl;
 		std::cout << "                            Version - ";
 		
@@ -62,9 +62,9 @@ namespace vrsUtil
 			
 		}*/
 		std::cout << std::endl;
-		vrsUtil::SetTxtColor(vrsUtil::RED);
+		trUtil::SetTxtColor(trUtil::RED);
 		std::cout << "                        ----------------------------\n\n\n " << std::endl;
-		vrsUtil::SetTxtColor(vrsUtil::BLUE);
+		trUtil::SetTxtColor(trUtil::BLUE);
 		std::cout << "        VR-Sim Lab ";
 		
 		len = 0; int dot = 0;
@@ -92,7 +92,7 @@ namespace vrsUtil
 		std::cout << "               For more information, contact Maxim Serebrennik at" << std::endl;
 		std::cout << "                              MaximSter@gmail.com\n " << std::endl;
 		std::cout << "    ***********************************************************************\n\n\n " << std::endl;
-		vrsUtil::SetTxtColor(vrsUtil::GRAY);
+		trUtil::SetTxtColor(trUtil::GRAY);
 
 	}
 }

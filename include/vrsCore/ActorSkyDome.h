@@ -23,7 +23,7 @@
 #define COREDLL_SKYDOME_ACTOR_H
 
 #include "export.h"
-//#include "..\\..\\vrsUtil_DLL\Include\vrsMath.h"
+//#include "..\\..\\trUtil_DLL\Include\vrsMath.h"
 //#include "vrsCoreActorsRegistry.h"
 //#include "vrsCoreMsgTypes.h"
 #include "vrsCoreGameEvents.h"

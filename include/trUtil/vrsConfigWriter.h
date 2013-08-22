@@ -28,7 +28,7 @@
 #include <string>                           // for data members
 #include <xercesc/util/XercesDefs.hpp>      // for XMLCh definition
 
-namespace vrsUtil
+namespace trUtil
 {
 	/// A class that writes VRSim config files
 	class VRS_UTIL_EXPORT vrsConfigWriter

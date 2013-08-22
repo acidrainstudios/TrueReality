@@ -23,7 +23,7 @@
 #ifndef vrsWindow_H
 #define vrsWindow_H
 
-#include <vrsUtil\vrsMath.h>
+#include <trUtil\vrsMath.h>
 
 #include <dtCore/deltawin.h>
 #include <dtCore/camera.h>

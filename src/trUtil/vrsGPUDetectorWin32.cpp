@@ -22,14 +22,14 @@
 #define vrsGPUDetectorWin32_CPP 1
 
 #ifdef _WIN32
-#include <vrsUtil\vrsGPUDetector.h>
+#include <trUtil\vrsGPUDetector.h>
 
 #include <windows.h>
 #include <iostream>
 
 #include <osgViewer/CompositeViewer>
 
-namespace vrsUtil
+namespace trUtil
 {
 	void vrsGPUDetector::DetectGPUMonitorConfigWin32(void)
 	{

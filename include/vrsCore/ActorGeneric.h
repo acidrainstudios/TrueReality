@@ -23,7 +23,7 @@
 #define COREDLL_GENERIC_ACTOR_H
 
 #include "export.h"
-#include <vrsUtil\vrsMath.h>
+#include <trUtil\vrsMath.h>
 #include "vrsCoreActorsRegistry.h"
 #include "vrsCoreMsgTypes.h"
 #include "vrsCoreGameEvents.h"

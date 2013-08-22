@@ -19,40 +19,40 @@
 * Author: Maxim Serebrennik
 */
 
+#ifndef vrsConfigParser_CPP
+#define vrsConfigParser_CPP 1
 
-#ifndef vrsMath_H
-#define vrsMath_H
+#include <trUtil\vrsConfigParser.h>
 
+#include <iostream>
 
-#include "export.h"
+#include <dtUtil/datapathutils.h>
+#include <dtUtil/log.h>
 
-#include <osg/Math>
+namespace trUtil
+{
+	// Ctor
+	vrsConfigParser::vrsConfigParser(const std::string& configFileName)
+	{
+		SetConfigFileName(configFileName);	
+	}
 
-namespace vrsUtil
-{	
+	// Sets the Config File Name
+	void vrsConfigParser::SetConfigFileName(const std::string& configFileName)
+	{
+		mConfigFileName = configFileName;
+		SetConfigFilePath(dtUtil::GetDeltaRootPath() + "/Bin/" + mConfigFileName);	
+	}
 
-	// Pi
-	static const double	Pi = osg::PI;
-	
-	// 1/PI
-	static const double ONE_OVER_PI = 1.0/Pi;
-
-	// Pi/180
-	static const double ONE80_OVER_PI = (180.0*ONE_OVER_PI);
-
-	// Takes a Value X and outputs its Sin and Cos by reference
-	void VRS_UTIL_EXPORT SinCos(double x, double & SinVal, double & CosVal);
-
-	// Takes Degrees and converts them to Radians
-	double VRS_UTIL_EXPORT Deg2Rad(double Degree);
-
-	// Takes Degrees and converts them to Radians
-	float VRS_UTIL_EXPORT Deg2Rad(float Degree);
-
-	// Checks if State is = to 0, less then 0 or greater, and outputs -1, 0, 1
-	double VRS_UTIL_EXPORT CheckState(double State);
+	// Sets the Full Config File Name and Path
+	void vrsConfigParser::SetConfigFilePath(const std::string &configFilePath)
+	{
+		mConfigFilePath = configFilePath;
+		#ifdef _DEBUG
+			LOG_INFO("VRSim Config File: " + mConfigFilePath + '\n');
+		#endif
+	}
 
 }
 
-
-#endif // vrsMath_H
+#endif // vrsConfigParser_CPP

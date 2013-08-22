@@ -20,22 +20,39 @@
 */
 
 
-#ifndef VRSUTILDLL_EXPORT_H
-#define VRSUTILDLL_EXPORT_H 1
+#ifndef vrsMath_H
+#define vrsMath_H
 
 
-#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
-#  ifdef VRS_UTIL_LIBRARY
-#    define VRS_UTIL_EXPORT __declspec(dllexport)
-#  else
-#    define VRS_UTIL_EXPORT __declspec(dllimport)
-#  endif
-#else
-#   ifdef VRS_UTIL_LIBRARY
-#      define VRS_UTIL_EXPORT __attribute__ ((visibility("default")))
-#   else
-#      define VRS_UTIL_EXPORT
-#   endif 
-#endif
+#include "export.h"
 
-#endif //VRSUTILDLL_EXPORT_H
+#include <osg/Math>
+
+namespace trUtil
+{	
+
+	// Pi
+	static const double	Pi = osg::PI;
+	
+	// 1/PI
+	static const double ONE_OVER_PI = 1.0/Pi;
+
+	// Pi/180
+	static const double ONE80_OVER_PI = (180.0*ONE_OVER_PI);
+
+	// Takes a Value X and outputs its Sin and Cos by reference
+	void VRS_UTIL_EXPORT SinCos(double x, double & SinVal, double & CosVal);
+
+	// Takes Degrees and converts them to Radians
+	double VRS_UTIL_EXPORT Deg2Rad(double Degree);
+
+	// Takes Degrees and converts them to Radians
+	float VRS_UTIL_EXPORT Deg2Rad(float Degree);
+
+	// Checks if State is = to 0, less then 0 or greater, and outputs -1, 0, 1
+	double VRS_UTIL_EXPORT CheckState(double State);
+
+}
+
+
+#endif // vrsMath_H

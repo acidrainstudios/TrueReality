@@ -30,7 +30,7 @@
 
 
 
-namespace vrsUtil
+namespace trUtil
 {
 	/**
 	* This class parses all the config option from VRSimCfg.xml

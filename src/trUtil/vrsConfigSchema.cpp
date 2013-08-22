@@ -22,10 +22,10 @@
 #ifndef vrsConfigSchema_CPP
 #define vrsConfigSchema_CPP 1
 
-#include <vrsUtil\vrsConfigSchema.h>
+#include <trUtil\vrsConfigSchema.h>
 
 
-namespace vrsUtil
+namespace trUtil
 {
 	// --- config schema model implementation --- //
 	const std::string vrsConfigSchema::SCREEN_CFG = "SCREEN_CFG";

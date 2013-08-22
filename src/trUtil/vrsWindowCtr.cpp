@@ -23,11 +23,11 @@
 #ifndef vrsWindowCtr_CPP
 #define vrsWindowCtr_CPP 1
 
-#include <vrsUtil\vrsWindowCtr.h>
-#include <vrsUtil\vrsMath.h>
-#include <vrsUtil\vrsTextColor.h>
-#include <vrsUtil\vrsLogo.h>
-#include <vrsUtil\vrsGPUDetector.h>
+#include <trUtil\vrsWindowCtr.h>
+#include <trUtil\vrsMath.h>
+#include <trUtil\vrsTextColor.h>
+#include <trUtil\vrsLogo.h>
+#include <trUtil\vrsGPUDetector.h>
 
 #include <osgViewer/GraphicsWindow>
 #include <osg/LightSource>
@@ -44,7 +44,7 @@
 #include <iostream>
 
 
-namespace vrsUtil
+namespace trUtil
 {
 	vrsWindowCtr::vrsWindowCtr(void)
 	:mInitialised(false)
@@ -52,7 +52,7 @@ namespace vrsUtil
 	,mApp(NULL)
 	,mStereoMode(osg::DisplaySettings::ANAGLYPHIC)
 	,mStereoActive(false)
-	,mWindowMode(vrsUtil::SCR_1_45xR)
+	,mWindowMode(trUtil::SCR_1_45xR)
 	,mWindowData(NULL)
 	{
 		//Set or load from input file the Default Wind Traits
@@ -107,7 +107,7 @@ namespace vrsUtil
 	{
 		dtCore::DeltaWin::DeltaWinTraits win2Traits;
 
-		if (mWindowMode == vrsUtil::SCR_1_45xR)
+		if (mWindowMode == trUtil::SCR_1_45xR)
 		{
 			mCreateWindow();
 		}
@@ -224,55 +224,55 @@ namespace vrsUtil
 			{
 				if(WindowModeString == "SCR_1_45xR")
 				{		
-					mWindowMode = vrsUtil::SCR_1_45xR;
+					mWindowMode = trUtil::SCR_1_45xR;
 				}
 				if(WindowModeString == "SCR_1_90xR")
 				{		
-					mWindowMode = vrsUtil::SCR_1_90xR;
+					mWindowMode = trUtil::SCR_1_90xR;
 				}
 				else if(WindowModeString == "SCR_2_45xR")
 				{
-					mWindowMode = vrsUtil::SCR_2_45xR;
+					mWindowMode = trUtil::SCR_2_45xR;
 				}
 				else if(WindowModeString == "SCR_3_45xR")
 				{
-					mWindowMode = vrsUtil::SCR_3_45xR;
+					mWindowMode = trUtil::SCR_3_45xR;
 				}
 				else if(WindowModeString == "SCR_3_90xR")
 				{
-					mWindowMode = vrsUtil::SCR_3_90xR;
+					mWindowMode = trUtil::SCR_3_90xR;
 				}
 				else if(WindowModeString == "SCR_3_90x90")
 				{
-					mWindowMode = vrsUtil::SCR_3_90x90;
+					mWindowMode = trUtil::SCR_3_90x90;
 				}
 				else if(WindowModeString == "SCR_4_90xR")
 				{
-					mWindowMode = vrsUtil::SCR_4_90xR;
+					mWindowMode = trUtil::SCR_4_90xR;
 				}
 				else if(WindowModeString == "SCR_4_90x90")
 				{
-					mWindowMode = vrsUtil::SCR_4_90x90;
+					mWindowMode = trUtil::SCR_4_90x90;
 				}
 				else if(WindowModeString == "SCR_5_90xR")
 				{
-					mWindowMode = vrsUtil::SCR_5_90xR;
+					mWindowMode = trUtil::SCR_5_90xR;
 				}
 				else if(WindowModeString == "SCR_5_90x90")
 				{
-					mWindowMode = vrsUtil::SCR_5_90x90;
+					mWindowMode = trUtil::SCR_5_90x90;
 				}
 				else if(WindowModeString == "SCR_6_90xR")
 				{
-					mWindowMode = vrsUtil::SCR_6_90xR;
+					mWindowMode = trUtil::SCR_6_90xR;
 				}
 				else if(WindowModeString == "SCR_6_90x90")
 				{
-					mWindowMode = vrsUtil::SCR_6_90x90;
+					mWindowMode = trUtil::SCR_6_90x90;
 				}
 				else
 				{
-					mWindowMode = vrsUtil::SCR_1_45xR;
+					mWindowMode = trUtil::SCR_1_45xR;
 				}
 			}
 		}
