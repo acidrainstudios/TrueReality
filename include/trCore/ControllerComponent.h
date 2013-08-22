@@ -24,8 +24,8 @@
 #define COREDLL_CONTROLLER_COMPONENT_H
 
 #include "export.h"
-#include "vrsCoreMsgTypes.h"
-#include "vrsCoreGameEvents.h"
+#include "trCoreMsgTypes.h"
+#include "trCoreGameEvents.h"
 #include "ActorGeneric.h"
 
 #include <iostream>
@@ -53,7 +53,7 @@
 
 #include <osgDB/DatabasePager>
 
-namespace vrsCore
+namespace trCore
 {
 	/**
 	 * 
@@ -120,8 +120,8 @@ namespace vrsCore
 			bool mInPlaybackMode;
 
 			//Pointer to Player Actor and Focus Actor
-			osg::ref_ptr<vrsCore::GenericActor> mPlayerActor;
-			osg::ref_ptr<vrsCore::GenericActor> mFocusActor;
+			osg::ref_ptr<trCore::GenericActor> mPlayerActor;
+			osg::ref_ptr<trCore::GenericActor> mFocusActor;
 
 			//IDs for Player Actor and Focus Actor
 			dtCore::UniqueId mFocusActorID;

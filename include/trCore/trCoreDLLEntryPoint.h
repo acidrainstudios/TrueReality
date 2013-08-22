@@ -20,8 +20,8 @@
 */
 
 
-#ifndef COREDLL_VRSCORE_DLL_ENTRYPOINT_H
-#define COREDLL_VRSCORE_DLL_ENTRYPOINT_H
+#ifndef COREDLL_trCore_DLL_ENTRYPOINT_H
+#define COREDLL_trCore_DLL_ENTRYPOINT_H
 
 #include "export.h"
 
@@ -30,24 +30,24 @@
 #include <dtGame/gameentrypoint.h>
 #include <dtGame/gameapplication.h>
 
-namespace vrsCore
+namespace trCore
 {
 	/**
 	 * Our entry point into the game.  The VRSim.exe application can load this like this:
-	 * "VRSim.exe vrsCore"
+	 * "VRSim.exe trCore"
 	 */ 
-	class CORE_EXPORT vrsCoreDLLEntryPoint: public dtGame::GameEntryPoint
+	class CORE_EXPORT trCoreDLLEntryPoint: public dtGame::GameEntryPoint
 	{
 	public:
 		/**
 		* Constructor
 		*/
-		vrsCoreDLLEntryPoint(){};
+		trCoreDLLEntryPoint(){};
 		
 		/**
 		* Destructor
 		*/
-		virtual ~vrsCoreDLLEntryPoint(){};
+		virtual ~trCoreDLLEntryPoint(){};
 		  
 		// Called to do early initializtion.  Grab your command line params here.
 		virtual void Initialize(dtGame::GameApplication& app, int argc, char **argv);
@@ -67,4 +67,4 @@ namespace vrsCore
 		bool mInPlaybackMode; 
 	};
 }
-#endif //COREDLL_VRSCORE_DLL_ENTRYPOINT_H
+#endif //COREDLL_trCore_DLL_ENTRYPOINT_H

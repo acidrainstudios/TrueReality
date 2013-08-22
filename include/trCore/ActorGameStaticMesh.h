@@ -26,7 +26,7 @@
 
 #include "export.h"
 
-#include "vrsCoreEnum.h"
+#include "trCoreEnum.h"
 
 #include <dtDAL/enginepropertytypes.h>
 #include <dtDAL/functor.h>
@@ -34,7 +34,7 @@
 #include <dtActors/gamemeshactor.h>
 
 
-namespace vrsCore
+namespace trCore
 {
 
 	//A Generic Static Mesh Game Actor, that inherit dtActors::GameMeshActor, but adds Render
@@ -59,10 +59,10 @@ namespace vrsCore
 		int GetRenderBin(void) const { return mRenderBinNum; }
 
 		//Set the Rendering Bin Number Sort Type
-		void SetRenderBinSortType(vrsCore::RENDER_BIN_TYPE& BinSortType);
+		void SetRenderBinSortType(trCore::RENDER_BIN_TYPE& BinSortType);
 
 		//Get the Rendering Bin Number Sort Type
-		vrsCore::RENDER_BIN_TYPE& GetRenderBinSortType(void) { return *mBinSortType; }
+		trCore::RENDER_BIN_TYPE& GetRenderBinSortType(void) { return *mBinSortType; }
 
 		// Called when the actor has been added to the game manager.
 		// You can respond to OnEnteredWorld on either the proxy or actor or both.
@@ -79,12 +79,12 @@ namespace vrsCore
 	private:
 
 		//Set the RenderBin Number and Sort Type
-		void	ChangeRenderBinProp(int BinNum, vrsCore::RENDER_BIN_TYPE& BinType);
+		void	ChangeRenderBinProp(int BinNum, trCore::RENDER_BIN_TYPE& BinType);
 
 
 		int		mRenderBinNum;		//Holds the Rendering Bin Number
 									//Holds the Rendering Bin Sorting Type
-		vrsCore::RENDER_BIN_TYPE*	 mBinSortType;
+		trCore::RENDER_BIN_TYPE*	 mBinSortType;
 
 
 	};

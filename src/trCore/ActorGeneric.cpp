@@ -22,16 +22,16 @@
 #ifndef COREDLL_GENERIC_ACTOR_CPP
 #define COREDLL_GENERIC_ACTOR_CPP
 
-#include <vrsCore\ActorGeneric.h>
+#include <trCore\ActorGeneric.h>
 
-namespace vrsCore
+namespace trCore
 {
 	///////////////////////////////////////////////////////////////////////////////
 	const std::string GenericActor::ACTOR_DEFAULT_NAME("Generic Actor");
-	const std::string GenericActor::ACTOR_CLASS_NAME("vrsCore::GenericActor");
+	const std::string GenericActor::ACTOR_CLASS_NAME("trCore::GenericActor");
 	///////////////////////////////////////////////////////////////////////////////
-	GenericActor::GenericActor(vrsCore::GameStaticMeshActorProxy& proxy)
-		:vrsCore::GameStaticMeshActor(proxy)
+	GenericActor::GenericActor(trCore::GameStaticMeshActorProxy& proxy)
+		:trCore::GameStaticMeshActor(proxy)
 		,mVelocity(0.0f)
 		,mVelocityMax(100.0f)
 		,mRLVelocity(0.0f)
@@ -106,7 +106,7 @@ namespace vrsCore
 			if (eventMsg.GetGameEvent() != NULL)
 			{
 				// Handle "ToggleEngine" Game Event
-				if (eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_IGNITION)
+				if (eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_IGNITION)
 				{
 					mIsEngineRunning = !mIsEngineRunning;
 					#ifdef _DEBUG
@@ -115,7 +115,7 @@ namespace vrsCore
 
 				}
 				// Handle "ToggleAutoLevel" Game Event
-				if (eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_AUTOLEVEL)
+				if (eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_AUTOLEVEL)
 				{
 					mAutoLevelingStatus = !mAutoLevelingStatus;
 					#ifdef _DEBUG
@@ -123,7 +123,7 @@ namespace vrsCore
 					#endif //_DEBUG
 				}
 				// Handle 'reset'  *******outdated neeeds fixing or removal*****
-				//else if (eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_RESETSTUFF)
+				//else if (eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_RESETSTUFF)
 				//{
 				//	// put the actor bank
 				//	SetTransform(mOriginalPosition);
@@ -139,62 +139,62 @@ namespace vrsCore
 				//	camera->SetTransform(tx, dtCore::Transformable::REL_CS);
 				//}
 				//move back/forward
-				if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_MOVEFORWARD)
+				if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_MOVEFORWARD)
 				{
 					mAccelDirection = 1.0f;
 					
 				}
-				else if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_MOVEBACK)
+				else if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_MOVEBACK)
 				{
 					mAccelDirection = -1.0f;
 					
 				}
 				//strafe right/left
-				if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_STRAFERIGHT)
+				if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_STRAFERIGHT)
 				{
 					mRLStrafeDirection = 1.0f;
 					
 				}
-				else if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_STRAFELEFT)
+				else if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_STRAFELEFT)
 				{
 					mRLStrafeDirection = -1.0f;
 					
 				}
 				//strafe up/down
-				if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_STRAFEUP)
+				if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_STRAFEUP)
 				{
 					mUDStrafeDirection = 1.0f;
 					
 				}
-				else if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_STRAFEDOWN)
+				else if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_STRAFEDOWN)
 				{
 					mUDStrafeDirection = -1.0f;
 					
 				}
 				//yaw right/left
-				if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_YAWRIGHT)
+				if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_YAWRIGHT)
 				{
 					mTurnRateDirection = -1.0f;
 				}
-				else if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_YAWLEFT)
+				else if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_YAWLEFT)
 				{
 					mTurnRateDirection = 1.0f;
 				}
 				//pitch up/down
-				if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_PITCHUP)
+				if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_PITCHUP)
 				{
 					mPitchRateDirection = 1.0f;
 				}
-				else if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_PITCHDOWN)
+				else if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_PITCHDOWN)
 				{
 					mPitchRateDirection = -1.0f;
 				}
 				//roll right/left
-				if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_ROLLRIGHT)
+				if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_ROLLRIGHT)
 				{
 					mRollRateDirection = -1.0f;
 				}
-				else if(eventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_ROLLLEFT)
+				else if(eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_ROLLLEFT)
 				{
 					mRollRateDirection = 1.0f;
 				}
@@ -584,7 +584,7 @@ namespace vrsCore
 	///////////////////////////////////////////////////////////////////////////////
 	void GenericActor::OnEnteredWorld()
 	{
-		vrsCore::GameStaticMeshActor::OnEnteredWorld();
+		trCore::GameStaticMeshActor::OnEnteredWorld();
 
 		if(mActorIsPlayer)
 		{
@@ -600,13 +600,13 @@ namespace vrsCore
 		std::cout << "GenericActor::AddedToScene" << std::endl;
 		#endif //_DEBUG
 
-		vrsCore::GameStaticMeshActor::AddedToScene(scene);
+		trCore::GameStaticMeshActor::AddedToScene(scene);
 	}
 	///////////////////////////////////////////////////////////////////////////////
 	void GenericActor::FireSetPlayerMessage()
 	{
 		dtCore::RefPtr<PlayerActorChangeMsg> playerActorChangeMsg;
-	   GetGameActorProxy().GetGameManager()->GetMessageFactory().CreateMessage(vrsCoreMessageType::MSG_PLAYER_ACTOR_CHANGE, playerActorChangeMsg);
+	   GetGameActorProxy().GetGameManager()->GetMessageFactory().CreateMessage(trCoreMessageType::MSG_PLAYER_ACTOR_CHANGE, playerActorChangeMsg);
 	   
 	   playerActorChangeMsg->SetAboutActorId(GetUniqueId());
 	   playerActorChangeMsg->SetNewPlayerActorUniqueId(GetUniqueId());
@@ -618,7 +618,7 @@ namespace vrsCore
 	void GenericActor::FireSetFocusMessage()
 	{
 	   dtCore::RefPtr<FocusActorChangeMsg> focusActorChangeMsg;
-	   GetGameActorProxy().GetGameManager()->GetMessageFactory().CreateMessage(vrsCoreMessageType::MSG_FOCUS_ACTOR_CHANGE, focusActorChangeMsg);
+	   GetGameActorProxy().GetGameManager()->GetMessageFactory().CreateMessage(trCoreMessageType::MSG_FOCUS_ACTOR_CHANGE, focusActorChangeMsg);
 
 	   focusActorChangeMsg->SetAboutActorId(GetUniqueId());
 	   focusActorChangeMsg->SetNewFocusActorUniqueId(GetUniqueId());
@@ -644,7 +644,7 @@ namespace vrsCore
 		//dtDAL::PhysicalActorProxy::BuildPropertyMap();
 		//dtGame::GameActorProxy::BuildPropertyMap();
 		//dtActors::GameMeshActorProxy::BuildPropertyMap();
-		vrsCore::GameStaticMeshActorProxy::BuildPropertyMap();
+		trCore::GameStaticMeshActorProxy::BuildPropertyMap();
 
 		GenericActor* actor = static_cast<GenericActor*>(GetActor());
 	   
@@ -755,7 +755,7 @@ namespace vrsCore
 		std::cout<< "GenericActorProxy::OnEnteredWorld" << std::endl;
 		#endif //_DEBUG
 
-		vrsCore::GameStaticMeshActorProxy::OnEnteredWorld();
+		trCore::GameStaticMeshActorProxy::OnEnteredWorld();
 		// Note we did not create any of these Invokables.  ProcessMessage(), TickLocal(),
 		// and TickRemote() are created for us in GameActorProxy::BuildInvokables().
 

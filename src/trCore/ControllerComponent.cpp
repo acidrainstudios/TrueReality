@@ -23,8 +23,8 @@
 #ifndef COREDLL_CONTROLLER_COMPONENT_CPP
 #define COREDLL_CONTROLLER_COMPONENT_CPP
 
-#include <vrsCore\ControllerComponent.h>
-namespace vrsCore
+#include <trCore\ControllerComponent.h>
+namespace trCore
 {
 
 	////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ namespace vrsCore
 
 			const dtGame::GameEventMessage& GameEventMsg = static_cast<const dtGame::GameEventMessage&>(message);
 		   
-			if (GameEventMsg.GetGameEvent()->GetName() == vrsCore::GAME_EVENT_SHOWSTATISTICS)
+			if (GameEventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_SHOWSTATISTICS)
 			{
 				GetGameManager()->GetApplication().SetNextStatisticsType();
 			}
@@ -120,13 +120,13 @@ namespace vrsCore
 			mLogController = static_cast<dtGame::LogController*> (GetGameManager()->GetComponentByName(dtGame::LogController::DEFAULT_NAME));
 		}
 		//If the focus changed to a different actor, update who the focus is on now...
-		else if (message.GetMessageType() == vrsCoreMessageType::MSG_FOCUS_ACTOR_CHANGE)
+		else if (message.GetMessageType() == trCoreMessageType::MSG_FOCUS_ACTOR_CHANGE)
 		{
 			const FocusActorChangeMsg& focusActorChangeMsg = static_cast<const FocusActorChangeMsg&>(message);
 			mFocusActorID = focusActorChangeMsg.GetNewFocusActorUniqueId();
 		}
 		//If the player changed to a different actor, update who the player is on now...
-		else if (message.GetMessageType() == vrsCoreMessageType::MSG_PLAYER_ACTOR_CHANGE)
+		else if (message.GetMessageType() == trCoreMessageType::MSG_PLAYER_ACTOR_CHANGE)
 		{
 			//Grabs the camera and places is on the actor that is controlled by the player...
 			//The last Actor to send out the MSG_PLAYER_ACTOR_CHANGE gets the camera...
@@ -135,14 +135,14 @@ namespace vrsCore
 			
 			if(mPlayerActorID.ToString() != "NULL")
 			{	//if the camera is already attach... detach it....
-				mPlayerActor = static_cast<vrsCore::GenericActor*>(GetGameManager()->FindActorById(mPlayerActorID)->GetActor());
+				mPlayerActor = static_cast<trCore::GenericActor*>(GetGameManager()->FindActorById(mPlayerActorID)->GetActor());
 				mPlayerActor->RemoveChild(camera);
 			}
 			
 			const PlayerActorChangeMsg& playerActorChangeMsg = static_cast<const PlayerActorChangeMsg&>(message);
 			mPlayerActorID = playerActorChangeMsg.GetNewPlayerActorUniqueId();
 
-			mPlayerActor = static_cast<vrsCore::GenericActor*>(GetGameManager()->FindActorById(mPlayerActorID)->GetActor());
+			mPlayerActor = static_cast<trCore::GenericActor*>(GetGameManager()->FindActorById(mPlayerActorID)->GetActor());
 
 			//transform for our cam....
 			dtCore::Transform tx;

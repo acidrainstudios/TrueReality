@@ -263,23 +263,23 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\trCore\vrsCoreActorsRegistry.cpp"
+				RelativePath="..\src\trCore\trCoreActorsRegistry.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trCore\vrsCoreDLLEntryPoint.cpp"
+				RelativePath="..\src\trCore\trCoreDLLEntryPoint.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trCore\vrsCoreEnum.cpp"
+				RelativePath="..\src\trCore\trCoreEnum.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trCore\vrsCoreMsgTypes.cpp"
+				RelativePath="..\src\trCore\trCoreMsgTypes.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trCore\vrsWindowCtr_OLD.cpp"
+				RelativePath="..\src\trCore\trWindowCtr_OLD.cpp"
 				>
 			</File>
 		</Filter>
@@ -331,23 +331,23 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\vrsCoreActorsRegistry.h"
+				RelativePath="..\include\trCore\trCoreActorsRegistry.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\vrsCoreDLLEntryPoint.h"
+				RelativePath="..\include\trCore\trCoreDLLEntryPoint.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\vrsCoreEnum.h"
+				RelativePath="..\include\trCore\trCoreEnum.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\vrsCoreGameEvents.h"
+				RelativePath="..\include\trCore\trCoreGameEvents.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\vrsCoreMsgTypes.h"
+				RelativePath="..\include\trCore\trCoreMsgTypes.h"
 				>
 			</File>
 			<File

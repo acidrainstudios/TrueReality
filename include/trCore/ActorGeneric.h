@@ -24,9 +24,9 @@
 
 #include "export.h"
 #include <trUtil\vrsMath.h>
-#include "vrsCoreActorsRegistry.h"
-#include "vrsCoreMsgTypes.h"
-#include "vrsCoreGameEvents.h"
+#include "trCoreActorsRegistry.h"
+#include "trCoreMsgTypes.h"
+#include "trCoreGameEvents.h"
 #include "ActorGameStaticMesh.h"
 
 #include <assert.h>
@@ -71,10 +71,10 @@
 
 //#include <dtCore\DatabasePager.h>
 
-namespace vrsCore
+namespace trCore
 {
 
-	class CORE_EXPORT GenericActor : public vrsCore::GameStaticMeshActor
+	class CORE_EXPORT GenericActor : public trCore::GameStaticMeshActor
 	{
 		public:
 
@@ -85,7 +85,7 @@ namespace vrsCore
 			static const std::string ACTOR_CLASS_NAME;
 
 			// Constructs the actor.
-			GenericActor(vrsCore::GameStaticMeshActorProxy& proxy);
+			GenericActor(trCore::GameStaticMeshActorProxy& proxy);
 
 			/**
 			* This method is an invokable for when a local object receives a tick.
@@ -312,7 +312,7 @@ namespace vrsCore
 	 * Our proxy class for the actor.  The proxy contains properties,
 	 * invokables, and the actor.
 	 */
-	class CORE_EXPORT GenericActorProxy : public vrsCore::GameStaticMeshActorProxy
+	class CORE_EXPORT GenericActorProxy : public trCore::GameStaticMeshActorProxy
 	{
 	   public:
 		  // Constructs the proxy.

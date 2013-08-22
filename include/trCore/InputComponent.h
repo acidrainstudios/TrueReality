@@ -24,8 +24,8 @@
 #define COREDLL_INPUT_COMPONENT_H
 
 #include "export.h"
-#include "vrsCoreMsgTypes.h"
-#include "vrsCoreGameEvents.h"
+#include "trCoreMsgTypes.h"
+#include "trCoreGameEvents.h"
 
 #include <iostream>
 
@@ -47,7 +47,7 @@
 
 #include <osgViewer/CompositeViewer>
 
-namespace vrsCore
+namespace trCore
 {
 
 	class CORE_EXPORT InputComponent : public dtGame::GMComponent

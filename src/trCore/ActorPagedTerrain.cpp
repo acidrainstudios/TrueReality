@@ -23,16 +23,16 @@
 #define COREDLL_PAGED_TERRAIN_ACTOR_CPP
 
 
-#include <vrsCore\ActorPagedTerrain.h>
+#include <trCore\ActorPagedTerrain.h>
 
-namespace vrsCore
+namespace trCore
 {
 	///////////////////////////////////////////////////////////////////////////////
 	const std::string PagedTerrainActor::ACTOR_DEFAULT_NAME("Paged Terrain Actor"); 
-	const std::string PagedTerrainActor::ACTOR_CLASS_NAME("vrsCore::PagedTerrainActor"); 
+	const std::string PagedTerrainActor::ACTOR_CLASS_NAME("trCore::PagedTerrainActor"); 
 	///////////////////////////////////////////////////////////////////////////////
-	PagedTerrainActor::PagedTerrainActor(vrsCore::GameStaticMeshActorProxy &proxy) 
-		:vrsCore::GameStaticMeshActor(proxy)
+	PagedTerrainActor::PagedTerrainActor(trCore::GameStaticMeshActorProxy &proxy) 
+		:trCore::GameStaticMeshActor(proxy)
 		,mGroupNodeForTerrain(NULL)
 		,mNeedToLoad(true)
 		,mPaging_Min_X(0.0f)      
@@ -69,7 +69,7 @@ namespace vrsCore
 	///////////////////////////////////////////////////////////////////////////////
 	void PagedTerrainActor::OnEnteredWorld()
 	{
-		vrsCore::GameStaticMeshActor::OnEnteredWorld();
+		trCore::GameStaticMeshActor::OnEnteredWorld();
 	}
 	///////////////////////////////////////////////////////////////////////////////
 	void PagedTerrainActor::OnTickLocal(const dtGame::TickMessage& tickMessage)
@@ -89,7 +89,7 @@ namespace vrsCore
 		std::cout << "PagedTerrainActor::AddedToScene" << std::endl;
 		#endif //_DEBUG
 
-		vrsCore::GameStaticMeshActor::AddedToScene(scene);
+		trCore::GameStaticMeshActor::AddedToScene(scene);
 		//dtActors::GameMeshActor::AddedToScene(scene);
 
 		if (scene != NULL)
@@ -470,7 +470,7 @@ namespace vrsCore
 		
 
 		//dtGame::GameActorProxy::OnEnteredWorld();
-		vrsCore::GameStaticMeshActorProxy::OnEnteredWorld();
+		trCore::GameStaticMeshActorProxy::OnEnteredWorld();
 
 		//Register an invokable for Game Events...
 		//RegisterForMessages(dtGame::MessageType::INFO_GAME_EVENT);

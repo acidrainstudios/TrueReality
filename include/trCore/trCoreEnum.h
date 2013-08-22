@@ -30,7 +30,7 @@
 
 #include <dtUtil/Enumeration.h>
 
-namespace vrsCore
+namespace trCore
 {
 	////////////////////////////////////////////////////////////////////////////////
 	//Sets the Render Bin Order, 0-100(although not limited to thoes numbers) 0 gets

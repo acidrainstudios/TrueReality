@@ -23,9 +23,9 @@
 #ifndef COREDLL_ACTORS_REGISTRY_CPP
 #define COREDLL_ACTORS_REGISTRY_CPP
 
-#include <vrsCore\vrsCoreActorsRegistry.h>
+#include <trCore\trCoreActorsRegistry.h>
 
-namespace vrsCore
+namespace trCore
 {
 	dtCore::RefPtr<dtDAL::ActorType> CoreActorsRegistry::GENERIC_ACTOR_TYPE(new dtDAL::ActorType("Generic Actor", "VR-Sim Lab", "Generic Actor with Key Controlls"));
 	
@@ -62,13 +62,13 @@ namespace vrsCore
 	//////////////////////////////////////////////////////////////////////////
 	void CoreActorsRegistry::RegisterActorTypes()
 	{
-		mActorFactory->RegisterType<vrsCore::GenericActorProxy>(GENERIC_ACTOR_TYPE.get());
+		mActorFactory->RegisterType<trCore::GenericActorProxy>(GENERIC_ACTOR_TYPE.get());
 
-		mActorFactory->RegisterType<vrsCore::ObjectActorProxy>(OBJECT_ACTOR_TYPE.get());
-		mActorFactory->RegisterType<vrsCore::GameStaticMeshActorProxy>(GAME_STATIC_MESH_ACTOR_TYPE.get());
+		mActorFactory->RegisterType<trCore::ObjectActorProxy>(OBJECT_ACTOR_TYPE.get());
+		mActorFactory->RegisterType<trCore::GameStaticMeshActorProxy>(GAME_STATIC_MESH_ACTOR_TYPE.get());
 
-		mActorFactory->RegisterType<vrsCore::PagedTerrainActorProxy>(PAGED_TERRAIN_ACTOR_TYPE.get());
-		mActorFactory->RegisterType<vrsCore::SkyDomeActorProxy>(SKY_DOME_ACTOR_TYPE.get());
+		mActorFactory->RegisterType<trCore::PagedTerrainActorProxy>(PAGED_TERRAIN_ACTOR_TYPE.get());
+		mActorFactory->RegisterType<trCore::SkyDomeActorProxy>(SKY_DOME_ACTOR_TYPE.get());
 	}
 }
 

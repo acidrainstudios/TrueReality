@@ -22,7 +22,7 @@
 #ifndef tcWindow_CPP
 #define tcWindow_CPP
 
-#include <vrsCore\tcWindowCtr.h>
+#include <trCore\tcWindowCtr.h>
 
 #include <dtUtil/Exception.h>
 

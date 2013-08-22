@@ -23,8 +23,8 @@
 #ifndef COREDLL_MSG_CHANGE_PLAYER_CPP
 #define COREDLL_MSG_CHANGE_PLAYER_CPP
 
-#include <vrsCore\MsgChangePlayer.h>
-namespace vrsCore
+#include <trCore\MsgChangePlayer.h>
+namespace trCore
 {
 	///////////////////////////////////////////////////////////////////////////////
 	const std::string PlayerActorChangeMsg::MSG_DEFAULT_NAME("NewPlayerActorUniqueId");

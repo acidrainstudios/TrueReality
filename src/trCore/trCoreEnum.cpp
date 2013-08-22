@@ -22,9 +22,9 @@
 #ifndef COREDLL_ENUM_CPP
 #define COREDLL_ENUM_CPP
 
-#include <vrsCore\ActorObject.h>
+#include <trCore\ActorObject.h>
 
-namespace vrsCore
+namespace trCore
 {
 	////////////////////////////////////////////////////////////////////////////////
 	IMPLEMENT_ENUM(RENDER_BIN_TYPE);
