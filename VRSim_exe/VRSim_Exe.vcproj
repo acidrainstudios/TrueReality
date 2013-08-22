@@ -223,7 +223,7 @@
 			Name="Source Files"
 			>
 			<File
-				RelativePath=".\Cpp\Main.cpp"
+				RelativePath="..\src\VRSim\Main.cpp"
 				>
 			</File>
 		</Filter>
