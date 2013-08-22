@@ -228,26 +228,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Resource Files"
-			>
-			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\VersionInf.h"
-				>
-			</File>
-			<File
-				RelativePath=".\VersionNo.h"
-				>
-			</File>
-			<File
-				RelativePath=".\VRSim_Exe.rc"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="Header Files"
 			>
 		</Filter>
