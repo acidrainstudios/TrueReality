@@ -24,7 +24,6 @@
 
 #include <iostream>
 
-#include "..\\..\\vrsVersionCTR\ProdVerNo.h"
 #include <vrsUtil\vrsTextColor.h>
 #include <vrsUtil\vrsLogo.h>
 
@@ -49,7 +48,7 @@ namespace vrsUtil
 		
 
 		int len = 0; 
-		while (STRPRODUCTVER[len] != '\0')
+		/*while (STRPRODUCTVER[len] != '\0')
 		{
 			if(STRPRODUCTVER[len]==',')
 			{
@@ -60,7 +59,7 @@ namespace vrsUtil
 
 			len++;
 			
-		}
+		}*/
 		std::cout << std::endl;
 		vrsUtil::SetTxtColor(vrsUtil::RED);
 		std::cout << "                        ----------------------------\n\n\n " << std::endl;
@@ -68,7 +67,7 @@ namespace vrsUtil
 		std::cout << "        VR-Sim Lab ";
 		
 		len = 0; int dot = 0;
-		while (STRPRODUCTVER[len] != '\0')
+		/*while (STRPRODUCTVER[len] != '\0')
 		{
 			if(STRPRODUCTVER[len]==',')
 			{
@@ -83,7 +82,7 @@ namespace vrsUtil
 
 			len++;
 			
-		}
+		}*/
 		
 		std::cout << " Is A Collection Of Simulation Modules Developed" << std::endl;
 		std::cout << "           and Owned By Maxim Serebrennik for His Private and Public" << std::endl;

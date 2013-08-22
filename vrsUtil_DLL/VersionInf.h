@@ -1,4 +1,3 @@
-#include "..\\vrsVersionCTR\ProdVerInf.h"
 #include "VersionNo.h"
 
 #define	STRComments				"vrsUFVG.dll Is The Controller For The Underwater Flow Vector Generators\0"

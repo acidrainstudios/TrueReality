@@ -355,26 +355,6 @@
 				>
 			</File>
 		</Filter>
-		<Filter
-			Name="Resource Files"
-			>
-			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\VersionInf.h"
-				>
-			</File>
-			<File
-				RelativePath=".\VersionNo.h"
-				>
-			</File>
-			<File
-				RelativePath=".\vrsCore_DLL.rc"
-				>
-			</File>
-		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

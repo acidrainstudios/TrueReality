@@ -1,4 +1,3 @@
-#include "..\\vrsVersionCTR\ProdVerInf.h"
 #include "VersionNo.h"
 
 #define	STRComments				"Virtual Reality Simulation Lab Is A Program For Industrial, Military, And Scientific Simulation \0"
