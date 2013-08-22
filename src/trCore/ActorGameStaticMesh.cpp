@@ -22,18 +22,18 @@
 #ifndef COREDLL_GAME_STATIC_MESH_ACTOR_CPP
 #define COREDLL_GAME_STATIC_MESH_ACTOR_CPP
 
-#include <vrsCore\ActorGameStaticMesh.h>
+#include <trCore\ActorGameStaticMesh.h>
 
-namespace vrsCore
+namespace trCore
 {
 	///////////////////////////////////////////////////////////////////////////////
 	const std::string GameStaticMeshActor::ACTOR_DEFAULT_NAME("Game Static Mesh Actor");
-	const std::string GameStaticMeshActor::ACTOR_CLASS_NAME("vrsCore::GameStaticMeshActor");
+	const std::string GameStaticMeshActor::ACTOR_CLASS_NAME("trCore::GameStaticMeshActor");
 	///////////////////////////////////////////////////////////////////////////////
 	GameStaticMeshActor::GameStaticMeshActor(dtActors::GameMeshActorProxy& proxy)
 	:dtActors::GameMeshActor(proxy)
-	,mRenderBinNum(vrsCore::DEFAULT_RENDER_BIN)
-	,mBinSortType(&vrsCore::RENDER_BIN_TYPE::INHERIT_BIN)
+	,mRenderBinNum(trCore::DEFAULT_RENDER_BIN)
+	,mBinSortType(&trCore::RENDER_BIN_TYPE::INHERIT_BIN)
 	{
 	   SetName(ACTOR_DEFAULT_NAME); //Set the instences Name
 	   SetDescription(ACTOR_DEFAULT_NAME); //Set the Actor Description
@@ -47,7 +47,7 @@ namespace vrsCore
 		ChangeRenderBinProp(mRenderBinNum, *mBinSortType);
 	}
 	///////////////////////////////////////////////////////////////////////////////
-	void GameStaticMeshActor::SetRenderBinSortType(vrsCore::RENDER_BIN_TYPE &BinSortType)
+	void GameStaticMeshActor::SetRenderBinSortType(trCore::RENDER_BIN_TYPE &BinSortType)
 	{
 		mBinSortType = &BinSortType;
 
@@ -68,19 +68,19 @@ namespace vrsCore
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	inline void GameStaticMeshActor::ChangeRenderBinProp(int BinNum, vrsCore::RENDER_BIN_TYPE& BinType)
+	inline void GameStaticMeshActor::ChangeRenderBinProp(int BinNum, trCore::RENDER_BIN_TYPE& BinType)
 	{
-		if(&BinType == &vrsCore::RENDER_BIN_TYPE::INHERIT_BIN)
+		if(&BinType == &trCore::RENDER_BIN_TYPE::INHERIT_BIN)
 		{
 			GetOSGNode()->getStateSet()->setRenderBinToInherit();
 		}
-		else if(&BinType == &vrsCore::RENDER_BIN_TYPE::STATE_SORTED_BIN)
+		else if(&BinType == &trCore::RENDER_BIN_TYPE::STATE_SORTED_BIN)
 		{
-			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, vrsCore::RENDER_BIN_TYPE::STATE_SORTED_BIN.GetName());
+			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, trCore::RENDER_BIN_TYPE::STATE_SORTED_BIN.GetName());
 		}
 		else
 		{
-			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, vrsCore::RENDER_BIN_TYPE::DEPTH_SORTED_BIN.GetName());
+			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, trCore::RENDER_BIN_TYPE::DEPTH_SORTED_BIN.GetName());
 		}		
 	}
 	///////////////////////////////////////////////////////////////////////////////
@@ -106,9 +106,9 @@ namespace vrsCore
 		GameStaticMeshActor* actor = static_cast<GameStaticMeshActor*>(GetActor());
 	   
 		// "mBinSortType" property
-		AddProperty(new dtDAL::EnumActorProperty<vrsCore::RENDER_BIN_TYPE>("BinSortType", "Render Bin Sort Type",
-			dtDAL::EnumActorProperty<vrsCore::RENDER_BIN_TYPE>::SetFuncType(actor, &GameStaticMeshActor::SetRenderBinSortType),
-			dtDAL::EnumActorProperty<vrsCore::RENDER_BIN_TYPE>::GetFuncType(actor, &GameStaticMeshActor::GetRenderBinSortType),
+		AddProperty(new dtDAL::EnumActorProperty<trCore::RENDER_BIN_TYPE>("BinSortType", "Render Bin Sort Type",
+			dtDAL::EnumActorProperty<trCore::RENDER_BIN_TYPE>::SetFuncType(actor, &GameStaticMeshActor::SetRenderBinSortType),
+			dtDAL::EnumActorProperty<trCore::RENDER_BIN_TYPE>::GetFuncType(actor, &GameStaticMeshActor::GetRenderBinSortType),
 			"Sets this actors render bin sorting order", RenderBin_GROUP));
 
 		// "mRenderBinNum" property

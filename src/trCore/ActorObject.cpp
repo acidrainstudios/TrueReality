@@ -22,18 +22,18 @@
 #ifndef COREDLL_OBJECT_ACTOR_CPP
 #define COREDLL_OBJECT_ACTOR_CPP
 
-#include <vrsCore\ActorObject.h>
+#include <trCore\ActorObject.h>
 
-namespace vrsCore
+namespace trCore
 {
 	///////////////////////////////////////////////////////////////////////////////
 	const std::string ObjectActor::ACTOR_DEFAULT_NAME("Static Mesh Actor");
-	const std::string ObjectActor::ACTOR_CLASS_NAME("vrsCore::ObjectActor");
+	const std::string ObjectActor::ACTOR_CLASS_NAME("trCore::ObjectActor");
 	///////////////////////////////////////////////////////////////////////////////
 	ObjectActor::ObjectActor()
 	:dtCore::Object()
-	,mRenderBinNum(vrsCore::DEFAULT_RENDER_BIN)
-	,mBinSortType(&vrsCore::RENDER_BIN_TYPE::INHERIT_BIN)
+	,mRenderBinNum(trCore::DEFAULT_RENDER_BIN)
+	,mBinSortType(&trCore::RENDER_BIN_TYPE::INHERIT_BIN)
 	{
 	   SetName(ACTOR_DEFAULT_NAME); //Set the instences Name
 	   SetDescription(ACTOR_DEFAULT_NAME); //Set the Actor Description
@@ -46,7 +46,7 @@ namespace vrsCore
 		ChangeRenderBinProp(mRenderBinNum, *mBinSortType);
 	}
 	///////////////////////////////////////////////////////////////////////////////
-	void ObjectActor::SetRenderBinSortType(vrsCore::RENDER_BIN_TYPE &BinSortType)
+	void ObjectActor::SetRenderBinSortType(trCore::RENDER_BIN_TYPE &BinSortType)
 	{
 		mBinSortType = &BinSortType;
 
@@ -58,19 +58,19 @@ namespace vrsCore
 		dtCore::Object::AddedToScene(scene);
 	}
 	///////////////////////////////////////////////////////////////////////////////
-	inline void ObjectActor::ChangeRenderBinProp(int BinNum, vrsCore::RENDER_BIN_TYPE& BinType)
+	inline void ObjectActor::ChangeRenderBinProp(int BinNum, trCore::RENDER_BIN_TYPE& BinType)
 	{
-		if(&BinType == &vrsCore::RENDER_BIN_TYPE::INHERIT_BIN)
+		if(&BinType == &trCore::RENDER_BIN_TYPE::INHERIT_BIN)
 		{
 			GetOSGNode()->getStateSet()->setRenderBinToInherit();
 		}
-		else if(&BinType == &vrsCore::RENDER_BIN_TYPE::STATE_SORTED_BIN)
+		else if(&BinType == &trCore::RENDER_BIN_TYPE::STATE_SORTED_BIN)
 		{
-			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, vrsCore::RENDER_BIN_TYPE::STATE_SORTED_BIN.GetName());
+			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, trCore::RENDER_BIN_TYPE::STATE_SORTED_BIN.GetName());
 		}
 		else
 		{
-			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, vrsCore::RENDER_BIN_TYPE::DEPTH_SORTED_BIN.GetName());
+			GetOSGNode()->getStateSet()->setRenderBinDetails(BinNum, trCore::RENDER_BIN_TYPE::DEPTH_SORTED_BIN.GetName());
 		}		
 	}
 	///////////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ namespace vrsCore
 	///////////////////////////////////////////////////////////////////////////////
 	ObjectActorProxy::ObjectActorProxy()
 	{
-		SetClassName(vrsCore::ObjectActor::ACTOR_CLASS_NAME); //Set the actors Class Name
+		SetClassName(trCore::ObjectActor::ACTOR_CLASS_NAME); //Set the actors Class Name
 	}
 	///////////////////////////////////////////////////////////////////////////////
 	void ObjectActorProxy::BuildPropertyMap()
@@ -95,9 +95,9 @@ namespace vrsCore
 		ObjectActor* actor = static_cast<ObjectActor*>(GetActor());
 
 		// "mBinSortType" property
-		AddProperty(new dtDAL::EnumActorProperty<vrsCore::RENDER_BIN_TYPE>("BinSortType", "Render Bin Sort Type",
-			dtDAL::EnumActorProperty<vrsCore::RENDER_BIN_TYPE>::SetFuncType(actor, &ObjectActor::SetRenderBinSortType),
-			dtDAL::EnumActorProperty<vrsCore::RENDER_BIN_TYPE>::GetFuncType(actor, &ObjectActor::GetRenderBinSortType),
+		AddProperty(new dtDAL::EnumActorProperty<trCore::RENDER_BIN_TYPE>("BinSortType", "Render Bin Sort Type",
+			dtDAL::EnumActorProperty<trCore::RENDER_BIN_TYPE>::SetFuncType(actor, &ObjectActor::SetRenderBinSortType),
+			dtDAL::EnumActorProperty<trCore::RENDER_BIN_TYPE>::GetFuncType(actor, &ObjectActor::GetRenderBinSortType),
 			"Sets this actors render bin sorting order", RenderBin_GROUP));
 
 		// "mRenderBinNum" property

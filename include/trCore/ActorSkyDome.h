@@ -24,9 +24,9 @@
 
 #include "export.h"
 //#include "..\\..\\trUtil_DLL\Include\vrsMath.h"
-//#include "vrsCoreActorsRegistry.h"
-//#include "vrsCoreMsgTypes.h"
-#include "vrsCoreGameEvents.h"
+//#include "trCoreActorsRegistry.h"
+//#include "trCoreMsgTypes.h"
+#include "trCoreGameEvents.h"
 #include "ActorGameStaticMesh.h"
 
 #include <iostream>
@@ -55,10 +55,10 @@
 #include <osg/Depth>
 #include <osg/Fog>
 
-namespace vrsCore
+namespace trCore
 {
 
-	class CORE_EXPORT SkyDomeActor : public vrsCore::GameStaticMeshActor
+	class CORE_EXPORT SkyDomeActor : public trCore::GameStaticMeshActor
 	{
 	public:
 
@@ -67,7 +67,7 @@ namespace vrsCore
 		static const std::string ACTOR_CLASS_NAME;
 		
 		// Constructs the actor.
-		SkyDomeActor(vrsCore::GameStaticMeshActorProxy& proxy);
+		SkyDomeActor(trCore::GameStaticMeshActorProxy& proxy);
 
 		/**
 		* This method is an invokable for when a local object receives a tick.
@@ -118,7 +118,7 @@ namespace vrsCore
 	 * Our proxy class for the actor.  The proxy contains properties,
 	 * invokables, and the actor.
 	 */
-	class CORE_EXPORT SkyDomeActorProxy : public vrsCore::GameStaticMeshActorProxy
+	class CORE_EXPORT SkyDomeActorProxy : public trCore::GameStaticMeshActorProxy
 	{
 	   public:
 		  // Constructs the proxy.

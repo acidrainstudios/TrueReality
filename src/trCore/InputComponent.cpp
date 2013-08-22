@@ -23,9 +23,9 @@
 #ifndef COREDLL_INPUT_COMPONENT_CPP
 #define COREDLL_INPUT_COMPONENT_CPP
 
-#include <vrsCore\InputComponent.h>
+#include <trCore\InputComponent.h>
 
-namespace vrsCore
+namespace trCore
 {
 
 	////////////////////////////////////////////////////////////////////
@@ -49,146 +49,146 @@ namespace vrsCore
 	////////////////////////////////////////////////////////////////////
 	void InputComponent::SetupEvents()
 	{
-		Ignition_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_IGNITION);	
+		Ignition_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_IGNITION);	
 		if (Ignition_Event == NULL)
 		{
-			Ignition_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_IGNITION);
-			Ignition_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_IGNITION)); 
+			Ignition_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_IGNITION);
+			Ignition_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_IGNITION)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*Ignition_Event);
 		}
 
-		AutoLevel_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_AUTOLEVEL);
+		AutoLevel_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_AUTOLEVEL);
 		if (AutoLevel_Event == NULL)
 		{
 
-			AutoLevel_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_AUTOLEVEL);
-			AutoLevel_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_AUTOLEVEL)); 
+			AutoLevel_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_AUTOLEVEL);
+			AutoLevel_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_AUTOLEVEL)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*AutoLevel_Event);
 		}
 
-		MoveForward_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_MOVEFORWARD);
+		MoveForward_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_MOVEFORWARD);
 		if (MoveForward_Event == NULL)
 		{
 
-			MoveForward_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_MOVEFORWARD);
-			MoveForward_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_MOVEFORWARD)); 
+			MoveForward_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_MOVEFORWARD);
+			MoveForward_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_MOVEFORWARD)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*MoveForward_Event);
 		}
 
-		MoveBack_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_MOVEBACK);
+		MoveBack_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_MOVEBACK);
 		if (MoveBack_Event == NULL)
 		{
 
-			MoveBack_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_MOVEBACK);
-			MoveBack_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_MOVEBACK)); 
+			MoveBack_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_MOVEBACK);
+			MoveBack_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_MOVEBACK)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*MoveBack_Event);
 		}
 
-		StrafeRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_STRAFERIGHT);
+		StrafeRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFERIGHT);
 		if (StrafeRight_Event == NULL)
 		{
 
-			StrafeRight_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_STRAFERIGHT);
-			StrafeRight_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_STRAFERIGHT)); 
+			StrafeRight_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFERIGHT);
+			StrafeRight_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_STRAFERIGHT)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*StrafeRight_Event);
 		}
 
-		StrafeLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_STRAFELEFT);
+		StrafeLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFELEFT);
 		if (StrafeLeft_Event == NULL)
 		{
 
-			StrafeLeft_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_STRAFELEFT);
-			StrafeLeft_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_STRAFELEFT)); 
+			StrafeLeft_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFELEFT);
+			StrafeLeft_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_STRAFELEFT)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*StrafeLeft_Event);
 		}
 
-		StrafeUp_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_STRAFEUP);
+		StrafeUp_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFEUP);
 		if (StrafeUp_Event == NULL)
 		{
 
-			StrafeUp_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_STRAFEUP);
-			StrafeUp_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_STRAFEUP)); 
+			StrafeUp_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFEUP);
+			StrafeUp_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_STRAFEUP)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*StrafeUp_Event);
 		}
 
-		StrafeDown_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_STRAFEDOWN);
+		StrafeDown_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFEDOWN);
 		if (StrafeDown_Event == NULL)
 		{
 
-			StrafeDown_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_STRAFEDOWN);
-			StrafeDown_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_STRAFEDOWN)); 
+			StrafeDown_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFEDOWN);
+			StrafeDown_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_STRAFEDOWN)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*StrafeDown_Event);
 		}
 
-		YawLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_YAWLEFT);
+		YawLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_YAWLEFT);
 		if (YawLeft_Event == NULL)
 		{
-			YawLeft_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_YAWLEFT);
-			YawLeft_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_YAWLEFT)); 
+			YawLeft_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_YAWLEFT);
+			YawLeft_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_YAWLEFT)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*YawLeft_Event);
 		}
 
-		YawRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_YAWRIGHT);
+		YawRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_YAWRIGHT);
 		if (YawRight_Event == NULL)
 		{
-			YawRight_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_YAWRIGHT);
-			YawRight_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_YAWRIGHT)); 
+			YawRight_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_YAWRIGHT);
+			YawRight_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_YAWRIGHT)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*YawRight_Event);
 		}
 
-		PitchUp_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_PITCHUP);
+		PitchUp_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_PITCHUP);
 		if (PitchUp_Event == NULL)
 		{
-			PitchUp_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_PITCHUP);
-			PitchUp_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_PITCHUP)); 
+			PitchUp_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_PITCHUP);
+			PitchUp_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_PITCHUP)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*PitchUp_Event);
 		}
 
-		PitchDown_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_PITCHDOWN);
+		PitchDown_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_PITCHDOWN);
 		if (PitchDown_Event == NULL)
 		{
-			PitchDown_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_PITCHDOWN);
-			PitchDown_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_PITCHDOWN)); 
+			PitchDown_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_PITCHDOWN);
+			PitchDown_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_PITCHDOWN)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*PitchDown_Event);
 		}
 
-		RollLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_ROLLLEFT);
+		RollLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_ROLLLEFT);
 		if (RollLeft_Event == NULL)
 		{
-			RollLeft_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_ROLLLEFT);
-			RollLeft_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_ROLLLEFT)); 
+			RollLeft_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_ROLLLEFT);
+			RollLeft_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_ROLLLEFT)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*RollLeft_Event);
 		}
 
-		RollRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_ROLLRIGHT);
+		RollRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_ROLLRIGHT);
 		if (RollRight_Event == NULL)
 		{
-			RollRight_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_ROLLRIGHT);
-			RollRight_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_ROLLRIGHT)); 
+			RollRight_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_ROLLRIGHT);
+			RollRight_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_ROLLRIGHT)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*RollRight_Event);
 		}
 
-		Statistics_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_SHOWSTATISTICS);
+		Statistics_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_SHOWSTATISTICS);
 		if (Statistics_Event == NULL)
 		{
-			Statistics_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_SHOWSTATISTICS);
-			Statistics_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_SHOWSTATISTICS)); 
+			Statistics_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_SHOWSTATISTICS);
+			Statistics_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_SHOWSTATISTICS)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*Statistics_Event);
 		}
 
-		F11_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_F11);
+		F11_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_F11);
 		if (F11_Event == NULL)
 		{
-			F11_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_F11);
-			F11_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_F11)); 
+			F11_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_F11);
+			F11_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_F11)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*F11_Event);
 		}
 
-		F12_Event = dtDAL::GameEventManager::GetInstance().FindEvent(vrsCore::GAME_EVENT_F12);
+		F12_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_F12);
 		if (F12_Event == NULL)
 		{
-			F12_Event = new dtDAL::GameEvent(vrsCore::GAME_EVENT_F12);
-			F12_Event->SetUniqueId(dtCore::UniqueId(vrsCore::GAME_EVENT_F12)); 
+			F12_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_F12);
+			F12_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_F12)); 
 			dtDAL::GameEventManager::GetInstance().AddEvent(*F12_Event);
 		}
 
@@ -223,7 +223,7 @@ namespace vrsCore
 
 		//If the focus changed to a different actor, update who the focus is on now...
 	   
-		else if (message.GetMessageType() == vrsCoreMessageType::MSG_FOCUS_ACTOR_CHANGE)
+		else if (message.GetMessageType() == trCoreMessageType::MSG_FOCUS_ACTOR_CHANGE)
 		{
 			const FocusActorChangeMsg& focusActorChangeMsg = static_cast<const FocusActorChangeMsg&>(message);
 			gFocusActor = focusActorChangeMsg.GetNewFocusActorUniqueId();

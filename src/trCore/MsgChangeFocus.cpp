@@ -23,9 +23,9 @@
 #ifndef COREDLL_MSG_CHANGE_FOCUS_CPP
 #define COREDLL_MSG_CHANGE_FOCUS_CPP
 
-#include <vrsCore\MsgChangeFocus.h>
+#include <trCore\MsgChangeFocus.h>
 
-namespace vrsCore
+namespace trCore
 {
 	///////////////////////////////////////////////////////////////////////////////
 	const std::string FocusActorChangeMsg::MSG_DEFAULT_NAME("NewFocusActorUniqueId");

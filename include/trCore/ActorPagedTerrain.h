@@ -26,7 +26,7 @@
 
 #include "ActorGameStaticMesh.h"
 #include <trUtil\vrsMath.h>
-#include "vrsCoreActorsRegistry.h"
+#include "trCoreActorsRegistry.h"
 
 #include <iostream>
 #include <string>
@@ -57,9 +57,9 @@
 
 
 
-namespace vrsCore
+namespace trCore
 {
-	class CORE_EXPORT PagedTerrainActor : public vrsCore::GameStaticMeshActor
+	class CORE_EXPORT PagedTerrainActor : public trCore::GameStaticMeshActor
 	{
     public:
 
@@ -70,7 +70,7 @@ namespace vrsCore
 		static const std::string ACTOR_CLASS_NAME;
 
          // Constructor
-		PagedTerrainActor(vrsCore::GameStaticMeshActorProxy &proxy);
+		PagedTerrainActor(trCore::GameStaticMeshActorProxy &proxy);
 
 		// Called when the actor has been added to the game manager.
 		// You can respond to OnEnteredWorld on either the proxy or actor or both.
@@ -246,7 +246,7 @@ namespace vrsCore
 	//////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////
-	class CORE_EXPORT PagedTerrainActorProxy : public vrsCore::GameStaticMeshActorProxy
+	class CORE_EXPORT PagedTerrainActorProxy : public trCore::GameStaticMeshActorProxy
     {
 	public:
 		

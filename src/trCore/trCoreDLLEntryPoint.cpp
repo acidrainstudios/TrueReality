@@ -23,7 +23,7 @@
 #ifndef COREDLL_MY_GAME_ENTRY_POINT_CPP
 #define COREDLL_MY_GAME_ENTRY_POINT_CPP
 
-#include <vrsCore\vrsCoreDLLEntryPoint.h>
+#include <trCore\trCoreDLLEntryPoint.h>
 
 #include <iostream>
 
@@ -39,15 +39,15 @@
 
 #include <osg/ArgumentParser>
 
-#include <vrsCore\InputComponent.h>
-#include <vrsCore\ControllerComponent.h>
+#include <trCore\InputComponent.h>
+#include <trCore\ControllerComponent.h>
 
-namespace vrsCore
+namespace trCore
 {
 	//////////////////////////////////////////////////////////////////////////
 	extern "C" CORE_EXPORT dtGame::GameEntryPoint* CreateGameEntryPoint()
 	{
-		return new vrsCoreDLLEntryPoint;
+		return new trCoreDLLEntryPoint;
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ namespace vrsCore
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	void vrsCoreDLLEntryPoint::Initialize(dtGame::GameApplication& app, int argc, char** argv)
+	void trCoreDLLEntryPoint::Initialize(dtGame::GameApplication& app, int argc, char** argv)
 	{
 		
 		osg::ArgumentParser parser(&argc, argv);
@@ -86,7 +86,7 @@ namespace vrsCore
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	void vrsCoreDLLEntryPoint::OnStartup(dtGame::GameApplication& app)
+	void trCoreDLLEntryPoint::OnStartup(dtGame::GameApplication& app)
 	{		
 
 		// Load the map we created in STAGE.
@@ -97,15 +97,15 @@ namespace vrsCore
 		app.GetGameManager()->AddComponent(*dmp,dtGame::GameManager::ComponentPriority::HIGHEST);
 
 		// Add Component - Controller Component
-		dtCore::RefPtr<vrsCore::ControllerComponent> controllerComp = new vrsCore::ControllerComponent(vrsCore::ControllerComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
+		dtCore::RefPtr<trCore::ControllerComponent> controllerComp = new trCore::ControllerComponent(trCore::ControllerComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
 		app.GetGameManager()->AddComponent(*controllerComp, dtGame::GameManager::ComponentPriority::NORMAL);
 
 		// Add Component - Input Component
-		dtCore::RefPtr<vrsCore::InputComponent> inputComp = new vrsCore::InputComponent(vrsCore::InputComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
+		dtCore::RefPtr<trCore::InputComponent> inputComp = new trCore::InputComponent(trCore::InputComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
 		app.GetGameManager()->AddComponent(*inputComp, dtGame::GameManager::ComponentPriority::NORMAL);
 
 		// Register our messages with the Game Manager message factory
-		vrsCoreMessageType::RegisterMessageTypes( app.GetGameManager()->GetMessageFactory() );
+		trCoreMessageType::RegisterMessageTypes( app.GetGameManager()->GetMessageFactory() );
 
 	#ifdef _DEBUG
 		app.GetGameManager()->DebugStatisticsTurnOn(true, true, 30, true);

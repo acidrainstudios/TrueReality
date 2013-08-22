@@ -26,24 +26,24 @@
 #include "MsgChangeFocus.h"
 #include "MsgChangePlayer.h"
 
-namespace vrsCore
+namespace trCore
 {
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
-	class CORE_EXPORT vrsCoreMessageType : public dtGame::MessageType
+	class CORE_EXPORT trCoreMessageType : public dtGame::MessageType
 	{
-	   DECLARE_ENUM(vrsCoreMessageType);
+	   DECLARE_ENUM(trCoreMessageType);
 
 	   public:
 
-		  static const vrsCoreMessageType MSG_FOCUS_ACTOR_CHANGE;
-		  static const vrsCoreMessageType MSG_PLAYER_ACTOR_CHANGE;
+		  static const trCoreMessageType MSG_FOCUS_ACTOR_CHANGE;
+		  static const trCoreMessageType MSG_PLAYER_ACTOR_CHANGE;
 
 		  static void RegisterMessageTypes(dtGame::MessageFactory& factory);
 
 	   protected:
 
-		  vrsCoreMessageType( const std::string &name, 
+		  trCoreMessageType( const std::string &name, 
 							   const std::string &category,
 							   const std::string &description, 
 							   const unsigned short messageId) :
@@ -52,7 +52,7 @@ namespace vrsCore
 			 AddInstance(this);
 		  }
 
-		  virtual ~vrsCoreMessageType() { }
+		  virtual ~trCoreMessageType() { }
 	};
 }
 

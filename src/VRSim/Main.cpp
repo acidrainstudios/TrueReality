@@ -102,7 +102,7 @@ int main(int argc, char** argv)
 		//Create our Application Class
 		osg::ref_ptr <dtGame::GameApplication> app = WinCtr->CreateApp(argc, argv, configFileName);
 
-		app->SetGameLibraryName("vrsCore");
+		app->SetGameLibraryName("trCore");
 		app->Config();
 		app->Run();
 		app = NULL;

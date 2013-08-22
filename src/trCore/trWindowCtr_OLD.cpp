@@ -23,7 +23,7 @@
 #ifndef vrsWindow_CPP
 #define vrsWindow_CPP
 
-#include <vrsCore\vrsWindowCtr_OLD.h>
+#include <trCore\vrsWindowCtr_OLD.h>
 
 vrsWindowCtr::vrsWindowCtr(void):
 			//_Window(0), 

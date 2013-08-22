@@ -22,25 +22,25 @@
 #ifndef COREDLL_SKYDOME_ACTOR_CPP
 #define COREDLL_SKYDOME_ACTOR_CPP
 
-#include <vrsCore\ActorSkyDome.h>
+#include <trCore\ActorSkyDome.h>
 
-namespace vrsCore
+namespace trCore
 {
 	
 	///////////////////////////////////////////////////////////////////////////////
 	const std::string SkyDomeActor::ACTOR_DEFAULT_NAME("SkyDome Actor");
-	const std::string SkyDomeActor::ACTOR_CLASS_NAME("vrsCore::SkyDomeActor");
+	const std::string SkyDomeActor::ACTOR_CLASS_NAME("trCore::SkyDomeActor");
 	///////////////////////////////////////////////////////////////////////////////
-	SkyDomeActor::SkyDomeActor(vrsCore::GameStaticMeshActorProxy& proxy)
-	:vrsCore::GameStaticMeshActor(proxy)
+	SkyDomeActor::SkyDomeActor(trCore::GameStaticMeshActorProxy& proxy)
+	:trCore::GameStaticMeshActor(proxy)
 	
 	{
 	   SetName(ACTOR_DEFAULT_NAME); //Set the instences Name
 	   SetDescription(ACTOR_DEFAULT_NAME); //Set the Actor Description
 
 	   //Set the Default Render Bin Options for this actor
-	   SetRenderBin(vrsCore::FIRST_RENDER_BIN);
-	   SetRenderBinSortType(vrsCore::RENDER_BIN_TYPE::DEPTH_SORTED_BIN);
+	   SetRenderBin(trCore::FIRST_RENDER_BIN);
+	   SetRenderBinSortType(trCore::RENDER_BIN_TYPE::DEPTH_SORTED_BIN);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ namespace vrsCore
 	///////////////////////////////////////////////////////////////////////////////
 	void SkyDomeActor::OnEnteredWorld()
 	{
-		vrsCore::GameStaticMeshActor::OnEnteredWorld();
+		trCore::GameStaticMeshActor::OnEnteredWorld();
 		
 		//Set a Default Fog Color
 		GetGameActorProxy().GetGameManager()->GetApplication().GetCamera()->SetClearColor(1, 1, 1, 0);
@@ -121,7 +121,7 @@ namespace vrsCore
 		std::cout << "SkyDomeActor::AddedToScene" << std::endl;
 		#endif //_DEBUG
 
-		vrsCore::GameStaticMeshActor::AddedToScene(scene);
+		trCore::GameStaticMeshActor::AddedToScene(scene);
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -142,7 +142,7 @@ namespace vrsCore
 		//TransformableActorProxy::BuildPropertyMap();
 		//dtDAL::PhysicalActorProxy::BuildPropertyMap();
 		//dtGame::GameActorProxy::BuildPropertyMap();
-		vrsCore::GameStaticMeshActorProxy::BuildPropertyMap();
+		trCore::GameStaticMeshActorProxy::BuildPropertyMap();
 
 		SkyDomeActor* actor = static_cast<SkyDomeActor*>(GetActor());
 	   /*
@@ -196,7 +196,7 @@ namespace vrsCore
 	   }
 
 	   
-	   vrsCore::GameStaticMeshActorProxy::OnEnteredWorld();*/
+	   trCore::GameStaticMeshActorProxy::OnEnteredWorld();*/
 	}
 }
 

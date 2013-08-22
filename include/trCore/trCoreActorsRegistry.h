@@ -35,7 +35,7 @@
 
 #include <dtDAL/actorpluginregistry.h>
 
-namespace vrsCore
+namespace trCore
 {
 	class CORE_EXPORT CoreActorsRegistry : public dtDAL::ActorPluginRegistry
 	{
