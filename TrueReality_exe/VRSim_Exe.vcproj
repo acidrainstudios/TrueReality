@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="TrueReality_Exe"
+	Name="TrueReality"
 	ProjectGUID="{4B55B188-6AA2-47B2-8D5D-6EBE467489BD}"
 	RootNamespace="TheCore2Exe"
 	Keyword="Win32Proj"
