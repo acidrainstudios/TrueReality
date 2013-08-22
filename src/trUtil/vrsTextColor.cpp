@@ -23,7 +23,7 @@
 #ifndef vrsTextColor_CPP
 #define vrsTextColor_CPP
 
-#include <vrsUtil\vrsTextColor.h>
+#include <trUtil\vrsTextColor.h>
 
 #if defined(_WIN32)
 
@@ -31,7 +31,7 @@
 
 
 
-namespace vrsUtil
+namespace trUtil
 {
 	
 	inline void SetTxtColor(TXT_COLOR TextColor)

@@ -20,14 +20,22 @@
 */
 
 
-#ifndef vrsLogo_H
-#define vrsLogo_H
-
-namespace vrsUtil
-{
-	//Displays the VR-Sim Lab Logo
-	void Logo(void);
-}
+#ifndef trUtilDLL_EXPORT_H
+#define trUtilDLL_EXPORT_H 1
 
 
-#endif // vrsLogo_H
+#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
+#  ifdef VRS_UTIL_LIBRARY
+#    define VRS_UTIL_EXPORT __declspec(dllexport)
+#  else
+#    define VRS_UTIL_EXPORT __declspec(dllimport)
+#  endif
+#else
+#   ifdef VRS_UTIL_LIBRARY
+#      define VRS_UTIL_EXPORT __attribute__ ((visibility("default")))
+#   else
+#      define VRS_UTIL_EXPORT
+#   endif 
+#endif
+
+#endif //trUtilDLL_EXPORT_H

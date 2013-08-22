@@ -26,7 +26,7 @@
 
 #include <dtCore/Base.h>
 
-namespace vrsUtil
+namespace trUtil
 {
 	/**
     * Detects which Monitor is connected to whihc GPU

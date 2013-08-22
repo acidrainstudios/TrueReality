@@ -22,7 +22,7 @@
 #ifndef vrsGPUDetector_CPP
 #define vrsGPUDetector_CPP 1
 
-#include <vrsUtil\vrsGPUDetector.h>
+#include <trUtil\vrsGPUDetector.h>
 
 #include <sstream>
 
@@ -30,7 +30,7 @@
 
 #include <dtUtil/log.h>
 
-namespace vrsUtil
+namespace trUtil
 {
 	vrsGPUDetector::vrsGPUDetector(void)
 	{

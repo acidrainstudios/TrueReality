@@ -25,7 +25,7 @@
 #include "export.h"
 
 #include "ActorGameStaticMesh.h"
-#include <vrsUtil\vrsMath.h>
+#include <trUtil\vrsMath.h>
 #include "vrsCoreActorsRegistry.h"
 
 #include <iostream>

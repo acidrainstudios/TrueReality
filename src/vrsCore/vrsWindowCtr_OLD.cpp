@@ -233,10 +233,10 @@ void vrsWindowCtr::SetupWindow(dtCore::DeltaWin*	WindowVal,	const std::string& n
 	CameraVal->SetName(nameC);
 	CameraVal->SetWindow(WindowVal);
 	CameraVal->SetNearFarCullingMode(dtCore::Camera::NO_AUTO_NEAR_FAR);
-	CameraVal->GetOSGCamera()->setProjectionMatrixAsFrustum(tan(vrsUtil::Deg2Rad(-1*(FOV_X/2)))*NearPlane, // Left
-															tan(vrsUtil::Deg2Rad((FOV_X/2)))*NearPlane,	// Right
-															tan(vrsUtil::Deg2Rad(-1*(FOV_Y/2)))*NearPlane, // Bottom
-															tan(vrsUtil::Deg2Rad(FOV_Y/2))*NearPlane,		// Top
+	CameraVal->GetOSGCamera()->setProjectionMatrixAsFrustum(tan(trUtil::Deg2Rad(-1*(FOV_X/2)))*NearPlane, // Left
+															tan(trUtil::Deg2Rad((FOV_X/2)))*NearPlane,	// Right
+															tan(trUtil::Deg2Rad(-1*(FOV_Y/2)))*NearPlane, // Bottom
+															tan(trUtil::Deg2Rad(FOV_Y/2))*NearPlane,		// Top
 															NearPlane, FarPlane); 
 
 	

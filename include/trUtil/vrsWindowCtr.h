@@ -38,7 +38,7 @@
 #include "vrsConfigParser.h"
 
 
-namespace vrsUtil
+namespace trUtil
 {
 	// Screen setup type
 	enum VRS_UTIL_EXPORT SCR_TYPE 
@@ -201,7 +201,7 @@ namespace vrsUtil
 		/**
 		* Holds the Window Configuration Type VR-Sim is running with
 		*/
-		vrsUtil::SCR_TYPE mWindowMode;
+		trUtil::SCR_TYPE mWindowMode;
 
 		/**
 		* Holds all the data for all the created Windows, Cameras, Vews, and related data....

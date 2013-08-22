@@ -20,29 +20,45 @@
 */
 
 
-#ifndef vrsTextColor_H
-#define vrsTextColor_H
+#ifndef vrsMath_CPP
+#define vrsMath_CPP
 
+#include <math.h>
 
+#include <dtCore/refptr.h>
+#include <dtCore/uniqueid.h>
 
-#include "export.h"
+#include <trUtil\vrsMath.h>
 
-namespace vrsUtil
+namespace trUtil
 {
-	enum VRS_UTIL_EXPORT TXT_COLOR {
-		BLUE	=	0,
-		GREEN	=	1,
-		RED		=	2,
-		YELLOW	=	3,
-		WHITE	=	4,
-		CYAN	=	5,
-		MAGENTA	=	6,
-		GRAY	=	7
-	};
 
-	// Changes Text color in the consol window....
-	void VRS_UTIL_EXPORT SetTxtColor(TXT_COLOR TextColor);
+	inline void SinCos(double x, double & SinVal, double & CosVal)
+	{
+		SinVal=sin(x);
+		CosVal=cos(x);
+	}
+
+	inline double Deg2Rad(double Degree)
+	{
+		return osg::DegreesToRadians(Degree);
+	}
+
+	inline float Deg2Rad(float Degree)
+	{
+		return osg::DegreesToRadians(Degree);
+	}
+
+	inline double CheckState(double State)
+	{
+		if (State == 0)
+			return 0;
+		else if(State < 0)
+			return -1;
+		else
+			return 1;
+	}
 
 }
 
-#endif // vrsTextColor_H
+#endif // vrsMath_CPP

@@ -29,7 +29,7 @@
 #include <stdlib.h>
 #include <X11/Xlib.h>
 
-namespace vrsUtil
+namespace trUtil
 {
 	void vrsGPUDetector::DetectGPUMonitorConfigX11(void)
 	{
