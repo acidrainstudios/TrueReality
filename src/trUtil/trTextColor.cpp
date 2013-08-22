@@ -20,10 +20,10 @@
 */
 
 
-#ifndef vrsTextColor_CPP
-#define vrsTextColor_CPP
+#ifndef trTextColor_CPP
+#define trTextColor_CPP
 
-#include <trUtil\vrsTextColor.h>
+#include <trUtil\trTextColor.h>
 
 #if defined(_WIN32)
 
@@ -75,4 +75,4 @@ namespace trUtil
 
 #endif //defined(_WIN32)
 
-#endif // vrsTextColor_CPP
+#endif // trTextColor_CPP

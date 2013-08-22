@@ -19,40 +19,15 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef vrsConfigParser_CPP
-#define vrsConfigParser_CPP 1
 
-#include <trUtil\vrsConfigParser.h>
-
-#include <iostream>
-
-#include <dtUtil/datapathutils.h>
-#include <dtUtil/log.h>
+#ifndef trLogo_H
+#define trLogo_H
 
 namespace trUtil
 {
-	// Ctor
-	vrsConfigParser::vrsConfigParser(const std::string& configFileName)
-	{
-		SetConfigFileName(configFileName);	
-	}
-
-	// Sets the Config File Name
-	void vrsConfigParser::SetConfigFileName(const std::string& configFileName)
-	{
-		mConfigFileName = configFileName;
-		SetConfigFilePath(dtUtil::GetDeltaRootPath() + "/Bin/" + mConfigFileName);	
-	}
-
-	// Sets the Full Config File Name and Path
-	void vrsConfigParser::SetConfigFilePath(const std::string &configFilePath)
-	{
-		mConfigFilePath = configFilePath;
-		#ifdef _DEBUG
-			LOG_INFO("VRSim Config File: " + mConfigFilePath + '\n');
-		#endif
-	}
-
+	//Displays the VR-Sim Lab Logo
+	void Logo(void);
 }
 
-#endif // vrsConfigParser_CPP
+
+#endif // trLogo_H

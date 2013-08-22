@@ -19,8 +19,8 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef vrsGPUDetector_H
-#define vrsGPUDetector_H 1
+#ifndef trGPUDetector_H
+#define trGPUDetector_H 1
 
 #include "export.h"
 
@@ -31,7 +31,7 @@ namespace trUtil
 	/**
     * Detects which Monitor is connected to whihc GPU
     */
-	class VRS_UTIL_EXPORT vrsGPUDetector: public dtCore::Base
+	class VRS_UTIL_EXPORT trGPUDetector: public dtCore::Base
 	{
 	public:
 		
@@ -47,12 +47,12 @@ namespace trUtil
 		/**
 		* Constructor
 		*/
-		vrsGPUDetector(void);
+		trGPUDetector(void);
 
 		/**
 		* Destructor
 		*/
-		~vrsGPUDetector(void){};
+		~trGPUDetector(void){};
 
 		/**
 		* Returns the Number of Screens Attached to the computer
@@ -98,4 +98,4 @@ namespace trUtil
 
 	
 
-#endif // vrsGPUDetector_H
+#endif // trGPUDetector_H

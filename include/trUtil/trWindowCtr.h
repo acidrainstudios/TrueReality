@@ -20,8 +20,8 @@
 */
 
 
-#ifndef vrsWindowCtr_H
-#define vrsWindowCtr_H 1
+#ifndef trWindowCtr_H
+#define trWindowCtr_H 1
 
 #include "export.h"
 
@@ -35,7 +35,7 @@
 #include <dtCore/Scene.h>
 #include <dtCore/View.h>
 
-#include "vrsConfigParser.h"
+#include "trConfigParser.h"
 
 
 namespace trUtil
@@ -74,21 +74,21 @@ namespace trUtil
     * Creates and Controls multi-window setups for VR-Sim Lab
 	* and handles Visual Stereo Setup
     */
-	class VRS_UTIL_EXPORT vrsWindowCtr: public osg::Referenced
+	class VRS_UTIL_EXPORT trWindowCtr: public osg::Referenced
 	{
 	protected:
 		
 		/**
 		* Protected Constructor
 		*/
-		vrsWindowCtr(void);
+		trWindowCtr(void);
 
 	public:
 	
 		/**
 		* Grabs a pointer to the instance of the class
 		*/
-		static vrsWindowCtr* GetInstance();
+		static trWindowCtr* GetInstance();
 		
 
 		/**
@@ -127,7 +127,7 @@ namespace trUtil
 		/**
 		* Destructor
 		*/
-		~vrsWindowCtr(void);
+		~trWindowCtr(void);
 
 	private:
 
@@ -155,7 +155,7 @@ namespace trUtil
 		/**
 		* Hold the instance of this class
 		*/
-		static vrsWindowCtr* mInstance;
+		static trWindowCtr* mInstance;
 
 		/**
 		* Total maximum number of windows possible
@@ -175,7 +175,7 @@ namespace trUtil
 		/**
 		* XML Config Settings Parser
 		*/
-		vrsConfigParser mVRSimConfig;
+		trConfigParser mVRSimConfig;
 
 		/**
 		* Hold the instance of the aplication class
@@ -210,4 +210,4 @@ namespace trUtil
 	};
 }
 
-#endif // vrsWindowCtr_H
+#endif // trWindowCtr_H

@@ -19,10 +19,10 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef vrsGPUDetector_CPP
-#define vrsGPUDetector_CPP 1
+#ifndef trGPUDetector_CPP
+#define trGPUDetector_CPP 1
 
-#include <trUtil\vrsGPUDetector.h>
+#include <trUtil\trGPUDetector.h>
 
 #include <sstream>
 
@@ -32,12 +32,12 @@
 
 namespace trUtil
 {
-	vrsGPUDetector::vrsGPUDetector(void)
+	trGPUDetector::trGPUDetector(void)
 	{
 		DetectGPUMonitorConfig();
 	}
 
-	void vrsGPUDetector::DetectGPUMonitorConfig(void)
+	void trGPUDetector::DetectGPUMonitorConfig(void)
 	{
 		//Create a temp Context
 		osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(new osg::GraphicsContext::Traits);
@@ -72,7 +72,7 @@ namespace trUtil
 	}
 }
 
-#endif // vrsGPUDetector_CPP
+#endif // trGPUDetector_CPP
 
 
 

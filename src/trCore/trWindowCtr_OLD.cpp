@@ -20,12 +20,12 @@
 */
 
 //Old Controller
-#ifndef vrsWindow_CPP
-#define vrsWindow_CPP
+#ifndef trWindow_CPP
+#define trWindow_CPP
 
-#include <trCore\vrsWindowCtr_OLD.h>
+#include <trCore\trWindowCtr_OLD.h>
 
-vrsWindowCtr::vrsWindowCtr(void):
+trWindowCtr::trWindowCtr(void):
 			//_Window(0), 
 			Window0(0), Window1(0), Window2(0), Window3(0), Window4(0), Window5(0),
 			//_tcCam(0), 
@@ -52,7 +52,7 @@ vrsWindowCtr::vrsWindowCtr(void):
 	
 }
 ///////////////////////////////////////////////////////////////////////////////
-void vrsWindowCtr::SetStereo(osg::DisplaySettings::StereoMode S_Mode, bool Active)
+void trWindowCtr::SetStereo(osg::DisplaySettings::StereoMode S_Mode, bool Active)
 {
 	if (Active)
 	{
@@ -75,7 +75,7 @@ void vrsWindowCtr::SetStereo(osg::DisplaySettings::StereoMode S_Mode, bool Activ
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-bool vrsWindowCtr::MakeWin(int NumOfWindows, bool Overwrite)
+bool trWindowCtr::MakeWin(int NumOfWindows, bool Overwrite)
 {
 	if(!_WindowsGenerated || Overwrite)
 	{
@@ -221,7 +221,7 @@ bool vrsWindowCtr::MakeWin(int NumOfWindows, bool Overwrite)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void vrsWindowCtr::SetupWindow(dtCore::DeltaWin*	WindowVal,	const std::string& nameW, const std::string& titleW,
+void trWindowCtr::SetupWindow(dtCore::DeltaWin*	WindowVal,	const std::string& nameW, const std::string& titleW,
 								dtCore::View*	ViewVal,	const std::string& nameV, 
 								dtCore::Camera* CameraVal,	const std::string& nameC, 
 								dtCore::Scene*	SceneVal,	
@@ -256,7 +256,7 @@ void vrsWindowCtr::SetupWindow(dtCore::DeltaWin*	WindowVal,	const std::string& n
 
 }
 ///////////////////////////////////////////////////////////////////////////////
-void vrsWindowCtr::SetNumOfWindows(int NumOfWin, bool Overwrite)
+void trWindowCtr::SetNumOfWindows(int NumOfWin, bool Overwrite)
 {
 	if(_numOfWindows == -1 || Overwrite)
 	{
@@ -265,7 +265,7 @@ void vrsWindowCtr::SetNumOfWindows(int NumOfWin, bool Overwrite)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void vrsWindowCtr::CreateWin(SCR_TYPE SetUpType, dtCore::DeltaWin* DefWindow, dtCore::Camera* DefCamera, 
+void trWindowCtr::CreateWin(SCR_TYPE SetUpType, dtCore::DeltaWin* DefWindow, dtCore::Camera* DefCamera, 
 							dtCore::Scene* DefScene, dtCore::View* DefView)
 {
 	// Set default D3D objects to internal objects for contolls
@@ -741,7 +741,7 @@ void vrsWindowCtr::CreateWin(SCR_TYPE SetUpType, dtCore::DeltaWin* DefWindow, dt
 	//Window0.get()->GetOsgViewerGraphicsWindow()->grabFocus();
 }
 ///////////////////////////////////////////////////////////////////////////////
-dtCore::RefPtr<dtCore::DeltaWin> vrsWindowCtr::GetWin(int WinNum)
+dtCore::RefPtr<dtCore::DeltaWin> trWindowCtr::GetWin(int WinNum)
 {
 	switch(WinNum)
 	{
@@ -811,7 +811,7 @@ dtCore::RefPtr<dtCore::DeltaWin> vrsWindowCtr::GetWin(int WinNum)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-dtCore::RefPtr<dtCore::Camera> vrsWindowCtr::GetCam(int CamNum)
+dtCore::RefPtr<dtCore::Camera> trWindowCtr::GetCam(int CamNum)
 {
 	switch(CamNum)
 	{
@@ -878,7 +878,7 @@ dtCore::RefPtr<dtCore::Camera> vrsWindowCtr::GetCam(int CamNum)
 	
 }
 ///////////////////////////////////////////////////////////////////////////////
-dtCore::RefPtr<dtCore::View> vrsWindowCtr::GetView(int ViewNum)
+dtCore::RefPtr<dtCore::View> trWindowCtr::GetView(int ViewNum)
 {
 	switch(ViewNum)
 	{
@@ -921,19 +921,19 @@ dtCore::RefPtr<dtCore::View> vrsWindowCtr::GetView(int ViewNum)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-dtCore::RefPtr<dtCore::Scene> vrsWindowCtr::GetScene(int SceneNum)
+dtCore::RefPtr<dtCore::Scene> trWindowCtr::GetScene(int SceneNum)
 {
 	return tcScene0;
 }
 ///////////////////////////////////////////////////////////////////////////////
-void vrsWindowCtr::SetFullScreen(bool value)
+void trWindowCtr::SetFullScreen(bool value)
 {
 	_FullScreen = value;
 	_ScreenDecor = !value;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void vrsWindowCtr::SetWindowOnScreenNum(int WinNum, int ScrNum, bool Overwrite)
+void trWindowCtr::SetWindowOnScreenNum(int WinNum, int ScrNum, bool Overwrite)
 {
 	if(WinNum >= 0 && WinNum <MAX_WINDOWS_POSSIBLE)
 	{
@@ -945,7 +945,7 @@ void vrsWindowCtr::SetWindowOnScreenNum(int WinNum, int ScrNum, bool Overwrite)
 
 }
 ///////////////////////////////////////////////////////////////////////////////
-vrsWindowCtr::~vrsWindowCtr(void)
+trWindowCtr::~trWindowCtr(void)
 {
 	
 }
@@ -959,4 +959,4 @@ vrsWindowCtr::~vrsWindowCtr(void)
 
 
 
-#endif // vrsWindow_CPP
+#endif // trWindow_CPP

@@ -19,46 +19,40 @@
 * Author: Maxim Serebrennik
 */
 
+#ifndef trConfigParser_CPP
+#define trConfigParser_CPP 1
 
-#ifndef vrsMath_CPP
-#define vrsMath_CPP
+#include <trUtil\trConfigParser.h>
 
-#include <math.h>
+#include <iostream>
 
-#include <dtCore/refptr.h>
-#include <dtCore/uniqueid.h>
-
-#include <trUtil\vrsMath.h>
+#include <dtUtil/datapathutils.h>
+#include <dtUtil/log.h>
 
 namespace trUtil
 {
-
-	inline void SinCos(double x, double & SinVal, double & CosVal)
+	// Ctor
+	trConfigParser::trConfigParser(const std::string& configFileName)
 	{
-		SinVal=sin(x);
-		CosVal=cos(x);
+		SetConfigFileName(configFileName);	
 	}
 
-	inline double Deg2Rad(double Degree)
+	// Sets the Config File Name
+	void trConfigParser::SetConfigFileName(const std::string& configFileName)
 	{
-		return osg::DegreesToRadians(Degree);
+		mConfigFileName = configFileName;
+		SetConfigFilePath(dtUtil::GetDeltaRootPath() + "/Bin/" + mConfigFileName);	
 	}
 
-	inline float Deg2Rad(float Degree)
+	// Sets the Full Config File Name and Path
+	void trConfigParser::SetConfigFilePath(const std::string &configFilePath)
 	{
-		return osg::DegreesToRadians(Degree);
-	}
-
-	inline double CheckState(double State)
-	{
-		if (State == 0)
-			return 0;
-		else if(State < 0)
-			return -1;
-		else
-			return 1;
+		mConfigFilePath = configFilePath;
+		#ifdef _DEBUG
+			LOG_INFO("VRSim Config File: " + mConfigFilePath + '\n');
+		#endif
 	}
 
 }
 
-#endif // vrsMath_CPP
+#endif // trConfigParser_CPP

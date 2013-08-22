@@ -18,11 +18,11 @@
 *
 * Author: Maxim Serebrennik
 */
-#ifndef vrsGPUDetectorWin32_CPP
-#define vrsGPUDetectorWin32_CPP 1
+#ifndef trGPUDetectorWin32_CPP
+#define trGPUDetectorWin32_CPP 1
 
 #ifdef _WIN32
-#include <trUtil\vrsGPUDetector.h>
+#include <trUtil\trGPUDetector.h>
 
 #include <windows.h>
 #include <iostream>
@@ -31,7 +31,7 @@
 
 namespace trUtil
 {
-	void vrsGPUDetector::DetectGPUMonitorConfigWin32(void)
+	void trGPUDetector::DetectGPUMonitorConfigWin32(void)
 	{
 		DISPLAY_DEVICE GCardDevice;
 		GCardDevice.cb = sizeof(DISPLAY_DEVICE);
@@ -84,4 +84,4 @@ namespace trUtil
 	#endif
 }
 
-#endif // vrsGPUDetectorWin32_CPP
+#endif // trGPUDetectorWin32_CPP

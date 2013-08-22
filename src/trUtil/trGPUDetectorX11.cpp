@@ -19,11 +19,11 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef vrsGPUDetectorX11_CPP
-#define vrsGPUDetectorX11_CPP 1
+#ifndef trGPUDetectorX11_CPP
+#define trGPUDetectorX11_CPP 1
 
 #ifndef _WIN32
-#include "..\\Include\vrsGPUDetector.h"
+#include "..\\Include\trGPUDetector.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +31,7 @@
 
 namespace trUtil
 {
-	void vrsGPUDetector::DetectGPUMonitorConfigX11(void)
+	void trGPUDetector::DetectGPUMonitorConfigX11(void)
 	{
 
 		//For X11 this might be a way to do the same:
@@ -74,4 +74,4 @@ namespace trUtil
 }
 #endif
 
-#endif // vrsGPUDetectorX11_CPP
+#endif // trGPUDetectorX11_CPP
