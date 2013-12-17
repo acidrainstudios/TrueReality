@@ -5,9 +5,6 @@ SET(FILE_NAME trUtil)
 SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
 SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
-message(STATUS "Info: ${SOURCE_PATH}")
-message(STATUS "Info: ${HEADER_PATH}")
-
 # Sets the sources using "GLOB"
 file (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
 
@@ -39,9 +36,6 @@ add_definitions (-DTR_UTIL_LIBRARY)
 # Sets the headers file directory in IDEs
 set (HEADERS_GROUP "Header Files")
 source_group (${HEADERS_GROUP} FILES ${PROJECT_HEADERS})
-
-message(STATUS "${PROJECT_SOURCES}")
-message(STATUS "${PROJECT_HEADERS}")
 
 # Generates the shared library for the project from sources
 add_library (${FILE_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
