@@ -19,9 +19,8 @@
 * Author: Maxim Serebrennik
 */
 
-//Old Controller
-#ifndef trWindow_H
-#define trWindow_H
+#ifndef tcWindow_H
+#define tcWindow_H
 
 #include <trUtil\trMath.h>
 
@@ -42,7 +41,6 @@
 #include <osgViewer/CompositeViewer>
 #include <osgViewer/GraphicsWindow>
 
-//#include <prefix/dtcoreprefix-src.h>
 #include <dtUtil/log.h>
 #include <dtCore/exceptionenum.h>
 
@@ -76,7 +74,7 @@ enum SCR_TYPE {
 		SCR_6_90x90	=	11
 	};
 
-class trWindowCtr
+class WindowCtr
 {
 public:
 	// Screen setup type
@@ -96,7 +94,7 @@ public:
 	};*/
 
 
-	trWindowCtr(void);
+	WindowCtr(void);
 
 	
 	//Set Stereo Mode
@@ -124,7 +122,7 @@ public:
 	// Set all windows to full screen
 	void SetFullScreen(bool);
 
-	~trWindowCtr(void);
+	~WindowCtr(void);
 	
 
 private:
@@ -216,4 +214,4 @@ private:
 };
 
 
-#endif // trWindow_H
+#endif // tcWindow_H
