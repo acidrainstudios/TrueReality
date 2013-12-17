@@ -25,7 +25,7 @@
 #include "export.h"
 
 #include "ActorGameStaticMesh.h"
-#include <trUtil\trMath.h>
+#include <trUtil\Math.h>
 #include "CoreActorsRegistry.h"
 
 #include <iostream>

@@ -20,13 +20,13 @@
 */
 
 
-#ifndef trLogo_CPP
-#define trLogo_CPP
+#ifndef Logo_CPP
+#define Logo_CPP
 
 #include <iostream>
 
-#include <trUtil\trTextColor.h>
-#include <trUtil\trLogo.h>
+#include <trUtil\TextColor.h>
+#include <trUtil\Logo.h>
 
 namespace trUtil
 {
@@ -97,4 +97,4 @@ namespace trUtil
 	}
 }
 
-#endif // trLogo_CPP
+#endif // Logo_CPP

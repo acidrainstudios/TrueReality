@@ -25,16 +25,16 @@
 
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
-#  ifdef VRS_UTIL_LIBRARY
-#    define VRS_UTIL_EXPORT __declspec(dllexport)
+#  ifdef TR_UTIL_LIBRARY
+#    define TR_UTIL_EXPORT __declspec(dllexport)
 #  else
-#    define VRS_UTIL_EXPORT __declspec(dllimport)
+#    define TR_UTIL_EXPORT __declspec(dllimport)
 #  endif
 #else
-#   ifdef VRS_UTIL_LIBRARY
-#      define VRS_UTIL_EXPORT __attribute__ ((visibility("default")))
+#   ifdef TR_UTIL_LIBRARY
+#      define TR_UTIL_EXPORT __attribute__ ((visibility("default")))
 #   else
-#      define VRS_UTIL_EXPORT
+#      define TR_UTIL_EXPORT
 #   endif 
 #endif
 

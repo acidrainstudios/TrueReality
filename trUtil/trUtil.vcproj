@@ -130,7 +130,7 @@
 				EnableIntrinsicFunctions="false"
 				FavorSizeOrSpeed="0"
 				AdditionalIncludeDirectories="$(DELTA_ROOT)\inc;$(DELTA_ROOT)\ext\inc;C:\MyMainData\Development\VRSimLab\include"
-				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;NOMINMAX;VRS_UTIL_LIBRARY"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;NOMINMAX;TR_UTIL_LIBRARY"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="false"
 				UsePrecompiledHeader="0"
@@ -194,43 +194,43 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\src\trUtil\trConfigParser.cpp"
+				RelativePath="..\src\trUtil\ConfigParser.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trConfigSchema.cpp"
+				RelativePath="..\src\trUtil\ConfigSchema.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trConfigWriter.cpp"
+				RelativePath="..\src\trUtil\ConfigWriter.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trGPUDetector.cpp"
+				RelativePath="..\src\trUtil\GPUDetector.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trGPUDetectorWin32.cpp"
+				RelativePath="..\src\trUtil\GPUDetectorWin32.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trGPUDetectorX11.cpp"
+				RelativePath="..\src\trUtil\GPUDetectorX11.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trLogo.cpp"
+				RelativePath="..\src\trUtil\Logo.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trMath.cpp"
+				RelativePath="..\src\trUtil\Math.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trTextColor.cpp"
+				RelativePath="..\src\trUtil\TextColor.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\trUtil\trWindowCtr.cpp"
+				RelativePath="..\src\trUtil\WindowCtr.cpp"
 				>
 			</File>
 		</Filter>
@@ -240,39 +240,39 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\include\trUtil\ConfigParser.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\trUtil\ConfigSchema.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\trUtil\ConfigWriter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\include\trUtil\export.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trUtil\trConfigParser.h"
+				RelativePath="..\include\trUtil\GPUDetector.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trUtil\trConfigSchema.h"
+				RelativePath="..\include\trUtil\Logo.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trUtil\trConfigWriter.h"
+				RelativePath="..\include\trUtil\Math.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trUtil\trGPUDetector.h"
+				RelativePath="..\include\trUtil\TextColor.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\trUtil\trLogo.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\trUtil\trMath.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\trUtil\trTextColor.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\trUtil\trWindowCtr.h"
+				RelativePath="..\include\trUtil\WindowCtr.h"
 				>
 			</File>
 		</Filter>
