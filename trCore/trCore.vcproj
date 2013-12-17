@@ -247,6 +247,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\trCore\CoreActorsRegistry.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\trCore\CoreDLLEntryPoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\trCore\CoreEnum.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\trCore\CoreMsgTypes.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\trCore\InputComponent.cpp"
 				>
 			</File>
@@ -256,22 +272,6 @@
 			</File>
 			<File
 				RelativePath="..\src\trCore\MsgChangePlayer.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\trCore\trCoreActorsRegistry.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\trCore\trCoreDLLEntryPoint.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\trCore\trCoreEnum.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\trCore\trCoreMsgTypes.cpp"
 				>
 			</File>
 		</Filter>
@@ -303,6 +303,26 @@
 				>
 			</File>
 			<File
+				RelativePath="..\include\trCore\CoreActorsRegistry.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\trCore\CoreDLLEntryPoint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\trCore\CoreEnum.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\trCore\CoreGameEvents.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\trCore\CoreMsgTypes.h"
+				>
+			</File>
+			<File
 				RelativePath="..\include\trCore\export.h"
 				>
 			</File>
@@ -319,27 +339,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\trCoreActorsRegistry.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\trCore\trCoreDLLEntryPoint.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\trCore\trCoreEnum.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\trCore\trCoreGameEvents.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\trCore\trCoreMsgTypes.h"
-				>
-			</File>
-			<File
 				RelativePath="..\src\trCore\WindowCtr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\trCore\WindowCtr.h"
 				>
 			</File>
 		</Filter>

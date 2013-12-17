@@ -24,9 +24,9 @@
 
 #include "export.h"
 #include <trUtil\trMath.h>
-#include "trCoreActorsRegistry.h"
-#include "trCoreMsgTypes.h"
-#include "trCoreGameEvents.h"
+#include "CoreActorsRegistry.h"
+#include "CoreMsgTypes.h"
+#include "CoreGameEvents.h"
 #include "ActorGameStaticMesh.h"
 
 #include <assert.h>

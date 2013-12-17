@@ -24,7 +24,7 @@
 #define COREDLL_MSG_TYPES_CPP
 
 
-#include <trCore\trCoreMsgTypes.h>
+#include <trCore\CoreMsgTypes.h>
 
 namespace trCore
 {

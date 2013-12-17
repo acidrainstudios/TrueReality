@@ -24,8 +24,8 @@
 #define COREDLL_CONTROLLER_COMPONENT_H
 
 #include "export.h"
-#include "trCoreMsgTypes.h"
-#include "trCoreGameEvents.h"
+#include "CoreMsgTypes.h"
+#include "CoreGameEvents.h"
 #include "ActorGeneric.h"
 
 #include <iostream>

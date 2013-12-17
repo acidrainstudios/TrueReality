@@ -23,7 +23,7 @@
 #ifndef COREDLL_ACTORS_REGISTRY_CPP
 #define COREDLL_ACTORS_REGISTRY_CPP
 
-#include <trCore\trCoreActorsRegistry.h>
+#include <trCore\CoreActorsRegistry.h>
 
 namespace trCore
 {

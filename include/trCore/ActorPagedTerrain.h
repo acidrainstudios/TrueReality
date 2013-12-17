@@ -26,7 +26,7 @@
 
 #include "ActorGameStaticMesh.h"
 #include <trUtil\trMath.h>
-#include "trCoreActorsRegistry.h"
+#include "CoreActorsRegistry.h"
 
 #include <iostream>
 #include <string>

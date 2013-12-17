@@ -36,18 +36,18 @@ namespace trCore
 	 * Our entry point into the game.  The VRSim.exe application can load this like this:
 	 * "VRSim.exe trCore"
 	 */ 
-	class CORE_EXPORT trCoreDLLEntryPoint: public dtGame::GameEntryPoint
+	class CORE_EXPORT CoreDLLEntryPoint: public dtGame::GameEntryPoint
 	{
 	public:
 		/**
 		* Constructor
 		*/
-		trCoreDLLEntryPoint(){};
+		CoreDLLEntryPoint(){};
 		
 		/**
 		* Destructor
 		*/
-		virtual ~trCoreDLLEntryPoint(){};
+		virtual ~CoreDLLEntryPoint(){};
 		  
 		// Called to do early initializtion.  Grab your command line params here.
 		virtual void Initialize(dtGame::GameApplication& app, int argc, char **argv);

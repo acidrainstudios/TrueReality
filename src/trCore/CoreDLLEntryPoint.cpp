@@ -23,7 +23,7 @@
 #ifndef COREDLL_MY_GAME_ENTRY_POINT_CPP
 #define COREDLL_MY_GAME_ENTRY_POINT_CPP
 
-#include <trCore\trCoreDLLEntryPoint.h>
+#include <trCore\CoreDLLEntryPoint.h>
 
 #include <iostream>
 
@@ -47,7 +47,7 @@ namespace trCore
 	//////////////////////////////////////////////////////////////////////////
 	extern "C" CORE_EXPORT dtGame::GameEntryPoint* CreateGameEntryPoint()
 	{
-		return new trCoreDLLEntryPoint;
+		return new CoreDLLEntryPoint;
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ namespace trCore
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	void trCoreDLLEntryPoint::Initialize(dtGame::GameApplication& app, int argc, char** argv)
+	void CoreDLLEntryPoint::Initialize(dtGame::GameApplication& app, int argc, char** argv)
 	{
 		
 		osg::ArgumentParser parser(&argc, argv);
@@ -86,7 +86,7 @@ namespace trCore
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	void trCoreDLLEntryPoint::OnStartup(dtGame::GameApplication& app)
+	void CoreDLLEntryPoint::OnStartup(dtGame::GameApplication& app)
 	{		
 
 		// Load the map we created in STAGE.
