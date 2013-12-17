@@ -1,5 +1,6 @@
-# Set the library name
+# Set the library name and preprocessing
 SET(FILE_NAME trCore)
+SET(PRE_PROCESSING TR_CORE_LIBRARY)
 
 # Set the source and include paths
 SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
@@ -31,7 +32,7 @@ if (TR_BUILD_WITH_DEBUG)
 endif (TR_BUILD_WITH_DEBUG)
 
 # Defines necessary preprocessor variables for project
-add_definitions (-DTR_UTIL_LIBRARY)
+add_definitions (-D${PRE_PROCESSING})
 
 # Sets the headers file directory in IDEs
 set (HEADERS_GROUP "Header Files")
