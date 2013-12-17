@@ -159,7 +159,7 @@
 				InlineFunctionExpansion="2"
 				FavorSizeOrSpeed="0"
 				AdditionalIncludeDirectories="$(DELTA_ROOT)\inc;$(DELTA_ROOT)\ext\inc;C:\MyMainData\Development\VRSimLab\include;&quot;$(DELTA_ROOT)\ext\inc\CEGUI&quot;"
-				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;NOMINMAX;CORE_LIBRARY"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;NOMINMAX;TR_CORE_LIBRARY"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"

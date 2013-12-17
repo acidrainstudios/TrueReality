@@ -45,13 +45,13 @@
 namespace trCore
 {
 	//////////////////////////////////////////////////////////////////////////
-	extern "C" CORE_EXPORT dtGame::GameEntryPoint* CreateGameEntryPoint()
+	extern "C" TR_CORE_EXPORT dtGame::GameEntryPoint* CreateGameEntryPoint()
 	{
 		return new CoreDLLEntryPoint;
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	extern "C" CORE_EXPORT void DestroyGameEntryPoint(dtGame::GameEntryPoint* entryPoint)
+	extern "C" TR_CORE_EXPORT void DestroyGameEntryPoint(dtGame::GameEntryPoint* entryPoint)
 	{
 		delete entryPoint;
 	}

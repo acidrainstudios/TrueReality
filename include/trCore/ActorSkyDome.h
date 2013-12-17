@@ -58,7 +58,7 @@
 namespace trCore
 {
 
-	class CORE_EXPORT SkyDomeActor : public trCore::GameStaticMeshActor
+	class TR_CORE_EXPORT SkyDomeActor : public trCore::GameStaticMeshActor
 	{
 	public:
 
@@ -118,7 +118,7 @@ namespace trCore
 	 * Our proxy class for the actor.  The proxy contains properties,
 	 * invokables, and the actor.
 	 */
-	class CORE_EXPORT SkyDomeActorProxy : public trCore::GameStaticMeshActorProxy
+	class TR_CORE_EXPORT SkyDomeActorProxy : public trCore::GameStaticMeshActorProxy
 	{
 	   public:
 		  // Constructs the proxy.

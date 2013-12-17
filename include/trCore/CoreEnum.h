@@ -36,7 +36,7 @@ namespace trCore
 	//Sets the Render Bin Order, 0-100(although not limited to thoes numbers) 0 gets
 	//rendered first and ends up at the back of the scene. 100 gets rendered last 
 	//and ends up at the front of the scene. 50 is used as the default middle
-	enum CORE_EXPORT RENDER_BIN_ORDER 
+	enum TR_CORE_EXPORT RENDER_BIN_ORDER 
 	{
 		FIRST_RENDER_BIN = 0,
 		DEFAULT_RENDER_BIN = 50,
@@ -46,7 +46,7 @@ namespace trCore
 	//Determins how the render bins are sorted internaly. By Depth, By State Complexity, 
 	//or just inherited from the parent node. If the type is inherited, the bin number
 	//is ignored and also inherited from parent. 
-	class CORE_EXPORT RENDER_BIN_TYPE : public dtUtil::Enumeration
+	class TR_CORE_EXPORT RENDER_BIN_TYPE : public dtUtil::Enumeration
 	{
 		DECLARE_ENUM(RENDER_BIN_TYPE)
 

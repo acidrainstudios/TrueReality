@@ -60,7 +60,7 @@ namespace trCore
 	 * ControllerComponent will control all the main functionalety of program, like configuration, 
 	 * setup, and in game controll
 	 */
-	class CORE_EXPORT ControllerComponent : public dtGame::GMComponent
+	class TR_CORE_EXPORT ControllerComponent : public dtGame::GMComponent
 	{
 	   public:
 

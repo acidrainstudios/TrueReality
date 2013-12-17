@@ -36,7 +36,7 @@ namespace trCore
 	 * Our entry point into the game.  The VRSim.exe application can load this like this:
 	 * "VRSim.exe trCore"
 	 */ 
-	class CORE_EXPORT CoreDLLEntryPoint: public dtGame::GameEntryPoint
+	class TR_CORE_EXPORT CoreDLLEntryPoint: public dtGame::GameEntryPoint
 	{
 	public:
 		/**

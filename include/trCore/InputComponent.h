@@ -50,7 +50,7 @@
 namespace trCore
 {
 
-	class CORE_EXPORT InputComponent : public dtGame::GMComponent
+	class TR_CORE_EXPORT InputComponent : public dtGame::GMComponent
 	{
 	   public:
 
