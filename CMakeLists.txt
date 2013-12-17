@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6.2 FATAL_ERROR)
 
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 
-SET (TR_SOURCE_DIR ${CMAKE_SOURCE_DIR})
+#SET (TR_SOURCE_DIR ${CMAKE_SOURCE_DIR})
 
 # *****************************************************************************
 # Adds subfolders in the True Reality CMake GUI tab **********************************
@@ -36,7 +36,6 @@ project (TrueReality)
 # Loads extra CMake modules for the projects
 include (CMakeDependentOption)
 include (UtilityMacros)
-include (ProgramInstall)
 
 # *****************************************************************************
 # Sets user options ***********************************************************
