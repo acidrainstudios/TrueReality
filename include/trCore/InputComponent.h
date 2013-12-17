@@ -24,8 +24,8 @@
 #define COREDLL_INPUT_COMPONENT_H
 
 #include "export.h"
-#include "trCoreMsgTypes.h"
-#include "trCoreGameEvents.h"
+#include "CoreMsgTypes.h"
+#include "CoreGameEvents.h"
 
 #include <iostream>
 

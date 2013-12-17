@@ -26,7 +26,7 @@
 
 #include <iostream>
 
-#include "trCoreEnum.h"
+#include "CoreEnum.h"
 
 #include <dtDAL/enginepropertytypes.h>
 
