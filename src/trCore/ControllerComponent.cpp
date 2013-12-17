@@ -102,7 +102,7 @@ namespace trCore
 		// have been loaded from the map and we can now find them
 		else if (message.GetMessageType() == dtGame::MessageType::INFO_MAP_LOADED)
 		{
-			//GetGameManager()->GetApplication().GetCompositeViewer()->setThreadingModel(osgViewer::ViewerBase::CullThreadPerCameraDrawThreadPerContext);
+			GetGameManager()->GetApplication().GetCompositeViewer()->setThreadingModel(osgViewer::ViewerBase::CullThreadPerCameraDrawThreadPerContext);
 			//GetGameManager()->GetApplication().GetCompositeViewer()->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::DrawThreadPerContext);
 			//GetGameManager()->GetApplication().GetCompositeViewer()->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::ThreadPerCamera);
 			//GetGameManager()->GetApplication().GetCompositeViewer()->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::CullDrawThreadPerContext);
