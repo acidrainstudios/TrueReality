@@ -20,8 +20,8 @@
 */
 
 
-#ifndef trMath_H
-#define trMath_H
+#ifndef Math_H
+#define Math_H
 
 
 #include "export.h"
@@ -41,18 +41,18 @@ namespace trUtil
 	static const double ONE80_OVER_PI = (180.0*ONE_OVER_PI);
 
 	// Takes a Value X and outputs its Sin and Cos by reference
-	void VRS_UTIL_EXPORT SinCos(double x, double & SinVal, double & CosVal);
+	void TR_UTIL_EXPORT SinCos(double x, double & SinVal, double & CosVal);
 
 	// Takes Degrees and converts them to Radians
-	double VRS_UTIL_EXPORT Deg2Rad(double Degree);
+	double TR_UTIL_EXPORT Deg2Rad(double Degree);
 
 	// Takes Degrees and converts them to Radians
-	float VRS_UTIL_EXPORT Deg2Rad(float Degree);
+	float TR_UTIL_EXPORT Deg2Rad(float Degree);
 
 	// Checks if State is = to 0, less then 0 or greater, and outputs -1, 0, 1
-	double VRS_UTIL_EXPORT CheckState(double State);
+	double TR_UTIL_EXPORT CheckState(double State);
 
 }
 
 
-#endif // trMath_H
+#endif // Math_H

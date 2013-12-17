@@ -23,7 +23,7 @@
 #define COREDLL_SKYDOME_ACTOR_H
 
 #include "export.h"
-//#include "..\\..\\trUtil_DLL\Include\trMath.h"
+//#include "..\\..\\trUtil_DLL\Include\Math.h"
 //#include "CoreActorsRegistry.h"
 //#include "CoreMsgTypes.h"
 #include "CoreGameEvents.h"

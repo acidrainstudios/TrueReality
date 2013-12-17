@@ -20,8 +20,8 @@
 */
 
 
-#ifndef trTextColor_H
-#define trTextColor_H
+#ifndef TextColor_H
+#define TextColor_H
 
 
 
@@ -29,7 +29,7 @@
 
 namespace trUtil
 {
-	enum VRS_UTIL_EXPORT TXT_COLOR {
+	enum TR_UTIL_EXPORT TXT_COLOR {
 		BLUE	=	0,
 		GREEN	=	1,
 		RED		=	2,
@@ -41,8 +41,8 @@ namespace trUtil
 	};
 
 	// Changes Text color in the consol window....
-	void VRS_UTIL_EXPORT SetTxtColor(TXT_COLOR TextColor);
+	void TR_UTIL_EXPORT SetTxtColor(TXT_COLOR TextColor);
 
 }
 
-#endif // trTextColor_H
+#endif // TextColor_H

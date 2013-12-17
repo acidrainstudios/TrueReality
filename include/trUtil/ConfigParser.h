@@ -19,8 +19,8 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef trConfigParser_H
-#define trConfigParser_H 1
+#ifndef ConfigParser_H
+#define ConfigParser_H 1
 
 #include "export.h"
 
@@ -36,14 +36,14 @@ namespace trUtil
 	* This class parses all the config option from VRSimCfg.xml
 	* It uses other classes to pull in each individual section of the XML file
 	*/
-	class VRS_UTIL_EXPORT trConfigParser: public osg::Referenced
+	class TR_UTIL_EXPORT ConfigParser: public osg::Referenced
 	{
 	public:
 
 		/**
 		* Constructor
 		*/
-		trConfigParser(const std::string& configFileName = "VRSimCfg.xml");
+		ConfigParser(const std::string& configFileName = "VRSimCfg.xml");
 
 		/**
 		* Sets a new Config File Name
@@ -77,4 +77,4 @@ namespace trUtil
 
 }
 
-#endif // trConfigParser_H
+#endif // ConfigParser_H

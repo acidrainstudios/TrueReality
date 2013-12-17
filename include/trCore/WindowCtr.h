@@ -22,7 +22,7 @@
 #ifndef tcWindow_H
 #define tcWindow_H
 
-#include <trUtil\trMath.h>
+#include <trUtil\Math.h>
 
 #include <dtCore/deltawin.h>
 #include <dtCore/camera.h>

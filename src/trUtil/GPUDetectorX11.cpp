@@ -19,11 +19,11 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef trGPUDetectorX11_CPP
-#define trGPUDetectorX11_CPP 1
+#ifndef GPUDetectorX11_CPP
+#define GPUDetectorX11_CPP 1
 
 #ifndef _WIN32
-#include "..\\Include\trGPUDetector.h"
+#include "..\\Include\GPUDetector.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +31,7 @@
 
 namespace trUtil
 {
-	void trGPUDetector::DetectGPUMonitorConfigX11(void)
+	void GPUDetector::DetectGPUMonitorConfigX11(void)
 	{
 
 		//For X11 this might be a way to do the same:
@@ -74,4 +74,4 @@ namespace trUtil
 }
 #endif
 
-#endif // trGPUDetectorX11_CPP
+#endif // GPUDetectorX11_CPP

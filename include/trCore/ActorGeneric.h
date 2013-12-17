@@ -23,7 +23,7 @@
 #define COREDLL_GENERIC_ACTOR_H
 
 #include "export.h"
-#include <trUtil\trMath.h>
+#include <trUtil\Math.h>
 #include "CoreActorsRegistry.h"
 #include "CoreMsgTypes.h"
 #include "CoreGameEvents.h"

@@ -20,15 +20,15 @@
 */
 
 
-#ifndef trMath_CPP
-#define trMath_CPP
+#ifndef Math_CPP
+#define Math_CPP
 
 #include <math.h>
 
 #include <dtCore/refptr.h>
 #include <dtCore/uniqueid.h>
 
-#include <trUtil\trMath.h>
+#include <trUtil\Math.h>
 
 namespace trUtil
 {
@@ -61,4 +61,4 @@ namespace trUtil
 
 }
 
-#endif // trMath_CPP
+#endif // Math_CPP

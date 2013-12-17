@@ -19,8 +19,8 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef trConfigWriter_H
-#define trConfigWriter_H 1
+#ifndef ConfigWriter_H
+#define ConfigWriter_H 1
 
 #include "export.h"
 
@@ -31,7 +31,7 @@
 namespace trUtil
 {
 	/// A class that writes VRSim config files
-	class VRS_UTIL_EXPORT trConfigWriter
+	class TR_UTIL_EXPORT ConfigWriter
 	{
 	public:
 	  void WriteCfg(const std::string& filename);
@@ -83,4 +83,4 @@ namespace trUtil
 }
 
 
-#endif // trConfigWriter_H
+#endif // ConfigWriter_H

@@ -19,10 +19,10 @@
 * Author: Maxim Serebrennik
 */
 
-#ifndef trGPUDetector_CPP
-#define trGPUDetector_CPP 1
+#ifndef GPUDetector_CPP
+#define GPUDetector_CPP 1
 
-#include <trUtil\trGPUDetector.h>
+#include <trUtil\GPUDetector.h>
 
 #include <sstream>
 
@@ -32,12 +32,12 @@
 
 namespace trUtil
 {
-	trGPUDetector::trGPUDetector(void)
+	GPUDetector::GPUDetector(void)
 	{
 		DetectGPUMonitorConfig();
 	}
 
-	void trGPUDetector::DetectGPUMonitorConfig(void)
+	void GPUDetector::DetectGPUMonitorConfig(void)
 	{
 		//Create a temp Context
 		osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(new osg::GraphicsContext::Traits);
@@ -72,7 +72,7 @@ namespace trUtil
 	}
 }
 
-#endif // trGPUDetector_CPP
+#endif // GPUDetector_CPP
 
 
 

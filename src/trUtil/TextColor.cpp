@@ -20,10 +20,10 @@
 */
 
 
-#ifndef trTextColor_CPP
-#define trTextColor_CPP
+#ifndef TextColor_CPP
+#define TextColor_CPP
 
-#include <trUtil\trTextColor.h>
+#include <trUtil\TextColor.h>
 
 #if defined(_WIN32)
 
@@ -75,4 +75,4 @@ namespace trUtil
 
 #endif //defined(_WIN32)
 
-#endif // trTextColor_CPP
+#endif // TextColor_CPP
