@@ -2,12 +2,10 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6.2 FATAL_ERROR)
 
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 
-#SET (TR_SOURCE_DIR ${CMAKE_SOURCE_DIR})
-
 # *****************************************************************************
 # Adds subfolders in the True Reality CMake GUI tab **********************************
 # *****************************************************************************
-macro (ADD_TRUEREALITY_SUBFOLDERS)
+macro (ADD_TR_SUBFOLDERS)
 
 # Optional dependencies
 	if (TR_UTIL)
@@ -50,7 +48,7 @@ cmake_dependent_option (TR_START "Enables the building of trStart executable" ON
 
 if (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
     TR_DETECT_DEPENDENCY (OSG)
-    TR_DETECT_DEPENDENCY  (OpenThreads)
+    TR_DETECT_DEPENDENCY (OpenThreads)
     include_directories (${OSG_INCLUDE_DIR} ${OPENTHREADS_INCLUDE_DIR})
 endif (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
 
@@ -72,6 +70,6 @@ include_directories(
 )
 
 # Generates the selected sub-folders for the code base
-ADD_TRUEREALITY_SUBFOLDERS ()
+ADD_TR_SUBFOLDERS ()
 
 set (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
