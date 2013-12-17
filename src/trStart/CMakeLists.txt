@@ -1,4 +1,4 @@
-# Set the library name
+# Set the executable name
 SET(FILE_NAME trStart)
 
 # Set the source and include paths
