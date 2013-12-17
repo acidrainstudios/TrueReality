@@ -59,7 +59,7 @@
 
 namespace trCore
 {
-	class CORE_EXPORT PagedTerrainActor : public trCore::GameStaticMeshActor
+	class TR_CORE_EXPORT PagedTerrainActor : public trCore::GameStaticMeshActor
 	{
     public:
 
@@ -246,7 +246,7 @@ namespace trCore
 	//////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////
-	class CORE_EXPORT PagedTerrainActorProxy : public trCore::GameStaticMeshActorProxy
+	class TR_CORE_EXPORT PagedTerrainActorProxy : public trCore::GameStaticMeshActorProxy
     {
 	public:
 		

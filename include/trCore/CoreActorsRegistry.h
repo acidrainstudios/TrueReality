@@ -37,7 +37,7 @@
 
 namespace trCore
 {
-	class CORE_EXPORT CoreActorsRegistry : public dtDAL::ActorPluginRegistry
+	class TR_CORE_EXPORT CoreActorsRegistry : public dtDAL::ActorPluginRegistry
 	{
 	   public:
 

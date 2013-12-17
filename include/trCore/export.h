@@ -24,13 +24,13 @@
 #define COREDLL_EXPORT_H
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
-#  ifdef CORE_LIBRARY
-#    define CORE_EXPORT __declspec(dllexport)
+#  ifdef TR_CORE_LIBRARY
+#    define TR_CORE_EXPORT __declspec(dllexport)
 #  else
-#    define CORE_EXPORT __declspec(dllimport)
+#    define TR_CORE_EXPORT __declspec(dllimport)
 #  endif
 #else
-#  define CORE_EXPORT
+#  define TR_CORE_EXPORT
 #endif
             
 #endif //COREDLL_EXPORT_H

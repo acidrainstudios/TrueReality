@@ -39,7 +39,7 @@ namespace trCore
 
 	//A Generic Static Mesh Game Actor, that inherit dtActors::GameMeshActor, but adds Render
 	//Bin Controlls to STAGE proxyes
-	class CORE_EXPORT GameStaticMeshActor : public dtActors::GameMeshActor
+	class TR_CORE_EXPORT GameStaticMeshActor : public dtActors::GameMeshActor
 	{
 	public:
 
@@ -93,7 +93,7 @@ namespace trCore
 	 * Our proxy class for the actor.  The proxy contains properties,
 	 * invokables, and the actor.
 	 */
-	class CORE_EXPORT GameStaticMeshActorProxy : public dtActors::GameMeshActorProxy
+	class TR_CORE_EXPORT GameStaticMeshActorProxy : public dtActors::GameMeshActorProxy
 	{
 	   public:
 		  // Constructs the proxy.

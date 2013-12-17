@@ -37,13 +37,13 @@ namespace trCore
 
 
 	///////////////////////////////////////////////////////////////////////////////
-	extern "C" CORE_EXPORT dtDAL::ActorPluginRegistry* CreatePluginRegistry()
+	extern "C" TR_CORE_EXPORT dtDAL::ActorPluginRegistry* CreatePluginRegistry()
 	{
 	   return new CoreActorsRegistry();
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	extern "C" CORE_EXPORT void DestroyPluginRegistry(dtDAL::ActorPluginRegistry *registry)
+	extern "C" TR_CORE_EXPORT void DestroyPluginRegistry(dtDAL::ActorPluginRegistry *registry)
 	{
 	   if (registry != NULL)
 	   {
