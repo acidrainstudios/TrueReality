@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="TrueReality"
+	Name="trStart"
 	ProjectGUID="{4B55B188-6AA2-47B2-8D5D-6EBE467489BD}"
 	RootNamespace="TheCore2Exe"
 	Keyword="Win32Proj"
@@ -84,7 +84,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib vrsUtild.lib dtUtild.lib dtCored.lib dtABCd.lib dtGamed.lib dtDALd.lib dtAId.lib osgd.lib osgTextd.lib osgDBd.lib osgGAd.lib osgViewerd.lib osgParticled.lib osgUtild.lib OpenThreadsd.lib ode_singled.lib xerces-c_3D.lib Rpcrt4.lib glu32.lib opengl32.lib osgSimd.lib $(NOINHERIT)"
-				OutputFile="$(DELTA_ROOT)\bin\Debug\TrueRealityd.exe"
+				OutputFile="$(DELTA_ROOT)\bin\Debug\trStartd.exe"
 				Version="0.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(DELTA_ROOT)\Lib\Debug&quot;;&quot;$(DELTA_ROOT)\ext\lib&quot;;&quot;.\Debug\$(OutDir)&quot;;.\Debug"
@@ -183,7 +183,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions=" /STACK:10000000 /machine:I386"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib vrsUtil.lib dtUtil.lib dtCore.lib dtABC.lib dtGame.lib dtDAL.lib dtAI.lib osg.lib osgText.lib osgDB.lib osgGA.lib osgViewer.lib osgParticle.lib osgUtil.lib OpenThreads.lib ode_single.lib xerces-c_3.lib Rpcrt4.lib glu32.lib opengl32.lib osgSim.lib $(NOINHERIT)"
-				OutputFile="$(DELTA_ROOT)\bin\Release\TrueReality.exe"
+				OutputFile="$(DELTA_ROOT)\bin\Release\trStart.exe"
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(DELTA_ROOT)\Lib\Release&quot;;&quot;$(DELTA_ROOT)\ext\lib&quot;;.\Release"
@@ -223,7 +223,7 @@
 			Name="Source Files"
 			>
 			<File
-				RelativePath="..\src\VRSim\Main.cpp"
+				RelativePath="..\src\trStart\Main.cpp"
 				>
 			</File>
 		</Filter>
