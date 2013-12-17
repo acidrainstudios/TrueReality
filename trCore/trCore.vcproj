@@ -259,10 +259,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\trCore\tcWindowCtr.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\src\trCore\trCoreActorsRegistry.cpp"
 				>
 			</File>
@@ -276,10 +272,6 @@
 			</File>
 			<File
 				RelativePath="..\src\trCore\trCoreMsgTypes.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\src\trCore\trWindowCtr_OLD.cpp"
 				>
 			</File>
 		</Filter>
@@ -327,10 +319,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\tcWindowCtr.h"
-				>
-			</File>
-			<File
 				RelativePath="..\include\trCore\trCoreActorsRegistry.h"
 				>
 			</File>
@@ -351,7 +339,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\trCore\trWindowCtr_OLD.h"
+				RelativePath="..\src\trCore\WindowCtr.cpp"
 				>
 			</File>
 		</Filter>
