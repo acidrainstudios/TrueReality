@@ -9,29 +9,42 @@ find_path (OSG_INCLUDE_DIR osg/Referenced
     $ENV{OSG_INC}
     $ENV{OSG_ROOT}/include
     $ENV{OSG_ROOT}
+	$ENV{DELTA_INC}
+    $ENV{DELTA_ROOT}/include
+    $ENV{DELTA_ROOT}/inc
+    $ENV{DELTA_ROOT}
+    $ENV{DELTA_ROOT}/ext/include
+    $ENV{DELTA_ROOT}/ext/inc
+    $ENV{DELTA_ROOT}/ext
 )
 mark_as_advanced (OSG_INCLUDE_DIR)
 
 macro (FIND_OSG_LIBRARY MYLIBRARY MYLIBRARYNAME)
     # Finds the library files necessary for compilation
     find_library (${MYLIBRARY}
-        NAMES ${MYLIBRARYNAME}
-        HINTS
-        $ENV{TR_ROOT}/Ext/lib64
-        $ENV{TR_ROOT}/Ext/lib
-        $ENV{TR_ROOT}/Ext
-        $ENV{TR_LIB}
-        $ENV{TR_ROOT}/lib
-        $ENV{TR_ROOT}
-        $ENV{OSG_LIB}
-        $ENV{OSG_ROOT}/lib64
-        $ENV{OSG_ROOT}/lib
-        $ENV{OSG_ROOT}
+    NAMES ${MYLIBRARYNAME}
+    HINTS
+    $ENV{TR_ROOT}/Ext/lib64
+    $ENV{TR_ROOT}/Ext/lib
+    $ENV{TR_ROOT}/Ext
+    $ENV{TR_LIB}
+    $ENV{TR_ROOT}/lib
+    $ENV{TR_ROOT}
+    $ENV{OSG_LIB}
+    $ENV{OSG_ROOT}/lib64
+    $ENV{OSG_ROOT}/lib
+    $ENV{OSG_ROOT}
+    $ENV{DELTA_LIB}
+	$ENV{DELTA_ROOT}/Ext/lib
+    $ENV{DELTA_ROOT}/Ext
+    $ENV{DELTA_ROOT}/lib64
+    $ENV{DELTA_ROOT}/lib
+    $ENV{DELTA_ROOT}
     )
     mark_as_advanced (${MYLIBRARY})
 endmacro(FIND_OSG_LIBRARY MYLIBRARY MYLIBRARYNAME)
 
-if (TC_BUILD_WITH_RELEASE)
+if (TR_BUILD_WITH_RELEASE)
     # Locates all OSG release libraries
     FIND_OSG_LIBRARY (OSG_LIBRARY osg)
     FIND_OSG_LIBRARY (OSG_ANIMATION_LIBRARY osgAnimation)
@@ -52,9 +65,9 @@ if (TC_BUILD_WITH_RELEASE)
     FIND_OSG_LIBRARY (OSG_VIEWER_LIBRARY osgViewer)
     FIND_OSG_LIBRARY (OSG_VOLUME_LIBRARY osgVolume)
     FIND_OSG_LIBRARY (OSG_WIDGET_LIBRARY osgWidget)
-endif (TC_BUILD_WITH_RELEASE)
+endif (TR_BUILD_WITH_RELEASE)
 
-if (TC_BUILD_WITH_DEBUG)
+if (TR_BUILD_WITH_DEBUG)
     # Locates all OSG debug libraries
     FIND_OSG_LIBRARY (OSG_LIBRARY_DEBUG osgd)
     FIND_OSG_LIBRARY (OSG_ANIMATION_LIBRARY_DEBUG osgAnimationd)
@@ -75,7 +88,7 @@ if (TC_BUILD_WITH_DEBUG)
     FIND_OSG_LIBRARY (OSG_VIEWER_LIBRARY_DEBUG osgViewerd)
     FIND_OSG_LIBRARY (OSG_VOLUME_LIBRARY_DEBUG osgVolumed)
     FIND_OSG_LIBRARY (OSG_WIDGET_LIBRARY_DEBUG osgWidgetd)
-endif (TC_BUILD_WITH_DEBUG)
+endif (TR_BUILD_WITH_DEBUG)
 
 # Try to ascertain the version...
 if(OSG_INCLUDE_DIR)
