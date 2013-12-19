@@ -23,7 +23,7 @@ macro (ADD_TR_SUBFOLDERS)
         set (TR_START_AVAILABLE "YES")
     endif (TR_START)
 
-endmacro (ADD_TRUEREALITY_SUBFOLDERS)
+endmacro (ADD_TR_SUBFOLDERS)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
@@ -42,6 +42,10 @@ option (TR_UTIL "Enables the building of trUtil" ON)
 cmake_dependent_option (TR_CORE "Enables the building of trCore library" ON "TR_UTIL" OFF)
 cmake_dependent_option (TR_START "Enables the building of trStart executable" ON "TR_UTIL; TR_CORE" OFF)
 
+option (TR_BUILD_WITH_RELEASE "Enables the building of the release version of True Reality" ON)
+option (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of True Reality" ON)
+option (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
+
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
@@ -49,7 +53,9 @@ cmake_dependent_option (TR_START "Enables the building of trStart executable" ON
 if (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
     TR_DETECT_DEPENDENCY (OSG)
     TR_DETECT_DEPENDENCY (OpenThreads)
-    include_directories (${OSG_INCLUDE_DIR} ${OPENTHREADS_INCLUDE_DIR})
+    TR_DETECT_DEPENDENCY (Delta3D)
+    TR_DETECT_DEPENDENCY (XercesC)
+    include_directories (${DELTA3D_INCLUDE_DIR} ${OSG_INCLUDE_DIR} ${OPENTHREADS_INCLUDE_DIR})
 endif (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
 
 # Sets up platform specific configuration
@@ -70,6 +76,6 @@ include_directories(
 )
 
 # Generates the selected sub-folders for the code base
-ADD_TR_SUBFOLDERS ()
+ADD_TR_SUBFOLDERS()
 
 set (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
