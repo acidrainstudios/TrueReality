@@ -20,6 +20,13 @@ if (TR_BUILD_WITH_RELEASE)
 		optimized ${OPENTHREADS_LIBRARY}
 		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
+		optimized ${OSG_GA_LIBRARY} 
+		optimized ${OSG_VIEWER_LIBRARY} 
+		optimized ${DELTA3D_ABC_LIBRARY}
+		optimized ${DELTA3D_CORE_LIBRARY}
+		optimized ${DELTA3D_GAME_LIBRARY}
+		optimized ${DELTA3D_UTIL_LIBRARY}
+		optimized ${DELTA3D_ACTORS_LIBRARY}
 	)
 endif (TR_BUILD_WITH_RELEASE)
 if (TR_BUILD_WITH_DEBUG)
@@ -28,6 +35,13 @@ if (TR_BUILD_WITH_DEBUG)
 		debug ${OPENTHREADS_LIBRARY_DEBUG}
 		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
+        debug ${OSG_GA_LIBRARY_DEBUG}
+        debug ${OSG_VIEWER_LIBRARY_DEBUG}
+		debug ${DELTA3D_ABC_LIBRARY_DEBUG}
+		debug ${DELTA3D_CORE_LIBRARY_DEBUG}
+		debug ${DELTA3D_GAME_LIBRARY_DEBUG}
+		debug ${DELTA3D_UTIL_LIBRARY_DEBUG}
+		debug ${DELTA3D_ACTORS_LIBRARY_DEBUG}
 	)
 endif (TR_BUILD_WITH_DEBUG)
 
@@ -42,6 +56,6 @@ source_group (${HEADERS_GROUP} FILES ${PROJECT_HEADERS})
 add_library (${FILE_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 
 # Links the external libraries to the newly created library
-target_link_libraries (${FILE_NAME} ${EXTERNAL_LIBS})
+target_link_libraries (${FILE_NAME} ${EXTERNAL_LIBS} trUtil)
 
 TR_TARGET_OPTIONS (${FILE_NAME})
