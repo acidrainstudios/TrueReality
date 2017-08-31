@@ -15,6 +15,8 @@ MACRO (TR_TARGET_OPTIONS arg)
         PROPERTIES
         DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 		RELWITHDEBINFO_POSTFIX ${CMAKE_RELWITHDEBINFO_POSTFIX}
+        VERSION ${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.${TR_VERSION_BUILD}
+        SOVERSION ${TR_SOVERSION}
     )
     IF (MSVC_IDE)
         TARGET_COMPILE_OPTIONS (
@@ -23,6 +25,14 @@ MACRO (TR_TARGET_OPTIONS arg)
             $<$<CONFIG:Debug>:/Od /Ob0 /RTC1 /D_DEBUG /Zi>
 			$<$<CONFIG:RelWithDebInfo>:/MD /Zi /O2 /Ob1 /D>            
 			$<$<CONFIG:Release>:/MT /O2 /Ob2 /MD>			
+        )
+	ELSEIF (UNIX)
+        TARGET_COMPILE_OPTIONS (
+            ${arg} PRIVATE
+        	-Wall -pedantic -Wextra #-Werror
+            $<$<CONFIG:Debug>: -g -O0 -D_DEBUG>
+            $<$<CONFIG:RelWithDebInfo>: -g -O3 -DNDEBUG>
+			$<$<CONFIG:Release>: -O3 -DNDEBUG>
         )
     ENDIF (MSVC_IDE)
 ENDMACRO (TR_TARGET_OPTIONS arg)
