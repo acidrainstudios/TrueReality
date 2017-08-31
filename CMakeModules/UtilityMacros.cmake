@@ -46,3 +46,16 @@ MACRO(READ_GCC_VERSION)
 		LIST(GET GCC_VERSION_COMPONENTS 1 GCC_MINOR)
 	ENDIF()
 ENDMACRO(READ_GCC_VERSION)
+
+# *****************************************************************************
+# Adds a post build process to create a Google Test info file *****************
+# in a build project **********************************************************
+# *****************************************************************************
+MACRO (SET_GOOGLE_TEST_OPTIONS projectName)    
+    IF (MSVC_IDE)
+		ADD_CUSTOM_COMMAND(TARGET ${projectName} 
+		POST_BUILD
+		COMMAND echo "This is used for Google Test Adapter in MS Visual Studio" > $<TARGET_FILE:${projectName}>".is_google_test"
+		)
+    ENDIF (MSVC_IDE)
+ENDMACRO (SET_GOOGLE_TEST_OPTIONS target)
