@@ -1,6 +1,6 @@
 /*
-* The Construct Open Source Game and Simulation Engine
-* Copyright (C) 2013
+* True Reality Open Source Game and Simulation Engine
+* Copyright © 2017 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -18,6 +18,8 @@
 *
 * Author: Maxim Serebrennik
 */
+
+
 #ifndef GPUDetectorWin32_CPP
 #define GPUDetectorWin32_CPP 1
 
