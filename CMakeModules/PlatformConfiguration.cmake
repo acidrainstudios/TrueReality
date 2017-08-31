@@ -1,4 +1,22 @@
 # Platform specific definitions
+IF (APPLE)
+    MESSAGE(STATUS "Configuring for Apple")
+	OPTION (TC_BUILD_FOR_IOS OFF)
+ENDIF(APPLE)
+
+IF (UNIX)
+    MESSAGE(STATUS "Configuring for Unix")
+	READ_GCC_VERSION()
+	SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
+	IF (GCC_VERSION LESS 6.0.0)
+		SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+		MESSAGE (STATUS "GCC Version: " ${GCC_VERSION})
+        MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
+	ENDIF (GCC_VERSION LESS 6.0.0)
+    OPTION (CMAKE_VERBOSE_MAKEFILE "Users may enable the option in their local build tree to get more verbose output from Makefile builds and show each command line as it is launched." ON)
+    OPTION (CMAKE_COLOR_MAKEFILE "When enabled, the generated Makefiles will produce colored output. Default is ON" ON)
+ENDIF(UNIX)
+
 IF (WIN32)
     MESSAGE(STATUS "Configuring for Windows")
 
