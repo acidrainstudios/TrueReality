@@ -19,10 +19,7 @@
 * Author: Maxim Serebrennik
 */
 
-
-#ifndef trUtilDLL_EXPORT_H
-#define trUtilDLL_EXPORT_H 1
-
+#pragma once
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
 #  ifdef TR_UTIL_LIBRARY
@@ -31,11 +28,9 @@
 #    define TR_UTIL_EXPORT __declspec(dllimport)
 #  endif
 #else
-#   ifdef TR_UTIL_LIBRARY
-#      define TR_UTIL_EXPORT __attribute__ ((visibility("default")))
-#   else
-#      define TR_UTIL_EXPORT
-#   endif 
+#  ifdef TR_UTIL_LIBRARY
+#    define TR_UTIL_EXPORT  __attribute__ ((visibility("default")))
+#  else
+#    define TR_UTIL_EXPORT
+#  endif
 #endif
-
-#endif //trUtilDLL_EXPORT_H
