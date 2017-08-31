@@ -19,9 +19,7 @@
 * Author: Maxim Serebrennik
 */
 
-
-#ifndef COREDLL_EXPORT_H
-#define COREDLL_EXPORT_H
+#pragma once
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
 #  ifdef TR_CORE_LIBRARY
@@ -30,7 +28,9 @@
 #    define TR_CORE_EXPORT __declspec(dllimport)
 #  endif
 #else
-#  define TR_CORE_EXPORT
+#  ifdef TR_CORE_LIBRARY
+#    define TR_CORE_EXPORT  __attribute__ ((visibility("default")))
+#  else
+#    define TR_CORE_EXPORT
+#  endif
 #endif
-            
-#endif //COREDLL_EXPORT_H
