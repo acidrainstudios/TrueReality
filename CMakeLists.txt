@@ -5,6 +5,8 @@ SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 #Sets up all the versioning information
 INCLUDE (Version) 
 
+SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
+
 # *****************************************************************************
 # Adds subfolders in the True Reality CMake GUI tab **********************************
 # *****************************************************************************
@@ -45,9 +47,21 @@ option (TR_UTIL "Enables the building of trUtil" ON)
 cmake_dependent_option (TR_CORE "Enables the building of trCore library" ON "TR_UTIL" OFF)
 cmake_dependent_option (TR_START "Enables the building of trStart executable" ON "TR_UTIL; TR_CORE" OFF)
 
+# *****************************************************************************
+# Sets Advanced options ***********************************************************
+# *****************************************************************************
+OPTION(TR_USE_DOUBLE_MATRIX "Set to OFF to build TR with float Matrix instead of double." ON)
+MARK_AS_ADVANCED(TR_USE_DOUBLE_MATRIX)
+OPTION(TR_USE_DOUBLE_VECTOR "Set to OFF to build TR with float Vector instead of double." ON)
+MARK_AS_ADVANCED(TR_USE_DOUBLE_VECTOR)
+option (TR_BUILD_VERSIONED_LIBRARIES "Enables the building of unique versioned shared libraries" ON)
+MARK_AS_ADVANCED(TR_BUILD_VERSIONED_LIBRARIES)
 option (TR_BUILD_WITH_RELEASE "Enables the building of the release version of True Reality" ON)
+MARK_AS_ADVANCED(TR_BUILD_WITH_RELEASE)
 option (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of True Reality" ON)
+MARK_AS_ADVANCED(TR_BUILD_WITH_DEBUG)
 option (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
+MARK_AS_ADVANCED(CMAKE_USE_RELATIVE_PATHS)
 
 # *****************************************************************************
 # *****************************************************************************
@@ -63,6 +77,17 @@ endif (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
 
 # Sets up platform specific configuration
 include (PlatformConfiguration)
+
+#Sets the Debug and Release library naming formats, but not executables.
+if(TR_BUILD_VERSIONED_LIBRARIES)    
+    if(WIN32)
+        set (CMAKE_SHARED_LIBRARY_PREFIX ${TR_SO_PREFIX})
+        set (CMAKE_STATIC_LIBRARY_PREFIX ${TR_SO_PREFIX})
+    elseif(APPLE)
+        set (CMAKE_SHARED_LIBRARY_PREFIX "${CMAKE_SHARED_LIBRARY_PREFIX}${TR_SO_PREFIX}")
+        set (CMAKE_STATIC_LIBRARY_PREFIX "${CMAKE_STATIC_LIBRARY_PREFIX}${TR_SO_PREFIX}")
+    endif()
+endif(TR_BUILD_VERSIONED_LIBRARIES)
 
 #Sets the postfix on libraries. 
 set (CMAKE_DEBUG_POSTFIX "-d" CACHE STRING "Set Debug library postfix" FORCE)
@@ -81,4 +106,17 @@ include_directories(
 # Generates the selected sub-folders for the code base
 ADD_TR_SUBFOLDERS()
 
+# *****************************************************************************
+# Set Float/Double Config header file *****************************************
+# *****************************************************************************
+SET(TR_FLOAT_DOUBLE_CONFIG_HEADER "${PROJECT_BINARY_DIR}/include/trUtil/TypeConfig.h")
+CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in"
+               "${TR_FLOAT_DOUBLE_CONFIG_HEADER}")
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
+
 set (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
+
+# Displays the current version of True Reality ********************************
+message (STATUS "\nTrue Reality v" ${TR_VERSION} "\n")
