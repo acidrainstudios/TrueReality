@@ -1,6 +1,9 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6.2 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5.0 FATAL_ERROR)
 
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
+
+#Sets up all the versioning information
+INCLUDE (Version) 
 
 # *****************************************************************************
 # Adds subfolders in the True Reality CMake GUI tab **********************************
