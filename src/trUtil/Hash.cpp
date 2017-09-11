@@ -2,6 +2,8 @@
 * True Reality Open Source Game and Simulation Engine
 * Copyright © 2017 Acid Rain Studios LLC
 *
+* The Base of this class has been adopted from the Delta3D engine
+*
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
 * Software Foundation; either version 2.1 of the License, or (at your option)
@@ -16,9 +18,8 @@
 * along with this library; if not, write to the Free Software Foundation, Inc.,
 * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 *
-* Author: Maxim Serebrennik
+* Author: David Guthrie
 */
-
 #include <trUtil/Hash.h>
 
 namespace trUtil
