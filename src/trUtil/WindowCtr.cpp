@@ -25,7 +25,6 @@
 
 #include <trUtil\WindowCtr.h>
 #include <trUtil\Math.h>
-#include <trUtil\TextColor.h>
 #include <trUtil\Logo.h>
 #include <trUtil\GPUDetector.h>
 
