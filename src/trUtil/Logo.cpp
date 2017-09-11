@@ -25,7 +25,7 @@
 
 #include <iostream>
 
-#include <trUtil\ConsoleTextColor.h>
+#include <trUtil\Console\ConsoleTextColor.h>
 #include <trUtil\Logo.h>
 
 namespace trUtil
