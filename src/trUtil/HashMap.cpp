@@ -2,6 +2,8 @@
 * True Reality Open Source Game and Simulation Engine
 * Copyright © 2017 Acid Rain Studios LLC
 *
+* The Base of this class has been adopted from the Delta3D engine
+*
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
 * Software Foundation; either version 2.1 of the License, or (at your option)
