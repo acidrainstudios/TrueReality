@@ -7,55 +7,62 @@ SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
 SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
-file (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
+FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
 
 # Sets the sources using "GLOB"
-file (GLOB PROJECT_HEADERS "${HEADER_PATH}/*.h")
+FILE (GLOB PROJECT_HEADERS "${HEADER_PATH}/*.h")
+
+# Sets the header file folders in IDEs
+SET (HEADERS_GROUP "Header Files")
+SOURCE_GROUP (${HEADERS_GROUP} FILES ${PROJECT_HEADERS})
+
+# Sets the source file folders in IDEs
+SET (SOURCES_GROUP "Source Files")
+SOURCE_GROUP (${SOURCES_GROUP} FILES ${PROJECT_SOURCES})
 
 # Sets the libraries
 SET (EXTERNAL_LIBS)
-if (TR_BUILD_WITH_RELEASE)
-	set (EXTERNAL_LIBS
+IF (TR_BUILD_WITH_RELEASE)
+	SET (EXTERNAL_LIBS
 		${EXTERNAL_LIBS}
 		optimized ${OPENTHREADS_LIBRARY}
 		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
-		optimized ${OSG_GA_LIBRARY} 
+        optimized ${OSG_GA_LIBRARY} 
 		optimized ${OSG_VIEWER_LIBRARY} 
 		optimized ${DELTA3D_ABC_LIBRARY}
 		optimized ${DELTA3D_CORE_LIBRARY}
 		optimized ${DELTA3D_GAME_LIBRARY}
 		optimized ${DELTA3D_UTIL_LIBRARY}
-		optimized ${DELTA3D_ACTORS_LIBRARY}
+	    optimized ${DELTA3D_ACTORS_LIBRARY}
+		optimized ${XERCES_LIBRARY}
 	)
-endif (TR_BUILD_WITH_RELEASE)
-if (TR_BUILD_WITH_DEBUG)
-	set (EXTERNAL_LIBS
+ENDIF (TR_BUILD_WITH_RELEASE)
+IF (TR_BUILD_WITH_DEBUG)
+	SET (EXTERNAL_LIBS
 		${EXTERNAL_LIBS}
 		debug ${OPENTHREADS_LIBRARY_DEBUG}
 		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
-        debug ${OSG_GA_LIBRARY_DEBUG}
-        debug ${OSG_VIEWER_LIBRARY_DEBUG}
+		debug ${OSG_GA_LIBRARY_DEBUG}
+		debug ${OSG_VIEWER_LIBRARY_DEBUG}
 		debug ${DELTA3D_ABC_LIBRARY_DEBUG}
 		debug ${DELTA3D_CORE_LIBRARY_DEBUG}
 		debug ${DELTA3D_GAME_LIBRARY_DEBUG}
 		debug ${DELTA3D_UTIL_LIBRARY_DEBUG}
 		debug ${DELTA3D_ACTORS_LIBRARY_DEBUG}
+		debug ${XERCES_LIBRARY_DEBUG}
 	)
-endif (TR_BUILD_WITH_DEBUG)
+ENDIF (TR_BUILD_WITH_DEBUG)
 
 # Defines necessary preprocessor variables for project
-add_definitions (-D${PRE_PROCESSING})
-
-# Sets the headers file directory in IDEs
-set (HEADERS_GROUP "Header Files")
-source_group (${HEADERS_GROUP} FILES ${PROJECT_HEADERS})
+ADD_DEFINITIONS (-D${PRE_PROCESSING})
 
 # Generates the shared library for the project from sources
-add_library (${FILE_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+ADD_LIBRARY (${FILE_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 
 # Links the external libraries to the newly created library
-target_link_libraries (${FILE_NAME} ${EXTERNAL_LIBS} trUtil)
+TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS} trUtil)
 
+# Sets Project Build options
 TR_TARGET_OPTIONS (${FILE_NAME})

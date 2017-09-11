@@ -18,7 +18,7 @@
 *
 * Author: Maxim Serebrennik
 */
-#include <trUtil/ConsoleTextColor.h>
+#include <trUtil/Console/ConsoleTextColor.h>
 
 
 #if defined(_WIN32)
