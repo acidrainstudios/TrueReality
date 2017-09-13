@@ -194,7 +194,7 @@ public:
 
 #define IMPLEMENT_ENUM(EnumType)                               \
     EnumType::EnumerateListType EnumType::mInstances;           \
-    std::vector<tcUtil::EnumerationString*> EnumType::mGenericInstances; \
+    std::vector<trUtil::EnumerationString*> EnumType::mGenericInstances; \
     void EnumType::AddInstance(EnumType* instance)                 \
     {                                                           \
     EnumType::mInstances.push_back(instance);                \
