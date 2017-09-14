@@ -48,11 +48,11 @@ namespace trUtil
 	//WindowCtr::WindowCtr(void)
 	//:mInitialised(false)
 	//,mFullScreenMode(true)
-	//,mApp(NULL)
+	//,mApp(nullptr)
 	//,mStereoMode(osg::DisplaySettings::ANAGLYPHIC)
 	//,mStereoActive(false)
 	//,mWindowMode(trUtil::SCR_1_45xR)
-	//,mWindowData(NULL)
+	//,mWindowData(nullptr)
 	//{
 	//	//Set or load from input file the Default Wind Traits
 	//	GenerateDefWinProps();
@@ -60,13 +60,13 @@ namespace trUtil
 
 	/////////////////////////////////////////////////////////////////////////////////
 	////Init out Static Var
-	//WindowCtr* WindowCtr::mInstance = NULL;
+	//WindowCtr* WindowCtr::mInstance = nullptr;
 
 	/////////////////////////////////////////////////////////////////////////////////
 	////Create an Instance of Window Ctr
 	//WindowCtr* WindowCtr::GetInstance()
 	//{
-	//	if(mInstance == NULL)
+	//	if(mInstance == nullptr)
 	//	{
 	//		mInstance = new WindowCtr;
 	//	}
@@ -97,7 +97,7 @@ namespace trUtil
 	//	}
 	//	else
 	//	{
-	//		return NULL;
+	//		return nullptr;
 	//	}	
 	//}
 
@@ -136,8 +136,8 @@ namespace trUtil
  //           //WinProps.fullScreen(false)
  //           //WinProps.windowDecoration(true)
  //           WinProps.supportResize = false;
- //           //WinProps.inheritedWindowData(NULL)
- //           //WinProps.contextToShare(NULL)
+ //           //WinProps.inheritedWindowData(nullptr)
+ //           //WinProps.contextToShare(nullptr)
  //           //WinProps.hostName("")
  //           //WinProps.displayNum(0)
  //           WinProps.screenNum = i;
@@ -148,7 +148,7 @@ namespace trUtil
 	//	}
 	//	
 	//	//Grab an instance of Display Settings
-	//	if(mDspSettings.get() == NULL)
+	//	if(mDspSettings.get() == nullptr)
 	//	{
 	//		mDspSettings = osg::DisplaySettings::instance();
 	//	}				
@@ -289,7 +289,7 @@ namespace trUtil
 	//	{
 	//		if (mInstance)
 	//		{
-	//			mInstance = NULL;			
+	//			mInstance = nullptr;			
 	//		}
 	//	}
 	//	catch(const dtUtil::Exception& ex)

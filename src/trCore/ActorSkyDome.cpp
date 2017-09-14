@@ -68,7 +68,7 @@ namespace trCore
 	//	{
 	//		const dtGame::GameEventMessage& eventMsg = static_cast<const dtGame::GameEventMessage&>(message);
 
-	//		if (eventMsg.GetGameEvent() != NULL)
+	//		if (eventMsg.GetGameEvent() != nullptr)
 	//		{
 	//			/*
 	//			if(eventMsg.GetGameEvent()->GetName() ==)

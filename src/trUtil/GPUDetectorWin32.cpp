@@ -42,7 +42,7 @@ namespace trUtil
 	//	DWORD deviceNum = 0;
 	//	int KeyStart = 0;
 	//	int KeyEnd = 0;
-	//	while( EnumDisplayDevices(NULL, deviceNum, &GCardDevice, 0))
+	//	while( EnumDisplayDevices(nullptr, deviceNum, &GCardDevice, 0))
 	//	{	
 
 	//		//Isolate the Graphics Card Device Key

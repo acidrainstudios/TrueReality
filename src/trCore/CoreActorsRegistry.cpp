@@ -45,7 +45,7 @@ namespace trCore
 	/////////////////////////////////////////////////////////////////////////////////
 	//extern "C" TR_CORE_EXPORT void DestroyPluginRegistry(dtDAL::ActorPluginRegistry *registry)
 	//{
-	//   if (registry != NULL)
+	//   if (registry != nullptr)
 	//   {
 	//	  delete registry;
 	//   }

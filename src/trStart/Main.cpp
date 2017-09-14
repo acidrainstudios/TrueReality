@@ -85,8 +85,8 @@ int main(int argc, char** argv)
  //  deltaTraits.showCursor = true;
  //  deltaTraits.fullScreen = false;
  //  deltaTraits.realizeUponCreate = false;
- //  deltaTraits.inheritedWindowData = NULL;
- //  deltaTraits.contextToShare = NULL;
+ //  deltaTraits.inheritedWindowData = nullptr;
+ //  deltaTraits.contextToShare = nullptr;
  //  deltaTraits.vsync = false;
 
 
@@ -105,7 +105,7 @@ int main(int argc, char** argv)
 	//	app->SetGameLibraryName("trCore");
 	//	app->Config();
 	//	app->Run();
-	//	app = NULL;
+	//	app = nullptr;
 
 	//	std::cerr << "\n\nVR-Sim Lab is now shutting down ... " << std::endl;
 	//}

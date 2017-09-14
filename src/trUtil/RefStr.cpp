@@ -82,19 +82,19 @@ namespace trUtil
     }
 
     /////////////////////////////////////////////////////////////
-    RefStr::RefStr(const std::string& value) : mString(NULL)
+    RefStr::RefStr(const std::string& value) : mString(nullptr)
     {
         Intern(value);
     }
 
     /////////////////////////////////////////////////////////////
-    RefStr::RefStr(const char* value) : mString(NULL)
+    RefStr::RefStr(const char* value) : mString(nullptr)
     {
         Intern(value);
     }
 
     /////////////////////////////////////////////////////////////
-    RefStr::RefStr(const RefStr& toCopy) : mString(NULL)
+    RefStr::RefStr(const RefStr& toCopy) : mString(nullptr)
     {
 #if USE_TABLE
         //If we are using the table, we'll get the same pointer anyway.
@@ -171,7 +171,7 @@ namespace trUtil
 #endif
 
 #else
-        if (mString != NULL)
+        if (mString != nullptr)
         {
             delete mString;
             --StringCount;

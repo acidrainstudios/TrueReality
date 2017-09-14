@@ -50,7 +50,7 @@ namespace trCore
 	//void InputComponent::SetupEvents()
 	//{
 	//	Ignition_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_IGNITION);	
-	//	if (Ignition_Event == NULL)
+	//	if (Ignition_Event == nullptr)
 	//	{
 	//		Ignition_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_IGNITION);
 	//		Ignition_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_IGNITION)); 
@@ -58,7 +58,7 @@ namespace trCore
 	//	}
 
 	//	AutoLevel_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_AUTOLEVEL);
-	//	if (AutoLevel_Event == NULL)
+	//	if (AutoLevel_Event == nullptr)
 	//	{
 
 	//		AutoLevel_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_AUTOLEVEL);
@@ -67,7 +67,7 @@ namespace trCore
 	//	}
 
 	//	MoveForward_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_MOVEFORWARD);
-	//	if (MoveForward_Event == NULL)
+	//	if (MoveForward_Event == nullptr)
 	//	{
 
 	//		MoveForward_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_MOVEFORWARD);
@@ -76,7 +76,7 @@ namespace trCore
 	//	}
 
 	//	MoveBack_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_MOVEBACK);
-	//	if (MoveBack_Event == NULL)
+	//	if (MoveBack_Event == nullptr)
 	//	{
 
 	//		MoveBack_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_MOVEBACK);
@@ -85,7 +85,7 @@ namespace trCore
 	//	}
 
 	//	StrafeRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFERIGHT);
-	//	if (StrafeRight_Event == NULL)
+	//	if (StrafeRight_Event == nullptr)
 	//	{
 
 	//		StrafeRight_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFERIGHT);
@@ -94,7 +94,7 @@ namespace trCore
 	//	}
 
 	//	StrafeLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFELEFT);
-	//	if (StrafeLeft_Event == NULL)
+	//	if (StrafeLeft_Event == nullptr)
 	//	{
 
 	//		StrafeLeft_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFELEFT);
@@ -103,7 +103,7 @@ namespace trCore
 	//	}
 
 	//	StrafeUp_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFEUP);
-	//	if (StrafeUp_Event == NULL)
+	//	if (StrafeUp_Event == nullptr)
 	//	{
 
 	//		StrafeUp_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFEUP);
@@ -112,7 +112,7 @@ namespace trCore
 	//	}
 
 	//	StrafeDown_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_STRAFEDOWN);
-	//	if (StrafeDown_Event == NULL)
+	//	if (StrafeDown_Event == nullptr)
 	//	{
 
 	//		StrafeDown_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_STRAFEDOWN);
@@ -121,7 +121,7 @@ namespace trCore
 	//	}
 
 	//	YawLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_YAWLEFT);
-	//	if (YawLeft_Event == NULL)
+	//	if (YawLeft_Event == nullptr)
 	//	{
 	//		YawLeft_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_YAWLEFT);
 	//		YawLeft_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_YAWLEFT)); 
@@ -129,7 +129,7 @@ namespace trCore
 	//	}
 
 	//	YawRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_YAWRIGHT);
-	//	if (YawRight_Event == NULL)
+	//	if (YawRight_Event == nullptr)
 	//	{
 	//		YawRight_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_YAWRIGHT);
 	//		YawRight_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_YAWRIGHT)); 
@@ -137,7 +137,7 @@ namespace trCore
 	//	}
 
 	//	PitchUp_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_PITCHUP);
-	//	if (PitchUp_Event == NULL)
+	//	if (PitchUp_Event == nullptr)
 	//	{
 	//		PitchUp_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_PITCHUP);
 	//		PitchUp_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_PITCHUP)); 
@@ -145,7 +145,7 @@ namespace trCore
 	//	}
 
 	//	PitchDown_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_PITCHDOWN);
-	//	if (PitchDown_Event == NULL)
+	//	if (PitchDown_Event == nullptr)
 	//	{
 	//		PitchDown_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_PITCHDOWN);
 	//		PitchDown_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_PITCHDOWN)); 
@@ -153,7 +153,7 @@ namespace trCore
 	//	}
 
 	//	RollLeft_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_ROLLLEFT);
-	//	if (RollLeft_Event == NULL)
+	//	if (RollLeft_Event == nullptr)
 	//	{
 	//		RollLeft_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_ROLLLEFT);
 	//		RollLeft_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_ROLLLEFT)); 
@@ -161,7 +161,7 @@ namespace trCore
 	//	}
 
 	//	RollRight_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_ROLLRIGHT);
-	//	if (RollRight_Event == NULL)
+	//	if (RollRight_Event == nullptr)
 	//	{
 	//		RollRight_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_ROLLRIGHT);
 	//		RollRight_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_ROLLRIGHT)); 
@@ -169,7 +169,7 @@ namespace trCore
 	//	}
 
 	//	Statistics_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_SHOWSTATISTICS);
-	//	if (Statistics_Event == NULL)
+	//	if (Statistics_Event == nullptr)
 	//	{
 	//		Statistics_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_SHOWSTATISTICS);
 	//		Statistics_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_SHOWSTATISTICS)); 
@@ -177,7 +177,7 @@ namespace trCore
 	//	}
 
 	//	F11_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_F11);
-	//	if (F11_Event == NULL)
+	//	if (F11_Event == nullptr)
 	//	{
 	//		F11_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_F11);
 	//		F11_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_F11)); 
@@ -185,7 +185,7 @@ namespace trCore
 	//	}
 
 	//	F12_Event = dtDAL::GameEventManager::GetInstance().FindEvent(trCore::GAME_EVENT_F12);
-	//	if (F12_Event == NULL)
+	//	if (F12_Event == nullptr)
 	//	{
 	//		F12_Event = new dtDAL::GameEvent(trCore::GAME_EVENT_F12);
 	//		F12_Event->SetUniqueId(dtCore::UniqueId(trCore::GAME_EVENT_F12)); 
@@ -242,7 +242,7 @@ namespace trCore
 	//		if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Up) 
 	//			&& !app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && PitchDown_Event != NULL)
+	//			if(!mInPlaybackMode && PitchDown_Event != nullptr)
 	//			{
 	//				FireGameEvent(*PitchDown_Event);
 	//			}
@@ -250,7 +250,7 @@ namespace trCore
 	//		else if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Down)
 	//			&& !app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && PitchUp_Event != NULL)
+	//			if(!mInPlaybackMode && PitchUp_Event != nullptr)
 	//				{
 	//					FireGameEvent(*PitchUp_Event);
 	//				}
@@ -259,7 +259,7 @@ namespace trCore
 	//		if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Left)
 	//			&& !app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && YawLeft_Event != NULL)
+	//			if(!mInPlaybackMode && YawLeft_Event != nullptr)
 	//				{
 	//					FireGameEvent(*YawLeft_Event);
 	//				}
@@ -267,7 +267,7 @@ namespace trCore
 	//		else if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Right)
 	//			&& !app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && YawRight_Event != NULL)
+	//			if(!mInPlaybackMode && YawRight_Event != nullptr)
 	//				{
 	//					FireGameEvent(*YawRight_Event);
 	//				}
@@ -279,7 +279,7 @@ namespace trCore
 	//		if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Up)
 	//			&& app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && StrafeUp_Event != NULL)
+	//			if(!mInPlaybackMode && StrafeUp_Event != nullptr)
 	//				{
 	//					FireGameEvent(*StrafeUp_Event);
 	//				}
@@ -287,7 +287,7 @@ namespace trCore
 	//		else if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Down)
 	//			&& app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && StrafeDown_Event != NULL)
+	//			if(!mInPlaybackMode && StrafeDown_Event != nullptr)
 	//				{
 	//					FireGameEvent(*StrafeDown_Event);
 	//				}
@@ -296,7 +296,7 @@ namespace trCore
 	//		if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Left)
 	//			&& app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && StrafeLeft_Event != NULL)
+	//			if(!mInPlaybackMode && StrafeLeft_Event != nullptr)
 	//				{
 	//					FireGameEvent(*StrafeLeft_Event);
 	//				}
@@ -304,7 +304,7 @@ namespace trCore
 	//		else if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Right)
 	//			&& app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_Alt_L))
 	//		{
-	//			if(!mInPlaybackMode && StrafeRight_Event != NULL)
+	//			if(!mInPlaybackMode && StrafeRight_Event != nullptr)
 	//				{
 	//					FireGameEvent(*StrafeRight_Event);
 	//				}
@@ -315,14 +315,14 @@ namespace trCore
 
 	//		if(app.GetKeyboard()->GetKeyState('w'))
 	//		{
-	//			if (!mInPlaybackMode && MoveForward_Event != NULL)
+	//			if (!mInPlaybackMode && MoveForward_Event != nullptr)
 	//			{
 	//				FireGameEvent(*MoveForward_Event);
 	//			}
 	//		}
 	//		else if(app.GetKeyboard()->GetKeyState('s'))
 	//		{
-	//			if (!mInPlaybackMode && MoveBack_Event != NULL)
+	//			if (!mInPlaybackMode && MoveBack_Event != nullptr)
 	//			{
 	//				FireGameEvent(*MoveBack_Event);
 	//			}
@@ -330,7 +330,7 @@ namespace trCore
 	//	
 	//		if(app.GetKeyboard()->GetKeyState('d'))
 	//		{
-	//			if (!mInPlaybackMode && RollLeft_Event != NULL)
+	//			if (!mInPlaybackMode && RollLeft_Event != nullptr)
 	//			{
 	//				FireGameEvent(*RollLeft_Event);
 	//				
@@ -338,7 +338,7 @@ namespace trCore
 	//		}
 	//		else if(app.GetKeyboard()->GetKeyState('a'))
 	//		{
-	//			if (!mInPlaybackMode && RollRight_Event != NULL)
+	//			if (!mInPlaybackMode && RollRight_Event != nullptr)
 	//			{
 	//				FireGameEvent(*RollRight_Event);
 	//			}
@@ -349,7 +349,7 @@ namespace trCore
 	//	///////////////////////////////////
 	//		if(app.GetKeyboard()->GetKeyState('i') && mSendIgnition)
 	//		{
-	//			if (!mInPlaybackMode && Ignition_Event != NULL)
+	//			if (!mInPlaybackMode && Ignition_Event != nullptr)
 	//			{
 	//				FireGameEvent(*Ignition_Event);
 	//				mSendIgnition = false;
@@ -364,7 +364,7 @@ namespace trCore
 	//	///////////////////////////////////
 	//		if(app.GetKeyboard()->GetKeyState('l') && mSendAutoLevel)
 	//		{
-	//			if (!mInPlaybackMode && AutoLevel_Event != NULL)
+	//			if (!mInPlaybackMode && AutoLevel_Event != nullptr)
 	//			{
 	//				FireGameEvent(*AutoLevel_Event);
 	//				mSendAutoLevel = false;
@@ -378,7 +378,7 @@ namespace trCore
 	//	///////////////////////////////////
 	//		if(app.GetKeyboard()->GetKeyState('`') && mSendStatistics)
 	//		{
-	//			if (!mInPlaybackMode && Statistics_Event != NULL)
+	//			if (!mInPlaybackMode && Statistics_Event != nullptr)
 	//			{
 	//				FireGameEvent(*Statistics_Event);
 	//				mSendStatistics = false;
@@ -392,7 +392,7 @@ namespace trCore
 	//	///////////////////////////////////
 	//		if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_F11) && mSendF11)
 	//		{
-	//			if (!mInPlaybackMode && F11_Event != NULL)
+	//			if (!mInPlaybackMode && F11_Event != nullptr)
 	//			{
 	//				FireGameEvent(*F11_Event);
 	//				mSendF11 = false;
@@ -406,7 +406,7 @@ namespace trCore
 	//	///////////////////////////////////
 	//		if(app.GetKeyboard()->GetKeyState(osgGA::GUIEventAdapter::KEY_F12) && mSendF12)
 	//		{
-	//			if (!mInPlaybackMode && F12_Event != NULL)
+	//			if (!mInPlaybackMode && F12_Event != nullptr)
 	//			{
 	//				FireGameEvent(*F12_Event);
 	//				mSendF12 = false;

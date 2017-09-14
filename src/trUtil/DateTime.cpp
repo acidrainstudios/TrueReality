@@ -170,7 +170,7 @@ namespace trUtil
     ////////////////////////////////////////////////////////////////////
     float DateTime::GetLocalGMTOffset(bool accountForDST)
     {
-        time_t t = time(NULL);
+        time_t t = time(nullptr);
         struct tm timeParts;
         GetLocalTime(&t, timeParts);
         float offset = CalcGMTOffset(timeParts, accountForDST);
@@ -204,7 +204,7 @@ namespace trUtil
     ////////////////////////////////////////////////////////////////////
     void DateTime::SetToLocalTime()
     {
-        time_t t = time(NULL);
+        time_t t = time(nullptr);
         struct tm timeParts;
         GetLocalTime(&t, timeParts);
         SetTime(timeParts);
@@ -215,7 +215,7 @@ namespace trUtil
     ////////////////////////////////////////////////////////////////////
     void DateTime::SetToGMTTime()
     {
-        time_t t = time(NULL);
+        time_t t = time(nullptr);
         struct tm timeParts;
         GetGMTTime(&t, timeParts);
         SetTime(timeParts);
@@ -654,13 +654,13 @@ namespace trUtil
 
     void DateTime::GetGMTTime(time_t* t, tm& timeParts)
     {
-        if (t != NULL)
+        if (t != nullptr)
         {
             bool result = false;
 #ifdef TR_WIN
             result = gmtime_s(&timeParts, t) != EINVAL;
 #else
-            result = gmtime_r(t, &timeParts) != NULL;
+            result = gmtime_r(t, &timeParts) != nullptr;
 #endif
             if (result)
                 return;
@@ -672,13 +672,13 @@ namespace trUtil
 
     void DateTime::GetLocalTime(time_t* t, tm& timeParts)
     {
-        if (t != NULL)
+        if (t != nullptr)
         {
             bool result = false;
 #ifdef TR_WIN
             result = localtime_s(&timeParts, t) != EINVAL;
 #else
-            result = localtime_r(t, &timeParts) != NULL;
+            result = localtime_r(t, &timeParts) != nullptr;
 #endif
             if (result)
                 return;

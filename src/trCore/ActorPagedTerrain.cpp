@@ -33,7 +33,7 @@ namespace trCore
 	/////////////////////////////////////////////////////////////////////////////////
 	//PagedTerrainActor::PagedTerrainActor(trCore::GameStaticMeshActorProxy &proxy) 
 	//	:trCore::GameStaticMeshActor(proxy)
-	//	,mGroupNodeForTerrain(NULL)
+	//	,mGroupNodeForTerrain(nullptr)
 	//	,mNeedToLoad(true)
 	//	,mPaging_Min_X(0.0f)      
 	//	,mPaging_Min_Y(0.0f)      
@@ -92,10 +92,10 @@ namespace trCore
 	//	trCore::GameStaticMeshActor::AddedToScene(scene);
 	//	//dtActors::GameMeshActor::AddedToScene(scene);
 
-	//	if (scene != NULL)
+	//	if (scene != nullptr)
 	//	{
 	//		#ifdef _DEBUG
-	//		std::cout << "PagedTerrainActor::AddedToScene:::scene != NULL" << std::endl;
+	//		std::cout << "PagedTerrainActor::AddedToScene:::scene != nullptr" << std::endl;
 	//		#endif //_DEBUG
 	//		//Actually load the file, even if it's empty string so that if someone were to 
 	//		//load a mesh, remove it from the scene, then try to clear the mesh, this actor will still
@@ -116,7 +116,7 @@ namespace trCore
 	//void PagedTerrainActor::LoadFile(const std::string &fileName)
 	//{
 	//	//Don't actually load the file unless
-	//	if (GetSceneParent() != NULL)
+	//	if (GetSceneParent() != nullptr)
 	//	{
 	//		//We should always clear the geometry.  If LoadFile fails, we should have no geometry.
 	//		if (GetMatrixNode()->getNumChildren() != 0)
@@ -222,7 +222,7 @@ namespace trCore
 	//{
 	//	mTerrainPath = value;
 
-	//	if (GetSceneParent() != NULL)
+	//	if (GetSceneParent() != nullptr)
 	//	{
 	//		if (mNeedToLoad)
 	//		{

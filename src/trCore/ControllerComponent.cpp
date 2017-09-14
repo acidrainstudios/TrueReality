@@ -34,8 +34,8 @@ namespace trCore
 //	:dtGame::GMComponent(name)
 //	,eventMsg(0)
 //	,mLogController(0)
-//	,mPlayerActorID("NULL")
-//	,mFocusActorID("NULL")
+//	,mPlayerActorID("nullptr")
+//	,mFocusActorID("nullptr")
 //	,mPlayerActor(0)
 //	,mFocusActor(0)
 //	,mInPlaybackMode(inPlaybackMode)
@@ -133,7 +133,7 @@ namespace trCore
 //
 //			osg::ref_ptr<dtCore::Camera> camera = GetGameManager()->GetApplication().GetCamera();
 //			
-//			if(mPlayerActorID.ToString() != "NULL")
+//			if(mPlayerActorID.ToString() != "nullptr")
 //			{	//if the camera is already attach... detach it....
 //				mPlayerActor = static_cast<trCore::GenericActor*>(GetGameManager()->FindActorById(mPlayerActorID)->GetActor());
 //				mPlayerActor->RemoveChild(camera);
@@ -171,7 +171,7 @@ namespace trCore
 //	//	GetGameManager()->FindActorByName("Tri", TriProxy); 
 //	//	
 //
-//	//	if(HappyProxy != NULL && TriProxy != NULL)
+//	//	if(HappyProxy != nullptr && TriProxy != nullptr)
 //	//	{
 //	//		dtCore::Object* HappyActor = dynamic_cast<dtCore::Object*>(HappyProxy->GetActor());
 //	//		dtCore::Object* TriActor = dynamic_cast<dtCore::Object*>(TriProxy->GetActor());

@@ -209,7 +209,7 @@ public:
     return mInstances[i];                              \
     }                                                     \
     }                                                        \
-    return NULL;                                             \
+    return nullptr;                                             \
     }
 
     //////////////////////////////////////////////////////
@@ -225,7 +225,7 @@ public:
         /**
          * A constructor that creates and empty pointer
          */
-        EnumerationPointer() : mEnum(NULL)
+        EnumerationPointer() : mEnum(nullptr)
         {
         }
         
@@ -255,7 +255,7 @@ public:
          */
         ~EnumerationPointer()
         {
-            mEnum = NULL;
+            mEnum = nullptr;
         }
         
         /**
@@ -405,15 +405,15 @@ public:
          */
         bool operator!() const
         {
-            return mEnum == NULL;
+            return mEnum == nullptr;
         } // not required
         
         /**
-         * Returns FALSE if the pointer is NULL
+         * Returns FALSE if the pointer is nullptr
          */
         bool valid() const
         {
-            return mEnum != NULL;
+            return mEnum != nullptr;
         }
         
         /**

@@ -103,7 +103,7 @@ namespace trCore
 	//	{
 	//		const dtGame::GameEventMessage& eventMsg = static_cast<const dtGame::GameEventMessage&>(message);
 
-	//		if (eventMsg.GetGameEvent() != NULL)
+	//		if (eventMsg.GetGameEvent() != nullptr)
 	//		{
 	//			// Handle "ToggleEngine" Game Event
 	//			if (eventMsg.GetGameEvent()->GetName() == trCore::GAME_EVENT_IGNITION)

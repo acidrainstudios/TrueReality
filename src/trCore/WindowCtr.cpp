@@ -66,7 +66,7 @@
 //	}
 //
 //
-//	if(ds.get() == NULL)
+//	if(ds.get() == nullptr)
 //	{
 //		ds = osg::DisplaySettings::instance();
 //	}
@@ -94,12 +94,12 @@
 //		}
 //		
 //	
-//		if(ds.get() == NULL)
+//		if(ds.get() == nullptr)
 //		{
 //			ds = osg::DisplaySettings::instance();
 //		}	
 //		
-//		if(traits.get() == NULL)
+//		if(traits.get() == nullptr)
 //		{
 //			traits = new osg::GraphicsContext::Traits;
 //		}
