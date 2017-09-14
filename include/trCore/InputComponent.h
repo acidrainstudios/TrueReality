@@ -29,9 +29,9 @@
 
 #include <iostream>
 
-#include <dtCore/refptr.h>
-#include <dtCore/system.h>
-#include <dtCore/shadermanager.h>
+//#include <dtCore/refptr.h>
+//#include <dtCore/system.h>
+//#include <dtCore/shadermanager.h>
 
 
 //#include <dtABC/application.h>

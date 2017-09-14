@@ -1,12 +1,6 @@
 # Finds the include files necessary for compilation
 find_path (OPENTHREADS_INCLUDE_DIR OpenThreads/Thread
     HINTS
-	$ENV{DELTA_INC} 
-	$ENV{DELTA_INC}
-    $ENV{DELTA_ROOT}/Ext/include
-    $ENV{DELTA_ROOT}/Ext
-    $ENV{DELTA_ROOT}/include
-    $ENV{DELTA_ROOT}   
     $ENV{TR_INC}
     $ENV{TR_ROOT}/Ext/include
     $ENV{TR_ROOT}/Ext
@@ -26,12 +20,6 @@ macro (FIND_OPENTHREADS_LIBRARY MYLIBRARY MYLIBRARYNAME)
     find_library (${MYLIBRARY}
     NAMES ${MYLIBRARYNAME}
     HINTS
-	$ENV{DELTA_LIB}
-	$ENV{DELTA_ROOT}/Ext/lib
-    $ENV{DELTA_ROOT}/Ext
-    $ENV{DELTA_ROOT}/lib64
-    $ENV{DELTA_ROOT}/lib
-    $ENV{DELTA_ROOT}
     $ENV{TR_ROOT}/Ext/lib
     $ENV{TR_ROOT}/Ext
     $ENV{TR_ROOT}/lib64

@@ -25,8 +25,8 @@
 
 #include <math.h>
 
-#include <dtCore/refptr.h>
-#include <dtCore/uniqueid.h>
+//#include <dtCore/refptr.h>
+//#include <dtCore/uniqueid.h>
 
 #include <trUtil\Math.h>
 

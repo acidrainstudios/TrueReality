@@ -9,13 +9,6 @@ find_path (OSG_INCLUDE_DIR osg/Referenced
     $ENV{OSG_INC}
     $ENV{OSG_ROOT}/include
     $ENV{OSG_ROOT}
-	$ENV{DELTA_INC}
-    $ENV{DELTA_ROOT}/include
-    $ENV{DELTA_ROOT}/inc
-    $ENV{DELTA_ROOT}
-    $ENV{DELTA_ROOT}/ext/include
-    $ENV{DELTA_ROOT}/ext/inc
-    $ENV{DELTA_ROOT}/ext
 )
 mark_as_advanced (OSG_INCLUDE_DIR)
 
@@ -34,12 +27,6 @@ macro (FIND_OSG_LIBRARY MYLIBRARY MYLIBRARYNAME)
     $ENV{OSG_ROOT}/lib64
     $ENV{OSG_ROOT}/lib
     $ENV{OSG_ROOT}
-    $ENV{DELTA_LIB}
-	$ENV{DELTA_ROOT}/Ext/lib
-    $ENV{DELTA_ROOT}/Ext
-    $ENV{DELTA_ROOT}/lib64
-    $ENV{DELTA_ROOT}/lib
-    $ENV{DELTA_ROOT}
     )
     mark_as_advanced (${MYLIBRARY})
 endmacro(FIND_OSG_LIBRARY MYLIBRARY MYLIBRARYNAME)
