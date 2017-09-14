@@ -28,41 +28,41 @@
 
 namespace trUtil
 {
-	// defines API used to model the XML schema for the config file.
-	struct TR_UTIL_EXPORT ConfigSchema
-	{
-	public:
-		static const std::string SCREEN_CFG;
+	//// defines API used to model the XML schema for the config file.
+	//struct TR_UTIL_EXPORT ConfigSchema
+	//{
+	//public:
+	//	static const std::string SCREEN_CFG;
 
-		static const std::string NUM_OF_SCR_CFGS;
+	//	static const std::string NUM_OF_SCR_CFGS;
 
-		static const std::string SCR_CFG_NAME;
-		static const std::string NUM_OF_SCREENS;
-		static const std::string WINDOW;
-		static const std::string WIN_CAPTION;
-		static const std::string SCR_NUMBER;
-		static const std::string WINDOW_X;
-		static const std::string WINDOW_Y;
-		static const std::string WINDOW_WIDTH;
-		static const std::string WINDOW_HEIGHT;
-		static const std::string H_FOV;
-		static const std::string V_FOV;
-		static const std::string CAMERA_POS;
-			
-		static const std::string SHARE_CONTEXT;
-		static const std::string FULL_SCREEN;
-		static const std::string PIXEL_DEPTH;
-		static const std::string CHANGE_DISPLAY_RESOLUTION;
-		static const std::string VSYNC;
-		static const std::string MULTI_SAMPLE;
+	//	static const std::string SCR_CFG_NAME;
+	//	static const std::string NUM_OF_SCREENS;
+	//	static const std::string WINDOW;
+	//	static const std::string WIN_CAPTION;
+	//	static const std::string SCR_NUMBER;
+	//	static const std::string WINDOW_X;
+	//	static const std::string WINDOW_Y;
+	//	static const std::string WINDOW_WIDTH;
+	//	static const std::string WINDOW_HEIGHT;
+	//	static const std::string H_FOV;
+	//	static const std::string V_FOV;
+	//	static const std::string CAMERA_POS;
+	//		
+	//	static const std::string SHARE_CONTEXT;
+	//	static const std::string FULL_SCREEN;
+	//	static const std::string PIXEL_DEPTH;
+	//	static const std::string CHANGE_DISPLAY_RESOLUTION;
+	//	static const std::string VSYNC;
+	//	static const std::string MULTI_SAMPLE;
 
-		static const std::string STEREO_TYPE;
-		static const std::string STEREO_ENABLED;
-		
-		static const std::string APP_CFG;
+	//	static const std::string STEREO_TYPE;
+	//	static const std::string STEREO_ENABLED;
+	//	
+	//	static const std::string APP_CFG;
 
-		static const std::string LOG_LEVEL;
-	};
+	//	static const std::string LOG_LEVEL;
+	//};
 }
 
 

@@ -24,76 +24,74 @@
 
 #include "export.h"
 
-#include <dtCore/Base.h>
+//#include <dtCore/Base.h>
 
 namespace trUtil
 {
-	/**
-    * Detects which Monitor is connected to whihc GPU
-    */
-	class TR_UTIL_EXPORT GPUDetector: public dtCore::Base
-	{
-	public:
-		
-		/**
-		* Holds the Configuration of Win and GPUs
-		*/
-		struct ScrGPUCfg {
-		int ScrNum;
-		int GPUNum;
-		std::string GCardID;
-		};
+	///**
+ //   * Detects which Monitor is connected to whihc GPU
+ //   */
+	//class TR_UTIL_EXPORT GPUDetector: public dtCore::Base
+	//{
+	//public:
+	//	
+	//	/**
+	//	* Holds the Configuration of Win and GPUs
+	//	*/
+	//	struct ScrGPUCfg {
+	//	int ScrNum;
+	//	int GPUNum;
+	//	std::string GCardID;
+	//	};
 
-		/**
-		* Constructor
-		*/
-		GPUDetector(void);
+	//	/**
+	//	* Constructor
+	//	*/
+	//	GPUDetector(void);
 
-		/**
-		* Destructor
-		*/
-		~GPUDetector(void){};
+	//	/**
+	//	* Destructor
+	//	*/
+	//	~GPUDetector(void){};
 
-		/**
-		* Returns the Number of Screens Attached to the computer
-		*/
-		int GetNumOfScreens(void){return mNumberOfScr;}
+	//	/**
+	//	* Returns the Number of Screens Attached to the computer
+	//	*/
+	//	int GetNumOfScreens(void){return mNumberOfScr;}
 
-		/**
-		* Returns the GPU Number that should be used for the given screen
-		*/
-		int GetGPUOfScrNum(int ScreenNum){return mScrGPUConfig[ScreenNum].GPUNum;}
+	//	/**
+	//	* Returns the GPU Number that should be used for the given screen
+	//	*/
+	//	int GetGPUOfScrNum(int ScreenNum){return mScrGPUConfig[ScreenNum].GPUNum;}
 
-	private:
+	//private:
 
-		/**
-		* Detects the GPU configuration (General)
-		*/
-		void DetectGPUMonitorConfig(void);
+	//	/**
+	//	* Detects the GPU configuration (General)
+	//	*/
+	//	void DetectGPUMonitorConfig(void);
 
-		#ifdef _WIN32
-		/**
-		* Detects the GPU configuration (Winows Specific)
-		*/
-		void DetectGPUMonitorConfigWin32(void);
-		#endif
+	//	#ifdef _WIN32
+	//	/**
+	//	* Detects the GPU configuration (Winows Specific)
+	//	*/
+	//	void DetectGPUMonitorConfigWin32(void);
+	//	#endif
 
-		#ifndef _WIN32
-		/**
-		* Needs to be coded
-		* Detects the GPU configuration (Linux Specific)
-		*/
-		void DetectGPUMonitorConfigX11(void);
-		#endif
+	//	#ifndef _WIN32
+	//	/**
+	//	* Needs to be coded
+	//	* Detects the GPU configuration (Linux Specific)
+	//	*/
+	//	void DetectGPUMonitorConfigX11(void);
+	//	#endif
 
-		//Number of screens attached to the computer
-		unsigned int mNumberOfScr;
+	//	//Number of screens attached to the computer
+	//	unsigned int mNumberOfScr;
 
-		//Holds the GPU - Window information
-		std::vector<ScrGPUCfg> mScrGPUConfig;	
-	};
-
-
+	//	//Holds the GPU - Window information
+	//	std::vector<ScrGPUCfg> mScrGPUConfig;	
+	//};
 }
 
 	

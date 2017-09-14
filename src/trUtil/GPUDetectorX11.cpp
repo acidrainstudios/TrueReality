@@ -31,45 +31,45 @@
 
 namespace trUtil
 {
-	void GPUDetector::DetectGPUMonitorConfigX11(void)
-	{
+	//void GPUDetector::DetectGPUMonitorConfigX11(void)
+	//{
 
-		//For X11 this might be a way to do the same:
+	//	//For X11 this might be a way to do the same:
 
-		/* screenno - returns the number of screens connected to the current display
-		 */
-		
-		//
-		//int main(int argc, char *argv[]) 
-		//{
-		//        Display * display;
-		//        char * displayName;
-		//        int screenNo = 0;
-		//
-		//        displayName = getenv("DISPLAY");
-		//        display = XOpenDisplay(displayName);
-		//        
-		//		screenNo = ScreenCount(display);
-		//        
-		//		printf("%d", screenNo);
-		//        
-		//		XCloseDisplay(display);
-		//        return 0;
-		//}
+	//	/* screenno - returns the number of screens connected to the current display
+	//	 */
+	//	
+	//	//
+	//	//int main(int argc, char *argv[]) 
+	//	//{
+	//	//        Display * display;
+	//	//        char * displayName;
+	//	//        int screenNo = 0;
+	//	//
+	//	//        displayName = getenv("DISPLAY");
+	//	//        display = XOpenDisplay(displayName);
+	//	//        
+	//	//		screenNo = ScreenCount(display);
+	//	//        
+	//	//		printf("%d", screenNo);
+	//	//        
+	//	//		XCloseDisplay(display);
+	//	//        return 0;
+	//	//}
 
-		//Temp result until a true x11 GPU detector is made
-		for(unsigned int i = 0; i < mNumberOfScr; i++)
-		{
-			//Fill out Screen Data Set each screen to a different GPU
-			//This will force each window create its own context (Not the best case)
-			ScrGPUCfg ScrCfg;
-			ScrCfg.GPUNum = i;
-			ScrCfg.ScrNum = i;
-			ScrCfg.GCardID = i;
-			mScrGPUConfig.push_back(ScrCfg);
-		}
+	//	//Temp result until a true x11 GPU detector is made
+	//	for(unsigned int i = 0; i < mNumberOfScr; i++)
+	//	{
+	//		//Fill out Screen Data Set each screen to a different GPU
+	//		//This will force each window create its own context (Not the best case)
+	//		ScrGPUCfg ScrCfg;
+	//		ScrCfg.GPUNum = i;
+	//		ScrCfg.ScrNum = i;
+	//		ScrCfg.GCardID = i;
+	//		mScrGPUConfig.push_back(ScrCfg);
+	//	}
 
-	}
+	//}
 	
 }
 #endif

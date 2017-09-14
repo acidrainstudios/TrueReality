@@ -27,15 +27,15 @@
 
 #include <iostream>
 
-#include <dtCore/refptr.h>
-#include <dtCore/scene.h>
-
-#include <dtGame/gamemanager.h>
-#include <dtGame/defaultmessageprocessor.h>
-
-#include <dtUtil/datapathutils.h>
-
-#include <dtDAL/project.h>
+//#include <dtCore/refptr.h>
+//#include <dtCore/scene.h>
+//
+//#include <dtGame/gamemanager.h>
+//#include <dtGame/defaultmessageprocessor.h>
+//
+//#include <dtUtil/datapathutils.h>
+//
+//#include <dtDAL/project.h>
 
 #include <osg/ArgumentParser>
 
@@ -44,73 +44,73 @@
 
 namespace trCore
 {
-	//////////////////////////////////////////////////////////////////////////
-	extern "C" TR_CORE_EXPORT dtGame::GameEntryPoint* CreateGameEntryPoint()
-	{
-		return new CoreDLLEntryPoint;
-	}
+	////////////////////////////////////////////////////////////////////////////
+	//extern "C" TR_CORE_EXPORT dtGame::GameEntryPoint* CreateGameEntryPoint()
+	//{
+	//	return new CoreDLLEntryPoint;
+	//}
 
-	//////////////////////////////////////////////////////////////////////////
-	extern "C" TR_CORE_EXPORT void DestroyGameEntryPoint(dtGame::GameEntryPoint* entryPoint)
-	{
-		delete entryPoint;
-	}
+	////////////////////////////////////////////////////////////////////////////
+	//extern "C" TR_CORE_EXPORT void DestroyGameEntryPoint(dtGame::GameEntryPoint* entryPoint)
+	//{
+	//	delete entryPoint;
+	//}
 
-	//////////////////////////////////////////////////////////////////////////
-	void CoreDLLEntryPoint::Initialize(dtGame::GameApplication& app, int argc, char** argv)
-	{
-		
-		osg::ArgumentParser parser(&argc, argv);
-		
-		mMapName.reserve(512);
+	////////////////////////////////////////////////////////////////////////////
+	//void CoreDLLEntryPoint::Initialize(dtGame::GameApplication& app, int argc, char** argv)
+	//{
+	//	
+	//	osg::ArgumentParser parser(&argc, argv);
+	//	
+	//	mMapName.reserve(512);
 
-		if (!parser.read("-MapName", mMapName))
-		{
-			mMapName = "intro";
-		}
-		
-		mInPlaybackMode = false;
+	//	if (!parser.read("-MapName", mMapName))
+	//	{
+	//		mMapName = "intro";
+	//	}
+	//	
+	//	mInPlaybackMode = false;
 
-		mCustContext.reserve(512);
-		if (parser.read("-Context", mCustContext))
-		{
-			dtDAL::Project::GetInstance().SetContext(mCustContext);
-		}
-		else
-		{
-			dtDAL::Project::GetInstance().SetContext(dtUtil::GetDeltaRootPath() + "/Bin/Content");
+	//	mCustContext.reserve(512);
+	//	if (parser.read("-Context", mCustContext))
+	//	{
+	//		dtDAL::Project::GetInstance().SetContext(mCustContext);
+	//	}
+	//	else
+	//	{
+	//		dtDAL::Project::GetInstance().SetContext(dtUtil::GetDeltaRootPath() + "/Bin/Content");
 
-		}
+	//	}
 
-		app.GetGameManager()->GetScene().UseSceneLight(true);
-	}
+	//	app.GetGameManager()->GetScene().UseSceneLight(true);
+	//}
 
-	//////////////////////////////////////////////////////////////////////////
-	void CoreDLLEntryPoint::OnStartup(dtGame::GameApplication& app)
-	{		
+	////////////////////////////////////////////////////////////////////////////
+	//void CoreDLLEntryPoint::OnStartup(dtGame::GameApplication& app)
+	//{		
 
-		// Load the map we created in STAGE.
-		app.GetGameManager()->ChangeMap(mMapName);
+	//	// Load the map we created in STAGE.
+	//	app.GetGameManager()->ChangeMap(mMapName);
 
-		// Add Component - DefaultMessageProcessor
-		dtCore::RefPtr<dtGame::DefaultMessageProcessor> dmp = new dtGame::DefaultMessageProcessor(dtGame::DefaultMessageProcessor::DEFAULT_NAME);
-		app.GetGameManager()->AddComponent(*dmp,dtGame::GameManager::ComponentPriority::HIGHEST);
+	//	// Add Component - DefaultMessageProcessor
+	//	dtCore::RefPtr<dtGame::DefaultMessageProcessor> dmp = new dtGame::DefaultMessageProcessor(dtGame::DefaultMessageProcessor::DEFAULT_NAME);
+	//	app.GetGameManager()->AddComponent(*dmp,dtGame::GameManager::ComponentPriority::HIGHEST);
 
-		// Add Component - Controller Component
-		dtCore::RefPtr<trCore::ControllerComponent> controllerComp = new trCore::ControllerComponent(trCore::ControllerComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
-		app.GetGameManager()->AddComponent(*controllerComp, dtGame::GameManager::ComponentPriority::NORMAL);
+	//	// Add Component - Controller Component
+	//	dtCore::RefPtr<trCore::ControllerComponent> controllerComp = new trCore::ControllerComponent(trCore::ControllerComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
+	//	app.GetGameManager()->AddComponent(*controllerComp, dtGame::GameManager::ComponentPriority::NORMAL);
 
-		// Add Component - Input Component
-		dtCore::RefPtr<trCore::InputComponent> inputComp = new trCore::InputComponent(trCore::InputComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
-		app.GetGameManager()->AddComponent(*inputComp, dtGame::GameManager::ComponentPriority::NORMAL);
+	//	// Add Component - Input Component
+	//	dtCore::RefPtr<trCore::InputComponent> inputComp = new trCore::InputComponent(trCore::InputComponent::COMPONENT_DEFAULT_NAME, mInPlaybackMode);
+	//	app.GetGameManager()->AddComponent(*inputComp, dtGame::GameManager::ComponentPriority::NORMAL);
 
-		// Register our messages with the Game Manager message factory
-		trCoreMessageType::RegisterMessageTypes( app.GetGameManager()->GetMessageFactory() );
+	//	// Register our messages with the Game Manager message factory
+	//	trCoreMessageType::RegisterMessageTypes( app.GetGameManager()->GetMessageFactory() );
 
-	#ifdef _DEBUG
-		app.GetGameManager()->DebugStatisticsTurnOn(true, true, 30, true);
-	#endif //_DEBUG
-	}
+	//#ifdef _DEBUG
+	//	app.GetGameManager()->DebugStatisticsTurnOn(true, true, 30, true);
+	//#endif //_DEBUG
+	//}
 }
 
 

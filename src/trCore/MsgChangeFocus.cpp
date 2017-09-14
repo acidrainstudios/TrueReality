@@ -27,32 +27,32 @@
 
 namespace trCore
 {
-	///////////////////////////////////////////////////////////////////////////////
-	const std::string FocusActorChangeMsg::MSG_DEFAULT_NAME("NewFocusActorUniqueId");
-	///////////////////////////////////////////////////////////////////////////////
-	FocusActorChangeMsg::FocusActorChangeMsg()
-	{
-	   AddParameter( new dtGame::ActorMessageParameter(MSG_DEFAULT_NAME) );
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//const std::string FocusActorChangeMsg::MSG_DEFAULT_NAME("NewFocusActorUniqueId");
+	/////////////////////////////////////////////////////////////////////////////////
+	//FocusActorChangeMsg::FocusActorChangeMsg()
+	//{
+	//   AddParameter( new dtGame::ActorMessageParameter(MSG_DEFAULT_NAME) );
+	//}
 
-	///////////////////////////////////////////////////////////////////////////////
-	FocusActorChangeMsg::~FocusActorChangeMsg()
-	{
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//FocusActorChangeMsg::~FocusActorChangeMsg()
+	//{
+	//}
 
-	///////////////////////////////////////////////////////////////////////////////
-	void FocusActorChangeMsg::SetNewFocusActorUniqueId(const dtCore::UniqueId& uniqueId)
-	{
-	   dtGame::ActorMessageParameter* uniqueIdParam = static_cast< dtGame::ActorMessageParameter* >(GetParameter(MSG_DEFAULT_NAME));
-	   uniqueIdParam->SetValue( uniqueId );
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//void FocusActorChangeMsg::SetNewFocusActorUniqueId(const dtCore::UniqueId& uniqueId)
+	//{
+	//   dtGame::ActorMessageParameter* uniqueIdParam = static_cast< dtGame::ActorMessageParameter* >(GetParameter(MSG_DEFAULT_NAME));
+	//   uniqueIdParam->SetValue( uniqueId );
+	//}
 
-	///////////////////////////////////////////////////////////////////////////////
-	const dtCore::UniqueId& FocusActorChangeMsg::GetNewFocusActorUniqueId() const
-	{
-	   const dtGame::ActorMessageParameter* uniqueIdParam = static_cast< const dtGame::ActorMessageParameter* >(GetParameter(MSG_DEFAULT_NAME));
-	   return uniqueIdParam->GetValue();
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//const dtCore::UniqueId& FocusActorChangeMsg::GetNewFocusActorUniqueId() const
+	//{
+	//   const dtGame::ActorMessageParameter* uniqueIdParam = static_cast< const dtGame::ActorMessageParameter* >(GetParameter(MSG_DEFAULT_NAME));
+	//   return uniqueIdParam->GetValue();
+	//}
 }
 
 #endif //COREDLL_MSG_CHANGE_FOCUS_CPP

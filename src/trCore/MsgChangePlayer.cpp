@@ -26,34 +26,34 @@
 #include <trCore\MsgChangePlayer.h>
 namespace trCore
 {
-	///////////////////////////////////////////////////////////////////////////////
-	const std::string PlayerActorChangeMsg::MSG_DEFAULT_NAME("NewPlayerActorUniqueId");
-	///////////////////////////////////////////////////////////////////////////////
-	PlayerActorChangeMsg::PlayerActorChangeMsg()
-	{
-	   AddParameter( new dtGame::ActorMessageParameter(MSG_DEFAULT_NAME) );
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//const std::string PlayerActorChangeMsg::MSG_DEFAULT_NAME("NewPlayerActorUniqueId");
+	/////////////////////////////////////////////////////////////////////////////////
+	//PlayerActorChangeMsg::PlayerActorChangeMsg()
+	//{
+	//   AddParameter( new dtGame::ActorMessageParameter(MSG_DEFAULT_NAME) );
+	//}
 
-	///////////////////////////////////////////////////////////////////////////////
-	PlayerActorChangeMsg::~PlayerActorChangeMsg()
-	{
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//PlayerActorChangeMsg::~PlayerActorChangeMsg()
+	//{
+	//}
 
-	///////////////////////////////////////////////////////////////////////////////
-	void PlayerActorChangeMsg::SetNewPlayerActorUniqueId( const dtCore::UniqueId& uniqueId )
-	{
-		dtGame::ActorMessageParameter* uniqueIdParam =
-			 static_cast< dtGame::ActorMessageParameter* >( GetParameter(MSG_DEFAULT_NAME) );
-		uniqueIdParam->SetValue(uniqueId);
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//void PlayerActorChangeMsg::SetNewPlayerActorUniqueId( const dtCore::UniqueId& uniqueId )
+	//{
+	//	dtGame::ActorMessageParameter* uniqueIdParam =
+	//		 static_cast< dtGame::ActorMessageParameter* >( GetParameter(MSG_DEFAULT_NAME) );
+	//	uniqueIdParam->SetValue(uniqueId);
+	//}
 
-	///////////////////////////////////////////////////////////////////////////////
-	const dtCore::UniqueId& PlayerActorChangeMsg::GetNewPlayerActorUniqueId() const
-	{
-	   const dtGame::ActorMessageParameter* uniqueIdParam =
-			 static_cast< const dtGame::ActorMessageParameter* >( GetParameter(MSG_DEFAULT_NAME) );
-	   return uniqueIdParam->GetValue();
-	}
+	/////////////////////////////////////////////////////////////////////////////////
+	//const dtCore::UniqueId& PlayerActorChangeMsg::GetNewPlayerActorUniqueId() const
+	//{
+	//   const dtGame::ActorMessageParameter* uniqueIdParam =
+	//		 static_cast< const dtGame::ActorMessageParameter* >( GetParameter(MSG_DEFAULT_NAME) );
+	//   return uniqueIdParam->GetValue();
+	//}
 }
 
 #endif //COREDLL_MSG_CHANGE_PLAYER_CPP

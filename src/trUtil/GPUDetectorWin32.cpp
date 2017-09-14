@@ -33,56 +33,56 @@
 
 namespace trUtil
 {
-	void GPUDetector::DetectGPUMonitorConfigWin32(void)
-	{
-		DISPLAY_DEVICE GCardDevice;
-		GCardDevice.cb = sizeof(DISPLAY_DEVICE);
-		
-		//Check all the devices with attached monitors. 
-		DWORD deviceNum = 0;
-		int KeyStart = 0;
-		int KeyEnd = 0;
-		while( EnumDisplayDevices(NULL, deviceNum, &GCardDevice, 0))
-		{	
+	//void GPUDetector::DetectGPUMonitorConfigWin32(void)
+	//{
+	//	DISPLAY_DEVICE GCardDevice;
+	//	GCardDevice.cb = sizeof(DISPLAY_DEVICE);
+	//	
+	//	//Check all the devices with attached monitors. 
+	//	DWORD deviceNum = 0;
+	//	int KeyStart = 0;
+	//	int KeyEnd = 0;
+	//	while( EnumDisplayDevices(NULL, deviceNum, &GCardDevice, 0))
+	//	{	
 
-			//Isolate the Graphics Card Device Key
-			std::string CardDeviceKey(GCardDevice.DeviceKey);
-			KeyStart = CardDeviceKey.find("{");
-			KeyEnd = CardDeviceKey.find("}") - KeyStart + 1;
-			
-			DISPLAY_DEVICE MonitorDevice = {0};
-			MonitorDevice.cb = sizeof(DISPLAY_DEVICE);
-			DWORD monitorNum = 0;
-			while ( EnumDisplayDevices(GCardDevice.DeviceName, monitorNum, &MonitorDevice, 0))
-			{
-				//Fill out Screen Data (Set all GPU IDs to 0)				
-				ScrGPUCfg ScrCfg;
-				ScrCfg.GPUNum = 0;
-				ScrCfg.ScrNum = mScrGPUConfig.size();
-				ScrCfg.GCardID = CardDeviceKey.substr(KeyStart, KeyEnd);
-				mScrGPUConfig.push_back(ScrCfg);
+	//		//Isolate the Graphics Card Device Key
+	//		std::string CardDeviceKey(GCardDevice.DeviceKey);
+	//		KeyStart = CardDeviceKey.find("{");
+	//		KeyEnd = CardDeviceKey.find("}") - KeyStart + 1;
+	//		
+	//		DISPLAY_DEVICE MonitorDevice = {0};
+	//		MonitorDevice.cb = sizeof(DISPLAY_DEVICE);
+	//		DWORD monitorNum = 0;
+	//		while ( EnumDisplayDevices(GCardDevice.DeviceName, monitorNum, &MonitorDevice, 0))
+	//		{
+	//			//Fill out Screen Data (Set all GPU IDs to 0)				
+	//			ScrGPUCfg ScrCfg;
+	//			ScrCfg.GPUNum = 0;
+	//			ScrCfg.ScrNum = mScrGPUConfig.size();
+	//			ScrCfg.GCardID = CardDeviceKey.substr(KeyStart, KeyEnd);
+	//			mScrGPUConfig.push_back(ScrCfg);
 
-				monitorNum++;
-			}
-			deviceNum++;
-		}
+	//			monitorNum++;
+	//		}
+	//		deviceNum++;
+	//	}
 
-		//Compare the GCard IDs, and label the corect GPU IDs
-		for (unsigned int i=0; i<mScrGPUConfig.size(); i++)
-		{
-			for (unsigned int j=i+1; j<mScrGPUConfig.size(); j++)
-			{
-				if (mScrGPUConfig[j].GCardID == mScrGPUConfig[i].GCardID)
-				{
-					mScrGPUConfig[j].GPUNum = mScrGPUConfig[i].GPUNum;
-				}	
-				else
-				{
-					mScrGPUConfig[j].GPUNum = (mScrGPUConfig[i].GPUNum + 1);
-				}
-			}
-		}
-	}
+	//	//Compare the GCard IDs, and label the corect GPU IDs
+	//	for (unsigned int i=0; i<mScrGPUConfig.size(); i++)
+	//	{
+	//		for (unsigned int j=i+1; j<mScrGPUConfig.size(); j++)
+	//		{
+	//			if (mScrGPUConfig[j].GCardID == mScrGPUConfig[i].GCardID)
+	//			{
+	//				mScrGPUConfig[j].GPUNum = mScrGPUConfig[i].GPUNum;
+	//			}	
+	//			else
+	//			{
+	//				mScrGPUConfig[j].GPUNum = (mScrGPUConfig[i].GPUNum + 1);
+	//			}
+	//		}
+	//	}
+	//}
 	#endif
 }
 

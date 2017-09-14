@@ -28,48 +28,48 @@
 
 #include <osgViewer/CompositeViewer>
 
-#include <dtUtil/log.h>
+//#include <dtUtil/log.h>
 
 namespace trUtil
 {
-	GPUDetector::GPUDetector(void)
-	{
-		DetectGPUMonitorConfig();
-	}
+	//GPUDetector::GPUDetector(void)
+	//{
+	//	DetectGPUMonitorConfig();
+	//}
 
-	void GPUDetector::DetectGPUMonitorConfig(void)
-	{
-		//Create a temp Context
-		osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(new osg::GraphicsContext::Traits);
+	//void GPUDetector::DetectGPUMonitorConfig(void)
+	//{
+	//	//Create a temp Context
+	//	osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(new osg::GraphicsContext::Traits);
 
-		//Get number of screens
-		mNumberOfScr = gc->getWindowingSystemInterface()->getNumScreens();
+	//	//Get number of screens
+	//	mNumberOfScr = gc->getWindowingSystemInterface()->getNumScreens();
 
-		//Make room for the detected screens
-		mScrGPUConfig.reserve(mNumberOfScr);
+	//	//Make room for the detected screens
+	//	mScrGPUConfig.reserve(mNumberOfScr);
 
-	#ifdef _WIN32
-		DetectGPUMonitorConfigWin32();
-	#else
-		DetectGPUMonitorConfigX11();
-	#endif
+	//#ifdef _WIN32
+	//	DetectGPUMonitorConfigWin32();
+	//#else
+	//	DetectGPUMonitorConfigX11();
+	//#endif
 
-	#ifdef _DEBUG
-		//Debug Screen Info Printout
-		std::stringstream LogPrintout;
+	//#ifdef _DEBUG
+	//	//Debug Screen Info Printout
+	//	std::stringstream LogPrintout;
 
-		LogPrintout << "\nNumber of screens: ";
-		LogPrintout << mNumberOfScr << std::endl;
-		LogPrintout << "******************" << std::endl;
+	//	LogPrintout << "\nNumber of screens: ";
+	//	LogPrintout << mNumberOfScr << std::endl;
+	//	LogPrintout << "******************" << std::endl;
 
-		for(unsigned int i=0; i<mScrGPUConfig.size(); i++)
-		{
-			LogPrintout << "WinNum: " << mScrGPUConfig[i].ScrNum << " GPU Num: " << mScrGPUConfig[i].GPUNum << " GCard ID: " << mScrGPUConfig[i].GCardID << std::endl;
-		}
-		LogPrintout << std::endl;
-		LOG_INFO(LogPrintout.str());
-	#endif
-	}
+	//	for(unsigned int i=0; i<mScrGPUConfig.size(); i++)
+	//	{
+	//		LogPrintout << "WinNum: " << mScrGPUConfig[i].ScrNum << " GPU Num: " << mScrGPUConfig[i].GPUNum << " GCard ID: " << mScrGPUConfig[i].GCardID << std::endl;
+	//	}
+	//	LogPrintout << std::endl;
+	//	LOG_INFO(LogPrintout.str());
+	//#endif
+	//}
 }
 
 #endif // GPUDetector_CPP

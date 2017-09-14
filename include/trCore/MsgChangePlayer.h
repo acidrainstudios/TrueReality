@@ -25,32 +25,32 @@
 
 #include "export.h"
 
-#include <dtGame/message.h>
-#include <dtGame/messagetype.h>
-#include <dtGame/messagefactory.h>
-#include <dtGame/messageparameter.h>
-#include <dtGame/gameapplication.h>
-
-#include <dtCore/uniqueid.h>
+//#include <dtGame/message.h>
+//#include <dtGame/messagetype.h>
+//#include <dtGame/messagefactory.h>
+//#include <dtGame/messageparameter.h>
+//#include <dtGame/gameapplication.h>
+//
+//#include <dtCore/uniqueid.h>
 namespace trCore
 {
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
-	class TR_CORE_EXPORT PlayerActorChangeMsg : public dtGame::Message
-	{
-	   public:
-		   //Default Msg Parameter Name
-			static const std::string MSG_DEFAULT_NAME;
-	      
-			PlayerActorChangeMsg();
+	/////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////
+	//class TR_CORE_EXPORT PlayerActorChangeMsg : public dtGame::Message
+	//{
+	//   public:
+	//	   //Default Msg Parameter Name
+	//		static const std::string MSG_DEFAULT_NAME;
+	//      
+	//		PlayerActorChangeMsg();
 
-			void SetNewPlayerActorUniqueId( const dtCore::UniqueId& uniqueId );
-			
-			const dtCore::UniqueId& GetNewPlayerActorUniqueId() const;
+	//		void SetNewPlayerActorUniqueId( const dtCore::UniqueId& uniqueId );
+	//		
+	//		const dtCore::UniqueId& GetNewPlayerActorUniqueId() const;
 
-	   protected:
-      		virtual ~PlayerActorChangeMsg();   	
-	};
+	//   protected:
+ //     		virtual ~PlayerActorChangeMsg();   	
+	//};
 }
 
 #endif // COREDLL_MSG_CHANGE_PLAYER_H

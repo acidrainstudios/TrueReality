@@ -31,26 +31,26 @@
 
 #include <iostream>
 
-#include <dtCore/refptr.h>
-#include <dtCore/transform.h>
-#include <dtCore/camera.h>
-#include <dtCore/Scene.h>
-#include <dtCore/system.h>
-
-//#include <dtActors/gamemeshactor.h>
-
-#include <dtDAL/enginepropertytypes.h>
-#include <dtDAL/actorproperty.h>
-#include <dtDAL/actorproxyicon.h>
-#include <dtDAL/actorproxy.h>
-
-#include <dtGame/gamemanager.h>
-#include <dtGame/actorupdatemessage.h>
-#include <dtGame/basemessages.h>
-#include <dtGame/messagetype.h>
-#include <dtGame/message.h>
-
-#include <dtABC/application.h>
+//#include <dtCore/refptr.h>
+//#include <dtCore/transform.h>
+//#include <dtCore/camera.h>
+//#include <dtCore/Scene.h>
+//#include <dtCore/system.h>
+//
+////#include <dtActors/gamemeshactor.h>
+//
+//#include <dtDAL/enginepropertytypes.h>
+//#include <dtDAL/actorproperty.h>
+//#include <dtDAL/actorproxyicon.h>
+//#include <dtDAL/actorproxy.h>
+//
+//#include <dtGame/gamemanager.h>
+//#include <dtGame/actorupdatemessage.h>
+//#include <dtGame/basemessages.h>
+//#include <dtGame/messagetype.h>
+//#include <dtGame/message.h>
+//
+//#include <dtABC/application.h>
 
 #include <osg/Depth>
 #include <osg/Fog>
@@ -58,91 +58,91 @@
 namespace trCore
 {
 
-	class TR_CORE_EXPORT SkyDomeActor : public trCore::GameStaticMeshActor
-	{
-	public:
+	//class TR_CORE_EXPORT SkyDomeActor : public trCore::GameStaticMeshActor
+	//{
+	//public:
 
-		//Default Actors Name
-		static const std::string ACTOR_DEFAULT_NAME;
-		static const std::string ACTOR_CLASS_NAME;
-		
-		// Constructs the actor.
-		SkyDomeActor(trCore::GameStaticMeshActorProxy& proxy);
+	//	//Default Actors Name
+	//	static const std::string ACTOR_DEFAULT_NAME;
+	//	static const std::string ACTOR_CLASS_NAME;
+	//	
+	//	// Constructs the actor.
+	//	SkyDomeActor(trCore::GameStaticMeshActorProxy& proxy);
 
-		/**
-		* This method is an invokable for when a local object receives a tick.
-		* @param tickMessage A message containing tick related information.
-		*/
-		virtual void OnTickLocal(const dtGame::TickMessage& tickMessage);
+	//	/**
+	//	* This method is an invokable for when a local object receives a tick.
+	//	* @param tickMessage A message containing tick related information.
+	//	*/
+	//	virtual void OnTickLocal(const dtGame::TickMessage& tickMessage);
 
-		/**
-		* This method is an invokable for when a remote object receives a tick.
-		* @param tickMessage A message containing tick related information.
-		*/
-		virtual void OnTickRemote(const dtGame::TickMessage& tickMessage);
+	//	/**
+	//	* This method is an invokable for when a remote object receives a tick.
+	//	* @param tickMessage A message containing tick related information.
+	//	*/
+	//	virtual void OnTickRemote(const dtGame::TickMessage& tickMessage);
 
-		/**
-		* Generic handler (Invokable) for messages. Overridden from base class.
-		* This is the default invokable on GameActorProxy.
-		*/
-		virtual void ProcessMessage(const dtGame::Message& message);
-		
-		// Called when the actor has been added to the game manager.
-		// You can respond to OnEnteredWorld on either the proxy or actor or both.
-		virtual void OnEnteredWorld();
+	//	/**
+	//	* Generic handler (Invokable) for messages. Overridden from base class.
+	//	* This is the default invokable on GameActorProxy.
+	//	*/
+	//	virtual void ProcessMessage(const dtGame::Message& message);
+	//	
+	//	// Called when the actor has been added to the game manager.
+	//	// You can respond to OnEnteredWorld on either the proxy or actor or both.
+	//	virtual void OnEnteredWorld();
 
-		virtual void AddedToScene(dtCore::Scene* scene);
+	//	virtual void AddedToScene(dtCore::Scene* scene);
 
-		//protected:
-		virtual ~SkyDomeActor() { } ;
+	//	//protected:
+	//	virtual ~SkyDomeActor() { } ;
 
-	private:
+	//private:
 
-		// private vars
-		float						mDeltaSimTime;		//sim time between frames
+	//	// private vars
+	//	float						mDeltaSimTime;		//sim time between frames
 
-		dtCore::Transform			mCameraTransform;	//mTransform of the main Camera
-		dtCore::Transform			mDomeTransform;		//mTransform of this Dome
+	//	dtCore::Transform			mCameraTransform;	//mTransform of the main Camera
+	//	dtCore::Transform			mDomeTransform;		//mTransform of this Dome
 
-		osg::Vec3f					mPos;				//Position vector
+	//	osg::Vec3f					mPos;				//Position vector
 
-		bool						mPropertiesUpdated;
-	};
-
-
+	//	bool						mPropertiesUpdated;
+	//};
 
 
 
 
-	/**
-	 * Our proxy class for the actor.  The proxy contains properties,
-	 * invokables, and the actor.
-	 */
-	class TR_CORE_EXPORT SkyDomeActorProxy : public trCore::GameStaticMeshActorProxy
-	{
-	   public:
-		  // Constructs the proxy.
-		  SkyDomeActorProxy();
 
-		  // Creates the properties that are custom to the actor proxy.
-		  virtual void BuildPropertyMap();
 
-		  //Build Invokables to hook the proxy into the GM
-		  //In this actor we will only use the default ones...
-		  //virtual void BuildInvokables();
+	///**
+	// * Our proxy class for the actor.  The proxy contains properties,
+	// * invokables, and the actor.
+	// */
+	//class TR_CORE_EXPORT SkyDomeActorProxy : public trCore::GameStaticMeshActorProxy
+	//{
+	//   public:
+	//	  // Constructs the proxy.
+	//	  SkyDomeActorProxy();
 
-		  virtual ~SkyDomeActorProxy() { };
+	//	  // Creates the properties that are custom to the actor proxy.
+	//	  virtual void BuildPropertyMap();
 
-	   protected:
-	      
+	//	  //Build Invokables to hook the proxy into the GM
+	//	  //In this actor we will only use the default ones...
+	//	  //virtual void BuildInvokables();
 
-		  // Creates an instance of our actor
-		  virtual void CreateActor();
+	//	  virtual ~SkyDomeActorProxy() { };
 
-		  // Called when this proxy is added to the game manager (ie, the "world")
-		  // You can respond to OnEnteredWorld on either the proxy or actor or both.
-		  virtual void OnEnteredWorld();
-	};
+	//   protected:
+	//      
+
+	//	  // Creates an instance of our actor
+	//	  virtual void CreateActor();
+
+	//	  // Called when this proxy is added to the game manager (ie, the "world")
+	//	  // You can respond to OnEnteredWorld on either the proxy or actor or both.
+	//	  virtual void OnEnteredWorld();
+	//};
 }
 
 #endif //COREDLL_SKYDOME_ACTOR_H

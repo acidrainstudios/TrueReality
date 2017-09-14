@@ -28,32 +28,32 @@
 
 namespace trCore
 {
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
-	class TR_CORE_EXPORT trCoreMessageType : public dtGame::MessageType
-	{
-	   DECLARE_ENUM(trCoreMessageType);
+	/////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////
+	//class TR_CORE_EXPORT trCoreMessageType : public dtGame::MessageType
+	//{
+	//   DECLARE_ENUM(trCoreMessageType);
 
-	   public:
+	//   public:
 
-		  static const trCoreMessageType MSG_FOCUS_ACTOR_CHANGE;
-		  static const trCoreMessageType MSG_PLAYER_ACTOR_CHANGE;
+	//	  static const trCoreMessageType MSG_FOCUS_ACTOR_CHANGE;
+	//	  static const trCoreMessageType MSG_PLAYER_ACTOR_CHANGE;
 
-		  static void RegisterMessageTypes(dtGame::MessageFactory& factory);
+	//	  static void RegisterMessageTypes(dtGame::MessageFactory& factory);
 
-	   protected:
+	//   protected:
 
-		  trCoreMessageType( const std::string &name, 
-							   const std::string &category,
-							   const std::string &description, 
-							   const unsigned short messageId) :
-			 dtGame::MessageType(name, category, description, messageId)
-		  {
-			 AddInstance(this);
-		  }
+	//	  trCoreMessageType( const std::string &name, 
+	//						   const std::string &category,
+	//						   const std::string &description, 
+	//						   const unsigned short messageId) :
+	//		 dtGame::MessageType(name, category, description, messageId)
+	//	  {
+	//		 AddInstance(this);
+	//	  }
 
-		  virtual ~trCoreMessageType() { }
-	};
+	//	  virtual ~trCoreMessageType() { }
+	//};
 }
 
 #endif //COREDLL_MSG_TYPES_H

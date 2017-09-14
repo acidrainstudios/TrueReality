@@ -25,33 +25,33 @@
 #include <trUtil\ConfigParser.h>
 
 #include <iostream>
-
-#include <dtUtil/datapathutils.h>
-#include <dtUtil/log.h>
+//
+//#include <dtUtil/datapathutils.h>
+//#include <dtUtil/log.h>
 
 namespace trUtil
 {
-	// Ctor
-	ConfigParser::ConfigParser(const std::string& configFileName)
-	{
-		SetConfigFileName(configFileName);	
-	}
+	//// Ctor
+	//ConfigParser::ConfigParser(const std::string& configFileName)
+	//{
+	//	SetConfigFileName(configFileName);	
+	//}
 
-	// Sets the Config File Name
-	void ConfigParser::SetConfigFileName(const std::string& configFileName)
-	{
-		mConfigFileName = configFileName;
-		SetConfigFilePath(dtUtil::GetDeltaRootPath() + "/Bin/" + mConfigFileName);	
-	}
+	//// Sets the Config File Name
+	//void ConfigParser::SetConfigFileName(const std::string& configFileName)
+	//{
+	//	mConfigFileName = configFileName;
+	//	SetConfigFilePath(dtUtil::GetDeltaRootPath() + "/Bin/" + mConfigFileName);	
+	//}
 
-	// Sets the Full Config File Name and Path
-	void ConfigParser::SetConfigFilePath(const std::string &configFilePath)
-	{
-		mConfigFilePath = configFilePath;
-		#ifdef _DEBUG
-			LOG_INFO("VRSim Config File: " + mConfigFilePath + '\n');
-		#endif
-	}
+	//// Sets the Full Config File Name and Path
+	//void ConfigParser::SetConfigFilePath(const std::string &configFilePath)
+	//{
+	//	mConfigFilePath = configFilePath;
+	//	#ifdef _DEBUG
+	//		LOG_INFO("VRSim Config File: " + mConfigFilePath + '\n');
+	//	#endif
+	//}
 
 }
 

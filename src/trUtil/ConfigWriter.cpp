@@ -23,58 +23,57 @@
 #define ConfigWriter_CPP 1
 
 #include <trUtil\ConfigWriter.h>
-#include <xercesc/util/XMLString.hpp>
+//#include <xercesc/util/XMLString.hpp>
 
-using namespace XERCES_CPP_NAMESPACE;
+//using namespace XERCES_CPP_NAMESPACE;
 
 namespace trUtil
 {
-	void ConfigWriter::WriteCfg(const std::string &filename)
-	{
+	//void ConfigWriter::WriteCfg(const std::string &filename)
+	//{
 
-	}
+	//}
 
-	ConfigWriter::SchemaModel::SchemaModel()
-	{
-		//WINDOW = XMLString::transcode( ApplicationConfigSchema::WINDOW.c_str() );
-		
-	}
+	//ConfigWriter::SchemaModel::SchemaModel()
+	//{
+	//	//WINDOW = XMLString::transcode( ApplicationConfigSchema::WINDOW.c_str() );
+	//	
+	//}
 
-	ConfigWriter::SchemaModel::~SchemaModel()
-	{
-		XMLString::release( &SCREEN_CFG);
+	//ConfigWriter::SchemaModel::~SchemaModel()
+	//{
+	//	XMLString::release( &SCREEN_CFG);
 
-		XMLString::release( &NUM_OF_SCR_CFGS);
+	//	XMLString::release( &NUM_OF_SCR_CFGS);
 
-		XMLString::release( &SCR_CFG_NAME);
-		XMLString::release( &NUM_OF_SCREENS);
-		XMLString::release( &WINDOW);
-		XMLString::release( &WIN_CAPTION);
-		XMLString::release( &SCR_NUMBER);
-		XMLString::release( &WINDOW_X);
-		XMLString::release( &WINDOW_Y);
-		XMLString::release( &WINDOW_WIDTH);
-		XMLString::release( &WINDOW_HEIGHT);
-		XMLString::release( &H_FOV);
-		XMLString::release( &V_FOV);
-		XMLString::release( &CAMERA_POS);
-			
-		XMLString::release( &SHARE_CONTEXT);
-		XMLString::release( &FULL_SCREEN);
-		XMLString::release( &PIXEL_DEPTH);
-		XMLString::release( &CHANGE_DISPLAY_RESOLUTION);
-		XMLString::release( &VSYNC);
-		XMLString::release( &MULTI_SAMPLE);
+	//	XMLString::release( &SCR_CFG_NAME);
+	//	XMLString::release( &NUM_OF_SCREENS);
+	//	XMLString::release( &WINDOW);
+	//	XMLString::release( &WIN_CAPTION);
+	//	XMLString::release( &SCR_NUMBER);
+	//	XMLString::release( &WINDOW_X);
+	//	XMLString::release( &WINDOW_Y);
+	//	XMLString::release( &WINDOW_WIDTH);
+	//	XMLString::release( &WINDOW_HEIGHT);
+	//	XMLString::release( &H_FOV);
+	//	XMLString::release( &V_FOV);
+	//	XMLString::release( &CAMERA_POS);
+	//		
+	//	XMLString::release( &SHARE_CONTEXT);
+	//	XMLString::release( &FULL_SCREEN);
+	//	XMLString::release( &PIXEL_DEPTH);
+	//	XMLString::release( &CHANGE_DISPLAY_RESOLUTION);
+	//	XMLString::release( &VSYNC);
+	//	XMLString::release( &MULTI_SAMPLE);
 
-		XMLString::release( &STEREO_TYPE);
-		XMLString::release( &STEREO_ENABLED);
-		
-		XMLString::release( &APP_CFG);
+	//	XMLString::release( &STEREO_TYPE);
+	//	XMLString::release( &STEREO_ENABLED);
+	//	
+	//	XMLString::release( &APP_CFG);
 
-		XMLString::release( &LOG_LEVEL);
-		
-	}
-	
+	//	XMLString::release( &LOG_LEVEL);
+	//	
+	//}	
 }
 
 

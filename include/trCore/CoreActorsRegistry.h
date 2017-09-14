@@ -33,30 +33,30 @@
 #include "ActorSkyDome.h"
 
 
-#include <dtDAL/actorpluginregistry.h>
+//#include <dtDAL/actorpluginregistry.h>
 
 namespace trCore
 {
-	class TR_CORE_EXPORT CoreActorsRegistry : public dtDAL::ActorPluginRegistry
-	{
-	   public:
+	//class TR_CORE_EXPORT CoreActorsRegistry : public dtDAL::ActorPluginRegistry
+	//{
+	//   public:
 
-			static dtCore::RefPtr<dtDAL::ActorType> GENERIC_ACTOR_TYPE;
+	//		static dtCore::RefPtr<dtDAL::ActorType> GENERIC_ACTOR_TYPE;
 
-			static dtCore::RefPtr<dtDAL::ActorType> OBJECT_ACTOR_TYPE;
-			static dtCore::RefPtr<dtDAL::ActorType> GAME_STATIC_MESH_ACTOR_TYPE;
+	//		static dtCore::RefPtr<dtDAL::ActorType> OBJECT_ACTOR_TYPE;
+	//		static dtCore::RefPtr<dtDAL::ActorType> GAME_STATIC_MESH_ACTOR_TYPE;
 
-			static dtCore::RefPtr<dtDAL::ActorType> PAGED_TERRAIN_ACTOR_TYPE;
-			static dtCore::RefPtr<dtDAL::ActorType> SKY_DOME_ACTOR_TYPE;
-		  
-	      
+	//		static dtCore::RefPtr<dtDAL::ActorType> PAGED_TERRAIN_ACTOR_TYPE;
+	//		static dtCore::RefPtr<dtDAL::ActorType> SKY_DOME_ACTOR_TYPE;
+	//	  
+	//      
 
-		  // Constructs our registry.  Creates the actor types easy access when needed.
-		  CoreActorsRegistry();
+	//	  // Constructs our registry.  Creates the actor types easy access when needed.
+	//	  CoreActorsRegistry();
 
-		  // Registers actor types with the actor factory in the super class.
-		  virtual void RegisterActorTypes();
-	};
+	//	  // Registers actor types with the actor factory in the super class.
+	//	  virtual void RegisterActorTypes();
+	//};
 }
 
 #endif //COREDLL_ACTORS_REGISTRY_H

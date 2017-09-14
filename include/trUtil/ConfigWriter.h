@@ -24,13 +24,13 @@
 
 #include "export.h"
 
-#include <dtUtil/log.h>                     // to read the default log name.
+//#include <dtUtil/log.h>                     // to read the default log name.
 #include <string>                           // for data members
-#include <xercesc/util/XercesDefs.hpp>      // for XMLCh definition
+//#include <xercesc/util/XercesDefs.hpp>      // for XMLCh definition
 
 namespace trUtil
 {
-	/// A class that writes VRSim config files
+	/*/// A class that writes VRSim config files
 	class TR_UTIL_EXPORT ConfigWriter
 	{
 	public:
@@ -79,7 +79,7 @@ namespace trUtil
 
 		 
 	  };
-	};
+	};*/
 }
 
 

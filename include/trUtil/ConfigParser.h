@@ -32,48 +32,48 @@
 
 namespace trUtil
 {
-	/**
-	* This class parses all the config option from VRSimCfg.xml
-	* It uses other classes to pull in each individual section of the XML file
-	*/
-	class TR_UTIL_EXPORT ConfigParser: public osg::Referenced
-	{
-	public:
+	///**
+	//* This class parses all the config option from VRSimCfg.xml
+	//* It uses other classes to pull in each individual section of the XML file
+	//*/
+	//class TR_UTIL_EXPORT ConfigParser: public osg::Referenced
+	//{
+	//public:
 
-		/**
-		* Constructor
-		*/
-		ConfigParser(const std::string& configFileName = "VRSimCfg.xml");
+	//	/**
+	//	* Constructor
+	//	*/
+	//	ConfigParser(const std::string& configFileName = "VRSimCfg.xml");
 
-		/**
-		* Sets a new Config File Name
-		*/
-		void SetConfigFileName(const std::string& configFileName);
+	//	/**
+	//	* Sets a new Config File Name
+	//	*/
+	//	void SetConfigFileName(const std::string& configFileName);
 
-		/**
-		* Gets the Config File Name
-		*/
-		const std::string& GetConfigFileName(){return mConfigFileName;}
+	//	/**
+	//	* Gets the Config File Name
+	//	*/
+	//	const std::string& GetConfigFileName(){return mConfigFileName;}
 
-		/**
-		* Sets a new Config File Path
-		*/
-		void SetConfigFilePath(const std::string& configFilePath);
+	//	/**
+	//	* Sets a new Config File Path
+	//	*/
+	//	void SetConfigFilePath(const std::string& configFilePath);
 
-		/**
-		* Gets the Config File Path
-		*/
-		const std::string& GetConfigFilePath(){return mConfigFilePath;}
+	//	/**
+	//	* Gets the Config File Path
+	//	*/
+	//	const std::string& GetConfigFilePath(){return mConfigFilePath;}
 
-	private:
+	//private:
 
-		//Holds the Name of the Config File
-		std::string mConfigFileName;
+	//	//Holds the Name of the Config File
+	//	std::string mConfigFileName;
 
-		//Holds the full Path and Name of the Config File
-		std::string mConfigFilePath;
-	
-	};
+	//	//Holds the full Path and Name of the Config File
+	//	std::string mConfigFilePath;
+	//
+	//};
 
 }
 

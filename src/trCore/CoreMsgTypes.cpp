@@ -29,23 +29,23 @@
 namespace trCore
 {
 
-	IMPLEMENT_ENUM(trCoreMessageType);
+	//IMPLEMENT_ENUM(trCoreMessageType);
 
-	const trCoreMessageType trCoreMessageType::MSG_FOCUS_ACTOR_CHANGE(trCore::FocusActorChangeMsg::MSG_DEFAULT_NAME, "Info", "Focus on Different Actor", 
-													USER_DEFINED_MESSAGE_TYPE + 1);
+	//const trCoreMessageType trCoreMessageType::MSG_FOCUS_ACTOR_CHANGE(trCore::FocusActorChangeMsg::MSG_DEFAULT_NAME, "Info", "Focus on Different Actor", 
+	//												USER_DEFINED_MESSAGE_TYPE + 1);
 
-	const trCoreMessageType trCoreMessageType::MSG_PLAYER_ACTOR_CHANGE(trCore::PlayerActorChangeMsg::MSG_DEFAULT_NAME, "Info", "Human Player changes Actors", 
-													USER_DEFINED_MESSAGE_TYPE + 2);
+	//const trCoreMessageType trCoreMessageType::MSG_PLAYER_ACTOR_CHANGE(trCore::PlayerActorChangeMsg::MSG_DEFAULT_NAME, "Info", "Human Player changes Actors", 
+	//												USER_DEFINED_MESSAGE_TYPE + 2);
 
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////
 
 
-	void trCoreMessageType::RegisterMessageTypes(dtGame::MessageFactory& factory)
-	{
-		factory.RegisterMessageType<trCore::FocusActorChangeMsg>(MSG_FOCUS_ACTOR_CHANGE);
-		factory.RegisterMessageType<trCore::PlayerActorChangeMsg>(MSG_PLAYER_ACTOR_CHANGE);
-	}
+	//void trCoreMessageType::RegisterMessageTypes(dtGame::MessageFactory& factory)
+	//{
+	//	factory.RegisterMessageType<trCore::FocusActorChangeMsg>(MSG_FOCUS_ACTOR_CHANGE);
+	//	factory.RegisterMessageType<trCore::PlayerActorChangeMsg>(MSG_PLAYER_ACTOR_CHANGE);
+	//}
 }
 
 #endif //COREDLL_MSG_TYPES_CPP

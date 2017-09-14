@@ -26,19 +26,19 @@
 
 namespace trCore
 {
-	////////////////////////////////////////////////////////////////////////////////
-	IMPLEMENT_ENUM(RENDER_BIN_TYPE);
-	
-	RENDER_BIN_TYPE::RENDER_BIN_TYPE(const std::string& name)
-	: dtUtil::Enumeration(name)
-	{
-		AddInstance(this);
-	}
+	//////////////////////////////////////////////////////////////////////////////////
+	//IMPLEMENT_ENUM(RENDER_BIN_TYPE);
+	//
+	//RENDER_BIN_TYPE::RENDER_BIN_TYPE(const std::string& name)
+	//: dtUtil::Enumeration(name)
+	//{
+	//	AddInstance(this);
+	//}
 
-	RENDER_BIN_TYPE RENDER_BIN_TYPE::INHERIT_BIN("Inherit From Parent Node");
-	RENDER_BIN_TYPE RENDER_BIN_TYPE::DEPTH_SORTED_BIN("DepthSortedBin");
-	RENDER_BIN_TYPE RENDER_BIN_TYPE::STATE_SORTED_BIN("RenderBin");
-	////////////////////////////////////////////////////////////////////////////////
+	//RENDER_BIN_TYPE RENDER_BIN_TYPE::INHERIT_BIN("Inherit From Parent Node");
+	//RENDER_BIN_TYPE RENDER_BIN_TYPE::DEPTH_SORTED_BIN("DepthSortedBin");
+	//RENDER_BIN_TYPE RENDER_BIN_TYPE::STATE_SORTED_BIN("RenderBin");
+	//////////////////////////////////////////////////////////////////////////////////
 }
 
 #endif //COREDLL_ENUM_CPP

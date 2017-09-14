@@ -30,24 +30,24 @@
 
 #include <iostream>
 
-#include <dtCore/refptr.h>
-#include <dtCore/system.h>
-#include <dtCore/transform.h>
-#include <dtCore/shadermanager.h>
-
-
-
-#include <dtABC/application.h>
-
-#include <dtDAL/enginepropertytypes.h>
-#include <dtDAL/gameevent.h>
-#include <dtDAL/gameeventmanager.h>
-
-#include <dtGame/baseinputcomponent.h>
-#include <dtGame/logcontroller.h>
-#include <dtGame/basemessages.h>
-#include <dtGame/messagetype.h>
-#include <dtGame/gamemanager.h>
+//#include <dtCore/refptr.h>
+//#include <dtCore/system.h>
+//#include <dtCore/transform.h>
+//#include <dtCore/shadermanager.h>
+//
+//
+//
+//#include <dtABC/application.h>
+//
+//#include <dtDAL/enginepropertytypes.h>
+//#include <dtDAL/gameevent.h>
+//#include <dtDAL/gameeventmanager.h>
+//
+//#include <dtGame/baseinputcomponent.h>
+//#include <dtGame/logcontroller.h>
+//#include <dtGame/basemessages.h>
+//#include <dtGame/messagetype.h>
+//#include <dtGame/gamemanager.h>
 
 #include <osgViewer/CompositeViewer>
 
@@ -55,80 +55,80 @@
 
 namespace trCore
 {
-	/**
-	 * 
-	 * ControllerComponent will control all the main functionalety of program, like configuration, 
-	 * setup, and in game controll
-	 */
-	class TR_CORE_EXPORT ControllerComponent : public dtGame::GMComponent
-	{
-	   public:
+	///**
+	// * 
+	// * ControllerComponent will control all the main functionalety of program, like configuration, 
+	// * setup, and in game controll
+	// */
+	//class TR_CORE_EXPORT ControllerComponent : public dtGame::GMComponent
+	//{
+	//   public:
 
-			//Default Component Name
-			static const std::string COMPONENT_DEFAULT_NAME;
+	//		//Default Component Name
+	//		static const std::string COMPONENT_DEFAULT_NAME;
 
-		  // Constructor
-		  ControllerComponent(const std::string& name, bool inPlaybackMode);
+	//	  // Constructor
+	//	  ControllerComponent(const std::string& name, bool inPlaybackMode);
 
-		  /**
-		   * Setup our custom GameEvents after the map is loaded
-		   * They will be sent out by the controller
-		   */
-		  void SetupEvents();
+	//	  /**
+	//	   * Setup our custom GameEvents after the map is loaded
+	//	   * They will be sent out by the controller
+	//	   */
+	//	  void SetupEvents();
 
-		  /**
-		   * Handle messages from the GameManager if we want to
-		   */
-		  void ProcessMessage(const dtGame::Message& message);
-			
-		  /**
-		   * Handle messages from the dtCore::Base if we want to
-		   */
-		  virtual void OnMessage(MessageData *data);
+	//	  /**
+	//	   * Handle messages from the GameManager if we want to
+	//	   */
+	//	  void ProcessMessage(const dtGame::Message& message);
+	//		
+	//	  /**
+	//	   * Handle messages from the dtCore::Base if we want to
+	//	   */
+	//	  virtual void OnMessage(MessageData *data);
 
-		  /**
-		   * We're going to handle raw key presses!
-		   */
-		  //virtual bool HandleKeyPressed(const dtCore::Keyboard* keyboard, int key);
+	//	  /**
+	//	   * We're going to handle raw key presses!
+	//	   */
+	//	  //virtual bool HandleKeyPressed(const dtCore::Keyboard* keyboard, int key);
 
-	   protected:
+	//   protected:
 
-		  /// Destructor
-		  virtual ~ControllerComponent() { }
+	//	  /// Destructor
+	//	  virtual ~ControllerComponent() { }
 
-	   private:
+	//   private:
 
-		   //void AttachActor(void);
+	//	   //void AttachActor(void);
 
-		  /**
-		   * This method creates the game event
-		   * message and sends it on to the Game Manager for processing.
-		   * @param event The game event to fire.
-		   */
-	   		void FireGameEvent(const dtDAL::GameEvent& event);
+	//	  /**
+	//	   * This method creates the game event
+	//	   * message and sends it on to the Game Manager for processing.
+	//	   * @param event The game event to fire.
+	//	   */
+	//   		void FireGameEvent(const dtDAL::GameEvent& event);
 
-			//Our LogController
-			osg::ref_ptr<dtGame::LogController> mLogController;
+	//		//Our LogController
+	//		osg::ref_ptr<dtGame::LogController> mLogController;
 
-			//Our pointer for shooting off messages
-			osg::ref_ptr<dtGame::GameEventMessage> eventMsg;
+	//		//Our pointer for shooting off messages
+	//		osg::ref_ptr<dtGame::GameEventMessage> eventMsg;
 
-			//float StatisticsTimer;
+	//		//float StatisticsTimer;
 
-			//float mDeltaSimTime;
+	//		//float mDeltaSimTime;
 
-			bool mInPlaybackMode;
+	//		bool mInPlaybackMode;
 
-			//Pointer to Player Actor and Focus Actor
-			osg::ref_ptr<trCore::GenericActor> mPlayerActor;
-			osg::ref_ptr<trCore::GenericActor> mFocusActor;
+	//		//Pointer to Player Actor and Focus Actor
+	//		osg::ref_ptr<trCore::GenericActor> mPlayerActor;
+	//		osg::ref_ptr<trCore::GenericActor> mFocusActor;
 
-			//IDs for Player Actor and Focus Actor
-			dtCore::UniqueId mFocusActorID;
-			dtCore::UniqueId mPlayerActorID;
+	//		//IDs for Player Actor and Focus Actor
+	//		dtCore::UniqueId mFocusActorID;
+	//		dtCore::UniqueId mPlayerActorID;
 
 
-	};
+	//};
 }
 
 #endif //COREDLL_CONTROLLER_COMPONENT_H
