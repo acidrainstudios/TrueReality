@@ -9,24 +9,44 @@ SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_SOURCES "${SOURCE_PATH}/*.cpp")
 FILE (GLOB CONSOLE_SOURCES "${SOURCE_PATH}/Console/*.cpp")
-SET (PROJECT_SOURCES "${BASE_SOURCES};${CONSOLE_SOURCES}")
+FILE (GLOB LOGGING_SOURCES "${SOURCE_PATH}/Logging/*.cpp")
+SET (PROJECT_SOURCES "${BASE_SOURCES};${CONSOLE_SOURCES};${LOGGING_SOURCES}")
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
 FILE (GLOB CONSOLE_HEADERS "${HEADER_PATH}/Console/*.h")
-SET (PROJECT_HEADERS "${BASE_HEADERS};${CONSOLE_HEADERS}")
+FILE (GLOB LOGGING_HEADERS "${HEADER_PATH}/Logging/*.h")
+SET (PROJECT_HEADERS "${BASE_HEADERS};${CONSOLE_HEADERS};${LOGGING_HEADERS}")
 
-# Sets the header file folders in IDEs
+# *****************************************************************************
+# Project Folder Setup*********************************************************
+# *****************************************************************************
 SET (HEADERS_GROUP "Header Files")
 SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS})
+SET (SOURCES_GROUP "Source Files")
+SOURCE_GROUP (${SOURCES_GROUP} FILES ${BASE_SOURCES})
+
+# Console Groups***************************************************************
+# Sets the header file folders in IDEs
 SET (HEADERS_CONSOLE_GROUP "${HEADERS_GROUP}\\Console")
 SOURCE_GROUP (${HEADERS_CONSOLE_GROUP} FILES ${CONSOLE_HEADERS})
 
 # Sets the source file folders in IDEs
-SET (SOURCES_GROUP "Source Files")
-SOURCE_GROUP (${SOURCES_GROUP} FILES ${BASE_SOURCES})
 SET (SOURCES_CONSOLE_GROUP "${SOURCES_GROUP}\\Console")
 SOURCE_GROUP (${SOURCES_CONSOLE_GROUP} FILES ${CONSOLE_SOURCES})
+
+# Logging Groups***************************************************************
+# Sets the header file folders in IDEs
+SET (HEADERS_LOGGING_GROUP "${HEADERS_GROUP}\\Logging")
+SOURCE_GROUP (${HEADERS_LOGGING_GROUP} FILES ${LOGGING_HEADERS})
+
+# Sets the source file folders in IDEs
+SET (SOURCES_LOGGING_GROUP "${SOURCES_GROUP}\\Logging")
+SOURCE_GROUP (${SOURCES_LOGGING_GROUP} FILES ${LOGGING_SOURCES})
+
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
 
 # Sets the libraries
 SET (EXTERNAL_LIBS)
