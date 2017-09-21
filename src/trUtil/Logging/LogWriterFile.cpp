@@ -21,16 +21,16 @@
 * Author: Erik Johnson
 * Author: Maxim Serebrennik
 */
-#include "LogWriterFile.h"
+#include <trUtil/Logging/LogWriterFile.h>
 
-#include "../tcUtil/PlatformMacros.h"
-#include "../tcUtil/Exception.h"
-#include "../tcUtil/FileUtils.h"
-#include "../tcUtil/PathUtils.h"
+#include <trUtil/PlatformMacros.h>
+#include <trUtil/Exception.h>
+#include <trUtil/FileUtils.h>
+#include <trUtil/PathUtils.h>
 
 #include <iostream>
 
-namespace tcUtil
+namespace trUtil
 {
     namespace Logging
     {
@@ -75,19 +75,19 @@ namespace tcUtil
             }
 
             std::string fullLogPath = Logging::LogFile::GetFileName();
-            if (Logging::LogFile::GetFileName().find(tcUtil::FileUtils::PATH_SEPARATOR) == std::string::npos)
+            if (Logging::LogFile::GetFileName().find(trUtil::FileUtils::PATH_SEPARATOR) == std::string::npos)
             {
                 //Store logs in a system dependent place.
-                std::string userLogPath = tcUtil::PathUtils::GetTCLogPath();
+                std::string userLogPath = trUtil::PathUtils::GetLogPath();
                 if (!userLogPath.empty())
                 {
                     std::string logDir = userLogPath + DEFAULT_LOG_FOLDER;
 
                     try
                     {
-                        tcUtil::FileUtils::GetInstance().MakeDirectoryEX(logDir);
+                        trUtil::FileUtils::GetInstance().MakeDirectoryEX(logDir);
                     }
-                    catch (const tcUtil::Exception&)
+                    catch (const trUtil::Exception&)
                     {
                         std::cerr << "Unable to create the log directory : \"" << logDir << "\".  The log file will be written to the current working directory if possible." << std::endl;
                         logDir.clear();
@@ -127,9 +127,9 @@ namespace tcUtil
         ////////////////////////////////////////////////////////////////////////////////
         void LogWriterFile::TimeTag(std::string prefix)
         {
-            tcUtil::DateTime dt;
+            trUtil::DateTime dt;
             dt.SetToLocalTime();
-            mLogFile << prefix << dt.ToString(tcUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT) << std::endl;
+            mLogFile << prefix << dt.ToString(trUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT) << std::endl;
             mLogFile.flush();
         }
 
@@ -181,7 +181,7 @@ namespace tcUtil
                 lineEnd += htmlNewline.size() + 1;
             }
 
-            mLogFile << color << "[" << logData.time.ToString(tcUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT);
+            mLogFile << color << "[" << logData.time.ToString(trUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT);
 
             if (logData.frameNumber > 0)
             {
