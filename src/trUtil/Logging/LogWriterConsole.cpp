@@ -22,14 +22,14 @@
 * Author: Maxim Serebrennik
 */
 
-#include "LogWriterConsole.h"
+#include <trUtil/Logging/LogWriterConsole.h>
 
-#include "../tcUtil/ConsoleTextColor.h"
+#include <trUtil/Console/ConsoleTextColor.h>
 
 #include <iostream>
 #include <iomanip>
 
-namespace tcUtil
+namespace trUtil
 {
     namespace Logging
     {
@@ -73,14 +73,14 @@ namespace tcUtil
             
 
             // Print out the time, the message, the log level, then where it came from
-            std::cerr << "[" << logData.time.ToString(tcUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT);
+            std::cerr << "[" << logData.time.ToString(trUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT);
 
             if (logData.frameNumber > 0)
             {
                 std::cerr << " Frm# " << logData.frameNumber;
             }
 
-            std::cerr << " " << tcUtil::Logging::Log::GetLogLevelString(logData.logLevel) << "] ";
+            std::cerr << " " << trUtil::Logging::Log::GetLogLevelString(logData.logLevel) << "] ";
 
             std::cerr << logData.msg << " [";
 
