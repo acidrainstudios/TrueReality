@@ -20,9 +20,9 @@
 *
 * Author: Maxim Serebrennik
 */
-#include "LogWriter.h"
+#include <trUtil/Logging/LogWriter.h>
 
-namespace tcUtil
+namespace trUtil
 {
     namespace Logging
     {
