@@ -26,7 +26,7 @@
 #include <trUtil\WindowCtr.h>
 #include <trUtil\Math.h>
 #include <trUtil\Logo.h>
-#include <trUtil\GPUDetector.h>
+//#include <trUtil\GPUDetector.h>
 
 #include <osgViewer/GraphicsWindow>
 #include <osg/LightSource>
