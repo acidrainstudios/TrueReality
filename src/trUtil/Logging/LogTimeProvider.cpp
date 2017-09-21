@@ -20,10 +20,10 @@
 *
 * Author: David Guthrie
 */
-#include "LogTimeProvider.h"
+#include <trUtil/Logging/LogTimeProvider.h>
 
 
-namespace tcUtil
+namespace trUtil
 {
     namespace Logging
     {
