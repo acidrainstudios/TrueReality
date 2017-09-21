@@ -24,9 +24,9 @@
 * Author: Maxim Serebrennik
 */
 
-#include "LogLevel.h"
+#include <trUtil/Logging/LogLevel.h>
 
-namespace tcUtil
+namespace trUtil
 {
     namespace Logging
     {
