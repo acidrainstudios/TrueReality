@@ -19,46 +19,9 @@
 * Author: Maxim Serebrennik
 */
 
-
-#ifndef Math_CPP
-#define Math_CPP
-
-#include <math.h>
-
-//#include <dtCore/refptr.h>
-//#include <dtCore/uniqueid.h>
-
 #include <trUtil\Math.h>
 
 namespace trUtil
 {
-
-	inline void SinCos(double x, double & SinVal, double & CosVal)
-	{
-		SinVal=sin(x);
-		CosVal=cos(x);
-	}
-
-	inline double Deg2Rad(double Degree)
-	{
-		return osg::DegreesToRadians(Degree);
-	}
-
-	inline float Deg2Rad(float Degree)
-	{
-		return osg::DegreesToRadians(Degree);
-	}
-
-	inline double CheckState(double State)
-	{
-		if (State == 0)
-			return 0;
-		else if(State < 0)
-			return -1;
-		else
-			return 1;
-	}
-
+	//Left Empty for reporting tools
 }
-
-#endif // Math_CPP
