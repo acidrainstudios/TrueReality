@@ -24,12 +24,12 @@
 * Author: Maxim Serebrennik
 */
 
-#include "LogFile.h"
+#include <trUtil/Logging/LogFile.h>
 
-#include "../tcUtil/Log.h"
-#include "../tcUtil/LogManager.h"
+#include <trUtil/Logging/Log.h>
+#include <trUtil/Logging/LogManager.h>
 
-namespace tcUtil
+namespace trUtil
 {
     namespace Logging
     {
