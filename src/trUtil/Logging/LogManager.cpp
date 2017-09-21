@@ -23,13 +23,13 @@
 * Author: David Guthrie
 * Author: Maxim Serebrennik
 */
-#include "LogManager.h"
+#include <trUtil/Logging/LogManager.h>
 
-#include "../tcUtil/LogWriterConsole.h"
+#include <trUtil/Logging/LogWriterConsole.h>
 
 #include <algorithm>
 
-namespace tcUtil
+namespace trUtil
 {
     namespace Logging
     {
@@ -58,7 +58,7 @@ namespace tcUtil
         ////////////////////////////////////////////////////////////////
         Log* LogManager::GetInstance(const std::string& name)
         {
-            tcUtil::HashMap<std::string, osg::ref_ptr<Log> >::iterator i = mInstances.find(name);
+            trUtil::HashMap<std::string, osg::ref_ptr<Log> >::iterator i = mInstances.find(name);
             if (i == mInstances.end())
             {
                 return nullptr;
@@ -69,7 +69,7 @@ namespace tcUtil
         ////////////////////////////////////////////////////////////////
         void LogManager::SetAllLogLevels(const LogLevel& newLevel)
         {
-            std::for_each(mInstances.begin(), mInstances.end(), [this, &newLevel](tcUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
+            std::for_each(mInstances.begin(), mInstances.end(), [this, &newLevel](trUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
             {
                 Log* log = value.second.get();
                 log->SetLogLevel(newLevel);
@@ -79,7 +79,7 @@ namespace tcUtil
         ////////////////////////////////////////////////////////////////
         void LogManager::SetAllOutputStreamBits(unsigned int option)
         {
-            std::for_each(mInstances.begin(), mInstances.end(), [this, option](tcUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
+            std::for_each(mInstances.begin(), mInstances.end(), [this, option](trUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
             {
                 Log* log = value.second.get();
                 log->SetOutputStreamBit(option);
@@ -138,7 +138,7 @@ namespace tcUtil
         }
 
         ////////////////////////////////////////////////////////////////
-        const tcUtil::DateTime& LogManager::GetDateTime()
+        const trUtil::DateTime& LogManager::GetDateTime()
         {
             return mLogTimeProvider->GetDateTime();
         }
