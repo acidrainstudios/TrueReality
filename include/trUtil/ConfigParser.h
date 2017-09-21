@@ -1,5 +1,5 @@
 /*
-* The Construct Open Source Game and Simulation Engine
+* True Reality Open Source Game and Simulation Engine
 * Copyright (C) 2013
 *
 * This library is free software; you can redistribute it and/or modify it under
