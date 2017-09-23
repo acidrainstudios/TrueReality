@@ -8,15 +8,17 @@ SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_SOURCES "${SOURCE_PATH}/*.cpp")
-FILE (GLOB CONSOLE_SOURCES "${SOURCE_PATH}/Console/*.cpp")
-FILE (GLOB LOGGING_SOURCES "${SOURCE_PATH}/Logging/*.cpp")
-SET (PROJECT_SOURCES "${BASE_SOURCES};${CONSOLE_SOURCES};${LOGGING_SOURCES}")
+FILE (GLOB CONSOLE_SOURCES	"${SOURCE_PATH}/Console/*.cpp")
+FILE (GLOB LOGGING_SOURCES	"${SOURCE_PATH}/Logging/*.cpp")
+FILE (GLOB JSON_SOURCES		"${SOURCE_PATH}/Json/*.cpp")
+SET (PROJECT_SOURCES "${BASE_SOURCES};${CONSOLE_SOURCES};${LOGGING_SOURCES};${JSON_SOURCES}")
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
-FILE (GLOB CONSOLE_HEADERS "${HEADER_PATH}/Console/*.h")
-FILE (GLOB LOGGING_HEADERS "${HEADER_PATH}/Logging/*.h")
-SET (PROJECT_HEADERS "${BASE_HEADERS};${CONSOLE_HEADERS};${LOGGING_HEADERS}")
+FILE (GLOB CONSOLE_HEADERS	"${HEADER_PATH}/Console/*.h")
+FILE (GLOB LOGGING_HEADERS	"${HEADER_PATH}/Logging/*.h")
+FILE (GLOB JSON_HEADERS		"${HEADER_PATH}/Json/*.h")
+SET (PROJECT_HEADERS "${BASE_HEADERS};${CONSOLE_HEADERS};${LOGGING_HEADERS};${JSON_HEADERS}")
 
 # *****************************************************************************
 # Project Folder Setup*********************************************************
@@ -43,6 +45,15 @@ SOURCE_GROUP (${HEADERS_LOGGING_GROUP} FILES ${LOGGING_HEADERS})
 # Sets the source file folders in IDEs
 SET (SOURCES_LOGGING_GROUP "${SOURCES_GROUP}\\Logging")
 SOURCE_GROUP (${SOURCES_LOGGING_GROUP} FILES ${LOGGING_SOURCES})
+
+# Json Groups******************************************************************
+# Sets the header file folders in IDEs
+SET (HEADERS_JSON_GROUP "${HEADERS_GROUP}\\Json")
+SOURCE_GROUP (${HEADERS_JSON_GROUP} FILES ${JSON_HEADERS})
+
+# Sets the source file folders in IDEs
+SET (SOURCES_JSON_GROUP "${SOURCES_GROUP}\\Json")
+SOURCE_GROUP (${SOURCES_JSON_GROUP} FILES ${JSON_SOURCES})
 
 # *****************************************************************************
 # *****************************************************************************
