@@ -21,19 +21,37 @@
 
 #pragma once
 
-#include <json/json.h>
+#include <trUtil/Export.h>
+
+#include <json/value.h>
 
 namespace trUtil
 {
 	namespace JSON
 	{
-		typedef Json::Value Value;
-		typedef Json::Value::UInt UInt;
-		typedef Json::Value::Int Int;
-		typedef Json::Value::UInt64 UInt64;
-		typedef Json::Value::Int64 Int64;
-		typedef Json::Value::LargestInt LargestInt;
-		typedef Json::Value::LargestUInt LargestUInt;
-		typedef Json::Value::ArrayIndex ArrayIndex;
+		class TR_UTIL_EXPORT Units
+		{
+		public:
+
+			typedef Json::ValueType ValueType;
+			typedef Json::Value Value;
+			typedef Json::UInt UInt;
+			typedef Json::Int Int;
+			typedef Json::UInt64 UInt64;
+			typedef Json::Int64 Int64;
+			typedef Json::LargestInt LargestInt;
+			typedef Json::LargestUInt LargestUInt;
+			typedef Json::ArrayIndex ArrayIndex;
+		};
+
+		typedef TR_UTIL_EXPORT Units::ValueType ValueType;
+		typedef TR_UTIL_EXPORT Units::Value Value;
+		typedef TR_UTIL_EXPORT Units::Value::UInt UInt;
+		typedef TR_UTIL_EXPORT Units::Value::Int Int;
+		typedef TR_UTIL_EXPORT Units::Value::UInt64 UInt64;
+		typedef TR_UTIL_EXPORT Units::Value::Int64 Int64;
+		typedef TR_UTIL_EXPORT Units::Value::LargestInt LargestInt;
+		typedef TR_UTIL_EXPORT Units::Value::LargestUInt LargestUInt;
+		typedef TR_UTIL_EXPORT Units::Value::ArrayIndex ArrayIndex;		
 	}
 }
