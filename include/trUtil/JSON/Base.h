@@ -46,7 +46,7 @@ namespace trUtil
 			/**
 			* Clears the internal JSON Root node.
 			*/
-			void Clear();
+			virtual void Clear() = 0;
 
 			/**
 			* Returns a reference to the internal JSON Root node.
