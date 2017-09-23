@@ -58,6 +58,11 @@ namespace trUtil
 			const Json::Value::Members GetMemberNames() const;
 
 			/**
+			* Clears the internal JSON Root node.
+			*/
+			void Clear() override;
+
+			/**
 			* Returns a reference to the internal JSON Root node.
 			*/
 			virtual Json::Value& GetJSONRoot();
