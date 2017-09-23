@@ -23,12 +23,11 @@
 
 #include <trUtil/Export.h>
 
-#include <json/value.h>
 #include <osg/Referenced>
+#include <trUtil/JSON/Units.h>
 
 #include <stdint.h>
 #include <string>
-
 
 namespace trUtil
 {
@@ -51,7 +50,7 @@ namespace trUtil
 			/**
 			* Returns a reference to the internal JSON Root node.
 			*/
-			virtual Json::Value& GetJSONRoot() = 0;
+			virtual Value& GetJSONRoot() = 0;
 
 			/**
 			* Prints out to the screen the whole JSON Root content.
@@ -151,12 +150,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given index
 			*/
-			virtual Json::Value::Int64 GetInt64(int &index) const = 0;
+			virtual Int64 GetInt64(int &index) const = 0;
 
 			/**
 			* Adds the 64bit Integer value to the Array
 			*/
-			virtual void AddInt64(const Json::Value::Int64 &value) = 0;
+			virtual void AddInt64(const Int64 &value) = 0;
 
 			/**
 			* Checks if the value stored at the specific index is a 64bit Integer
@@ -166,12 +165,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given index
 			*/
-			virtual Json::Value::UInt64 GetUInt64(int &index) const = 0;
+			virtual UInt64 GetUInt64(int &index) const = 0;
 
 			/**
 			* Adds the 64bit Integer value to the Array
 			*/
-			virtual void AddUInt64(const Json::Value::UInt64 &value) = 0;
+			virtual void AddUInt64(const UInt64 &value) = 0;
 
 			/**
 			* Checks if the value stored at the specific index is a float
