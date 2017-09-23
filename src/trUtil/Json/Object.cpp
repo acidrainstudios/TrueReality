@@ -19,9 +19,9 @@
 * Author: Maxim Serebrennik
 */
 
-#include <trUtil/Json/Object.h>
+#include <trUtil/JSON/Object.h>
 
-#include <trUtil/Json/Array.h>
+#include <trUtil/JSON/Array.h>
 
 #include <json/json.h>
 

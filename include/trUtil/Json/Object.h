@@ -23,7 +23,7 @@
 
 
 #include <trUtil/Export.h>
-#include <trUtil/Json/Base.h>
+#include <trUtil/JSON/Base.h>
 
 #include <json/json.h>
 

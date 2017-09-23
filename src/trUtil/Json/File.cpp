@@ -19,10 +19,10 @@
 * Author: Maxim Serebrennik
 */
 
-#include <trUtil/Json/File.h>
+#include <trUtil/JSON/File.h>
 
-#include <trUtil/Json/Array.h>
-#include <trUtil/Json/Object.h>
+#include <trUtil/JSON/Array.h>
+#include <trUtil/JSON/Object.h>
 
 #include <trUtil/Exception.h>
 #include <trUtil/FileUtils.h>

@@ -20,9 +20,9 @@
 */
 
 
-#include <trUtil/Json/Array.h>
+#include <trUtil/JSON/Array.h>
 
-#include <trUtil/Json/Object.h>
+#include <trUtil/JSON/Object.h>
 #include <trUtil/Logging/Log.h>
 
 #include <iostream>
