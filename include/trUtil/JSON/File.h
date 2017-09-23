@@ -102,6 +102,11 @@ namespace trUtil
 			* Returns true if the file name and path exist on the HD
 			*/
 			virtual bool FileExists();
+			
+			/**
+			* Clears the internal JSON Root node.
+			*/
+			void Clear() override;
 
 			/**
 			* Returns a reference to the internal JSON Root node.
