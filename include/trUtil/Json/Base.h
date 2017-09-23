@@ -32,209 +32,211 @@
 
 namespace trUtil
 {
+	namespace JSON
+	{
+		//Forward declaration
+		class Object;
+		class Array;
 
-    //Forward declaration
-    class JSObject;
-    class JSArray;
+		class TR_UTIL_EXPORT Base : osg::Referenced
+		{
 
-    class TR_UTIL_EXPORT JSONBase : osg::Referenced
-    {
+		public:
 
-    public:
-       
-        /**
-        * Clears the internal JSON Root node.
-        */
-        void Clear();
+			/**
+			* Clears the internal JSON Root node.
+			*/
+			void Clear();
 
-        /**
-        * Returns a reference to the internal JSON Root node.
-        */
-        virtual Json::Value& GetJSONRoot() = 0;
+			/**
+			* Returns a reference to the internal JSON Root node.
+			*/
+			virtual Json::Value& GetJSONRoot() = 0;
 
-        /**
-        * Prints out to the screen the whole JSON Root content.
-        */
-        virtual void PrintJSONRoot() = 0;
+			/**
+			* Prints out to the screen the whole JSON Root content.
+			*/
+			virtual void PrintJSONRoot() = 0;
 
-        /**
-        * Checks if the JSON Root Node has an entry with a given key present
-        */
-        virtual bool KeyPresent(const std::string &key) const = 0;
+			/**
+			* Checks if the JSON Root Node has an entry with a given key present
+			*/
+			virtual bool KeyPresent(const std::string &key) const = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a NULL
-        */
-        virtual bool IsNull(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a NULL
+			*/
+			virtual bool IsNull(const std::string &key) const = 0;
 
-        /**
-        * Sets the value stored at the specific key to NULL
-        */
-        virtual void SetNull(const std::string &key) = 0;
+			/**
+			* Sets the value stored at the specific key to NULL
+			*/
+			virtual void SetNull(const std::string &key) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a Boolean
-        */
-        virtual bool IsBool(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a Boolean
+			*/
+			virtual bool IsBool(const std::string &key) const = 0;
 
-        /**
-        * Returns the Boolean value stored at the given key
-        */
-        virtual bool GetBool(const std::string &key) const = 0;
+			/**
+			* Returns the Boolean value stored at the given key
+			*/
+			virtual bool GetBool(const std::string &key) const = 0;
 
-        /**
-        * Sets the Boolean value to be stored at the given key
-        */
-        virtual void SetBool(const std::string &key, const bool &value) = 0;
+			/**
+			* Sets the Boolean value to be stored at the given key
+			*/
+			virtual void SetBool(const std::string &key, const bool &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is True
-        */
-        virtual bool IsTrue(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is True
+			*/
+			virtual bool IsTrue(const std::string &key) const = 0;
 
-        /**
-        * Checks if the value stored at the specific key is False
-        */
-        virtual bool IsFalse(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is False
+			*/
+			virtual bool IsFalse(const std::string &key) const = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a Number
-        */
-        virtual bool IsNumber(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a Number
+			*/
+			virtual bool IsNumber(const std::string &key) const = 0;
 
-        /**
-        * Checks if the value stored at the specific key is an Integer
-        */
-        virtual bool IsInt(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is an Integer
+			*/
+			virtual bool IsInt(const std::string &key) const = 0;
 
-        /**
-        * Returns the Integer value stored at the given key
-        */
-        virtual int GetInt(const std::string &key) const = 0;
+			/**
+			* Returns the Integer value stored at the given key
+			*/
+			virtual int GetInt(const std::string &key) const = 0;
 
-        /**
-        * Sets the Integer value to be stored at the given key
-        */
-        virtual void SetInt(const std::string &key, const int &value) = 0;
+			/**
+			* Sets the Integer value to be stored at the given key
+			*/
+			virtual void SetInt(const std::string &key, const int &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a Double
-        */
-        virtual bool IsDouble(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a Double
+			*/
+			virtual bool IsDouble(const std::string &key) const = 0;
 
-        /**
-        * Returns the Double value stored at the given key
-        */
-        virtual double GetDouble(const std::string &key) const = 0;
+			/**
+			* Returns the Double value stored at the given key
+			*/
+			virtual double GetDouble(const std::string &key) const = 0;
 
-        /**
-        * Sets the Double value to be stored at the given key
-        */
-        virtual void SetDouble(const std::string &key, const double &value) = 0;
+			/**
+			* Sets the Double value to be stored at the given key
+			*/
+			virtual void SetDouble(const std::string &key, const double &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is an Unsigned Integer
-        */
-        virtual bool IsUInt(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is an Unsigned Integer
+			*/
+			virtual bool IsUInt(const std::string &key) const = 0;
 
-        /**
-        * Returns the Unsigned Integer value stored at the given key
-        */
-        virtual unsigned int GetUInt(const std::string &key) const = 0;
+			/**
+			* Returns the Unsigned Integer value stored at the given key
+			*/
+			virtual unsigned int GetUInt(const std::string &key) const = 0;
 
-        /**
-        * Sets the Unsigned Integer value to be stored at the given key
-        */
-        virtual void SetUInt(const std::string &key, const unsigned int &value) = 0;
+			/**
+			* Sets the Unsigned Integer value to be stored at the given key
+			*/
+			virtual void SetUInt(const std::string &key, const unsigned int &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a 64bit Integer
-        */
-        virtual bool IsInt64(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a 64bit Integer
+			*/
+			virtual bool IsInt64(const std::string &key) const = 0;
 
-        /**
-        * Returns the 64bit Integer value stored at the given key
-        */
-        virtual Json::Value::Int64 GetInt64(const std::string &key) const = 0;
+			/**
+			* Returns the 64bit Integer value stored at the given key
+			*/
+			virtual Json::Value::Int64 GetInt64(const std::string &key) const = 0;
 
-        /**
-        * Sets the 64bit Integer value to be stored at the given key
-        */
-        virtual void SetInt64(const std::string &key, const Json::Value::Int64 &value) = 0;
+			/**
+			* Sets the 64bit Integer value to be stored at the given key
+			*/
+			virtual void SetInt64(const std::string &key, const Json::Value::Int64 &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a 64bit Integer
-        */
-        virtual bool IsUInt64(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a 64bit Integer
+			*/
+			virtual bool IsUInt64(const std::string &key) const = 0;
 
-        /**
-        * Returns the 64bit Integer value stored at the given key
-        */
-        virtual Json::Value::UInt64 GetUInt64(const std::string &key) const = 0;
+			/**
+			* Returns the 64bit Integer value stored at the given key
+			*/
+			virtual Json::Value::UInt64 GetUInt64(const std::string &key) const = 0;
 
-        /**
-        * Sets the 64bit Integer value to be stored at the given key
-        */
-        virtual void SetUInt64(const std::string &key, const Json::Value::UInt64 &value) = 0;
+			/**
+			* Sets the 64bit Integer value to be stored at the given key
+			*/
+			virtual void SetUInt64(const std::string &key, const Json::Value::UInt64 &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a float
-        */
-        virtual bool IsFloat(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a float
+			*/
+			virtual bool IsFloat(const std::string &key) const = 0;
 
-        /**
-        * Returns the float value stored at the given key
-        */
-        virtual float GetFloat(const std::string &key) const = 0;
+			/**
+			* Returns the float value stored at the given key
+			*/
+			virtual float GetFloat(const std::string &key) const = 0;
 
-        /**
-        * Sets the float value to be stored at the given key
-        */
-        virtual void SetFloat(const std::string &key, const float &value) = 0;
+			/**
+			* Sets the float value to be stored at the given key
+			*/
+			virtual void SetFloat(const std::string &key, const float &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is a String
-        */
-        virtual bool IsString(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is a String
+			*/
+			virtual bool IsString(const std::string &key) const = 0;
 
-        /**
-        * Returns the String value stored at the given key
-        */
-        virtual const std::string GetString(const std::string &key) const = 0;
+			/**
+			* Returns the String value stored at the given key
+			*/
+			virtual const std::string GetString(const std::string &key) const = 0;
 
-        /**
-        * Sets the String to be stored at the given key
-        */
-        virtual void SetString(const std::string &key, const std::string &value) = 0;
+			/**
+			* Sets the String to be stored at the given key
+			*/
+			virtual void SetString(const std::string &key, const std::string &value) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is an Array
-        */
-        virtual bool IsArray(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is an Array
+			*/
+			virtual bool IsArray(const std::string &key) const = 0;
 
-        /**
-        * Returns the Array value stored at the given key
-        */
-        virtual JSArray GetArray(const std::string &key) const = 0;
+			/**
+			* Returns the Array value stored at the given key
+			*/
+			virtual Array GetArray(const std::string &key) const = 0;
 
-        /**
-        * Sets the Array to be stored at the given key
-        */
-        virtual void SetArray(const std::string &key, JSArray &jsArray) = 0;
+			/**
+			* Sets the Array to be stored at the given key
+			*/
+			virtual void SetArray(const std::string &key, Array &Array) = 0;
 
-        /**
-        * Checks if the value stored at the specific key is an Object
-        */
-        virtual bool IsObject(const std::string &key) const = 0;
+			/**
+			* Checks if the value stored at the specific key is an Object
+			*/
+			virtual bool IsObject(const std::string &key) const = 0;
 
-        /**
-        * Returns the Object value stored at the given key
-        */
-        virtual JSObject GetObject(const std::string &key) const = 0;
+			/**
+			* Returns the Object value stored at the given key
+			*/
+			virtual Object GetObject(const std::string &key) const = 0;
 
-        /**
-        * Sets the Array to be stored at the given key
-        */
-        virtual void SetObject(const std::string &key, JSObject &jsObject) = 0;
-    };
+			/**
+			* Sets the Array to be stored at the given key
+			*/
+			virtual void SetObject(const std::string &key, Object &Object) = 0;
+		};
+	}    
 }

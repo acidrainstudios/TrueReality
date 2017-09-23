@@ -19,10 +19,10 @@
 * Author: Maxim Serebrennik
 */
 
-#include <trUtil/JSONFile.h>
+#include <trUtil/Json/File.h>
 
-#include <trUtil/JSArray.h>
-#include <trUtil/JSObject.h>
+#include <trUtil/Json/Array.h>
+#include <trUtil/Json/Object.h>
 
 #include <trUtil/Exception.h>
 #include <trUtil/FileUtils.h>
@@ -40,389 +40,392 @@
 
 namespace trUtil
 {
-    const std::string JSONFile::DEFAULT_JSON_FILE_NAME = std::string("Default.json");
+	namespace JSON
+	{
+		const std::string File::DEFAULT_JSON_FILE_NAME = std::string("Default.json");
 
-    //////////////////////////////////////////////////////////////////////////
-    JSONFile::JSONFile() : JSONFile(DEFAULT_JSON_FILE_NAME)
-    {}
+		//////////////////////////////////////////////////////////////////////////
+		File::File() : File(DEFAULT_JSON_FILE_NAME)
+		{}
 
-    //////////////////////////////////////////////////////////////////////////
-    JSONFile::JSONFile(std::string fileName)
-    {
-        mFileName = fileName;
-        mFilePath = PathUtils::GetUserDataPath() + PathUtils::CONFIG_PATH;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		File::File(std::string fileName)
+		{
+			mFileName = fileName;
+			mFilePath = PathUtils::GetUserDataPath() + PathUtils::CONFIG_PATH;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    JSONFile::~JSONFile()
-    {
-    }
+		//////////////////////////////////////////////////////////////////////////
+		File::~File()
+		{
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::ReadFromFile()
-    {
-        return ReadFromFile(mFileName);
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::ReadFromFile()
+		{
+			return ReadFromFile(mFileName);
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::ReadFromFile(std::string fileName)
-    {
-        try
-        {
-            mFileName = fileName;
-            std::string fullFilePath = mFilePath + "/" + mFileName;
-            Json::Reader reader;
+		//////////////////////////////////////////////////////////////////////////
+		bool File::ReadFromFile(std::string fileName)
+		{
+			try
+			{
+				mFileName = fileName;
+				std::string fullFilePath = mFilePath + "/" + mFileName;
+				Json::Reader reader;
 
-            //Open a file for reading. 
-            LOG_D("Opening JSON File for Reading: " + fullFilePath);
-  
+				//Open a file for reading. 
+				LOG_D("Opening JSON File for Reading: " + fullFilePath);
 
-            //Read the file into the input stream. 
-            LOG_D("Reading JSON File: " + fullFilePath);
-            osgDB::ifstream inputStream(fullFilePath.c_str(), std::ifstream::binary);
 
-            if (inputStream)
-            {
-                //Clear the root node for new input
-                mRoot.clear();
+				//Read the file into the input stream. 
+				LOG_D("Reading JSON File: " + fullFilePath);
+				osgDB::ifstream inputStream(fullFilePath.c_str(), std::ifstream::binary);
 
-                //Parse the stream into the document
-                LOG_D("Parsing JSON File");
-                if (!reader.parse(inputStream, mRoot))
-                {
-                    LOG_E("JSON Parsing Error: " + reader.getFormattedErrorMessages());
-                    return false;
-                }
+				if (inputStream)
+				{
+					//Clear the root node for new input
+					mRoot.clear();
 
-                //Close the input stream
-                inputStream.close();
-                return true;
-            }
-            else
-            {
-                LOG_E("Can't open: " + fullFilePath);
-                return false;
-            }           
-        }
-        catch (const trUtil::Exception& ex)
-        {
-            ex.LogException(trUtil::Logging::LogLevel::LOG_ERROR);
-            return false;
-        }        
-    }
+					//Parse the stream into the document
+					LOG_D("Parsing JSON File");
+					if (!reader.parse(inputStream, mRoot))
+					{
+						LOG_E("JSON Parsing Error: " + reader.getFormattedErrorMessages());
+						return false;
+					}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::WriteToFile()
-    {
-        return WriteToFile(mFileName);
-    }
+					//Close the input stream
+					inputStream.close();
+					return true;
+				}
+				else
+				{
+					LOG_E("Can't open: " + fullFilePath);
+					return false;
+				}
+			}
+			catch (const trUtil::Exception& ex)
+			{
+				ex.LogException(trUtil::Logging::LogLevel::LOG_ERROR);
+				return false;
+			}
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::WriteToFile(std::string fileName)
-    {
-        try
-        {
-            mFileName = fileName;
-            std::string fullFilePath = mFilePath + "/" + mFileName;
-            Json::StyledWriter writer;
+		//////////////////////////////////////////////////////////////////////////
+		bool File::WriteToFile()
+		{
+			return WriteToFile(mFileName);
+		}
 
-            //Open a file for writing
-            LOG_D("Opening JSON File for Writing: " + fullFilePath);
-            osgDB::ofstream outputStream(fullFilePath.c_str());
+		//////////////////////////////////////////////////////////////////////////
+		bool File::WriteToFile(std::string fileName)
+		{
+			try
+			{
+				mFileName = fileName;
+				std::string fullFilePath = mFilePath + "/" + mFileName;
+				Json::StyledWriter writer;
 
-            //Writing the file
-            LOG_D("Writing file");
-            outputStream << writer.write(mRoot);
-            outputStream.close();
+				//Open a file for writing
+				LOG_D("Opening JSON File for Writing: " + fullFilePath);
+				osgDB::ofstream outputStream(fullFilePath.c_str());
 
-            return true;
-        }
-        catch (const trUtil::Exception& ex)
-        {
-            ex.LogException(trUtil::Logging::LogLevel::LOG_ERROR);
-            return false;
-        }
-    }
+				//Writing the file
+				LOG_D("Writing file");
+				outputStream << writer.write(mRoot);
+				outputStream.close();
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetFileName(std::string fileName)
-    {
-        mFileName = fileName;
-    }
+				return true;
+			}
+			catch (const trUtil::Exception& ex)
+			{
+				ex.LogException(trUtil::Logging::LogLevel::LOG_ERROR);
+				return false;
+			}
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    std::string JSONFile::GetFileName() const 
-    {
-        return mFileName;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetFileName(std::string fileName)
+		{
+			mFileName = fileName;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetFilePath(std::string newPath)
-    {
-        mFilePath = newPath;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		std::string File::GetFileName() const
+		{
+			return mFileName;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    std::string JSONFile::GetFilePath() const
-    {
-        return mFilePath;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetFilePath(std::string newPath)
+		{
+			mFilePath = newPath;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::FileExists() 
-    {        
-        return trUtil::FileUtils::GetInstance().FileExists(mFilePath + "/" + mFileName);
-    }
+		//////////////////////////////////////////////////////////////////////////
+		std::string File::GetFilePath() const
+		{
+			return mFilePath;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    Json::Value& JSONFile::GetJSONRoot()
-    {
-        return mRoot;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::FileExists()
+		{
+			return trUtil::FileUtils::GetInstance().FileExists(mFilePath + "/" + mFileName);
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::PrintJSONRoot()
-    {
-        std::cout << mRoot << std::endl;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		Json::Value& File::GetJSONRoot()
+		{
+			return mRoot;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::KeyPresent(const std::string &key) const
-    {
-        return mRoot.isMember(key);
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::PrintJSONRoot()
+		{
+			std::cout << mRoot << std::endl;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsNull(const std::string &key) const
-    {
-        return mRoot[key].isNull();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::KeyPresent(const std::string &key) const
+		{
+			return mRoot.isMember(key);
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetNull(const std::string &key)
-    {
-        mRoot[key] = Json::Value();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsNull(const std::string &key) const
+		{
+			return mRoot[key].isNull();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsBool(const std::string &key) const
-    {
-        return mRoot[key].isBool();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetNull(const std::string &key)
+		{
+			mRoot[key] = Json::Value();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::GetBool(const std::string &key) const
-    {
-        return mRoot[key].asBool();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsBool(const std::string &key) const
+		{
+			return mRoot[key].isBool();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetBool(const std::string &key, const bool &value)
-    {
-        mRoot[key] = value;
-    }
-    
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsTrue(const std::string &key) const
-    {
-        if (KeyPresent(key))
-        {
-            if (GetBool(key) == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return false;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::GetBool(const std::string &key) const
+		{
+			return mRoot[key].asBool();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsFalse(const std::string &key) const
-    {
-        if (KeyPresent(key))
-        {
-            if (GetBool(key) == false)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return false;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetBool(const std::string &key, const bool &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsNumber(const std::string &key) const
-    {
-        return mRoot[key].isNumeric();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsTrue(const std::string &key) const
+		{
+			if (KeyPresent(key))
+			{
+				if (GetBool(key) == true)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			return false;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsInt(const std::string &key) const
-    {
-        return mRoot[key].isInt();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsFalse(const std::string &key) const
+		{
+			if (KeyPresent(key))
+			{
+				if (GetBool(key) == false)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			return false;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    int JSONFile::GetInt(const std::string &key) const
-    {
-        return mRoot[key].asInt();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsNumber(const std::string &key) const
+		{
+			return mRoot[key].isNumeric();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetInt(const std::string &key, const int &value)
-    {
-        mRoot[key] = value;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsInt(const std::string &key) const
+		{
+			return mRoot[key].isInt();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsDouble(const std::string &key) const
-    {
-        return mRoot[key].isDouble();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		int File::GetInt(const std::string &key) const
+		{
+			return mRoot[key].asInt();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    double JSONFile::GetDouble(const std::string &key) const
-    {
-        return mRoot[key].asDouble();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetInt(const std::string &key, const int &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetDouble(const std::string &key, const double &value)
-    {
-        mRoot[key] = value;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsDouble(const std::string &key) const
+		{
+			return mRoot[key].isDouble();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsUInt(const std::string &key) const
-    {
-        return mRoot[key].isUInt();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		double File::GetDouble(const std::string &key) const
+		{
+			return mRoot[key].asDouble();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    unsigned int JSONFile::GetUInt(const std::string &key) const
-    {
-        return mRoot[key].asUInt();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetDouble(const std::string &key, const double &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetUInt(const std::string &key, const unsigned int &value)
-    {
-        mRoot[key] = value;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsUInt(const std::string &key) const
+		{
+			return mRoot[key].isUInt();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsInt64(const std::string &key) const
-    {
-        return mRoot[key].isInt64();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		unsigned int File::GetUInt(const std::string &key) const
+		{
+			return mRoot[key].asUInt();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    Json::Value::Int64 JSONFile::GetInt64(const std::string &key) const
-    {
-        return mRoot[key].asInt64();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetUInt(const std::string &key, const unsigned int &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetInt64(const std::string &key, const Json::Value::Int64 &value)
-    {
-        mRoot[key] = value;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsInt64(const std::string &key) const
+		{
+			return mRoot[key].isInt64();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsUInt64(const std::string &key) const
-    {
-        return mRoot[key].isUInt64();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		Json::Value::Int64 File::GetInt64(const std::string &key) const
+		{
+			return mRoot[key].asInt64();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    Json::Value::UInt64 JSONFile::GetUInt64(const std::string &key) const
-    {
-        return mRoot[key].asUInt64();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetInt64(const std::string &key, const Json::Value::Int64 &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetUInt64(const std::string &key, const Json::Value::UInt64 &value)
-    {
-        mRoot[key] = value;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsUInt64(const std::string &key) const
+		{
+			return mRoot[key].isUInt64();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsFloat(const std::string &key) const
-    {
-        return mRoot[key].isNumeric();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		Json::Value::UInt64 File::GetUInt64(const std::string &key) const
+		{
+			return mRoot[key].asUInt64();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    float JSONFile::GetFloat(const std::string &key) const
-    {
-        return mRoot[key].asFloat();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetUInt64(const std::string &key, const Json::Value::UInt64 &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetFloat(const std::string &key, const float &value)
-    {
-        mRoot[key] = value;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsFloat(const std::string &key) const
+		{
+			return mRoot[key].isNumeric();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsString(const std::string &key) const
-    {
-        return mRoot[key].isString();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		float File::GetFloat(const std::string &key) const
+		{
+			return mRoot[key].asFloat();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    const std::string JSONFile::GetString(const std::string &key) const
-    {
-        return mRoot[key].asString();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetFloat(const std::string &key, const float &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetString(const std::string &key, const std::string &value)
-    {
-        mRoot[key] = value;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsString(const std::string &key) const
+		{
+			return mRoot[key].isString();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsArray(const std::string &key) const
-    {
-        return mRoot[key].isArray();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		const std::string File::GetString(const std::string &key) const
+		{
+			return mRoot[key].asString();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    JSArray JSONFile::GetArray(const std::string &key) const
-    {
-        JSArray tempArray(mRoot[key]);
-        return tempArray;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetString(const std::string &key, const std::string &value)
+		{
+			mRoot[key] = value;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetArray(const std::string &key, JSArray &jsArray)
-    {
-        mRoot[key] = jsArray.GetJSONRoot();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsArray(const std::string &key) const
+		{
+			return mRoot[key].isArray();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    bool JSONFile::IsObject(const std::string &key) const
-    {
-        return mRoot[key].isObject();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		Array File::GetArray(const std::string &key) const
+		{
+			Array tempArray(mRoot[key]);
+			return tempArray;
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    JSObject JSONFile::GetObject(const std::string &key) const
-    {
-        JSObject tempObject(mRoot[key]);
-        return tempObject;
-    }
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetArray(const std::string &key, Array &Array)
+		{
+			mRoot[key] = Array.GetJSONRoot();
+		}
 
-    //////////////////////////////////////////////////////////////////////////
-    void JSONFile::SetObject(const std::string &key, JSObject &jsObject)
-    {
-        mRoot[key] = jsObject.GetJSONRoot();
-    }
+		//////////////////////////////////////////////////////////////////////////
+		bool File::IsObject(const std::string &key) const
+		{
+			return mRoot[key].isObject();
+		}
+
+		//////////////////////////////////////////////////////////////////////////
+		Object File::GetObject(const std::string &key) const
+		{
+			Object tempObject(mRoot[key]);
+			return tempObject;
+		}
+
+		//////////////////////////////////////////////////////////////////////////
+		void File::SetObject(const std::string &key, Object &Object)
+		{
+			mRoot[key] = Object.GetJSONRoot();
+		}
+	}    
 }
