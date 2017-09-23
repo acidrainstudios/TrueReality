@@ -70,7 +70,7 @@ namespace trUtil
 			/**
 			* Clears the internal JSON Root node.
 			*/
-			void Clear();
+			void Clear() override;
 
 			/**
 			* Removes a given element of the array.
@@ -82,187 +82,187 @@ namespace trUtil
 			/**
 			* Returns a reference to the internal JSON Root node.
 			*/
-			virtual Json::Value& GetJSONRoot();
+			virtual Json::Value& GetJSONRoot() override;
 
 			/**
 			* Prints out to the screen the whole JSON Root content.
 			*/
-			virtual void PrintJSONRoot();
+			virtual void PrintJSONRoot() override;
 
 			/**
 			* Checks if the value stored at the specific index is a NULL
 			*/
-			virtual bool IsNull(int &index) const;
+			virtual bool IsNull(int &index) const override;
 
 			/**
 			* Add a NULL Value to the Array
 			*/
-			virtual void AddNull();
+			virtual void AddNull() override;
 
 			/**
 			* Checks if the value stored at the specific index is a Boolean
 			*/
-			virtual bool IsBool(int &index) const;
+			virtual bool IsBool(int &index) const override;
 
 			/**
 			* Returns the Boolean value stored at the given index
 			*/
-			virtual bool GetBool(int &index) const;
+			virtual bool GetBool(int &index) const override;
 
 			/**
 			* Adds a Boolean to the Array
 			*/
-			virtual void AddBool(const bool &value);
+			virtual void AddBool(const bool &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is True
 			*/
-			virtual bool IsTrue(int &index) const;
+			virtual bool IsTrue(int &index) const override;
 
 			/**
 			* Checks if the value stored at the specific index is False
 			*/
-			virtual bool IsFalse(int &index) const;
+			virtual bool IsFalse(int &index) const override;
 
 			/**
 			* Checks if the value stored at the specific index is a Number
 			*/
-			virtual bool IsNumber(int &index) const;
+			virtual bool IsNumber(int &index) const override;
 
 			/**
 			* Checks if the value stored at the specific index is an Integer
 			*/
-			virtual bool IsInt(int &index) const;
+			virtual bool IsInt(int &index) const override;
 
 			/**
 			* Returns the Integer value stored at the given index
 			*/
-			virtual int GetInt(int &index) const;
+			virtual int GetInt(int &index) const override;
 
 			/**
 			* Adds the Integer value to the Array
 			*/
-			virtual void AddInt(const int &value);
+			virtual void AddInt(const int &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is a Double
 			*/
-			virtual bool IsDouble(int &index) const;
+			virtual bool IsDouble(int &index) const override;
 
 			/**
 			* Returns the Double value stored at the given index
 			*/
-			virtual double GetDouble(int &index) const;
+			virtual double GetDouble(int &index) const override;
 
 			/**
 			* Adds the Double value to the Array
 			*/
-			virtual void AddDouble(const double &value);
+			virtual void AddDouble(const double &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is an Unsigned Integer
 			*/
-			virtual bool IsUInt(int &index) const;
+			virtual bool IsUInt(int &index) const override;
 
 			/**
 			* Returns the Unsigned Integer value stored at the given index
 			*/
-			virtual unsigned int GetUInt(int &index) const;
+			virtual unsigned int GetUInt(int &index) const override;
 
 			/**
 			* Adds the Unsigned Integer value the Array
 			*/
-			virtual void AddUInt(const unsigned int &value);
+			virtual void AddUInt(const unsigned int &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is a 64bit Integer
 			*/
-			virtual bool IsInt64(int &index) const;
+			virtual bool IsInt64(int &index) const override;
 
 			/**
 			* Returns the 64bit Integer value stored at the given index
 			*/
-			virtual Json::Value::Int64 GetInt64(int &index) const;
+			virtual Json::Value::Int64 GetInt64(int &index) const override;
 
 			/**
 			* Adds the 64bit Integer value to the Array
 			*/
-			virtual void AddInt64(const Json::Value::Int64 &value);
+			virtual void AddInt64(const Json::Value::Int64 &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is a 64bit Integer
 			*/
-			virtual bool IsUInt64(int &index) const;
+			virtual bool IsUInt64(int &index) const override;
 
 			/**
 			* Returns the 64bit Integer value stored at the given index
 			*/
-			virtual Json::Value::UInt64 GetUInt64(int &index) const;
+			virtual Json::Value::UInt64 GetUInt64(int &index) const override;
 
 			/**
 			* Adds the 64bit Integer value to the Array
 			*/
-			virtual void AddUInt64(const Json::Value::UInt64 &value);
+			virtual void AddUInt64(const Json::Value::UInt64 &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is a float
 			*/
-			virtual bool IsFloat(int &index) const;
+			virtual bool IsFloat(int &index) const override;
 
 			/**
 			* Returns the float value stored at the given index
 			*/
-			virtual float GetFloat(int &index) const;
+			virtual float GetFloat(int &index) const override;
 
 			/**
 			* Adds the float value to the Array
 			*/
-			virtual void AddFloat(const float &value);
+			virtual void AddFloat(const float &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is a String
 			*/
-			virtual bool IsString(int &index) const;
+			virtual bool IsString(int &index) const override;
 
 			/**
 			* Returns the String value stored at the given index
 			*/
-			virtual const std::string GetString(int &index) const;
+			virtual const std::string GetString(int &index) const override;
 
 			/**
 			* Adds the String to the Array
 			*/
-			virtual void AddString(const std::string &value);
+			virtual void AddString(const std::string &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is an Array
 			*/
-			virtual bool IsArray(int &index) const;
+			virtual bool IsArray(int &index) const override;
 
 			/**
 			* Returns the Array value stored at the given index
 			*/
-			virtual Array GetArray(int &index) const;
+			virtual Array GetArray(int &index) const override;
 
 			/**
 			* Adds the Array to the Array
 			*/
-			virtual void AddArray(Array &Array);
+			virtual void AddArray(Array &Array) override;
 
 			/**
 			* Checks if the value stored at the specific index is an Object
 			*/
-			virtual bool IsObject(int &index) const;
+			virtual bool IsObject(int &index) const override;
 
 			/**
 			* Returns the Object value stored at the given index
 			*/
-			virtual Object GetObject(int &index) const;
+			virtual Object GetObject(int &index) const override;
 
 			/**
 			* Adds the Object to the Array
 			*/
-			virtual void AddObject(Object &Object);
+			virtual void AddObject(Object &Object) override;
 
 		private:
 			Json::Value mRoot = Json::Value(Json::arrayValue);
