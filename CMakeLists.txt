@@ -64,19 +64,28 @@ OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
 MARK_AS_ADVANCED(CMAKE_USE_RELATIVE_PATHS)
 
 # *****************************************************************************
+# Sets Library Specific Dependencies*******************************************
 # *****************************************************************************
-# *****************************************************************************
-
 IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
     TR_DETECT_DEPENDENCY (OSG)
     TR_DETECT_DEPENDENCY (OpenThreads)
     INCLUDE_DIRECTORIES (${OSG_INCLUDE_DIR} ${OPENTHREADS_INCLUDE_DIR})
 ENDIF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
 
+# trUtil packages
+IF (TR_UTIL)
+    TR_DETECT_DEPENDENCY (JsonCpp)
+    INCLUDE_DIRECTORIES (${JSON_CPP_INCLUDE_DIR})
+ENDIF (TR_UTIL)
+
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
+
 # Sets up platform specific configuration
 INCLUDE (PlatformConfiguration)
 
-#Sets the Debug and Release library naming formats, but not executables.
+# Sets the Debug and Release library naming formats, but not executables.
 IF(TR_BUILD_VERSIONED_LIBRARIES)    
     IF(WIN32)
         SET (CMAKE_SHARED_LIBRARY_PREFIX ${TR_SO_PREFIX})
@@ -87,12 +96,11 @@ IF(TR_BUILD_VERSIONED_LIBRARIES)
     ENDIF()
 ENDIF(TR_BUILD_VERSIONED_LIBRARIES)
 
-#Sets the postfix on libraries. 
+# Sets the postfix on libraries. 
 SET (CMAKE_DEBUG_POSTFIX "-d" CACHE STRING "Set Debug library postfix" FORCE)
 SET (CMAKE_RELEASE_POSTFIX "" CACHE STRING "Set Release library postfix" FORCE)
 SET (CMAKE_RELWITHDEBINFO_POSTFIX "-rd" CACHE STRING "Set RelWithDebInfo library postfix" FORCE)
 SET (CMAKE_MINSIZEREL_POSTFIX "-rms" CACHE STRING "Set MinSizeRel library postfix" FORCE)
-
 
 # Sets the include directories; Visible to all CMakeLists.txt files
 INCLUDE_DIRECTORIES(
@@ -114,6 +122,7 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in"
 # *****************************************************************************
 # *****************************************************************************
 
+# Sets Available Build Types
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
 
 # Displays the current version of True Reality ********************************
