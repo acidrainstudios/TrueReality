@@ -25,7 +25,7 @@
 #include <trUtil/Export.h>
 #include <trUtil/JSON/ArrayBase.h>
 
-#include <json/json.h>
+//#include <json/json.h>
 
 #include <string>
 
@@ -45,7 +45,7 @@ namespace trUtil
 			/**
 			* ctor that takes a JSON Value of an Array type as input.
 			*/
-			Array(const Json::Value &Array);
+			Array(const Value &Array);
 
 			/**
 			* dtor
@@ -55,7 +55,7 @@ namespace trUtil
 			/**
 			* Access an array element (zero based index ).
 			*/
-			Json::Value& operator[](int index);
+			Value& operator[](int index);
 
 			/**
 			* Get the size of the array
@@ -77,12 +77,12 @@ namespace trUtil
 			* Passes back the removed value though the pointer and sets
 			* the return to TRUE
 			*/
-			bool RemoveIndex(int index, Json::Value *removedVal);
+			bool RemoveIndex(int index, Value *removedVal);
 
 			/**
 			* Returns a reference to the internal JSON Root node.
 			*/
-			virtual Json::Value& GetJSONRoot() override;
+			virtual Value& GetJSONRoot() override;
 
 			/**
 			* Prints out to the screen the whole JSON Root content.
@@ -182,12 +182,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given index
 			*/
-			virtual Json::Value::Int64 GetInt64(int &index) const override;
+			virtual Int64 GetInt64(int &index) const override;
 
 			/**
 			* Adds the 64bit Integer value to the Array
 			*/
-			virtual void AddInt64(const Json::Value::Int64 &value) override;
+			virtual void AddInt64(const Int64 &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is a 64bit Integer
@@ -197,12 +197,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given index
 			*/
-			virtual Json::Value::UInt64 GetUInt64(int &index) const override;
+			virtual UInt64 GetUInt64(int &index) const override;
 
 			/**
 			* Adds the 64bit Integer value to the Array
 			*/
-			virtual void AddUInt64(const Json::Value::UInt64 &value) override;
+			virtual void AddUInt64(const UInt64 &value) override;
 
 			/**
 			* Checks if the value stored at the specific index is a float
@@ -265,7 +265,7 @@ namespace trUtil
 			virtual void AddObject(Object &Object) override;
 
 		private:
-			Json::Value mRoot = Json::Value(Json::arrayValue);
+			Value mRoot = Value(ValueType::arrayValue);
 		};
 	}    
 }

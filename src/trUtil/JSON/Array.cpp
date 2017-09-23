@@ -37,7 +37,7 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Array::Array(const Json::Value &Array)
+		Array::Array(const Value &Array)
 		{
 			mRoot = Array;
 		}
@@ -48,7 +48,7 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value& Array::operator[](int index)
+		Value& Array::operator[](int index)
 		{
 			if (index < 0)
 			{
@@ -75,13 +75,13 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		bool Array::RemoveIndex(int index, Json::Value *removedVal)
+		bool Array::RemoveIndex(int index, Value *removedVal)
 		{
 			return mRoot.removeIndex(index, removedVal);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value& Array::GetJSONRoot()
+		Value& Array::GetJSONRoot()
 		{
 			return mRoot;
 		}
@@ -101,7 +101,7 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddNull()
 		{
-			mRoot.append(Json::Value());
+			mRoot.append(Value());
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -215,13 +215,13 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value::Int64 Array::GetInt64(int &index) const
+		Int64 Array::GetInt64(int &index) const
 		{
 			return mRoot[index].asInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void Array::AddInt64(const Json::Value::Int64 &value)
+		void Array::AddInt64(const Int64 &value)
 		{
 			mRoot.append(value);
 		}
@@ -233,13 +233,13 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value::UInt64 Array::GetUInt64(int &index) const
+		UInt64 Array::GetUInt64(int &index) const
 		{
 			return mRoot[index].asUInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void Array::AddUInt64(const Json::Value::UInt64 &value)
+		void Array::AddUInt64(const UInt64 &value)
 		{
 			mRoot.append(value);
 		}
