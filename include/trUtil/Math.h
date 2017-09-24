@@ -34,7 +34,7 @@ namespace trUtil
 		static const double PI_OVER_2 = osg::PI_2;                      /// pi/2
 		static const double PI_OVER_4 = osg::PI_4;                      /// pi/4
 		static const double TWO_PI = trUtil::Math::PI * 2.0;            /// pi*2
-		static const double FOUR_PI = trUtil::Math::PI * 4.0;            /// pi*4
+		static const double FOUR_PI = trUtil::Math::PI * 4.0;           /// pi*4
 		static const double SQRT_PI = 1.77245385090551602729816748334;  /// pi^(1/2)
 		static const double E = 2.7182818284590452354;                  /// e
 		static const double LOG_OF_2 = osg::LN_2;                       /// ln(2)
