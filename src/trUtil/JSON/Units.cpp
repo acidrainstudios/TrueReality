@@ -21,24 +21,9 @@
 
 #include <trUtil/JSON/Units.h>
 
-#include <json/writer.h>
-
-//#include <memory>
-
 namespace trUtil
 {
 	namespace JSON
 	{
-
-		std::ostream& operator<<(std::ostream& out, const Value& root)
-		{
-			//typedef std::unique_ptr<Json::StreamWriter> StreamWriterPtr;
-
-			//Json::StreamWriterBuilder builder;
-			//StreamWriterPtr const writer(builder.newStreamWriter());
-			//writer->write(root, &out);
-			//return out;
-			return Json::operator<<(out, root);
-		}
 	}
 }
