@@ -35,6 +35,7 @@ namespace trUtil
 
 			typedef Json::ValueType ValueType;
 			typedef Json::Value Value;
+			typedef Json::Value::Members Members;
 			typedef Json::UInt UInt;
 			typedef Json::Int Int;
 			typedef Json::UInt64 UInt64;
@@ -46,6 +47,7 @@ namespace trUtil
 
 		typedef TR_UTIL_EXPORT Units::ValueType ValueType;
 		typedef TR_UTIL_EXPORT Units::Value Value;
+		typedef TR_UTIL_EXPORT Units::Value::Members Members;
 		typedef TR_UTIL_EXPORT Units::Value::UInt UInt;
 		typedef TR_UTIL_EXPORT Units::Value::Int Int;
 		typedef TR_UTIL_EXPORT Units::Value::UInt64 UInt64;
