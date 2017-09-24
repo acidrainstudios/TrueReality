@@ -32,7 +32,8 @@
 #include <trUtil/WarningUtils.h>
 #include <trUtil/Logging/Log.h>
 
-#include <json/json.h>
+#include <json/reader.h>
+#include <json/writer.h>
 #include <osgDB/fstream>
 
 #include <iostream>
@@ -183,7 +184,7 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value& File::GetJSONRoot()
+		Value& File::GetJSONRoot()
 		{
 			return mRoot;
 		}
@@ -209,7 +210,7 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetNull(const std::string &key)
 		{
-			mRoot[key] = Json::Value();
+			mRoot[key] = Value();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -331,13 +332,13 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value::Int64 File::GetInt64(const std::string &key) const
+		Int64 File::GetInt64(const std::string &key) const
 		{
 			return mRoot[key].asInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void File::SetInt64(const std::string &key, const Json::Value::Int64 &value)
+		void File::SetInt64(const std::string &key, const Int64 &value)
 		{
 			mRoot[key] = value;
 		}
@@ -349,13 +350,13 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value::UInt64 File::GetUInt64(const std::string &key) const
+		UInt64 File::GetUInt64(const std::string &key) const
 		{
 			return mRoot[key].asUInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void File::SetUInt64(const std::string &key, const Json::Value::UInt64 &value)
+		void File::SetUInt64(const std::string &key, const UInt64 &value)
 		{
 			mRoot[key] = value;
 		}
