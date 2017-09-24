@@ -23,9 +23,8 @@
 
 
 #include <trUtil/Export.h>
-#include <trUtil/JSON/Base.h>
 
-#include <json/json.h>
+#include <trUtil/JSON/Base.h>
 
 #include <string>
 
@@ -45,7 +44,7 @@ namespace trUtil
 			/**
 			* ctor that takes a JSON Value of Object type as input.
 			*/
-			Object(const Json::Value &Object);
+			Object(const Value &Object);
 
 			/**
 			* dtor
@@ -55,7 +54,7 @@ namespace trUtil
 			/**
 			* Returns the value names contained in the object
 			*/
-			const Json::Value::Members GetMemberNames() const;
+			const Members GetMemberNames() const;
 
 			/**
 			* Clears the internal JSON Root node.
@@ -65,7 +64,7 @@ namespace trUtil
 			/**
 			* Returns a reference to the internal JSON Root node.
 			*/
-			virtual Json::Value& GetJSONRoot() override;
+			virtual Value& GetJSONRoot() override;
 
 			/**
 			* Prints out to the screen the whole JSON Root content.
@@ -170,12 +169,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given key
 			*/
-			virtual Json::Value::Int64 GetInt64(const std::string &key) const override;
+			virtual Int64 GetInt64(const std::string &key) const override;
 
 			/**
 			* Sets the 64bit Integer value to be stored at the given key
 			*/
-			virtual void SetInt64(const std::string &key, const Json::Value::Int64 &value) override;
+			virtual void SetInt64(const std::string &key, const Int64 &value) override;
 
 			/**
 			* Checks if the value stored at the specific key is a 64bit Integer
@@ -185,12 +184,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given key
 			*/
-			virtual Json::Value::UInt64 GetUInt64(const std::string &key) const override;
+			virtual UInt64 GetUInt64(const std::string &key) const override;
 
 			/**
 			* Sets the 64bit Integer value to be stored at the given key
 			*/
-			virtual void SetUInt64(const std::string &key, const Json::Value::UInt64 &value) override;
+			virtual void SetUInt64(const std::string &key, const UInt64 &value) override;
 
 			/**
 			* Checks if the value stored at the specific key is a float
@@ -253,7 +252,7 @@ namespace trUtil
 			virtual void SetObject(const std::string &key, Object &Object) override;
 
 		private:
-			Json::Value mRoot = Json::Value(Json::objectValue);
+			Value mRoot = Value(ValueType::objectValue);
 		};
 	}    
 }

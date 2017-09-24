@@ -23,11 +23,7 @@
 
 #include <trUtil/JSON/Array.h>
 
-#include <json/json.h>
-
 #include <iostream>
-
-
 
 namespace trUtil
 {
@@ -38,7 +34,7 @@ namespace trUtil
 		{}
 
 		//////////////////////////////////////////////////////////////////////////
-		Object::Object(const Json::Value &Object)
+		Object::Object(const Value &Object)
 		{
 			mRoot = Object;
 		}
@@ -48,7 +44,7 @@ namespace trUtil
 		{}
 
 		//////////////////////////////////////////////////////////////////////////
-		const Json::Value::Members Object::GetMemberNames() const
+		const Members Object::GetMemberNames() const
 		{
 			return mRoot.getMemberNames();
 		}
@@ -60,7 +56,7 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value& Object::GetJSONRoot()
+		Value& Object::GetJSONRoot()
 		{
 			return mRoot;
 		}
@@ -208,13 +204,13 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value::Int64 Object::GetInt64(const std::string &key) const
+		Int64 Object::GetInt64(const std::string &key) const
 		{
 			return mRoot[key].asInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void Object::SetInt64(const std::string &key, const Json::Value::Int64 &value)
+		void Object::SetInt64(const std::string &key, const Int64 &value)
 		{
 			mRoot[key] = value;
 		}
@@ -226,13 +222,13 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Json::Value::UInt64 Object::GetUInt64(const std::string &key) const
+		UInt64 Object::GetUInt64(const std::string &key) const
 		{
 			return mRoot[key].asUInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void Object::SetUInt64(const std::string &key, const Json::Value::UInt64 &value)
+		void Object::SetUInt64(const std::string &key, const UInt64 &value)
 		{
 			mRoot[key] = value;
 		}
