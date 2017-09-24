@@ -35,7 +35,7 @@
 //#include <dtCore/Scene.h>
 //#include <dtCore/View.h>
 
-#include "ConfigParser.h"
+//#include "ConfigParser.h"
 
 
 namespace trUtil

@@ -23,8 +23,9 @@
 
 #include <trUtil/Export.h>
 
-#include <osg/Referenced>
 #include <trUtil/JSON/Units.h>
+
+#include <osg/Referenced>
 
 #include <stdint.h>
 #include <string>
