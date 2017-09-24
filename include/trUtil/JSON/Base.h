@@ -23,7 +23,8 @@
 
 #include <trUtil/Export.h>
 
-#include <json/value.h>
+#include <trUtil/JSON/Units.h>
+
 #include <osg/Referenced>
 
 #include <stdint.h>
@@ -51,7 +52,7 @@ namespace trUtil
 			/**
 			* Returns a reference to the internal JSON Root node.
 			*/
-			virtual Json::Value& GetJSONRoot() = 0;
+			virtual Value& GetJSONRoot() = 0;
 
 			/**
 			* Prints out to the screen the whole JSON Root content.
@@ -156,12 +157,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given key
 			*/
-			virtual Json::Value::Int64 GetInt64(const std::string &key) const = 0;
+			virtual Int64 GetInt64(const std::string &key) const = 0;
 
 			/**
 			* Sets the 64bit Integer value to be stored at the given key
 			*/
-			virtual void SetInt64(const std::string &key, const Json::Value::Int64 &value) = 0;
+			virtual void SetInt64(const std::string &key, const Int64 &value) = 0;
 
 			/**
 			* Checks if the value stored at the specific key is a 64bit Integer
@@ -171,12 +172,12 @@ namespace trUtil
 			/**
 			* Returns the 64bit Integer value stored at the given key
 			*/
-			virtual Json::Value::UInt64 GetUInt64(const std::string &key) const = 0;
+			virtual UInt64 GetUInt64(const std::string &key) const = 0;
 
 			/**
 			* Sets the 64bit Integer value to be stored at the given key
 			*/
-			virtual void SetUInt64(const std::string &key, const Json::Value::UInt64 &value) = 0;
+			virtual void SetUInt64(const std::string &key, const UInt64 &value) = 0;
 
 			/**
 			* Checks if the value stored at the specific key is a float
