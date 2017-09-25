@@ -173,6 +173,12 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
+		bool Value::HasMember(const std::string& key) const
+		{
+			return mValue->isMember(key);
+		}
+
+		//////////////////////////////////////////////////////////////////////////
 		bool Value::KeyPresent(const std::string& key) const
 		{
 			return mValue->isMember(key);

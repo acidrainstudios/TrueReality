@@ -228,6 +228,11 @@ namespace trUtil
 			const Value::Members GetMemberNames() const;
 
 			/**
+			* Returns true if a member with the passed in key is present. 
+			*/
+			bool HasMember(const std::string& key) const;
+
+			/**
 			* Checks if the JSON Root Node has an entry with a given key present
 			*/
 			virtual bool KeyPresent(const std::string &key) const;
