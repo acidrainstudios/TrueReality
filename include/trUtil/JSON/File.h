@@ -24,6 +24,7 @@
 #include <trUtil/Export.h>
 
 #include <trUtil/JSON/Base.h>
+#include <trUtil/JSON/Value.h>
 
 #include <string>
 
@@ -89,7 +90,7 @@ namespace trUtil
 
 			/**
 			* Sets the path of where the file will be read from or written to.
-			* By default the it sill be saved in the PathUtils::GetTCUserDataPath() + PathUtils::CONFIG_PATH folder.
+			* By default the it sill be saved in the PathUtils::GetUserDataPath() + PathUtils::CONFIG_PATH folder.
 			*/
 			virtual void SetFilePath(std::string newPath);
 
@@ -302,7 +303,7 @@ namespace trUtil
 			std::string mFileName;
 			std::string mFilePath;
 
-			Json::Value mRoot;
+			Value mRoot;
 		};
 	}
 }
