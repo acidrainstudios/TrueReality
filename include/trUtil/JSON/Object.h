@@ -25,6 +25,7 @@
 #include <trUtil/Export.h>
 
 #include <trUtil/JSON/Base.h>
+#include <trUtil/JSON/Value.h>
 
 #include <string>
 
@@ -54,7 +55,7 @@ namespace trUtil
 			/**
 			* Returns the value names contained in the object
 			*/
-			const Members GetMemberNames() const;
+			const Value::Members GetMemberNames() const;
 
 			/**
 			* Clears the internal JSON Root node.
@@ -252,7 +253,7 @@ namespace trUtil
 			virtual void SetObject(const std::string &key, Object &Object) override;
 
 		private:
-			Value mRoot = Value(ValueType::objectValue);
+			Value mRoot = Value(ValueType::ObjectValue);
 		};
 	}    
 }
