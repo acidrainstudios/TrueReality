@@ -59,25 +59,25 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		int Array::Size()
 		{
-			return mRoot.size();
+			return mRoot.Size();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::Resize(int newSize)
 		{
-			mRoot.resize(newSize);
+			mRoot.Resize(newSize);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::Clear()
 		{
-			mRoot.clear();
+			mRoot.Clear();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::RemoveIndex(int index, Value *removedVal)
 		{
-			return mRoot.removeIndex(index, removedVal);
+			return mRoot.RemoveIndex(index, removedVal);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -95,31 +95,31 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsNull(int &index) const
 		{
-			return mRoot[index].isNull();
+			return mRoot[index].IsNull();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddNull()
 		{
-			mRoot.append(Value());
+			mRoot.Append(Value());
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsBool(int &index) const
 		{
-			return mRoot[index].isBool();
+			return mRoot[index].IsBool();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::GetBool(int &index) const
 		{
-			return mRoot[index].asBool();
+			return mRoot[index].GetBool();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddBool(const bool &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -151,139 +151,139 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsNumber(int &index) const
 		{
-			return mRoot[index].isNumeric();
+			return mRoot[index].IsNumber();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsInt(int &index) const
 		{
-			return mRoot[index].isInt();
+			return mRoot[index].IsInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		int Array::GetInt(int &index) const
 		{
-			return mRoot[index].asInt();
+			return mRoot[index].GetInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddInt(const int &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsDouble(int &index) const
 		{
-			return mRoot[index].isDouble();
+			return mRoot[index].IsDouble();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		double Array::GetDouble(int &index) const
 		{
-			return mRoot[index].asDouble();
+			return mRoot[index].GetDouble();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddDouble(const double &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsUInt(int &index) const
 		{
-			return mRoot[index].isUInt();
+			return mRoot[index].IsUInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		unsigned int Array::GetUInt(int &index) const
 		{
-			return mRoot[index].asUInt();
+			return mRoot[index].GetUInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddUInt(const unsigned int &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsInt64(int &index) const
 		{
-			return mRoot[index].isInt64();
+			return mRoot[index].IsInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Int64 Array::GetInt64(int &index) const
 		{
-			return mRoot[index].asInt64();
+			return mRoot[index].GetInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddInt64(const Int64 &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsUInt64(int &index) const
 		{
-			return mRoot[index].isUInt64();
+			return mRoot[index].IsUInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		UInt64 Array::GetUInt64(int &index) const
 		{
-			return mRoot[index].asUInt64();
+			return mRoot[index].GetUInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddUInt64(const UInt64 &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsFloat(int &index) const
 		{
-			return mRoot[index].isNumeric();
+			return mRoot[index].IsFloat();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		float Array::GetFloat(int &index) const
 		{
-			return mRoot[index].asFloat();
+			return mRoot[index].GetFloat();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddFloat(const float &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsString(int &index) const
 		{
-			return mRoot[index].isString();
+			return mRoot[index].IsString();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const std::string Array::GetString(int &index) const
 		{
-			return mRoot[index].asString();
+			return mRoot[index].GetString();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddString(const std::string &value)
 		{
-			mRoot.append(value);
+			mRoot.Append(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsArray(int &index) const
 		{
-			return mRoot[index].isArray();
+			return mRoot[index].IsArray();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -296,13 +296,13 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddArray(Array &Array)
 		{
-			mRoot.append(Array.GetJSONRoot());
+			mRoot.Append(Array.GetJSONRoot());
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Array::IsObject(int &index) const
 		{
-			return mRoot[index].isObject();
+			return mRoot[index].IsObject();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -315,7 +315,7 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		void Array::AddObject(Object &Object)
 		{
-			mRoot.append(Object.GetJSONRoot());
+			mRoot.Append(Object.GetJSONRoot());
 		}
 	}    
 }

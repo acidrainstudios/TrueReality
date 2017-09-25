@@ -23,7 +23,9 @@
 
 
 #include <trUtil/Export.h>
+
 #include <trUtil/JSON/ArrayBase.h>
+#include <trUtil/JSON/Value.h>
 
 #include <string>
 
@@ -263,7 +265,7 @@ namespace trUtil
 			virtual void AddObject(Object &Object) override;
 
 		private:
-			Value mRoot = Value(ValueType::arrayValue);
+			Value mRoot = Value(ValueType::ArrayValue);
 		};
 	}    
 }
