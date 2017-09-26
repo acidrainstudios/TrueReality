@@ -373,30 +373,30 @@ namespace trUtil
 			/// in the array so that its size is index+1.
 			/// (You may need to say 'value[0u]' to get your compiler to distinguish
 			///  this from the operator[] which takes a string.)
-			Value& operator[](int index);
+			Value operator[](int index);
 
 			/// Access an array element (zero based index )
 			/// (You may need to say 'value[0u]' to get your compiler to distinguish
 			///  this from the operator[] which takes a string.)
-			const Value& operator[](int index) const;
+			const Value operator[](int index) const;
 
 			/// Access an object value by name, create a null member if it does not exist.
 			/// \note Because of our implementation, keys are limited to 2^30 -1 chars.
 			///  Exceeding that will cause an exception.
-			Value& operator[](const char* key);
+			Value operator[](const char* key);
 
 			/// Access an object value by name, returns null if there is no member with
 			/// that name.
-			const Value& operator[](const char* key) const;
+			const Value operator[](const char* key) const;
 
 			/// Access an object value by name, create a null member if it does not exist.
 			/// \param key may contain embedded nulls.
-			Value& operator[](const std::string& key);
+			Value operator[](const std::string& key);
 
 			/// Access an object value by name, returns null if there is no member with
 			/// that name.
 			/// \param key may contain embedded nulls.
-			const Value& operator[](const std::string& key) const;
+			const Value operator[](const std::string& key) const;
 
 			Value& operator=(Value other);
 

@@ -341,39 +341,37 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Value& Value::operator[](int index)
+		Value Value::operator[](int index)
 		{
-			Value val(mValue->operator[](index));
-			return val;
+			return Value(mValue->operator[](index));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		const Value& Value::operator[](int index) const
+		const Value Value::operator[](int index) const
 		{
-			Value val(mValue->operator[](index));
-			return val;
+			return Value(mValue->operator[](index));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Value& Value::operator[](const char* key)
+		Value Value::operator[](const char* key)
 		{
 			return Value(mValue->operator[](key));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		const Value& Value::operator[](const char* key) const
+		const Value Value::operator[](const char* key) const
 		{
 			return Value(mValue->operator[](key));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		Value& Value::operator[](const std::string& key)
+		Value Value::operator[](const std::string& key)
 		{
 			return Value(mValue->operator[](key));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		const Value& Value::operator[](const std::string& key) const
+		const Value Value::operator[](const std::string& key) const
 		{
 			return Value(mValue->operator[](key));
 		}
