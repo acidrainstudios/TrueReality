@@ -22,6 +22,7 @@
 
 #include <trUtil/JSON/Array.h>
 
+#include <trUtil/WarningUtils.h>
 #include <trUtil/JSON/Object.h>
 #include <trUtil/Logging/Log.h>
 
@@ -48,6 +49,7 @@ namespace trUtil
 		}
 
 		//////////////////////////////////////////////////////////////////////////
+		TR_DISABLE_WARNING_START_MSVC(4172)
 		Value& Array::operator[](int index)
 		{
 			if (index < 0)
@@ -56,6 +58,7 @@ namespace trUtil
 			}
 			return mRoot[index];
 		}
+		TR_DISABLE_WARNING_END
 		//////////////////////////////////////////////////////////////////////////
 		int Array::Size()
 		{

@@ -54,6 +54,8 @@ namespace trUtil
 
 			/**
 			* Access an array element (zero based index ).
+			* Disables the C4172 warning of returning a reference to a temp varible. 
+			* Should only be used if the Array is in scope. 
 			*/
 			Value& operator[](int index);
 
