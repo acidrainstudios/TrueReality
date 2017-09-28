@@ -24,7 +24,7 @@
 
 #include <trUtil/Logging/LogWriterConsole.h>
 
-#include <trUtil/Console/ConsoleTextColor.h>
+#include <trUtil/Console/TextColor.h>
 
 #include <iostream>
 #include <iomanip>
@@ -50,23 +50,23 @@ namespace trUtil
             switch (logData.logLevel)
             {
             case Logging::LogLevel::LOG_DEBUG:
-                Console::ConsoleTextColor(Console::TXT_COLOR::BRIGHT_MAGENTA);
+                Console::TextColor(Console::TXT_COLOR::BRIGHT_MAGENTA);
                 break;
 
             case Logging::LogLevel::LOG_INFO:
-                Console::ConsoleTextColor(Console::TXT_COLOR::BRIGHT_GREEN);
+                Console::TextColor(Console::TXT_COLOR::BRIGHT_GREEN);
                 break;
 
             case Logging::LogLevel::LOG_ERROR:
-                Console::ConsoleTextColor(Console::TXT_COLOR::BRIGHT_RED);
+                Console::TextColor(Console::TXT_COLOR::BRIGHT_RED);
                 break;
 
             case Logging::LogLevel::LOG_WARNING:
-                Console::ConsoleTextColor(Console::TXT_COLOR::BRIGHT_YELLOW);
+                Console::TextColor(Console::TXT_COLOR::BRIGHT_YELLOW);
                 break;
 
             case Logging::LogLevel::LOG_ALWAYS:
-                Console::ConsoleTextColor(Console::TXT_COLOR::DEFAULT);
+                Console::TextColor(Console::TXT_COLOR::DEFAULT);
                 break;
             }
 
@@ -107,7 +107,7 @@ namespace trUtil
             std::cerr << "]" << std::endl;
 
             //Change the color back to normal
-            Console::ConsoleTextColor(Console::TXT_COLOR::DEFAULT);
+            Console::TextColor(Console::TXT_COLOR::DEFAULT);
         }
     }    
 }

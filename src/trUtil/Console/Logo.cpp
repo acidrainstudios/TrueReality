@@ -22,7 +22,7 @@
 
 #include <trUtil/PlatformMacros.h>
 #include <trUtil/VersionUtil.h>
-#include <trUtil/Console/ConsoleTextColor.h>
+#include <trUtil/Console/TextColor.h>
 
 #include <iostream>
 
@@ -44,16 +44,16 @@ namespace trUtil
     #endif
 #endif
 
-            Console::ConsoleTextColor(TXT_COLOR::BRIGHT_BLUE);
+            Console::TextColor(TXT_COLOR::BRIGHT_BLUE);
 			std::cout << "    ***********************************************************************\n " << std::endl;
-            Console::ConsoleTextColor(TXT_COLOR::BRIGHT_RED);
+            Console::TextColor(TXT_COLOR::BRIGHT_RED);
 			std::cout << "                        ---------------------------- " << std::endl;
-            Console::ConsoleTextColor(TXT_COLOR::BRIGHT_YELLOW);
+            Console::TextColor(TXT_COLOR::BRIGHT_YELLOW);
 			std::cout << "                               True Reality\n " << std::endl;
 			std::cout << "                           Version - " << ver.GetVersionString() << std::endl;
-            Console::ConsoleTextColor(TXT_COLOR::BRIGHT_RED);
+            Console::TextColor(TXT_COLOR::BRIGHT_RED);
 			std::cout << "                        ----------------------------\n\n\n " << std::endl;
-            Console::ConsoleTextColor(TXT_COLOR::BRIGHT_BLUE);
+            Console::TextColor(TXT_COLOR::BRIGHT_BLUE);
 
             
             std::cout << "       True Reality " << ver.GetMajorVersion() << "." << ver.GetMinorVersion();
@@ -66,7 +66,7 @@ namespace trUtil
             std::cout << "                        Maxim.Serebrennik@gmail.com" << std::endl;
             std::cout << "                              akoufos@gmail.com\n" << std::endl;
 			std::cout << "    ***********************************************************************\n\n\n " << std::endl;
-            Console::ConsoleTextColor(TXT_COLOR::DEFAULT);
+            Console::TextColor(TXT_COLOR::DEFAULT);
 
 		}
 	}	

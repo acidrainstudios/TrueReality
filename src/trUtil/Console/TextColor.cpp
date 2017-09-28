@@ -18,7 +18,7 @@
 *
 * Author: Maxim Serebrennik
 */
-#include <trUtil/Console/ConsoleTextColor.h>
+#include <trUtil/Console/TextColor.h>
 
 
 #if defined(_WIN32)
@@ -33,7 +33,7 @@ namespace trUtil
 	namespace Console
 	{
         //////////////////////////////////////////////////////////////////////////
-		void ConsoleTextColor(TXT_COLOR TextColor)
+		void TextColor(TXT_COLOR TextColor)
 		{
 #if defined(_WIN32)
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // Get handle to standard output 
@@ -152,25 +152,25 @@ namespace trUtil
         void PrintAllColors()
         {
             //Print a sample of colors on the screen
-            ConsoleTextColor(DEFAULT);          std::cout << "DEFAULT" << std::endl;
-            ConsoleTextColor(BRIGHT_RED);       std::cout << "BRIGHT_RED" << std::endl;
-            ConsoleTextColor(RED);              std::cout << "RED" << std::endl;
-            ConsoleTextColor(BRIGHT_GREEN);     std::cout << "BRIGHT_GREEN" << std::endl;
-            ConsoleTextColor(GREEN);            std::cout << "GREEN" << std::endl;
-            ConsoleTextColor(BRIGHT_BLUE);      std::cout << "BRIGHT_BLUE" << std::endl;
-            ConsoleTextColor(BLUE);             std::cout << "BLUE" << std::endl;
-            ConsoleTextColor(BRIGHT_YELLOW);    std::cout << "BRIGHT_YELLOW" << std::endl;
-            ConsoleTextColor(YELLOW);           std::cout << "YELLOW" << std::endl;
-            ConsoleTextColor(WHITE);            std::cout << "WHITE" << std::endl;
-            ConsoleTextColor(BRIGHT_CYAN);      std::cout << "BRIGHT_CYAN" << std::endl;
-            ConsoleTextColor(CYAN);             std::cout << "CYAN" << std::endl;
-            ConsoleTextColor(BRIGHT_MAGENTA);   std::cout << "BRIGHT_MAGENTA" << std::endl;
-            ConsoleTextColor(MAGENTA);          std::cout << "MAGENTA" << std::endl;
-            ConsoleTextColor(GRAY);             std::cout << "GRAY" << std::endl;
+            TextColor(DEFAULT);          std::cout << "DEFAULT" << std::endl;
+            TextColor(BRIGHT_RED);       std::cout << "BRIGHT_RED" << std::endl;
+            TextColor(RED);              std::cout << "RED" << std::endl;
+            TextColor(BRIGHT_GREEN);     std::cout << "BRIGHT_GREEN" << std::endl;
+            TextColor(GREEN);            std::cout << "GREEN" << std::endl;
+            TextColor(BRIGHT_BLUE);      std::cout << "BRIGHT_BLUE" << std::endl;
+            TextColor(BLUE);             std::cout << "BLUE" << std::endl;
+            TextColor(BRIGHT_YELLOW);    std::cout << "BRIGHT_YELLOW" << std::endl;
+            TextColor(YELLOW);           std::cout << "YELLOW" << std::endl;
+            TextColor(WHITE);            std::cout << "WHITE" << std::endl;
+            TextColor(BRIGHT_CYAN);      std::cout << "BRIGHT_CYAN" << std::endl;
+            TextColor(CYAN);             std::cout << "CYAN" << std::endl;
+            TextColor(BRIGHT_MAGENTA);   std::cout << "BRIGHT_MAGENTA" << std::endl;
+            TextColor(MAGENTA);          std::cout << "MAGENTA" << std::endl;
+            TextColor(GRAY);             std::cout << "GRAY" << std::endl;
 
 
             //Change the color back to normal
-            ConsoleTextColor(DEFAULT);
+            TextColor(DEFAULT);
             
         }
 	}

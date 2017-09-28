@@ -21,7 +21,6 @@
 
 #include <trUtil/VersionUtil.h>
 
-#include <trUtil/Console/ConsoleTextColor.h>
 #include <trUtil/StringUtils.h>
 #include <trUtil/PathUtils.h>
 #include <trUtil/FileUtils.h>

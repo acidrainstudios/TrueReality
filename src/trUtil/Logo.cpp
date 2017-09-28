@@ -25,7 +25,7 @@
 
 #include <iostream>
 
-#include <trUtil\Console\ConsoleTextColor.h>
+#include <trUtil\Console\TextColor.h>
 #include <trUtil\Logo.h>
 
 namespace trUtil
@@ -39,11 +39,11 @@ namespace trUtil
 			#endif
 		#endif
 		
-		trUtil::Console::ConsoleTextColor(trUtil::Console::BLUE);
+		trUtil::Console::TextColor(trUtil::Console::BLUE);
 		std::cout << "    ***********************************************************************\n " << std::endl;
-		trUtil::Console::ConsoleTextColor(trUtil::Console::RED);
+		trUtil::Console::TextColor(trUtil::Console::RED);
 		std::cout << "                        ---------------------------- " << std::endl;
-		trUtil::Console::ConsoleTextColor(trUtil::Console::YELLOW);
+		trUtil::Console::TextColor(trUtil::Console::YELLOW);
 		std::cout << "                       Virtual Reality Simulation Lab\n " << std::endl;
 		std::cout << "                            Version - ";
 		
@@ -62,9 +62,9 @@ namespace trUtil
 			
 		}*/
 		std::cout << std::endl;
-		trUtil::Console::ConsoleTextColor(trUtil::Console::RED);
+		trUtil::Console::TextColor(trUtil::Console::RED);
 		std::cout << "                        ----------------------------\n\n\n " << std::endl;
-		trUtil::Console::ConsoleTextColor(trUtil::Console::BLUE);
+		trUtil::Console::TextColor(trUtil::Console::BLUE);
 		std::cout << "        VR-Sim Lab ";
 		
 		len = 0; int dot = 0;
@@ -92,7 +92,7 @@ namespace trUtil
 		std::cout << "               For more information, contact Maxim Serebrennik at" << std::endl;
 		std::cout << "                              MaximSter@gmail.com\n " << std::endl;
 		std::cout << "    ***********************************************************************\n\n\n " << std::endl;
-		trUtil::Console::ConsoleTextColor(trUtil::Console::GRAY);
+		trUtil::Console::TextColor(trUtil::Console::GRAY);
 
 	}
 }

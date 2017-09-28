@@ -20,7 +20,7 @@
 */
 #pragma once
 
-#include "../Export.h"
+#include <trUtil/Export.h>
 
 namespace trUtil
 {
@@ -51,7 +51,7 @@ namespace trUtil
 		/**
 		* Changes Text color in the console window....
 		**/
-		void TR_UTIL_EXPORT ConsoleTextColor(TXT_COLOR TextColor);
+		void TR_UTIL_EXPORT TextColor(TXT_COLOR TextColor);
 
         /**
         * Prints an example of all available colors
