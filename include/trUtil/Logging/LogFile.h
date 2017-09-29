@@ -47,7 +47,7 @@ namespace trUtil
             static const std::string LOG_FILE_DEFAULT_NAME;
                         
             /**
-            * Change the name of the log file (defaults to "TheConstruct_Log.html")
+            * Change the name of the log file (defaults to "TrueReality_Log.html")
             */
             static void SetFileName(const std::string& name);
                         

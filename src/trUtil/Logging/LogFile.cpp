@@ -36,12 +36,12 @@ namespace trUtil
         
 
 #ifdef _DEBUG
-        std::string LogFile::mTitle("The Construct SDK Log File (<font color=#A000A0>DEBUG LIBs)</font>");
+        std::string LogFile::mTitle("True Reality SDK Log File (<font color=#A000A0>DEBUG LIBs)</font>");
 #else
-        std::string LogFile::mTitle("The Construct SDK Log File");
+        std::string LogFile::mTitle("True Reality SDK Log File");
 #endif
 
-        const std::string LogFile::LOG_FILE_DEFAULT_NAME("TheConstruct_Log.html");
+        const std::string LogFile::LOG_FILE_DEFAULT_NAME("TrueReality_Log.html");
         std::string LogFile::mLogFileName = LOG_FILE_DEFAULT_NAME;
 
         //////////////////////////////////////////////////////////////////////////
