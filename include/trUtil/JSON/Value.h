@@ -172,6 +172,11 @@ namespace trUtil
 			*/
 			Value(Value&& other);
 
+            /**
+            * dtor
+            */
+            ~Value();
+
 			/**
 			* Returns a reference to the internal Json::Value.
 			*/
@@ -402,7 +407,8 @@ namespace trUtil
 
 		protected:
 
-			std::unique_ptr<Json::Value> mValue;
+            bool clearInternalVal = true;
+            Json::Value* mValuePtr = nullptr;
 		};
 
 		/**

@@ -31,355 +31,366 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(Json::Value& value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+            clearInternalVal = false;
+			mValuePtr = &value;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(ValueType type)
 		{
-			mValue = std::make_unique<Json::Value>(type);
+			mValuePtr = new Json::Value(type);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(Int value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(UInt value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(Int64 value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(UInt64 value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(double value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(const char* value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(const char* begin, const char* end)
 		{
-			mValue = std::make_unique<Json::Value>(begin, end);
+			mValuePtr = new Json::Value(begin, end);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(const std::string& value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(bool value)
 		{
-			mValue = std::make_unique<Json::Value>(value);
+			mValuePtr = new Json::Value(value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(const Value& other)
 		{
-			mValue = std::make_unique<Json::Value>(other);
+			mValuePtr = new Json::Value(other);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(Value&& other)
 		{
-			mValue = std::make_unique<Json::Value>(other);
+			mValuePtr = new Json::Value(other);
 		}
+
+        //////////////////////////////////////////////////////////////////////////
+        Value::~Value()
+        {
+            if (mValuePtr && clearInternalVal)
+            {
+                delete mValuePtr;
+                mValuePtr = nullptr;
+            }            
+        }
 
 		//////////////////////////////////////////////////////////////////////////
 		Json::Value& Value::GetJsonValue()
 		{
-			return *mValue.get();
+			return *mValuePtr;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Json::Value& Value::GetJsonValue() const
 		{
-			return *mValue.get();
+			return *mValuePtr;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Value::SetComment(const std::string & comment)
 		{
-			mValue->setComment(comment, Json::CommentPlacement::commentAfterOnSameLine);
+			mValuePtr->setComment(comment, Json::CommentPlacement::commentAfterOnSameLine);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::HasComment() const
 		{
-			return mValue->hasComment(Json::CommentPlacement::commentAfterOnSameLine);
+			return mValuePtr->hasComment(Json::CommentPlacement::commentAfterOnSameLine);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		std::string Value::GetComment() const
 		{
-			return mValue->getComment(Json::CommentPlacement::commentAfterOnSameLine);
+			return mValuePtr->getComment(Json::CommentPlacement::commentAfterOnSameLine);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Value::Clear()
 		{
-			mValue->clear();
+			mValuePtr->clear();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		int Value::Size()
 		{
-			return mValue->size();
+			return mValuePtr->size();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Value::Resize(int newSize)
 		{
-			mValue->resize(newSize);
+			mValuePtr->resize(newSize);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsValidIndex(int index) const
 		{
-			return mValue->isValidIndex(index);
+			return mValuePtr->isValidIndex(index);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::RemoveIndex(int index, Value* removedVal)
 		{
-			return mValue->removeIndex(index, &removedVal->GetJsonValue());
+			return mValuePtr->removeIndex(index, &removedVal->GetJsonValue());
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Value::Members Value::GetMemberNames() const
 		{
-			return mValue->getMemberNames();
+			return mValuePtr->getMemberNames();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::HasMember(const std::string& key) const
 		{
-			return mValue->isMember(key);
+			return mValuePtr->isMember(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::KeyPresent(const std::string& key) const
 		{
-			return mValue->isMember(key);
+			return mValuePtr->isMember(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsNull() const
 		{
-			return mValue->isNull();
+			return mValuePtr->isNull();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsEmpty() const
 		{
-			return mValue->empty();
+			return mValuePtr->empty();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Value::Append(const Value& val)
 		{
-			mValue->append(val);
+			mValuePtr->append(val);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsBool() const
 		{
-			return mValue->isBool();
+			return mValuePtr->isBool();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::GetBool() const
 		{
-			return mValue->asBool();
+			return mValuePtr->asBool();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsNumber() const
 		{
-			return mValue->isNumeric();
+			return mValuePtr->isNumeric();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsInt() const
 		{
-			return mValue->isInt();
+			return mValuePtr->isInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		int Value::GetInt() const
 		{
-			return mValue->asInt();
+			return mValuePtr->asInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsDouble() const
 		{
-			return mValue->isDouble();
+			return mValuePtr->isDouble();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		double Value::GetDouble() const
 		{
-			return mValue->asDouble();
+			return mValuePtr->asDouble();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsUInt() const
 		{
-			return mValue->isUInt();
+			return mValuePtr->isUInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		unsigned int Value::GetUInt() const
 		{
-			return mValue->asUInt();
+			return mValuePtr->asUInt();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsInt64() const
 		{
-			return mValue->isInt64();
+			return mValuePtr->isInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Int64 Value::GetInt64() const
 		{
-			return mValue->asInt64();
+			return mValuePtr->asInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsUInt64() const
 		{
-			return mValue->isUInt64();
+			return mValuePtr->isUInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		UInt64 Value::GetUInt64() const
 		{
-			return mValue->asUInt64();
+			return mValuePtr->asUInt64();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsFloat() const
 		{
-			return mValue->isNumeric();
+			return mValuePtr->isNumeric();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		float Value::GetFloat() const
 		{
-			return mValue->asFloat();
+			return mValuePtr->asFloat();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsString() const
 		{
-			return mValue->isString();
+			return mValuePtr->isString();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const std::string Value::GetString() const
 		{
-			return mValue->asString();
+			return mValuePtr->asString();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsArray() const
 		{
-			return mValue->isArray();
+			return mValuePtr->isArray();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsObject() const
 		{
-			return mValue->isObject();
+			return mValuePtr->isObject();
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::operator Json::Value() const
 		{
-			return *mValue.get();
+			return *mValuePtr;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::operator Json::Value&()
 		{
-			return *mValue.get();
+			return *mValuePtr;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::operator const Json::Value&() const
 		{
-			return *mValue.get();
+			return *mValuePtr;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value::operator Json::Value*()
 		{
-			return mValue.get();
+			return mValuePtr;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value Value::operator[](int index)
 		{
-			return Value(mValue->operator[](index));
+			return Value(mValuePtr->operator[](index));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Value Value::operator[](int index) const
 		{
-			return Value(mValue->operator[](index));
+			return Value(mValuePtr->operator[](index));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value Value::operator[](const char* key)
 		{
-			return Value(mValue->operator[](key));
+			return Value(mValuePtr->operator[](key));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Value Value::operator[](const char* key) const
 		{
-			return Value(mValue->operator[](key));
+			return Value(mValuePtr->operator[](key));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value Value::operator[](const std::string& key)
 		{
-			return Value(mValue->operator[](key));
+			return Value(mValuePtr->operator[](key));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Value Value::operator[](const std::string& key) const
 		{
-			return Value(mValue->operator[](key));
+			return Value(mValuePtr->operator[](key));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value& Value::operator=(Value other)
 		{
-			mValue->operator=(other);
+			mValuePtr->operator=(other);
 			return *this;
 		}
 
