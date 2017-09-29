@@ -19,26 +19,26 @@
 * Author: Maxim Serebrennik
 */
 
-#include <iostream>
-
 #include <Examples/Json/Utils.h>
 
-#include <trUtil/Console/TextColor.h>
 #include <trUtil/DefaultSettings.h>
-#include <trUtil/Console/Logo.h>
-#include <trUtil/PathUtils.h>
 #include <trUtil/Exception.h>
-#include <trUtil/JSONFile.h>
-#include <trUtil/JSObject.h>
-#include <trUtil/JSArray.h>
-#include <trUtil/Log.h>
+#include <trUtil/JSON/File.h>
+#include <trUtil/JSON/Object.h>
+#include <trUtil/JSON/Array.h>
+#include <trUtil/PathUtils.h>
+#include <trUtil/Console/Logo.h>
+#include <trUtil/Console/TextColor.h>
+#include <trUtil/Logging/Log.h>
+
+#include <iostream>
 
 /**
 * Software's main function. 
 */
 int main(int argc, char** argv)
 {
-    const static std::string CONFIG_FILE_NAME = "JsonDemoConf.json";
+    const static std::string CONFIG_FILE_NAME = "JsonExampleConf.json";
 	std::string logFileName;
 	std::string logLevel;
 	
@@ -59,10 +59,10 @@ int main(int argc, char** argv)
         //Start program
         std::cout << "Creating a JSON Document" << std::endl;
 
-        trUtil::JSObject jsObject;
-        trUtil::JSArray jsArray;
+        trUtil::JSON::Object jsObject;
+        trUtil::JSON::Array jsArray;
 
-        trUtil::JSONFile configFile(CONFIG_FILE_NAME);
+        trUtil::JSON::File configFile(CONFIG_FILE_NAME);
 
         std::cout << "Inputing Data into Document" << std::endl;
 
@@ -109,14 +109,14 @@ int main(int argc, char** argv)
         configFile.WriteToFile();
 
 
-        trUtil::JSONFile readFile(CONFIG_FILE_NAME);
+        trUtil::JSON::File readFile(CONFIG_FILE_NAME);
         std::cout << "\n\nReading JSON File" << std::endl;
         readFile.ReadFromFile();
 
         std::cout << "JSON File in RAM:\n" << std::endl;
         readFile.PrintJSONRoot();
 
-        trUtil::JSArray jsArr = configFile.GetObject("MyObject").GetArray("MyArray");
+        trUtil::JSON::Array jsArr = configFile.GetObject("MyObject").GetArray("MyArray");
         
         std::cout << "\nJSON Array in RAM:\n" << std::endl;
         jsArr.PrintJSONRoot();
@@ -129,7 +129,7 @@ int main(int argc, char** argv)
         }
 
         std::cout << "\nRemoving a value from the JSON Array:\n" << std::endl;
-        jsArr.RemoveIndex(5, new Json::Value);
+        jsArr.RemoveIndex(5, new trUtil::JSON::Value);
 
         std::cout << "\nJSON Array in RAM:\n" << std::endl;
         jsArr.PrintJSONRoot();
@@ -137,11 +137,10 @@ int main(int argc, char** argv)
         std::cout << "\nJSON Array Size: " << jsArr.Size() << std::endl;
 
         //Ending program
-        trUtil::Console::ConsoleTextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
 		std::cerr << "The Construct is now shutting down ... " << std::endl;
-        trUtil::Console::ConsoleTextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         LOG_A("The Construct is now shutting down ... ");
-
 	}
     catch (const trUtil::Exception& ex)
 	{
