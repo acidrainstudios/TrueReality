@@ -24,6 +24,7 @@
 
 #include <trUtil/TypeConfig.h>
 
+
 namespace trUtil
 {
 /// OS Defines
@@ -41,10 +42,7 @@ namespace trUtil
 
 #elif defined(__APPLE__)
     #define TR_APPLE
-
 #else
     #define TR_LINUX
-
 #endif
-
 }
