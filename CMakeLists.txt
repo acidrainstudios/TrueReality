@@ -28,6 +28,12 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (TR_START_AVAILABLE "YES")
     ENDIF (TR_START)
 
+# Examples folders
+    IF (EXAMPLES_JSON)
+        ADD_SUBDIRECTORY (Examples/Json)
+        SET (EXAMPLES_JSON_AVAILABLE "YES")
+    ENDIF (EXAMPLES_JSON)
+
 ENDMACRO (ADD_TR_SUBFOLDERS)
 # *****************************************************************************
 # *****************************************************************************
@@ -64,6 +70,15 @@ OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
 MARK_AS_ADVANCED(CMAKE_USE_RELATIVE_PATHS)
 
 # *****************************************************************************
+# Sets Example options ***********************************************************
+# *****************************************************************************
+option (TR_BUILD_EXAMPLES "Enables the building of TR demos and examples" ON)
+cmake_dependent_option (EXAMPLES_JSON "Enables the building of examplesJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
+
+# *****************************************************************************
 # Sets Library Specific Dependencies*******************************************
 # *****************************************************************************
 IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
@@ -74,8 +89,8 @@ ENDIF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
 
 # trUtil packages
 IF (TR_UTIL)
-    TR_DETECT_DEPENDENCY (JsonCpp)
-    INCLUDE_DIRECTORIES (${JSON_CPP_INCLUDE_DIR})
+	TR_DETECT_DEPENDENCY (JsonCpp)
+	INCLUDE_DIRECTORIES (${JSON_CPP_INCLUDE_DIR})
 ENDIF (TR_UTIL)
 
 # *****************************************************************************
