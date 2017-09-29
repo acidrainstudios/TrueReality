@@ -101,7 +101,7 @@ namespace trUtil
 		* but the Value API does *not* check bounds. That is the responsibility
 		* of the caller.
 		*/
-		class Value
+		class TR_UTIL_EXPORT Value
 		{
 		public:
 
