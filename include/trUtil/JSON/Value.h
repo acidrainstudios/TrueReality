@@ -318,7 +318,7 @@ namespace trUtil
             /**
             * Sets the Boolean value in the Object
             */
-            virtual void SetBool(const std::string& key, const bool& value);
+            virtual void SetBool(const std::string& key, bool value);
 
 			/**
 			* Checks if the value stored is a Number

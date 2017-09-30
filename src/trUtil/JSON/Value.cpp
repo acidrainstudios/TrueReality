@@ -283,7 +283,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Value::SetBool(const std::string& key, const bool& value)
+        void Value::SetBool(const std::string& key, bool value)
         {
             (*mValuePtr)[key] = value;
         }
