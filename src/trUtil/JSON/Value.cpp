@@ -216,6 +216,12 @@ namespace trUtil
             return (*mValuePtr)[key].isNull();
         }
 
+        //////////////////////////////////////////////////////////////////////////
+        void Value::SetNull(const std::string & key) const
+        {
+            (*mValuePtr)[key] = Json::Value();
+        }
+
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsEmpty() const
 		{
@@ -277,7 +283,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Value::SetBool(const std::string& key, bool value)
+        void Value::SetBool(const std::string& key, const bool& value)
         {
             (*mValuePtr)[key] = value;
         }

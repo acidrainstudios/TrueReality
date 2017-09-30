@@ -260,6 +260,11 @@ namespace trUtil
             */
             virtual bool IsNull(const std::string& key) const;
 
+            /**
+            * Sets the NULL value in the Object
+            */
+            virtual void SetNull(const std::string& key) const;
+
 			/**
 			* Return true if empty array, empty object, or null, otherwise, false.
 			*/
@@ -313,7 +318,7 @@ namespace trUtil
             /**
             * Sets the Boolean value in the Object
             */
-            virtual void SetBool(const std::string& key, bool value);
+            virtual void SetBool(const std::string& key, const bool& value);
 
 			/**
 			* Checks if the value stored is a Number
