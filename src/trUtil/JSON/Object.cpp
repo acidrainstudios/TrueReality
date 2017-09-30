@@ -76,31 +76,31 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsNull(const std::string &key) const
 		{
-			return mRoot[key].IsNull();
+			return mRoot.IsNull(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetNull(const std::string &key)
 		{
-			mRoot[key] = Json::Value();
+            mRoot.SetNull(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsBool(const std::string &key) const
 		{
-			return mRoot[key].IsBool();
+			return mRoot.IsBool(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::GetBool(const std::string &key) const
 		{
-			return mRoot[key].GetBool();
+			return mRoot.GetBool(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetBool(const std::string &key, const bool &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetBool(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -140,171 +140,169 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsNumber(const std::string &key) const
 		{
-			return mRoot[key].IsNumber();
+			return mRoot.IsNumber(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsInt(const std::string &key) const
 		{
-			return mRoot[key].IsInt();
+			return mRoot.IsInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		int Object::GetInt(const std::string &key) const
 		{
-			return mRoot[key].GetInt();
+			return mRoot.GetInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetInt(const std::string &key, const int &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetInt(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsDouble(const std::string &key) const
 		{
-			return mRoot[key].IsDouble();
+			return mRoot.IsDouble(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		double Object::GetDouble(const std::string &key) const
 		{
-			return mRoot[key].GetDouble();
+			return mRoot.GetDouble(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetDouble(const std::string &key, const double &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetDouble(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsUInt(const std::string &key) const
 		{
-			return mRoot[key].IsUInt();
+			return mRoot.IsUInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		unsigned int Object::GetUInt(const std::string &key) const
 		{
-			return mRoot[key].GetUInt();
+			return mRoot.GetUInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetUInt(const std::string &key, const unsigned int &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetUInt(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsInt64(const std::string &key) const
 		{
-			return mRoot[key].IsInt64();
+			return mRoot.IsInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Int64 Object::GetInt64(const std::string &key) const
 		{
-			return mRoot[key].GetInt64();
+			return mRoot.GetInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetInt64(const std::string &key, const Int64 &value)
 		{
-			mRoot[key] = value;
+            mRoot.SetInt64(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsUInt64(const std::string &key) const
 		{
-			return mRoot[key].IsUInt64();
+			return mRoot.IsUInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		UInt64 Object::GetUInt64(const std::string &key) const
 		{
-			return mRoot[key].GetUInt64();
+			return mRoot.GetUInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetUInt64(const std::string &key, const UInt64 &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetUInt64(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsFloat(const std::string &key) const
 		{
-			return mRoot[key].IsFloat();
+			return mRoot.IsFloat(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		float Object::GetFloat(const std::string &key) const
 		{
-			return mRoot[key].GetFloat();
+			return mRoot.GetFloat(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetFloat(const std::string &key, const float &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetFloat(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsString(const std::string &key) const
 		{
-			return mRoot[key].IsString();
+			return mRoot.IsString(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const std::string Object::GetString(const std::string &key) const
 		{
-			return mRoot[key].GetString();
+			return mRoot.GetString(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void Object::SetString(const std::string &key, const std::string &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetString(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsArray(const std::string &key) const
 		{
-			return mRoot[key].IsArray();
+			return mRoot.IsArray(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Array Object::GetArray(const std::string &key) const
 		{
-			Array tempArray(mRoot[key]);
-			return tempArray;
+			return mRoot.GetArray(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void Object::SetArray(const std::string &key, Array &Array)
+		void Object::SetArray(const std::string &key, Array& value)
 		{
-			mRoot[key] = Array.GetJSONRoot();
+			mRoot.SetArray(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool Object::IsObject(const std::string &key) const
 		{
-			return mRoot[key].IsObject();
+			return mRoot.IsObject(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Object Object::GetObject(const std::string &key) const
 		{
-			Object tempObject(mRoot[key]);
-			return tempObject;
+			return mRoot.GetObject(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void Object::SetObject(const std::string &key, Object &Object)
+		void Object::SetObject(const std::string &key, Object& value)
 		{
-			mRoot[key] = Object.GetJSONRoot();
+			mRoot.SetObject(key, value);
 		}
 	}    
 }

@@ -235,7 +235,7 @@ namespace trUtil
 			/**
 			* Sets the Array to be stored at the given key
 			*/
-			virtual void SetArray(const std::string &key, Array &Array) override;
+			virtual void SetArray(const std::string &key, Array &value) override;
 
 			/**
 			* Checks if the value stored at the specific key is an Object
@@ -250,7 +250,7 @@ namespace trUtil
 			/**
 			* Sets the Array to be stored at the given key
 			*/
-			virtual void SetObject(const std::string &key, Object &Object) override;
+			virtual void SetObject(const std::string &key, Object &value) override;
 
 		private:
 			Value mRoot = Value(ValueType::ObjectValue);
