@@ -538,6 +538,16 @@ namespace trUtil
 			*/
 			virtual bool IsArray() const;
 
+            /**
+            * Checks if the value stored is an Array
+            */
+            virtual bool IsArray(const int index) const;
+
+            /**
+            * Checks if the value stored is an Array
+            */
+            virtual bool IsArray(const std::string& key) const;
+
 			/**
 			* Checks if the value stored is an Object
 			*/
