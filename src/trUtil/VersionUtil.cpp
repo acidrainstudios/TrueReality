@@ -34,7 +34,7 @@
 
 namespace trUtil
 {
-    const std::string VersionUtil::VERSION_FILE_NAME = std::string("Version.tcver");
+    const std::string VersionUtil::VERSION_FILE_NAME = std::string("Version.trver");
     const std::string VersionUtil::MAJ_VERSION = std::string("Major");
     const std::string VersionUtil::MIN_VERSION = std::string("Minor");
     const std::string VersionUtil::YYMM_VERSION = std::string("YYMM");
