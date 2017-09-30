@@ -38,7 +38,7 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		Value::Value(ValueType type)
 		{
-			mValuePtr = new Json::Value(type);
+			mValuePtr = new Json::Value(ToValueType(type));
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -327,7 +327,77 @@ namespace trUtil
 			return mValuePtr->isObject();
 		}
 
-		//////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        Json::ValueType Value::ToValueType(ValueType val)
+        {
+            switch (val)
+            {
+            case ValueType::NullValue:
+                return Json::ValueType::nullValue;
+                break;
+            case ValueType::IntValue:
+                return Json::ValueType::intValue;
+                break;
+            case ValueType::UintValue:
+                return Json::ValueType::uintValue;
+                break;
+            case ValueType::RealValue:
+                return Json::ValueType::realValue;
+                break;
+            case ValueType::StringValue:
+                return Json::ValueType::stringValue;
+                break;
+            case ValueType::BooleanValue:
+                return Json::ValueType::booleanValue;
+                break;
+            case ValueType::ArrayValue:
+                return Json::ValueType::arrayValue;
+                break;
+            case ValueType::ObjectValue:
+                return Json::ValueType::objectValue;
+                break;
+            default:
+                return Json::ValueType::nullValue;
+                break;
+            }
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        ValueType Value::ToValueType(Json::ValueType val)
+        {
+            switch (val)
+            {
+            case Json::ValueType::nullValue:
+                return ValueType::NullValue;
+                break;
+            case Json::ValueType::intValue:
+                return ValueType::IntValue;
+                break;
+            case Json::ValueType::uintValue:
+                return ValueType::UintValue;
+                break;
+            case Json::ValueType::realValue:
+                return ValueType::RealValue;
+                break;
+            case Json::ValueType::stringValue:
+                return ValueType::StringValue;
+                break;
+            case Json::ValueType::booleanValue:
+                return ValueType::BooleanValue;
+                break;
+            case Json::ValueType::arrayValue:
+                return ValueType::ArrayValue;
+                break;
+            case Json::ValueType::objectValue:
+                return ValueType::ObjectValue;
+                break;
+            default:
+                return ValueType::NullValue;
+                break;
+            }
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		Value::operator Json::Value() const
 		{
 			return *mValuePtr;
@@ -354,37 +424,40 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		Value Value::operator[](int index)
 		{
-			return Value(mValuePtr->operator[](index));
+			return Value((*mValuePtr)[index]);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Value Value::operator[](int index) const
 		{
-			return Value(mValuePtr->operator[](index));
+			return Value((*mValuePtr)[index]);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value Value::operator[](const char* key)
 		{
-			return Value(mValuePtr->operator[](key));
+			return Value((*mValuePtr)[key]);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Value Value::operator[](const char* key) const
 		{
-			return Value(mValuePtr->operator[](key));
+			return Value((*mValuePtr)[key]);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value Value::operator[](const std::string& key)
 		{
-			return Value(mValuePtr->operator[](key));
+			//return Value(mValuePtr->operator[](key));
+            Json::Value val = (*mValuePtr)[key];
+            Value newVal(val);
+            return newVal;
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const Value Value::operator[](const std::string& key) const
 		{
-			return Value(mValuePtr->operator[](key));
+			return Value((*mValuePtr)[key]);
 		}
 
 		//////////////////////////////////////////////////////////////////////////

@@ -352,6 +352,16 @@ namespace trUtil
 			*/
 			virtual bool IsObject() const;
 
+            /**
+            * Converts JSON::ValueType to Json::ValueType
+            */
+            Json::ValueType ToValueType(ValueType val);
+
+            /**
+            * Converts Json::ValueType to JSON::ValueType
+            */
+            ValueType ToValueType(Json::ValueType val);
+
 			/**
 			* Implicit conversion operator to Json::Value
 			*/
