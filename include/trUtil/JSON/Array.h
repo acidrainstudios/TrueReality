@@ -54,10 +54,10 @@ namespace trUtil
 
 			/**
 			* Access an array element (zero based index ).
-			* Disables the C4172 warning of returning a reference to a temp varible. 
-			* Should only be used only if the Array stays scope. 
+            * The return is by value, but the internal json object is stored by
+            * reference. 
 			*/
-			Value& operator[](int index);
+			Value operator[](int index);
 
 			/**
 			* Get the size of the array
