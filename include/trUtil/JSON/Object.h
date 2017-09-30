@@ -57,6 +57,21 @@ namespace trUtil
 			*/
 			const Value::Members GetMemberNames() const;
 
+            /*
+            * Adds a comment to the internal value
+            */
+            void SetComment(const std::string& comment);
+
+            /**
+            * Checks if the internal value has a comment
+            */
+            bool HasComment() const;
+
+            /**
+            * Returns the internal comment
+            */
+            std::string GetComment() const;
+
 			/**
 			* Clears the internal JSON Root node.
 			*/
