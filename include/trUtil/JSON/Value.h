@@ -312,6 +312,17 @@ namespace trUtil
 			*/
 			virtual bool IsNumber() const;
 
+            /**
+            * Checks if the value stored is a Number
+            */
+            virtual bool IsNumber(const int index) const;
+
+            /**
+            * Checks if the value stored is a Number
+            */
+            virtual bool IsNumber(const std::string& key) const;
+
+
 			/**
 			* Checks if the value stored is an Integer
 			*/

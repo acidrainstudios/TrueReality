@@ -279,7 +279,19 @@ namespace trUtil
 			return mValuePtr->isNumeric();
 		}
 
-		//////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsNumber(const int index) const
+        {
+            return (*mValuePtr)[index].isNumeric();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsNumber(const std::string & key) const
+        {
+            return (*mValuePtr)[key].isNumeric();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsInt() const
 		{
 			return mValuePtr->isInt();
