@@ -5,8 +5,6 @@ SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 #Sets up all the versioning information
 INCLUDE (Version) 
 
-SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
-
 # *****************************************************************************
 # Adds subfolders in the True Reality CMake GUI tab **********************************
 # *****************************************************************************
@@ -130,7 +128,7 @@ ADD_TR_SUBFOLDERS()
 # *****************************************************************************
 # Set Float/Double Config header file *****************************************
 # *****************************************************************************
-SET(TR_FLOAT_DOUBLE_CONFIG_HEADER "${PROJECT_BINARY_DIR}/include/trUtil/TypeConfig.h")
+SET(TR_FLOAT_DOUBLE_CONFIG_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.h")
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in"
                "${TR_FLOAT_DOUBLE_CONFIG_HEADER}")
 # *****************************************************************************
