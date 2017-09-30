@@ -202,13 +202,13 @@ namespace trUtil
 		}
 
         //////////////////////////////////////////////////////////////////////////
-        bool Value::IsNull(int index) const
+        bool Value::IsNull(const int index) const
         {
             return (*mValuePtr)[index].isNull();
         }
 
         //////////////////////////////////////////////////////////////////////////
-        bool Value::IsNull(std::string & key) const
+        bool Value::IsNull(const std::string & key) const
         {
             return (*mValuePtr)[key].isNull();
         }
@@ -219,7 +219,19 @@ namespace trUtil
 			return mValuePtr->empty();
 		}
 
-		//////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsEmpty(const int index) const
+        {
+            return (*mValuePtr)[index].empty();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsEmpty(const std::string & key) const
+        {
+            return (*mValuePtr)[key].empty();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		void Value::Append(const Value& val)
 		{
 			mValuePtr->append(val);

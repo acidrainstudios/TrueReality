@@ -250,17 +250,27 @@ namespace trUtil
 			/**
 			* Checks if the value stored is a NULL
 			*/
-			virtual bool IsNull(int index) const;
+			virtual bool IsNull(const int index) const;
 
             /**
             * Checks if the value stored is a NULL
             */
-            virtual bool IsNull(std::string& key) const;
+            virtual bool IsNull(const std::string& key) const;
 
 			/**
 			* Return true if empty array, empty object, or null, otherwise, false.
 			*/
 			virtual bool IsEmpty() const;
+
+            /**
+            * Return true if empty array, empty object, or null, otherwise, false.
+            */
+            virtual bool IsEmpty(const int index) const;
+
+            /**
+            * Return true if empty array, empty object, or null, otherwise, false.
+            */
+            virtual bool IsEmpty(const std::string& key) const;
 
 			/**
 			* Add a value at the end of the array. 
