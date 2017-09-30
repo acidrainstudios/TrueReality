@@ -277,6 +277,12 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
+        void Value::SetBool(const std::string& key, bool value)
+        {
+            (*mValuePtr)[key] = value;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsNumber() const
 		{
 			return mValuePtr->isNumeric();

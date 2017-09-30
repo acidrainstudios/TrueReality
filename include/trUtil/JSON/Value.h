@@ -310,6 +310,11 @@ namespace trUtil
             */
             virtual bool GetBool(const std::string& key) const;
 
+            /**
+            * Sets the Boolean value in the Object
+            */
+            virtual void SetBool(const std::string& key, bool value);
+
 			/**
 			* Checks if the value stored is a Number
 			*/
