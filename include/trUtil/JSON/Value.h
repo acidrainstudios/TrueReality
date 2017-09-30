@@ -536,6 +536,11 @@ namespace trUtil
             */
             virtual float GetFloat(const std::string& key) const;
 
+            /**
+            * Sets the Float value in the Object
+            */
+            virtual void SetFloat(const std::string& key, float value);
+
 			/**
 			* Checks if the value stored is a String
 			*/
