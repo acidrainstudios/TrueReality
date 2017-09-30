@@ -418,12 +418,32 @@ namespace trUtil
 			*/
 			virtual bool IsInt64() const;
 
+            /**
+            * Checks if the value stored is a 64bit Integer
+            */
+            virtual bool IsInt64(const int index) const;
+
+            /**
+            * Checks if the value stored is a 64bit Integer
+            */
+            virtual bool IsInt64(const std::string& key) const;
+
 			/**
 			* Returns the 64bit Integer value
 			*/
 			virtual Int64 GetInt64() const;
 
-			/**
+            /**
+            * Returns the 64bit Integer value
+            */
+            virtual Int64 GetInt64(const int index) const;
+
+            /**
+            * Returns the 64bit Integer value
+            */
+            virtual Int64 GetInt64(const std::string& key) const;
+			
+            /**
 			* Checks if the value stored is a 64bit Unsigned Integer
 			*/
 			virtual bool IsUInt64() const;
