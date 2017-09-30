@@ -589,6 +589,12 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
+        void Value::SetString(const std::string& key, const std::string& value)
+        {
+            (*mValuePtr)[key] = value;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsArray() const
 		{
 			return mValuePtr->isArray();

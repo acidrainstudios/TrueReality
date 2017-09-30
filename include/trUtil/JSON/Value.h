@@ -571,6 +571,11 @@ namespace trUtil
             */
             virtual const std::string GetString(const std::string& key) const;
 
+            /**
+            * Sets the String value in the Object
+            */
+            virtual void SetString(const std::string& key, const std::string& value);
+
 			/**
 			* Checks if the value stored is an Array
 			*/
