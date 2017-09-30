@@ -49,8 +49,8 @@ namespace trUtil
             Console::TextColor(TXT_COLOR::BRIGHT_RED);
 			std::cout << "                        ---------------------------- " << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_YELLOW);
-			std::cout << "                               True Reality\n " << std::endl;
-			std::cout << "                           Version - " << ver.GetVersionString() << std::endl;
+			std::cout << "                                True Reality\n " << std::endl;
+			std::cout << "                            Version - " << ver.GetVersionString() << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_RED);
 			std::cout << "                        ----------------------------\n\n\n " << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_BLUE);
@@ -58,13 +58,11 @@ namespace trUtil
             
             std::cout << "       True Reality " << ver.GetMajorVersion() << "." << ver.GetMinorVersion();
 			std::cout << " is an Open Source SDK of Virtual Reality" << std::endl;
-			std::cout << "       Simulation Modules created and Copyright © by Acid Rain Studios LLC for" << std::endl;
-			std::cout << "       product development, testing, and sale. Some modules are" << std::endl;
+			std::cout << "       Simulation Modules created and Copyright by Acid Rain Studios LLC" << std::endl;
+			std::cout << "       for product development, testing, and sale. Some modules are" << std::endl;
 			std::cout << "       commercially licensed and some are LGPL.\n\n" << std::endl;
 			std::cout << "               For more information, contact the developers at" << std::endl;
-            std::cout << "                        AcidRainStudiosLLC@gmail.com" << std::endl;
-            std::cout << "                        Maxim.Serebrennik@gmail.com" << std::endl;
-            std::cout << "                              akoufos@gmail.com\n" << std::endl;
+            std::cout << "                        AcidRainStudiosLLC@gmail.com\n" << std::endl;
 			std::cout << "    ***********************************************************************\n\n\n " << std::endl;
             Console::TextColor(TXT_COLOR::DEFAULT);
 
