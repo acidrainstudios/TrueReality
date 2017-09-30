@@ -554,6 +554,16 @@ namespace trUtil
 			virtual bool IsObject() const;
 
             /**
+            * Checks if the value stored is an Object
+            */
+            virtual bool IsObject(const int index) const;
+
+            /**
+            * Checks if the value stored is an Object
+            */
+            virtual bool IsObject(const std::string& key) const;
+
+            /**
             * Converts JSON::ValueType to Json::ValueType
             */
             Json::ValueType ToValueType(ValueType val);

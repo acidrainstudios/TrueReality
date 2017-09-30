@@ -568,6 +568,18 @@ namespace trUtil
 		}
 
         //////////////////////////////////////////////////////////////////////////
+        bool Value::IsObject(const int index) const
+        {
+            return (*mValuePtr)[index].isObject();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsObject(const std::string & key) const
+        {
+            return (*mValuePtr)[key].isObject();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
         Json::ValueType Value::ToValueType(ValueType val)
         {
             switch (val)
