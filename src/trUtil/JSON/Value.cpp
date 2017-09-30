@@ -337,6 +337,12 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
+        void Value::SetInt(const std::string& key, int value)
+        {
+            (*mValuePtr)[key] = value;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsDouble() const
 		{
 			return mValuePtr->isDouble();

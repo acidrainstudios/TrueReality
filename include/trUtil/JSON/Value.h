@@ -361,6 +361,11 @@ namespace trUtil
             */
             virtual int GetInt(const std::string& key) const;
 
+            /**
+            * Sets the Integer value in the Object
+            */
+            virtual void SetInt(const std::string& key, int value);
+
 			/**
 			* Checks if the value stored is a Double
 			*/
