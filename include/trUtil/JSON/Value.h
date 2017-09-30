@@ -501,6 +501,11 @@ namespace trUtil
             */
             virtual UInt64 GetUInt64(const std::string& key) const;
 
+            /**
+            * Sets the Unsigned Int64 value in the Object
+            */
+            virtual void SetUInt64(const std::string& key, UInt64 value);
+
 			/**
 			* Checks if the value stored is a float
 			*/

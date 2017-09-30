@@ -505,6 +505,12 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
+        void Value::SetUInt64(const std::string& key, UInt64 value)
+        {
+            (*mValuePtr)[key] = value;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsFloat() const
 		{
 			return mValuePtr->isNumeric();
