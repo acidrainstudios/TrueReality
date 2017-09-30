@@ -634,6 +634,12 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
+        void Value::SetArray(const std::string& key, Array& value)
+        {
+            (*mValuePtr)[key] = value.GetJSONRoot();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsObject() const
 		{
 			return mValuePtr->isObject();

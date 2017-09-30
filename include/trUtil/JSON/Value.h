@@ -606,6 +606,11 @@ namespace trUtil
             */
             virtual const Array GetArray(const std::string& key) const;
 
+            /**
+            * Sets the Array value in the Object
+            */
+            virtual void SetArray(const std::string& key, Array& value);
+
 			/**
 			* Checks if the value stored is an Object
 			*/
