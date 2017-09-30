@@ -76,6 +76,7 @@ int main(int argc, char** argv)
         jsArray.AddUInt(4567);
         jsArray.AddUInt64(12098);
         jsArray.AddFloat(567.54f);
+        jsArray.SetComment("This is the Array Comment");
 
         std::cout << "JSON Array in RAM:\n" << std::endl;
         jsArray.PrintJSONRoot();
