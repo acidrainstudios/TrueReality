@@ -431,6 +431,11 @@ namespace trUtil
             */
             virtual unsigned int GetUInt(const std::string& key) const;
 
+            /**
+            * Sets the Unsigned Int value in the Object
+            */
+            virtual void SetUInt(const std::string& key, unsigned int value);
+
 			/**
 			* Checks if the value stored is a 64bit Integer
 			*/

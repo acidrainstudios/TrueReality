@@ -415,9 +415,15 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        unsigned int Value::GetUInt(const std::string & key) const
+        unsigned int Value::GetUInt(const std::string& key) const
         {
             return (*mValuePtr)[key].asUInt();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        void Value::SetUInt(const std::string& key, unsigned int value)
+        {
+            (*mValuePtr)[key] = value;
         }
 
         //////////////////////////////////////////////////////////////////////////
