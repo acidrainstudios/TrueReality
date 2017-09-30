@@ -230,6 +230,13 @@ namespace trUtil
 			*/
 			bool RemoveIndex(int index, Value *removedVal);
 
+            /**
+            * Returns the Value at the given index if this Value is an Array
+            * The return is by value, but the internal json object is stored by
+            * reference. 
+            */
+            Value Index(int index);
+
 			/**
 			* Returns the value names contained in the object
 			*/
@@ -681,36 +688,36 @@ namespace trUtil
 			*/
 			operator Json::Value* ();
 
-			/// Access an array element (zero based index ).
-			/// If the array contains less than index element, then null value are
-			/// inserted
-			/// in the array so that its size is index+1.
-			/// (You may need to say 'value[0u]' to get your compiler to distinguish
-			///  this from the operator[] which takes a string.)
-			Value operator[](int index);
+			///// Access an array element (zero based index ).
+			///// If the array contains less than index element, then null value are
+			///// inserted
+			///// in the array so that its size is index+1.
+			///// (You may need to say 'value[0u]' to get your compiler to distinguish
+			/////  this from the operator[] which takes a string.)
+			//Value operator[](int index);
 
-			/// Access an array element (zero based index )
-			/// (You may need to say 'value[0u]' to get your compiler to distinguish
-			///  this from the operator[] which takes a string.)
-			const Value operator[](int index) const;
+			///// Access an array element (zero based index )
+			///// (You may need to say 'value[0u]' to get your compiler to distinguish
+			/////  this from the operator[] which takes a string.)
+			//const Value operator[](int index) const;
 
-			/// Access an object value by name, create a null member if it does not exist.
-			/// \note Because of our implementation, keys are limited to 2^30 -1 chars.
-			///  Exceeding that will cause an exception.
-			Value operator[](const char* key);
+			///// Access an object value by name, create a null member if it does not exist.
+			///// \note Because of our implementation, keys are limited to 2^30 -1 chars.
+			/////  Exceeding that will cause an exception.
+			//Value operator[](const char* key);
 
-			/// Access an object value by name, returns null if there is no member with
-			/// that name.
-			const Value operator[](const char* key) const;
+			///// Access an object value by name, returns null if there is no member with
+			///// that name.
+			//const Value operator[](const char* key) const;
 
-			/// Access an object value by name, create a null member if it does not exist.
-			/// \param key may contain embedded nulls.
-			Value operator[](const std::string& key);
+			///// Access an object value by name, create a null member if it does not exist.
+			///// \param key may contain embedded nulls.
+			//Value operator[](const std::string& key);
 
-			/// Access an object value by name, returns null if there is no member with
-			/// that name.
-			/// \param key may contain embedded nulls.
-			const Value operator[](const std::string& key) const;
+			///// Access an object value by name, returns null if there is no member with
+			///// that name.
+			///// \param key may contain embedded nulls.
+			//const Value operator[](const std::string& key) const;
 
 			Value& operator=(Value other);
 

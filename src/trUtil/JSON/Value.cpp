@@ -180,6 +180,12 @@ namespace trUtil
 			return mValuePtr->removeIndex(index, &removedVal->GetJsonValue());
 		}
 
+        //////////////////////////////////////////////////////////////////////////
+        Value Value::Index(int index)
+        {
+            return Value((*mValuePtr)[index]);
+        }
+
 		//////////////////////////////////////////////////////////////////////////
 		const Value::Members Value::GetMemberNames() const
 		{
@@ -784,44 +790,44 @@ namespace trUtil
 			return mValuePtr;
 		}
 
-		//////////////////////////////////////////////////////////////////////////
-		Value Value::operator[](int index)
-		{
-			return Value((*mValuePtr)[index]);
-		}
+		////////////////////////////////////////////////////////////////////////////
+		//Value Value::operator[](int index)
+		//{
+		//	return Value((*mValuePtr)[index]);
+		//}
 
-		//////////////////////////////////////////////////////////////////////////
-		const Value Value::operator[](int index) const
-		{
-			return Value((*mValuePtr)[index]);
-		}
+		////////////////////////////////////////////////////////////////////////////
+		//const Value Value::operator[](int index) const
+		//{
+		//	return Value((*mValuePtr)[index]);
+		//}
 
-		//////////////////////////////////////////////////////////////////////////
-		Value Value::operator[](const char* key)
-		{
-			return Value((*mValuePtr)[key]);
-		}
+		////////////////////////////////////////////////////////////////////////////
+		//Value Value::operator[](const char* key)
+		//{
+		//	return Value((*mValuePtr)[key]);
+		//}
 
-		//////////////////////////////////////////////////////////////////////////
-		const Value Value::operator[](const char* key) const
-		{
-			return Value((*mValuePtr)[key]);
-		}
+		////////////////////////////////////////////////////////////////////////////
+		//const Value Value::operator[](const char* key) const
+		//{
+		//	return Value((*mValuePtr)[key]);
+		//}
 
-		//////////////////////////////////////////////////////////////////////////
-		Value Value::operator[](const std::string& key)
-		{
-			//return Value(mValuePtr->operator[](key));
-            Json::Value val = (*mValuePtr)[key];
-            Value newVal(val);
-            return newVal;
-		}
+		////////////////////////////////////////////////////////////////////////////
+		//Value Value::operator[](const std::string& key)
+		//{
+		//	//return Value(mValuePtr->operator[](key));
+  //          Json::Value val = (*mValuePtr)[key];
+  //          Value newVal(val);
+  //          return newVal;
+		//}
 
-		//////////////////////////////////////////////////////////////////////////
-		const Value Value::operator[](const std::string& key) const
-		{
-			return Value((*mValuePtr)[key]);
-		}
+		////////////////////////////////////////////////////////////////////////////
+		//const Value Value::operator[](const std::string& key) const
+		//{
+		//	return Value((*mValuePtr)[key]);
+		//}
 
 		//////////////////////////////////////////////////////////////////////////
 		Value& Value::operator=(Value other)
