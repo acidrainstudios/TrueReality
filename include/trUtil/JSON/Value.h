@@ -508,10 +508,30 @@ namespace trUtil
 			*/
 			virtual bool IsString() const;
 
+            /**
+            * Checks if the value stored is a String
+            */
+            virtual bool IsString(const int index) const;
+
+            /**
+            * Checks if the value stored is a String
+            */
+            virtual bool IsString(const std::string& key) const;
+
 			/**
 			* Returns the String value stored
 			*/
 			virtual const std::string GetString() const;
+            
+            /**
+            * Returns the String value stored
+            */
+            virtual const std::string GetString(const int index) const;
+
+            /**
+            * Returns the String value stored
+            */
+            virtual const std::string GetString(const std::string& key) const;
 
 			/**
 			* Checks if the value stored is an Array
