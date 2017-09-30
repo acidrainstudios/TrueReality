@@ -396,6 +396,11 @@ namespace trUtil
             */
             virtual double GetDouble(const std::string& key) const;
 
+            /**
+            * Sets the Double value in the Object
+            */
+            virtual void SetDouble(const std::string& key, double value);
+
 			/**
 			* Checks if the value stored Unsigned Integer
 			*/

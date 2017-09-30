@@ -373,9 +373,15 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        double Value::GetDouble(const std::string & key) const
+        double Value::GetDouble(const std::string& key) const
         {
             return (*mValuePtr)[key].asDouble();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        void Value::SetDouble(const std::string& key, double value)
+        {
+            (*mValuePtr)[key] = value;
         }
 
         //////////////////////////////////////////////////////////////////////////
