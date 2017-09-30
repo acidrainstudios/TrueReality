@@ -59,6 +59,21 @@ namespace trUtil
 			*/
 			Value operator[](int index);
 
+            /*
+            * Adds a comment to the internal value
+            */
+            void SetComment(const std::string& comment);
+
+            /**
+            * Checks if the internal value has a comment
+            */
+            bool HasComment() const;
+
+            /**
+            * Returns the internal comment
+            */
+            std::string GetComment() const;
+
 			/**
 			* Get the size of the array
 			*/
