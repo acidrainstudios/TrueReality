@@ -77,6 +77,10 @@ int main(int argc, char** argv)
         jsArray.AddUInt64(12098);
         jsArray.AddFloat(567.54f);
 
+        std::cout << "JSON Array in RAM:\n" << std::endl;
+        jsArray.PrintJSONRoot();
+        std::cout << std::endl;
+
         jsObject.SetInt("MyInt", 55);
         jsObject.SetInt("MyInt2", 3456);
         jsObject.SetInt64("MyInt64", 63752);
@@ -88,6 +92,10 @@ int main(int argc, char** argv)
         jsObject.SetUInt64("MyUint64", 12098);
         jsObject.SetFloat("MyFloat", 567.54f);
         jsObject.SetArray("MyArray", jsArray);
+
+        std::cout << "JSON jsObject in RAM:\n" << std::endl;
+        jsObject.PrintJSONRoot();
+        std::cout << std::endl;
 
         configFile.SetInt("MyInt", 55);
         configFile.SetInt("MyInt2", 3456);
@@ -128,7 +136,7 @@ int main(int argc, char** argv)
             std::cout << jsArr[i] << std::endl;
         }
 
-        std::cout << "\nRemoving a value from the JSON Array:\n" << std::endl;
+        std::cout << "\nRemoving value 5 from the JSON Array:\n" << std::endl;
         jsArr.RemoveIndex(5, new trUtil::JSON::Value);
 
         std::cout << "\nJSON Array in RAM:\n" << std::endl;
