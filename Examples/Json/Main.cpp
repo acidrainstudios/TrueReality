@@ -93,6 +93,7 @@ int main(int argc, char** argv)
         jsObject.SetUInt64("MyUint64", 12098);
         jsObject.SetFloat("MyFloat", 567.54f);
         jsObject.SetArray("MyArray", jsArray);
+        jsObject.SetComment("/This is the Object Comment");
 
         std::cout << "JSON jsObject in RAM:\n" << std::endl;
         jsObject.PrintJSONRoot();
