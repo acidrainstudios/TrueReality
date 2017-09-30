@@ -32,6 +32,9 @@ namespace trUtil
 {
 	namespace JSON
 	{
+        //Forward declaration
+        class Array;
+        class Object;
 
 		typedef int Int;
 		typedef unsigned int UInt;
@@ -547,6 +550,21 @@ namespace trUtil
             * Checks if the value stored is an Array
             */
             virtual bool IsArray(const std::string& key) const;
+
+            /**
+            * Returns the Array value stored
+            */
+            virtual const Array GetArray() const;
+
+            /**
+            * Returns the Array value stored
+            */
+            virtual const Array GetArray(const int index) const;
+
+            /**
+            * Returns the Array value stored
+            */
+            virtual const Array GetArray(const std::string& key) const;
 
 			/**
 			* Checks if the value stored is an Object

@@ -21,6 +21,9 @@
 
 #include <trUtil/JSON/Value.h>
 
+#include <trUtil/JSON/Array.h>
+#include <trUtil/JSON/Object.h>
+
 #include <json/writer.h>
 
 namespace trUtil
@@ -559,6 +562,27 @@ namespace trUtil
         bool Value::IsArray(const std::string& key) const
         {
             return (*mValuePtr)[key].isArray();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        const Array Value::GetArray() const
+        {
+            Array tempArray(mValuePtr);
+            return tempArray;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        const Array Value::GetArray(const int index) const
+        {
+            Array tempArray((*mValuePtr)[index]);
+            return tempArray;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        const Array Value::GetArray(const std::string& key) const
+        {
+            Array tempArray((*mValuePtr)[key]);
+            return tempArray;
         }
 
         //////////////////////////////////////////////////////////////////////////
