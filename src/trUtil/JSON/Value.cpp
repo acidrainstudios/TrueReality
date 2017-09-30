@@ -679,6 +679,12 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
+        void Value::SetObject(const std::string& key, Object& value)
+        {
+            (*mValuePtr)[key] = value.GetJSONRoot();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
         Json::ValueType Value::ToValueType(ValueType val)
         {
             switch (val)

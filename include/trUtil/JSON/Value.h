@@ -642,6 +642,11 @@ namespace trUtil
             virtual const Object GetObject(const std::string& key) const;
 
             /**
+            * Sets the Object value in the Object
+            */
+            virtual void SetObject(const std::string& key, Object& value);
+
+            /**
             * Converts JSON::ValueType to Json::ValueType
             */
             Json::ValueType ToValueType(ValueType val);
