@@ -303,7 +303,7 @@ namespace trUtil
 			std::string mFileName;
 			std::string mFilePath;
 
-			Value mRoot;
+            Value mRoot;
 		};
 	}
 }
