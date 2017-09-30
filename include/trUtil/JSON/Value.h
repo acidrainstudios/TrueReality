@@ -242,10 +242,20 @@ namespace trUtil
 			*/
 			virtual bool KeyPresent(const std::string &key) const;
 
+            /**
+            * Checks if the value stored is a NULL
+            */
+            virtual bool IsNull() const;
+
 			/**
 			* Checks if the value stored is a NULL
 			*/
-			virtual bool IsNull() const;
+			virtual bool IsNull(int index) const;
+
+            /**
+            * Checks if the value stored is a NULL
+            */
+            virtual bool IsNull(std::string& key) const;
 
 			/**
 			* Return true if empty array, empty object, or null, otherwise, false.

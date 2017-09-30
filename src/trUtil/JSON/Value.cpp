@@ -201,6 +201,18 @@ namespace trUtil
 			return mValuePtr->isNull();
 		}
 
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsNull(int index) const
+        {
+            return (*mValuePtr)[index].isNull();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsNull(std::string & key) const
+        {
+            return (*mValuePtr)[key].isNull();
+        }
+
 		//////////////////////////////////////////////////////////////////////////
 		bool Value::IsEmpty() const
 		{
