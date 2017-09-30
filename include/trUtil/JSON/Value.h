@@ -478,10 +478,30 @@ namespace trUtil
 			*/
 			virtual bool IsFloat() const;
 
+            /**
+            * Checks if the value stored is a float
+            */
+            virtual bool IsFloat(const int index) const;
+
+            /**
+            * Checks if the value stored is a float
+            */
+            virtual bool IsFloat(const std::string& key) const;
+
 			/**
 			* Returns the float value stored
 			*/
 			virtual float GetFloat() const;
+
+            /**
+            * Returns the float value stored
+            */
+            virtual float GetFloat(const int index) const;
+
+            /**
+            * Returns the float value stored
+            */
+            virtual float GetFloat(const std::string& key) const;
 
 			/**
 			* Checks if the value stored is a String
