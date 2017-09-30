@@ -328,10 +328,30 @@ namespace trUtil
 			*/
 			virtual bool IsInt() const;
 
+            /**
+            * Checks if the value stored is an Integer
+            */
+            virtual bool IsInt(const int index) const;
+
+            /**
+            * Checks if the value stored is an Integer
+            */
+            virtual bool IsInt(const std::string& key) const;
+
 			/**
 			* Returns the Integer value
 			*/
 			virtual int GetInt() const;
+
+            /**
+            * Returns the Integer value
+            */
+            virtual int GetInt(const int index) const;
+
+            /**
+            * Returns the Integer value
+            */
+            virtual int GetInt(const std::string& key) const;
 
 			/**
 			* Checks if the value stored is a Double

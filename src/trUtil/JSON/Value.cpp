@@ -268,7 +268,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        bool Value::GetBool(const std::string & key) const
+        bool Value::GetBool(const std::string& key) const
         {
             return (*mValuePtr)[key].asBool();
         }
@@ -286,7 +286,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        bool Value::IsNumber(const std::string & key) const
+        bool Value::IsNumber(const std::string& key) const
         {
             return (*mValuePtr)[key].isNumeric();
         }
@@ -297,13 +297,37 @@ namespace trUtil
 			return mValuePtr->isInt();
 		}
 
-		//////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsInt(const int index) const
+        {
+            return (*mValuePtr)[index].isInt();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsInt(const std::string& key) const
+        {
+            return (*mValuePtr)[key].isInt();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		int Value::GetInt() const
 		{
 			return mValuePtr->asInt();
 		}
 
-		//////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        int Value::GetInt(const int index) const
+        {
+            return (*mValuePtr)[index].asInt();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        int Value::GetInt(const std::string& key) const
+        {
+            return (*mValuePtr)[key].asInt();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsDouble() const
 		{
 			return mValuePtr->isDouble();
