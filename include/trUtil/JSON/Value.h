@@ -358,10 +358,30 @@ namespace trUtil
 			*/
 			virtual bool IsDouble() const;
 
+            /**
+            * Checks if the value stored is a Double
+            */
+            virtual bool IsDouble(const int index) const;
+
+            /**
+            * Checks if the value stored is a Double
+            */
+            virtual bool IsDouble(const std::string& key) const;
+
 			/**
 			* Returns the Double value
 			*/
 			virtual double GetDouble() const;
+
+            /**
+            * Returns the Double value
+            */
+            virtual double GetDouble(const int index) const;
+
+            /**
+            * Returns the Double value
+            */
+            virtual double GetDouble(const std::string& key) const;
 
 			/**
 			* Checks if the value stored Unsigned Integer
