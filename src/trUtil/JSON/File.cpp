@@ -204,31 +204,31 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsNull(const std::string &key) const
 		{
-			return mRoot[key].IsNull();
+			return mRoot.IsNull(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetNull(const std::string &key)
 		{
-			mRoot[key] = Value();
+			mRoot.SetNull(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsBool(const std::string &key) const
 		{
-			return mRoot[key].IsBool();
+			return mRoot.IsBool(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::GetBool(const std::string &key) const
 		{
-			return mRoot[key].GetBool();
+			return mRoot.GetBool(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetBool(const std::string &key, const bool &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetBool(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -268,171 +268,169 @@ namespace trUtil
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsNumber(const std::string &key) const
 		{
-			return mRoot[key].IsNumber();
+			return mRoot.IsNumber(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsInt(const std::string &key) const
 		{
-			return mRoot[key].IsInt();
+			return mRoot.IsInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		int File::GetInt(const std::string &key) const
 		{
-			return mRoot[key].GetInt();
+			return mRoot.GetInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetInt(const std::string &key, const int &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetInt(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsDouble(const std::string &key) const
 		{
-			return mRoot[key].IsDouble();
+			return mRoot.IsDouble(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		double File::GetDouble(const std::string &key) const
 		{
-			return mRoot[key].GetDouble();
+			return mRoot.GetDouble(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetDouble(const std::string &key, const double &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetDouble(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsUInt(const std::string &key) const
 		{
-			return mRoot[key].IsUInt();
+			return mRoot.IsUInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		unsigned int File::GetUInt(const std::string &key) const
 		{
-			return mRoot[key].GetUInt();
+			return mRoot.GetUInt(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetUInt(const std::string &key, const unsigned int &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetUInt(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsInt64(const std::string &key) const
 		{
-			return mRoot[key].IsInt64();
+			return mRoot.IsInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Int64 File::GetInt64(const std::string &key) const
 		{
-			return mRoot[key].GetInt64();
+			return mRoot.GetInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetInt64(const std::string &key, const Int64 &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetInt64(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsUInt64(const std::string &key) const
 		{
-			return mRoot[key].IsUInt64();
+			return mRoot.IsUInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		UInt64 File::GetUInt64(const std::string &key) const
 		{
-			return mRoot[key].GetUInt64();
+			return mRoot.GetUInt64(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetUInt64(const std::string &key, const UInt64 &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetUInt64(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsFloat(const std::string &key) const
 		{
-			return mRoot[key].IsFloat();
+			return mRoot.IsFloat(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		float File::GetFloat(const std::string &key) const
 		{
-			return mRoot[key].GetFloat();
+			return mRoot.GetFloat(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetFloat(const std::string &key, const float &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetFloat(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsString(const std::string &key) const
 		{
-			return mRoot[key].IsString();
+			return mRoot.IsString(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		const std::string File::GetString(const std::string &key) const
 		{
-			return mRoot[key].GetString();
+			return mRoot.GetString(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		void File::SetString(const std::string &key, const std::string &value)
 		{
-			mRoot[key] = value;
+			mRoot.SetString(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsArray(const std::string &key) const
 		{
-			return mRoot[key].IsArray();
+			return mRoot.IsArray(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Array File::GetArray(const std::string &key) const
 		{
-			Array tempArray(mRoot[key]);
-			return tempArray;
+			return mRoot.GetArray(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void File::SetArray(const std::string &key, Array &Array)
+		void File::SetArray(const std::string &key, Array &value)
 		{
-			mRoot[key] = Array.GetJSONRoot();
+			mRoot.SetArray(key, value);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		bool File::IsObject(const std::string &key) const
 		{
-			return mRoot[key].IsObject();
+			return mRoot.IsObject(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
 		Object File::GetObject(const std::string &key) const
 		{
-			Object tempObject(mRoot[key]);
-			return tempObject;
+			return mRoot.GetObject(key);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		void File::SetObject(const std::string &key, Object &Object)
+		void File::SetObject(const std::string &key, Object &value)
 		{
-			mRoot[key] = Object.GetJSONRoot();
+			mRoot.SetObject(key, value);
 		}
 	}    
 }
