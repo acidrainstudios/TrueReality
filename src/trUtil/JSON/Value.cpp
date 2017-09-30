@@ -567,7 +567,7 @@ namespace trUtil
         //////////////////////////////////////////////////////////////////////////
         const Array Value::GetArray() const
         {
-            Array tempArray(mValuePtr);
+            Array tempArray(*mValuePtr);
             return tempArray;
         }
 
@@ -598,9 +598,30 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        bool Value::IsObject(const std::string & key) const
+        bool Value::IsObject(const std::string& key) const
         {
             return (*mValuePtr)[key].isObject();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        const Object Value::GetObject() const
+        {
+            Object tempObject(*mValuePtr);
+            return tempObject;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        const Object Value::GetObject(const int index) const
+        {
+            Object tempObject((*mValuePtr)[index]);
+            return tempObject;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        const Object Value::GetObject(const std::string& key) const
+        {
+            Object tempObject((*mValuePtr)[key]);
+            return tempObject;
         }
 
         //////////////////////////////////////////////////////////////////////////

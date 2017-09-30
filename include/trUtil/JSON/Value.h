@@ -582,6 +582,21 @@ namespace trUtil
             virtual bool IsObject(const std::string& key) const;
 
             /**
+            * Returns the Object value stored
+            */
+            virtual const Object GetObject() const;
+
+            /**
+            * Returns the Object value stored
+            */
+            virtual const Object GetObject(const int index) const;
+
+            /**
+            * Returns the Object value stored
+            */
+            virtual const Object GetObject(const std::string& key) const;
+
+            /**
             * Converts JSON::ValueType to Json::ValueType
             */
             Json::ValueType ToValueType(ValueType val);
