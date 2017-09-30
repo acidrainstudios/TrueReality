@@ -463,6 +463,12 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
+        void Value::SetInt64(const std::string & key, Int64 value)
+        {
+            (*mValuePtr)[key] = value;
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsUInt64() const
 		{
 			return mValuePtr->isUInt64();

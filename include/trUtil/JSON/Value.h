@@ -465,7 +465,12 @@ namespace trUtil
             * Returns the 64bit Integer value
             */
             virtual Int64 GetInt64(const std::string& key) const;
-			
+
+            /**
+            * Sets the Int64 value in the Object
+            */
+            virtual void SetInt64(const std::string& key, Int64 value);
+
             /**
 			* Checks if the value stored is a 64bit Unsigned Integer
 			*/
