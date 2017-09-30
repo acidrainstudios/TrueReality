@@ -208,7 +208,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        bool Value::IsNull(const std::string & key) const
+        bool Value::IsNull(const std::string& key) const
         {
             return (*mValuePtr)[key].isNull();
         }
@@ -226,7 +226,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        bool Value::IsEmpty(const std::string & key) const
+        bool Value::IsEmpty(const std::string& key) const
         {
             return (*mValuePtr)[key].empty();
         }
@@ -243,13 +243,37 @@ namespace trUtil
 			return mValuePtr->isBool();
 		}
 
-		//////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsBool(const int index) const
+        {
+            return (*mValuePtr)[index].isBool();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::IsBool(const std::string& key) const
+        {
+            return (*mValuePtr)[key].isBool();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::GetBool() const
 		{
 			return mValuePtr->asBool();
 		}
 
-		//////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::GetBool(const int index) const
+        {
+            return (*mValuePtr)[index].asBool();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool Value::GetBool(const std::string & key) const
+        {
+            return (*mValuePtr)[key].asBool();
+        }
+
+        //////////////////////////////////////////////////////////////////////////
 		bool Value::IsNumber() const
 		{
 			return mValuePtr->isNumeric();

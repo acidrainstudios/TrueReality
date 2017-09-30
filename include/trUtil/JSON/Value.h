@@ -282,10 +282,30 @@ namespace trUtil
 			*/
 			virtual bool IsBool() const;
 
+            /**
+            * Checks if the value stored is a Boolean
+            */
+            virtual bool IsBool(const int index) const;
+
+            /**
+            * Checks if the value stored is a Boolean
+            */
+            virtual bool IsBool(const std::string& key) const;
+
 			/**
 			* Returns the Boolean value
 			*/
 			virtual bool GetBool() const;
+
+            /**
+            * Returns the Boolean value
+            */
+            virtual bool GetBool(const int index) const;
+
+            /**
+            * Returns the Boolean value
+            */
+            virtual bool GetBool(const std::string& key) const;
 
 			/**
 			* Checks if the value stored is a Number
