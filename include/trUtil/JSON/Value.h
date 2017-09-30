@@ -388,10 +388,30 @@ namespace trUtil
 			*/
 			virtual bool IsUInt() const;
 
+            /**
+            * Checks if the value stored Unsigned Integer
+            */
+            virtual bool IsUInt(const int index) const;
+
+            /**
+            * Checks if the value stored Unsigned Integer
+            */
+            virtual bool IsUInt(const std::string& key) const;
+
 			/**
 			* Returns the Unsigned Integer value
 			*/
 			virtual unsigned int GetUInt() const;
+
+            /**
+            * Returns the Unsigned Integer value
+            */
+            virtual unsigned int GetUInt(const int index) const;
+
+            /**
+            * Returns the Unsigned Integer value
+            */
+            virtual unsigned int GetUInt(const std::string& key) const;
 
 			/**
 			* Checks if the value stored is a 64bit Integer
