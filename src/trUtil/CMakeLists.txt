@@ -89,5 +89,8 @@ ADD_LIBRARY (${FILE_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 # Links the external libraries to the newly created library
 TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS})
 
+# Place the project in a folder
+SET_TARGET_PROPERTIES (${FILE_NAME} PROPERTIES FOLDER "TrueRealitySDK")
+
 # Sets Project Build options
 TR_TARGET_OPTIONS (${FILE_NAME})
