@@ -21,18 +21,25 @@ IF (WIN32)
     MESSAGE(STATUS "Configuring for Windows")
 
 	IF (MSVC_IDE)
+	
+		# Enables folder creation in VS projects. 
+		SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
+	
+		# Enable multicore builds
 		OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
 		MARK_AS_ADVANCED (TR_BUILD_WITH_MP)
 		IF (TR_BUILD_WITH_MP)
 			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 		ENDIF (TR_BUILD_WITH_MP)
 		
+		# Enable strict checking
 		OPTION (TR_BUILD_WITH_STRICT "Enables the Option STRICT for VS compiler" ON)
 		MARK_AS_ADVANCED (TR_BUILD_WITH_STRICT)
 		IF (TR_BUILD_WITH_STRICT)
 			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSTRICT")
 		ENDIF (TR_BUILD_WITH_STRICT)
 		
+		# Reduce the number of default headers included in a VS build
 		OPTION (TR_BUILD_WITH_LEAN_AND_MEAN "Enables the option LEAN_AND_MEAN for VS compiler, to speed up compilation" ON)
 		MARK_AS_ADVANCED (TR_BUILD_WITH_LEAN_AND_MEAN)
 		IF (TR_BUILD_WITH_LEAN_AND_MEAN)
