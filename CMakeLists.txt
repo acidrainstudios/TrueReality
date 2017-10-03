@@ -120,6 +120,7 @@ INCLUDE_DIRECTORIES(
     ${CMAKE_SOURCE_DIR}
     ${TR_INCLUDE_DIR}
     ${TR_EXT_INCLUDE_DIR}    # Might be a redundancy and needs to be checked
+	"${PROJECT_BINARY_DIR}/include"
 )
 
 # Generates the selected sub-folders for the code base
@@ -128,7 +129,7 @@ ADD_TR_SUBFOLDERS()
 # *****************************************************************************
 # Set Float/Double Config header file *****************************************
 # *****************************************************************************
-SET(TR_FLOAT_DOUBLE_CONFIG_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.h")
+SET(TR_FLOAT_DOUBLE_CONFIG_HEADER "${PROJECT_BINARY_DIR}/include/trUtil/TypeConfig.h")
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in"
                "${TR_FLOAT_DOUBLE_CONFIG_HEADER}")
 # *****************************************************************************
@@ -137,6 +138,9 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in"
 
 # Sets Available Build Types
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
+
+# Sets a check to make sure cmake does not write to the source folder.  
+SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 
 # Displays the current version of True Reality ********************************
 MESSAGE (STATUS "\nTrue Reality v" ${TR_VERSION} "\n")
