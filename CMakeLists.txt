@@ -1,6 +1,10 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5.0 FATAL_ERROR)
 
+# Sets the path to custom CMake modules. 
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
+
+# Sets a check to make sure cmake does change the source files.  
+SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 
 #Sets up all the versioning information
 INCLUDE (Version) 
@@ -119,7 +123,6 @@ SET (CMAKE_MINSIZEREL_POSTFIX "-rms" CACHE STRING "Set MinSizeRel library postfi
 INCLUDE_DIRECTORIES(
     ${CMAKE_SOURCE_DIR}
     ${TR_INCLUDE_DIR}
-    ${TR_EXT_INCLUDE_DIR}    # Might be a redundancy and needs to be checked
 	"${PROJECT_BINARY_DIR}/include"
 )
 
@@ -138,9 +141,6 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in"
 
 # Sets Available Build Types
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
-
-# Sets a check to make sure cmake does not write to the source folder.  
-SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 
 # Displays the current version of True Reality ********************************
 MESSAGE (STATUS "\nTrue Reality v" ${TR_VERSION} "\n")
