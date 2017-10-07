@@ -59,7 +59,6 @@ INCLUDE (UtilityMacros)
 # *****************************************************************************
 OPTION (TR_UTIL "Enables the building of trUtil" ON)
 CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_UTIL" OFF)
-CMAKE_DEPENDENT_OPTION (TR_START "Enables the building of trStart executable" ON "TR_UTIL; TR_CORE" OFF)
 
 # *****************************************************************************
 # Sets Advanced options ***********************************************************
@@ -81,6 +80,7 @@ MARK_AS_ADVANCED(CMAKE_USE_RELATIVE_PATHS)
 # Sets Utilities options ******************************************************
 # *****************************************************************************
 option (TR_BUILD_UTILITIES "Enables the building of TR tools and utilities" ON)
+CMAKE_DEPENDENT_OPTION (TR_START "Enables the building of trStart Utility" ON "TR_BUILD_UTILITIES; TR_UTIL; TR_CORE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_VERSION_AVAILABLE "Enables the building of trVersion Utility" ON "TR_BUILD_UTILITIES; TR_UTIL" OFF)
 # *****************************************************************************
 # *****************************************************************************
