@@ -1,3 +1,22 @@
+# True Reality Open Source Game and Simulation Engine
+# Copyright © 2017 Acid Rain Studios LLC
+#
+# This library is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free
+# Software Foundation; either version 3.0 of the License, or (at your option)
+# any later version.
+#
+# This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#
+# Author: Maxim Serebrennik
+
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5.0 FATAL_ERROR)
 
 # Sets the path to custom CMake modules. 
@@ -19,6 +38,11 @@ MACRO (ADD_TR_SUBFOLDERS)
 		ADD_SUBDIRECTORY (src/trUtil)
         SET (TR_UTIL_AVAILABLE "YES")
     ENDIF (TR_UTIL)
+
+    IF (TR_BASE)
+		ADD_SUBDIRECTORY (src/trBase)
+        SET (TR_BASE_AVAILABLE "YES")
+    ENDIF (TR_BASE)
     
     IF (TR_CORE)
 		ADD_SUBDIRECTORY (src/trCore)
@@ -58,7 +82,8 @@ INCLUDE (UtilityMacros)
 # Sets user options ***********************************************************
 # *****************************************************************************
 OPTION (TR_UTIL "Enables the building of trUtil" ON)
-CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_UTIL" OFF)
+CMAKE_DEPENDENT_OPTION (TR_BASE "Enables the building of trBase library" ON "TR_UTIL" OFF)
+CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_UTIL; TR_BASE" OFF)
 
 # *****************************************************************************
 # Sets Advanced options ***********************************************************
