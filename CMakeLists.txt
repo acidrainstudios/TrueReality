@@ -30,6 +30,12 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (TR_START_AVAILABLE "YES")
     ENDIF (TR_START)
 
+# Utilities folders
+    IF (TR_VERSION)
+        ADD_SUBDIRECTORY (src/trVersion)
+        SET (TR_VERSION_AVAILABLE "YES")
+    ENDIF (TR_VERSION)
+
 # Examples folders
     IF (EXAMPLES_JSON)
         ADD_SUBDIRECTORY (Examples/Json)
@@ -72,10 +78,19 @@ OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
 MARK_AS_ADVANCED(CMAKE_USE_RELATIVE_PATHS)
 
 # *****************************************************************************
-# Sets Example options ***********************************************************
+# Sets Utilities options ******************************************************
+# *****************************************************************************
+option (TR_BUILD_UTILITIES "Enables the building of TR tools and utilities" ON)
+CMAKE_DEPENDENT_OPTION (TR_VERSION_AVAILABLE "Enables the building of trVersion Utility" ON "TR_BUILD_UTILITIES; TR_UTIL" OFF)
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
+
+# *****************************************************************************
+# Sets Example options ********************************************************
 # *****************************************************************************
 option (TR_BUILD_EXAMPLES "Enables the building of TR demos and examples" ON)
-cmake_dependent_option (EXAMPLES_JSON "Enables the building of examplesJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of examplesJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
