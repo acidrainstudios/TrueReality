@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include "Export.h"
+#include <trBase/Export.h>
 
 #include <trBase/SmrtClass.h>
 #include <trBase/UniqueId.h>
