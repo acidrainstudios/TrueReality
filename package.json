@@ -15,6 +15,6 @@
   "license": "LGPL",
   "dependencies": {
     "TrueRealityExtBin": "0.1.0",
-    "TrueRealityExt": "^0.1.0"
+    "TrueRealityExt": "0.1.0"
   }
 }
