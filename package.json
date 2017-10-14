@@ -2,9 +2,6 @@
   "name": "TrueRealityExt",
   "version": "0.1.0",
   "description": "A sample Node.js app using Express 4",
-  "dependencies": {
-    "express": "0.1.0"
-  },
   "repository": "acidrainstudios/TrueReality",
   "keywords": [
     "node",
