@@ -1,0 +1,16 @@
+
+{
+  "name": "node-js-sample",
+  "version": "0.1",
+  "description": "A repo of various dependencies for True Reality SDK",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acidrainstudios/TrueRealityExt"
+  },
+  "keywords": [
+    "True Reality",
+    "TrueReality",
+    "TR"
+  ],
+  "author": "Acid Rain Studios"
+}
