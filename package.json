@@ -1,17 +1,14 @@
 {
-  "name": "node-js-sample",
-  "version": "0.2.0",
+  "name": "TrueRealityExt",
+  "version": "0.1.0",
   "description": "A sample Node.js app using Express 4",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "0.1.0"
   },
   "engines": {
     "node": "4.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/node-js-sample"
-  },
+  "repository": "acidrainstudios/TrueReality",
   "keywords": [
     "node",
     "heroku",
