@@ -1,16 +1,17 @@
 {
-  "name": "TrueRealityExt",
+  "name": "TrueReality",
   "version": "0.1.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "Game and Simulation Engine",
+  "dependencies": {
+    "TrueRealityExtBin": "0.1.0"
+  },
   "repository": "acidrainstudios/TrueReality",
   "keywords": [
-    "node",
-    "heroku",
-    "express"
+    "TrueReality",
+    "GameEngine",
+    "OpenSceneGraph",
+    "OpenGL"
   ],
-  "author": "Mark Pundsack",
-  "contributors": [
-    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
-  ],
-  "license": "MIT"
+  "author": "Acid Rain Studios",
+  "license": "LGPL"
 }
