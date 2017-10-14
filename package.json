@@ -1,6 +1,5 @@
-
 {
-  "name": "node-js-sample",
+  "name": "TrueRealityExt",
   "version": "0.1",
   "description": "A repo of various dependencies for True Reality SDK",
   "repository": {
