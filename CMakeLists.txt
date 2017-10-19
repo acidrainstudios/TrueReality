@@ -44,6 +44,11 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (TR_BASE_AVAILABLE "YES")
     ENDIF (TR_BASE)
     
+    IF (TR_MANAGER)
+		ADD_SUBDIRECTORY (src/trManager)
+        SET (TR_MANAGER_AVAILABLE "YES")
+    ENDIF (TR_MANAGER)
+    
     IF (TR_CORE)
 		ADD_SUBDIRECTORY (src/trCore)
         SET (TR_CORE_AVAILABLE "YES")
@@ -83,7 +88,8 @@ INCLUDE (UtilityMacros)
 # *****************************************************************************
 OPTION (TR_UTIL "Enables the building of trUtil" ON)
 CMAKE_DEPENDENT_OPTION (TR_BASE "Enables the building of trBase library" ON "TR_UTIL" OFF)
-CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_UTIL; TR_BASE" OFF)
+CMAKE_DEPENDENT_OPTION (TR_MANAGER "Enables the building of trManager library" ON "TR_UTIL; TR_BASE" OFF)
+CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_MANAGER; TR_UTIL; TR_BASE" OFF)
 
 # *****************************************************************************
 # Sets Advanced options ***********************************************************
