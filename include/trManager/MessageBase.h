@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include "Export.h"
+#include <trManager/Export.h>
 
 #include <trUtil/StringUtils.h>
 #include <trUtil/RefStr.h>
