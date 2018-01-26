@@ -1,10 +1,10 @@
 /*
-* The Construct Open Source Game and Simulation Engine
-* Copyright (C) 2017
+* True Reality Open Source Game and Simulation Engine
+* Copyright © 2018 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
+* Software Foundation; either version 3.0 of the License, or (at your option)
 * any later version.
 *
 * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -23,29 +23,29 @@
 
 #include "Export.h"
 
-#include <tcManager/MessageBase.h>
-#include <tcManager/TimingStructure.h>
-#include <tcBase/UniqueId.h>
-#include <tcUtil/RefStr.h>
+#include <trManager/MessageBase.h>
+#include <trManager/TimingStructure.h>
+#include <trBase/UniqueId.h>
+#include <trUtil/RefStr.h>
 
 #include <string>
 
-namespace tcManager
+namespace trManager
 {
     /**
      * @class   MessageEntityRegistered
      *
      * @brief   A message that is sent out when a new entity is registered with the System Manager.
      */
-    class  TC_MANAGER_EXPORT MessageEntityRegistered : public tcManager::MessageBase
+    class  TR_MANAGER_EXPORT MessageEntityRegistered : public trManager::MessageBase
     {
     public:
-        typedef tcManager::MessageBase BaseClass;           /// Adds an easy and swappable access to the base class
+        typedef trManager::MessageBase BaseClass;           /// Adds an easy and swappable access to the base class
 
-        const static tcUtil::RefStr MESSAGE_TYPE;           /// Holds the class/message type name for efficient comparisons
+        const static trUtil::RefStr MESSAGE_TYPE;           /// Holds the class/message type name for efficient comparisons
 
         /**
-         * @fn  MessageEntityRegistered::MessageEntityRegistered(const tcBase::UniqueId* fromActorID, const tcBase::UniqueId* aboutActorID, const std::string* entityType, const std::string* entityName);
+         * @fn  MessageEntityRegistered::MessageEntityRegistered(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID, const std::string* entityType, const std::string* entityName);
          *
          * @brief   Constructor.
          *
@@ -55,7 +55,7 @@ namespace tcManager
          * @param   entityType      Type of the registered entity.
          * @param   entityName      Name of the registered entity.
          */
-        MessageEntityRegistered(const tcBase::UniqueId* fromActorID, const tcBase::UniqueId* aboutActorID, const std::string* entityType, const std::string* entityName);
+        MessageEntityRegistered(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID, const std::string* entityType, const std::string* entityName);
 
         /**
          * @fn  virtual const std::string& MessageEntityRegistered::GetMessageType() const override;
