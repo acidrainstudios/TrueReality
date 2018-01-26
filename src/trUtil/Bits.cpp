@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2017 Acid Rain Studios LLC
+* Copyright © 2018 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
