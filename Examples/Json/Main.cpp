@@ -148,9 +148,9 @@ int main(int argc, char** argv)
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-		std::cerr << "The Construct is now shutting down ... " << std::endl;
+		std::cerr << "True Reality is now shutting down ... " << std::endl;
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
-        LOG_A("The Construct is now shutting down ... ");
+        LOG_A("True Reality is now shutting down ... ");
 	}
     catch (const trUtil::Exception& ex)
 	{
