@@ -41,7 +41,7 @@ namespace trUtil
         //    app.GetCamera()->SetNearFarCullingMode(dtCore::Camera::NO_AUTO_NEAR_FAR);
 
         //    //Set the window name. 
-        //    app.GetWindow()->SetWindowTitle("The Construct");
+        //    app.GetWindow()->SetWindowTitle("True Reality");
         //}
 
         //////////////////////////////////////////////////////////////////////////
