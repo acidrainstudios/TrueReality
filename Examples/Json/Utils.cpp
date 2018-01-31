@@ -40,7 +40,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::str
 
     arguments.getApplicationUsage()->setApplicationName(PROGRAM_NAME);
 
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TheConstruct_Log.html");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueReality_Log.html");
     arguments.getApplicationUsage()->addCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
         trUtil::Logging::LOG_INFO_STR + ", " +
         trUtil::Logging::LOG_WARNING_STR + ", " +
