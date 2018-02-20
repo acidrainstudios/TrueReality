@@ -34,7 +34,7 @@ namespace trCore
     /**
      * @class   SystemDirector
      *
-     * @brief   A System director. This Director does all the timing for TC. It controls the frame loop and keeps track of real and sim time. 
+     * @brief   A System director. This Director does all the timing for TR. It controls the frame loop and keeps track of real and sim time. 
      */
     class TR_CORE_EXPORT SystemDirector : public trManager::DirectorBase
     {

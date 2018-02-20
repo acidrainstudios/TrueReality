@@ -215,7 +215,7 @@ public:
     //////////////////////////////////////////////////////
     /**
      * EnumerationString Pointer class holds a reference to a passed in Enumeration. 
-     * This is a container class for TC Enumerations
+     * This is a container class for TR Enumerations
      */
     template <typename T>
     class EnumerationPointer

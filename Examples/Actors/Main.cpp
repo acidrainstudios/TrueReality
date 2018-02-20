@@ -21,7 +21,6 @@
 
 #include "Utils.h"
 #include "Application.h"
-#include "TestDirector2.h"
 
 #include <trBase/SmrtPtr.h>
 #include <trUtil/Console/TextColor.h>
@@ -64,12 +63,6 @@ int main(int argc, char** argv)
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_GREEN);
         std::cerr << "Starting the Run Loop... " << std::endl;
         mApp->Run();
-
-        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::WHITE);
-        std::cout << "TestDirector2 Instances: ";
-        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-        std::cout << TestDirector2::GetInstCount() << std::endl;
-
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_GREEN);
         std::cerr << "Ending the Run Loop... " << std::endl;
 

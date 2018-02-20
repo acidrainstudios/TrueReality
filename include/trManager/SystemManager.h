@@ -41,7 +41,7 @@ namespace trManager
 {
     /**
     * System Manager class is a singleton that is responsible for all message routing and basic 
-    * operations between actors and directors throughout TC. 
+    * operations between actors and directors throughout TR. 
     */
     class TR_MANAGER_EXPORT SystemManager : public trBase::Base
     {
