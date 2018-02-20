@@ -162,6 +162,7 @@ ENDIF (TR_UTIL)
 # trBase packages
 IF (TR_BASE)
     TR_DETECT_DEPENDENCY (BoostLibs)
+    INCLUDE_DIRECTORIES (${Boost_INCLUDE_DIRS})
 ENDIF (TR_BASE)
 
 # *****************************************************************************
