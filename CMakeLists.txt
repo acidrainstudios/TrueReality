@@ -85,6 +85,11 @@ MACRO (ADD_TR_SUBFOLDERS)
         ADD_SUBDIRECTORY (Examples/Actors)
         SET (EXAMPLES_ACTORS_AVAILABLE "YES")
     ENDIF (EXAMPLES_ACTORS)
+    
+    IF (EXAMPLES_ACTOR_MODULES)
+        ADD_SUBDIRECTORY (Examples/ActorModules)
+        SET (EXAMPLES_ACTOR_MODULES_AVAILABLE "YES")
+    ENDIF (EXAMPLES_ACTOR_MODULES)
 
 ENDMACRO (ADD_TR_SUBFOLDERS)
 # *****************************************************************************
@@ -140,6 +145,7 @@ option (TR_BUILD_EXAMPLES "Enables the building of TR demos and examples" ON)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of examplesJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_DIRECTOR "Enables the building of examplesDirector project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTORS "Enables the building of examplesActors project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTOR_MODULES "Enables the building of examplesActorModuless project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
@@ -203,8 +209,7 @@ ADD_TR_SUBFOLDERS()
 # Set Float/Double Config header file *****************************************
 # *****************************************************************************
 SET(TR_FLOAT_DOUBLE_CONFIG_HEADER "${PROJECT_BINARY_DIR}/include/trUtil/TypeConfig.h")
-CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in"
-               "${TR_FLOAT_DOUBLE_CONFIG_HEADER}")
+CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_FLOAT_DOUBLE_CONFIG_HEADER}")
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
