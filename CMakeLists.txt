@@ -25,9 +25,6 @@ SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 # Sets a check to make sure cmake does change the source files.  
 SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 
-#Sets up all the versioning information
-INCLUDE (Version) 
-
 # *****************************************************************************
 # Adds subfolders in the True Reality CMake GUI tab **********************************
 # *****************************************************************************
@@ -102,6 +99,9 @@ PROJECT (TrueReality)
 # Loads extra CMake modules for the projects
 INCLUDE (CMakeDependentOption)
 INCLUDE (UtilityMacros)
+
+#Sets up all the versioning information
+INCLUDE (Version) 
 
 # *****************************************************************************
 # Sets user options ***********************************************************
@@ -199,7 +199,6 @@ SET (CMAKE_MINSIZEREL_POSTFIX "-rms" CACHE STRING "Set MinSizeRel library postfi
 INCLUDE_DIRECTORIES(
     ${CMAKE_SOURCE_DIR}
     ${TR_INCLUDE_DIR}
-	"${PROJECT_BINARY_DIR}/include"
 )
 
 # Generates the selected sub-folders for the code base
@@ -218,4 +217,5 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
 
 # Displays the current version of True Reality ********************************
-MESSAGE (STATUS "\nTrue Reality v" ${TR_VERSION} "\n")
+#MESSAGE (STATUS "\nTrue Reality v${TR_VERSION} \n")
+PRINT_TR_VERSION()
