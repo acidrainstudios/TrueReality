@@ -154,7 +154,7 @@ CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTOR_MODULES "Enables the building of examples
 # Sets Library Specific Dependencies*******************************************
 # *****************************************************************************
 IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
-    TR_DETECT_DEPENDENCY (OSG)
+    TR_DETECT_DEPENDENCY (OSG 3.4.0)
     TR_DETECT_DEPENDENCY (OpenThreads)
     INCLUDE_DIRECTORIES (${OSG_INCLUDE_DIR} ${OPENTHREADS_INCLUDE_DIR})
 ENDIF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
@@ -167,7 +167,7 @@ ENDIF (TR_UTIL)
 
 # trBase packages
 IF (TR_BASE)
-    TR_DETECT_DEPENDENCY (BoostLibs)
+    TR_DETECT_DEPENDENCY (BoostLibs 1.61.0)
     INCLUDE_DIRECTORIES (${Boost_INCLUDE_DIRS})
 ENDIF (TR_BASE)
 
