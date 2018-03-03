@@ -89,6 +89,12 @@ MACRO (ADD_TR_SUBFOLDERS)
         ADD_SUBDIRECTORY (Examples/ActorModules)
         SET (EXAMPLES_ACTOR_MODULES_AVAILABLE "YES")
     ENDIF (EXAMPLES_ACTOR_MODULES)
+    
+ # Unit Test Folders
+    IF (TESTS_TR_MANAGER)
+        ADD_SUBDIRECTORY (Tests/TrManager)
+        SET (TESTS_TR_MANAGER_AVAILABLE "YES")
+    ENDIF (TESTS_TR_MANAGER)
 
 ENDMACRO (ADD_TR_SUBFOLDERS)
 # *****************************************************************************
@@ -132,7 +138,7 @@ MARK_AS_ADVANCED(CMAKE_USE_RELATIVE_PATHS)
 # *****************************************************************************
 # Sets Utilities options ******************************************************
 # *****************************************************************************
-option (TR_BUILD_UTILITIES "Enables the building of TR tools and utilities" ON)
+OPTION (TR_BUILD_UTILITIES "Enables the building of TR tools and utilities" ON)
 CMAKE_DEPENDENT_OPTION (TR_START "Enables the building of trStart Utility" ON "TR_BUILD_UTILITIES; TR_UTIL; TR_CORE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_VERSION "Enables the building of trVersion Utility" ON "TR_BUILD_UTILITIES; TR_UTIL" OFF)
 # *****************************************************************************
@@ -142,11 +148,20 @@ CMAKE_DEPENDENT_OPTION (TR_VERSION "Enables the building of trVersion Utility" O
 # *****************************************************************************
 # Sets Example options ********************************************************
 # *****************************************************************************
-option (TR_BUILD_EXAMPLES "Enables the building of TR demos and examples" ON)
+OPTION (TR_BUILD_EXAMPLES "Enables the building of TR demos and examples" ON)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of examplesJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_DIRECTOR "Enables the building of examplesDirector project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTORS "Enables the building of examplesActors project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTOR_MODULES "Enables the building of examplesActorModuless project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
+
+# *****************************************************************************
+# Sets Test options ***********************************************************
+# *****************************************************************************
+OPTION (TR_BUILD_TESTS "Enables the building of Unit Tests" ON)
+CMAKE_DEPENDENT_OPTION (TESTS_TR_MANAGER "Enables the building of trManager Unit Tests" ON "TR_BUILD_TESTS; TR_CORE; TR_MANAGER; TR_BASE" OFF)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
@@ -171,6 +186,12 @@ IF (TR_BASE)
     TR_DETECT_DEPENDENCY (BoostLibs 1.61.0)
     INCLUDE_DIRECTORIES (${Boost_INCLUDE_DIRS})
 ENDIF (TR_BASE)
+
+# UNIT Tests
+IF (TR_BUILD_TESTS)
+    TR_DETECT_DEPENDENCY (GoogleTest)
+    INCLUDE_DIRECTORIES (${GOOGLE_TEST_INCLUDE_DIR})
+ENDIF (TR_BUILD_TESTS)
 
 # *****************************************************************************
 # *****************************************************************************
