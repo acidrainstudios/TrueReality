@@ -17,7 +17,9 @@
 #
 # Author: Maxim Serebrennik
 
+INCLUDE (CMakeDependentOption)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10.0 FATAL_ERROR)
+CMAKE_POLICY(VERSION 3.10.0)
 
 # Sets the path to custom CMake modules. 
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
@@ -93,15 +95,14 @@ ENDMACRO (ADD_TR_SUBFOLDERS)
 # *****************************************************************************
 # *****************************************************************************
 
-# Defines the project name
-PROJECT (TrueReality)
-
 # Loads extra CMake modules for the projects
-INCLUDE (CMakeDependentOption)
 INCLUDE (UtilityMacros)
 
 #Sets up all the versioning information
 INCLUDE (Version) 
+
+# Defines the project name
+PROJECT (TrueReality VERSION ${TR_VERSION})
 
 # *****************************************************************************
 # Sets user options ***********************************************************
@@ -217,5 +218,4 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
 
 # Displays the current version of True Reality ********************************
-#MESSAGE (STATUS "\nTrue Reality v${TR_VERSION} \n")
 PRINT_TR_VERSION()

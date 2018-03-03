@@ -55,6 +55,13 @@ SET (TR_SO_PREFIX "tr${TR_SOVERSION}-")
 # *****************************************************************************
 # *****************************************************************************
 
+# *****************************************************************************
+# Prints the True Reality Version Info*****************************************
+# *****************************************************************************
 MACRO (PRINT_TR_VERSION)
-    MESSAGE (STATUS "\nTrue Reality v${TR_VERSION} \n")
+    IF(PROJECT_VERSION)
+        MESSAGE (STATUS "\nTrue Reality v${PROJECT_VERSION} \n")
+    ELSE()
+        MESSAGE ("\nTrue Reality v ERROR PROJECT_VERSION Not set \n")
+    ENDIF()    
 ENDMACRO (PRINT_TR_VERSION)
