@@ -1,6 +1,6 @@
 MACRO (TR_DETECT_DEPENDENCY arg)
     MESSAGE (STATUS "Detecting ${arg}...")
-    FIND_PACKAGE (${arg} REQUIRED)
+    FIND_PACKAGE (${arg} ${ARGV1} REQUIRED)
     IF (DEPENDENCY_FOUND)
         MESSAGE (STATUS "Found ${arg}!")
         INCLUDE_DIRECTORIES(${${arg}_INCLUDE_DIR})
@@ -50,11 +50,15 @@ ENDMACRO(READ_GCC_VERSION)
 # *****************************************************************************
 # Checks if the version we are looking for is the one we found. ***************
 # *****************************************************************************
-MACRO(CHECK_VERSION packVer verToFind)
+MACRO(CHECK_VERSION packName packVer verToFind)
     IF("${packVer}" VERSION_LESS "${verToFind}")
-        MESSAGE(SEND_ERROR "Found version is too old! Requested version: ${verToFind} Found: ${packVer}")
+        MESSAGE(SEND_ERROR "Found version is too old!         
+        Required: v${verToFind}         Found: v${packVer}
+        ")
+    ELSE()
+        MESSAGE(STATUS "${packName} Version: ${packVer}")
     ENDIF()
-ENDMACRO(CHECK_VERSION packVer verToFind)
+ENDMACRO(CHECK_VERSION packName packVer verToFind)
 
 # *****************************************************************************
 # Adds a post build process to create a Google Test info file *****************
