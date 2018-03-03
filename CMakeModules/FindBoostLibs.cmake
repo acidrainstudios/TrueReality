@@ -5,7 +5,7 @@
 # All search options and Boost configurations should be placed here ***********
 # *****************************************************************************
 # *****************************************************************************
-FIND_PACKAGE (Boost 1.61.0 REQUIRED COMPONENTS 
+FIND_PACKAGE (Boost ${BoostLibs_FIND_VERSION} REQUIRED COMPONENTS 
     #atomic 
     chrono 
     #container 
