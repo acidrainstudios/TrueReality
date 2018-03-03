@@ -48,6 +48,15 @@ MACRO(READ_GCC_VERSION)
 ENDMACRO(READ_GCC_VERSION)
 
 # *****************************************************************************
+# Checks if the version we are looking for is the one we found. ***************
+# *****************************************************************************
+MACRO(CHECK_VERSION packVer verToFind)
+    IF("${packVer}" VERSION_LESS "${verToFind}")
+        MESSAGE(SEND_ERROR "Found version is too old! Requested version: ${verToFind} Found: ${packVer}")
+    ENDIF()
+ENDMACRO(CHECK_VERSION packVer verToFind)
+
+# *****************************************************************************
 # Adds a post build process to create a Google Test info file *****************
 # in a build project **********************************************************
 # *****************************************************************************
