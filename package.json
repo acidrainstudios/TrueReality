@@ -1,20 +1,5 @@
 {
-  "name": "TrueReality",
-  "version": "0.1.0",
-  "description": "Game and Simulation Engine",
-  "repository": "acidrainstudios/TrueReality",
-  "keywords": [
-    "TrueReality",
-    "GameEngine",
-    "OpenSceneGraph",
-    "OpenGL",
-    "Game",
-    "Rendering"
-  ],
-  "author": "Acid Rain Studios",
-  "license": "LGPL",
-  "dependencies": {
-    "TrueRealityExtBin": "0.1.0",
+  "devDependencies": {
     "TrueRealityExt": "0.1.0"
   }
 }
