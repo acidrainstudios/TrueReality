@@ -1,4 +1,7 @@
 {
+  "name": "TrueReality"
+}
+{
   "dependencies": {
     "TrueRealityExt": "^0.1.0"
   }
