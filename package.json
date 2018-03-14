@@ -1,6 +1,7 @@
 {
   "name": "TrueReality",
   "version": "0.1",
+  "license": "(GPL-3.0)",
   "dependencies": {
     "TrueRealityExt": "^0.1.0"
   },
