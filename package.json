@@ -4,6 +4,10 @@
   "license": "(GPL-3.0)",
   "repository": { "type": "git", "url": "https://github.com/acidrainstudios/TrueReality.git" },
   "author": { "name": "Acid Rain Studios", "email": "AcidRainStudios@gmail.com", "url": "" },
+  "contributors": [
+    { "name": "Maxim Serebrennik", "email": "Maximster@gmail.com", "url": "" }
+    { "name": "Alexander Koufos", "email": "akoufos@gmail.com", "url": "" }
+  ],
   "dependencies": {
     "TrueRealityExt": "^0.1.0"
   },
