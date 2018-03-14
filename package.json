@@ -1,6 +1,6 @@
 {
-  "name": "TrueReality"
-  "version": "0.1"
+  "name": "TrueReality",
+  "version": "0.1",
   "dependencies": {
     "TrueRealityExt": "^0.1.0"
   }
