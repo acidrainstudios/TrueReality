@@ -3,5 +3,7 @@
   "version": "0.1",
   "dependencies": {
     "TrueRealityExt": "^0.1.0"
-  }
+  },
+  "os": ["win32", "linux"],
+  "cpu": ["x64"]
 }
