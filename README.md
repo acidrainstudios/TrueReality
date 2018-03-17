@@ -16,11 +16,8 @@ True Reality (TR) is an open source LGPL Game and Simulation Engine written enti
 * How to run tests
 * Deployment instructions
 
-### Contribution guidelines (Coming Soon) ###
-
-* Writing tests
-* Code review
-* Other guidelines
+### Contribution guidelines ###
+* [Guidelines](https://github.com/acidrainstudios/TrueReality/blob/master/CONTRIBUTING.md)
 
 ### Who do I talk to? ###
 
