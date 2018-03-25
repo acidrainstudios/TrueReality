@@ -1,4 +1,4 @@
-# TrueReality v0.1 (pre-Alpha)
+# TrueReality (pre-Alpha)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/acidrainstudios/truereality.svg?style=for-the-badge)
 ![GitHub release](https://img.shields.io/github/release/acidrainstudios/truereality.svg?style=for-the-badge)
