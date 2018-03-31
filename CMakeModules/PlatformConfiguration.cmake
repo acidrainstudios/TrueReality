@@ -29,7 +29,7 @@ IF (WIN32)
 		OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
 		MARK_AS_ADVANCED (TR_BUILD_WITH_MP)
 		IF (TR_BUILD_WITH_MP)
-			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE")
+			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 		ENDIF (TR_BUILD_WITH_MP)
 		
 		# Enable strict checking
@@ -45,6 +45,11 @@ IF (WIN32)
 		IF (TR_BUILD_WITH_LEAN_AND_MEAN)
 			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DWIN32_LEAN_AND_MEAN")
 		ENDIF (TR_BUILD_WITH_LEAN_AND_MEAN)
+
+        #Sets temporary warning suppression flags. These should be revisited and rechecked at every VS version and Ext dependency change. 
+        SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")     #GTest uses old TR1 Namespaces 
+        SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE")         #Boost has a bug with using an old config file with VS2017
+
 	ENDIF (MSVC_IDE)
 
 ENDIF (WIN32)
