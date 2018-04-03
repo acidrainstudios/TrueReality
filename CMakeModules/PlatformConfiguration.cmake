@@ -46,9 +46,16 @@ IF (WIN32)
 			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DWIN32_LEAN_AND_MEAN")
 		ENDIF (TR_BUILD_WITH_LEAN_AND_MEAN)
 
+        #If we are using boost
+        IF (Boost_FOUND)
+            #Sets temporary warning suppression flags. These should be revisited and rechecked at every VS version and Ext dependency change. 
+            SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE") #Boost has a bug with using an old config file with VS2017
+            SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DBOOST_ALL_DYN_LINK")                     #Force only boost dynamic libraries to be used
+            LINK_DIRECTORIES (${LINK_DIRECTORIES} ${Boost_LIBRARY_DIRS})                        #Force all projects to have boost dirs as aditional library paths
+        ENDIF(Boost_FOUND)
+
         #Sets temporary warning suppression flags. These should be revisited and rechecked at every VS version and Ext dependency change. 
         SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")     #GTest uses old TR1 Namespaces 
-        SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE")         #Boost has a bug with using an old config file with VS2017
 
 	ENDIF (MSVC_IDE)
 
