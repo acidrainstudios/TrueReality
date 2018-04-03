@@ -30,6 +30,7 @@
 # latter case skip to the "Boost CMake" section below.  For the former
 # case results are reported in variables::
 #
+#   BoostLibs_FOUND        - True if headers and requested libraries were found
 #   Boost_FOUND            - True if headers and requested libraries were found
 #   Boost_INCLUDE_DIRS     - Boost include directories
 #   Boost_LIBRARY_DIRS     - Link directories for Boost libraries
@@ -67,6 +68,8 @@
 #   Boost_<C>_LIBRARY_DEBUG   - Component <C> library debug variant
 #   Boost_<C>_LIBRARY_RELEASE - Component <C> library release variant
 
+SET(DEPENDENCY "BoostLibs")
+
 FIND_PACKAGE (Boost ${BoostLibs_FIND_VERSION} REQUIRED COMPONENTS 
     #atomic 
     chrono 
@@ -100,6 +103,11 @@ FIND_PACKAGE (Boost ${BoostLibs_FIND_VERSION} REQUIRED COMPONENTS
     #wave 
     #wserialization        
     )
+
+SET (${DEPENDENCY}_FOUND "NO")
+IF (Boost_FOUND)
+    SET (${DEPENDENCY}_FOUND "YES")
+ENDIF (Boost_FOUND)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
