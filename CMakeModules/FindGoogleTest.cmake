@@ -28,12 +28,13 @@
 # GOOGLE_TEST_LIBRARY_DEBUG - Holds the path to the gtest Debug library **********
 # GOOGLE_TEST_LIBRARY_MAIN_DEBUG - Holds the path to the gtest_main debug library*
 # ********************************************************************************
-# DEPENDENCY_FOUND - Defined if the dependency is found **************************
+# GOOGLE_TEST_FOUND - Defined if the dependency is found **************************
 # ********************************************************************************
 
+SET(DEPENDENCY "GOOGLE_TEST")
 
 # Finds the include files necessary for compilation
-FIND_PATH (GOOGLE_TEST_INCLUDE_DIR gtest/gtest.h    
+FIND_PATH (${DEPENDENCY}_INCLUDE_DIR gtest/gtest.h    
     HINTS
     $ENV{TR_INC}
     $ENV{TR_ROOT}/Ext/include
@@ -46,9 +47,9 @@ FIND_PATH (GOOGLE_TEST_INCLUDE_DIR gtest/gtest.h
     ~/Library/Frameworks
     /Library/Frameworks
 )
-MARK_AS_ADVANCED (GOOGLE_TEST_INCLUDE_DIR)
+MARK_AS_ADVANCED (${DEPENDENCY}_INCLUDE_DIR)
 
-MACRO (FIND_GOOGLE_TEST_LIBRARY MYLIBRARY MYLIBRARYNAME)
+MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
     # Finds the library files necessary for compilation
     FIND_LIBRARY (${MYLIBRARY}
         NAMES ${MYLIBRARYNAME}
@@ -69,21 +70,21 @@ MACRO (FIND_GOOGLE_TEST_LIBRARY MYLIBRARY MYLIBRARYNAME)
         /Library/Frameworks
     )
     MARK_AS_ADVANCED (${MYLIBRARY})
-ENDMACRO(FIND_GOOGLE_TEST_LIBRARY MYLIBRARY MYLIBRARYNAME)
+ENDMACRO(FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
 
 IF (TR_BUILD_WITH_RELEASE)
     # Locates all GOOGLE_TEST release libraries
-    FIND_GOOGLE_TEST_LIBRARY (GOOGLE_TEST_LIBRARY gtest)
-    FIND_GOOGLE_TEST_LIBRARY (GOOGLE_TEST_LIBRARY_MAIN gtest_main)
+    FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY gtest)
+    FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_MAIN gtest_main)
 ENDIF (TR_BUILD_WITH_RELEASE)
 
 IF (TR_BUILD_WITH_DEBUG)
     # Locates all GOOGLE_TEST debug libraries (in this case there are no debug libs)
-    FIND_GOOGLE_TEST_LIBRARY (GOOGLE_TEST_LIBRARY_DEBUG gtestd)
-    FIND_GOOGLE_TEST_LIBRARY (GOOGLE_TEST_LIBRARY_MAIN_DEBUG gtest_maind)
+    FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_DEBUG gtestd)
+    FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_MAIN_DEBUG gtest_maind)
 ENDIF (TR_BUILD_WITH_DEBUG)
 
-SET (DEPENDENCY_FOUND "NO")
-IF (GOOGLE_TEST_INCLUDE_DIR)
-    SET (DEPENDENCY_FOUND "YES")
-ENDIF (GOOGLE_TEST_INCLUDE_DIR)
+SET (${DEPENDENCY}_FOUND "NO")
+IF (${DEPENDENCY}_INCLUDE_DIR)
+    SET (${DEPENDENCY}_FOUND "YES")
+ENDIF (${DEPENDENCY}_INCLUDE_DIR)
