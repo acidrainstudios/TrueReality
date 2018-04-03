@@ -86,7 +86,7 @@ IF (TR_BUILD_WITH_RELEASE)
 		optimized ${OpenThreads_LIBRARY}
 		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
-		optimized ${JSON_CPP_LIBRARY}
+		optimized ${JsonCpp_LIBRARY}
 	)
 ENDIF (TR_BUILD_WITH_RELEASE)
 IF (TR_BUILD_WITH_DEBUG)
@@ -95,7 +95,7 @@ IF (TR_BUILD_WITH_DEBUG)
 		debug ${OpenThreads_LIBRARY_DEBUG}
 		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG}
-		debug ${JSON_CPP_LIBRARY_DEBUG} 
+		debug ${JsonCpp_LIBRARY_DEBUG} 
 	)
 ENDIF (TR_BUILD_WITH_DEBUG)
 
