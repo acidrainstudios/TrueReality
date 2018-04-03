@@ -22,16 +22,16 @@
 # ********************************************************************************
 # ********************************************************************************
 # Creates and sets variables to use through out cmake ****************************
-# GOOGLE_TEST_INCLUDE_DIR - Holds the path to the Google Test Headers ************
-# GOOGLE_TEST_LIBRARY - Holds the path to the gtest library **********************
-# GOOGLE_TEST_LIBRARY_MAIN - Holds the path to the gtest_main library ************
-# GOOGLE_TEST_LIBRARY_DEBUG - Holds the path to the gtest Debug library **********
-# GOOGLE_TEST_LIBRARY_MAIN_DEBUG - Holds the path to the gtest_main debug library*
+# GoogleTest_INCLUDE_DIR - Holds the path to the Google Test Headers *************
+# GoogleTest_LIBRARY - Holds the path to the gtest library ***********************
+# GoogleTest_LIBRARY_MAIN - Holds the path to the gtest_main library *************
+# GoogleTest_LIBRARY_DEBUG - Holds the path to the gtest Debug library ***********
+# GoogleTest_LIBRARY_MAIN_DEBUG - Holds the path to the gtest_main debug library**
 # ********************************************************************************
-# GOOGLE_TEST_FOUND - Defined if the dependency is found **************************
+# GoogleTest_FOUND - Defined if the dependency is found **************************
 # ********************************************************************************
 
-SET(DEPENDENCY "GOOGLE_TEST")
+SET(DEPENDENCY "GoogleTest")
 
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR gtest/gtest.h    

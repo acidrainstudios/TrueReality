@@ -38,8 +38,8 @@ IF (TR_BUILD_WITH_RELEASE)
 		optimized ${OPENTHREADS_LIBRARY}
 		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY}
-		optimized ${GOOGLE_TEST_LIBRARY}
-		optimized ${GOOGLE_TEST_LIBRARY_MAIN} 
+		optimized ${GoogleTest_LIBRARY}
+		optimized ${GoogleTest_LIBRARY_MAIN} 
 	)
 ENDIF (TR_BUILD_WITH_RELEASE)
 IF (TR_BUILD_WITH_DEBUG)
@@ -48,8 +48,8 @@ IF (TR_BUILD_WITH_DEBUG)
 		debug ${OPENTHREADS_LIBRARY_DEBUG}
 		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
-		debug ${GOOGLE_TEST_LIBRARY_DEBUG}
-		debug ${GOOGLE_TEST_LIBRARY_MAIN_DEBUG}
+		debug ${GoogleTest_LIBRARY_DEBUG}
+		debug ${GoogleTest_LIBRARY_MAIN_DEBUG}
 	)
 ENDIF (TR_BUILD_WITH_DEBUG)
 
