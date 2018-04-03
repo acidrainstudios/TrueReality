@@ -44,7 +44,7 @@ SET (EXTERNAL_LIBS)
 IF (TR_BUILD_WITH_RELEASE)
 	SET (EXTERNAL_LIBS
 		${EXTERNAL_LIBS}
-		optimized ${OPENTHREADS_LIBRARY}
+		optimized ${OpenThreads_LIBRARY}
 		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
         optimized ${OSG_GA_LIBRARY} 
@@ -54,7 +54,7 @@ ENDIF (TR_BUILD_WITH_RELEASE)
 IF (TR_BUILD_WITH_DEBUG)
 	SET (EXTERNAL_LIBS
 		${EXTERNAL_LIBS}
-		debug ${OPENTHREADS_LIBRARY_DEBUG}
+		debug ${OpenThreads_LIBRARY_DEBUG}
 		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
 		debug ${OSG_GA_LIBRARY_DEBUG}
