@@ -65,6 +65,13 @@ IF (WIN32)
 ENDIF (WIN32)
 
 # Common global definitions
+
+# Require C++11 support, prefer ISO C++ over GNU variants,
+# as relying solely on ISO C++ is more portable.
+SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+SET(CMAKE_CXX_EXTENSIONS OFF)
+
 OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
 
 SET (TR_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
