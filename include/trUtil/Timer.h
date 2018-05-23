@@ -25,14 +25,14 @@
 #include <osg/Timer>
 
 namespace trUtil
-{
-    /**
-     * @typedef osg::Timer_t TimeTicks
+{    
+     /**
+     * @typedef unsigned int64 TimeTicks
      *
      * @brief   64bit Integer to hold the Timers time ticks.
      */
 #if defined(_MSC_VER)
-    typedef __int64 TimeTicks;
+    typedef unsigned __int64 TimeTicks;
 #else
     typedef unsigned long long TimeTicks;
 #endif
