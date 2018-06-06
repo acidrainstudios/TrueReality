@@ -94,234 +94,54 @@ osgDB::SharedStateManager
 osgDB::writeImageFile
 osgDB::writeNodeFile
 
+osg::BoundingSphere
 osg::Camera::DrawCallback
 osg::Camera
+osg::Camera::FRAME_BUFFER
+osg::DegreesToRadians
+osg::Drawable
+osg::Geode
+osg::GraphicsContext
+osg::GraphicsContext::Traits
+osg::Group
 osg::Image
+osg::LightSource
+osg::Matrix
+osg::MatrixTransform
+osg::Node
+osg::NOTICE
+osg::notify
+osg::NodeVisitor
+osg::NodeVisitor::TRAVERSE_ALL_CHILDREN
+osg::Object
+osg::Object::STATIC
 osg::Operation
+osg::Program
+osg::ProxyNode
+osg::ref_ptr
+osg::Shader
+osg::Shader::FRAGMENT
+osg::Shader::VERTEX
+osg::StateAttribute::ON
+osg::StateAttribute::TEXTURE
 osg::StateSet
+osg::Texture
+osg::Texture::InternalFormatMode
+osg::Texture::USE_IMAGE_DATA_FORMAT
+osg::Texture2D
+osg::Texture3D
+osg::Transform::ABSOLUTE_RF
 osg::Uniform
+osg::Uniform::BOOL
+osg::Uniform::FLOAT
 osg::Vec2
+osg::Vec3
+osg::Vec3f
+osg::Vec4
 
 
-	Line 87:     ss->addUniform(new osg::Uniform("screenSize", osg::Vec2(100, 100)));
-	Line 88:     ss->addUniform(new osg::Uniform("sunPos", osg::Vec3(0.0,0.0,-1.0)));
-	Line 88:     ss->addUniform(new osg::Uniform("sunPos", osg::Vec3(0.0,0.0,-1.0)));
-	Line 89:     ss->addUniform(new osg::Uniform("sunColor", osg::Vec3(1.0,1.0,1.0)));
-	Line 89:     ss->addUniform(new osg::Uniform("sunColor", osg::Vec3(1.0,1.0,1.0)));
-	Line 90:     ss->addUniform(new osg::Uniform(osg::Uniform::BOOL, "irMode", false));
-	Line 90:     ss->addUniform(new osg::Uniform(osg::Uniform::BOOL, "irMode", false));
-	Line 91:     //    ss->addUniform(new osg::Uniform(osg::Uniform::FLOAT, "cloudFog", 0.0f));
-	Line 91:     //    ss->addUniform(new osg::Uniform(osg::Uniform::FLOAT, "cloudFog", 0.0f));
-	Line 92:     osg::Uniform* fogDelta = new osg::Uniform(osg::Uniform::FLOAT, "fogDelta");
-	Line 92:     osg::Uniform* fogDelta = new osg::Uniform(osg::Uniform::FLOAT, "fogDelta");
-	Line 92:     osg::Uniform* fogDelta = new osg::Uniform(osg::Uniform::FLOAT, "fogDelta");
-	Line 95:     ss->addUniform(new osg::Uniform(osg::Uniform::BOOL, "eyeAbove", true));
-	Line 95:     ss->addUniform(new osg::Uniform(osg::Uniform::BOOL, "eyeAbove", true));
-	Line 97:     ss->addUniform(new osg::Uniform("baseTexture", 0));
-	Line 98:     ss->addUniform(new osg::Uniform("irTexture", 0));
-	Line 101: 	osg::Node* initScene()
-	Line 106:         cam = new osg::Camera();
-	Line 154:         const osg::Vec4f MAIN_LIGHT_AMBIENT(1.0, 1.0, 1.0, 1.0);
-	Line 155:         const osg::Vec4f MAIN_LIGHT_DIFFUSE(1.0, 1.0, 1.0, 1.0);
-	Line 156:         const osg::Vec4f MAIN_LIGHT_SPECULAR(1.0, 1.0, 1.0, 1.0);
-	Line 157:         mainLightSource = new osg::LightSource;
-	Line 166:         cam->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
-	Line 170:         cam->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER);
-	Line 171:         cam->setRenderOrder(osg::Camera::POST_RENDER);
-	Line 173:         osg::Program* program = new osg::Program;
-	Line 173:         osg::Program* program = new osg::Program;
-	Line 174:         osg::Shader* vertShader = new osg::Shader(osg::Shader::VERTEX);
-	Line 174:         osg::Shader* vertShader = new osg::Shader(osg::Shader::VERTEX);
-	Line 174:         osg::Shader* vertShader = new osg::Shader(osg::Shader::VERTEX);
-	Line 176:         osg::Shader* fragShader = new osg::Shader(osg::Shader::FRAGMENT);
-	Line 176:         osg::Shader* fragShader = new osg::Shader(osg::Shader::FRAGMENT);
-	Line 176:         osg::Shader* fragShader = new osg::Shader(osg::Shader::FRAGMENT);
-	Line 204:             dist = (bs.radius())/tan(osg::DegreesToRadians(viewAngle)/2.0);
-	Line 205:             dist += bs.radius() * sin(osg::DegreesToRadians(viewAngle)/2.0);
-	Line 221:     ContactSnapperOp( ) : osg::Operation("op", true)
-	Line 228:     virtual void operator() (osg::Object* obj)
-	Line 240: 	            eyePos = osg::Vec3(dist, 0, 0); 
-	Line 241: 		        eyeUp = osg::Vec3(0,0,1);
-	Line 244: 	            mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos), 1.0));
-	Line 244: 	            mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos), 1.0));
-	Line 251:             eyePos = osg::Vec3(0, -dist, 0);
-	Line 252:             eyeUp = osg::Vec3(0,0,1);
-	Line 255:             mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos), 1.0));
-	Line 255:             mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos), 1.0));
-	Line 261:             eyePos = osg::Vec3(0, 0, dist);
-	Line 262:             eyeUp = osg::Vec3(0,1,0);
-	Line 265:             mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos), 1.0));
-	Line 265:             mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos), 1.0));
-	Line 271:             eyePos = osg::Vec3(1.5,1.0/1.5,1.0/4.5); //bow, port, above
-	Line 274:             eyeUp = osg::Vec3(0,0,1);
-	Line 277:             mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos + bs.center()), 1.0));
-	Line 277:             mainLightSource->getLight()->setPosition(osg::Vec4(osg::Vec3(eyePos + bs.center()), 1.0));
-	Line 305:     osg::ref_ptr<osg::Camera> cam;
-	Line 305:     osg::ref_ptr<osg::Camera> cam;
-	Line 306:     osg::ref_ptr<osg::Node> contact;
-	Line 306:     osg::ref_ptr<osg::Node> contact;
-	Line 308:     osg::Matrix projMatrix;
-	Line 309:     osg::Matrix viewMatrix;
-	Line 310:     osg::Vec3 eyePos;
-	Line 311:     osg::Vec3 eyeUp;
-	Line 313:     osg::BoundingSphere bs;
-	Line 316:     osg::ref_ptr<osg::LightSource> mainLightSource;
-	Line 316:     osg::ref_ptr<osg::LightSource> mainLightSource;
-	Line 317:     osg::ref_ptr<SaveSnapCallback> cb;
-	Line 322:     osg::ref_ptr<ContactSnapperOp> snapperOp = new ContactSnapperOp();
-  D:\Development\psim\src\convertAll\FindPivotPointVisitor.cpp (2 hits)
-	Line 18: void FindPivotPointVisitor::apply(osg::Group &node)
-	Line 35: std::vector<osg::Group*> * FindPivotPointVisitor::getPivotPointGroups()
-  D:\Development\psim\src\convertAll\FindPivotPointVisitor.h (4 hits)
-	Line 11: class FindPivotPointVisitor: public osg::NodeVisitor
-	Line 16: 	virtual void apply(osg::Group &);
-	Line 20: 	std::vector<osg::Group*>* getPivotPointGroups();
-	Line 23: 	std::vector<osg::Group*> mPivotPointGroups;
-  D:\Development\psim\src\convertAll\GenerateCleats.cpp (21 hits)
-	Line 29: 	osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(iveFile);
-	Line 29: 	osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(iveFile);
-	Line 50: 	std::vector<osg::Group*> *pivotPointGroups = fppv.getPivotPointGroups();
-	Line 58: 	for (std::vector<osg::Group*>::iterator it = pivotPointGroups->begin(); it != pivotPointGroups->end(); it++)
-	Line 60: 		osg::ref_ptr<osg::Geode> pivot_objectNode = NULL;
-	Line 60: 		osg::ref_ptr<osg::Geode> pivot_objectNode = NULL;
-	Line 64: 			osg::ref_ptr<osg::Node> node = (*it)->getChild(i);
-	Line 64: 			osg::ref_ptr<osg::Node> node = (*it)->getChild(i);
-	Line 68: 				pivot_objectNode = dynamic_cast<osg::Geode*> (node.get());
-	Line 71: 		osg::Vec3f pivotCoords;
-	Line 99: 	osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(iveFile);
-	Line 99: 	osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(iveFile);
-	Line 123: 	std::vector<osg::Group*> *pivotPointGroups = fppv.getPivotPointGroups();
-	Line 181: 	for (std::vector<osg::Group*>::iterator it = pivotPointGroups->begin(); it != pivotPointGroups->end(); it++)
-	Line 183: 		osg::ref_ptr<osg::Geode> pivot_objectNode = NULL;
-	Line 183: 		osg::ref_ptr<osg::Geode> pivot_objectNode = NULL;
-	Line 195: 				pivot_objectNode = dynamic_cast<osg::Geode*> ((*it)->getChild(0));
-	Line 213: 				osg::ref_ptr<osg::Node> node = (*it)->getChild(i);
-	Line 213: 				osg::ref_ptr<osg::Node> node = (*it)->getChild(i);
-	Line 217: 					pivot_objectNode = dynamic_cast<osg::Geode*> (node.get());
-	Line 221: 		osg::Vec3f pivotCoords;
-  D:\Development\psim\src\convertAll\GetGroupNamesVisitor.cpp (1 hit)
-	Line 21: void GetGroupNamesVisitor::apply(osg::Node &node)
-  D:\Development\psim\src\convertAll\GetGroupNamesVisitor.h (2 hits)
-	Line 12: class GetGroupNamesVisitor: public osg::NodeVisitor
-	Line 17: 	virtual void apply(osg::Node &);
-  D:\Development\psim\src\convertAll\HandledNodesVisitor.cpp (2 hits)
-	Line 43: void HandledNodesVisitor::apply(osg::Node &node)
-	Line 57: bool HandledNodesVisitor::isHandledNode(osg::Node &node)
-  D:\Development\psim\src\convertAll\HandledNodesVisitor.h (3 hits)
-	Line 19: class HandledNodesVisitor: public osg::NodeVisitor
-	Line 24: 	virtual void apply(osg::Node &);
-	Line 33: 	bool isHandledNode(osg::Node &node);
-  D:\Development\psim\src\convertAll\MergeGeodesVisitor.cpp (19 hits)
-	Line 22: void MergeGeodesVisitor::apply(osg::Group& group)
-	Line 24:     if (typeid(group)==typeid(osg::Group)) mergeGeodes(group);
-	Line 30: 		osg::Node* childNode = group.getChild(i);
-	Line 35: 			if (dynamic_cast<osg::ProxyNode*>(childNode->asGroup()) != NULL)
-	Line 43:     bool operator() (const osg::Geode* lhs,const osg::Geode* rhs) const
-	Line 43:     bool operator() (const osg::Geode* lhs,const osg::Geode* rhs) const
-	Line 52: bool MergeGeodesVisitor::mergeGeodes(osg::Group& group)
-	Line 54:     typedef std::vector< osg::Geode* >                      DuplicateList;
-	Line 55:     typedef std::map<osg::Geode*,DuplicateList,LessGeode>   GeodeDuplicateMap;
-	Line 58:     osg::NodeList children;
-	Line 73:         osg::Node* child = children[i].get();
-	Line 76:         if (typeid(*child)==typeid(osg::Geode) && child->getNodeMask() != 0x1) 
-	Line 78:             osg::Geode* geode = static_cast<osg::Geode*>(child);
-	Line 78:             osg::Geode* geode = static_cast<osg::Geode*>(child);
-	Line 98:             osg::Geode* lhs = itr->second[0];
-	Line 107:                 osg::Geode* rhs = *dupItr;
-	Line 113:             osg::Geode* lhs = itr->second[0];
-	Line 123: bool MergeGeodesVisitor::mergeGeode(osg::Geode& lhs, osg::Geode& rhs)
-	Line 123: bool MergeGeodesVisitor::mergeGeode(osg::Geode& lhs, osg::Geode& rhs)
-  D:\Development\psim\src\convertAll\MergeGeodesVisitor.h (5 hits)
-	Line 11: class MergeGeodesVisitor: public osg::NodeVisitor
-	Line 17: 	virtual void apply(osg::Group &);
-	Line 18: 	bool mergeGeodes(osg::Group& group);
-	Line 19: 	bool mergeGeode(osg::Geode& lhs, osg::Geode& rhs);
-	Line 19: 	bool mergeGeode(osg::Geode& lhs, osg::Geode& rhs);
-  D:\Development\psim\src\convertAll\OrientationConverter.cpp (9 hits)
-	Line 26:     R = Matrix::rotate( osg::DegreesToRadians(degrees), axis );
-	Line 49: 	if (dynamic_cast<osg::Group*> (node))
-	Line 76:     osg::Group* root = new osg::Group;
-	Line 76:     osg::Group* root = new osg::Group;
-	Line 77:     osg::MatrixTransform* transform = new osg::MatrixTransform;
-	Line 77:     osg::MatrixTransform* transform = new osg::MatrixTransform;
-	Line 79:     transform->setDataVariance(osg::Object::STATIC);
-	Line 86:             transform->getOrCreateStateSet()->setMode(GL_NORMALIZE, osg::StateAttribute::ON);
-	Line 98: 	    return ((osg::Group*)root->getChild(0))->getChild(0);
-  D:\Development\psim\src\convertAll\OrientationConverter.h (8 hits)
-	Line 12:         void setRotation( const osg::Vec3 &from,
-	Line 13:                           const osg::Vec3 &to  );
-	Line 14:         void setRotation( float degrees, const osg::Vec3 &axis  );
-	Line 15:         void setTranslation( const osg::Vec3 &trans);
-	Line 16:         void setScale( const osg::Vec3 &trans);
-	Line 21:         osg::Node* convert( osg::Node* node );
-	Line 21:         osg::Node* convert( osg::Node* node );
-	Line 27:         osg::Matrix R, T, S;
-  D:\Development\psim\src\convertAll\osgconv.cpp (227 hits)
-	Line 50:             osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
-	Line 50:             osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
-	Line 50:             osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
-	Line 60:             _gc = osg::GraphicsContext::createGraphicsContext(traits.get());
-	Line 64:                 osg::notify(osg::NOTICE)<<"\tFailed to create pbuffer, failing back to normal graphics window."<<std::endl;
-	Line 64:                 osg::notify(osg::NOTICE)<<"\tFailed to create pbuffer, failing back to normal graphics window."<<std::endl;
-	Line 67:                 _gc = osg::GraphicsContext::createGraphicsContext(traits.get());
-	Line 88:         osg::ref_ptr<osg::GraphicsContext> _gc;
-	Line 88:         osg::ref_ptr<osg::GraphicsContext> _gc;
-	Line 91: class CompressTexturesVisitor : public osg::NodeVisitor
-	Line 95:     CompressTexturesVisitor(osg::Texture::InternalFormatMode internalFormatMode):
-	Line 96:         osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN),
-	Line 96:         osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN),
-	Line 99:     virtual void apply(osg::Node& node)
-	Line 105:     virtual void apply(osg::Geode& node)
-	Line 111:             osg::Drawable* drawable = node.getDrawable(i);
-	Line 118:     virtual void apply(osg::StateSet& stateset)
-	Line 123:             osg::Texture* texture = dynamic_cast<osg::Texture*>(stateset.getTextureAttribute(i,osg::StateAttribute::TEXTURE));
-	Line 123:             osg::Texture* texture = dynamic_cast<osg::Texture*>(stateset.getTextureAttribute(i,osg::StateAttribute::TEXTURE));
-	Line 123:             osg::Texture* texture = dynamic_cast<osg::Texture*>(stateset.getTextureAttribute(i,osg::StateAttribute::TEXTURE));
-	Line 136:             osg::notify(osg::NOTICE)<<"\tError: Unable to create graphis context, problem with running osgViewer-"<<osgViewerGetVersion()<<", cannot run compression."<<std::endl;
-	Line 136:             osg::notify(osg::NOTICE)<<"\tError: Unable to create graphis context, problem with running osgViewer-"<<osgViewerGetVersion()<<", cannot run compression."<<std::endl;
-	Line 140:         osg::ref_ptr<osg::State> state = new osg::State;
-	Line 140:         osg::ref_ptr<osg::State> state = new osg::State;
-	Line 140:         osg::ref_ptr<osg::State> state = new osg::State;
-	Line 146:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 146:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 148:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 148:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 149:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 149:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 151:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 151:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 170:                 texture->setInternalFormatMode(osg::Texture::USE_IMAGE_DATA_FORMAT);
-	Line 181:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 181:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 183:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 183:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 184:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 184:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 186:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 186:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 212:                 osg::notify(osg::NOTICE) << "\tImage written to '" << path << "'." << std::endl;
-	Line 212:                 osg::notify(osg::NOTICE) << "\tImage written to '" << path << "'." << std::endl;
-	Line 223:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 223:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 224:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 224:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 225:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 225:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 227:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 227:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 243:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 243:             osg::Texture* texture = const_cast<osg::Texture*>(itr->get());
-	Line 244:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 244:             osg::Texture2D* texture2D = dynamic_cast<osg::Texture2D*>(texture);
-	Line 245:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 245:             osg::Texture3D* texture3D = dynamic_cast<osg::Texture3D*>(texture);
-	Line 247:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 247:             osg::ref_ptr<osg::Image> image = texture2D ? texture2D->getImage() : (texture3D ? texture3D->getImage() : 0);
-	Line 257:     typedef std::set< osg::ref_ptr<osg::Texture> > TextureSet;
-	Line 257:     typedef std::set< osg::ref_ptr<osg::Texture> > TextureSet;
-	Line 259:     osg::Texture::InternalFormatMode    _internalFormatMode;
-	Line 263: class LoadTexturesVisitor : public osg::NodeVisitor
-	Line 267:     osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) {}
+
+osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) {}
 	Line 267:     osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) {}
 	Line 269:     virtual void apply(osg::Node& node)
 	Line 275:     virtual void apply(osg::Geode& node)
