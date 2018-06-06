@@ -1,711 +1,108 @@
-Search "osgWidget::" (0 hits in 0 files)
-Search "osgWidget::" (0 hits in 0 files)
-Search "osgVolume::" (0 hits in 0 files)
-Search "osgVolume::" (0 hits in 0 files)
-Search "osgViewer::" (59 hits in 24 files)
-  D:\Development\psim\src\contactSnapper\contactSnapper.cpp (2 hits)
-	Line 325:     osgViewer::Viewer viewer;
-	Line 329:     viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
-  D:\Development\psim\src\convertAll\osgconv.cpp (1 hit)
-	Line 74:                 if (dynamic_cast<osgViewer::GraphicsWindow*>(_gc.get()))
-  D:\Development\psim\src\demoOcean\CreateViews.cpp (4 hits)
-	Line 23:     osg::ref_ptr<osgViewer::View> osgView = new osgViewer::View();
-	Line 23:     osg::ref_ptr<osgViewer::View> osgView = new osgViewer::View();
-	Line 31:     osg::ref_ptr<osgViewer::View> view = mViews.at(viewNum);
-	Line 38:     osg::ref_ptr<osgViewer::View> view = mViews.at(viewNum);
-  D:\Development\psim\src\demoOcean\CreateViews.h (2 hits)
-	Line 31:     std::unordered_map<int, osg::ref_ptr<osgViewer::View>> GetViews() const { return mViews; }
-	Line 35:     std::unordered_map<int, osg::ref_ptr<osgViewer::View>> mViews;
-  D:\Development\psim\src\demoOcean\Main.cpp (2 hits)
-	Line 113:     osgViewer::CompositeViewer viewer;
-	Line 118:     std::unordered_map<int, osg::ref_ptr<osgViewer::View>> views = createViews.GetViews();
-  D:\Development\psim\src\subview\AnimationUpdateCallback.cpp (1 hit)
-	Line 20: AnimationUpdateCallback::AnimationUpdateCallback(osg::ref_ptr<osg::Uniform> animationTimeUniform, osgViewer::Viewer* viewer,
-  D:\Development\psim\src\subview\AnimationUpdateCallback.h (2 hits)
-	Line 21:     AnimationUpdateCallback(osg::ref_ptr<osg::Uniform> animationTimeUniform, osgViewer::Viewer* viewer, int numFrames,
-	Line 33:     osgViewer::Viewer* mViewer;
-  D:\Development\psim\src\subview\BillboardParameters.cpp (2 hits)
-	Line 91: osgViewer::Viewer* BillboardParameters::getViewer(){
-	Line 142: void BillboardParameters::setViewer(osgViewer::Viewer* viewer){
-  D:\Development\psim\src\subview\BillboardParameters.h (3 hits)
-	Line 36:     osgViewer::Viewer* getViewer();
-	Line 50:     void setViewer(osgViewer::Viewer* viewer);
-	Line 81:     osgViewer::Viewer* mViewer;
-  D:\Development\psim\src\subview\ExternalDataLoader.cpp (2 hits)
-	Line 2212: void ExternalDataLoader::startPftkTiming(osgViewer::Viewer& viewer, const std::string& name)
-	Line 2221: void ExternalDataLoader::endPftkTiming(osgViewer::Viewer& viewer, const std::string& name)
-  D:\Development\psim\src\subview\ExternalDataLoader.h (2 hits)
-	Line 49:     static void startPftkTiming(osgViewer::Viewer& viewer, const std::string& name);
-	Line 50:     static void endPftkTiming(osgViewer::Viewer& viewer, const std::string& name);
-  D:\Development\psim\src\subview\InputHandler.cpp (6 hits)
-	Line 43: void InputHandler::setViewer(osgViewer::Viewer *_viewer)
-	Line 1362:             if (viewer->getThreadingModel() == osgViewer::Viewer::SingleThreaded)
-	Line 1364:                 viewer->setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext);
-	Line 1365:                 printf("setting osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext\n");
-	Line 1369:                 viewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);
-	Line 1370:                 printf("setting osgViewer::Viewer::SingleThreaded\n");
-  D:\Development\psim\src\subview\InputHandler.h (2 hits)
-	Line 12:     osgViewer::Viewer *viewer;
-	Line 20:     void setViewer(osgViewer::Viewer *_viewer);
-  D:\Development\psim\src\subview\OceanMeshGenerator.cpp (2 hits)
-	Line 40: unsigned int startTiming(osgViewer::Viewer& viewer, const std::string& name)
-	Line 51: void endTiming(osgViewer::Viewer& viewer, const std::string& name, unsigned int framenumber)
-  D:\Development\psim\src\subview\OsgSubview.cpp (9 hits)
-	Line 139:     osg::ref_ptr<osgViewer::StatsHandler> statsHandler = new osgViewer::StatsHandler;
-	Line 139:     osg::ref_ptr<osgViewer::StatsHandler> statsHandler = new osgViewer::StatsHandler;
-	Line 154:     viewer.setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext);
-	Line 155:     //viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded); 
-	Line 174:     osgViewer::Viewer::Windows windows;
-	Line 179:     for (osgViewer::Viewer::Windows::iterator itr = windows.begin(); itr != windows.end(); ++itr)
-	Line 200: void OsgSubview::singleWindowCamera(osgViewer::Viewer& viewer, osg::Camera* mainCamera, osg::Camera* nearCamera)
-	Line 301:     osgViewer::GraphicsWindow* gw = dynamic_cast<osgViewer::GraphicsWindow*> (gc.get());
-	Line 301:     osgViewer::GraphicsWindow* gw = dynamic_cast<osgViewer::GraphicsWindow*> (gc.get());
-  D:\Development\psim\src\subview\OsgSubview.h (1 hit)
-	Line 28:     void singleWindowCamera(osgViewer::Viewer& viewer, osg::Camera* mainCamera, osg::Camera* nearCamera);
-  D:\Development\psim\src\subview\PickHandler.cpp (5 hits)
-	Line 39:              osgViewer::View* view = dynamic_cast<osgViewer::View*>(&aa);
-	Line 39:              osgViewer::View* view = dynamic_cast<osgViewer::View*>(&aa);
-	Line 47:                 osgViewer::View* view = dynamic_cast<osgViewer::View*> (&aa);
-	Line 47:                 osgViewer::View* view = dynamic_cast<osgViewer::View*> (&aa);
-	Line 60: void PickHandler::pick() //osgViewer::View*, const osgGA::GUIEventAdapter&)
-  D:\Development\psim\src\subview\PsimCameraManipulator.cpp (3 hits)
-	Line 45: PsimCameraManipulator::PsimCameraManipulator(osg::Camera *_camera, osgViewer::Viewer* _viewer)
-	Line 114:     osgViewer::Viewer::Windows windows;
-	Line 117:     for (osgViewer::Viewer::Windows::iterator itr = windows.begin(); itr != windows.end(); ++itr)
-  D:\Development\psim\src\subview\PsimCameraManipulator.h (2 hits)
-	Line 34:     PsimCameraManipulator(osg::Camera *_camera, osgViewer::Viewer* _viewer);
-	Line 148:     osgViewer::Viewer* viewer;
-  D:\Development\psim\src\subview\RANHud.cpp (1 hit)
-	Line 356:     osgViewer::ViewerBase::Contexts _contexts;
-  D:\Development\psim\src\subview\RootNodeCallback.cpp (2 hits)
-	Line 336: void startRNTiming(osgViewer::Viewer& viewer, const std::string& name)
-	Line 345: void endRNTiming(osgViewer::Viewer& viewer, const std::string& name)
-  D:\Development\psim\src\subview\SharedData.h (1 hit)
-	Line 74:     osgViewer::Viewer *viewer = NULL;
-  D:\Development\psim\src\subview\SubviewViewer.cpp (1 hit)
-	Line 38: : osgViewer::Viewer(arguments),
-  D:\Development\psim\src\subview\SubviewViewer.h (1 hit)
-	Line 18: class SubviewViewer : public osgViewer::Viewer
-Search "osgViewer::" (0 hits in 0 files)
-Search "osgUtil::" (74 hits in 12 files)
-  D:\Development\psim\src\convertAll\OrientationConverter.cpp (1 hit)
-	Line 93:     osgUtil::Optimizer::FlattenStaticTransformsVisitor fstv;
-  D:\Development\psim\src\convertAll\osgconv.cpp (25 hits)
-	Line 847: 			//optimizerOptions |= osgUtil::Optimizer::DEFAULT_OPTIMIZATIONS;
-	Line 848: 			//optimizerOptions |= osgUtil::Optimizer::ALL_OPTIMIZATIONS;
-	Line 849: 			optimizerOptions |= osgUtil::Optimizer::REMOVE_LOADED_PROXY_NODES;
-	Line 850: 			optimizerOptions |= osgUtil::Optimizer::REMOVE_REDUNDANT_NODES;
-	Line 851: 			//optimizerOptions |= osgUtil::Optimizer::COMBINE_ADJACENT_LODS;
-	Line 852: 			optimizerOptions |= osgUtil::Optimizer::SHARE_DUPLICATE_STATE;
-	Line 853: 			optimizerOptions |= osgUtil::Optimizer::MERGE_GEOMETRY;
-	Line 854: 			//optimizerOptions |= osgUtil::Optimizer::CHECK_GEOMETRY;
-	Line 855: //			optimizerOptions |= osgUtil::Optimizer::MAKE_FAST_GEOMETRY;
-	Line 856: 			//optimizerOptions |= osgUtil::Optimizer::SPATIALIZE_GROUPS;
-	Line 857: 			//optimizerOptions |= osgUtil::Optimizer::COPY_SHARED_NODES;
-	Line 858: 			//optimizerOptions |= osgUtil::Optimizer::TRISTRIP_GEOMETRY;
-	Line 859: //			optimizerOptions |= osgUtil::Optimizer::TESSELLATE_GEOMETRY;
-	Line 860: 			optimizerOptions |= osgUtil::Optimizer::OPTIMIZE_TEXTURE_SETTINGS;
-	Line 861: 			//optimizerOptions |= osgUtil::Optimizer::MERGE_GEODES;					///NEEDS TO BE DONE MANUALLY!!!!!!!!!!!
-	Line 862: 			//optimizerOptions |= osgUtil::Optimizer::FLATTEN_BILLBOARDS;
-	Line 863: 			//optimizerOptions |= osgUtil::Optimizer::TEXTURE_ATLAS_BUILDER;
-	Line 864: 			optimizerOptions |= osgUtil::Optimizer::STATIC_OBJECT_DETECTION;
-	Line 865: 			//optimizerOptions |= osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS_DUPLICATING_SHARED_SUBGRAPHS;
-	Line 866: 			optimizerOptions |= osgUtil::Optimizer::INDEX_MESH;
-	Line 867: 			optimizerOptions |= osgUtil::Optimizer::VERTEX_POSTTRANSFORM;
-	Line 868: 			optimizerOptions |= osgUtil::Optimizer::VERTEX_PRETRANSFORM;
-	Line 925: 			osgUtil::SmoothingVisitor sv;
-	Line 942: 			osgUtil::Optimizer optimizer;
-	Line 990: 			osgUtil::Simplifier simple;
-  D:\Development\psim\src\subview\AddScrewOp.cpp (7 hits)
-	Line 66:         osgUtil::Optimizer optimizer;
-	Line 68:         options |= osgUtil::Optimizer::DEFAULT_OPTIMIZATIONS;
-	Line 69:         options |= osgUtil::Optimizer::MERGE_GEODES;
-	Line 70:         options |= osgUtil::Optimizer::INDEX_MESH;
-	Line 71:         options |= osgUtil::Optimizer::VERTEX_POSTTRANSFORM;
-	Line 72:         options |= osgUtil::Optimizer::VERTEX_PRETRANSFORM;
-	Line 73:         options |= osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS_DUPLICATING_SHARED_SUBGRAPHS;
-  D:\Development\psim\src\subview\BowWake.cpp (1 hit)
-	Line 59:     osgUtil::SmoothingVisitor sv;
-  D:\Development\psim\src\subview\FragQueryNode.cpp (1 hit)
-	Line 10:         // Queries are not enabled. The caller should be osgUtil::CullVisitor,
-  D:\Development\psim\src\subview\GeoCellCullCallback.cpp (2 hits)
-	Line 34:     osgUtil::CullVisitor* cv = dynamic_cast<osgUtil::CullVisitor*> (nv);
-	Line 34:     osgUtil::CullVisitor* cv = dynamic_cast<osgUtil::CullVisitor*> (nv);
-  D:\Development\psim\src\subview\MiniBackgroundLoader.cpp (18 hits)
-	Line 223:             osgUtil::Optimizer optimizer;
-	Line 267:                 options |= osgUtil::Optimizer::DEFAULT_OPTIMIZATIONS;
-	Line 268:                 options |= osgUtil::Optimizer::MERGE_GEODES;
-	Line 269:                 options |= osgUtil::Optimizer::INDEX_MESH;
-	Line 270:                 options |= osgUtil::Optimizer::VERTEX_POSTTRANSFORM;
-	Line 271:                 options |= osgUtil::Optimizer::VERTEX_PRETRANSFORM;
-	Line 272:                 options |= osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS_DUPLICATING_SHARED_SUBGRAPHS;
-	Line 618:                 osgUtil::Optimizer optimizer;
-	Line 619:                 options |= osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS;
-	Line 620:                 options |= osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS_DUPLICATING_SHARED_SUBGRAPHS;
-	Line 764:     osgUtil::Optimizer optimizer;
-	Line 765:     optimizer.optimize(grp, osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS_DUPLICATING_SHARED_SUBGRAPHS);
-	Line 1267:         osgUtil::Optimizer optimizer;
-	Line 1268:         optimizer.optimize(modelNode, osgUtil::Optimizer::REMOVE_REDUNDANT_NODES
-	Line 1269:                 | osgUtil::Optimizer::COMBINE_ADJACENT_LODS
-	Line 1270:                 | osgUtil::Optimizer::SHARE_DUPLICATE_STATE
-	Line 1271:                 | osgUtil::Optimizer::MERGE_GEOMETRY
-	Line 1272:                 | osgUtil::Optimizer::STATIC_OBJECT_DETECTION);
-  D:\Development\psim\src\subview\OsgSubview.cpp (2 hits)
-	Line 113:     reflCamera->setInheritanceMask(osgUtil::SceneView::VariablesMask::ALL_VARIABLES & ~osgUtil::SceneView::VariablesMask::CULL_MASK);
-	Line 113:     reflCamera->setInheritanceMask(osgUtil::SceneView::VariablesMask::ALL_VARIABLES & ~osgUtil::SceneView::VariablesMask::CULL_MASK);
-  D:\Development\psim\src\subview\PickHandler.cpp (10 hits)
-	Line 75:     osg::ref_ptr<osgUtil::LineSegmentIntersector> intersector =
-	Line 76:             new osgUtil::LineSegmentIntersector(eye + dir * 30.f, eye + dir * 240000.f);
-	Line 78:     osgUtil::IntersectionVisitor iv(intersector.get());
-	Line 94:         osgUtil::LineSegmentIntersector::Intersections intersections = intersector->getIntersections();
-	Line 96:         for (osgUtil::LineSegmentIntersector::Intersections::iterator hit = intersections.begin();
-	Line 187:     osg::ref_ptr<osgUtil::LineSegmentIntersector> intersector =
-	Line 188:             new osgUtil::LineSegmentIntersector(eye + dir, eye + dir * 240000.f);
-	Line 190:     osgUtil::IntersectionVisitor iv(intersector.get());
-	Line 197:         osgUtil::LineSegmentIntersector::Intersections intersections = intersector->getIntersections();
-	Line 199:         for (osgUtil::LineSegmentIntersector::Intersections::iterator hit = intersections.begin();
-  D:\Development\psim\src\subview\ReflCullCallback.cpp (2 hits)
-	Line 24:     osgUtil::CullVisitor* cv = dynamic_cast<osgUtil::CullVisitor*> (nv);
-	Line 24:     osgUtil::CullVisitor* cv = dynamic_cast<osgUtil::CullVisitor*> (nv);
-  D:\Development\psim\src\subview\RootCullCallback.cpp (2 hits)
-	Line 24:     osgUtil::CullVisitor* cv = dynamic_cast<osgUtil::CullVisitor*> (nv);
-	Line 24:     osgUtil::CullVisitor* cv = dynamic_cast<osgUtil::CullVisitor*> (nv);
-  D:\Development\psim\src\subview\RootNodeCallback.cpp (3 hits)
-	Line 613:                         osgUtil::Optimizer optimizer;
-	Line 614:                         options |= osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS;
-	Line 615:                         options |= osgUtil::Optimizer::FLATTEN_STATIC_TRANSFORMS_DUPLICATING_SHARED_SUBGRAPHS;
-Search "osgUtil::" (0 hits in 0 files)
-Search "osgUI::" (0 hits in 0 files)
-Search "osgUI::" (0 hits in 0 files)
-Search "osgText::" (54 hits in 10 files)
-  D:\Development\psim\src\subview\Benchmark.h (1 hit)
-	Line 34:     void drawBenchmark(class osgText::Text *text, int depth, int &line, osg::RenderInfo& ri);
-  D:\Development\psim\src\subview\FLIROverlay.cpp (23 hits)
-	Line 75:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 77:     //mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 252:     mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 279:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 286:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 302:     mText.setAlignment(osgText::Text::RIGHT_CENTER);
-	Line 311:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 316:     mText.setAlignment(osgText::Text::RIGHT_TOP);
-	Line 329:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 334:     mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 339:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 433:     mText.setAlignment(osgText::Text::LEFT_TOP);
-	Line 435:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 447:     mText.setAlignment(osgText::Text::LEFT_BOTTOM);
-	Line 449:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 454:     mText.setAlignment(osgText::Text::RIGHT_TOP);
-	Line 551:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 556:     mText.setAlignment(osgText::Text::RIGHT_TOP);
-	Line 588:     mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 678:         mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 684:         mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 728:       mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 785:       mText.setAlignment(osgText::Text::LEFT_CENTER);
-  D:\Development\psim\src\subview\OverlayText.cpp (8 hits)
-	Line 94:     osg::ref_ptr<osgText::Font> font = osgText::readFontFile(fontPath);
-	Line 94:     osg::ref_ptr<osgText::Font> font = osgText::readFontFile(fontPath);
-	Line 99: void OverlayText::setAlignment(osgText::Text::AlignmentType alignmentEnum)
-	Line 115: 		text = new osgText::Text;
-	Line 128: 	osg::ref_ptr<osgText::Font> font = osgText::readFontFile(fontPath);
-	Line 128: 	osg::ref_ptr<osgText::Font> font = osgText::readFontFile(fontPath);
-	Line 130: 	text->setAxisAlignment(osgText::Text::SCREEN);
-	Line 133: 	text->setCharacterSizeMode(osgText::Text::SCREEN_COORDS);
-  D:\Development\psim\src\subview\OverlayText.h (2 hits)
-	Line 31: 		void setAlignment(osgText::Text::AlignmentType alignmentEnum);
-	Line 34: 		osg::ref_ptr<osgText::Text> text;
-  D:\Development\psim\src\subview\TextBox.cpp (5 hits)
-	Line 21:     mText = new osgText::Text;
-	Line 41:     mText->setAlignment(osgText::TextBase::CENTER_CENTER);
-	Line 46:     //mText->setAxisAlignment(osgText::Text::SCREEN);
-	Line 91:             osgText::Text* text = dynamic_cast<osgText::Text*> (geode->getDrawable(i));
-	Line 91:             osgText::Text* text = dynamic_cast<osgText::Text*> (geode->getDrawable(i));
-  D:\Development\psim\src\subview\TextBox.h (1 hit)
-	Line 28:     osg::ref_ptr<osgText::Text> mText;
-  D:\Development\psim\src\subview\UAVOverlay.cpp (9 hits)
-	Line 41:     mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 319:             mText.setAlignment(osgText::Text::RIGHT_CENTER);
-	Line 335:             mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 407:             mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 418:         mText.setAlignment(osgText::Text::RIGHT_CENTER);
-	Line 425:             mText.setAlignment(osgText::Text::LEFT_CENTER);
-	Line 429:         mText.setAlignment(osgText::Text::CENTER_CENTER);
-	Line 560:       mWaypointTexts[i].text->setAlignment(osgText::Text::CENTER_CENTER);
-	Line 568:       mWaypointTexts[i].text->setAxisAlignment(osgText::Text::REVERSED_YZ_PLANE);
-  D:\Development\psim\src\subview\WindscreenDisplay.cpp (2 hits)
-	Line 74:             mWindscreenText[row][column] = new osgText::Text();
-	Line 76:             mWindscreenText[row][column]->setAxisAlignment(osgText::Text::REVERSED_YZ_PLANE);
-  D:\Development\psim\src\subview\WindscreenDisplay.h (1 hit)
-	Line 26:     osg::ref_ptr<osgText::Text> mWindscreenText[ROW_COUNT][COLUMN_COUNT];
-  D:\Development\psim\src\subview\WindscreenUpdateCallback.cpp (2 hits)
-	Line 29:         osgText::Text* text = dynamic_cast<osgText::Text*> (geode->getDrawable(i));
-	Line 29:         osgText::Text* text = dynamic_cast<osgText::Text*> (geode->getDrawable(i));
-Search "osgText::" (0 hits in 0 files)
-Search "osgTerrain::" (0 hits in 0 files)
-Search "osgTerrain::" (0 hits in 0 files)
-Search "osgSim::" (31 hits in 6 files)
-  D:\Development\psim\src\subview\EDGEDOFAdjuster.cpp (2 hits)
-	Line 20: 	osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*>(&node);
-	Line 20: 	osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*>(&node);
-  D:\Development\psim\src\subview\EDGESwitch.cpp (9 hits)
-	Line 32: 			osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*>(node);
-	Line 32: 			osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*>(node);
-	Line 33: 			osgSim::MultiSwitch *multiSwitchNode = dynamic_cast<osgSim::MultiSwitch*>(node);
-	Line 33: 			osgSim::MultiSwitch *multiSwitchNode = dynamic_cast<osgSim::MultiSwitch*>(node);
-	Line 36: 			//handle osgSim::DOFTransform
-	Line 52: 			//handle an osgSim::MultiSwitch
-	Line 87: 		osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*>(node);
-	Line 87: 		osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*>(node);
-	Line 109: void EDGESwitch::animate(osgSim::DOFTransform * node, double newTime)
-  D:\Development\psim\src\subview\EDGESwitch.h (1 hit)
-	Line 21: 		void animate(osgSim::DOFTransform * node, double newTime);
-  D:\Development\psim\src\subview\ParseEdgeInstanceVisitor.cpp (4 hits)
-	Line 36:     osgSim::MultiSwitch *switchNode = dynamic_cast<osgSim::MultiSwitch*> (&node);
-	Line 36:     osgSim::MultiSwitch *switchNode = dynamic_cast<osgSim::MultiSwitch*> (&node);
-	Line 37:     osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*> (&node);
-	Line 37:     osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*> (&node);
-  D:\Development\psim\src\subview\ParseEdgeVisitor.cpp (13 hits)
-	Line 70:     osgSim::MultiSwitch *switchNode = dynamic_cast<osgSim::MultiSwitch*> (&node);
-	Line 70:     osgSim::MultiSwitch *switchNode = dynamic_cast<osgSim::MultiSwitch*> (&node);
-	Line 71:     osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*> (&node);
-	Line 71:     osgSim::DOFTransform *DOFTransformNode = dynamic_cast<osgSim::DOFTransform*> (&node);
-	Line 111:                     dynamic_cast<osgSim::MultiSwitch*> (childNode.get()) == NULL &&
-	Line 112:                     dynamic_cast<osgSim::DOFTransform*> (childNode.get()) == NULL &&
-	Line 242:     osgSim::MultiSwitch *multiSwitchNode = dynamic_cast<osgSim::MultiSwitch*> (&node);
-	Line 242:     osgSim::MultiSwitch *multiSwitchNode = dynamic_cast<osgSim::MultiSwitch*> (&node);
-	Line 285:         osgSim::LightPointNode *lpNode = dynamic_cast<osgSim::LightPointNode*> (node.getChild(i));
-	Line 285:         osgSim::LightPointNode *lpNode = dynamic_cast<osgSim::LightPointNode*> (node.getChild(i));
-	Line 514:     osgSim::MultiSwitch *multiSwitchNode = dynamic_cast<osgSim::MultiSwitch*> (node);
-	Line 514:     osgSim::MultiSwitch *multiSwitchNode = dynamic_cast<osgSim::MultiSwitch*> (node);
-	Line 885: std::vector<osgSim::LightPointNode*> *ParseEdgeVisitor::getLightPointNodes()
-  D:\Development\psim\src\subview\ParseEdgeVisitor.h (2 hits)
-	Line 40:     std::vector<osgSim::LightPointNode*> * getLightPointNodes();
-	Line 47:     std::vector <osgSim::LightPointNode*> lightPointNodes;
-Search "osgSim::" (0 hits in 0 files)
-Search "osgShadow::" (0 hits in 0 files)
-Search "osgShadow::" (0 hits in 0 files)
-Search "osgQt::" (0 hits in 0 files)
-Search "osgQt::" (0 hits in 0 files)
-Search "osgPresentation::" (0 hits in 0 files)
-Search "osgPresentation::" (0 hits in 0 files)
-Search "osgParticle::" (55 hits in 2 files)
-  D:\Development\psim\src\subview\psCore\particlesystem.cpp (38 hits)
-	Line 45:       if (osgParticle::Emitter* emitter =
-	Line 46:          dynamic_cast<osgParticle::Emitter*>(nodePtr))
-	Line 195: void ParticleLayer::SetParticleSystem(osgParticle::ParticleSystem& particleSystem)
-	Line 207: void ParticleLayer::SetModularEmitter(osgParticle::ModularEmitter& modularEmitter)
-	Line 213: void ParticleLayer::SetProgram(osgParticle::Program& program)
-	Line 237: osgParticle::ParticleSystem& ParticleLayer::GetParticleSystem()
-	Line 243: const osgParticle::ParticleSystem& ParticleLayer::GetParticleSystem() const
-	Line 261: osgParticle::ModularEmitter& ParticleLayer::GetModularEmitter()
-	Line 267: const osgParticle::ModularEmitter& ParticleLayer::GetModularEmitter() const
-	Line 273: osgParticle::Program& ParticleLayer::GetProgram()
-	Line 279: const osgParticle::Program& ParticleLayer::GetProgram() const
-	Line 354:             pLayerIter->GetProgram().setReferenceFrame(osgParticle::ParticleProcessor::ABSOLUTE_RF);
-	Line 355:             pLayerIter->GetModularEmitter().setReferenceFrame(osgParticle::ParticleProcessor::ABSOLUTE_RF);
-	Line 446: void ParticleSystem::ParseParticleLayers(osg::Node& ps, LayerList& layers, osg::ref_ptr<osgParticle::ParticleSystemUpdater>& particleSystemUpdater)
-	Line 474:       if (dynamic_cast<osgParticle::ParticleSystemUpdater*>(searchingNode)!= NULL)
-	Line 480:          particleSystemUpdater = static_cast<osgParticle::ParticleSystemUpdater*>(searchingNode);
-	Line 497:             osgParticle::ParticleSystem* psDrawable = dynamic_cast<osgParticle::ParticleSystem*>(drawable);
-	Line 497:             osgParticle::ParticleSystem* psDrawable = dynamic_cast<osgParticle::ParticleSystem*>(drawable);
-	Line 526:             if (dynamic_cast<osgParticle::ModularEmitter*>(childNode) != NULL)
-	Line 528:                osgParticle::ModularEmitter* newModularEmitter = static_cast<osgParticle::ModularEmitter*>(childNode);
-	Line 528:                osgParticle::ModularEmitter* newModularEmitter = static_cast<osgParticle::ModularEmitter*>(childNode);
-	Line 548:       else if (dynamic_cast<osgParticle::ModularProgram*>(searchingNode) != NULL)
-	Line 550:             osgParticle::ModularProgram* newModularProgram = static_cast<osgParticle::ModularProgram*>(searchingNode);
-	Line 550:             osgParticle::ModularProgram* newModularProgram = static_cast<osgParticle::ModularProgram*>(searchingNode);
-	Line 569:       else if (dynamic_cast<osgParticle::FluidProgram*>(searchingNode)!= NULL)
-	Line 571:          osgParticle::FluidProgram* newFluidProgram = static_cast<osgParticle::FluidProgram*>(searchingNode);
-	Line 571:          osgParticle::FluidProgram* newFluidProgram = static_cast<osgParticle::FluidProgram*>(searchingNode);
-	Line 604:       /*LOG_ERROR("No instance of osgParticle::ParticleSystemUpdater was found.  "
-	Line 609:    osg::ref_ptr<osgParticle::ParticleSystemUpdater> newParticleSystemUpdater = new osgParticle::ParticleSystemUpdater;
-	Line 609:    osg::ref_ptr<osgParticle::ParticleSystemUpdater> newParticleSystemUpdater = new osgParticle::ParticleSystemUpdater;
-	Line 624:       osg::ref_ptr<osgParticle::ParticleSystem> newPSDrawable =
-	Line 625:          static_cast<osgParticle::ParticleSystem*>(layer.GetParticleSystem().clone(COPY_OPS_DRAWABLE));
-	Line 646:    if (osgParticle::ParticleSystemUpdater* psu = GetParticleSystemUpdater())
-	Line 650:          if (osgParticle::ParticleSystem* ps = psu->getParticleSystem(i))
-	Line 667:    if (osgParticle::ParticleSystemUpdater* psu = GetParticleSystemUpdater())
-	Line 671:          if (osgParticle::ParticleSystem* ps = psu->getParticleSystem(i))
-	Line 727: osgParticle::ParticleSystemUpdater* ParticleSystem::GetParticleSystemUpdater()
-	Line 733: const osgParticle::ParticleSystemUpdater* ParticleSystem::GetParticleSystemUpdater() const
-  D:\Development\psim\src\subview\psCore\particlesystem.h (17 hits)
-	Line 79:          void SetParticleSystem(osgParticle::ParticleSystem& particleSystem);
-	Line 81:          void SetModularEmitter(osgParticle::ModularEmitter& modularEmitter);
-	Line 82:          void SetProgram(osgParticle::Program& program);
-	Line 89:          osgParticle::ParticleSystem&  GetParticleSystem();
-	Line 90:          const osgParticle::ParticleSystem&  GetParticleSystem() const;
-	Line 95:          osgParticle::ModularEmitter& GetModularEmitter();
-	Line 96:          const osgParticle::ModularEmitter& GetModularEmitter() const;
-	Line 98:          osgParticle::Program& GetProgram();
-	Line 99:          const osgParticle::Program& GetProgram() const;
-	Line 124:          osg::ref_ptr<osgParticle::ParticleSystem> mParticleSystem;
-	Line 134:          osg::ref_ptr<osgParticle::ModularEmitter> mModularEmitter;
-	Line 140:          osg::ref_ptr<osgParticle::Program> mProgram;
-	Line 237:          osgParticle::ParticleSystemUpdater* GetParticleSystemUpdater();
-	Line 238:          const osgParticle::ParticleSystemUpdater* GetParticleSystemUpdater() const;
-	Line 262:                   osg::ref_ptr<osgParticle::ParticleSystemUpdater>& particleSystemUpdater);
-	Line 295:          osg::ref_ptr<osgParticle::ParticleSystemUpdater> mParticleSystemUpdater;
-	Line 298:          typedef std::map<osgParticle::ParticleSystem*, bool> ParticleSystemBoolMap;
-Search "osgParticle::" (0 hits in 0 files)
-Search "osgManipulator::" (0 hits in 0 files)
-Search "osgManipulator::" (0 hits in 0 files)
-Search "osgGA::" (151 hits in 9 files)
-  D:\Development\psim\src\demoOcean\Main.cpp (2 hits)
-	Line 131:     osg::ref_ptr<osgGA::CameraManipulator> camManip = new osgGA::TrackballManipulator;
-	Line 131:     osg::ref_ptr<osgGA::CameraManipulator> camManip = new osgGA::TrackballManipulator;
-  D:\Development\psim\src\demoOcean\OceanController.cpp (28 hits)
-	Line 33: bool OceanController::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 33: bool OceanController::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 37:         case osgGA::GUIEventAdapter::KEYUP:
-	Line 41:         case osgGA::GUIEventAdapter::KEYDOWN:
-	Line 58: void OceanController::HandleKeydown(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 58: void OceanController::HandleKeydown(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 66: void OceanController::HandleKeyup(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 66: void OceanController::HandleKeyup(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 73: void OceanController::HandleModifiers(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 73: void OceanController::HandleModifiers(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 80:         case osgGA::GUIEventAdapter::KEYUP:
-	Line 83:                 case osgGA::GUIEventAdapter::KEY_Control_R:
-	Line 87:                 case osgGA::GUIEventAdapter::KEY_Control_L:
-	Line 91:                 case osgGA::GUIEventAdapter::KEY_Shift_R:
-	Line 95:                 case osgGA::GUIEventAdapter::KEY_Shift_L:
-	Line 101:         case osgGA::GUIEventAdapter::KEYDOWN:
-	Line 104:                 case osgGA::GUIEventAdapter::KEY_Control_R:
-	Line 108:                 case osgGA::GUIEventAdapter::KEY_Control_L:
-	Line 112:                 case osgGA::GUIEventAdapter::KEY_Shift_R:
-	Line 116:                 case osgGA::GUIEventAdapter::KEY_Shift_L:
-	Line 126: void OceanController::HandleWind(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 126: void OceanController::HandleWind(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 152:         case osgGA::GUIEventAdapter::KEY_Minus:
-	Line 153:         case osgGA::GUIEventAdapter::KEY_KP_Separator:
-	Line 161:         case osgGA::GUIEventAdapter::KEY_Plus:
-	Line 162:         case osgGA::GUIEventAdapter::KEY_KP_Add:
-	Line 170:         case osgGA::GUIEventAdapter::KEY_Left:
-	Line 178:         case osgGA::GUIEventAdapter::KEY_Right:
-  D:\Development\psim\src\demoOcean\OceanController.h (11 hits)
-	Line 19: class OceanController : public osgGA::GUIEventHandler
-	Line 28:     virtual bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 28:     virtual bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 34:     void HandleKeydown(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 34:     void HandleKeydown(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 35:     void HandleKeyup(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 35:     void HandleKeyup(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 36:     void HandleModifiers(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 36:     void HandleModifiers(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 37:     void HandleWind(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 37:     void HandleWind(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-  D:\Development\psim\src\subview\InputHandler.cpp (68 hits)
-	Line 48: bool InputHandler::handle(const osgGA::GUIEventAdapter& ea)
-	Line 54:         if (ea.getEventType() == osgGA::GUIEventAdapter::KEYDOWN)
-	Line 91: bool InputHandler::flyOutKeys(const osgGA::GUIEventAdapter& ea)
-	Line 94:     if (!Shared->flyEnabled || ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT)
-	Line 99:     osgGA::GUIEventAdapter::EventType eventType = ea.getEventType();
-	Line 106:         case(osgGA::GUIEventAdapter::KEY_Up):
-	Line 108:             if (eventType == osgGA::GUIEventAdapter::KEYDOWN)
-	Line 112:             else if (eventType == osgGA::GUIEventAdapter::KEYUP)
-	Line 120:         case(osgGA::GUIEventAdapter::KEY_Left):
-	Line 122:             if (eventType == osgGA::GUIEventAdapter::KEYDOWN)
-	Line 126:             else if (eventType == osgGA::GUIEventAdapter::KEYUP)
-	Line 134:         case(osgGA::GUIEventAdapter::KEY_Down):
-	Line 136:             if (eventType == osgGA::GUIEventAdapter::KEYDOWN)
-	Line 140:             else if (eventType == osgGA::GUIEventAdapter::KEYUP)
-	Line 148:         case(osgGA::GUIEventAdapter::KEY_Right):
-	Line 150:             if (eventType == osgGA::GUIEventAdapter::KEYDOWN)
-	Line 154:             else if (eventType == osgGA::GUIEventAdapter::KEYUP)
-	Line 161:         case(osgGA::GUIEventAdapter::KEY_Shift_L):
-	Line 162:         case(osgGA::GUIEventAdapter::KEY_Shift_R):
-	Line 164:             if (eventType == osgGA::GUIEventAdapter::KEYDOWN)
-	Line 168:             else if (eventType == osgGA::GUIEventAdapter::KEYUP)
-	Line 179: //void InputHandler::RANKeys(const osgGA::GUIEventAdapter& ea)
-	Line 223: //void InputHandler::ONIKeys(const osgGA::GUIEventAdapter& ea)
-	Line 269: void InputHandler::overrideKeys(const osgGA::GUIEventAdapter& ea)
-	Line 297:             if (!(ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT))
-	Line 381:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_CTRL)
-	Line 446: //void InputHandler::BAEKeys(const osgGA::GUIEventAdapter& ea)
-	Line 468: void InputHandler::simmodeKeys(const osgGA::GUIEventAdapter& ea)
-	Line 487: void InputHandler::demoOnlyKeys(const osgGA::GUIEventAdapter& ea)
-	Line 498:         case osgGA::GUIEventAdapter::KEY_F1:
-	Line 505:         case osgGA::GUIEventAdapter::KEY_F2:
-	Line 512:         case osgGA::GUIEventAdapter::KEY_F3:
-	Line 519:         case osgGA::GUIEventAdapter::KEY_F4:
-	Line 526:         case osgGA::GUIEventAdapter::KEY_F5:
-	Line 533:         case osgGA::GUIEventAdapter::KEY_F6:
-	Line 540:         case osgGA::GUIEventAdapter::KEY_F7:
-	Line 547:         case osgGA::GUIEventAdapter::KEY_F8:
-	Line 554:         case osgGA::GUIEventAdapter::KEY_F9:
-	Line 557:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_SHIFT)
-	Line 569:         case osgGA::GUIEventAdapter::KEY_F10:
-	Line 572:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_SHIFT)
-	Line 584:         case osgGA::GUIEventAdapter::KEY_F11:
-	Line 587:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_SHIFT)
-	Line 599:         case osgGA::GUIEventAdapter::KEY_F12:
-	Line 602:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_SHIFT)
-	Line 617:         case osgGA::GUIEventAdapter::KEY_Escape:
-	Line 626:         case osgGA::GUIEventAdapter::KEY_Space:
-	Line 636:         case osgGA::GUIEventAdapter::KEY_Left:
-	Line 645:         case osgGA::GUIEventAdapter::KEY_Right:
-	Line 654:         case osgGA::GUIEventAdapter::KEY_Up:
-	Line 663:         case osgGA::GUIEventAdapter::KEY_Down:
-	Line 932:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT)
-	Line 1241: void InputHandler::allModeKeys(const osgGA::GUIEventAdapter& ea)
-	Line 1266:         if ((ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_CTRL) && (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT))
-	Line 1266:         if ((ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_CTRL) && (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT))
-	Line 1286:     if ((ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_CTRL) &&
-	Line 1287:             (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_SHIFT))
-	Line 1301:     if ((ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_CTRL) &&
-	Line 1302:             (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_SHIFT))
-	Line 1317:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_CTRL)
-	Line 1450:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT)
-	Line 1470:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT)
-	Line 1483:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT)
-	Line 1497:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT)
-	Line 1522:             if (ea.getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_ALT)
-	Line 1539: void InputHandler::keyInputs(const osgGA::GUIEventAdapter& ea)
-	Line 1567:                 if (mod & osgGA::GUIEventAdapter::MODKEY_SHIFT)
-	Line 1592:                 if (mod & osgGA::GUIEventAdapter::MODKEY_SHIFT)
-  D:\Development\psim\src\subview\InputHandler.h (11 hits)
-	Line 8: class InputHandler : public osgGA::GUIEventHandler
-	Line 22:     bool handle(const osgGA::GUIEventAdapter& ea);
-	Line 27:     bool flyOutKeys(const osgGA::GUIEventAdapter& ea);
-	Line 28:     void RANKeys(const osgGA::GUIEventAdapter& ea);
-	Line 29:     void ONIKeys(const osgGA::GUIEventAdapter& ea);
-	Line 30:     void overrideKeys(const osgGA::GUIEventAdapter& ea);
-	Line 31:     void simmodeKeys(const osgGA::GUIEventAdapter& ea);
-	Line 32:     void demoOnlyKeys(const osgGA::GUIEventAdapter& ea);
-	Line 33:     void BAEKeys(const osgGA::GUIEventAdapter& ea);
-	Line 34:     void allModeKeys(const osgGA::GUIEventAdapter& ea);
-	Line 35:     void keyInputs(const osgGA::GUIEventAdapter& ea);
-  D:\Development\psim\src\subview\PickHandler.cpp (7 hits)
-	Line 33: bool PickHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 33: bool PickHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
-	Line 37:             /*case(osgGA::GUIEventAdapter::PUSH):
-	Line 43:         case(osgGA::GUIEventAdapter::KEYDOWN):
-	Line 48:                 osg::ref_ptr<osgGA::GUIEventAdapter> event = new osgGA::GUIEventAdapter(ea);
-	Line 48:                 osg::ref_ptr<osgGA::GUIEventAdapter> event = new osgGA::GUIEventAdapter(ea);
-	Line 60: void PickHandler::pick() //osgViewer::View*, const osgGA::GUIEventAdapter&)
-  D:\Development\psim\src\subview\PickHandler.h (3 hits)
-	Line 9: class PickHandler : public osgGA::GUIEventHandler
-	Line 17:     bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-	Line 17:     bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-  D:\Development\psim\src\subview\PsimCameraManipulator.cpp (13 hits)
-	Line 331: void PsimCameraManipulator::home(const osgGA::GUIEventAdapter&, osgGA::GUIActionAdapter& us)
-	Line 331: void PsimCameraManipulator::home(const osgGA::GUIEventAdapter&, osgGA::GUIActionAdapter& us)
-	Line 345: bool PsimCameraManipulator::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us)
-	Line 345: bool PsimCameraManipulator::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us)
-	Line 349:     if (ea.getEventType() == osgGA::GUIEventAdapter::FRAME)
-	Line 454:         case(osgGA::GUIEventAdapter::PUSH):
-	Line 461:         case(osgGA::GUIEventAdapter::RELEASE):
-	Line 471:         case(osgGA::GUIEventAdapter::DRAG):
-	Line 477:         case(osgGA::GUIEventAdapter::MOVE):
-	Line 483:         case(osgGA::GUIEventAdapter::KEYUP):
-	Line 488:         case(osgGA::GUIEventAdapter::KEYDOWN):
-	Line 493:         case(osgGA::GUIEventAdapter::FRAME):
-	Line 1094: void PsimCameraManipulator::addMouseEvent(const osgGA::GUIEventAdapter& ea)
-  D:\Development\psim\src\subview\PsimCameraManipulator.h (8 hits)
-	Line 31: class PsimCameraManipulator : public osgGA::CameraManipulator
-	Line 74:     virtual void home(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us);
-	Line 74:     virtual void home(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us);
-	Line 77:     virtual bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us);
-	Line 77:     virtual bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us);
-	Line 131:     void addMouseEvent(const osgGA::GUIEventAdapter& ea);
-	Line 138:     osg::ref_ptr<const osgGA::GUIEventAdapter> _ga_t1;
-	Line 139:     osg::ref_ptr<const osgGA::GUIEventAdapter> _ga_t0;
-Search "osgGA::" (0 hits in 0 files)
-Search "osgFX::" (0 hits in 0 files)
-Search "osgFX::" (0 hits in 0 files)
-Search "osgDB::" (151 hits in 24 files)
-  D:\Development\psim\src\contactSnapper\contactSnapper.cpp (4 hits)
-	Line 47:         osgDB::writeImageFile(*image, filename.str());
-	Line 175:         vertShader->loadShaderSourceFromFile(osgDB::findDataFile("modelVert.glsl"));
-	Line 177:         fragShader->loadShaderSourceFromFile(osgDB::findDataFile("modelFrag.glsl"));
-	Line 197:         contact = osgDB::readNodeFile((contactList[contactCounter].substr(contactList[contactCounter].find("_")+1,
-  D:\Development\psim\src\convertAll\GenerateCleats.cpp (4 hits)
-	Line 17: 	std::string strippedName = osgDB::getStrippedName(iveFile);
-	Line 29: 	osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(iveFile);
-	Line 88: 	std::string strippedName = osgDB::getStrippedName(iveFile);
-	Line 99: 	osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(iveFile);
-  D:\Development\psim\src\convertAll\osgconv.cpp (30 hits)
-	Line 189:                 std::string name = osgDB::getStrippedName(image->getFileName());
-	Line 206: 					path = osgDB::concatPaths(baseDir, name);
-	Line 209: 	                path = dir.empty() ? name : osgDB::concatPaths(dir, name);
-	Line 211:                 osgDB::writeImageFile(*image, path);
-	Line 230:                 std::string name = osgDB::getStrippedName(image->getFileName());
-	Line 250:                 std::string name = "../Textures/" + osgDB::getStrippedName(image->getFileName());
-	Line 321: 				std::string filename_color = osgDB::getStrippedName(image_color->getFileName());
-	Line 332:                         osg::Image* image_aux = osgDB::readImageFile(filename_aux + ".rgb"); // attempt to load aux texture
-	Line 338:                             image_aux = osgDB::readImageFile(std::string("default_") + type_suffix + std::string(".rgb"));
-	Line 432: 				std::string filename_color = osgDB::getStrippedName(image_color->getFileName());
-	Line 437: 					osg::Image* image_IR = osgDB::readImageFile(filename_IR + ".rgb"); // attempt to load ir texture
-	Line 443: 						image_IR = osgDB::readImageFile("default_ir.rgb");
-	Line 877: 	osgDB::ReaderWriter::Options* options = new osgDB::ReaderWriter::Options;
-	Line 877: 	osgDB::ReaderWriter::Options* options = new osgDB::ReaderWriter::Options;
-	Line 879: 	osgDB::Registry::instance()->setOptions(options);
-	Line 882: 	if (osgDB::Registry::instance()->getOptions() == 0)
-	Line 883: 		osgDB::Registry::instance()->setOptions(new osgDB::Options());
-	Line 883: 		osgDB::Registry::instance()->setOptions(new osgDB::Options());
-	Line 884: 	osgDB::Registry::instance()->getOptions()->setObjectCacheHint(osgDB::Options::CACHE_ALL);
-	Line 884: 	osgDB::Registry::instance()->getOptions()->setObjectCacheHint(osgDB::Options::CACHE_ALL);
-	Line 887: 	osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(inFile);
-	Line 895: 		root->setName(osgDB::getStrippedName(outFile) + osgDB::getFileExtensionIncludingDot(outFile));
-	Line 895: 		root->setName(osgDB::getStrippedName(outFile) + osgDB::getFileExtensionIncludingDot(outFile));
-	Line 969: 			std::string ext = osgDB::getFileExtension(outFile);
-	Line 978: 			osgDB::ReaderWriter::Options *opt = osgDB::Registry::instance()->getOptions();
-	Line 978: 			osgDB::ReaderWriter::Options *opt = osgDB::Registry::instance()->getOptions();
-	Line 982: 				ctv.write(osgDB::getFilePath(outFile));
-	Line 1005: 		osgDB::ReaderWriter::WriteResult result = osgDB::Registry::instance()->writeNode(*root,outFile,osgDB::Registry::instance()->getOptions());
-	Line 1005: 		osgDB::ReaderWriter::WriteResult result = osgDB::Registry::instance()->writeNode(*root,outFile,osgDB::Registry::instance()->getOptions());
-	Line 1005: 		osgDB::ReaderWriter::WriteResult result = osgDB::Registry::instance()->writeNode(*root,outFile,osgDB::Registry::instance()->getOptions());
-  D:\Development\psim\src\occultingServer\occulting_client.C (1 hit)
-	Line 538: 			osg::ref_ptr<osg::Node> root = osgDB::readNodeFile(filename);
-  D:\Development\psim\src\subview\AddScrewOp.cpp (1 hit)
-	Line 39:             screw = osgDB::readNodeFile(std::string(getenv("PSIM_DATA")) + "/models/ive/propeller.ive");
-  D:\Development\psim\src\subview\ApplyTextureAtlasVisitor.cpp (3 hits)
-	Line 581:                     osg::ref_ptr<osgDB::ReaderWriter::Options> options = new osgDB::ReaderWriter::ReaderWriter::Options;
-	Line 581:                     osg::ref_ptr<osgDB::ReaderWriter::Options> options = new osgDB::ReaderWriter::ReaderWriter::Options;
-	Line 585:                     osg::Image* newImage = osgDB::readImageFile(mTextureAtlasInfoMap[mMapKey][origImageFile].atlasFilename, options);
-  D:\Development\psim\src\subview\ChainsManager.cpp (1 hit)
-	Line 25:     tex->setImage(osgDB::readImageFile(std::string(getenv("PSIM_DATA")) + "/rgb/Lines/chain.rgb"));
-  D:\Development\psim\src\subview\LightSampleDump.cpp (1 hit)
-	Line 24:     osgDB::writeImageFile(*envImage, filename);
-  D:\Development\psim\src\subview\MemMonitor.h (2 hits)
-	Line 28: #define LOAD_IMAGE_FILE(path,tex) tex = osgDB::readImageFile(path); MEM_ADD(tex.get()->getTotalSizeInBytesIncludingMipmaps()); printf("Current %u\r\n",MEM_GET())
-	Line 33: #define LOAD_IMAGE_FILE(path,tex) tex = osgDB::readImageFile(path)
-  D:\Development\psim\src\subview\MiniBackgroundLoader.cpp (17 hits)
-	Line 88:     osgDB::ReaderWriter::Options* opt = new osgDB::ReaderWriter::Options;
-	Line 88:     osgDB::ReaderWriter::Options* opt = new osgDB::ReaderWriter::Options;
-	Line 89:     opt->setObjectCacheHint(osgDB::ReaderWriter::Options::CACHE_IMAGES);
-	Line 90:     osgDB::Registry::instance()->setOptions(opt);
-	Line 152:             osg::ref_ptr<osgDB::ReaderWriter::Options> options = new osgDB::ReaderWriter::ReaderWriter::Options;
-	Line 152:             osg::ref_ptr<osgDB::ReaderWriter::Options> options = new osgDB::ReaderWriter::ReaderWriter::Options;
-	Line 168:                     model->node = osgDB::readNodeFile(iveFilename, options);
-	Line 170:                     model->node = osgDB::readNodeFile(filename, options);
-	Line 181:                 model->node = osgDB::readNodeFile(filename + ".ive", options);
-	Line 202:             model->node = osgDB::readNodeFile("trawler_textured.ive");
-	Line 556:                     osgDB::writeNodeFile(*(vehicle->xform.get()), savedFile);
-	Line 557:                     //osgDB::writeNodeFile(*(vehicle->getModel()->node.get()), savedFile);
-	Line 735:             osgDB::writeNodeFile(*(vehicle->xform.get()), savedFile);
-	Line 736:             //osgDB::writeNodeFile(*(vehicle->getModel()->node.get()), savedFile);
-	Line 1075:         osg::ref_ptr<osgDB::ReaderWriter::Options> options = new osgDB::ReaderWriter::ReaderWriter::Options;
-	Line 1075:         osg::ref_ptr<osgDB::ReaderWriter::Options> options = new osgDB::ReaderWriter::ReaderWriter::Options;
-	Line 1079:         osg::ref_ptr<osg::Node> node = osgDB::readNodeFile(filenamePre + ".ive", options);
-  D:\Development\psim\src\subview\OceanGeometry.cpp (1 hit)
-	Line 218:         mRippleHeightImage[n_image] = osgDB::readImageFile(ripples_filename);
-  D:\Development\psim\src\subview\ParticleGeom.cpp (2 hits)
-	Line 64:     mGeode = (osg::Geode*)osgDB::readNodeFile("ps" + ps->mShaderName + ".ive");
-	Line 234:     bool result = osgDB::writeNodeFile(*mGeode, filePath.str()); // TODO find this directory the correct way         
-  D:\Development\psim\src\subview\psCore\loadable.cpp (55 hits)
-	Line 47:    osgDB::Registry::instance()->releaseGLObjects();
-	Line 48:    osgDB::Registry::instance()->clearObjectCache();
-	Line 57:    osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 57:    osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 59:    osg::ref_ptr<osgDB::ReaderWriter::Options> options = reg->getOptions() ?
-	Line 60:       static_cast<osgDB::ReaderWriter::Options*>(reg->getOptions()->clone(osg::CopyOp::SHALLOW_COPY)) :
-	Line 61:    new osgDB::ReaderWriter::Options;
-	Line 65:       options->setObjectCacheHint(osgDB::ReaderWriter::Options::CACHE_ALL);
-	Line 69:       options->setObjectCacheHint(osgDB::ReaderWriter::Options::CACHE_NONE);
-	Line 77: osg::Node* Loadable::ReadNode(const std::string& filename, osgDB::ReaderWriter::Options* options)
-	Line 80:     osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 80:     osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 104:         osgDB::Archive* arch = FindArchive(archiveFilename);
-	Line 107:             osgDB::ReaderWriter::ReadResult readResult = arch->readNode(strippedFilename, options);
-	Line 112:                 if (result != NULL && options != NULL && (options->getObjectCacheHint() & osgDB::ReaderWriter::Options::CACHE_NODES))
-	Line 122:         result = osgDB::readNodeFile(filename, options);
-	Line 254: //osgDB::Registry::getArchiveExtensions() was submitted and should be released in OSG 3.0
-	Line 257:     osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 257:     osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 258:     const osgDB::Registry::ArchiveExtensionList& extensions = reg->getArchiveExtensions();
-	Line 260:     osgDB::Registry::ArchiveExtensionList::const_iterator iter = extensions.begin();
-	Line 261:     osgDB::Registry::ArchiveExtensionList::const_iterator iterEnd = extensions.end();
-	Line 296: osgDB::ArchiveExtended* Loadable::FindArchive(const std::string& filename) const
-	Line 298:     osg::ref_ptr<osgDB::Archive> archiveResult = NULL;
-	Line 303:         osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 303:         osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 305:         osgDB::ReaderWriter::ReadResult result = osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
-	Line 305:         osgDB::ReaderWriter::ReadResult result = osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
-	Line 322:         osg::ref_ptr<osgDB::ReaderWriter::Options> options = reg->getOptions() ?
-	Line 323:             static_cast<osgDB::ReaderWriter::Options*>(reg->getOptions()->clone(osg::CopyOp::SHALLOW_COPY)) :
-	Line 324:         new osgDB::ReaderWriter::Options;
-	Line 326:         osgDB::ReaderWriter::ReadResult readResult = reg->openArchive(archiveFilename, osgDB::ReaderWriter::READ, 4096, options.get());
-	Line 326:         osgDB::ReaderWriter::ReadResult readResult = reg->openArchive(archiveFilename, osgDB::ReaderWriter::READ, 4096, options.get());
-	Line 337:         return dynamic_cast<osgDB::ArchiveExtended*>(archiveResult.get());
-	Line 349: //osgDB::Registry::getArchiveExtensions() was submitted and should be released in OSG 3.0
-	Line 351:     osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 351:     osgDB::Registry* reg = osgDB::Registry::instance();
-	Line 353:     const osgDB::Registry::ArchiveExtensionList& extensions = reg->getArchiveExtensions();
-	Line 355:     osgDB::Registry::ArchiveExtensionList::const_iterator iter = extensions.begin();
-	Line 356:     osgDB::Registry::ArchiveExtensionList::const_iterator iterEnd = extensions.end();
-	Line 388:         const osgDB::ArchiveExtended* a = FindArchive(archiveName);
-	Line 411:         choppedStr = osgDB::findFileInDirectory(choppedStr, "", osgDB::CASE_INSENSITIVE);
-	Line 411:         choppedStr = osgDB::findFileInDirectory(choppedStr, "", osgDB::CASE_INSENSITIVE);
-	Line 421:         info.extensionlessFileName = osgDB::getStrippedName(choppedStr);
-	Line 422:         info.baseName = osgDB::getSimpleFileName(choppedStr);
-	Line 424:         info.path = osgDB::getFilePath(choppedStr);
-	Line 425:         info.extension = osgDB::getFileExtension(choppedStr);
-	Line 450: FileInfo Loadable::GetFileInfoForFileInArchive(const osgDB::ArchiveExtended& a, const std::string& strFile) const
-	Line 467:         info.extensionlessFileName = osgDB::getStrippedName(choppedStr);
-	Line 468:         info.baseName = osgDB::getSimpleFileName(choppedStr);
-	Line 470:         info.path = osgDB::getFilePath(choppedStr);
-	Line 471:         info.extension = osgDB::getFileExtension(choppedStr);
-	Line 483: FileType Loadable::GetFileTypeFromOSGDBFileType( osgDB::FileType ft ) const
-	Line 485:     if(ft == osgDB::REGULAR_FILE)
-	Line 489:     else if (ft == osgDB::DIRECTORY)
-  D:\Development\psim\src\subview\psCore\loadable.h (4 hits)
-	Line 91: 	  osg::Node* ReadNode(const std::string& filename, osgDB::ReaderWriter::Options* options = NULL);
-	Line 97: 	  osgDB::ArchiveExtended* FindArchive(const std::string& filename) const;
-	Line 100: 	  FileInfo GetFileInfoForFileInArchive(const osgDB::ArchiveExtended& a, const std::string& strFile) const;
-	Line 101: 	  FileType GetFileTypeFromOSGDBFileType( osgDB::FileType ft ) const;
-  D:\Development\psim\src\subview\RootNodeCallback.cpp (1 hit)
-	Line 468:         osgDB::writeNodeFile(*(root.get()), savedFile);
-  D:\Development\psim\src\subview\RootNodeCallback.h (1 hit)
-	Line 137:     osgDB::SharedStateManager ssm;
-  D:\Development\psim\src\subview\RopesManager.cpp (4 hits)
-	Line 31:     kevlarTex->setImage(osgDB::readImageFile(std::string(getenv("PSIM_DATA")) + "/rgb/Lines/kevlar-rope.rgb"));
-	Line 41:     hempTex->setImage(osgDB::readImageFile(std::string(getenv("PSIM_DATA")) + "/rgb/Lines/hemp-rope.rgb"));
-	Line 51:     nylonTex->setImage(osgDB::readImageFile(std::string(getenv("PSIM_DATA")) + "/rgb/Lines/nylon-rope.rgb"));
-	Line 61:     chainTex->setImage(osgDB::readImageFile(std::string(getenv("PSIM_DATA")) + "/rgb/Lines/chain.rgb"));
-  D:\Development\psim\src\subview\SatImageryHandler.cpp (2 hits)
-	Line 160:                 osg::ref_ptr<osg::Image> image = osgDB::readImageFile(filepath + imagefilename);
-	Line 168:                     image = osgDB::readImageFile(filepath + imagefilename);
-  D:\Development\psim\src\subview\SecondaryCameraCallback.cpp (1 hit)
-	Line 36:         osgDB::writeImageFile(*mpImage, "/tmp/secondaryBuffer.jpg");
-  D:\Development\psim\src\subview\ShaderMaster.cpp (1 hit)
-	Line 257:     std::string fullPath = osgDB::findDataFile(filename);
-  D:\Development\psim\src\subview\SkyDome.cpp (10 hits)
-	Line 87:     osg::ref_ptr<osg::Node> skyDome = osgDB::readNodeFile(std::string(getenv("PSIM_DATA")) + "/models/osg/skydome_scaled_old.osg");
-	Line 155:         cloudTex->setImage(osgDB::readImageFile(image_file[ii]));
-	Line 195:     image = osgDB::readImageFile(path + "cloud_density_maskgs_8.rgb");
-	Line 202:         image = osgDB::readImageFile(path + "cloud_density_maskgs_7.rgb");
-	Line 204:         image = osgDB::readImageFile(path + "cloud_density_maskgs_6.rgb");
-	Line 206:         image = osgDB::readImageFile(path + "cloud_density_maskgs_5.rgb");
-	Line 208:         image = osgDB::readImageFile(path + "cloud_density_maskgs_4.rgb");
-	Line 210:         image = osgDB::readImageFile(path + "cloud_density_maskgs_3.rgb");
-	Line 212:         image = osgDB::readImageFile(path + "cloud_density_maskgs_2.rgb");
-	Line 214:         image = osgDB::readImageFile(path + "cloud_density_maskgs_1.rgb");
-  D:\Development\psim\src\subview\Snapshot.cpp (1 hit)
-	Line 148:     osgDB::writeImageFile(*image, filename);
-  D:\Development\psim\src\subview\TexturedQuadLightsManager.cpp (2 hits)
-	Line 45:     tex1->setImage(osgDB::readImageFile(lightsMontage));
-	Line 53:     tex2->setImage(osgDB::readImageFile(lightsFogMontage));
-  D:\Development\psim\src\subview\VideoShmWriter.cpp (2 hits)
-	Line 494:             osgDB::writeImageFile(*(newImage.get()), "/tmp/backBuffer.jpg");
-	Line 532:                 osgDB::writeImageFile(*(newImage.get()), "/tmp/frameBuffer.jpg");
-Search "osgDB::" (0 hits in 0 files)
-Search "osgAnimation::" (0 hits in 0 files)
-Search "osgAnimation::" (0 hits in 0 files)
-Search "osg::" (8775 hits in 509 files)
-  D:\Development\psim\src\contactSnapper\contactSnapper.cpp (76 hits)
-	Line 23: class SaveSnapCallback : public osg::Camera::DrawCallback
-	Line 32:     void operator () (const osg::Camera& camera) const
-	Line 37:         osg::ref_ptr<osg::Image> image = new osg::Image; 
-	Line 37:         osg::ref_ptr<osg::Image> image = new osg::Image; 
-	Line 37:         osg::ref_ptr<osg::Image> image = new osg::Image; 
-	Line 77:     osg::ref_ptr<osg::Image> iamge;
-	Line 77:     osg::ref_ptr<osg::Image> iamge;
-	Line 81: class ContactSnapperOp : public osg::Operation
-	Line 84:   void setupUniforms(osg::StateSet* ss)
-	Line 87:     ss->addUniform(new osg::Uniform("screenSize", osg::Vec2(100, 100)));
+osgViewer::CompositeViewer
+osgViewer::GraphicsWindow
+osgViewer::StatsHandler
+osgViewer::View
+osgViewer::Viewer
+osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext
+osgViewer::Viewer::SingleThreaded
+osgViewer::Viewer::Windows
+osgViewer::Viewer::Windows::iterator
+osgViewer::ViewerBase::Contexts
+
+osgUtil::CullVisitor
+osgUtil::LineSegmentIntersector
+osgUtil::LineSegmentIntersector::Intersections
+osgUtil::LineSegmentIntersector::Intersections::iterator
+osgUtil::Optimizer
+osgUtil::Optimizer::FlattenStaticTransformsVisitor
+osgUtil::Optimizer::REMOVE_LOADED_PROXY_NODES
+osgUtil::Optimizer::REMOVE_REDUNDANT_NODES
+osgUtil::Optimizer::SHARE_DUPLICATE_STATE
+osgUtil::Simplifier
+osgUtil::SceneView::VariablesMask::ALL_VARIABLES
+osgUtil::SceneView::VariablesMask::CULL_MASK
+osgUtil::SmoothingVisitor
+
+osgText::Font
+osgText::readFontFile
+osgText::Text
+osgText::Text::AlignmentType
+osgText::Text::LEFT_CENTER
+osgText::Text::REVERSED_YZ_PLANE
+osgText::Text::SCREEN
+osgText::Text::SCREEN_COORDS
+osgText::TextBase::CENTER_CENTER
+
+osgSim::DOFTransform
+osgSim::MultiSwitch
+osgSim::LightPointNode
+
+osgParticle::Emitter
+osgParticle::FluidProgram
+osgParticle::ModularEmitter
+osgParticle::ModularProgram
+osgParticle::ParticleSystem
+osgParticle::ParticleSystemUpdater
+osgParticle::ParticleProcessor::ABSOLUTE_RF
+osgParticle::Program
+
+osgGA::CameraManipulator
+osgGA::GUIActionAdapter
+osgGA::GUIEventAdapter
+osgGA::GUIEventAdapter::DRAG
+osgGA::GUIEventAdapter::FRAME
+osgGA::GUIEventAdapter::KEYUP
+osgGA::GUIEventAdapter::KEYDOWN
+osgGA::GUIEventAdapter::KEY_Control_R
+osgGA::GUIEventAdapter::KEY_Shift_R
+osgGA::GUIEventAdapter::KEY_Minus
+osgGA::GUIEventAdapter::KEY_F1
+osgGA::GUIEventAdapter::MODKEY_ALT
+osgGA::GUIEventAdapter::MODKEY_SHIFT
+osgGA::GUIEventAdapter::PUSH
+osgGA::GUIEventHandler
+osgGA::TrackballManipulator
+
+osgDB::Archive
+osgDB::ArchiveExtended
+osgDB::CASE_INSENSITIVE
+osgDB::concatPaths
+osgDB::DIRECTORY
+osgDB::FileType
+osgDB::findDataFile
+osgDB::findFileInDirectory
+osgDB::getFileExtensionIncludingDot
+osgDB::getFileExtension
+osgDB::getFilePath
+osgDB::getSimpleFileName
+osgDB::getStrippedName
+osgDB::Options
+osgDB::Options::CACHE_ALL
+osgDB::readImageFile
+osgDB::readNodeFile
+osgDB::ReaderWriter::Options
+osgDB::ReaderWriter::Options::CACHE_IMAGES
+osgDB::ReaderWriter::ReaderWriter::Options
+osgDB::ReaderWriter::ReadResult
+osgDB::ReaderWriter::READ
+osgDB::ReaderWriter::WriteResult
+osgDB::Registry::ArchiveExtensionList
+osgDB::Registry::ArchiveExtensionList::const_iterator iter
+osgDB::Registry::instance
+osgDB::REGULAR_FILE
+osgDB::SharedStateManager
+osgDB::writeImageFile
+osgDB::writeNodeFile
+
+osg::Camera::DrawCallback
+osg::Camera
+osg::Image
+osg::Operation
+osg::StateSet
+osg::Uniform
+osg::Vec2
+
+
 	Line 87:     ss->addUniform(new osg::Uniform("screenSize", osg::Vec2(100, 100)));
 	Line 88:     ss->addUniform(new osg::Uniform("sunPos", osg::Vec3(0.0,0.0,-1.0)));
 	Line 88:     ss->addUniform(new osg::Uniform("sunPos", osg::Vec3(0.0,0.0,-1.0)));
