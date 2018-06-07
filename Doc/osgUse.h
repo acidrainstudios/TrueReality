@@ -195,8 +195,6 @@ osg::Vec4f
 
 
 
-
-
   D:\Development\psim\src\subview\HandledNodesVisitor.cpp (2 hits)
 	Line 37: void HandledNodesVisitor::apply(osg::Node &node)
 	Line 81: bool HandledNodesVisitor::HandledNodesVisitor::isHandledNode(osg::Node &node)
