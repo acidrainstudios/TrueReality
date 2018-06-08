@@ -7,10 +7,9 @@
 
 
 
-
-
 True Reality (TR) is an open source LGPL Game and Simulation Engine written entirely in Standard C++ and OpenGL. It runs on all modern Windows platforms and GNU/Linux. OpenSceneGraph is used as its graphics engine, along with many other open source projects for support of various features.
 
+* [API Documentation](https://codedocs.xyz/acidrainstudios/TrueReality)
 * [Repo Wiki](https://github.com/acidrainstudios/TrueReality/wiki)
 * [Repo Guidelines](https://github.com/acidrainstudios/TrueReality/wiki/Repository-Guidelines)
 * [Data Repo](https://github.com/acidrainstudios/TrueReality/wiki/TBD)
