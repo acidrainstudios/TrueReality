@@ -217,7 +217,7 @@ namespace trUtil
             
             //Extract the revision number from the string
             trUtil::StringUtils::FindAndReplace(rev, "\n", "");
-            trUtil::StringUtils::FindAndReplace(rev, "+", "");
+            trUtil::StringUtils::FindAndReplace(rev, "+", ""); 
             
             //Convert the string to an integer
             return trUtil::StringUtils::FromString<int>(rev);
