@@ -18,7 +18,7 @@
 # Author: Maxim Serebrennik
 
 # Set the executable name
-SET(FILE_NAME exampleLOGGING)
+SET(FILE_NAME exampleLogging)
 
 # Set the source and include paths
 SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/Examples/Logging)
