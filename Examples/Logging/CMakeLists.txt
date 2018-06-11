@@ -18,11 +18,11 @@
 # Author: Maxim Serebrennik
 
 # Set the executable name
-SET(FILE_NAME exampleJSON)
+SET(FILE_NAME exampleLOGGING)
 
 # Set the source and include paths
-SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/Examples/Json)
-SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/Examples/Json)
+SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/Examples/Logging)
+SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/Examples/Logging)
 
 # Sets the sources using "GLOB"
 FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
@@ -38,7 +38,6 @@ IF (TR_BUILD_WITH_RELEASE)
 		optimized ${OpenThreads_LIBRARY}
 		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY}
-		optimized ${JsonCpp_LIBRARY} 
 	)
 ENDIF (TR_BUILD_WITH_RELEASE)
 IF (TR_BUILD_WITH_DEBUG)
@@ -47,7 +46,6 @@ IF (TR_BUILD_WITH_DEBUG)
 		debug ${OpenThreads_LIBRARY_DEBUG}
 		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
-		debug ${JsonCpp_LIBRARY_DEBUG}
 	)
 ENDIF (TR_BUILD_WITH_DEBUG)
 
