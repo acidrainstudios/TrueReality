@@ -70,6 +70,12 @@ MACRO (ADD_TR_SUBFOLDERS)
     ENDIF (TR_VERSION)
 
 # Examples folders
+
+    IF (EXAMPLES_LOGGING)
+        ADD_SUBDIRECTORY (Examples/Logging)
+        SET (EXAMPLES_LOGGING_AVAILABLE "YES")
+    ENDIF (EXAMPLES_LOGGING)
+
     IF (EXAMPLES_JSON)
         ADD_SUBDIRECTORY (Examples/Json)
         SET (EXAMPLES_JSON_AVAILABLE "YES")
@@ -149,6 +155,7 @@ CMAKE_DEPENDENT_OPTION (TR_VERSION "Enables the building of trVersion Utility" O
 # Sets Example options ********************************************************
 # *****************************************************************************
 OPTION (TR_BUILD_EXAMPLES "Enables the building of TR demos and examples" ON)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_LOGGING "Enables the building of examplesLogging project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of examplesJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_DIRECTOR "Enables the building of examplesDirector project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTORS "Enables the building of examplesActors project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
