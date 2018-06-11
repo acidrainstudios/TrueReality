@@ -50,9 +50,11 @@ int main(int argc, char** argv)
 		//Show Logo
 		trUtil::Console::Logo();
 
+        //Sets the output type
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
         std::cerr << "Changing the output stream to File and Console (Standard) " << std::endl;
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+
         /**
         * Set the OutputStreamOptions bits for all stored Loggers
         * The bits correspond to:
@@ -83,6 +85,7 @@ int main(int argc, char** argv)
         LOG_E("Sending an Error Log Message")
         LOG_A("Sending a Always Log Message")
         
+        std::cerr << std::endl;
         LOG_PRINT_TEST
 
         //Change Logging Level and printing test messages
@@ -97,9 +100,53 @@ int main(int argc, char** argv)
         LOG_E("Sending an Error Log Message")
         LOG_A("Sending a Always Log Message")
 
+        std::cerr << std::endl;
         LOG_PRINT_TEST
 
-        
+        //Change Logging Level and printing test messages
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "\nSetting Logging Level to Warning " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+
+        trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_WARNING);
+        LOG_D("Sending a Debug Log Message")
+        LOG_I("Sending an Info Log Message")
+        LOG_W("Sending a Warning Log Message")
+        LOG_E("Sending an Error Log Message")
+        LOG_A("Sending a Always Log Message")
+
+        std::cerr << std::endl;
+        LOG_PRINT_TEST
+
+        //Change Logging Level and printing test messages
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "\nSetting Logging Level to Error " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+
+        trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_ERROR);
+        LOG_D("Sending a Debug Log Message")
+        LOG_I("Sending an Info Log Message")
+        LOG_W("Sending a Warning Log Message")
+        LOG_E("Sending an Error Log Message")
+        LOG_A("Sending a Always Log Message")
+
+        std::cerr << std::endl;
+        LOG_PRINT_TEST
+
+        //Change Logging Level and printing test messages
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "\nSetting Logging Level to Always " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+
+        trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_ALWAYS);
+        LOG_D("Sending a Debug Log Message")
+        LOG_I("Sending an Info Log Message")
+        LOG_W("Sending a Warning Log Message")
+        LOG_E("Sending an Error Log Message")
+        LOG_A("Sending a Always Log Message")
+
+        std::cerr << std::endl;
+        LOG_PRINT_TEST
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
