@@ -19,7 +19,7 @@
 * Author: Maxim Serebrennik
 */
 
-#include <Examples/Json/Utils.h>
+#include <Examples/Logging/Utils.h>
 
 #include <iostream>
 #include <cstdlib>
@@ -34,17 +34,12 @@
 /*
 * Parses the command line variables that are passed in to the executable
 */
-void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::string& logLevel)
+void ParseCmdLineArgs(int& argc, char** argv)
 {
     osg::ArgumentParser arguments(&argc, argv);
 
     arguments.getApplicationUsage()->setApplicationName(PROGRAM_NAME);
 
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueReality_Log.html");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
-        trUtil::Logging::LOG_INFO_STR + ", " +
-        trUtil::Logging::LOG_WARNING_STR + ", " +
-        trUtil::Logging::LOG_ERROR_STR + "");
     arguments.getApplicationUsage()->addCommandLineOption("\n--help, /help, -h, /h, /?  ", "Show this help screen.");
 
     if (arguments.read("--help") == true ||
@@ -56,7 +51,4 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::str
         arguments.getApplicationUsage()->write(std::cout);
         exit(1);
     }
-
-    arguments.read("--logFileName", logFileName);
-    arguments.read("--logLevel", logLevel);
 }

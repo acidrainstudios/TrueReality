@@ -19,13 +19,10 @@
 * Author: Maxim Serebrennik
 */
 
-#include <Examples/Json/Utils.h>
+#include <Examples/Logging/Utils.h>
 
 #include <trUtil/DefaultSettings.h>
 #include <trUtil/Exception.h>
-#include <trUtil/JSON/File.h>
-#include <trUtil/JSON/Object.h>
-#include <trUtil/JSON/Array.h>
 #include <trUtil/PathUtils.h>
 #include <trUtil/Console/Logo.h>
 #include <trUtil/Console/TextColor.h>
@@ -33,122 +30,80 @@
 
 #include <iostream>
 
+static const std::string LOG_FILE_NAME = "LoggingExample.html";
+
 /**
 * Software's main function. 
 */
 int main(int argc, char** argv)
 {
-    const static std::string CONFIG_FILE_NAME = "JsonExampleConf.json";
-	std::string logFileName;
-	std::string logLevel;
-	
+
 	//Parse command line arguments
-	ParseCmdLineArgs(argc, argv, logFileName, logLevel);
+	ParseCmdLineArgs(argc, argv);
 
 	//Creates the default folders in the User Data folder. 
 	trUtil::PathUtils::CreateUserDataPathTree();
 
-	//Setup our Logging options
-	trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
 	
 	try
 	{
 		//Show Logo
 		trUtil::Console::Logo();
 
-        //Start program
-        std::cout << "Creating a JSON Document" << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "Changing the output stream to File and Console (Standard) " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+        /**
+        * Set the OutputStreamOptions bits for all stored Loggers
+        * The bits correspond to:
+        * NO_OUTPUT = 0x00000000, ///<Log messages don't get written to any device
+        * TO_FILE = 0x00000001,   ///<Log messages get sent to the output file
+        * TO_CONSOLE = 0x00000002,///<Log messages get sent to the console
+        * TO_WRITER = 0x00000004,///<Log messages get sent to all registered writers
+        * STANDARD = TO_FILE | TO_CONSOLE | TO_WRITER ///<The default setting
+        */
+        trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::STANDARD);
 
-        trUtil::JSON::Object jsObject;
-        trUtil::JSON::Array jsArray;
+        //Setting the file name of the Log File
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "Setting the file name of the Log File to " << LOG_FILE_NAME << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 
-        trUtil::JSON::File configFile(CONFIG_FILE_NAME);
+        trUtil::Logging::LogFile::SetFileName(LOG_FILE_NAME);
 
-        std::cout << "Inputing Data into Document" << std::endl;
+        //Change Logging Level and printing test messages
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "\nSetting Logging Level to DEBUG " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 
-        jsArray.AddInt(55);
-        jsArray.AddInt(3456);
-        jsArray.AddInt64(63752);
-        jsArray.AddNull();            //NULLs the value
-        jsArray.AddBool(true);
-        jsArray.AddString("StringValue");
-        jsArray.AddDouble(45.6);
-        jsArray.AddUInt(4567);
-        jsArray.AddUInt64(12098);
-        jsArray.AddFloat(567.54f);
-        jsArray.SetComment("This is the Array Comment");
-
-        std::cout << "JSON Array in RAM:\n" << std::endl;
-        jsArray.PrintJSONRoot();
-        std::cout << std::endl;
-
-        jsObject.SetInt("MyInt", 55);
-        jsObject.SetInt("MyInt2", 3456);
-        jsObject.SetInt64("MyInt64", 63752);
-        jsObject.SetNull("MyInt");            //NULLs the value
-        jsObject.SetBool("MyBool", true);
-        jsObject.SetString("MyString", "StringValue");
-        jsObject.SetDouble("MyDouble", 45.6);
-        jsObject.SetUInt("MyUint", 4567);
-        jsObject.SetUInt64("MyUint64", 12098);
-        jsObject.SetFloat("MyFloat", 567.54f);
-        jsObject.SetArray("MyArray", jsArray);
-        jsObject.SetComment("/This is the Object Comment");
-
-        std::cout << "JSON jsObject in RAM:\n" << std::endl;
-        jsObject.PrintJSONRoot();
-        std::cout << std::endl;
-
-        configFile.SetInt("MyInt", 55);
-        configFile.SetInt("MyInt2", 3456);
-        configFile.SetInt64("MyInt64", 63752);
-        configFile.SetNull("MyInt");            //NULLs the value
-        configFile.SetBool("MyBool", true);
-        configFile.SetString("MyString", "StringValue");
-        configFile.SetDouble("MyDouble", 45.6);
-        configFile.SetUInt("MyUint", 4567);
-        configFile.SetUInt64("MyUint64", 12098);
-        configFile.SetFloat("MyFloat", 567.54f);
-        configFile.SetObject("MyObject", jsObject);
+        trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
+        LOG_D("Sending a Debug Log Message")
+        LOG_I("Sending an Info Log Message")
+        LOG_W("Sending a Warning Log Message")
+        LOG_E("Sending an Error Log Message")
+        LOG_A("Sending a Always Log Message")
         
-        std::cout << "JSON File in RAM:\n" << std::endl;
-        configFile.PrintJSONRoot();
-        std::cout << std::endl;
+        LOG_PRINT_TEST
 
-        std::cout << "Writing out JSON File" << std::endl;
-        configFile.WriteToFile();
+        //Change Logging Level and printing test messages
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "\nSetting Logging Level to Info " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 
+        trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_INFO);
+        LOG_D("Sending a Debug Log Message")
+        LOG_I("Sending an Info Log Message")
+        LOG_W("Sending a Warning Log Message")
+        LOG_E("Sending an Error Log Message")
+        LOG_A("Sending a Always Log Message")
 
-        trUtil::JSON::File readFile(CONFIG_FILE_NAME);
-        std::cout << "\n\nReading JSON File" << std::endl;
-        readFile.ReadFromFile();
+        LOG_PRINT_TEST
 
-        std::cout << "JSON File in RAM:\n" << std::endl;
-        readFile.PrintJSONRoot();
-
-        trUtil::JSON::Array jsArr = configFile.GetObject("MyObject").GetArray("MyArray");
         
-        std::cout << "\nJSON Array in RAM:\n" << std::endl;
-        jsArr.PrintJSONRoot();
-
-        std::cout << "\nJSON Array Size: " << jsArr.Size() << std::endl;
-        std::cout << "\nIterating through JSON Array in RAM:\n" << std::endl;
-        for (int i = 0; i < jsArr.Size(); i++)
-        {
-            std::cout << jsArr[i] << std::endl;
-        }
-
-        std::cout << "\nRemoving value 5 from the JSON Array:\n" << std::endl;
-        jsArr.RemoveIndex(5, new trUtil::JSON::Value);
-
-        std::cout << "\nJSON Array in RAM:\n" << std::endl;
-        jsArr.PrintJSONRoot();
-
-        std::cout << "\nJSON Array Size: " << jsArr.Size() << std::endl;
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-		std::cerr << "True Reality is now shutting down ... " << std::endl;
+		std::cerr << "\nTrue Reality is now shutting down ... " << std::endl;
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         LOG_A("True Reality is now shutting down ... ");
 	}

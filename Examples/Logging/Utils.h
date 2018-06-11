@@ -23,9 +23,9 @@
 #include <string>
 
 static const std::string PROGRAM_NAME = "TrueReality";
-static const std::string EXE_NAME = "examplesJSON";
+static const std::string EXE_NAME = "examplesLogging";
 
 /*
 * Parses the command line variables that are passed in to the executable
 */
-void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::string& logLevel);
+void ParseCmdLineArgs(int& argc, char** argv);
