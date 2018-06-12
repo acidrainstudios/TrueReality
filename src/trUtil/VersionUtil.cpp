@@ -207,12 +207,15 @@ namespace trUtil
     {
         try
         {
+            //Try to get the version number from HG or GIT repo. If HG repo is not present, try GIT, if GIT is not present, fail. 
+            
             //Get the revision number string from the HG repo
             std::cerr << "\nChecking for an HG repo..." << std::endl;
             std::string rev = trUtil::FileUtils::GetInstance().RunCommand("hg -R " + PathUtils::GetRootPath() + " identify --num");
             
             if (rev == trUtil::StringUtils::STR_BLANK)
             {
+                //Get the revision number string from the GIT repo
                 std::cerr << "\nChecking for a GIT repo..." << std::endl;
                 rev = trUtil::FileUtils::GetInstance().RunCommand("git -C " + PathUtils::GetRootPath() + " rev-list --count HEAD");
 
