@@ -21,16 +21,17 @@
 
 #include <trUtil/VersionUtil.h>
 
-#include <trUtil/StringUtils.h>
-#include <trUtil/PathUtils.h>
-#include <trUtil/FileUtils.h>
 #include <trUtil/DateTime.h>
+#include <trUtil/FileUtils.h>
+#include <trUtil/PathUtils.h>
+#include <trUtil/StringUtils.h>
+#include <trUtil/Console/TextColor.h>
 #include <trUtil/Logging/Log.h>
 
+#include <ctime>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <ctime>
 
 namespace trUtil
 {
@@ -218,7 +219,10 @@ namespace trUtil
                 if (rev == trUtil::StringUtils::STR_BLANK)
                 {
                     LOG_E("No .hg or .git folders found at the TR_ROOT path. \nTR_ROOT: " + PathUtils::GetRootPath());
+
+                    trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
                     std::cerr << ".hg (HG Repo) or .git (GIT Repo) is needed for this to work" << std::endl;
+                    trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
                 }
                 
             }

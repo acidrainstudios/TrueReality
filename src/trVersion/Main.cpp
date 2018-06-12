@@ -31,7 +31,7 @@
 #include <trUtil/Logging/Log.h>
 
 const static trUtil::RefStr TR_CURRENT_VERSION("True Reality Engine Current version: ");
-const static trUtil::RefStr TR_NEW_VERSION("True Reality Engine New Version : ");
+const static trUtil::RefStr TR_NEW_VERSION("\nTrue Reality Engine New Version : ");
 const static trUtil::RefStr TR_VERSION("True Reality v");
 
 //Forward declaration
@@ -82,7 +82,7 @@ int main(int argc, char** argv)
         else if (majVer != -1 || minVer != -1 || yymmVer != "" || buildVer != -1)
         {
             trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
-            std::cout << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
+            std::cerr << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
             if (majVer != -1)
             {
                 ver.SetMajorVersion(majVer);
@@ -105,13 +105,13 @@ int main(int argc, char** argv)
             
             ver.SaveVersionFile();
             
-            std::cout << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
+            std::cerr << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
             trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         }
         else
         {
             trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
-            std::cout << TR_VERSION << ver.GetVersionString() << std::endl;
+            std::cerr << TR_VERSION << ver.GetVersionString() << std::endl;
             trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         }
         
@@ -133,10 +133,12 @@ int main(int argc, char** argv)
 void IncremenetVersion(trUtil::VersionUtil &ver)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
-    std::cout << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
+    std::cerr << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
+    
     ver.IncrementVersion();
     ver.SaveVersionFile();
-    std::cout << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
+
+    std::cerr << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 }
 
@@ -146,10 +148,12 @@ void IncremenetVersion(trUtil::VersionUtil &ver)
 void SetVersion(trUtil::VersionUtil &ver, int maj, int min, std::string yymm, int build)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
-    std::cout << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
+    std::cerr << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
+
     ver.SetVersion(maj, min, yymm, build);
     ver.SaveVersionFile();
-    std::cout << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
+    
+    std::cerr << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 }
 
@@ -159,9 +163,13 @@ void SetVersion(trUtil::VersionUtil &ver, int maj, int min, std::string yymm, in
 void UpdateVersion(trUtil::VersionUtil &ver)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
-    std::cout << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
+    std::cerr << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
+    trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+
     ver.UpdateVersion();
     ver.SaveVersionFile();
-    std::cout << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
+    
+    trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
+    std::cerr << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 }
