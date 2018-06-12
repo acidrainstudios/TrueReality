@@ -56,7 +56,7 @@ namespace trUtil
             std::string errMsg = "Version File does not exist, generating a new one...";			
             LOG_W("Looking for file in : " + mVersion.GetFilePath())
             LOG_W(errMsg)
-            std::cout << errMsg << std::endl;
+            std::cerr << errMsg << std::endl;
             GenerateVersionStructure();
             SaveVersionFile();
         }
@@ -207,12 +207,20 @@ namespace trUtil
         try
         {
             //Get the revision number string from the HG repo
+            std::cerr << "\nChecking for an HG repo..." << std::endl;
             std::string rev = trUtil::FileUtils::GetInstance().RunCommand("hg -R " + PathUtils::GetRootPath() + " identify --num");
             
             if (rev == trUtil::StringUtils::STR_BLANK)
             {
-                LOG_E("No .hg folder found at the TR_ROOT path. \nTR_ROOT: " + PathUtils::GetRootPath());
-                std::cout << ".hg (HG Repo) is needed for this to work" << std::endl;
+                std::cerr << "\nChecking for a GIT repo..." << std::endl;
+                rev = trUtil::FileUtils::GetInstance().RunCommand("git -C " + PathUtils::GetRootPath() + " rev-list --count HEAD");
+
+                if (rev == trUtil::StringUtils::STR_BLANK)
+                {
+                    LOG_E("No .hg or .git folders found at the TR_ROOT path. \nTR_ROOT: " + PathUtils::GetRootPath());
+                    std::cerr << ".hg (HG Repo) or .git (GIT Repo) is needed for this to work" << std::endl;
+                }
+                
             }
             
             //Extract the revision number from the string
