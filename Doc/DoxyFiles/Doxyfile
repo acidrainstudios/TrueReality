@@ -5,8 +5,8 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = OpenSceneGraph
-PROJECT_NUMBER         = ${OPENSCENEGRAPH_VERSION}
-OUTPUT_DIRECTORY       = ${OpenSceneGraph_BINARY_DIR}/doc/osg-doxygen-${OPENSCENEGRAPH_VERSION}
+#PROJECT_NUMBER         = ${OPENSCENEGRAPH_VERSION}
+#OUTPUT_DIRECTORY       = ${OpenSceneGraph_BINARY_DIR}/doc/osg-doxygen-${OPENSCENEGRAPH_VERSION}
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES
@@ -16,7 +16,7 @@ ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = NO
 FULL_PATH_NAMES        = NO
 STRIP_FROM_PATH        = 
-STRIP_FROM_INC_PATH    = ${OpenSceneGraph_SOURCE_DIR}/include
+#STRIP_FROM_INC_PATH    = ${OpenSceneGraph_SOURCE_DIR}/include
 SHORT_NAMES            = YES
 JAVADOC_AUTOBRIEF      = YES
 QT_AUTOBRIEF           = NO
@@ -82,23 +82,23 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = ${OpenSceneGraph_SOURCE_DIR}/include/osg \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgAnimation \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgDB \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgFX \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgGA \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgManipulator \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgParticle \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgShadow \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgSim \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgTerrain \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgText \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgUtil \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgViewer \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgVolume \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgWidget \
-                         ${OpenSceneGraph_SOURCE_DIR}/include/osgQt \
-                         ${OpenSceneGraph_SOURCE_DIR}/doc/Doxyfiles/auto_Mainpage
+#INPUT                  = ${OpenSceneGraph_SOURCE_DIR}/include/osg \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgAnimation \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgDB \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgFX \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgGA \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgManipulator \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgParticle \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgShadow \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgSim \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgTerrain \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgText \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgUtil \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgViewer \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgVolume \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgWidget \
+#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgQt \
+#                         ${OpenSceneGraph_SOURCE_DIR}/doc/Doxyfiles/auto_Mainpage
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *include* \
                          *.cpp
@@ -138,7 +138,7 @@ GENERATE_HTML          = YES
 HTML_OUTPUT            = core
 HTML_FILE_EXTENSION    = .html
 HTML_HEADER            = 
-HTML_FOOTER            = ${OpenSceneGraph_SOURCE_DIR}/doc/Doxyfiles/custom_Footer.html
+HTML_FOOTER            = /Doc/Doxyfiles/custom_Footer.html
 HTML_STYLESHEET        = 
 GENERATE_HTMLHELP      = NO
 GENERATE_DOCSET        = NO
