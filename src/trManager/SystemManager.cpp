@@ -54,7 +54,7 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     trManager::SystemManager& SystemManager::GetInstance()
     {
-        if (!mInstance.valid())
+        if (!mInstance.Valid())
         {
             mInstance = new SystemManager();
         }
@@ -100,7 +100,7 @@ namespace trManager
         //Go through all stored messages and send them out...
         while (!mMessageQueue.empty())
         {
-            ProcessMessage(*mMessageQueue.front().get());            
+            ProcessMessage(*mMessageQueue.front().Get());            
 
             //Removed the handled message
             mMessageQueue.pop();
@@ -114,7 +114,7 @@ namespace trManager
         while (!mNetworkMessageQueue.empty())
         {
             //Send messages to Directors
-            SendMessageToDirectors(*mNetworkMessageQueue.front().get());
+            SendMessageToDirectors(*mNetworkMessageQueue.front().Get());
 
             //Removed the handled message
             mNetworkMessageQueue.pop();
@@ -255,7 +255,7 @@ namespace trManager
         ActorList::iterator found;
         for (found = mActorList.begin(); found != mActorList.end(); ++found)
         {
-            if (found->get() == &actor)
+            if (found->Get() == &actor)
             {
                 //We found the actor we need
                 break;
@@ -265,10 +265,10 @@ namespace trManager
         if (found != mActorList.end())
         {
             //Add the entity to the delete list.
-            mEntityDeleteList.push_back(trBase::SmrtPtr<trManager::EntityBase>(static_cast<trManager::EntityBase*>(found->get())));
+            mEntityDeleteList.push_back(trBase::SmrtPtr<trManager::EntityBase>(static_cast<trManager::EntityBase*>(found->Get())));
 
-            UnregisterActorFromGlobalMessages(*found->get());   // Unregister the entity from all messages
-            UnregisterEntityFromAboutMessages(*found->get());   // Unregister the entity from all About messages
+            UnregisterActorFromGlobalMessages(*found->Get());   // Unregister the entity from all messages
+            UnregisterEntityFromAboutMessages(*found->Get());   // Unregister the entity from all About messages
             
             mActorIDMap.erase((*found)->GetUUID());             // Erase the node from the list by ID key
             mActorList.erase(found);                            // Erase the node from the list
@@ -309,7 +309,7 @@ namespace trManager
         if (it != mActorIDMap.end()) //Make sure we have a found value and are not at the end
         {
             //Return the stored value
-            return it->second.get();
+            return it->second.Get();
         }
         else
         {
@@ -375,7 +375,7 @@ namespace trManager
                 //Make sure the director is not sending a message to itself
                 if (dir->GetUUID() != *message.GetFromActorID())
                 {                   
-                    directorRef = static_cast<trManager::EntityBase*>(dir.get());
+                    directorRef = static_cast<trManager::EntityBase*>(dir.Get());
 
                     //If the listener list is not empty
                     if (listenerIt != mDirectorGlobalMsgRegistrationMap.end())
@@ -422,7 +422,7 @@ namespace trManager
                 //Make sure the entity is not sending a message to itself
                 if (ent.first->GetUUID() != *message.GetFromActorID())
                 {
-                    CallInvokable(message, ent.second, *ent.first.get());
+                    CallInvokable(message, ent.second, *ent.first.Get());
                 }                
             }
         }
@@ -446,7 +446,7 @@ namespace trManager
                     //Make sure the entity is not sending a message to itself
                     if (ent.first->GetUUID() != *message.GetFromActorID())
                     {
-                        CallInvokable(message, ent.second, *ent.first.get());
+                        CallInvokable(message, ent.second, *ent.first.Get());
                     }
                 }
             }
@@ -785,7 +785,7 @@ namespace trManager
             DirectorList::iterator found;
             for (found = mDirectorList.begin(); found != mDirectorList.end(); ++found)
             {
-                if (found->get() == &director)
+                if (found->Get() == &director)
                 {
                     //We found the director we need
                     break;
@@ -795,10 +795,10 @@ namespace trManager
             if (found != mDirectorList.end())
             {
                 //Add the entity to the delete list.
-                mEntityDeleteList.push_back(trBase::SmrtPtr<trManager::EntityBase>(static_cast<trManager::EntityBase*>(found->get())));
+                mEntityDeleteList.push_back(trBase::SmrtPtr<trManager::EntityBase>(static_cast<trManager::EntityBase*>(found->Get())));
 
-                UnregisterDirectorFromGlobalMessages(*found->get());// Unregister the director from all messages
-                UnregisterEntityFromAboutMessages(*found->get());   // Unregister the director from all About messages
+                UnregisterDirectorFromGlobalMessages(*found->Get());// Unregister the director from all messages
+                UnregisterEntityFromAboutMessages(*found->Get());   // Unregister the director from all About messages
 
                 mDirectorIDMap.erase((*found)->GetUUID());          // Erase the node from the list by ID key
                 mDirectorNameMap.erase((*found)->GetName());        // Erase the node from the list by Name key
@@ -845,7 +845,7 @@ namespace trManager
         if (it != mDirectorIDMap.end()) //Make sure we have a found value and are not at the end
         {
             //Return the stored value
-            return it->second.get();
+            return it->second.Get();
         }
         else
         {
@@ -860,7 +860,7 @@ namespace trManager
         if (it != mDirectorNameMap.end()) //Make sure we have a found value and are not at the end
         {
             //Return the stored value
-            return it->second.get();
+            return it->second.Get();
         }
         else
         {

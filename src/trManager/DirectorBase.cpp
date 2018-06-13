@@ -46,12 +46,12 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     bool DirectorBase::CompareComponentPriority(const trBase::SmrtPtr<trManager::EntityBase>& first, const trBase::SmrtPtr<trManager::EntityBase>& second)
     {      
-        if (first.valid() && second.valid())
+        if (first.Valid() && second.Valid())
         {
             if (first->GetEntityType() == EntityType::DIRECTOR && first->GetEntityType() == EntityType::DIRECTOR)
             {
                 // The lower the value, the higher the priority
-                return (static_cast<trManager::DirectorBase*>(first.get())->GetDirectorPriority().GetID() < static_cast<trManager::DirectorBase*>(second.get())->GetDirectorPriority().GetID());
+                return (static_cast<trManager::DirectorBase*>(first.Get())->GetDirectorPriority().GetID() < static_cast<trManager::DirectorBase*>(second.Get())->GetDirectorPriority().GetID());
             }
             else
             {

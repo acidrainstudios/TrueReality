@@ -201,10 +201,10 @@ namespace trManager
 			ActorModules::iterator found;
 			for (found = mActorModules.begin(); found != mActorModules.end(); ++found)
 			{
-				if (found->get() == &actorModule)
+				if (found->Get() == &actorModule)
 				{
                     //Remove the parent reference from the actor module
-                    found->get()->ForgetParent();
+                    found->Get()->ForgetParent();
 
                     //We found the actor module we need, remove it
 					mActorModules.erase(found);
@@ -263,10 +263,10 @@ namespace trManager
 		ActorModules::iterator found;
 		for (found = mActorModules.begin(); found != mActorModules.end(); ++found)
 		{
-			if (found->get()->GetUUID() == id)
+			if (found->Get()->GetUUID() == id)
 			{
 				//We found the actor module we need
-				return found->get();
+				return found->Get();
 			}
 		}
 		return nullptr;

@@ -108,7 +108,7 @@ TEST_F(ActorTests, AddRemoveActor)
 	EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
 
 	//Release ownership of this pointer
-	actor.release();
+	actor.Release();
 
 	//We should have one instance of the actor
 	EXPECT_EQ(TestActor1::GetInstCount(), 1);
@@ -199,8 +199,8 @@ TEST_F(ActorTests, SendMessage)
 	EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
 
 	//Release ownership of this pointer
-	actor2.release();
-	actor.release();
+	actor2.Release();
+	actor.Release();
 
 	//We should have one instance of the actor
 	EXPECT_EQ(TestActor2::GetInstCount(), 1);
@@ -289,7 +289,7 @@ TEST_F(ActorTests, Listener)
 	EXPECT_EQ(mSysMan->UnregisterActor(actor3->GetUUID()), true);
 
 	//Release ownership of this pointer
-	actor3.release();
+	actor3.Release();
 
 	//We should have one instance of the actor
 	EXPECT_EQ(TestActor3::GetInstCount(), 1);
@@ -305,8 +305,8 @@ TEST_F(ActorTests, Listener)
 	EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
 
 	//Release ownership of this pointer
-	actor2.release();
-	actor.release();
+	actor2.Release();
+	actor.Release();
 
 	//We should have one instance of the actor
 	EXPECT_EQ(TestActor2::GetInstCount(), 1);

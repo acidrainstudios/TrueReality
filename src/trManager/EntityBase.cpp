@@ -109,7 +109,7 @@ namespace trManager
         }
         else
         {
-            return itor->second.get();
+            return itor->second.Get();
         }
     }
 
@@ -122,7 +122,7 @@ namespace trManager
         for (trUtil::HashMap<std::string, trBase::SmrtPtr<trManager::Invokable>>::iterator i = mInvokables.begin();
             i != mInvokables.end(); ++i)
         {
-            toFill.push_back(i->second.get());
+            toFill.push_back(i->second.Get());
         }
     }
 
@@ -135,7 +135,7 @@ namespace trManager
         for (trUtil::HashMap<std::string, trBase::SmrtPtr<trManager::Invokable>>::const_iterator i = mInvokables.begin();
             i != mInvokables.end(); ++i)
         {
-            toFill.push_back(i->second.get());
+            toFill.push_back(i->second.Get());
         }
     }
 
@@ -170,7 +170,7 @@ namespace trManager
         //Find and remove the child from this entity
         for (int i = 0; i < mChildren.size(); ++i)
         {
-            if (mChildren[i].get() == &child)
+            if (mChildren[i].Get() == &child)
             {
                 mChildren.erase(mChildren.begin() + i);
                 break;
@@ -235,7 +235,7 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     void EntityBase::SetParent(trManager::EntityBase &parent)
     {
-        if (!mParent.valid())
+        if (!mParent.Valid())
         {
             //Set the new parent
             mParent = &parent;
@@ -263,13 +263,13 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     trManager::EntityBase* EntityBase::GetParent()
     {
-        return mParent.get();
+        return mParent.Get();
     }
 
     //////////////////////////////////////////////////////////////////////////
     const trManager::EntityBase* EntityBase::GetParent() const
     {
-        return mParent.get();
+        return mParent.Get();
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -290,7 +290,7 @@ namespace trManager
         
 
         //Remove this Entity from its previous parent. 
-        if (!parent.valid())
+        if (!parent.Valid())
         {
             ForgetParent();
             parent->RemoveChild(*this);
@@ -304,7 +304,7 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     bool EntityBase::RemoveFromHierarchy()
     {        
-        if (mParent.valid())
+        if (mParent.Valid())
         {
             for (int i = 0; i < mChildren.size(); ++i)
             {

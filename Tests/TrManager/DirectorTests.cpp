@@ -101,7 +101,7 @@ TEST_F(DirectorTests, AddRemoveDirector)
     EXPECT_EQ(TestDirector2::GetInstCount(), 1);
 
     //Unregister the director. 
-    EXPECT_EQ(mSysMan->UnregisterDirector(*director.release()), true);
+    EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
@@ -174,7 +174,7 @@ TEST_F(DirectorTests, TickMessage)
     EXPECT_EQ(director->GetTickMsgNumber(), 2);
 
     //Unregister the director. 
-    EXPECT_EQ(mSysMan->UnregisterDirector(*director.release()), true);
+    EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
@@ -229,7 +229,7 @@ TEST_F(DirectorTests, SystemEventMsg)
     EXPECT_EQ(director->GetPostFrameEventMsgNum(), 3);
 
     //Unregister the director. 
-    EXPECT_EQ(mSysMan->UnregisterDirector(*director.release()), true);
+    EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
@@ -281,7 +281,7 @@ TEST_F(DirectorTests, FrameEventMsg)
     EXPECT_EQ(director->GetPostFrameMsgNum(), 3);
 
     //Unregister the director. 
-    EXPECT_EQ(mSysMan->UnregisterDirector(*director.release()), true);
+    EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time  
     mSysDirector->RunOnce();
@@ -338,8 +338,8 @@ TEST_F(DirectorTests, SendReceiveMsg)
     EXPECT_EQ(director->GetTestMessageNum(), 4);
 
     //Unregister the director. 
-    EXPECT_EQ(mSysMan->UnregisterDirector(*director2.release()), true);
-    EXPECT_EQ(mSysMan->UnregisterDirector(*director.release()), true);
+    EXPECT_EQ(mSysMan->UnregisterDirector(*director2.Release()), true);
+    EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time  
     mSysDirector->RunOnce();

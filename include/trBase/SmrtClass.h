@@ -33,7 +33,7 @@ namespace trBase
     * This class is part of the internal garbage collection system. Anything that inherits it can also use the
     * smart pointer interface (trBase::SmrtPtr)
     *
-    * It is a wrapper for osg::Referenced
+    * It inherits osg::Referenced and uses the OSG garbage collection in its core
     */
     class TR_BASE_EXPORT SmrtClass : public osg::Referenced
     {
