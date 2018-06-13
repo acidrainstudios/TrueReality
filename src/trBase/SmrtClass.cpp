@@ -37,37 +37,37 @@ namespace trBase
     //////////////////////////////////////////////////////////////////////////
     OpenThreads::Mutex * SmrtClass::GetRefMutex() const
     {
-        return nullptr;
+        return BaseClass::getRefMutex();
     }
 
     //////////////////////////////////////////////////////////////////////////
     OpenThreads::Mutex * SmrtClass::GetGlobalReferencedMutex()
     {
-        return nullptr;
+        return BaseClass::getGlobalReferencedMutex();
     }
 
     //////////////////////////////////////////////////////////////////////////
     inline int SmrtClass::Ref() const
     {
-        return 0;
+        return BaseClass::ref();
     }
 
     //////////////////////////////////////////////////////////////////////////
     inline int SmrtClass::Unref() const
     {
-        return 0;
+        return BaseClass::unref();
     }
 
     //////////////////////////////////////////////////////////////////////////
     int SmrtClass::UnRefNoDelete() const
     {
-        return 0;
+        return BaseClass::unref_nodelete();
     }
 
     //////////////////////////////////////////////////////////////////////////
     inline int SmrtClass::ReferenceCount() const
     {
-        return 0;
+        return BaseClass::referenceCount();
     }
 
     //////////////////////////////////////////////////////////////////////////
