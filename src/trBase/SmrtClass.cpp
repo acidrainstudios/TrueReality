@@ -23,5 +23,62 @@
 
 namespace trBase
 {
-    /// Empty file to be used for reporting software. 
+    //////////////////////////////////////////////////////////////////////////
+    void SmrtClass::SetThreadSafeRefUnref(bool threadSafe)
+    {
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool SmrtClass::GetThreadSafeRefUnref()
+    {
+        return false;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    OpenThreads::Mutex * SmrtClass::GetRefMutex() const
+    {
+        return nullptr;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    OpenThreads::Mutex * SmrtClass::GetGlobalReferencedMutex()
+    {
+        return nullptr;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline int SmrtClass::Ref() const
+    {
+        return 0;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline int SmrtClass::Unref() const
+    {
+        return 0;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    int SmrtClass::UnRefNoDelete() const
+    {
+        return 0;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline int SmrtClass::ReferenceCount() const
+    {
+        return 0;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void SmrtClass::SetThreadSafeReferenceCounting(bool enableThreadSafeReferenceCounting)
+    {
+        BaseClass::setThreadSafeReferenceCounting(enableThreadSafeReferenceCounting);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool SmrtClass::GetThreadSafeReferenceCounting()
+    {
+        return BaseClass::getThreadSafeReferenceCounting();
+    }
 }
