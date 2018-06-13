@@ -82,7 +82,8 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-#INPUT                  = ${OpenSceneGraph_SOURCE_DIR}/include/osg \
+INPUT                  = include \
+                         src
 #                         ${OpenSceneGraph_SOURCE_DIR}/include/osgAnimation \
 #                         ${OpenSceneGraph_SOURCE_DIR}/include/osgDB \
 #                         ${OpenSceneGraph_SOURCE_DIR}/include/osgFX \
@@ -138,7 +139,7 @@ GENERATE_HTML          = YES
 HTML_OUTPUT            = core
 HTML_FILE_EXTENSION    = .html
 HTML_HEADER            = 
-HTML_FOOTER            = /Doc/Doxyfiles/custom_Footer.html
+HTML_FOOTER            = Doc/Doxyfiles/custom_Footer.html
 HTML_STYLESHEET        = 
 GENERATE_HTMLHELP      = NO
 GENERATE_DOCSET        = NO
@@ -247,7 +248,7 @@ CALLER_GRAPH           = NO
 GRAPHICAL_HIERARCHY    = YES
 DIRECTORY_GRAPH        = YES
 DOT_IMAGE_FORMAT       = png
-DOT_PATH               = "${DOXYGEN_DOT_PATH}"
+#DOT_PATH               = "${DOXYGEN_DOT_PATH}"
 DOTFILE_DIRS           = 
 DOT_GRAPH_MAX_NODES    = 50
 MAX_DOT_GRAPH_DEPTH    = 0
@@ -258,4 +259,4 @@ DOT_CLEANUP            = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to the search engine   
 #---------------------------------------------------------------------------
-SEARCHENGINE           = ${SEARCHENGINE}
+#SEARCHENGINE           = ${SEARCHENGINE}
