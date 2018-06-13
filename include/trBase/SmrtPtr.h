@@ -111,28 +111,6 @@ namespace trBase
          */
         bool operator ! () const { return mOSGSmartPtr.operator!(); }
 
-        ///**
-        // * @fn  void SmrtPtr::operator= (const SmrtPtr& sp);
-        // *
-        // * @brief   Assignment operator.
-        // *
-        // * @return  A copy of this object.
-        // *
-        // * @param   sp  The sp.
-        // */
-        //void operator = (const SmrtPtr& sp) { mOSGSmartPtr = sp; } 
-
-        ///**
-        // * @fn  void SmrtPtr::operator= (T* ptr);
-        // *
-        // * @brief   Assignment operator.
-        // *
-        // * @return  A copy of this object.
-        // *
-        // * @param [in,out]  ptr If non-null, the pointer.
-        // */
-        //void operator = (T* ptr) { mOSGSmartPtr = ptr; }
-
         /**
          * @fn  T& SmrtPtr::operator*() const;
          *
