@@ -69,16 +69,4 @@ namespace trBase
     {
         return BaseClass::referenceCount();
     }
-
-    //////////////////////////////////////////////////////////////////////////
-    void SmrtClass::SetThreadSafeReferenceCounting(bool enableThreadSafeReferenceCounting)
-    {
-        BaseClass::setThreadSafeReferenceCounting(enableThreadSafeReferenceCounting);
-    }
-
-    //////////////////////////////////////////////////////////////////////////
-    bool SmrtClass::GetThreadSafeReferenceCounting()
-    {
-        return BaseClass::getThreadSafeReferenceCounting();
-    }
 }

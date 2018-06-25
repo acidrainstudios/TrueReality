@@ -150,25 +150,6 @@ namespace trBase
         inline int ReferenceCount() const;
 
         /**
-         * @fn  static void SmrtClass::SetThreadSafeReferenceCounting(bool enableThreadSafeReferenceCounting);
-         *
-         * @brief   Set whether reference counting should use a mutex for thread safe reference counting.
-         *
-         * @param   enableThreadSafeReferenceCounting   True to enable, false to disable the thread safe
-         *                                              reference counting.
-         */
-        static void SetThreadSafeReferenceCounting(bool enableThreadSafeReferenceCounting);
-
-        /**
-         * @fn  static bool SmrtClass::GetThreadSafeReferenceCounting();
-         *
-         * @brief   Get whether reference counting is active.
-         *
-         * @return  True if it succeeds, false if it fails.
-         */
-        static bool GetThreadSafeReferenceCounting();
-
-        /**
          * @fn  virtual const std::string& SmrtClass::GetType() const = 0;
          *
          * @brief   Returns the class type.
