@@ -21,13 +21,13 @@
 * Class Inspired by the Delta3D Engine
 * http://delta3dengine.org/
 *
-* Author:Erik Johnson 06/06/2006
+* @author:Erik Johnson 06/06/2006
 *
 * Bits is a derivation from the Bits.h file of the CADKit project, Usul:
-* Author:Perry L. Miller IV
+* @author:Perry L. Miller IV
 * http://cadkit.sourceforge.net/
 *
-* Author: Maxim Serebrennik
+* @author: Maxim Serebrennik
 */
 #pragma once
 #include "Export.h"

@@ -21,8 +21,8 @@
 * Class Inspired by the Delta3D Engine
 * http://delta3dengine.org/
 *
-* Author: David Guthrie
-* Author: Maxim Serebrennik
+* @author: David Guthrie
+* @author: Maxim Serebrennik
 */
 #pragma once
 

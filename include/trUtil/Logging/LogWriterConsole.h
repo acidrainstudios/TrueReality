@@ -21,8 +21,8 @@
 * Class Inspired by the Delta3D Engine
 * http://delta3dengine.org/
 *
-* Author: Erik Johnson
-* Author: Maxim Serebrennik
+* @author: Erik Johnson
+* @author: Maxim Serebrennik
 */
 #pragma once
 
