@@ -21,7 +21,7 @@
 * Class Inspired by the Delta3D Engine
 * http://delta3dengine.org/
 *
-* @author: Maxim Serebrennik
+* @author Maxim Serebrennik
 * Based on Delta3D dtUtil::RefStr
 */
 #pragma once

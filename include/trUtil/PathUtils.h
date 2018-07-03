@@ -21,11 +21,11 @@
 * Class Inspired by the Delta3D Engine
 * http://delta3dengine.org/
 *
-* @author: David Guthrie
-* @author: John K. Grant
-* @author: William E. Johnson II
-* @author: Chris Osborn
-* @author: Maxim Serebrennik
+* @author David Guthrie
+* @author John K. Grant
+* @author William E. Johnson II
+* @author Chris Osborn
+* @author Maxim Serebrennik
 */
 #pragma once
 

@@ -18,10 +18,10 @@
 * along with this library; if not, write to the Free Software Foundation, Inc.,
 * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 *
-* @author: Matthew W. Campbell
-* @author: Erik Johnson
-* @author: David Guthrie
-* @author: Maxim Serebrennik
+* @author Matthew W. Campbell
+* @author Erik Johnson
+* @author David Guthrie
+* @author Maxim Serebrennik
 */
 
 #include <trUtil/Logging/LogFile.h>

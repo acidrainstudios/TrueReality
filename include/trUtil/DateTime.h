@@ -21,7 +21,7 @@
 * Class Inspired by the Delta3D Engine
 * http://delta3dengine.org/
 *
-* @author: Bradley Anderegg
+* @author Bradley Anderegg
 */
 #pragma once
 
