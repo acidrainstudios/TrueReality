@@ -1,3 +1,6 @@
+# *****************************************************************************
+# Attempts to find a specified dependency *************************************
+# *****************************************************************************
 MACRO (TR_DETECT_DEPENDENCY arg)
     MESSAGE (STATUS "Detecting ${arg}...")
     FIND_PACKAGE (${arg} ${ARGV1} REQUIRED)
@@ -9,6 +12,9 @@ MACRO (TR_DETECT_DEPENDENCY arg)
     ENDIF (${arg}_FOUND)
 ENDMACRO (TR_DETECT_DEPENDENCY arg)
 
+# *****************************************************************************
+# Configures the given projects build options *********************************
+# *****************************************************************************
 MACRO (TR_TARGET_OPTIONS arg)
     SET_TARGET_PROPERTIES (
         ${arg}
@@ -37,6 +43,9 @@ MACRO (TR_TARGET_OPTIONS arg)
     ENDIF (MSVC_IDE)
 ENDMACRO (TR_TARGET_OPTIONS arg)
 
+# *****************************************************************************
+# Configures the installation options for the given project *******************
+# *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
     INSTALL(
         CODE "MESSAGE(\"Installing the ${arg} project. \")"
@@ -47,6 +56,9 @@ MACRO (TR_INSTALL_OPTIONS arg)
         )
 ENDMACRO (TR_INSTALL_OPTIONS arg)
 
+# *****************************************************************************
+# Reads the installed GCC version *********************************************
+# *****************************************************************************
 MACRO(READ_GCC_VERSION)
     IF (CMAKE_COMPILER_IS_GNUCC)
         EXECUTE_PROCESS(COMMAND ${CMAKE_C_COMPILER} -dumpversion
