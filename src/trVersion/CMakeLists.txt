@@ -64,3 +64,6 @@ SET_TARGET_PROPERTIES (${FILE_NAME} PROPERTIES FOLDER "Utilities")
 
 # Sets Project Build options
 TR_TARGET_OPTIONS (${FILE_NAME})
+
+# Sets Project Install options
+TR_INSTALL_OPTIONS (${FILE_NAME})
