@@ -62,4 +62,8 @@ TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS} trUtil)
 # Place the project in a folder
 SET_TARGET_PROPERTIES (${FILE_NAME} PROPERTIES FOLDER "Examples")
 
+# Sets Project Build options
 TR_TARGET_OPTIONS (${FILE_NAME})
+
+# Sets Project Install options
+TR_INSTALL_OPTIONS (${FILE_NAME})
