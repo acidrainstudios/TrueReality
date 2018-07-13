@@ -70,3 +70,6 @@ SET_TARGET_PROPERTIES (${FILE_NAME} PROPERTIES FOLDER "TrueRealitySDK")
 
 # Sets Project Build options
 TR_TARGET_OPTIONS (${FILE_NAME})
+
+# Sets Project Install options
+TR_INSTALL_OPTIONS (${FILE_NAME})
