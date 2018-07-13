@@ -38,7 +38,9 @@ MACRO (TR_TARGET_OPTIONS arg)
 ENDMACRO (TR_TARGET_OPTIONS arg)
 
 MACRO (TR_INSTALL_OPTIONS arg)
-    INSTALL(TARGETS ${arg}
+    INSTALL(
+        CODE "MESSAGE(\"Installing the ${arg} project. \")"
+        TARGETS ${arg}
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
