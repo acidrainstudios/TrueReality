@@ -66,7 +66,11 @@ TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS} trUtil trCore trManager trB
 # Place the project in a folder
 SET_TARGET_PROPERTIES (${FILE_NAME} PROPERTIES FOLDER "Tests")
 
+# Sets Project Build options
 TR_TARGET_OPTIONS (${FILE_NAME})
+
+# Sets Project Install options
+TR_INSTALL_OPTIONS (${FILE_NAME})
 
 # Creates Google Test object files
 SET_GOOGLE_TEST_OPTIONS (${FILE_NAME})
