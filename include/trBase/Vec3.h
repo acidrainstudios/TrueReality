@@ -30,11 +30,11 @@ namespace trBase
     /**
     * General purpose 3D Vector
     */
-    typedef Vec3d Vec3;
+    using Vec3 = Vec3d;
 #else
     /**
     * General purpose 3D Vector
     */
-    typedef Vec3f Vec3;
+    using Vec3 = Vec3f;
 #endif
 }
