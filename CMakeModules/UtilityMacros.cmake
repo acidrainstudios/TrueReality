@@ -47,13 +47,32 @@ ENDMACRO (TR_TARGET_OPTIONS arg)
 # Configures the installation options for the given project *******************
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
+    IF(TR_DATA_INSTALLED EQUAL 0)      
+        SET (TR_DATA_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+        INSTALL(CODE "MESSAGE(\"Installing the Data folder.\")")
+        IF (MSVC_IDE)
+            INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
+	    ELSEIF (UNIX)
+            INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
+        ENDIF (MSVC_IDE)
+    ENDIF()
+    
     INSTALL(CODE "MESSAGE(\"Installing the ${arg} project.\")")
-    INSTALL(
-        TARGETS ${arg}
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-        )
+    IF (MSVC_IDE)
+        INSTALL(
+            TARGETS ${arg}
+            RUNTIME DESTINATION bin
+            LIBRARY DESTINATION lib
+            ARCHIVE DESTINATION lib
+            )
+	ELSEIF (UNIX)
+        INSTALL(
+            TARGETS ${arg}
+            RUNTIME DESTINATION ${PROJECT_NAME}/bin
+            LIBRARY DESTINATION ${PROJECT_NAME}/lib
+            ARCHIVE DESTINATION ${PROJECT_NAME}/lib
+            )
+    ENDIF (MSVC_IDE)
 ENDMACRO (TR_INSTALL_OPTIONS arg)
 
 # *****************************************************************************

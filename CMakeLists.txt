@@ -107,6 +107,9 @@ ENDMACRO (ADD_TR_SUBFOLDERS)
 # *****************************************************************************
 # *****************************************************************************
 
+# Sets a flag to deteremine if we already installed the data folders
+SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+
 # Loads extra CMake modules for the projects
 INCLUDE (UtilityMacros)
 
