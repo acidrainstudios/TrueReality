@@ -40,7 +40,7 @@ namespace trBase
     public:
 
         /** Data type of vector components.*/
-        typedef signed char value_type;
+        using value_type = signed char;
 
         const static int NUM_OF_COMPONENTS;
 
