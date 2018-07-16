@@ -47,7 +47,7 @@ namespace trManager
     {
     public:
 
-        typedef trBase::Base BaseClass;                 /// Adds an easy and swappable access to the base class
+        using BaseClass = trBase::Base;                 /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
@@ -427,26 +427,26 @@ namespace trManager
         std::queue<trBase::SmrtPtr<const trManager::MessageBase>> mNetworkMessageQueue;
 
         // Storage for all the registered Directors       
-        typedef std::list<trBase::SmrtPtr<trManager::EntityBase>> DirectorList;           //Needs to be a std::list so the directors can be priority sorted 
-        typedef trUtil::HashMap<const std::string, trBase::SmrtPtr<trManager::EntityBase>> DirectorNameMap;
-        typedef trUtil::HashMap<const trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>> DirectorIDMap;
+        using DirectorList = std::list<trBase::SmrtPtr<trManager::EntityBase>>;           //Needs to be a std::list so the directors can be priority sorted 
+        using DirectorNameMap = trUtil::HashMap<const std::string, trBase::SmrtPtr<trManager::EntityBase>>;
+        using DirectorIDMap = trUtil::HashMap<const trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
         DirectorList mDirectorList;   
         DirectorNameMap mDirectorNameMap;
         DirectorIDMap mDirectorIDMap;
 
         //Message registration structures.. 
-        typedef std::pair<trBase::SmrtPtr<trManager::EntityBase>, std::string> EntityInvokablePair;                     //<entity, invokableName>        
-        typedef trUtil::HashMap<const std::string*, std::vector<EntityInvokablePair>> MessageRegistrationVectorMap;     //<messageName, vector of registered entityPairs>
-        typedef trUtil::HashMap<const trBase::UniqueId, std::vector<EntityInvokablePair>> UUIDRegistrationVectorMap;    //<UUID, vector of registered entityPairs>
-        typedef trUtil::HashMap<trBase::SmrtPtr<trManager::EntityBase>, std::string> EntityInvokableMap;                //<entity, invokableName>
-        typedef trUtil::HashMap<const std::string*, EntityInvokableMap> MessageRegistrationMap;                         //<messageName, <entity, invokableName>>
+        using EntityInvokablePair = std::pair<trBase::SmrtPtr<trManager::EntityBase>, std::string>;                     //<entity, invokableName>        
+        using MessageRegistrationVectorMap = trUtil::HashMap<const std::string*, std::vector<EntityInvokablePair>>;     //<messageName, vector of registered entityPairs>
+        using UUIDRegistrationVectorMap = trUtil::HashMap<const trBase::UniqueId, std::vector<EntityInvokablePair>>;    //<UUID, vector of registered entityPairs>
+        using EntityInvokableMap = trUtil::HashMap<trBase::SmrtPtr<trManager::EntityBase>, std::string>;                //<entity, invokableName>
+        using MessageRegistrationMap = trUtil::HashMap<const std::string*, EntityInvokableMap>;                         //<messageName, <entity, invokableName>>
         MessageRegistrationVectorMap mEntityGlobalMsgRegistrationMap;
         MessageRegistrationMap mDirectorGlobalMsgRegistrationMap;
         UUIDRegistrationVectorMap mListenerRegistrationMap;
         
         //Storage for all registered Actors and Actor Modules
-        typedef std::vector<trBase::SmrtPtr<trManager::EntityBase>> ActorList;
-        typedef trUtil::HashMap<const trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>> ActorIDMap;
+        using ActorList = std::vector<trBase::SmrtPtr<trManager::EntityBase>>;
+        using ActorIDMap = trUtil::HashMap<const trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
         ActorList mActorList;
         ActorIDMap mActorIDMap; 
 
