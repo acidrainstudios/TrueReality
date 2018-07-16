@@ -36,7 +36,7 @@ namespace trUtil
     class TR_UTIL_EXPORT EnumerationNumeric : public EnumerationString
     {
     public:
-        typedef EnumerationString BaseClass; /// Adds an easy and swappable access to the base class
+        using BaseClass = EnumerationString; /// Adds an easy and swappable access to the base class
 
         /**
          * Returns the Numeric value of the Enum
