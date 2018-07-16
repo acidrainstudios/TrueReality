@@ -39,7 +39,6 @@
 #include <string>
 
 /// @cond DOXYGEN_SHOULD_SKIP_THIS
-
 #if OPENSCENEGRAPH_MAJOR_VERSION < 3
 namespace osgDB
 {
