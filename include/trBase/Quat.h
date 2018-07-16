@@ -45,7 +45,7 @@ namespace trBase
     {
     public:
         
-        typedef double value_type;
+        using value_type = double;
 
         /**
          * @brief   Default constructor.
