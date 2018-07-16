@@ -39,7 +39,7 @@ namespace trBase
     {
     public:
 
-        typedef osg::Referenced BaseClass;                 /// Adds an easy and swappable access to the base class        
+        using BaseClass = osg::Referenced;                 /// Adds an easy and swappable access to the base class        
 
         /**
          * @fn  SmrtClass::SmrtClass() : osg::Referenced()
