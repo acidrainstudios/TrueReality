@@ -31,11 +31,11 @@ namespace trBase
     /**
     * General purpose 2D Vector
     */
-    typedef Vec2d Vec2;
+    using Vec2 = Vec2d;
 #else
     /**
     * General purpose 2D Vector
     */
-    typedef Vec2f Vec2;
+    using Vec2 = Vec2f;
 #endif
 }
