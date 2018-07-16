@@ -171,7 +171,7 @@ namespace trUtil
      */
 #define DECLARE_ENUM(EnumType)                                 \
 public:                                                        \
-    typedef std::vector<EnumType*> EnumerateListType;           \
+    using EnumerateListType = std::vector<EnumType*>;           \
     \
     static const EnumerateListType& EnumerateType()             \
     {                                                           \
@@ -221,7 +221,7 @@ public:
     class EnumerationPointer
     {
     public:
-        typedef T element_type;
+        using element_type = T;
         /**
          * A constructor that creates and empty pointer
          */
