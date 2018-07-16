@@ -23,7 +23,7 @@
 #include <trUtil/WarningUtils.h>
 
 
-namespace tcUtil
+namespace trUtil
 {
     ///Created an empty file for reporting tools
 }
