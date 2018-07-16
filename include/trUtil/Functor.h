@@ -42,9 +42,9 @@ namespace trUtil
     class Functor
     {
     public:
-        typedef R ResultType;
-        typedef TList TypeListType;
-        typedef typename CallParms<TList>::ParmsListType ParmsListType;
+        using ResultType = R ;
+        using TypeListType = TList;
+        using ParmsListType = typename CallParms<TList>::ParmsListType;
         // default construction, assignment and destruction
         Functor() : vptr_(0) {}
         ~Functor()
@@ -71,23 +71,23 @@ namespace trUtil
         // ctor for static fns and arbitrary functors 
         template <typename F> explicit Functor(F const& fun)
         {
-            typedef FunctorImpl<F> StoredType;
+            using StoredType = FunctorImpl<F>;
             vptr_ = _init<StoredType>(fun);
         }
         // ctor for member fns (note: raw ptrs and smart ptrs are equally welcome in pobj)
         template <class P, typename MF> explicit Functor(P const& pobj, MF memfun)
         {
-            typedef MemberFnImpl<P, MF> StoredType;
+            using StoredType = MemberFnImpl<P, MF>;
             vptr_ = _init<StoredType>(std::pair<P, MF>(pobj, memfun));
         }
         // calls 
-        typedef typename trUtil::TypeAtNonStrict<TList, 0, trUtil::NullType>::Result Parm1;
-        typedef typename trUtil::TypeAtNonStrict<TList, 1, trUtil::NullType>::Result Parm2;
-        typedef typename trUtil::TypeAtNonStrict<TList, 2, trUtil::NullType>::Result Parm3;
-        typedef typename trUtil::TypeAtNonStrict<TList, 3, trUtil::NullType>::Result Parm4;
-        typedef typename trUtil::TypeAtNonStrict<TList, 4, trUtil::NullType>::Result Parm5;
-        typedef typename trUtil::TypeAtNonStrict<TList, 5, trUtil::NullType>::Result Parm6;
-        typedef typename trUtil::TypeAtNonStrict<TList, 6, trUtil::NullType>::Result Parm7;
+        using Parm1 = typename trUtil::TypeAtNonStrict<TList, 0, trUtil::NullType>::Result;
+        using Parm2 = typename trUtil::TypeAtNonStrict<TList, 1, trUtil::NullType>::Result;
+        using Parm3 = typename trUtil::TypeAtNonStrict<TList, 2, trUtil::NullType>::Result;
+        using Parm4 = typename trUtil::TypeAtNonStrict<TList, 3, trUtil::NullType>::Result;
+        using Parm5 = typename trUtil::TypeAtNonStrict<TList, 4, trUtil::NullType>::Result;
+        using Parm6 = typename trUtil::TypeAtNonStrict<TList, 5, trUtil::NullType>::Result;
+        using Parm7 = typename trUtil::TypeAtNonStrict<TList, 6, trUtil::NullType>::Result;
 #define DoCall(parms) return vptr_->call_(*this, parms);
         inline R operator()(ParmsListType const& parms) const { DoCall(parms) }
         inline R operator()() const { DoCall(CallParms<TList>::Make()) }
@@ -188,11 +188,7 @@ namespace trUtil
         struct SelectStored
         {
             // TODO: it seems this is a good place to add alignment calculations
-            typedef typename trUtil::Select<
-                sizeof(T) <= sizeof(Typeless),
-                ByValue<T>,
-                NewAlloc<T>
-            >::Result Type;
+            using Type = typename trUtil::Select<sizeof(T) <= sizeof(Typeless), ByValue<T>, NewAlloc<T>>::Result ;
         };
         struct Stored
         {
