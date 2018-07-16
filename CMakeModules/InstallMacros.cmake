@@ -49,3 +49,18 @@ MACRO (TR_INSTALL_OPTIONS arg)
             )
     ENDIF (MSVC_IDE)
 ENDMACRO (TR_INSTALL_OPTIONS arg)
+
+# *****************************************************************************
+# Configures the build folder, making sure it has all the needed data files ***
+# *****************************************************************************
+MACRO (TR_INSTALL_BUILD_OPTIONS)
+#IF(CMAKE_BUILD_DIRECTORY NOT EQUAL PROJECT_VERSION)
+        MESSAGE (STATUS "Copying the Data folder to ${CMAKE_BUILD_DIRECTORY} \n")
+        IF (MSVC_IDE)
+            FILE(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
+            #INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
+	    ELSEIF (UNIX)
+            FILE(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
+            #INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
+        ENDIF (MSVC_IDE)
+ENDMACRO (TR_INSTALL_BUILD_OPTIONS)
