@@ -41,7 +41,7 @@ namespace trBase
     {
     public:
 
-        typedef trBase::Base BaseClass;                 /// Adds an easy and swappable access to the base class
+        using BaseClass = trBase::Base;                 /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
