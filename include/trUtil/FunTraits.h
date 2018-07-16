@@ -773,7 +773,6 @@ namespace trUtil
     template <class O, typename R, typename P1, typename P2, typename P3, typename P4, typename P5, typename P6, typename P7>
     struct FunTraits<R(__stdcall O::*)(P1, P2, P3, P4, P5, P6, P7)>
     {
-        typedef O ObjType;
         using ObjType = O;
         using ResultType = R;
         using Parm1 = P1;
