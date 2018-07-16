@@ -275,7 +275,7 @@ namespace trUtil
             
             std::string pathString = "";
             
-            typedef std::deque<std::string> StringDeque;
+            using StringDeque = std::deque<std::string>;
             for (StringDeque::iterator itr = pathList.begin(); itr != pathList.end(); itr++)
             {
                 pathString += *itr;
