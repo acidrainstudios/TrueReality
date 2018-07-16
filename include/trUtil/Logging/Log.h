@@ -310,7 +310,7 @@ namespace trUtil
             */
             void RemoveWriter(LogWriter& writer);
 
-            typedef std::vector<osg::ref_ptr<LogWriter> > LogWriterContainer;
+            using LogWriterContainer = std::vector<osg::ref_ptr<LogWriter>>;
 
             /**
             *  Get all registered LogWriters that are registered to receive log messages.
