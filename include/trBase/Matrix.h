@@ -27,11 +27,11 @@
 namespace trBase
 {
 #ifdef TR_USE_DOUBLE_MATRIX
-    typedef Matrixd Matrix;
-//    typedef RefMatrixd RefMatrix;
+    using Matrix = Matrixd;
+//    using RefMatrix =  RefMatrixd;
 #else
-    typedef Matrixf Matrix;
-//    typedef RefMatrixf RefMatrix;
+    using Matrix = Matrixf;
+//    using RefMatrix =  RefMatrixf;
 #endif
 
 }
