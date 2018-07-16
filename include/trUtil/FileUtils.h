@@ -48,7 +48,7 @@ namespace osgDB
 #else
 namespace osgDB
 {
-    typedef Archive ArchiveExtended;
+    using ArchiveExtended = Archive;
 }
 #endif
 /// @endcond
@@ -57,8 +57,8 @@ namespace trUtil
 {
     class Log;
 
-    typedef std::vector<std::string> DirectoryContents;
-    typedef std::vector<std::string> FileExtensionList;
+    using DirectoryContents = std::vector<std::string>;
+    using FileExtensionList = std::vector<std::string>;
 
     enum FileType
     {
