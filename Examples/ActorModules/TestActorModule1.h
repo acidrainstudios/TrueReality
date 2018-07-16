@@ -27,7 +27,7 @@
 class TestActorModule1 : public trManager::ActorModuleBase
 {
 public:
-    typedef trManager::ActorModuleBase BaseClass;   /// Adds an easy and swappable access to the base class
+    using BaseClass = trManager::ActorModuleBase;   /// Adds an easy and swappable access to the base class
 
     const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
