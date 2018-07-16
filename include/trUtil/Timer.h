@@ -27,14 +27,14 @@
 namespace trUtil
 {    
      /**
-     * @typedef unsigned int64 TimeTicks
+     * @using unsigned int64 TimeTicks
      *
      * @brief   64bit Integer to hold the Timers time ticks.
      */
 #if defined(_MSC_VER)
-    typedef unsigned __int64 TimeTicks;
+    using TimeTicks = unsigned __int64;
 #else
-    typedef unsigned long long TimeTicks;
+    using TimeTicks = unsigned long long;
 #endif
 
     /**
