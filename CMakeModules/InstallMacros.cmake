@@ -55,7 +55,7 @@ ENDMACRO (TR_INSTALL_OPTIONS arg)
 # *****************************************************************************
 MACRO (TR_INSTALL_BUILD_OPTIONS)
 #IF(CMAKE_BUILD_DIRECTORY NOT EQUAL PROJECT_VERSION)
-        MESSAGE (STATUS "Copying the Data folder to ${CMAKE_BUILD_DIRECTORY} \n")
+        MESSAGE (STATUS "Copying the Data folder to ${CMAKE_BINARY_DIR} \n")
         IF (MSVC_IDE)
             FILE(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
             #INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
