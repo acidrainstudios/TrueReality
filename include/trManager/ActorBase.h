@@ -42,7 +42,7 @@ namespace trManager
     {
     public:
 
-        typedef trManager::EntityBase BaseClass;                /// Adds an easy and swappable access to the base class
+        using BaseClass = trManager::EntityBase;                /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr CLASS_TYPE;                 /// Holds the class type name for efficient comparisons
 
@@ -243,11 +243,11 @@ namespace trManager
 	private:
 
         /**
-         * @typedef std::vector<trBase::SmrtPtr<trManager::EntityBase>> ActorModules
+         * @using ActorModules = std::vector<trBase::SmrtPtr<trManager::EntityBase>>
          *
          * @brief   Defines an alias representing the actor modules.
          */
-		typedef std::vector<trBase::SmrtPtr<trManager::EntityBase>> ActorModules;
+        using ActorModules = std::vector<trBase::SmrtPtr<trManager::EntityBase>>;
 		ActorModules mActorModules; //Actor Module Storage
 
 		//Temp Storage for actor modules if this actor is disconnected and reconnected from and to System Manager. 
