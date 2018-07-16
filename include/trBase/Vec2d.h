@@ -31,10 +31,12 @@
 #include <iostream>
 #include <string>
 
+/// @cond DOXYGEN_SHOULD_SKIP_THIS
 namespace osg
 {
     class Vec2f;
 }
+/// @endcond
 
 namespace trBase
 {
