@@ -39,7 +39,7 @@ namespace trManager
     class TR_MANAGER_EXPORT DirectorBase : public trManager::ActorBase
     {
     public:
-        typedef trManager::ActorBase BaseClass;             /// Adds an easy and swappable access to the base class
+        using BaseClass = trManager::ActorBase;             /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr CLASS_TYPE;             /// Holds the class type name for efficient comparisons
 
