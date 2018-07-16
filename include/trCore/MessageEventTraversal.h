@@ -40,7 +40,7 @@ namespace trCore
     class TR_CORE_EXPORT MessageEventTraversal : public trManager::MessageTick
     {
     public:
-        typedef trManager::MessageTick BaseClass;           /// Adds an easy and swappable access to the base class
+        using BaseClass = trManager::MessageTick;           /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr MESSAGE_TYPE;           /// Holds the class/message type name for efficient comparisons
 
