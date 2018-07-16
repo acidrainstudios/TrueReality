@@ -79,17 +79,17 @@ namespace trUtil
         std::unordered_map<_Key, _Tp, _HashFcn, trUtil::HashEqual<_Key, _LessKey>, _Alloc >
     {
     public:
-        typedef std::unordered_map<_Key, _Tp, _HashFcn, trUtil::HashEqual<_Key, _LessKey>, _Alloc > BaseClass;
+        using BaseClass = std::unordered_map<_Key, _Tp, _HashFcn, trUtil::HashEqual<_Key, _LessKey>, _Alloc>;
 #elif defined(_MSC_VER)
         stdext::hash_map<_Key, _Tp, trUtil::HashCompare<_Key, _HashFcn, _LessKey>, _Alloc >
     {
     public:
-        typedef stdext::hash_map<_Key, _Tp, trUtil::HashCompare<_Key, _HashFcn, _LessKey>, _Alloc > BaseClass;
+        using BaseClass = stdext::hash_map<_Key, _Tp, trUtil::HashCompare<_Key, _HashFcn, _LessKey>, _Alloc>;
 #else
         std::map<_Key, _Tp, _LessKey, _Alloc >
     {
     public:
-        typedef std::map<_Key, _Tp, _LessKey, _Alloc > BaseClass;
+        using BaseClass = std::map<_Key, _Tp, _LessKey, _Alloc>;
 #endif
         using typename BaseClass::iterator;
         using typename BaseClass::const_iterator;
@@ -102,17 +102,17 @@ namespace trUtil
         std::unordered_multimap<_Key, _Tp, _HashFcn, trUtil::HashEqual<_Key, _LessKey>, _Alloc >
     {
     public:
-        typedef std::unordered_multimap<_Key, _Tp, _HashFcn, trUtil::HashEqual<_Key, _LessKey>, _Alloc > BaseClass;
+        using BaseClass = std::unordered_multimap<_Key, _Tp, _HashFcn, trUtil::HashEqual<_Key, _LessKey>, _Alloc>;
 #elif defined(_MSC_VER)
         stdext::hash_multimap<_Key, _Tp, trUtil::HashCompare<_Key, _HashFcn, _LessKey>, _Alloc >
     {
     public:
-        typedef stdext::hash_multimap<_Key, _Tp, trUtil::HashCompare<_Key, _HashFcn, _LessKey>, _Alloc > BaseClass;
+        using BaseClass = stdext::hash_multimap<_Key, _Tp, trUtil::HashCompare<_Key, _HashFcn, _LessKey>, _Alloc>;
 #else
         std::multimap<_Key, _Tp, _LessKey, _Alloc >
     {
     public:
-        typedef std::multimap<_Key, _Tp, _LessKey, _Alloc > BaseClass;
+        using BaseClass = std::multimap<_Key, _Tp, _LessKey, _Alloc>;
 #endif
         using typename BaseClass::iterator;
         using typename BaseClass::const_iterator;
