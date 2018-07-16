@@ -28,7 +28,7 @@
 class TestDirector2 : public trManager::DirectorBase
 {
 public:
-    typedef trManager::DirectorBase BaseClass;      /// Adds an easy and swappable access to the base class
+    using BaseClass = trManager::DirectorBase;      /// Adds an easy and swappable access to the base class
 
     const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
