@@ -32,7 +32,7 @@ namespace trCore
     class TR_CORE_EXPORT MessageSystemEvent : public trManager::MessageBase
     {
     public:
-        typedef trManager::MessageBase BaseClass;           /// Adds an easy and swappable access to the base class
+        using BaseClass = trManager::MessageBase;           /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr MESSAGE_TYPE;           /// Holds the class/message type name for efficient comparisons
 
