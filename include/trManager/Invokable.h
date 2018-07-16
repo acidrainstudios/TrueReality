@@ -55,7 +55,7 @@ namespace trManager
     class TR_MANAGER_EXPORT InvokableFunctorCaller : public InvokableFunctorCallerBase
     {
     public:
-        typedef trUtil::Functor<void, TYPELIST_1(const Message_T&)> InvokableFunc;
+        using InvokableFunc = trUtil::Functor<void, TYPELIST_1(const Message_T&)>;
 
         InvokableFunctorCaller(InvokableFunc func)
             : mFunctor(func)
@@ -96,7 +96,7 @@ namespace trManager
          */
         virtual const std::string& GetType() const override { return CLASS_TYPE;}
 
-        typedef trUtil::Functor<void, TYPELIST_1(const trManager::MessageBase&)> InvokableFunc;
+        using InvokableFunc = trUtil::Functor<void, TYPELIST_1(const trManager::MessageBase&)>;
 
         template<typename Message_T>
         Invokable(const std::string& name, trUtil::Functor<void, TYPELIST_1(const Message_T&)> toInvoke)
