@@ -48,7 +48,7 @@ namespace trBase
     public:
 
         /** Data type of vector components.*/
-        typedef double value_type;
+        using value_type = double;
 
         const static int NUM_OF_COMPONENTS;
 
