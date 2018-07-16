@@ -30,11 +30,11 @@ namespace trBase
     /**
     * General purpose 4D Vector
     */
-    typedef Vec4d Vec4;
+    using Vec4 = Vec4d;
 #else
     /**
     * General purpose 4D Vector
     */
-    typedef Vec4f Vec4;
+    using Vec4 = Vec4f;
 #endif
 }
