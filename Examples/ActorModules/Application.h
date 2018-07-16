@@ -26,7 +26,7 @@
 class Application : public trApp::AppBase
 {
 public:
-    typedef trApp::AppBase BaseClass;                 /// Adds an easy and swappable access to the base class
+    using BaseClass = trApp::AppBase;               /// Adds an easy and swappable access to the base class
 
     const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
