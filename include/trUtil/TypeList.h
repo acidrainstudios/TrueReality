@@ -36,12 +36,12 @@ namespace trUtil
     template <bool flag, typename T, typename U>
     struct Select
     {
-        typedef T Result;
+        using Result = T;
     };
     template <typename T, typename U>
     struct Select<false, T, U>
     {
-        typedef U Result;
+        using Result = U;
     };
 
     template <int v> struct Int2Type { enum { value = v }; };
@@ -69,8 +69,8 @@ namespace trUtil
     template <class T, class U>
     struct TypeList
     {
-        typedef T Head;
-        typedef U Tail;
+        using Head = T;
+        using Tail = U;
     };
 
     template <
@@ -84,11 +84,11 @@ namespace trUtil
             , class T8 = NullType
     > struct CreateTL
         {
-            typedef TypeList<T1, typename CreateTL<T2, T3, T4, T5, T6, T7, T8>::Type> Type;
+            using Type = TypeList<T1, typename CreateTL<T2, T3, T4, T5, T6, T7, T8>::Type>;
         };
         template<> struct CreateTL<NullType, NullType, NullType, NullType, NullType, NullType, NullType, NullType>
         {
-            typedef NullType Type;
+            using Type = NullType;
         };
 
         template <
@@ -102,25 +102,25 @@ namespace trUtil
             , int i8 = -1
         > struct CreateIdsTL
         {
-            typedef TypeList<Int2Type<i1>, typename CreateIdsTL<i2, i3, i4, i5, i6, i7, i8, -1>::Type> Type;
+            using Type = TypeList<Int2Type<i1>, typename CreateIdsTL<i2, i3, i4, i5, i6, i7, i8, -1>::Type>;
         };
-        template <> struct CreateIdsTL<-1, -1, -1, -1, -1, -1, -1, -1> { typedef NullType Type; };
+        template <> struct CreateIdsTL<-1, -1, -1, -1, -1, -1, -1, -1> { using Type = NullType; };
 
         template <class TL, int i = 0> struct IdsFromTL
         {
-            typedef TypeList<Int2Type<i>, typename IdsFromTL<typename TL::Tail, i + 1>::Type> Type;
+            using Type = TypeList<Int2Type<i>, typename IdsFromTL<typename TL::Tail, i + 1>::Type>;
         };
-        template <int i> struct IdsFromTL<NullType, i> { typedef NullType Type; };
+        template <int i> struct IdsFromTL<NullType, i> { using Type = NullType; };
 
         template <class TList, class T>
         struct AppendTL
         {
-            typedef TypeList<typename TList::Head, typename AppendTL<typename TList::Tail, T>::Type> Type;
+            using Type = TypeList<typename TList::Head, typename AppendTL<typename TList::Tail, T>::Type>;
         };
         template <class T>
         struct AppendTL<NullType, T>
         {
-            typedef TypeList<T, NullType> Type;
+            using Type = TypeList<T, NullType>;
         };
 
 /**
@@ -151,36 +151,36 @@ namespace trUtil
         template <class T, class U>
         struct TypeAt< TypeList<T, U>, 0 >
         {
-            typedef T Result;
+            using Result = T;
         };
         template <class T, class U, unsigned int i>
         struct TypeAt< TypeList<T, U>, i >
         {
-            typedef typename TypeAt<U, i - 1>::Result Result;
+            using Result = typename TypeAt<U, i - 1>::Result;
         };
 
         template <class TList, unsigned int i, typename DefType = NullType>
         struct TypeAtNonStrict
         {
-            typedef DefType Result;
+            using Result = DefType;
         };
         template <class T, class U, typename DefType>
         struct TypeAtNonStrict< TypeList<T, U>, 0, DefType >
         {
-            typedef T Result;
+            using Result = T;
         };
         template <class T, class U, unsigned int i, typename DefType>
         struct TypeAtNonStrict< TypeList<T, U>, i, DefType >
         {
-            typedef typename TypeAtNonStrict<U, i - 1, DefType>::Result Result;
+            using Result = typename TypeAtNonStrict<U, i - 1, DefType>::Result;
         };
 
         // Tuples-related
 
         template <typename T, unsigned int i = 0> struct TupleHolder
         {
-            typedef T Type;
-            typedef T StoredType;
+            using Type = T;
+            using StoredType = T;
             StoredType value;
             TupleHolder() {}
             TupleHolder(Type t) : value(t) {}
@@ -194,8 +194,8 @@ namespace trUtil
             , public InstantiateH<typename TypeList<T, U>::Tail, Holder, i + 1>
         {
             enum { ordern = i };
-            typedef Holder<typename TypeList<T, U>::Head, i> LeftBase;
-            typedef InstantiateH<typename TypeList<T, U>::Tail, Holder, i + 1> RightBase;
+            using LeftBase = Holder<typename TypeList<T, U>::Head, i>;
+            using RightBase = InstantiateH<typename TypeList<T, U>::Tail, Holder, i + 1>;
             InstantiateH(typename TypeList<T, U>::Head h, RightBase const& t) : LeftBase(h), RightBase(t) {}
             InstantiateH(typename TypeList<T, U>::Head h, NullType) : LeftBase(h) {}
             InstantiateH(typename TypeList<T, U>::Head h) : LeftBase(h) {}
@@ -211,29 +211,29 @@ namespace trUtil
         template <typename T, typename U, template <class, unsigned int> class Holder, unsigned int i>
         struct TailAt<InstantiateH<TypeList<T, U>, Holder, i>, 0, i>
         {
-            typedef InstantiateH<typename TypeList<T, U>::Tail, Holder, i + 1> Result;
+            using Result = InstantiateH<typename TypeList<T, U>::Tail, Holder, i + 1>;
         };
         template <typename T, typename U, template <class, unsigned int> class Holder, unsigned int j, unsigned int i>
         struct TailAt<InstantiateH<TypeList<T, U>, Holder, i>, j, i>
         {
-            typedef typename TailAt<InstantiateH<typename TypeList<T, U>::Tail, Holder, i + 1>, j - 1, i + 1>::Result Result;
+            using Result = typename TailAt<InstantiateH<typename TypeList<T, U>::Tail, Holder, i + 1>, j - 1, i + 1>::Result;
         };
 
         template <unsigned int j, typename InstH, unsigned int i = 0> struct InstantiateHAccessor;
         template <typename T, typename U, template <class, unsigned int> class Holder, unsigned int i>
         struct InstantiateHAccessor<0, InstantiateH<TypeList<T, U>, Holder, i>, i>
         {
-            typedef InstantiateH<TypeList<T, U>, Holder, i> Instance;
-            typedef typename Instance::LeftBase TargetHolder;
+            using Instance = InstantiateH<TypeList<T, U>, Holder, i>;
+            using TargetHolder = typename Instance::LeftBase;
             static inline TargetHolder& Get(Instance& h) { return static_cast<TargetHolder&>(h); }
             static inline TargetHolder const& Get(Instance const& h) { return static_cast<TargetHolder const&>(h); }
         };
         template <unsigned int j, typename T, typename U, template <class, unsigned int> class Holder, unsigned int i>
         struct InstantiateHAccessor<j, InstantiateH<TypeList<T, U>, Holder, i>, i>
         {
-            typedef InstantiateH<TypeList<T, U>, Holder, i> Instance;
-            typedef Holder<typename TypeAt<TypeList<T, U>, j>::Result, j + i> TargetHolder;
-            typedef typename Instance::RightBase RightBase;
+            using Instance = InstantiateH<TypeList<T, U>, Holder, i>;
+            using TargetHolder = Holder<typename TypeAt<TypeList<T, U>, j>::Result, j + i>;
+            using RightBase = typename Instance::RightBase;
             static inline TargetHolder& Get(Instance& h) { return InstantiateHAccessor<j - 1, RightBase, i + 1>::Get(static_cast<RightBase&>(h)); }
             static inline TargetHolder const& Get(Instance const& h) { return InstantiateHAccessor<j - 1, RightBase, i + 1>::Get(static_cast<RightBase const&>(h)); }
         };
