@@ -46,7 +46,7 @@ namespace trBase
         
     public:
 
-        typedef trBase::SmrtClass BaseClass;            /// Adds an easy and swappable access to the base class
+        using BaseClass = trBase::SmrtClass;            /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
