@@ -58,7 +58,7 @@ namespace trBase
         * Conversely, if the Camera CullMask were 0x3 (2nd bit set) then the node
         * would be processed and child Nodes would be examined.
         */
-        typedef osg::Node::NodeMask NodeMask;           
+        using NodeMask = osg::Node::NodeMask;
 
         /**
         * ctor
