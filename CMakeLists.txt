@@ -114,7 +114,7 @@ INCLUDE (UtilityMacros)
 INCLUDE (Version) 
 
 # Defines the project name
-PROJECT (TrueReality VERSION ${TR_VERSION})
+PROJECT (TrueReality${TR_SOVERSION} VERSION ${TR_VERSION})
 
 # *****************************************************************************
 # Sets user options ***********************************************************
