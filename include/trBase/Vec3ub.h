@@ -40,7 +40,7 @@ namespace trBase
     public:
 
         /** Data type of vector components.*/
-        typedef unsigned char value_type;
+        using value_type = unsigned char;
 
         const static int NUM_OF_COMPONENTS;
 
