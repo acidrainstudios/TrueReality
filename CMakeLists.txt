@@ -26,6 +26,8 @@ SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 
 # Sets a check to make sure cmake does change the source files.  
 SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
+SET (CMAKE_DISABLE_IN_SOURCE_BUILD ON)
+INCLUDE(InSourceBuild)
 
 # *****************************************************************************
 # Adds subfolders in the True Reality CMake GUI tab **********************************
@@ -248,6 +250,9 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_
 
 # Sets Available Build Types
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
+
+#Copy all the needed files to the Build Folder
+TR_INSTALL_BUILD_OPTIONS()
 
 # Displays the current version of True Reality ********************************
 PRINT_TR_VERSION()
