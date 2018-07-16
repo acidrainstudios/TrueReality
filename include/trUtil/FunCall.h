@@ -39,13 +39,13 @@ namespace trUtil
     template <>
     struct CallParms<TYPELIST_0()>
     {
-        typedef trUtil::InstantiateH<trUtil::NullType, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<trUtil::NullType, trUtil::TupleHolder>;
         static inline ParmsListType Make() { return ParmsListType(); }
     };
     template <typename P1>
     struct CallParms<TYPELIST_1(P1)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1>::Type, trUtil::TupleHolder>;
         static inline ParmsListType Make(P1 p1)
         {
             return ParmsListType(p1);
@@ -54,7 +54,7 @@ namespace trUtil
     template <typename P1, typename P2>
     struct CallParms<TYPELIST_2(P1, P2)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2>::Type, trUtil::TupleHolder>;
         static inline ParmsListType Make(P1 p1, P2 p2)
         {
             return ParmsListType(p1,
@@ -64,7 +64,7 @@ namespace trUtil
     template <typename P1, typename P2, typename P3>
     struct CallParms<TYPELIST_3(P1, P2, P3)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3>::Type, trUtil::TupleHolder>;
         static inline ParmsListType Make(P1 p1, P2 p2, P3 p3)
         {
             return ParmsListType(p1,
@@ -75,7 +75,7 @@ namespace trUtil
     template <typename P1, typename P2, typename P3, typename P4>
     struct CallParms<TYPELIST_4(P1, P2, P3, P4)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4>::Type, trUtil::TupleHolder>;
         static inline ParmsListType Make(P1 p1, P2 p2, P3 p3, P4 p4)
         {
             return ParmsListType(p1,
@@ -87,7 +87,7 @@ namespace trUtil
     template <typename P1, typename P2, typename P3, typename P4, typename P5>
     struct CallParms<TYPELIST_5(P1, P2, P3, P4, P5)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5>::Type, trUtil::TupleHolder>;
         static inline ParmsListType Make(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5)
         {
             return ParmsListType(p1,
@@ -100,7 +100,7 @@ namespace trUtil
     template <typename P1, typename P2, typename P3, typename P4, typename P5, typename P6>
     struct CallParms<TYPELIST_6(P1, P2, P3, P4, P5, P6)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6>::Type, trUtil::TupleHolder>;
         static inline ParmsListType Make(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5, P6 p6)
         {
             return ParmsListType(p1,
@@ -114,7 +114,7 @@ namespace trUtil
     template <typename P1, typename P2, typename P3, typename P4, typename P5, typename P6, typename P7>
     struct CallParms<TYPELIST_7(P1, P2, P3, P4, P5, P6, P7)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6, P7>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6, P7>::Type, trUtil::TupleHolder>;
         static inline ParmsListType Make(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5, P6 p6, P7 p7)
         {
             return ParmsListType(p1,
@@ -131,7 +131,7 @@ namespace trUtil
     template <typename CallType, typename R>
     struct FunctorCall<CallType, R, TYPELIST_0()>
     {
-        typedef trUtil::InstantiateH<trUtil::NullType, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<trUtil::NullType, trUtil::TupleHolder>;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& /*parms*/)
         {
             return fun();
@@ -144,7 +144,7 @@ namespace trUtil
     template <typename CallType, typename R, typename P1>
     struct FunctorCall<CallType, R, TYPELIST_1(P1)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1>::Type, trUtil::TupleHolder>;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& parms)
         {
             return fun(trUtil::GetH<0>(parms).value);
@@ -157,7 +157,7 @@ namespace trUtil
     template <typename CallType, typename R, typename P1, typename P2>
     struct FunctorCall<CallType, R, TYPELIST_2(P1, P2)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2>::Type, trUtil::TupleHolder>;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& parms)
         {
             return fun(
@@ -174,7 +174,7 @@ namespace trUtil
     template <typename CallType, typename R, typename P1, typename P2, typename P3>
     struct FunctorCall<CallType, R, TYPELIST_3(P1, P2, P3)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3>::Type, trUtil::TupleHolder> ;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& parms)
         {
             return fun(
@@ -193,7 +193,7 @@ namespace trUtil
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4>
     struct FunctorCall<CallType, R, TYPELIST_4(P1, P2, P3, P4)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4>::Type, trUtil::TupleHolder>;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& parms)
         {
             return fun(
@@ -214,7 +214,7 @@ namespace trUtil
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4, typename P5>
     struct FunctorCall<CallType, R, TYPELIST_5(P1, P2, P3, P4, P5)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5>::Type, trUtil::TupleHolder>;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& parms)
         {
             return fun(
@@ -237,7 +237,7 @@ namespace trUtil
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4, typename P5, typename P6>
     struct FunctorCall<CallType, R, TYPELIST_6(P1, P2, P3, P4, P5, P6)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6>::Type, trUtil::TupleHolder>;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& parms)
         {
             return fun(
@@ -262,7 +262,7 @@ namespace trUtil
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4, typename P5, typename P6, typename P7>
     struct FunctorCall<CallType, R, TYPELIST_7(P1, P2, P3, P4, P5, P6, P7)>
     {
-        typedef trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6, P7>::Type, trUtil::TupleHolder> ParmsListType;
+        using ParmsListType = trUtil::InstantiateH<typename trUtil::CreateTL<P1, P2, P3, P4, P5, P6, P7>::Type, trUtil::TupleHolder> ;
         template <class Fun> static inline R Call(Fun const& fun, ParmsListType& parms)
         {
             return fun(
