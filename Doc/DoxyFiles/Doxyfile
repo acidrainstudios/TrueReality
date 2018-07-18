@@ -41,11 +41,12 @@ TYPEDEF_HIDES_STRUCT   = NO
 # Build related configuration options
 #---------------------------------------------------------------------------
 EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = NO
-EXTRACT_STATIC         = NO
-EXTRACT_LOCAL_CLASSES  = NO
-EXTRACT_LOCAL_METHODS  = NO
-EXTRACT_ANON_NSPACES   = NO
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+EXTRACT_ANON_NSPACES   = YES
+EXTRACT_PACKAGE 	   = YES
 HIDE_UNDOC_MEMBERS     = NO
 HIDE_UNDOC_CLASSES     = NO
 HIDE_FRIEND_COMPOUNDS  = NO
@@ -84,22 +85,6 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 INPUT                  = include \
                          src
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgAnimation \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgDB \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgFX \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgGA \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgManipulator \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgParticle \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgShadow \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgSim \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgTerrain \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgText \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgUtil \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgViewer \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgVolume \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgWidget \
-#                         ${OpenSceneGraph_SOURCE_DIR}/include/osgQt \
-#                         ${OpenSceneGraph_SOURCE_DIR}/doc/Doxyfiles/auto_Mainpage
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *include* \
                          *.cpp
@@ -108,7 +93,7 @@ EXCLUDE                =
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       = */.svn/*
 EXCLUDE_SYMBOLS        = 
-EXAMPLE_PATH           = 
+EXAMPLE_PATH           = Examples
 EXAMPLE_PATTERNS       = 
 EXAMPLE_RECURSIVE      = YES
 IMAGE_PATH             = 
@@ -138,9 +123,9 @@ IGNORE_PREFIX          =
 GENERATE_HTML          = YES
 HTML_OUTPUT            = html
 HTML_FILE_EXTENSION    = .html
-HTML_HEADER            = 
-HTML_FOOTER            = Doc/DoxyFiles/custom_Footer.html
-HTML_STYLESHEET        = 
+HTML_HEADER            = Doc/DoxyFiles/docheader.html
+HTML_FOOTER            = Doc/DoxyFiles/docfooter.html
+HTML_STYLESHEET        = Doc/DoxyFiles/docfooter.css
 HTML_COLORSTYLE_HUE    = 0
 HTML_COLORSTYLE_SAT    = 100
 HTML_COLORSTYLE_GAMMA  = 182
