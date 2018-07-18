@@ -183,7 +183,16 @@ namespace trUtil
         /////////////////////////////////////////////////////////////////////////////
         std::string GetRootPath()
         {
-            std::string result = GetEnvironment(EnvVariables::TR_ROOT);
+            std::string result;
+            if (IsEnvironment(EnvVariables::TR_ROOT))
+            {
+                result = GetEnvironment(EnvVariables::TR_ROOT);
+            }
+            else
+            {
+                //The Root folder should be one level up from the Bin folder, so just return the parent
+                result = "../";
+            }
 #ifdef __APPLE__
             // Have to recheck because the get environment call doesn't currently return empty when it doesn't exist.
             char* ptr = getenv(EnvVariables::TR_ROOT);
@@ -372,7 +381,7 @@ namespace trUtil
 #endif
         }
         
-#ifdef __APPLE__
+#ifdef TR_APPLE
         /////////////////////////////////////////////////////////////////////////////              
         std::string GetBundleResourcesPath()
         {
