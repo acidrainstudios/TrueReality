@@ -42,7 +42,7 @@ namespace trUtil
 {
     namespace PathUtils
     {
-#ifdef __APPLE__
+#ifdef TR_APPLE
 		const static std::string DEFAULT_TR_FOLDER("/TrueReality");
 #elif defined(TR_WIN)
 		const static std::string DEFAULT_TR_FOLDER("\\TrueReality");
@@ -165,7 +165,7 @@ namespace trUtil
         */
         TR_UTIL_EXPORT std::string FindFile(const std::string& fileName, std::vector<std::string> paths, bool caseInsensitive = true);
 
-#ifdef __APPLE__
+#ifdef TR_APPLE
         /**
         * @return the resource path inside the current application bundle.
         * This is used internally, and this api is subject to change.
