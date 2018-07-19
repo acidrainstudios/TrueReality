@@ -36,7 +36,7 @@
 #include <osgDB/FileUtils>
 #include <osgDB/FileNameUtils>
 
-#ifdef __APPLE__
+#ifdef TR_APPLE
     #include <AvailabilityMacros.h>
     #include <Foundation/Foundation.h>
 #endif
@@ -101,7 +101,7 @@ namespace trUtil
                 }
                 mDataPath = result;
             }
-#ifdef __APPLE__
+#ifdef TR_APPLE
             // Have to recheck because the get environment call doesn't currently return empty when it doesn't exist.
             char* ptr = getenv(EnvVariables::TR_DATA);
             
@@ -193,7 +193,7 @@ namespace trUtil
                 //The Root folder should be one level up from the Bin folder, so just return the parent
                 result = "../";
             }
-#ifdef __APPLE__
+#ifdef TR_APPLE
             // Have to recheck because the get environment call doesn't currently return empty when it doesn't exist.
             char* ptr = getenv(EnvVariables::TR_ROOT);
             if (ptr == NULL)

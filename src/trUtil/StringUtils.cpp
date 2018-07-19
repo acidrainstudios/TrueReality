@@ -38,7 +38,7 @@ namespace trUtil
 
 #ifdef TR_WIN
         const std::string IsSpace::DEFAULT_LOCALE_NAME("english");
-#elif defined (__APPLE__)
+#elif defined (TR_APPLE)
         const std::string IsSpace::DEFAULT_LOCALE_NAME("C");
 #else
         const std::string IsSpace::DEFAULT_LOCALE_NAME("en_US.UTF-8");
