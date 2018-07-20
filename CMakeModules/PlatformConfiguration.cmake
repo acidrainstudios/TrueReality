@@ -1,4 +1,41 @@
-# Platform specific definitions
+# *****************************************************************************
+# Common global definitions.***************************************************
+# *****************************************************************************
+
+# Require C++14 support, prefer ISO C++ over GNU variants,
+# as relying solely on ISO C++ is more portable.
+SET(CMAKE_CXX_STANDARD 14)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+SET(CMAKE_CXX_EXTENSIONS OFF)
+
+OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
+
+SET (TR_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+SET (TR_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
+
+SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+SET (LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+SET (OUTPUT_BINDIR ${PROJECT_BINARY_DIR}/bin)
+MAKE_DIRECTORY (${OUTPUT_BINDIR})
+SET (EXECUTABLE_OUTPUT_PATH ${OUTPUT_BINDIR})
+
+SET (OUTPUT_LIBDIR ${PROJECT_BINARY_DIR}/lib)
+MAKE_DIRECTORY (${OUTPUT_LIBDIR})
+SET (LIBRARY_OUTPUT_PATH ${OUTPUT_LIBDIR})
+
+SET (CMAKE_ARCHIVE_OUTPUT_DIRECTORY  ${OUTPUT_LIBDIR} CACHE PATH "build directory")
+SET (CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${OUTPUT_BINDIR} CACHE PATH "build directory")
+IF (MSVC_IDE)
+	SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_BINDIR} CACHE PATH "build directory")
+ELSE (MSVC_IDE)
+	SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_LIBDIR} CACHE PATH "build directory")
+ENDIF (MSVC_IDE)
+
+
+# *****************************************************************************
+# Platform specific definitions.***********************************************
+# *****************************************************************************
 IF (APPLE)
     MESSAGE(STATUS "Configuring for Apple")
 	OPTION (TC_BUILD_FOR_IOS OFF)
@@ -9,7 +46,6 @@ IF (UNIX)
 	READ_GCC_VERSION()
 	SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
 	IF (GCC_VERSION LESS 6.0.0)
-		SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 		MESSAGE (STATUS "GCC Version: " ${GCC_VERSION})
         MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
 	ENDIF (GCC_VERSION LESS 6.0.0)
@@ -64,38 +100,6 @@ IF (WIN32)
 
 ENDIF (WIN32)
 
-# Common global definitions
-
-# Require C++11 support, prefer ISO C++ over GNU variants,
-# as relying solely on ISO C++ is more portable.
-SET(CMAKE_CXX_STANDARD 11)
-SET(CMAKE_CXX_STANDARD_REQUIRED ON)
-SET(CMAKE_CXX_EXTENSIONS OFF)
-
-OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
-
-SET (TR_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
-SET (TR_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
-
-SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-SET (LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-
-SET (OUTPUT_BINDIR ${PROJECT_BINARY_DIR}/bin)
-MAKE_DIRECTORY (${OUTPUT_BINDIR})
-SET (EXECUTABLE_OUTPUT_PATH ${OUTPUT_BINDIR})
-
-SET (OUTPUT_LIBDIR ${PROJECT_BINARY_DIR}/lib)
-MAKE_DIRECTORY (${OUTPUT_LIBDIR})
-SET (LIBRARY_OUTPUT_PATH ${OUTPUT_LIBDIR})
-
-SET (CMAKE_ARCHIVE_OUTPUT_DIRECTORY  ${OUTPUT_LIBDIR} CACHE PATH "build directory")
-SET (CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${OUTPUT_BINDIR} CACHE PATH "build directory")
-IF (MSVC_IDE)
-	SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_BINDIR} CACHE PATH "build directory")
-ELSE (MSVC_IDE)
-	SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_LIBDIR} CACHE PATH "build directory")
-ENDIF (MSVC_IDE)
-
 # For each configuration (Debug, Release, MinSizeRel... and/or anything the
 # user chooses)
 FOREACH (CONF ${CMAKE_CONFIGURATION_TYPES})
@@ -115,3 +119,5 @@ ENDFOREACH ()
 SET (CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
+
+MESSAGE(STATUS "Configuring to use C++ ${CMAKE_CXX_STANDARD} standard")
