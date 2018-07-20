@@ -37,12 +37,12 @@ ENDIF (MSVC_IDE)
 # Platform specific definitions.***********************************************
 # *****************************************************************************
 IF (APPLE)
-    MESSAGE(STATUS "Configuring for Apple")
+    MESSAGE(STATUS "\nConfiguring for Apple")
 	OPTION (TC_BUILD_FOR_IOS OFF)
 ENDIF(APPLE)
 
 IF (UNIX)
-    MESSAGE(STATUS "Configuring for Unix")
+    MESSAGE(STATUS "\nConfiguring for Unix")
 	READ_GCC_VERSION()
 	SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
 	IF (GCC_VERSION LESS 6.0.0)
@@ -54,7 +54,7 @@ IF (UNIX)
 ENDIF(UNIX)
 
 IF (WIN32)
-    MESSAGE(STATUS "Configuring for Windows")
+    MESSAGE(STATUS "\nConfiguring for Windows")
 
 	IF (MSVC_IDE)
 	
