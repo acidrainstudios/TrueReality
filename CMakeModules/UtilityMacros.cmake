@@ -128,7 +128,7 @@ MACRO (TR_TARGET_OPTIONS arg)
         	/nologo /GR
             $<$<CONFIG:Debug>:/Od /Ob0 /RTC1 /D_DEBUG /Zi>
 			$<$<CONFIG:RelWithDebInfo>:/MD /Zi /O2 /Ob1 /D>            
-			$<$<CONFIG:Release>:/MT /O2 /Ob2 /MD>			
+			$<$<CONFIG:Release>:/O2 /Ob2 /MD>			
         )
 	ELSEIF (UNIX)
         TARGET_COMPILE_OPTIONS (
