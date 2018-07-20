@@ -170,6 +170,7 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_
 
 # Sets Available Build Types
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
+SET (CMAKE_BUILD_TYPE "Release" CACHE STRING "TrueReality default build type" FORCE)
 
 #Copy all the needed files to the Build Folder
 TR_INSTALL_BUILD_OPTIONS()
