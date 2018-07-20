@@ -18,6 +18,85 @@
 # Author: Maxim Serebrennik
 
 # *****************************************************************************
+# Adds subfolders in the True Reality build folder ****************************
+# *****************************************************************************
+MACRO (ADD_TR_SUBFOLDERS)
+    
+# Optional dependencies
+    MESSAGE (STATUS "Creating Selected Source Folders")
+	IF (TR_UTIL)
+		ADD_SUBDIRECTORY (src/trUtil)
+        SET (TR_UTIL_AVAILABLE "YES")
+    ENDIF (TR_UTIL)
+
+    IF (TR_BASE)
+		ADD_SUBDIRECTORY (src/trBase)
+        SET (TR_BASE_AVAILABLE "YES")
+    ENDIF (TR_BASE)
+    
+    IF (TR_MANAGER)
+		ADD_SUBDIRECTORY (src/trManager)
+        SET (TR_MANAGER_AVAILABLE "YES")
+    ENDIF (TR_MANAGER)
+    
+    IF (TR_CORE)
+		ADD_SUBDIRECTORY (src/trCore)
+        SET (TR_CORE_AVAILABLE "YES")
+    ENDIF (TR_CORE)
+    
+    IF (TR_APP)
+		ADD_SUBDIRECTORY (src/trApp)
+        SET (TR_APP_AVAILABLE "YES")
+    ENDIF (TR_APP)
+
+    IF (TR_START)
+		ADD_SUBDIRECTORY (src/trStart)
+        SET (TR_START_AVAILABLE "YES")
+    ENDIF (TR_START)
+
+# Utilities folders
+    MESSAGE (STATUS "Creating Selected Utility Folders")
+    IF (TR_VERSION)
+        ADD_SUBDIRECTORY (src/trVersion)
+        SET (TR_VERSION_AVAILABLE "YES")
+    ENDIF (TR_VERSION)
+
+# Examples folders
+    MESSAGE (STATUS "Creating Selected Example Folders")
+    IF (EXAMPLES_LOGGING)
+        ADD_SUBDIRECTORY (Examples/Logging)
+        SET (EXAMPLES_LOGGING_AVAILABLE "YES")
+    ENDIF (EXAMPLES_LOGGING)
+
+    IF (EXAMPLES_JSON)
+        ADD_SUBDIRECTORY (Examples/Json)
+        SET (EXAMPLES_JSON_AVAILABLE "YES")
+    ENDIF (EXAMPLES_JSON)
+    
+    IF (EXAMPLES_DIRECTOR)
+        ADD_SUBDIRECTORY (Examples/Director)
+        SET (EXAMPLES_DIRECTOR_AVAILABLE "YES")
+    ENDIF (EXAMPLES_DIRECTOR)
+    
+    IF (EXAMPLES_ACTORS)
+        ADD_SUBDIRECTORY (Examples/Actors)
+        SET (EXAMPLES_ACTORS_AVAILABLE "YES")
+    ENDIF (EXAMPLES_ACTORS)
+    
+    IF (EXAMPLES_ACTOR_MODULES)
+        ADD_SUBDIRECTORY (Examples/ActorModules)
+        SET (EXAMPLES_ACTOR_MODULES_AVAILABLE "YES")
+    ENDIF (EXAMPLES_ACTOR_MODULES)
+    
+ # Unit Test Folders
+    MESSAGE (STATUS "Creating Selected Tests Folders")
+    IF (TESTS_TR_MANAGER)
+        ADD_SUBDIRECTORY (Tests/TrManager)
+        SET (TESTS_TR_MANAGER_AVAILABLE "YES")
+    ENDIF (TESTS_TR_MANAGER)
+ENDMACRO (ADD_TR_SUBFOLDERS)
+
+# *****************************************************************************
 # Attempts to find a specified dependency *************************************
 # *****************************************************************************
 MACRO (TR_DETECT_DEPENDENCY arg)
