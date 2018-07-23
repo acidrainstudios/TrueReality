@@ -103,7 +103,7 @@ CMAKE_DEPENDENT_OPTION (TESTS_TR_MANAGER "Enables the building of trManager Unit
 # Sets Library Specific Dependencies*******************************************
 # *****************************************************************************
 IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
-    TR_DETECT_DEPENDENCY (OSG 3.4.0)
+    TR_DETECT_DEPENDENCY (OSG 3.6.0)
     TR_DETECT_DEPENDENCY (OpenThreads)
     INCLUDE_DIRECTORIES (${OSG_INCLUDE_DIR} ${OpenThreads_INCLUDE_DIR})
 ENDIF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
