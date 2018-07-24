@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2018 Acid Rain Studios LLC
+# Copyright ï¿½ 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -50,6 +50,7 @@ OPTION (TR_UTIL "Enables the building of trUtil" ON)
 CMAKE_DEPENDENT_OPTION (TR_BASE "Enables the building of trBase library" ON "TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (TR_MANAGER "Enables the building of trManager library" ON "TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_MANAGER; TR_UTIL; TR_BASE" OFF)
+CMAKE_DEPENDENT_OPTION (TR_VR "Enables the building of trVR library" OFF "TR_CORE; TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_APP "Enables the building of trApp library" ON "TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE" OFF)
 
 # *****************************************************************************
@@ -120,6 +121,12 @@ IF (TR_BASE)
     TR_DETECT_DEPENDENCY (BoostLibs 1.66.0)
     INCLUDE_DIRECTORIES (${Boost_INCLUDE_DIRS})
 ENDIF (TR_BASE)
+
+# trBase packages
+IF (TR_VR)
+    TR_DETECT_DEPENDENCY (OpenVR 1.0.14)
+    INCLUDE_DIRECTORIES (${OpenVR_INCLUDE_DIRS})
+ENDIF (TR_VR)
 
 # UNIT Tests
 IF (TR_BUILD_TESTS)

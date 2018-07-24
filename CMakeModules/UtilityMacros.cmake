@@ -44,6 +44,11 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (TR_CORE_AVAILABLE "YES")
     ENDIF (TR_CORE)
     
+    IF (TR_VR)
+        ADD_SUBDIRECTORY (src/trVR)
+        SET (TR_VR_AVAILABLE "YES")
+    ENDIF (TR_VR)
+    
     IF (TR_APP)
         ADD_SUBDIRECTORY (src/trApp)
         SET (TR_APP_AVAILABLE "YES")
