@@ -31,6 +31,7 @@ INCLUDE(InSourceBuild)
 
 # Sets up the install options
 SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
 INCLUDE (InstallMacros)
 
 # Loads extra CMake modules for the projects
