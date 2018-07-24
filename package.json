@@ -10,7 +10,9 @@
   ],
   "dependencies": {
     "TrueRealityExt": "^0.1.0"
+    "openscenegraph/OpenSceneGraph": "3.6.1"
   },
+  "repository": "acidrainstudios/TrueReality",
   "os": ["win32", "linux"],
   "cpu": ["x64"]
 }
