@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2018 Acid Rain Studios LLC
+# Copyright ï¿½ 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -24,33 +24,33 @@ MACRO (ADD_TR_SUBFOLDERS)
     
 # Optional dependencies
     MESSAGE (STATUS "Creating Selected Source Folders")
-	IF (TR_UTIL)
-		ADD_SUBDIRECTORY (src/trUtil)
+    IF (TR_UTIL)
+        ADD_SUBDIRECTORY (src/trUtil)
         SET (TR_UTIL_AVAILABLE "YES")
     ENDIF (TR_UTIL)
 
     IF (TR_BASE)
-		ADD_SUBDIRECTORY (src/trBase)
+        ADD_SUBDIRECTORY (src/trBase)
         SET (TR_BASE_AVAILABLE "YES")
     ENDIF (TR_BASE)
     
     IF (TR_MANAGER)
-		ADD_SUBDIRECTORY (src/trManager)
+        ADD_SUBDIRECTORY (src/trManager)
         SET (TR_MANAGER_AVAILABLE "YES")
     ENDIF (TR_MANAGER)
     
     IF (TR_CORE)
-		ADD_SUBDIRECTORY (src/trCore)
+        ADD_SUBDIRECTORY (src/trCore)
         SET (TR_CORE_AVAILABLE "YES")
     ENDIF (TR_CORE)
     
     IF (TR_APP)
-		ADD_SUBDIRECTORY (src/trApp)
+        ADD_SUBDIRECTORY (src/trApp)
         SET (TR_APP_AVAILABLE "YES")
     ENDIF (TR_APP)
 
     IF (TR_START)
-		ADD_SUBDIRECTORY (src/trStart)
+        ADD_SUBDIRECTORY (src/trStart)
         SET (TR_START_AVAILABLE "YES")
     ENDIF (TR_START)
 
@@ -118,25 +118,25 @@ MACRO (TR_TARGET_OPTIONS arg)
         ${arg}
         PROPERTIES
         DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
-		RELWITHDEBINFO_POSTFIX ${CMAKE_RELWITHDEBINFO_POSTFIX}
+        RELWITHDEBINFO_POSTFIX ${CMAKE_RELWITHDEBINFO_POSTFIX}
         VERSION ${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.${TR_VERSION_BUILD}
         SOVERSION ${TR_SOVERSION}
     )
     IF (MSVC_IDE)
         TARGET_COMPILE_OPTIONS (
             ${arg} PRIVATE
-        	/nologo /GR
+            /nologo /GR
             $<$<CONFIG:Debug>:/Od /Ob0 /RTC1 /D_DEBUG /Zi>
-			$<$<CONFIG:RelWithDebInfo>:/MD /Zi /O2 /Ob1 /D>            
-			$<$<CONFIG:Release>:/O2 /Ob2 /MD>			
+            $<$<CONFIG:RelWithDebInfo>:/MD /Zi /O2 /Ob1 /D>            
+            $<$<CONFIG:Release>:/O2 /Ob2 /MD>
         )
-	ELSEIF (UNIX)
+    ELSEIF (UNIX)
         TARGET_COMPILE_OPTIONS (
             ${arg} PRIVATE
-        	-Wall -pedantic -Wextra #-Werror
+            -Wall -pedantic -Wextra -fPIC #-Werror
             $<$<CONFIG:Debug>: -g -O0 -D_DEBUG>
             $<$<CONFIG:RelWithDebInfo>: -g -O3 -DNDEBUG>
-			$<$<CONFIG:Release>: -O3 -DNDEBUG>
+            $<$<CONFIG:Release>: -O3 -DNDEBUG>
         )
     ENDIF (MSVC_IDE)
 ENDMACRO (TR_TARGET_OPTIONS arg)
@@ -147,11 +147,11 @@ ENDMACRO (TR_TARGET_OPTIONS arg)
 MACRO(READ_GCC_VERSION)
     IF (CMAKE_COMPILER_IS_GNUCC)
         EXECUTE_PROCESS(COMMAND ${CMAKE_C_COMPILER} -dumpversion
-			OUTPUT_VARIABLE GCC_VERSION)
-		STRING(REGEX MATCHALL "[0-9]+" GCC_VERSION_COMPONENTS ${GCC_VERSION})
-	    LIST(GET GCC_VERSION_COMPONENTS 0 GCC_MAJOR)
-		LIST(GET GCC_VERSION_COMPONENTS 1 GCC_MINOR)
-	ENDIF()
+            OUTPUT_VARIABLE GCC_VERSION)
+        STRING(REGEX MATCHALL "[0-9]+" GCC_VERSION_COMPONENTS ${GCC_VERSION})
+        LIST(GET GCC_VERSION_COMPONENTS 0 GCC_MAJOR)
+        LIST(GET GCC_VERSION_COMPONENTS 1 GCC_MINOR)
+    ENDIF()
 ENDMACRO(READ_GCC_VERSION)
 
 # *****************************************************************************
@@ -173,9 +173,9 @@ ENDMACRO(CHECK_VERSION packName packVer verToFind)
 # *****************************************************************************
 MACRO (SET_GOOGLE_TEST_OPTIONS projectName)    
     IF (MSVC_IDE)
-		ADD_CUSTOM_COMMAND(TARGET ${projectName} 
-		POST_BUILD
-		COMMAND echo "This is used for Google Test Adapter in MS Visual Studio" > $<TARGET_FILE:${projectName}>".is_google_test"
-		)
+        ADD_CUSTOM_COMMAND(TARGET ${projectName} 
+        POST_BUILD
+        COMMAND echo "This is used for Google Test Adapter in MS Visual Studio" > $<TARGET_FILE:${projectName}>".is_google_test"
+        )
     ENDIF (MSVC_IDE)
 ENDMACRO (SET_GOOGLE_TEST_OPTIONS target)
