@@ -57,6 +57,7 @@ SET (CMAKE_BUILD_TYPE "Release" CACHE STRING "TrueReality default build type" FO
 INCLUDE_DIRECTORIES(
     ${CMAKE_SOURCE_DIR}
     ${TR_INCLUDE_DIR}
+    ${PROJECT_BINARY_DIR}/include
 )
 
 # *****************************************************************************
