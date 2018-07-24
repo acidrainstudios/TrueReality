@@ -36,10 +36,6 @@ SET(DEPENDENCY "GoogleTest")
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR gtest/gtest.h    
     HINTS
-    $ENV{GOOGLETEST_INC}
-    $ENV{GOOGLETEST_ROOT}/include
-    $ENV{GOOGLETEST_ROOT}/inc
-    $ENV{GOOGLETEST_ROOT}
     $ENV{TR_INC}
     $ENV{TR_ROOT}/Ext/include
     $ENV{TR_ROOT}/Ext
@@ -58,10 +54,6 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
     FIND_LIBRARY (${MYLIBRARY}
         NAMES ${MYLIBRARYNAME}
         HINTS
-        $ENV{GOOGLETEST_LIB}
-        $ENV{GOOGLETEST_ROOT}/lib64
-        $ENV{GOOGLETEST_ROOT}/lib
-        $ENV{GOOGLETEST_ROOT}
         $ENV{TR_ROOT}/Ext/lib64
         $ENV{TR_ROOT}/Ext/lib
         $ENV{TR_ROOT}/Ext

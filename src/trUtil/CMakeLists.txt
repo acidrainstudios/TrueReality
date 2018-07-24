@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright ï¿½ 2018 Acid Rain Studios LLC
+# Copyright © 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -82,22 +82,22 @@ SOURCE_GROUP (${SOURCES_JSON_GROUP} FILES ${JSON_SOURCES})
 # Sets the libraries
 SET (EXTERNAL_LIBS)
 IF (TR_BUILD_WITH_RELEASE)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        optimized ${OpenThreads_LIBRARY}
-        optimized ${OSG_LIBRARY} 
+	SET (EXTERNAL_LIBS
+		${EXTERNAL_LIBS}
+		optimized ${OpenThreads_LIBRARY}
+		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
-        optimized ${JsonCpp_LIBRARY}
-    )
+		optimized ${JsonCpp_LIBRARY}
+	)
 ENDIF (TR_BUILD_WITH_RELEASE)
 IF (TR_BUILD_WITH_DEBUG)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        debug ${OpenThreads_LIBRARY_DEBUG}
-        debug ${OSG_LIBRARY_DEBUG}
+	SET (EXTERNAL_LIBS
+		${EXTERNAL_LIBS}
+		debug ${OpenThreads_LIBRARY_DEBUG}
+		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG}
-        debug ${JsonCpp_LIBRARY_DEBUG} 
-    )
+		debug ${JsonCpp_LIBRARY_DEBUG} 
+	)
 ENDIF (TR_BUILD_WITH_DEBUG)
 
 # Defines necessary preprocessor variables for project
