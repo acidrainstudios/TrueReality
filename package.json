@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "GLEW": "^2.1.0",
-    "OpenSceneGraph": "^3.6.1",
+    "openscenegraph/OpenSceneGraph": "^3.6.1",
     "Boost": "^1.66.0",
     "freetype": "^2.9",
     "FFMpeg": "^3.4.2",
