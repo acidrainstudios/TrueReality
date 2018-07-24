@@ -73,14 +73,14 @@ SET(DEPENDENCY "OSG")
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR osg/Referenced
     HINTS
+    $ENV{OSG_INC}
+    $ENV{OSG_ROOT}/include
+    $ENV{OSG_ROOT}
     $ENV{TR_INC}
     $ENV{TR_ROOT}/Ext/include
     $ENV{TR_ROOT}/Ext
     $ENV{TR_ROOT}/include
     $ENV{TR_ROOT}
-    $ENV{OSG_INC}
-    $ENV{OSG_ROOT}/include
-    $ENV{OSG_ROOT}
     PATHS
     /usr/include
     /usr/local/include
@@ -94,16 +94,16 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
     FIND_LIBRARY (${MYLIBRARY}
 		NAMES ${MYLIBRARYNAME}
 		HINTS
+		$ENV{OSG_LIB}
+		$ENV{OSG_ROOT}/lib64
+		$ENV{OSG_ROOT}/lib
+		$ENV{OSG_ROOT}
 		$ENV{TR_ROOT}/Ext/lib64
 		$ENV{TR_ROOT}/Ext/lib
 		$ENV{TR_ROOT}/Ext
 		$ENV{TR_LIB}
 		$ENV{TR_ROOT}/lib
 		$ENV{TR_ROOT}
-		$ENV{OSG_LIB}
-		$ENV{OSG_ROOT}/lib64
-		$ENV{OSG_ROOT}/lib
-		$ENV{OSG_ROOT}
 		PATHS
 		/usr/lib64
 		/usr/lib
