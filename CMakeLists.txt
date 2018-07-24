@@ -134,9 +134,6 @@ ENDIF (TR_BUILD_TESTS)
 # Sets up platform specific configuration
 INCLUDE (PlatformConfiguration)
 
-# Generates the selected sub-folders for the code base
-ADD_TR_SUBFOLDERS()
-
 # *****************************************************************************
 # Set Float/Double Config header file *****************************************
 # *****************************************************************************
@@ -145,6 +142,9 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
+
+# Generates the selected sub-folders for the code base
+ADD_TR_SUBFOLDERS()
 
 #Copy all the needed files to the Build Folder
 TR_INSTALL_BUILD_OPTIONS()
