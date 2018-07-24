@@ -29,86 +29,6 @@ SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 SET (CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 INCLUDE(InSourceBuild)
 
-# *****************************************************************************
-# Adds subfolders in the True Reality CMake GUI tab **********************************
-# *****************************************************************************
-MACRO (ADD_TR_SUBFOLDERS)
-
-# Optional dependencies
-	IF (TR_UTIL)
-		ADD_SUBDIRECTORY (src/trUtil)
-        SET (TR_UTIL_AVAILABLE "YES")
-    ENDIF (TR_UTIL)
-
-    IF (TR_BASE)
-		ADD_SUBDIRECTORY (src/trBase)
-        SET (TR_BASE_AVAILABLE "YES")
-    ENDIF (TR_BASE)
-    
-    IF (TR_MANAGER)
-		ADD_SUBDIRECTORY (src/trManager)
-        SET (TR_MANAGER_AVAILABLE "YES")
-    ENDIF (TR_MANAGER)
-    
-    IF (TR_CORE)
-		ADD_SUBDIRECTORY (src/trCore)
-        SET (TR_CORE_AVAILABLE "YES")
-    ENDIF (TR_CORE)
-    
-    IF (TR_APP)
-		ADD_SUBDIRECTORY (src/trApp)
-        SET (TR_APP_AVAILABLE "YES")
-    ENDIF (TR_APP)
-
-    IF (TR_START)
-		ADD_SUBDIRECTORY (src/trStart)
-        SET (TR_START_AVAILABLE "YES")
-    ENDIF (TR_START)
-
-# Utilities folders
-    IF (TR_VERSION)
-        ADD_SUBDIRECTORY (src/trVersion)
-        SET (TR_VERSION_AVAILABLE "YES")
-    ENDIF (TR_VERSION)
-
-# Examples folders
-
-    IF (EXAMPLES_LOGGING)
-        ADD_SUBDIRECTORY (Examples/Logging)
-        SET (EXAMPLES_LOGGING_AVAILABLE "YES")
-    ENDIF (EXAMPLES_LOGGING)
-
-    IF (EXAMPLES_JSON)
-        ADD_SUBDIRECTORY (Examples/Json)
-        SET (EXAMPLES_JSON_AVAILABLE "YES")
-    ENDIF (EXAMPLES_JSON)
-    
-    IF (EXAMPLES_DIRECTOR)
-        ADD_SUBDIRECTORY (Examples/Director)
-        SET (EXAMPLES_DIRECTOR_AVAILABLE "YES")
-    ENDIF (EXAMPLES_DIRECTOR)
-    
-    IF (EXAMPLES_ACTORS)
-        ADD_SUBDIRECTORY (Examples/Actors)
-        SET (EXAMPLES_ACTORS_AVAILABLE "YES")
-    ENDIF (EXAMPLES_ACTORS)
-    
-    IF (EXAMPLES_ACTOR_MODULES)
-        ADD_SUBDIRECTORY (Examples/ActorModules)
-        SET (EXAMPLES_ACTOR_MODULES_AVAILABLE "YES")
-    ENDIF (EXAMPLES_ACTOR_MODULES)
-    
- # Unit Test Folders
-    IF (TESTS_TR_MANAGER)
-        ADD_SUBDIRECTORY (Tests/TrManager)
-        SET (TESTS_TR_MANAGER_AVAILABLE "YES")
-    ENDIF (TESTS_TR_MANAGER)
-
-ENDMACRO (ADD_TR_SUBFOLDERS)
-# *****************************************************************************
-# *****************************************************************************
-# *****************************************************************************
-
 # Sets up the install options
 SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
 INCLUDE (InstallMacros)
@@ -183,7 +103,7 @@ CMAKE_DEPENDENT_OPTION (TESTS_TR_MANAGER "Enables the building of trManager Unit
 # Sets Library Specific Dependencies*******************************************
 # *****************************************************************************
 IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
-    TR_DETECT_DEPENDENCY (OSG 3.4.0)
+    TR_DETECT_DEPENDENCY (OSG 3.6.0)
     TR_DETECT_DEPENDENCY (OpenThreads)
     INCLUDE_DIRECTORIES (${OSG_INCLUDE_DIR} ${OpenThreads_INCLUDE_DIR})
 ENDIF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
@@ -213,29 +133,6 @@ ENDIF (TR_BUILD_TESTS)
 # Sets up platform specific configuration
 INCLUDE (PlatformConfiguration)
 
-# Sets the Debug and Release library naming formats, but not executables.
-IF(TR_BUILD_VERSIONED_LIBRARIES)    
-    IF(WIN32)
-        SET (CMAKE_SHARED_LIBRARY_PREFIX ${TR_SO_PREFIX})
-        SET (CMAKE_STATIC_LIBRARY_PREFIX ${TR_SO_PREFIX})
-    ELSEIF(APPLE)
-        SET (CMAKE_SHARED_LIBRARY_PREFIX "${CMAKE_SHARED_LIBRARY_PREFIX}${TR_SO_PREFIX}")
-        SET (CMAKE_STATIC_LIBRARY_PREFIX "${CMAKE_STATIC_LIBRARY_PREFIX}${TR_SO_PREFIX}")
-    ENDIF()
-ENDIF(TR_BUILD_VERSIONED_LIBRARIES)
-
-# Sets the postfix on libraries. 
-SET (CMAKE_DEBUG_POSTFIX "-d" CACHE STRING "Set Debug library postfix" FORCE)
-SET (CMAKE_RELEASE_POSTFIX "" CACHE STRING "Set Release library postfix" FORCE)
-SET (CMAKE_RELWITHDEBINFO_POSTFIX "-rd" CACHE STRING "Set RelWithDebInfo library postfix" FORCE)
-SET (CMAKE_MINSIZEREL_POSTFIX "-rms" CACHE STRING "Set MinSizeRel library postfix" FORCE)
-
-# Sets the include directories; Visible to all CMakeLists.txt files
-INCLUDE_DIRECTORIES(
-    ${CMAKE_SOURCE_DIR}
-    ${TR_INCLUDE_DIR}
-)
-
 # Generates the selected sub-folders for the code base
 ADD_TR_SUBFOLDERS()
 
@@ -247,9 +144,6 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
-
-# Sets Available Build Types
-SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
 
 #Copy all the needed files to the Build Folder
 TR_INSTALL_BUILD_OPTIONS()
