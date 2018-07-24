@@ -34,16 +34,17 @@ SET (PROJECT_SOURCES "${BASE_SOURCES};${CONSOLE_SOURCES};${LOGGING_SOURCES};${JS
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
+FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
 FILE (GLOB CONSOLE_HEADERS	"${HEADER_PATH}/Console/*.h")
 FILE (GLOB LOGGING_HEADERS	"${HEADER_PATH}/Logging/*.h")
 FILE (GLOB JSON_HEADERS		"${HEADER_PATH}/JSON/*.h")
-SET (PROJECT_HEADERS "${BASE_HEADERS};${CONSOLE_HEADERS};${LOGGING_HEADERS};${JSON_HEADERS}")
+SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS};${CONSOLE_HEADERS};${LOGGING_HEADERS};${JSON_HEADERS}")
 
 # *****************************************************************************
 # Project Folder Setup*********************************************************
 # *****************************************************************************
 SET (HEADERS_GROUP "Header Files")
-SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS})
+SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS} ${BASE_GEN_HEADERS})
 SET (SOURCES_GROUP "Source Files")
 SOURCE_GROUP (${SOURCES_GROUP} FILES ${BASE_SOURCES})
 
