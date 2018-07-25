@@ -68,7 +68,7 @@
 # OSG_FOUND - Defined if the dependency is found *********************************
 # ********************************************************************************
 
-SET(DEPENDENCY "OSG")
+SET (DEPENDENCY "OSG")
 
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR osg/Referenced
