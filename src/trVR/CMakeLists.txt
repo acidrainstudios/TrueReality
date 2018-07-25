@@ -15,32 +15,35 @@
 # along with this library; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Author: Alexander Koufos
+# @author Maxim Serebrennik
+# @author Alexander Koufos
 
 # Set the library name and preprocessing
-SET(FILE_NAME trVR)
-SET(PRE_PROCESSING TR_VR_LIBRARY)
+SET (FILE_NAME trVR)
+SET (PRE_PROCESSING TR_VR_LIBRARY)
 
 # Set the source and include paths
-SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
-SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
+SET (HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
+SET (SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
-FILE (GLOB BASE_SOURCES "${SOURCE_PATH}/*.cpp")
-SET (PROJECT_SOURCES "${BASE_SOURCES}")
+FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
-SET (PROJECT_HEADERS "${BASE_HEADERS}")
+FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
+SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS}")
 
 # *****************************************************************************
-# Project Folder Setup*********************************************************
+# Project Folder Setup ********************************************************
 # *****************************************************************************
+# Sets the header file folders in IDEs
 SET (HEADERS_GROUP "Header Files")
-SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS})
-SET (SOURCES_GROUP "Source Files")
-SOURCE_GROUP (${SOURCES_GROUP} FILES ${BASE_SOURCES})
+SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS} ${BASE_GEN_HEADERS})
 
+# Sets the source file folders in IDEs
+SET (SOURCES_GROUP "Source Files")
+SOURCE_GROUP (${SOURCES_GROUP} FILES ${PROJECT_SOURCES})
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
@@ -67,7 +70,7 @@ ADD_DEFINITIONS (-D${PRE_PROCESSING})
 ADD_LIBRARY (${FILE_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 
 # Links the external libraries to the newly created library
-TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS})
+TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS}trCore trUtil trBase)
 
 # Place the project in a folder
 SET_TARGET_PROPERTIES (${FILE_NAME} PROPERTIES FOLDER "TrueRealitySDK")
