@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2018 Acid Rain Studios LLC
+# Copyright ï¿½ 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -66,10 +66,10 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         $ENV{OSG_ROOT}/lib64
         $ENV{OSG_ROOT}/lib
         $ENV{OSG_ROOT}
+        $ENV{TR_LIB}
         $ENV{TR_ROOT}/Ext/lib64
         $ENV{TR_ROOT}/Ext/lib
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_LIB}
         $ENV{TR_ROOT}/lib64
         $ENV{TR_ROOT}/lib
         $ENV{TR_ROOT}
@@ -87,14 +87,14 @@ ENDMACRO(FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
 IF (TR_BUILD_WITH_RELEASE)
     # Locates all release libraries
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY OpenThreads)
-ENDIF (TR_BUILD_WITH_RELEASE)
+ENDIF ()
 
 IF (TR_BUILD_WITH_DEBUG)
     # Locates all debug libraries
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_DEBUG OpenThreadsd)
-ENDIF (TR_BUILD_WITH_DEBUG)
+ENDIF ()
 
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_LIBRARY AND ${DEPENDENCY}_INCLUDE_DIR)
     SET (${DEPENDENCY}_FOUND "YES")
-ENDIF (${DEPENDENCY}_LIBRARY AND ${DEPENDENCY}_INCLUDE_DIR)
+ENDIF ()

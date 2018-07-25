@@ -87,18 +87,18 @@ IF (TR_BUILD_WITH_RELEASE)
         optimized ${OpenThreads_LIBRARY}
         optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
-        optimized ${JsonCpp_LIBRARY}
-    )
-ENDIF (TR_BUILD_WITH_RELEASE)
+		optimized ${JsonCpp_LIBRARY}
+	)
+ENDIF ()
 IF (TR_BUILD_WITH_DEBUG)
     SET (EXTERNAL_LIBS
         ${EXTERNAL_LIBS}
         debug ${OpenThreads_LIBRARY_DEBUG}
         debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG}
-        debug ${JsonCpp_LIBRARY_DEBUG} 
-    )
-ENDIF (TR_BUILD_WITH_DEBUG)
+		debug ${JsonCpp_LIBRARY_DEBUG} 
+	)
+ENDIF ()
 
 # Defines necessary preprocessor variables for project
 ADD_DEFINITIONS (-D${PRE_PROCESSING})

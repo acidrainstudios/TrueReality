@@ -22,57 +22,54 @@
 # Configures the installation options for the given project *******************
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
-    IF(TR_DATA_INSTALLED EQUAL 0)      
+    IF (TR_DATA_INSTALLED EQUAL 0)      
         SET (TR_DATA_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
-        INSTALL(CODE "MESSAGE(\"Installing the Data folder.\")")
+        INSTALL (CODE "MESSAGE(\"Installing the Data folder.\")")
         IF (MSVC_IDE)
-            INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
 	    ELSEIF (UNIX)
-            INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
-        ENDIF (MSVC_IDE)
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
+        ENDIF ()
     ENDIF()
 
     IF(TR_HEADERS_INSTALLED EQUAL 0)      
         SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
         INSTALL(CODE "MESSAGE(\"Installing the SDKs headers folder.\")")
         IF (MSVC_IDE)
-            INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
-            INSTALL(DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
+            INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
 	    ELSEIF (UNIX)
-            INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION ${PROJECT_NAME})
-            INSTALL(DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION ${PROJECT_NAME})            
-        ENDIF (MSVC_IDE)
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION ${PROJECT_NAME})
+            INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION ${PROJECT_NAME})            
+        ENDIF ()
     ENDIF()
     
-    INSTALL(CODE "MESSAGE(\"Installing the ${arg} project.\")")
+    INSTALL (CODE "MESSAGE(\"Installing the ${arg} project.\")")
     IF (MSVC_IDE)
-        INSTALL(
+        INSTALL (
             TARGETS ${arg}
             RUNTIME DESTINATION bin
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib
             )
 	ELSEIF (UNIX)
-        INSTALL(
+        INSTALL (
             TARGETS ${arg}
             RUNTIME DESTINATION ${PROJECT_NAME}/bin
             LIBRARY DESTINATION ${PROJECT_NAME}/lib
             ARCHIVE DESTINATION ${PROJECT_NAME}/lib
             )
-    ENDIF (MSVC_IDE)
-ENDMACRO (TR_INSTALL_OPTIONS arg)
+    ENDIF ()
+ENDMACRO ()
 
 # *****************************************************************************
 # Configures the build folder, making sure it has all the needed data files ***
 # *****************************************************************************
 MACRO (TR_INSTALL_BUILD_OPTIONS)
-#IF(CMAKE_BUILD_DIRECTORY NOT EQUAL PROJECT_VERSION)
         MESSAGE (STATUS "Copying the Data folder to ${CMAKE_BINARY_DIR} \n")
         IF (MSVC_IDE)
             FILE(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
-            #INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
 	    ELSEIF (UNIX)
             FILE(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
-            #INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
-        ENDIF (MSVC_IDE)
-ENDMACRO (TR_INSTALL_BUILD_OPTIONS)
+        ENDIF ()
+ENDMACRO ()

@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2018 Acid Rain Studios LLC
+# Copyright ï¿½ 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -62,10 +62,10 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         $ENV{GOOGLETEST_ROOT}/lib64
         $ENV{GOOGLETEST_ROOT}/lib
         $ENV{GOOGLETEST_ROOT}
+        $ENV{TR_LIB}
         $ENV{TR_ROOT}/Ext/lib64
         $ENV{TR_ROOT}/Ext/lib
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_LIB}
         $ENV{TR_ROOT}/lib64
         $ENV{TR_ROOT}/lib
         $ENV{TR_ROOT}
@@ -78,21 +78,21 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         /Library/Frameworks
     )
     MARK_AS_ADVANCED (${MYLIBRARY})
-ENDMACRO(FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
+ENDMACRO()
 
 IF (TR_BUILD_WITH_RELEASE)
     # Locates all GOOGLE_TEST release libraries
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY gtest)
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_MAIN gtest_main)
-ENDIF (TR_BUILD_WITH_RELEASE)
+ENDIF ()
 
 IF (TR_BUILD_WITH_DEBUG)
     # Locates all GOOGLE_TEST debug libraries (in this case there are no debug libs)
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_DEBUG gtestd)
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_MAIN_DEBUG gtest_maind)
-ENDIF (TR_BUILD_WITH_DEBUG)
+ENDIF ()
 
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_INCLUDE_DIR)
     SET (${DEPENDENCY}_FOUND "YES")
-ENDIF (${DEPENDENCY}_INCLUDE_DIR)
+ENDIF ()

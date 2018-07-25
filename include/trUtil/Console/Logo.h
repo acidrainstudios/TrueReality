@@ -26,9 +26,11 @@ namespace trUtil
 {
 	namespace Console
 	{
-		/**
-		* Displays the True Reality Logo in the Consol Window
-		*/
+        /**
+         * @fn  void Logo(void);
+         *
+         * @brief   Displays the True Reality Logo in the Consol Window.
+         */
 		void TR_UTIL_EXPORT Logo(void);
 	}	
 }

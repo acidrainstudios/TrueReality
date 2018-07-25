@@ -34,36 +34,65 @@
 
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   Logging
+ *
+ * @brief   .
+ */
     namespace Logging
     {
+        /**
+         * @class   LogFile
+         *
+         * @brief   A log file.
+         */
         class TR_UTIL_EXPORT LogFile
         {
         public:
-            /**
-            * Log file default name
-            */
+            /** @brief   Log file default name. */
             static const std::string LOG_FILE_DEFAULT_NAME;
-                        
+
             /**
-            * Change the name of the log file (defaults to "TrueReality_Log.html")
-            */
+             * @fn  static void LogFile::SetFileName(const std::string& name);
+             *
+             * @brief   Change the name of the log file (defaults to "TrueReality_Log.html")
+             *
+             * @param   name    The name.
+             */
             static void SetFileName(const std::string& name);
-                        
+
             /**
-            * Get the current filename of the log file.
-            */
+             * @fn  static const std::string LogFile::GetFileName();
+             *
+             * @brief   Get the current filename of the log file.
+             *
+             * @return  The file name.
+             */
             static const std::string GetFileName();
 
             /**
-            * Change the title string used in HTML
-            */
+             * @fn  static void LogFile::SetTitle(const std::string& title);
+             *
+             * @brief   Change the title string used in HTML.
+             *
+             * @param   title   The title.
+             */
             static void SetTitle(const std::string& title);
 
             /**
-            * Get the current HTML title string.
-            */
+             * @fn  static const std::string& LogFile::GetTitle();
+             *
+             * @brief   Get the current HTML title string.
+             *
+             * @return  The title.
+             */
             static const std::string& GetTitle();  
         private:
             static std::string mLogFileName;

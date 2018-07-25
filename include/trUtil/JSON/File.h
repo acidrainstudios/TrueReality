@@ -28,281 +28,558 @@
 
 #include <string>
 
-
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   JSON
+ *
+ * @brief   .
+ */
 	namespace JSON
 	{
+        /**
+         * @class   File
+         *
+         * @brief   A file.
+         */
 		class TR_UTIL_EXPORT File : Base
 		{
 		public:
 
+			/** @brief   The default JSON file name. */
 			const static std::string DEFAULT_JSON_FILE_NAME;
 
-			/**
-			* ctor
-			*/
+            /**
+             * @fn  File::File();
+             *
+             * @brief   ctor.
+             */
 			File();
 
-			/**
-			* Constructor that takes in the file name.
-			* The user still needs to Open the file for reading or writing.
-			*/
+            /**
+             * @fn  File::File(std::string fileName);
+             *
+             * @brief   Constructor that takes in the file name. The user still needs to Open the file for
+             *          reading or writing.
+             *
+             * @param   fileName    Filename of the file.
+             */
 			File(std::string fileName);
 
-			/**
-			* dtor
-			*/
+            /**
+             * @fn  File::~File();
+             *
+             * @brief   dtor.
+             */
 			~File();
 
-			/**
-			* Reads from a file and parses the JSON into a Root node.
-			*/
+            /**
+             * @fn  virtual bool File::ReadFromFile(std::string fileName);
+             *
+             * @brief   Reads from a file and parses the JSON into a Root node.
+             *
+             * @param   fileName    Filename of the file.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
 			virtual bool ReadFromFile(std::string fileName);
 
-			/**
-			* Reads from a file and parses the JSON into a Root Node.
-			* Uses an internally set filename to determine what to open.
-			*/
+            /**
+             * @fn  virtual bool File::ReadFromFile();
+             *
+             * @brief   Reads from a file and parses the JSON into a Root Node. Uses an internally set
+             *          filename to determine what to open.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
 			virtual bool ReadFromFile();
 
-			/**
-			* Writes the internal Root Node to a JSON file.
-			*/
+            /**
+             * @fn  virtual bool File::WriteToFile(std::string fileName);
+             *
+             * @brief   Writes the internal Root Node to a JSON file.
+             *
+             * @param   fileName    Filename of the file.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
 			virtual bool WriteToFile(std::string fileName);
 
-			/**
-			* Writes the Root Node to a JSON file.
-			* Uses an internally set filename to determine what to create.
-			*/
+            /**
+             * @fn  virtual bool File::WriteToFile();
+             *
+             * @brief   Writes the Root Node to a JSON file. Uses an internally set filename to determine
+             *          what to create.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
 			virtual bool WriteToFile();
 
-			/**
-			* Sets a new file name.
-			* If a file has been opened already, this will close it.
-			*/
+            /**
+             * @fn  virtual void File::SetFileName(std::string fileName);
+             *
+             * @brief   Sets a new file name. If a file has been opened already, this will close it.
+             *
+             * @param   fileName    Filename of the file.
+             */
 			virtual void SetFileName(std::string fileName);
 
-			/**
-			* Returns the name of the current file.
-			*/
+            /**
+             * @fn  virtual std::string File::GetFileName() const;
+             *
+             * @brief   Returns the name of the current file.
+             *
+             * @return  The file name.
+             */
 			virtual std::string GetFileName() const;
 
-			/**
-			* Sets the path of where the file will be read from or written to.
-			* By default the it sill be saved in the PathUtils::GetUserDataPath() + PathUtils::CONFIG_PATH folder.
-			*/
+            /**
+             * @fn  virtual void File::SetFilePath(std::string newPath);
+             *
+             * @brief   Sets the path of where the file will be read from or written to. By default the it
+             *          sill be saved in the PathUtils::GetUserDataPath() + PathUtils::CONFIG_PATH folder.
+             *
+             * @param   newPath Full pathname of the new file.
+             */
 			virtual void SetFilePath(std::string newPath);
 
-			/**
-			* Returns the path of where the file is read or written to.
-			*/
+            /**
+             * @fn  virtual std::string File::GetFilePath() const;
+             *
+             * @brief   Returns the path of where the file is read or written to.
+             *
+             * @return  The file path.
+             */
 			virtual std::string GetFilePath() const;
 
-			/**
-			* Returns true if the file name and path exist on the HD
-			*/
+            /**
+             * @fn  virtual bool File::FileExists();
+             *
+             * @brief   Returns true if the file name and path exist on the HD.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
 			virtual bool FileExists();
-			
-			/**
-			* Clears the internal JSON Root node.
-			*/
+
+            /**
+             * @fn  void File::Clear() override;
+             *
+             * @brief   Clears the internal JSON Root node.
+             */
 			void Clear() override;
 
-			/**
-			* Returns a reference to the internal JSON Root node.
-			*/
+            /**
+             * @fn  virtual Value& File::GetJSONRoot() override;
+             *
+             * @brief   Returns a reference to the internal JSON Root node.
+             *
+             * @return  The JSON root.
+             */
 			virtual Value& GetJSONRoot() override;
 
-			/**
-			* Prints out to the screen the whole JSON Root content.
-			*/
+            /**
+             * @fn  virtual void File::PrintJSONRoot() override;
+             *
+             * @brief   Prints out to the screen the whole JSON Root content.
+             */
 			virtual void PrintJSONRoot() override;
 
-			/**
-			* Checks if the JSON Root Node has an entry with a given key present
-			*/
+            /**
+             * @fn  virtual bool File::KeyPresent(const std::string &key) const override;
+             *
+             * @brief   Checks if the JSON Root Node has an entry with a given key present.
+             *
+             * @param   key The key.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
 			virtual bool KeyPresent(const std::string &key) const override;
 
-			/**
-			* Checks if the value stored at the specific key is a NULL
-			*/
+            /**
+             * @fn  virtual bool File::IsNull(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a NULL.
+             *
+             * @param   key The key.
+             *
+             * @return  True if null, false if not.
+             */
 			virtual bool IsNull(const std::string &key) const override;
 
-			/**
-			* Sets the value stored at the specific key to NULL
-			*/
+            /**
+             * @fn  virtual void File::SetNull(const std::string &key) override;
+             *
+             * @brief   Sets the value stored at the specific key to NULL.
+             *
+             * @param   key The key.
+             */
 			virtual void SetNull(const std::string &key) override;
 
-			/**
-			* Checks if the value stored at the specific key is a Boolean
-			*/
+            /**
+             * @fn  virtual bool File::IsBool(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a Boolean.
+             *
+             * @param   key The key.
+             *
+             * @return  True if bool, false if not.
+             */
 			virtual bool IsBool(const std::string &key) const override;
 
-			/**
-			* Returns the Boolean value stored at the given key
-			*/
+            /**
+             * @fn  virtual bool File::GetBool(const std::string &key) const override;
+             *
+             * @brief   Returns the Boolean value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
 			virtual bool GetBool(const std::string &key) const override;
 
-			/**
-			* Sets the Boolean value to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetBool(const std::string &key, const bool &value) override;
+             *
+             * @brief   Sets the Boolean value to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetBool(const std::string &key, const bool &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is True
-			*/
+            /**
+             * @fn  virtual bool File::IsTrue(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is True.
+             *
+             * @param   key The key.
+             *
+             * @return  True if true, false if not.
+             */
 			virtual bool IsTrue(const std::string &key) const override;
 
-			/**
-			* Checks if the value stored at the specific key is False
-			*/
+            /**
+             * @fn  virtual bool File::IsFalse(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is False.
+             *
+             * @param   key The key.
+             *
+             * @return  True if false, false if not.
+             */
 			virtual bool IsFalse(const std::string &key) const override;
 
-			/**
-			* Checks if the value stored at the specific key is a Number
-			*/
+            /**
+             * @fn  virtual bool File::IsNumber(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a Number.
+             *
+             * @param   key The key.
+             *
+             * @return  True if number, false if not.
+             */
 			virtual bool IsNumber(const std::string &key) const override;
 
-			/**
-			* Checks if the value stored at the specific key is an Integer
-			*/
+            /**
+             * @fn  virtual bool File::IsInt(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is an Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if int, false if not.
+             */
 			virtual bool IsInt(const std::string &key) const override;
 
-			/**
-			* Returns the Integer value stored at the given key
-			*/
+            /**
+             * @fn  virtual int File::GetInt(const std::string &key) const override;
+             *
+             * @brief   Returns the Integer value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The int.
+             */
 			virtual int GetInt(const std::string &key) const override;
 
-			/**
-			* Sets the Integer value to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetInt(const std::string &key, const int &value) override;
+             *
+             * @brief   Sets the Integer value to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetInt(const std::string &key, const int &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is a Double
-			*/
+            /**
+             * @fn  virtual bool File::IsDouble(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a Double.
+             *
+             * @param   key The key.
+             *
+             * @return  True if double, false if not.
+             */
 			virtual bool IsDouble(const std::string &key) const override;
 
-			/**
-			* Returns the Double value stored at the given key
-			*/
+            /**
+             * @fn  virtual double File::GetDouble(const std::string &key) const override;
+             *
+             * @brief   Returns the Double value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The double.
+             */
 			virtual double GetDouble(const std::string &key) const override;
 
-			/**
-			* Sets the Double value to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetDouble(const std::string &key, const double &value) override;
+             *
+             * @brief   Sets the Double value to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetDouble(const std::string &key, const double &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is an Unsigned Integer
-			*/
+            /**
+             * @fn  virtual bool File::IsUInt(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is an Unsigned Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if u int, false if not.
+             */
 			virtual bool IsUInt(const std::string &key) const override;
 
-			/**
-			* Returns the Unsigned Integer value stored at the given key
-			*/
+            /**
+             * @fn  virtual unsigned int File::GetUInt(const std::string &key) const override;
+             *
+             * @brief   Returns the Unsigned Integer value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The u int.
+             */
 			virtual unsigned int GetUInt(const std::string &key) const override;
 
-			/**
-			* Sets the Unsigned Integer value to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetUInt(const std::string &key, const unsigned int &value) override;
+             *
+             * @brief   Sets the Unsigned Integer value to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetUInt(const std::string &key, const unsigned int &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is a 64bit Integer
-			*/
+            /**
+             * @fn  virtual bool File::IsInt64(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a 64bit Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if int 64, false if not.
+             */
 			virtual bool IsInt64(const std::string &key) const override;
 
-			/**
-			* Returns the 64bit Integer value stored at the given key
-			*/
+            /**
+             * @fn  virtual Int64 File::GetInt64(const std::string &key) const override;
+             *
+             * @brief   Returns the 64bit Integer value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The int 64.
+             */
 			virtual Int64 GetInt64(const std::string &key) const override;
 
-			/**
-			* Sets the 64bit Integer value to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetInt64(const std::string &key, const Int64 &value) override;
+             *
+             * @brief   Sets the 64bit Integer value to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetInt64(const std::string &key, const Int64 &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is a 64bit Integer
-			*/
+            /**
+             * @fn  virtual bool File::IsUInt64(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a 64bit Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if u int 64, false if not.
+             */
 			virtual bool IsUInt64(const std::string &key) const override;
 
-			/**
-			* Returns the 64bit Integer value stored at the given key
-			*/
+            /**
+             * @fn  virtual UInt64 File::GetUInt64(const std::string &key) const override;
+             *
+             * @brief   Returns the 64bit Integer value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The u int 64.
+             */
 			virtual UInt64 GetUInt64(const std::string &key) const override;
 
-			/**
-			* Sets the 64bit Integer value to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetUInt64(const std::string &key, const UInt64 &value) override;
+             *
+             * @brief   Sets the 64bit Integer value to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetUInt64(const std::string &key, const UInt64 &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is a float
-			*/
+            /**
+             * @fn  virtual bool File::IsFloat(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a float.
+             *
+             * @param   key The key.
+             *
+             * @return  True if float, false if not.
+             */
 			virtual bool IsFloat(const std::string &key) const override;
 
-			/**
-			* Returns the float value stored at the given key
-			*/
+            /**
+             * @fn  virtual float File::GetFloat(const std::string &key) const override;
+             *
+             * @brief   Returns the float value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The float.
+             */
 			virtual float GetFloat(const std::string &key) const override;
 
-			/**
-			* Sets the float value to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetFloat(const std::string &key, const float &value) override;
+             *
+             * @brief   Sets the float value to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetFloat(const std::string &key, const float &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is a String
-			*/
+            /**
+             * @fn  virtual bool File::IsString(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is a String.
+             *
+             * @param   key The key.
+             *
+             * @return  True if string, false if not.
+             */
 			virtual bool IsString(const std::string &key) const override;
 
-			/**
-			* Returns the String value stored at the given key
-			*/
+            /**
+             * @fn  virtual const std::string File::GetString(const std::string &key) const override;
+             *
+             * @brief   Returns the String value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The string.
+             */
 			virtual const std::string GetString(const std::string &key) const override;
 
-			/**
-			* Sets the String to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetString(const std::string &key, const std::string &value) override;
+             *
+             * @brief   Sets the String to be stored at the given key.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
 			virtual void SetString(const std::string &key, const std::string &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is an Array
-			*/
+            /**
+             * @fn  virtual bool File::IsArray(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is an Array.
+             *
+             * @param   key The key.
+             *
+             * @return  True if array, false if not.
+             */
 			virtual bool IsArray(const std::string &key) const override;
 
-			/**
-			* Returns the Array value stored at the given key
-			*/
+            /**
+             * @fn  virtual Array File::GetArray(const std::string &key) const override;
+             *
+             * @brief   Returns the Array value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The array.
+             */
 			virtual Array GetArray(const std::string &key) const override;
 
-			/**
-			* Sets the Array to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetArray(const std::string &key, Array &value) override;
+             *
+             * @brief   Sets the Array to be stored at the given key.
+             *
+             * @param           key     The key.
+             * @param [in,out]  value   The value.
+             */
 			virtual void SetArray(const std::string &key, Array &value) override;
 
-			/**
-			* Checks if the value stored at the specific key is an Object
-			*/
+            /**
+             * @fn  virtual bool File::IsObject(const std::string &key) const override;
+             *
+             * @brief   Checks if the value stored at the specific key is an Object.
+             *
+             * @param   key The key.
+             *
+             * @return  True if object, false if not.
+             */
 			virtual bool IsObject(const std::string &key) const override;
 
-			/**
-			* Returns the Object value stored at the given key
-			*/
+            /**
+             * @fn  virtual Object File::GetObject(const std::string &key) const override;
+             *
+             * @brief   Returns the Object value stored at the given key.
+             *
+             * @param   key The key.
+             *
+             * @return  The object.
+             */
 			virtual Object GetObject(const std::string &key) const override;
 
-			/**
-			* Sets the Array to be stored at the given key
-			*/
+            /**
+             * @fn  virtual void File::SetObject(const std::string &key, Object &value) override;
+             *
+             * @brief   Sets the Array to be stored at the given key.
+             *
+             * @param           key     The key.
+             * @param [in,out]  value   The value.
+             */
 			virtual void SetObject(const std::string &key, Object &value) override;
 
 		private:
+			/** @brief   Filename of the file. */
 			std::string mFileName;
+			/** @brief   Full pathname of the file. */
 			std::string mFilePath;
 
+            /** @brief   The root. */
             Value mRoot;
 		};
 	}

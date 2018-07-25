@@ -28,147 +28,230 @@
 #include <ostream>
 #include <memory>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
-    namespace JSON
-    {
-        //Forward declaration
+/**
+ * @namespace   JSON
+ *
+ * @brief   .
+ */
+	namespace JSON
+	{
+        /**
+         * @class   Array
+         *
+         * @brief   Forward declaration.
+         */
         class Array;
+
+        /**
+         * @class   Object
+         *
+         * @brief   An object.
+         */
         class Object;
 
-        using Int = int;
-        using UInt = unsigned int;
+		/** @brief   The int. */
+		using Int = int;
+		/** @brief   The int. */
+		using UInt = unsigned int;
 #if defined(JSON_NO_INT64)
-        using LargestInt = int;
-        using LargestUInt = unsigned int;
+		/** @brief   The largest int. */
+		using LargestInt = int;
+		/** @brief   The largest u int. */
+		using LargestUInt = unsigned int;
 #else   // if defined(JSON_NO_INT64)
         // For Microsoft Visual use specific types as long long is not supported
 #if defined(_MSC_VER) // Microsoft Visual Studio
-        using Int64 = __int64;
-        using UInt64 = unsigned __int64;
+		/** @brief   The fourth int 6. */
+		using Int64 = __int64;
+		/** @brief   The fourth u int 6. */
+		using UInt64 = unsigned __int64;
 #else   // if defined(_MSC_VER) // Other platforms, use long long
-        using  Int64 = int64_t;
-        using  UInt64 = uint64_t;
+		/** @brief   The fourth int 6. */
+		using  Int64 = int64_t;
+		/** @brief   The fourth u int 6. */
+		using  UInt64 = uint64_t;
 #endif // if defined(_MSC_VER)
-        using LargestInt = Int64;
-        using LargestUInt = UInt64;
+		/** @brief   The largest int. */
+		using LargestInt = Int64;
+		/** @brief   The largest u int. */
+		using LargestUInt = UInt64;
 #endif // if defined(JSON_NO_INT64)
 
-        /** 
-        * @brief Type of the value held by a Value object.
-        */
-        enum ValueType 
-        {
-            NullValue = Json::ValueType::nullValue, ///'null' value
-            IntValue = Json::ValueType::intValue,      ///signed integer value
-            UintValue = Json::ValueType::uintValue,     ///unsigned integer value
-            RealValue = Json::ValueType::realValue,     ///double value
-            StringValue = Json::ValueType::stringValue,   ///UTF-8 string value
-            BooleanValue = Json::ValueType::booleanValue,  ///bool value
-            ArrayValue = Json::ValueType::arrayValue,    ///array value (ordered list)
-            ObjectValue = Json::ValueType::objectValue    ///object value (collection of name/value pairs).
-        };
+        /**
+         * @enum    ValueType
+         *
+         * @brief   Type of the value held by a Value object.
+         */
+		enum ValueType 
+		{
+			NullValue = Json::ValueType::nullValue, ///'null' value
+			IntValue = Json::ValueType::intValue,      ///signed integer value
+			UintValue = Json::ValueType::uintValue,     ///unsigned integer value
+			RealValue = Json::ValueType::realValue,     ///double value
+			StringValue = Json::ValueType::stringValue,   ///UTF-8 string value
+			BooleanValue = Json::ValueType::booleanValue,  ///bool value
+			ArrayValue = Json::ValueType::arrayValue,    ///array value (ordered list)
+			ObjectValue = Json::ValueType::objectValue    ///object value (collection of name/value pairs).
+		};
 
-        /** 
-        * @brief Represents a JSON value.
-        *
-        * This class is a discriminated union wrapper that can represents a:
-        * - signed integer [range: Value::MinInt - Value::MaxInt]
-        * - unsigned integer (range: 0 - Value::MaxUInt)
-        * - double
-        * - UTF-8 string
-        * - boolean
-        * - 'null'
-        * - an ordered list of Value
-        * - collection of name/value pairs (javascript object)
-        *
-        * The type of the held value is represented by a #ValueType and
-        * can be obtained using Type().
-        *
-        * Values of an #ObjectValue or #ArrayValue can be accessed using operator[]()
-        * methods.
-        * Non-const methods will automatically create the a #NullValue element
-        * if it does not exist.
-        * The sequence of an #ArrayValue will be automatically resized and initialized
-        * with #nNllValue. Resize() can be used to enlarge or truncate an #ArrayValue.
-        *
-        * The Get() methods can be used to obtain default value in the case the
-        * required element does not exist.
-        *
-        * It is possible to iterate over the list of a #ObjectValue values using
-        * the GetMemberNames() method.
-        *
-        * @note #Value string-length fit in size_t, but keys must be < 2^30.
-        * (The reason is an implementation detail.) A #CharReader will raise an
-        * exception if a bound is exceeded to avoid security holes in your app,
-        * but the Value API does *not* check bounds. That is the responsibility
-        * of the caller.
-        */
-        class TR_UTIL_EXPORT Value
-        {
-        public:
+        /**
+         * @class   Value
+         *
+         * @brief   Represents a JSON value.
+         *          
+         *          This class is a discriminated union wrapper that can represents a:
+         *          - signed integer [range: Value::MinInt - Value::MaxInt]
+         *          - unsigned integer (range: 0 - Value::MaxUInt)
+         *          - double
+         *          - UTF-8 string
+         *          - boolean
+         *          - 'null'
+         *          - an ordered list of Value
+         *          - collection of name/value pairs (javascript object)
+         *          
+         *          The type of the held value is represented by a #ValueType and can be obtained using
+         *          Type().
+         *          
+         *          Values of an #ObjectValue or #ArrayValue can be accessed using operator[]()
+         *          methods. Non-const methods will automatically create the a #NullValue element if it
+         *          does not exist. The sequence of an #ArrayValue will be automatically resized and
+         *          initialized with
+         *          #nNllValue. Resize() can be used to enlarge or truncate an #ArrayValue.
+         *          
+         *          The Get() methods can be used to obtain default value in the case the required
+         *          element does not exist.
+         *          
+         *          It is possible to iterate over the list of a #ObjectValue values using the
+         *          GetMemberNames()
+         *          method.
+         *          
+         *          @note #Value string-length fit in size_t, but keys must be &lt; 2^30. (The reason is
+         *          an implementation detail.) A #CharReader will raise an exception if a bound is
+         *          exceeded to avoid security holes in your app, but the Value API does *not* check
+         *          bounds. That is the responsibility of the caller.
+         */
+		class TR_UTIL_EXPORT Value
+		{
+		public:
 
-            using Members = std::vector<std::string>;
-
-            /**
-            * ctor
-            */
-            Value(Json::Value& value);
-
-            /**
-            * ctor
-            */
-            Value(ValueType type = NullValue);
-            
-            /**
-            * ctor
-            */
-            Value(Int value);
-            
-            /**
-            * ctor
-            */
-            Value(UInt value);
-            
-            /**
-            * ctor
-            */
-            Value(Int64 value);
-            
-            /**
-            * ctor
-            */
-            Value(UInt64 value);
+			/** @brief   The members. */
+			using Members = std::vector<std::string>;
 
             /**
-            * ctor
-            */
-            Value(double value);
+             * @fn  Value::Value(Json::Value& value);
+             *
+             * @brief   ctor.
+             *
+             * @param [in,out]  value   The value.
+             */
+			Value(Json::Value& value);
 
             /**
-            * ctor
-            */
-            Value(const char* value); ///< Copy til first 0. (NULL causes to seg-fault.)
+             * @fn  Value::Value(ValueType type = NullValue);
+             *
+             * @brief   ctor.
+             *
+             * @param   type    (Optional) The type.
+             */
+			Value(ValueType type = NullValue);
 
             /**
-            * ctor
-            */
-            Value(const char* begin, const char* end); ///< Copy all, incl zeroes.
+             * @fn  Value::Value(Int value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   The value.
+             */
+			Value(Int value);
 
             /**
-            * ctor
-            */
-            Value(const std::string& value); ///< Copy data() til size(). Embedded zeroes too.
+             * @fn  Value::Value(UInt value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   The value.
+             */
+			Value(UInt value);
 
             /**
-            * ctor
-            */
-            Value(bool value);
+             * @fn  Value::Value(Int64 value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   The value.
+             */
+			Value(Int64 value);
 
             /**
-            * ctor
-            */
-            Value(const Value& other);
+             * @fn  Value::Value(UInt64 value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   The value.
+             */
+			Value(UInt64 value);
+
+            /**
+             * @fn  Value::Value(double value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   The value.
+             */
+			Value(double value);
+
+            /**
+             * @fn  Value::Value(const char* value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   The value.
+             */
+			Value(const char* value); ///< Copy til first 0. (NULL causes to seg-fault.)
+
+            /**
+             * @fn  Value::Value(const char* begin, const char* end);
+             *
+             * @brief   ctor.
+             *
+             * @param   begin   The begining value.
+             * @param   end     The end.
+             */
+			Value(const char* begin, const char* end); ///< Copy all, incl zeroes.
+
+            /**
+             * @fn  Value::Value(const std::string& value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   The value.
+             */
+			Value(const std::string& value); ///< Copy data() til size(). Embedded zeroes too.
+
+            /**
+             * @fn  Value::Value(bool value);
+             *
+             * @brief   ctor.
+             *
+             * @param   value   True to value.
+             */
+			Value(bool value);
+
+            /**
+             * @fn  Value::Value(const Value& other);
+             *
+             * @brief   ctor.
+             *
+             * @param   other   The other.
+             */
+			Value(const Value& other);
 
             /**
              * ctor 
@@ -180,517 +263,1036 @@ namespace trUtil
             //Value(Value&& other);
 
             /**
-            * dtor
-            */
+             * @fn  Value::~Value();
+             *
+             * @brief   dtor.
+             */
             ~Value();
 
             /**
-            * Returns a reference to the internal Json::Value.
-            */
-            Json::Value& GetJsonValue();
+             * @fn  Json::Value& Value::GetJsonValue();
+             *
+             * @brief   Returns a reference to the internal Json::Value.
+             *
+             * @return  The JSON value.
+             */
+			Json::Value& GetJsonValue();
 
             /**
-            * Returns a reference to the internal Json::Value.
-            */
-            const Json::Value& GetJsonValue() const;
-
-            /*
-            * Adds a comment to the internal value
-            */
-            void SetComment(const std::string& comment);
-
-            /**
-            * Checks if the internal value has a comment
-            */
-            bool HasComment() const;
+             * @fn  const Json::Value& Value::GetJsonValue() const;
+             *
+             * @brief   Returns a reference to the internal Json::Value.
+             *
+             * @return  The JSON value.
+             */
+			const Json::Value& GetJsonValue() const;
 
             /**
-            * Returns the internal comment
-            */
-            std::string GetComment() const;
+             * @fn  void Value::SetComment(const std::string& comment);
+             *
+             * @brief   Adds a comment to the internal value.
+             *
+             * @param   comment The comment.
+             */
+			void SetComment(const std::string& comment);
 
             /**
-            * Clears the internal JSON Root node.
-            */
-            virtual void Clear();
+             * @fn  bool Value::HasComment() const;
+             *
+             * @brief   Checks if the internal value has a comment.
+             *
+             * @return  True if comment, false if not.
+             */
+			bool HasComment() const;
 
             /**
-            * Returns the size of the array.
-            */
-            int Size();
+             * @fn  std::string Value::GetComment() const;
+             *
+             * @brief   Returns the internal comment.
+             *
+             * @return  The comment.
+             */
+			std::string GetComment() const;
 
             /**
-            * Change the size of the array. 
-            */
-            void Resize(int newSize);
+             * @fn  virtual void Value::Clear();
+             *
+             * @brief   Clears the internal JSON Root node.
+             */
+			virtual void Clear();
 
             /**
-            * Return true if index < Size()
-            */
-            bool IsValidIndex(int index) const;
+             * @fn  int Value::Size();
+             *
+             * @brief   Returns the size of the array.
+             *
+             * @return  An int.
+             */
+			int Size();
 
             /**
-            * Remove the given Index value
-            */
-            bool RemoveIndex(int index, Value *removedVal);
+             * @fn  void Value::Resize(int newSize);
+             *
+             * @brief   Change the size of the array.
+             *
+             * @param   newSize Size of the new.
+             */
+			void Resize(int newSize);
 
             /**
-            * Returns the Value at the given index if this Value is an Array
-            * The return is by value, but the internal json object is stored by
-            * reference. 
-            */
+             * @fn  bool Value::IsValidIndex(int index) const;
+             *
+             * @brief   Return true if index &lt; Size()
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if valid index, false if not.
+             */
+			bool IsValidIndex(int index) const;
+
+            /**
+             * @fn  bool Value::RemoveIndex(int index, Value *removedVal);
+             *
+             * @brief   Remove the given Index value.
+             *
+             * @param           index       Zero-based index of the values position.
+             * @param [in,out]  removedVal  If non-null, the removed value.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
+			bool RemoveIndex(int index, Value *removedVal);
+
+            /**
+             * @fn  Value Value::Index(int index);
+             *
+             * @brief   Returns the Value at the given index if this Value is an Array The return is by value,
+             *          but the internal json object is stored by reference.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  A Value.
+             */
             Value Index(int index);
 
             /**
-            * Returns the value names contained in the object
-            */
-            const Value::Members GetMemberNames() const;
+             * @fn  const Value::Members Value::GetMemberNames() const;
+             *
+             * @brief   Returns the value names contained in the object.
+             *
+             * @return  The member names.
+             */
+			const Value::Members GetMemberNames() const;
 
             /**
-            * Returns true if a member with the passed in key is present. 
-            */
-            bool HasMember(const std::string& key) const;
+             * @fn  bool Value::HasMember(const std::string& key) const;
+             *
+             * @brief   Returns true if a member with the passed in key is present.
+             *
+             * @param   key The key.
+             *
+             * @return  True if member, false if not.
+             */
+			bool HasMember(const std::string& key) const;
 
             /**
-            * Checks if the JSON Root Node has an entry with a given key present
-            */
-            virtual bool KeyPresent(const std::string &key) const;
+             * @fn  virtual bool Value::KeyPresent(const std::string &key) const;
+             *
+             * @brief   Checks if the JSON Root Node has an entry with a given key present.
+             *
+             * @param   key The key.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
+			virtual bool KeyPresent(const std::string &key) const;
 
             /**
-            * Checks if the value stored is a NULL
-            */
+             * @fn  virtual bool Value::IsNull() const;
+             *
+             * @brief   Checks if the value stored is a NULL.
+             *
+             * @return  True if null, false if not.
+             */
             virtual bool IsNull() const;
 
             /**
-            * Checks if the value stored is a NULL
-            */
-            virtual bool IsNull(const int index) const;
+             * @fn  virtual bool Value::IsNull(const int index) const;
+             *
+             * @brief   Checks if the value stored is a NULL.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if null, false if not.
+             */
+			virtual bool IsNull(const int index) const;
 
             /**
-            * Checks if the value stored is a NULL
-            */
+             * @fn  virtual bool Value::IsNull(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a NULL.
+             *
+             * @param   key The key.
+             *
+             * @return  True if null, false if not.
+             */
             virtual bool IsNull(const std::string& key) const;
 
             /**
-            * Sets the NULL value in the Object
-            */
+             * @fn  virtual void Value::SetNull(const std::string& key) const;
+             *
+             * @brief   Sets the NULL value in the Object.
+             *
+             * @param   key The key.
+             */
             virtual void SetNull(const std::string& key) const;
 
             /**
-            * Return true if empty array, empty object, or null, otherwise, false.
-            */
-            virtual bool IsEmpty() const;
+             * @fn  virtual bool Value::IsEmpty() const;
+             *
+             * @brief   Return true if empty array, empty object, or null, otherwise, false.
+             *
+             * @return  True if empty, false if not.
+             */
+			virtual bool IsEmpty() const;
 
             /**
-            * Return true if empty array, empty object, or null, otherwise, false.
-            */
+             * @fn  virtual bool Value::IsEmpty(const int index) const;
+             *
+             * @brief   Return true if empty array, empty object, or null, otherwise, false.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if empty, false if not.
+             */
             virtual bool IsEmpty(const int index) const;
 
             /**
-            * Return true if empty array, empty object, or null, otherwise, false.
-            */
+             * @fn  virtual bool Value::IsEmpty(const std::string& key) const;
+             *
+             * @brief   Return true if empty array, empty object, or null, otherwise, false.
+             *
+             * @param   key The key.
+             *
+             * @return  True if empty, false if not.
+             */
             virtual bool IsEmpty(const std::string& key) const;
 
             /**
-            * Add a value at the end of the array. 
-            */
-            virtual void Append(const Value& val);
+             * @fn  virtual void Value::Append(const Value& val);
+             *
+             * @brief   Add a value at the end of the array.
+             *
+             * @param   val The Value to append.
+             */
+			virtual void Append(const Value& val);
 
             /**
-            * Checks if the value stored is a Boolean
-            */
-            virtual bool IsBool() const;
+             * @fn  virtual bool Value::IsBool() const;
+             *
+             * @brief   Checks if the value stored is a Boolean.
+             *
+             * @return  True if bool, false if not.
+             */
+			virtual bool IsBool() const;
 
             /**
-            * Checks if the value stored is a Boolean
-            */
+             * @fn  virtual bool Value::IsBool(const int index) const;
+             *
+             * @brief   Checks if the value stored is a Boolean.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if bool, false if not.
+             */
             virtual bool IsBool(const int index) const;
 
             /**
-            * Checks if the value stored is a Boolean
-            */
+             * @fn  virtual bool Value::IsBool(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a Boolean.
+             *
+             * @param   key The key.
+             *
+             * @return  True if bool, false if not.
+             */
             virtual bool IsBool(const std::string& key) const;
 
             /**
-            * Returns the Boolean value
-            */
-            virtual bool GetBool() const;
+             * @fn  virtual bool Value::GetBool() const;
+             *
+             * @brief   Returns the Boolean value.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
+			virtual bool GetBool() const;
 
             /**
-            * Returns the Boolean value
-            */
+             * @fn  virtual bool Value::GetBool(const int index) const;
+             *
+             * @brief   Returns the Boolean value.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
             virtual bool GetBool(const int index) const;
 
             /**
-            * Returns the Boolean value
-            */
+             * @fn  virtual bool Value::GetBool(const std::string& key) const;
+             *
+             * @brief   Returns the Boolean value.
+             *
+             * @param   key The key.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
             virtual bool GetBool(const std::string& key) const;
 
             /**
-            * Sets the Boolean value in the Object
-            */
+             * @fn  virtual void Value::SetBool(const std::string& key, bool value);
+             *
+             * @brief   Sets the Boolean value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   True to value.
+             */
             virtual void SetBool(const std::string& key, bool value);
 
             /**
-            * Checks if the value stored is a Number
-            */
-            virtual bool IsNumber() const;
+             * @fn  virtual bool Value::IsNumber() const;
+             *
+             * @brief   Checks if the value stored is a Number.
+             *
+             * @return  True if number, false if not.
+             */
+			virtual bool IsNumber() const;
 
             /**
-            * Checks if the value stored is a Number
-            */
+             * @fn  virtual bool Value::IsNumber(const int index) const;
+             *
+             * @brief   Checks if the value stored is a Number.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if number, false if not.
+             */
             virtual bool IsNumber(const int index) const;
 
             /**
-            * Checks if the value stored is a Number
-            */
+             * @fn  virtual bool Value::IsNumber(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a Number.
+             *
+             * @param   key The key.
+             *
+             * @return  True if number, false if not.
+             */
             virtual bool IsNumber(const std::string& key) const;
 
+            /**
+             * @fn  virtual bool Value::IsInt() const;
+             *
+             * @brief   Checks if the value stored is an Integer.
+             *
+             * @return  True if int, false if not.
+             */
+			virtual bool IsInt() const;
 
             /**
-            * Checks if the value stored is an Integer
-            */
-            virtual bool IsInt() const;
-
-            /**
-            * Checks if the value stored is an Integer
-            */
+             * @fn  virtual bool Value::IsInt(const int index) const;
+             *
+             * @brief   Checks if the value stored is an Integer.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if int, false if not.
+             */
             virtual bool IsInt(const int index) const;
 
             /**
-            * Checks if the value stored is an Integer
-            */
+             * @fn  virtual bool Value::IsInt(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is an Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if int, false if not.
+             */
             virtual bool IsInt(const std::string& key) const;
 
             /**
-            * Returns the Integer value
-            */
-            virtual int GetInt() const;
+             * @fn  virtual int Value::GetInt() const;
+             *
+             * @brief   Returns the Integer value.
+             *
+             * @return  The int.
+             */
+			virtual int GetInt() const;
 
             /**
-            * Returns the Integer value
-            */
+             * @fn  virtual int Value::GetInt(const int index) const;
+             *
+             * @brief   Returns the Integer value.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The int.
+             */
             virtual int GetInt(const int index) const;
 
             /**
-            * Returns the Integer value
-            */
+             * @fn  virtual int Value::GetInt(const std::string& key) const;
+             *
+             * @brief   Returns the Integer value.
+             *
+             * @param   key The key.
+             *
+             * @return  The int.
+             */
             virtual int GetInt(const std::string& key) const;
 
             /**
-            * Sets the Integer value in the Object
-            */
+             * @fn  virtual void Value::SetInt(const std::string& key, int value);
+             *
+             * @brief   Sets the Integer value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
             virtual void SetInt(const std::string& key, int value);
 
             /**
-            * Checks if the value stored is a Double
-            */
-            virtual bool IsDouble() const;
+             * @fn  virtual bool Value::IsDouble() const;
+             *
+             * @brief   Checks if the value stored is a Double.
+             *
+             * @return  True if double, false if not.
+             */
+			virtual bool IsDouble() const;
 
             /**
-            * Checks if the value stored is a Double
-            */
+             * @fn  virtual bool Value::IsDouble(const int index) const;
+             *
+             * @brief   Checks if the value stored is a Double.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if double, false if not.
+             */
             virtual bool IsDouble(const int index) const;
 
             /**
-            * Checks if the value stored is a Double
-            */
+             * @fn  virtual bool Value::IsDouble(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a Double.
+             *
+             * @param   key The key.
+             *
+             * @return  True if double, false if not.
+             */
             virtual bool IsDouble(const std::string& key) const;
 
             /**
-            * Returns the Double value
-            */
-            virtual double GetDouble() const;
+             * @fn  virtual double Value::GetDouble() const;
+             *
+             * @brief   Returns the Double value.
+             *
+             * @return  The double.
+             */
+			virtual double GetDouble() const;
 
             /**
-            * Returns the Double value
-            */
+             * @fn  virtual double Value::GetDouble(const int index) const;
+             *
+             * @brief   Returns the Double value.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The double.
+             */
             virtual double GetDouble(const int index) const;
 
             /**
-            * Returns the Double value
-            */
+             * @fn  virtual double Value::GetDouble(const std::string& key) const;
+             *
+             * @brief   Returns the Double value.
+             *
+             * @param   key The key.
+             *
+             * @return  The double.
+             */
             virtual double GetDouble(const std::string& key) const;
 
             /**
-            * Sets the Double value in the Object
-            */
+             * @fn  virtual void Value::SetDouble(const std::string& key, double value);
+             *
+             * @brief   Sets the Double value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
             virtual void SetDouble(const std::string& key, double value);
 
             /**
-            * Checks if the value stored Unsigned Integer
-            */
-            virtual bool IsUInt() const;
+             * @fn  virtual bool Value::IsUInt() const;
+             *
+             * @brief   Checks if the value stored Unsigned Integer.
+             *
+             * @return  True if u int, false if not.
+             */
+			virtual bool IsUInt() const;
 
             /**
-            * Checks if the value stored Unsigned Integer
-            */
+             * @fn  virtual bool Value::IsUInt(const int index) const;
+             *
+             * @brief   Checks if the value stored Unsigned Integer.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if u int, false if not.
+             */
             virtual bool IsUInt(const int index) const;
 
             /**
-            * Checks if the value stored Unsigned Integer
-            */
+             * @fn  virtual bool Value::IsUInt(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored Unsigned Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if u int, false if not.
+             */
             virtual bool IsUInt(const std::string& key) const;
 
             /**
-            * Returns the Unsigned Integer value
-            */
-            virtual unsigned int GetUInt() const;
+             * @fn  virtual unsigned int Value::GetUInt() const;
+             *
+             * @brief   Returns the Unsigned Integer value.
+             *
+             * @return  The u int.
+             */
+			virtual unsigned int GetUInt() const;
 
             /**
-            * Returns the Unsigned Integer value
-            */
+             * @fn  virtual unsigned int Value::GetUInt(const int index) const;
+             *
+             * @brief   Returns the Unsigned Integer value.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The u int.
+             */
             virtual unsigned int GetUInt(const int index) const;
 
             /**
-            * Returns the Unsigned Integer value
-            */
+             * @fn  virtual unsigned int Value::GetUInt(const std::string& key) const;
+             *
+             * @brief   Returns the Unsigned Integer value.
+             *
+             * @param   key The key.
+             *
+             * @return  The u int.
+             */
             virtual unsigned int GetUInt(const std::string& key) const;
 
             /**
-            * Sets the Unsigned Int value in the Object
-            */
+             * @fn  virtual void Value::SetUInt(const std::string& key, unsigned int value);
+             *
+             * @brief   Sets the Unsigned Int value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
             virtual void SetUInt(const std::string& key, unsigned int value);
 
             /**
-            * Checks if the value stored is a 64bit Integer
-            */
-            virtual bool IsInt64() const;
+             * @fn  virtual bool Value::IsInt64() const;
+             *
+             * @brief   Checks if the value stored is a 64bit Integer.
+             *
+             * @return  True if int 64, false if not.
+             */
+			virtual bool IsInt64() const;
 
             /**
-            * Checks if the value stored is a 64bit Integer
-            */
+             * @fn  virtual bool Value::IsInt64(const int index) const;
+             *
+             * @brief   Checks if the value stored is a 64bit Integer.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if int 64, false if not.
+             */
             virtual bool IsInt64(const int index) const;
 
             /**
-            * Checks if the value stored is a 64bit Integer
-            */
+             * @fn  virtual bool Value::IsInt64(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a 64bit Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if int 64, false if not.
+             */
             virtual bool IsInt64(const std::string& key) const;
 
             /**
-            * Returns the 64bit Integer value
-            */
-            virtual Int64 GetInt64() const;
+             * @fn  virtual Int64 Value::GetInt64() const;
+             *
+             * @brief   Returns the 64bit Integer value.
+             *
+             * @return  The int 64.
+             */
+			virtual Int64 GetInt64() const;
 
             /**
-            * Returns the 64bit Integer value
-            */
+             * @fn  virtual Int64 Value::GetInt64(const int index) const;
+             *
+             * @brief   Returns the 64bit Integer value.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The int 64.
+             */
             virtual Int64 GetInt64(const int index) const;
 
             /**
-            * Returns the 64bit Integer value
-            */
+             * @fn  virtual Int64 Value::GetInt64(const std::string& key) const;
+             *
+             * @brief   Returns the 64bit Integer value.
+             *
+             * @param   key The key.
+             *
+             * @return  The int 64.
+             */
             virtual Int64 GetInt64(const std::string& key) const;
 
             /**
-            * Sets the Int64 value in the Object
-            */
+             * @fn  virtual void Value::SetInt64(const std::string& key, Int64 value);
+             *
+             * @brief   Sets the Int64 value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
             virtual void SetInt64(const std::string& key, Int64 value);
 
             /**
-            * Checks if the value stored is a 64bit Unsigned Integer
-            */
-            virtual bool IsUInt64() const;
+             * @fn  virtual bool Value::IsUInt64() const;
+             *
+             * @brief   Checks if the value stored is a 64bit Unsigned Integer.
+             *
+             * @return  True if u int 64, false if not.
+             */
+			virtual bool IsUInt64() const;
 
             /**
-            * Checks if the value stored is a 64bit Unsigned Integer
-            */
+             * @fn  virtual bool Value::IsUInt64(const int index) const;
+             *
+             * @brief   Checks if the value stored is a 64bit Unsigned Integer.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if u int 64, false if not.
+             */
             virtual bool IsUInt64(const int index) const;
 
             /**
-            * Checks if the value stored is a 64bit Unsigned Integer
-            */
+             * @fn  virtual bool Value::IsUInt64(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a 64bit Unsigned Integer.
+             *
+             * @param   key The key.
+             *
+             * @return  True if u int 64, false if not.
+             */
             virtual bool IsUInt64(const std::string& key) const;
 
             /**
-            * Returns the Unsigned 64bit Integer value
-            */
-            virtual UInt64 GetUInt64() const;
+             * @fn  virtual UInt64 Value::GetUInt64() const;
+             *
+             * @brief   Returns the Unsigned 64bit Integer value.
+             *
+             * @return  The u int 64.
+             */
+			virtual UInt64 GetUInt64() const;
 
             /**
-            * Returns the Unsigned 64bit Integer value
-            */
+             * @fn  virtual UInt64 Value::GetUInt64(const int index) const;
+             *
+             * @brief   Returns the Unsigned 64bit Integer value.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The u int 64.
+             */
             virtual UInt64 GetUInt64(const int index) const;
 
             /**
-            * Returns the Unsigned 64bit Integer value
-            */
+             * @fn  virtual UInt64 Value::GetUInt64(const std::string& key) const;
+             *
+             * @brief   Returns the Unsigned 64bit Integer value.
+             *
+             * @param   key The key.
+             *
+             * @return  The u int 64.
+             */
             virtual UInt64 GetUInt64(const std::string& key) const;
 
             /**
-            * Sets the Unsigned Int64 value in the Object
-            */
+             * @fn  virtual void Value::SetUInt64(const std::string& key, UInt64 value);
+             *
+             * @brief   Sets the Unsigned Int64 value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
             virtual void SetUInt64(const std::string& key, UInt64 value);
 
             /**
-            * Checks if the value stored is a float
-            */
-            virtual bool IsFloat() const;
+             * @fn  virtual bool Value::IsFloat() const;
+             *
+             * @brief   Checks if the value stored is a float.
+             *
+             * @return  True if float, false if not.
+             */
+			virtual bool IsFloat() const;
 
             /**
-            * Checks if the value stored is a float
-            */
+             * @fn  virtual bool Value::IsFloat(const int index) const;
+             *
+             * @brief   Checks if the value stored is a float.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if float, false if not.
+             */
             virtual bool IsFloat(const int index) const;
 
             /**
-            * Checks if the value stored is a float
-            */
+             * @fn  virtual bool Value::IsFloat(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a float.
+             *
+             * @param   key The key.
+             *
+             * @return  True if float, false if not.
+             */
             virtual bool IsFloat(const std::string& key) const;
 
             /**
-            * Returns the float value stored
-            */
-            virtual float GetFloat() const;
+             * @fn  virtual float Value::GetFloat() const;
+             *
+             * @brief   Returns the float value stored.
+             *
+             * @return  The float.
+             */
+			virtual float GetFloat() const;
 
             /**
-            * Returns the float value stored
-            */
+             * @fn  virtual float Value::GetFloat(const int index) const;
+             *
+             * @brief   Returns the float value stored.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The float.
+             */
             virtual float GetFloat(const int index) const;
 
             /**
-            * Returns the float value stored
-            */
+             * @fn  virtual float Value::GetFloat(const std::string& key) const;
+             *
+             * @brief   Returns the float value stored.
+             *
+             * @param   key The key.
+             *
+             * @return  The float.
+             */
             virtual float GetFloat(const std::string& key) const;
 
             /**
-            * Sets the Float value in the Object
-            */
+             * @fn  virtual void Value::SetFloat(const std::string& key, float value);
+             *
+             * @brief   Sets the Float value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
             virtual void SetFloat(const std::string& key, float value);
 
             /**
-            * Checks if the value stored is a String
-            */
-            virtual bool IsString() const;
+             * @fn  virtual bool Value::IsString() const;
+             *
+             * @brief   Checks if the value stored is a String.
+             *
+             * @return  True if string, false if not.
+             */
+			virtual bool IsString() const;
 
             /**
-            * Checks if the value stored is a String
-            */
+             * @fn  virtual bool Value::IsString(const int index) const;
+             *
+             * @brief   Checks if the value stored is a String.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if string, false if not.
+             */
             virtual bool IsString(const int index) const;
 
             /**
-            * Checks if the value stored is a String
-            */
+             * @fn  virtual bool Value::IsString(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is a String.
+             *
+             * @param   key The key.
+             *
+             * @return  True if string, false if not.
+             */
             virtual bool IsString(const std::string& key) const;
 
             /**
-            * Returns the String value stored
-            */
-            virtual const std::string GetString() const;
-            
+             * @fn  virtual const std::string Value::GetString() const;
+             *
+             * @brief   Returns the String value stored.
+             *
+             * @return  The string.
+             */
+			virtual const std::string GetString() const;
+
             /**
-            * Returns the String value stored
-            */
+             * @fn  virtual const std::string Value::GetString(const int index) const;
+             *
+             * @brief   Returns the String value stored.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The string.
+             */
             virtual const std::string GetString(const int index) const;
 
             /**
-            * Returns the String value stored
-            */
+             * @fn  virtual const std::string Value::GetString(const std::string& key) const;
+             *
+             * @brief   Returns the String value stored.
+             *
+             * @param   key The key.
+             *
+             * @return  The string.
+             */
             virtual const std::string GetString(const std::string& key) const;
 
             /**
-            * Sets the String value in the Object
-            */
+             * @fn  virtual void Value::SetString(const std::string& key, const std::string& value);
+             *
+             * @brief   Sets the String value in the Object.
+             *
+             * @param   key     The key.
+             * @param   value   The value.
+             */
             virtual void SetString(const std::string& key, const std::string& value);
 
             /**
-            * Checks if the value stored is an Array
-            */
-            virtual bool IsArray() const;
+             * @fn  virtual bool Value::IsArray() const;
+             *
+             * @brief   Checks if the value stored is an Array.
+             *
+             * @return  True if array, false if not.
+             */
+			virtual bool IsArray() const;
 
             /**
-            * Checks if the value stored is an Array
-            */
+             * @fn  virtual bool Value::IsArray(const int index) const;
+             *
+             * @brief   Checks if the value stored is an Array.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if array, false if not.
+             */
             virtual bool IsArray(const int index) const;
 
             /**
-            * Checks if the value stored is an Array
-            */
+             * @fn  virtual bool Value::IsArray(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is an Array.
+             *
+             * @param   key The key.
+             *
+             * @return  True if array, false if not.
+             */
             virtual bool IsArray(const std::string& key) const;
 
             /**
-            * Returns the Array value stored
-            */
+             * @fn  virtual const Array Value::GetArray() const;
+             *
+             * @brief   Returns the Array value stored.
+             *
+             * @return  The array.
+             */
             virtual const Array GetArray() const;
 
             /**
-            * Returns the Array value stored
-            */
+             * @fn  virtual const Array Value::GetArray(const int index) const;
+             *
+             * @brief   Returns the Array value stored.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The array.
+             */
             virtual const Array GetArray(const int index) const;
 
             /**
-            * Returns the Array value stored
-            */
+             * @fn  virtual const Array Value::GetArray(const std::string& key) const;
+             *
+             * @brief   Returns the Array value stored.
+             *
+             * @param   key The key.
+             *
+             * @return  The array.
+             */
             virtual const Array GetArray(const std::string& key) const;
 
             /**
-            * Sets the Array value in the Object
-            */
+             * @fn  virtual void Value::SetArray(const std::string& key, Array& value);
+             *
+             * @brief   Sets the Array value in the Object.
+             *
+             * @param           key     The key.
+             * @param [in,out]  value   The value.
+             */
             virtual void SetArray(const std::string& key, Array& value);
 
             /**
-            * Checks if the value stored is an Object
-            */
-            virtual bool IsObject() const;
+             * @fn  virtual bool Value::IsObject() const;
+             *
+             * @brief   Checks if the value stored is an Object.
+             *
+             * @return  True if object, false if not.
+             */
+			virtual bool IsObject() const;
 
             /**
-            * Checks if the value stored is an Object
-            */
+             * @fn  virtual bool Value::IsObject(const int index) const;
+             *
+             * @brief   Checks if the value stored is an Object.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  True if object, false if not.
+             */
             virtual bool IsObject(const int index) const;
 
             /**
-            * Checks if the value stored is an Object
-            */
+             * @fn  virtual bool Value::IsObject(const std::string& key) const;
+             *
+             * @brief   Checks if the value stored is an Object.
+             *
+             * @param   key The key.
+             *
+             * @return  True if object, false if not.
+             */
             virtual bool IsObject(const std::string& key) const;
 
             /**
-            * Returns the Object value stored
-            */
+             * @fn  virtual const Object Value::GetObject() const;
+             *
+             * @brief   Returns the Object value stored.
+             *
+             * @return  The object.
+             */
             virtual const Object GetObject() const;
 
             /**
-            * Returns the Object value stored
-            */
+             * @fn  virtual const Object Value::GetObject(const int index) const;
+             *
+             * @brief   Returns the Object value stored.
+             *
+             * @param   index   Zero-based index of the values position.
+             *
+             * @return  The object.
+             */
             virtual const Object GetObject(const int index) const;
 
             /**
-            * Returns the Object value stored
-            */
+             * @fn  virtual const Object Value::GetObject(const std::string& key) const;
+             *
+             * @brief   Returns the Object value stored.
+             *
+             * @param   key The key.
+             *
+             * @return  The object.
+             */
             virtual const Object GetObject(const std::string& key) const;
 
             /**
-            * Sets the Object value in the Object
-            */
+             * @fn  virtual void Value::SetObject(const std::string& key, Object& value);
+             *
+             * @brief   Sets the Object value in the Object.
+             *
+             * @param           key     The key.
+             * @param [in,out]  value   The value.
+             */
             virtual void SetObject(const std::string& key, Object& value);
 
             /**
-            * Converts JSON::ValueType to Json::ValueType
-            */
+             * @fn  Json::ValueType Value::ToValueType(ValueType val);
+             *
+             * @brief   Converts JSON::ValueType to Json::ValueType.
+             *
+             * @param   val The value.
+             *
+             * @return  Val as a Json::ValueType.
+             */
             Json::ValueType ToValueType(ValueType val);
 
             /**
-            * Converts Json::ValueType to JSON::ValueType
-            */
+             * @fn  ValueType Value::ToValueType(Json::ValueType val);
+             *
+             * @brief   Converts Json::ValueType to JSON::ValueType.
+             *
+             * @param   val The value.
+             *
+             * @return  Val as a ValueType.
+             */
             ValueType ToValueType(Json::ValueType val);
 
             /**
-            * Implicit conversion operator to Json::Value
-            */
-            operator Json::Value() const;
+             * @fn  operator Json::Value() const;
+             *
+             * @brief   Implicit conversion operator to Json::Value.
+             *
+             * @return  The result of the operation.
+             */
+			operator Json::Value() const;
 
             /**
-            * Implicit conversion operator to Json::Value
-            */
-            operator Json::Value& ();
+             * @fn  operator Json::Value& ();
+             *
+             * @brief   Implicit conversion operator to Json::Value.
+             *
+             * @return  The result of the operation.
+             */
+			operator Json::Value& ();
 
             /**
-            * Implicit conversion operator to Json::Value
-            */
-            operator const Json::Value& () const;
+             * @fn  operator const Json::Value& () const;
+             *
+             * @brief   Implicit conversion operator to Json::Value.
+             *
+             * @return  A const.
+             */
+			operator const Json::Value& () const;
 
             /**
-            * Implicit conversion operator to Json::Value
-            */
-            operator Json::Value* ();
+             * @fn  operator Json::Value* ();
+             *
+             * @brief   Implicit conversion operator to Json::Value.
+             *
+             * @return  The result of the operation.
+             */
+			operator Json::Value* ();
 
             ///// Access an array element (zero based index ).
             ///// If the array contains less than index element, then null value are
@@ -718,22 +1320,38 @@ namespace trUtil
             ///// \param key may contain embedded nulls.
             //Value operator[](const std::string& key);
 
-            ///// Access an object value by name, returns null if there is no member with
-            ///// that name.
-            ///// \param key may contain embedded nulls.
-            //const Value operator[](const std::string& key) const;
-
-            Value& operator=(Value other);
+            /**
+             * @fn  Value& Value::operator=(Value other);
+             *
+             * @brief   // Access an object value by name, returns null if there is no member with // that
+             *          name. //\param key may contain embedded nulls. //const Value operator[](const
+             *          std::string&amp; key)
+             *          const;
+             *
+             * @param   other   The other.
+             *
+             * @return  A shallow copy of this object.
+             */
+			Value& operator=(Value other);
 
         protected:
 
+            /** @brief   True to clear internal value. */
             bool clearInternalVal = true;
+            /** @brief   The value pointer. */
             Json::Value* mValuePtr = nullptr;
         };
 
         /**
-        * OStream operator
-        */
-        TR_UTIL_EXPORT std::ostream& operator<<(std::ostream&, const Value& root);
-    }
+         * @fn  TR_UTIL_EXPORT std::ostream& operator<<(std::ostream&, const Value& root);
+         *
+         * @brief   OStream operator.
+         *
+         * @param [in,out]  parameter1  The first parameter.
+         * @param           root        The root.
+         *
+         * @return  The shifted result.
+         */
+		TR_UTIL_EXPORT std::ostream& operator<<(std::ostream&, const Value& root);
+	}
 }
