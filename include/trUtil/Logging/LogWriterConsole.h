@@ -30,22 +30,54 @@
 
 #include <trUtil/Logging/LogWriter.h>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   Logging
+ *
+ * @brief   .
+ */
     namespace Logging
     {
-        /** Specialized LogWriter used to display Log messages in the console
-        * window.
-        * @see Log::AddObserver()
-        */
+        /**
+         * @class   LogWriterConsole
+         *
+         * @brief   Specialized LogWriter used to display Log messages in the console window.
+         *
+         * @sa  Log::AddObserver()
+         */
         class TR_UTIL_EXPORT LogWriterConsole : public Logging::LogWriter
         {
         public:
+
+            /**
+             * @fn  LogWriterConsole::LogWriterConsole();
+             *
+             * @brief   Default constructor.
+             */
             LogWriterConsole();
 
+            /**
+             * @fn  virtual void LogWriterConsole::LogMessage(const LogData& logData);
+             *
+             * @brief   Logs a message.
+             *
+             * @param   logData Information describing the log.
+             */
             virtual void LogMessage(const LogData& logData);
 
         protected:
+
+            /**
+             * @fn  virtual LogWriterConsole::~LogWriterConsole();
+             *
+             * @brief   Destructor.
+             */
             virtual ~LogWriterConsole();
         };
     }    
