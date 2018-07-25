@@ -33,40 +33,88 @@
 #include <fstream>
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   Logging
+ *
+ * @brief   .
+ */
     namespace Logging
     {
         /**
-        * A specialized LogWriter class that outputs Log messages to a file
-        */
+         * @class   LogWriterFile
+         *
+         * @brief   A specialized LogWriter class that outputs Log messages to a file.
+         */
         class TR_UTIL_EXPORT LogWriterFile : public Logging::LogWriter
         {
         public:
+
             /**
-            * The folder path that is appended to the User Data folder (PathUtil::GetUserTCDataFolder())
-            */
+             * @brief   The folder path that is appended to the User Data folder
+             *          (PathUtil::GetUserTCDataFolder())
+             */
             const static std::string DEFAULT_LOG_FOLDER;
 
+            /**
+             * @fn  LogWriterFile::LogWriterFile();
+             *
+             * @brief   Default constructor.
+             */
             LogWriterFile();
 
+            /**
+             * @fn  void LogWriterFile::OpenFile();
+             *
+             * @brief   Opens the file.
+             */
             void OpenFile();
 
+            /**
+             * @fn  virtual void LogWriterFile::LogMessage(const LogData& logData);
+             *
+             * @brief   Logs a message.
+             *
+             * @param   logData Information describing the log.
+             */
             virtual void LogMessage(const LogData& logData);
 
+            /**
+             * @fn  void LogWriterFile::LogHorizRule();
+             *
+             * @brief   Logs horiz rule.
+             */
             void LogHorizRule();
 
             /**
-            * Returns true if opening a file failed
-            */
+             * @fn  bool LogWriterFile::IsOpenFailed();
+             *
+             * @brief   Returns true if opening a file failed.
+             *
+             * @return  True if open failed, false if not.
+             */
             bool IsOpenFailed();
 
             /**
-            * A utility function to reset the OpenFailed flag after a file failure 
-            */
+             * @fn  void LogWriterFile::ResetOpenFail();
+             *
+             * @brief   A utility function to reset the OpenFailed flag after a file failure.
+             */
             void ResetOpenFail();
 
         protected:
+
+            /**
+             * @fn  virtual LogWriterFile::~LogWriterFile();
+             *
+             * @brief   Destructor.
+             */
             virtual ~LogWriterFile();
 
         private:
