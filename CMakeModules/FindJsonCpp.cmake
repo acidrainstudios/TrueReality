@@ -34,14 +34,14 @@ SET(DEPENDENCY "JsonCpp")
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR json/json.h    
     HINTS
+    $ENV{JSON_INC}
+    $ENV{JSON_ROOT}/include
+    $ENV{JSON_ROOT}
     $ENV{TR_INC}
     $ENV{TR_ROOT}/Ext/include
     $ENV{TR_ROOT}/Ext
     $ENV{TR_ROOT}/include
     $ENV{TR_ROOT}
-    $ENV{JSON_INC}
-    $ENV{JSON_ROOT}/include
-    $ENV{JSON_ROOT}
     PATHS
     /usr/include
     /usr/local/include
@@ -55,17 +55,17 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
     FIND_LIBRARY (${MYLIBRARY}
         NAMES ${MYLIBRARYNAME}
         HINTS
-        $ENV{TR_ROOT}/Ext/lib64
-        $ENV{TR_ROOT}/Ext/lib
-        $ENV{TR_ROOT}/Ext
-        $ENV{TR_LIB}
-        $ENV{TR_ROOT}/lib64
-        $ENV{TR_ROOT}/lib
-        $ENV{TR_ROOT}
         $ENV{JSON_LIB}
         $ENV{JSON_ROOT}/lib64
         $ENV{JSON_ROOT}/lib
         $ENV{JSON_ROOT}
+        $ENV{TR_LIB}
+        $ENV{TR_ROOT}/Ext/lib64
+        $ENV{TR_ROOT}/Ext/lib
+        $ENV{TR_ROOT}/Ext
+        $ENV{TR_ROOT}/lib64
+        $ENV{TR_ROOT}/lib
+        $ENV{TR_ROOT}
         PATHS
         /usr/lib64
         /usr/lib
@@ -75,19 +75,19 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         /Library/Frameworks
     )
     MARK_AS_ADVANCED (${MYLIBRARY})
-ENDMACRO(FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
+ENDMACRO ()
 
 IF (TR_BUILD_WITH_RELEASE)
     # Locates all JSON_CPP release libraries
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY jsoncpp)
-ENDIF (TR_BUILD_WITH_RELEASE)
+ENDIF ()
 
 IF (TR_BUILD_WITH_DEBUG)
     # Locates all JSON_CPP debug libraries
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_DEBUG jsoncppd)
-ENDIF (TR_BUILD_WITH_DEBUG)
+ENDIF ()
 
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_INCLUDE_DIR)
     SET (${DEPENDENCY}_FOUND "YES")
-ENDIF (${DEPENDENCY}_INCLUDE_DIR)
+ENDIF ()
