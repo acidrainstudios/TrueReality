@@ -24,5 +24,16 @@
 
 namespace trVR
 {
-    //Left Empty for reporting tools
+    const trUtil::RefStr VrBase::CLASS_TYPE = trUtil::RefStr("trVR::VrBase");
+    
+    //////////////////////////////////////////////////////////////////////////
+    VrBase::VrBase(const std::string name) : BaseClass(name)
+    {
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    const std::string& VrBase::GetType() const
+    {
+        return CLASS_TYPE;
+    }
 }

@@ -24,16 +24,52 @@
 
 #include <trVR/Export.h>
 
+#include <trBase/Base.h>
+
 namespace trVR
 {
-    class TR_VR_EXPORT VrBase
+    class TR_VR_EXPORT VrBase : public trBase::Base
     {
     public:
-        VrBase() = default;
+        using BaseClass = trBase::Base;             /// Adds an easy and swappable access to the base class
+        
+        const static trUtil::RefStr CLASS_TYPE;   /// Holds the class type name for efficient comparisons
+        
+        /**
+         * @fn VrBase::VrBase()
+         * 
+         * @brief   ctor
+         * @param   name    The name of the class type.
+         */
+        VrBase(const std::string name = CLASS_TYPE);
 
+        /**
+         * @fn VrBase::VrBase(const VrBase& orig)
+         * 
+         * @brief   Deleted copy constructor as this is not needed.
+         * 
+         * @param   orig    Original object to be copied
+         */
         VrBase(const VrBase& orig) = delete;
+        
+        /** 
+         * @brief   Deleted as this is not needed.
+         * @param   orig    Original object to be copied
+         * @return 
+         */
         VrBase& operator=(const VrBase& orig) = delete;
+        
+        /**
+         * Returns the class type
+         */
+        virtual const std::string& GetType() const override;
+
     protected:
+        /**
+         * @fn VrBase::~VrBase()
+         * 
+         * @brief   dtor
+         */
         virtual ~VrBase() = default;
     private:
     };
