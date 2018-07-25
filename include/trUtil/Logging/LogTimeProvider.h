@@ -31,27 +31,69 @@
 
 #include <osg/Referenced>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   Logging
+ *
+ * @brief   .
+ */
     namespace Logging
     {
-        /** Interface class get the time for the logger.
-        *  There is probably no need to override this yourself.
-        *  It is provided as a means for other parts of the system to provide the time.
-        *
-        *  @note  The Log time provided does not extend osg::Referenced so that it can be used
-        *         easily as an interface on other referenced classes, but the log code assumes that a
-        *         dynamic_cast to reference will succeed.
-        *
-        *  @see  AsReferenced
-        */
+        /**
+         * @class   LogTimeProvider
+         *
+         * @brief   Interface class get the time for the logger.
+         *           There is probably no need to override this yourself. It is provided as a means for
+         *           other parts of the system to provide the time.
+         *          
+         *           @note  The Log time provided does not extend osg::Referenced so that it can be used
+         *                  easily as an interface on other referenced classes, but the log code assumes
+         *                  that a dynamic_cast to reference will succeed.
+         *
+         * @sa  AsReferenced
+         */
         class TR_UTIL_EXPORT LogTimeProvider
         {
         public:
+
+            /**
+             * @fn  virtual LogTimeProvider::~LogTimeProvider()
+             *
+             * @brief   Destructor.
+             */
             virtual ~LogTimeProvider() {}
 
+            /**
+             * @fn  virtual const trUtil::DateTime& LogTimeProvider::GetDateTime() = 0;
+             *
+             * @brief   Gets date time.
+             *
+             * @return  The date time.
+             */
             virtual const trUtil::DateTime& GetDateTime() = 0;
+
+            /**
+             * @fn  virtual unsigned LogTimeProvider::GetFrameNumber() = 0;
+             *
+             * @brief   Gets frame number.
+             *
+             * @return  The frame number.
+             */
             virtual unsigned GetFrameNumber() = 0;
+
+            /**
+             * @fn  virtual osg::Referenced* LogTimeProvider::AsReferenced() = 0;
+             *
+             * @brief   Converts this object to a referenced.
+             *
+             * @return  Null if it fails, else a pointer to an osg::Referenced.
+             */
             virtual osg::Referenced* AsReferenced() = 0;
         };
     }
