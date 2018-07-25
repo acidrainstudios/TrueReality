@@ -31,7 +31,7 @@
 # GoogleTest_FOUND - Defined if the dependency is found **************************
 # ********************************************************************************
 
-SET(DEPENDENCY "GoogleTest")
+SET (DEPENDENCY "GoogleTest")
 
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR gtest/gtest.h    
