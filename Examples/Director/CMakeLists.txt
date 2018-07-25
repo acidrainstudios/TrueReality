@@ -39,7 +39,7 @@ IF (TR_BUILD_WITH_RELEASE)
 		optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY}
 	)
-ENDIF (TR_BUILD_WITH_RELEASE)
+ENDIF ()
 IF (TR_BUILD_WITH_DEBUG)
 	SET (EXTERNAL_LIBS
 		${EXTERNAL_LIBS}
@@ -47,7 +47,7 @@ IF (TR_BUILD_WITH_DEBUG)
 		debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
 	)
-ENDIF (TR_BUILD_WITH_DEBUG)
+ENDIF ()
 
 # Sets the headers file directory in IDEs
 SET (HEADERS_GROUP "Header Files")
