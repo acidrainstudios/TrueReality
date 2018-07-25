@@ -20,81 +20,80 @@
 # *****************************************************************************
 # Adds subfolders in the True Reality build folder ****************************
 # *****************************************************************************
-MACRO (ADD_TR_SUBFOLDERS)
-    
+MACRO (ADD_TR_SUBFOLDERS)    
 # Optional dependencies
     MESSAGE (STATUS "Creating Selected Source Folders")
 	IF (TR_UTIL)
 		ADD_SUBDIRECTORY (src/trUtil)
         SET (TR_UTIL_AVAILABLE "YES")
-    ENDIF (TR_UTIL)
+    ENDIF ()
 
     IF (TR_BASE)
 		ADD_SUBDIRECTORY (src/trBase)
         SET (TR_BASE_AVAILABLE "YES")
-    ENDIF (TR_BASE)
+    ENDIF ()
     
     IF (TR_MANAGER)
 		ADD_SUBDIRECTORY (src/trManager)
         SET (TR_MANAGER_AVAILABLE "YES")
-    ENDIF (TR_MANAGER)
+    ENDIF ()
     
     IF (TR_CORE)
 		ADD_SUBDIRECTORY (src/trCore)
         SET (TR_CORE_AVAILABLE "YES")
-    ENDIF (TR_CORE)
+    ENDIF ()
     
     IF (TR_APP)
 		ADD_SUBDIRECTORY (src/trApp)
         SET (TR_APP_AVAILABLE "YES")
-    ENDIF (TR_APP)
+    ENDIF ()
 
     IF (TR_START)
 		ADD_SUBDIRECTORY (src/trStart)
         SET (TR_START_AVAILABLE "YES")
-    ENDIF (TR_START)
+    ENDIF ()
 
 # Utilities folders
     MESSAGE (STATUS "Creating Selected Utility Folders")
     IF (TR_VERSION)
         ADD_SUBDIRECTORY (src/trVersion)
         SET (TR_VERSION_AVAILABLE "YES")
-    ENDIF (TR_VERSION)
+    ENDIF ()
 
 # Examples folders
     MESSAGE (STATUS "Creating Selected Example Folders")
     IF (EXAMPLES_LOGGING)
         ADD_SUBDIRECTORY (Examples/Logging)
         SET (EXAMPLES_LOGGING_AVAILABLE "YES")
-    ENDIF (EXAMPLES_LOGGING)
+    ENDIF ()
 
     IF (EXAMPLES_JSON)
         ADD_SUBDIRECTORY (Examples/Json)
         SET (EXAMPLES_JSON_AVAILABLE "YES")
-    ENDIF (EXAMPLES_JSON)
+    ENDIF ()
     
     IF (EXAMPLES_DIRECTOR)
         ADD_SUBDIRECTORY (Examples/Director)
         SET (EXAMPLES_DIRECTOR_AVAILABLE "YES")
-    ENDIF (EXAMPLES_DIRECTOR)
+    ENDIF ()
     
     IF (EXAMPLES_ACTORS)
         ADD_SUBDIRECTORY (Examples/Actors)
         SET (EXAMPLES_ACTORS_AVAILABLE "YES")
-    ENDIF (EXAMPLES_ACTORS)
+    ENDIF ()
     
     IF (EXAMPLES_ACTOR_MODULES)
         ADD_SUBDIRECTORY (Examples/ActorModules)
         SET (EXAMPLES_ACTOR_MODULES_AVAILABLE "YES")
-    ENDIF (EXAMPLES_ACTOR_MODULES)
+    ENDIF ()
     
  # Unit Test Folders
     MESSAGE (STATUS "Creating Selected Tests Folders")
     IF (TESTS_TR_MANAGER)
         ADD_SUBDIRECTORY (Tests/TrManager)
         SET (TESTS_TR_MANAGER_AVAILABLE "YES")
-    ENDIF (TESTS_TR_MANAGER)
-ENDMACRO (ADD_TR_SUBFOLDERS)
+    ENDIF ()
+ENDMACRO ()
 
 # *****************************************************************************
 # Attempts to find a specified dependency *************************************
@@ -105,10 +104,10 @@ MACRO (TR_DETECT_DEPENDENCY arg)
     IF (${arg}_FOUND)
         MESSAGE (STATUS "Found ${arg}!")
         INCLUDE_DIRECTORIES(${${arg}_INCLUDE_DIR})
-    ELSE (${arg}_FOUND)
+    ELSE ()
         MESSAGE ("${arg} not found!")
-    ENDIF (${arg}_FOUND)
-ENDMACRO (TR_DETECT_DEPENDENCY arg)
+    ENDIF ()
+ENDMACRO ()
 
 # *****************************************************************************
 # Configures the given projects build options *********************************
@@ -138,34 +137,33 @@ MACRO (TR_TARGET_OPTIONS arg)
             $<$<CONFIG:RelWithDebInfo>: -g -O3 -DNDEBUG>
 			$<$<CONFIG:Release>: -O3 -DNDEBUG>
         )
-    ENDIF (MSVC_IDE)
-ENDMACRO (TR_TARGET_OPTIONS arg)
+    ENDIF ()
+ENDMACRO ()
 
 # *****************************************************************************
 # Reads the installed GCC version *********************************************
 # *****************************************************************************
-MACRO(READ_GCC_VERSION)
+MACRO (READ_GCC_VERSION)
     IF (CMAKE_COMPILER_IS_GNUCC)
-        EXECUTE_PROCESS(COMMAND ${CMAKE_C_COMPILER} -dumpversion
-			OUTPUT_VARIABLE GCC_VERSION)
+        EXECUTE_PROCESS(COMMAND ${CMAKE_C_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
 		STRING(REGEX MATCHALL "[0-9]+" GCC_VERSION_COMPONENTS ${GCC_VERSION})
 	    LIST(GET GCC_VERSION_COMPONENTS 0 GCC_MAJOR)
 		LIST(GET GCC_VERSION_COMPONENTS 1 GCC_MINOR)
-	ENDIF()
-ENDMACRO(READ_GCC_VERSION)
+	ENDIF ()
+ENDMACRO ()
 
 # *****************************************************************************
 # Checks if the version we are looking for is the one we found. ***************
 # *****************************************************************************
-MACRO(CHECK_VERSION packName packVer verToFind)
+MACRO (CHECK_VERSION packName packVer verToFind)
     IF("${packVer}" VERSION_LESS "${verToFind}")
         MESSAGE(SEND_ERROR "Found version is too old!         
         Required: v${verToFind}         Found: v${packVer}
         ")
-    ELSE()
+    ELSE ()
         MESSAGE(STATUS "${packName} Version: ${packVer}")
-    ENDIF()
-ENDMACRO(CHECK_VERSION packName packVer verToFind)
+    ENDIF ()
+ENDMACRO ()
 
 # *****************************************************************************
 # Adds a post build process to create a Google Test info file *****************
@@ -177,5 +175,5 @@ MACRO (SET_GOOGLE_TEST_OPTIONS projectName)
 		POST_BUILD
 		COMMAND echo "This is used for Google Test Adapter in MS Visual Studio" > $<TARGET_FILE:${projectName}>".is_google_test"
 		)
-    ENDIF (MSVC_IDE)
-ENDMACRO (SET_GOOGLE_TEST_OPTIONS target)
+    ENDIF ()
+ENDMACRO ()
