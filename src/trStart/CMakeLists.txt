@@ -15,14 +15,14 @@
 # along with this library; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Author: Maxim Serebrennik
+# @author Maxim Serebrennik
 
 # Set the executable name
-SET(FILE_NAME trStart)
+SET (FILE_NAME trStart)
 
 # Set the source and include paths
-SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
-SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
+SET (HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
+SET (SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
 FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
@@ -51,9 +51,15 @@ IF (TR_BUILD_WITH_DEBUG)
     )
 ENDIF ()
 
+# *****************************************************************************
+# Project Folder Setup ********************************************************
+# *****************************************************************************
 # Sets the headers file directory in IDEs
 SET (HEADERS_GROUP "Header Files")
 SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS} ${BASE_GEN_HEADERS})
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
 
 # Generates the executable for the project from sources
 ADD_EXECUTABLE (${FILE_NAME} ${PROJECT_HEADERS} ${PROJECT_SOURCES})
