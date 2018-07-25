@@ -35,20 +35,20 @@ SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS}")
 # Sets the libraries
 SET (EXTERNAL_LIBS)
 IF (TR_BUILD_WITH_RELEASE)
-	SET (EXTERNAL_LIBS
-		${EXTERNAL_LIBS}
-		optimized ${OpenThreads_LIBRARY}
-		optimized ${OSG_LIBRARY} 
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        optimized ${OpenThreads_LIBRARY}
+        optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
-	)
+    )
 ENDIF ()
 IF (TR_BUILD_WITH_DEBUG)
-	SET (EXTERNAL_LIBS
-		${EXTERNAL_LIBS}
-		debug ${OpenThreads_LIBRARY_DEBUG}
-		debug ${OSG_LIBRARY_DEBUG}
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        debug ${OpenThreads_LIBRARY_DEBUG}
+        debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
-	)
+    )
 ENDIF ()
 
 # Sets the headers file directory in IDEs

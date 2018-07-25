@@ -41,23 +41,23 @@ namespace trUtil
  *
  * @brief   .
  */
-	namespace JSON
-	{
+    namespace JSON
+    {
         /**
          * @class   Array
          *
          * @brief   An array.
          */
-		class TR_UTIL_EXPORT Array : ArrayBase
-		{
-		public:
+        class TR_UTIL_EXPORT Array : ArrayBase
+        {
+        public:
 
             /**
              * @fn  Array::Array();
              *
              * @brief   ctor.
              */
-			Array();
+            Array();
 
             /**
              * @fn  Array::Array(const Value &Array);
@@ -66,14 +66,14 @@ namespace trUtil
              *
              * @param   Array   The array.
              */
-			Array(const Value &Array);
+            Array(const Value &Array);
 
             /**
              * @fn  Array::~Array();
              *
              * @brief   dtor.
              */
-			~Array();
+            ~Array();
 
             /**
              * @fn  Value Array::operator[](int index);
@@ -85,7 +85,7 @@ namespace trUtil
              *
              * @return  The indexed value.
              */
-			Value operator[](int index);
+            Value operator[](int index);
 
             /*
             * Adds a comment to the internal value
@@ -125,7 +125,7 @@ namespace trUtil
              *
              * @return  An int.
              */
-			int Size();
+            int Size();
 
             /**
              * @fn  void Array::Resize(int newSize);
@@ -134,14 +134,14 @@ namespace trUtil
              *
              * @param   newSize Size of the new.
              */
-			void Resize(int newSize);
+            void Resize(int newSize);
 
             /**
              * @fn  void Array::Clear() override;
              *
              * @brief   Clears the internal JSON Root node.
              */
-			void Clear() override;
+            void Clear() override;
 
             /**
              * @fn  bool Array::RemoveIndex(int index, Value *removedVal);
@@ -154,7 +154,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			bool RemoveIndex(int index, Value *removedVal);
+            bool RemoveIndex(int index, Value *removedVal);
 
             /**
              * @fn  virtual Value& Array::GetJSONRoot() override;
@@ -163,14 +163,14 @@ namespace trUtil
              *
              * @return  The JSON root.
              */
-			virtual Value& GetJSONRoot() override;
+            virtual Value& GetJSONRoot() override;
 
             /**
              * @fn  virtual void Array::PrintJSONRoot() override;
              *
              * @brief   Prints out to the screen the whole JSON Root content.
              */
-			virtual void PrintJSONRoot() override;
+            virtual void PrintJSONRoot() override;
 
             /**
              * @fn  virtual bool Array::IsNull(int &index) const override;
@@ -181,14 +181,14 @@ namespace trUtil
              *
              * @return  True if null, false if not.
              */
-			virtual bool IsNull(int &index) const override;
+            virtual bool IsNull(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddNull() override;
              *
              * @brief   Add a NULL Value to the Array.
              */
-			virtual void AddNull() override;
+            virtual void AddNull() override;
 
             /**
              * @fn  virtual bool Array::IsBool(int &index) const override;
@@ -199,7 +199,7 @@ namespace trUtil
              *
              * @return  True if bool, false if not.
              */
-			virtual bool IsBool(int &index) const override;
+            virtual bool IsBool(int &index) const override;
 
             /**
              * @fn  virtual bool Array::GetBool(int &index) const override;
@@ -210,7 +210,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool GetBool(int &index) const override;
+            virtual bool GetBool(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddBool(const bool &value) override;
@@ -219,7 +219,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddBool(const bool &value) override;
+            virtual void AddBool(const bool &value) override;
 
             /**
              * @fn  virtual bool Array::IsTrue(int &index) const override;
@@ -230,7 +230,7 @@ namespace trUtil
              *
              * @return  True if true, false if not.
              */
-			virtual bool IsTrue(int &index) const override;
+            virtual bool IsTrue(int &index) const override;
 
             /**
              * @fn  virtual bool Array::IsFalse(int &index) const override;
@@ -241,7 +241,7 @@ namespace trUtil
              *
              * @return  True if false, false if not.
              */
-			virtual bool IsFalse(int &index) const override;
+            virtual bool IsFalse(int &index) const override;
 
             /**
              * @fn  virtual bool Array::IsNumber(int &index) const override;
@@ -252,7 +252,7 @@ namespace trUtil
              *
              * @return  True if number, false if not.
              */
-			virtual bool IsNumber(int &index) const override;
+            virtual bool IsNumber(int &index) const override;
 
             /**
              * @fn  virtual bool Array::IsInt(int &index) const override;
@@ -263,7 +263,7 @@ namespace trUtil
              *
              * @return  True if int, false if not.
              */
-			virtual bool IsInt(int &index) const override;
+            virtual bool IsInt(int &index) const override;
 
             /**
              * @fn  virtual int Array::GetInt(int &index) const override;
@@ -274,7 +274,7 @@ namespace trUtil
              *
              * @return  The int.
              */
-			virtual int GetInt(int &index) const override;
+            virtual int GetInt(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddInt(const int &value) override;
@@ -283,7 +283,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddInt(const int &value) override;
+            virtual void AddInt(const int &value) override;
 
             /**
              * @fn  virtual bool Array::IsDouble(int &index) const override;
@@ -294,7 +294,7 @@ namespace trUtil
              *
              * @return  True if double, false if not.
              */
-			virtual bool IsDouble(int &index) const override;
+            virtual bool IsDouble(int &index) const override;
 
             /**
              * @fn  virtual double Array::GetDouble(int &index) const override;
@@ -305,7 +305,7 @@ namespace trUtil
              *
              * @return  The double.
              */
-			virtual double GetDouble(int &index) const override;
+            virtual double GetDouble(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddDouble(const double &value) override;
@@ -314,7 +314,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddDouble(const double &value) override;
+            virtual void AddDouble(const double &value) override;
 
             /**
              * @fn  virtual bool Array::IsUInt(int &index) const override;
@@ -325,7 +325,7 @@ namespace trUtil
              *
              * @return  True if u int, false if not.
              */
-			virtual bool IsUInt(int &index) const override;
+            virtual bool IsUInt(int &index) const override;
 
             /**
              * @fn  virtual unsigned int Array::GetUInt(int &index) const override;
@@ -336,7 +336,7 @@ namespace trUtil
              *
              * @return  The u int.
              */
-			virtual unsigned int GetUInt(int &index) const override;
+            virtual unsigned int GetUInt(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddUInt(const unsigned int &value) override;
@@ -345,7 +345,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddUInt(const unsigned int &value) override;
+            virtual void AddUInt(const unsigned int &value) override;
 
             /**
              * @fn  virtual bool Array::IsInt64(int &index) const override;
@@ -356,7 +356,7 @@ namespace trUtil
              *
              * @return  True if int 64, false if not.
              */
-			virtual bool IsInt64(int &index) const override;
+            virtual bool IsInt64(int &index) const override;
 
             /**
              * @fn  virtual Int64 Array::GetInt64(int &index) const override;
@@ -367,7 +367,7 @@ namespace trUtil
              *
              * @return  The int 64.
              */
-			virtual Int64 GetInt64(int &index) const override;
+            virtual Int64 GetInt64(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddInt64(const Int64 &value) override;
@@ -376,7 +376,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddInt64(const Int64 &value) override;
+            virtual void AddInt64(const Int64 &value) override;
 
             /**
              * @fn  virtual bool Array::IsUInt64(int &index) const override;
@@ -387,7 +387,7 @@ namespace trUtil
              *
              * @return  True if u int 64, false if not.
              */
-			virtual bool IsUInt64(int &index) const override;
+            virtual bool IsUInt64(int &index) const override;
 
             /**
              * @fn  virtual UInt64 Array::GetUInt64(int &index) const override;
@@ -398,7 +398,7 @@ namespace trUtil
              *
              * @return  The u int 64.
              */
-			virtual UInt64 GetUInt64(int &index) const override;
+            virtual UInt64 GetUInt64(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddUInt64(const UInt64 &value) override;
@@ -407,7 +407,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddUInt64(const UInt64 &value) override;
+            virtual void AddUInt64(const UInt64 &value) override;
 
             /**
              * @fn  virtual bool Array::IsFloat(int &index) const override;
@@ -418,7 +418,7 @@ namespace trUtil
              *
              * @return  True if float, false if not.
              */
-			virtual bool IsFloat(int &index) const override;
+            virtual bool IsFloat(int &index) const override;
 
             /**
              * @fn  virtual float Array::GetFloat(int &index) const override;
@@ -429,7 +429,7 @@ namespace trUtil
              *
              * @return  The float.
              */
-			virtual float GetFloat(int &index) const override;
+            virtual float GetFloat(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddFloat(const float &value) override;
@@ -438,7 +438,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddFloat(const float &value) override;
+            virtual void AddFloat(const float &value) override;
 
             /**
              * @fn  virtual bool Array::IsString(int &index) const override;
@@ -449,7 +449,7 @@ namespace trUtil
              *
              * @return  True if string, false if not.
              */
-			virtual bool IsString(int &index) const override;
+            virtual bool IsString(int &index) const override;
 
             /**
              * @fn  virtual const std::string Array::GetString(int &index) const override;
@@ -460,7 +460,7 @@ namespace trUtil
              *
              * @return  The string.
              */
-			virtual const std::string GetString(int &index) const override;
+            virtual const std::string GetString(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddString(const std::string &value) override;
@@ -469,7 +469,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			virtual void AddString(const std::string &value) override;
+            virtual void AddString(const std::string &value) override;
 
             /**
              * @fn  virtual bool Array::IsArray(int &index) const override;
@@ -480,7 +480,7 @@ namespace trUtil
              *
              * @return  True if array, false if not.
              */
-			virtual bool IsArray(int &index) const override;
+            virtual bool IsArray(int &index) const override;
 
             /**
              * @fn  virtual Array Array::GetArray(int &index) const override;
@@ -491,7 +491,7 @@ namespace trUtil
              *
              * @return  The array.
              */
-			virtual Array GetArray(int &index) const override;
+            virtual Array GetArray(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddArray(Array &Array) override;
@@ -500,7 +500,7 @@ namespace trUtil
              *
              * @param [in,out]  Array   The array.
              */
-			virtual void AddArray(Array &Array) override;
+            virtual void AddArray(Array &Array) override;
 
             /**
              * @fn  virtual bool Array::IsObject(int &index) const override;
@@ -511,7 +511,7 @@ namespace trUtil
              *
              * @return  True if object, false if not.
              */
-			virtual bool IsObject(int &index) const override;
+            virtual bool IsObject(int &index) const override;
 
             /**
              * @fn  virtual Object Array::GetObject(int &index) const override;
@@ -522,7 +522,7 @@ namespace trUtil
              *
              * @return  The object.
              */
-			virtual Object GetObject(int &index) const override;
+            virtual Object GetObject(int &index) const override;
 
             /**
              * @fn  virtual void Array::AddObject(Object &Object) override;
@@ -531,11 +531,11 @@ namespace trUtil
              *
              * @param [in,out]  Object  The object.
              */
-			virtual void AddObject(Object &Object) override;
+            virtual void AddObject(Object &Object) override;
 
-		private:
-			/** @brief   The root. */
-			Value mRoot = Value(ValueType::ArrayValue);
-		};
-	}    
+        private:
+            /** @brief   The root. */
+            Value mRoot = Value(ValueType::ArrayValue);
+        };
+    }    
 }

@@ -34,9 +34,9 @@
 #include <iostream>
 
 /**
- * @class	DirectorTests
+ * @class    DirectorTests
  *
- * @brief	Sets up the unit test environment.
+ * @brief    Sets up the unit test environment.
  */
 class DirectorTests : public ::testing::Test
 {

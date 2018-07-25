@@ -63,13 +63,13 @@ namespace trUtil
         */
         const static std::string TR_DATA;
 
-		/**
-		* Environmental Variable that points to the User Data folder of the engine
-		* The Data folder should have the log files and general art and user content
-		* If this variable is not present the engine will search for the User Data Folder in Users Home
-		* and MyDocuments directories.
-		*/
-		const static std::string TR_USER_DATA;
+        /**
+        * Environmental Variable that points to the User Data folder of the engine
+        * The Data folder should have the log files and general art and user content
+        * If this variable is not present the engine will search for the User Data Folder in Users Home
+        * and MyDocuments directories.
+        */
+        const static std::string TR_USER_DATA;
 
         /**
         * Environmental Variable that should be upended to the PATH variable, to give the engine 

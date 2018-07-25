@@ -33,24 +33,24 @@ FILE (GLOB PROJECT_HEADERS "${HEADER_PATH}/*.h")
 # Sets the libraries
 SET (EXTERNAL_LIBS)
 IF (TR_BUILD_WITH_RELEASE)
-	SET (EXTERNAL_LIBS
-		${EXTERNAL_LIBS}
-		optimized ${OpenThreads_LIBRARY}
-		optimized ${OSG_LIBRARY} 
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        optimized ${OpenThreads_LIBRARY}
+        optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY}
-		optimized ${GoogleTest_LIBRARY}
-		optimized ${GoogleTest_LIBRARY_MAIN} 
-	)
+        optimized ${GoogleTest_LIBRARY}
+        optimized ${GoogleTest_LIBRARY_MAIN} 
+    )
 ENDIF ()
 IF (TR_BUILD_WITH_DEBUG)
-	SET (EXTERNAL_LIBS
-		${EXTERNAL_LIBS}
-		debug ${OpenThreads_LIBRARY_DEBUG}
-		debug ${OSG_LIBRARY_DEBUG}
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        debug ${OpenThreads_LIBRARY_DEBUG}
+        debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
-		debug ${GoogleTest_LIBRARY_DEBUG}
-		debug ${GoogleTest_LIBRARY_MAIN_DEBUG}
-	)
+        debug ${GoogleTest_LIBRARY_DEBUG}
+        debug ${GoogleTest_LIBRARY_MAIN_DEBUG}
+    )
 ENDIF ()
 
 # Sets the headers file directory in IDEs

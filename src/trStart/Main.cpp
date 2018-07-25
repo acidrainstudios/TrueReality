@@ -34,45 +34,45 @@
 
 int main(int argc, char** argv)
 {
-	////Set Log File Options (need to have this 2x...there is a bug)
-	//dtUtil::LogFile::SetFileName("VRSimLog.html");
+    ////Set Log File Options (need to have this 2x...there is a bug)
+    //dtUtil::LogFile::SetFileName("VRSimLog.html");
 
-	//dtUtil::LogFile::SetTitle("VR-Sim Lab Log File");
-	//
-	////Set the Maximum level of Log msg outputs
-	//#ifdef _DEBUG
-	//dtUtil::Log::GetInstance().SetAllLogLevels(dtUtil::Log::LOG_DEBUG);
-	//#else
-	//dtUtil::Log::GetInstance().SetAllLogLevels(dtUtil::Log::LOG_ERROR);
-	//#endif
-	//
-	//
-	//// Setup the aplicatin search paths...
-	//std::string dataPath = dtUtil::GetDeltaDataPathList();
-	//std::string deltaPath = dtUtil::GetDeltaRootPath();
+    //dtUtil::LogFile::SetTitle("VR-Sim Lab Log File");
+    //
+    ////Set the Maximum level of Log msg outputs
+    //#ifdef _DEBUG
+    //dtUtil::Log::GetInstance().SetAllLogLevels(dtUtil::Log::LOG_DEBUG);
+    //#else
+    //dtUtil::Log::GetInstance().SetAllLogLevels(dtUtil::Log::LOG_ERROR);
+    //#endif
+    //
+    //
+    //// Setup the aplicatin search paths...
+    //std::string dataPath = dtUtil::GetDeltaDataPathList();
+    //std::string deltaPath = dtUtil::GetDeltaRootPath();
 
-	//dtUtil::SetDataFilePathList(dataPath + ";" +
-	//							//dtCore::GetDeltaRootPath() + "/examples/data;" +
-	//							//dtCore::GetDeltaRootPath() + "/examples/data/gui/imagesets;" +
-	//							//dtCore::GetDeltaRootPath() + "/examples/data/gui/schemes;" +
-	//							//dtCore::GetDeltaRootPath() + "/examples/data/gui/fonts;" +
-	//							//dtCore::GetDeltaRootPath() + "/examples/data/gui/looknfeel;" +
-	//							deltaPath + "./;" +
-	//							deltaPath + "/Bin;" +
-	//							deltaPath + "/Bin/Data;" +
-	//							deltaPath + "/Bin/Content;" +
-	//							deltaPath + "/Bin/Content/Data;" +
-	//							deltaPath + "/Bin/Content/maps;" +
-	//							deltaPath + "/Bin/Content/Particles;" +
-	//							deltaPath + "/Bin/Content/Prefabs;" +
-	//							deltaPath + "/Bin/Content/StaticMeshes;" +
-	//							deltaPath + "/Bin/Content/Terrains;" +
-	//							deltaPath + "/Bin/Content/Textures");
+    //dtUtil::SetDataFilePathList(dataPath + ";" +
+    //                            //dtCore::GetDeltaRootPath() + "/examples/data;" +
+    //                            //dtCore::GetDeltaRootPath() + "/examples/data/gui/imagesets;" +
+    //                            //dtCore::GetDeltaRootPath() + "/examples/data/gui/schemes;" +
+    //                            //dtCore::GetDeltaRootPath() + "/examples/data/gui/fonts;" +
+    //                            //dtCore::GetDeltaRootPath() + "/examples/data/gui/looknfeel;" +
+    //                            deltaPath + "./;" +
+    //                            deltaPath + "/Bin;" +
+    //                            deltaPath + "/Bin/Data;" +
+    //                            deltaPath + "/Bin/Content;" +
+    //                            deltaPath + "/Bin/Content/Data;" +
+    //                            deltaPath + "/Bin/Content/maps;" +
+    //                            deltaPath + "/Bin/Content/Particles;" +
+    //                            deltaPath + "/Bin/Content/Prefabs;" +
+    //                            deltaPath + "/Bin/Content/StaticMeshes;" +
+    //                            deltaPath + "/Bin/Content/Terrains;" +
+    //                            deltaPath + "/Bin/Content/Textures");
 
-	//LOG_INFO("Path list is: " + dtUtil::GetDataFilePathList() );
+    //LOG_INFO("Path list is: " + dtUtil::GetDataFilePathList() );
 
-	////Set the Config File name
-	//std::string configFileName(deltaPath + "/Bin/config.xml");
+    ////Set the Config File name
+    //std::string configFileName(deltaPath + "/Bin/config.xml");
 
  //  ///////////////-----New-----/////////////
  //  /*
@@ -94,37 +94,37 @@ int main(int argc, char** argv)
 
  //  //wglSwapIntervalEXT(0); */
  //  ///////////////-----New-----/////////////
-	//try
-	//{
-	//	//Create our Window Controller
-	//	osg::ref_ptr<trUtil::WindowCtr> WinCtr = trUtil::WindowCtr::GetInstance();
+    //try
+    //{
+    //    //Create our Window Controller
+    //    osg::ref_ptr<trUtil::WindowCtr> WinCtr = trUtil::WindowCtr::GetInstance();
 
-	//	//Create our Application Class
-	//	osg::ref_ptr <dtGame::GameApplication> app = WinCtr->CreateApp(argc, argv, configFileName);
+    //    //Create our Application Class
+    //    osg::ref_ptr <dtGame::GameApplication> app = WinCtr->CreateApp(argc, argv, configFileName);
 
-	//	app->SetGameLibraryName("trCore");
-	//	app->Config();
-	//	app->Run();
-	//	app = nullptr;
+    //    app->SetGameLibraryName("trCore");
+    //    app->Config();
+    //    app->Run();
+    //    app = nullptr;
 
-	//	std::cerr << "\n\nVR-Sim Lab is now shutting down ... " << std::endl;
-	//}
-	//catch (const dtUtil::Exception& ex)
-	//{
-	//	ex.LogException(dtUtil::Log::LOG_ERROR);
+    //    std::cerr << "\n\nVR-Sim Lab is now shutting down ... " << std::endl;
+    //}
+    //catch (const dtUtil::Exception& ex)
+    //{
+    //    ex.LogException(dtUtil::Log::LOG_ERROR);
 
-	//	#ifdef _DEBUG
-	//		system("pause");
-	//	#endif
+    //    #ifdef _DEBUG
+    //        system("pause");
+    //    #endif
 
-	//	return -1;
-	//}
+    //    return -1;
+    //}
 
-	//#ifdef _DEBUG
-	//	system("pause");
-	//#endif
+    //#ifdef _DEBUG
+    //    system("pause");
+    //#endif
 
-	return 0;
+    return 0;
 }
 
 #endif // Main_CPP

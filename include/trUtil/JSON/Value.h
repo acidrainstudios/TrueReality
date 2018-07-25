@@ -40,8 +40,8 @@ namespace trUtil
  *
  * @brief   .
  */
-	namespace JSON
-	{
+    namespace JSON
+    {
         /**
          * @class   Array
          *
@@ -56,32 +56,32 @@ namespace trUtil
          */
         class Object;
 
-		/** @brief   The int. */
-		using Int = int;
-		/** @brief   The int. */
-		using UInt = unsigned int;
+        /** @brief   The int. */
+        using Int = int;
+        /** @brief   The int. */
+        using UInt = unsigned int;
 #if defined(JSON_NO_INT64)
-		/** @brief   The largest int. */
-		using LargestInt = int;
-		/** @brief   The largest u int. */
-		using LargestUInt = unsigned int;
+        /** @brief   The largest int. */
+        using LargestInt = int;
+        /** @brief   The largest u int. */
+        using LargestUInt = unsigned int;
 #else   // if defined(JSON_NO_INT64)
         // For Microsoft Visual use specific types as long long is not supported
 #if defined(_MSC_VER) // Microsoft Visual Studio
-		/** @brief   The fourth int 6. */
-		using Int64 = __int64;
-		/** @brief   The fourth u int 6. */
-		using UInt64 = unsigned __int64;
+        /** @brief   The fourth int 6. */
+        using Int64 = __int64;
+        /** @brief   The fourth u int 6. */
+        using UInt64 = unsigned __int64;
 #else   // if defined(_MSC_VER) // Other platforms, use long long
-		/** @brief   The fourth int 6. */
-		using  Int64 = int64_t;
-		/** @brief   The fourth u int 6. */
-		using  UInt64 = uint64_t;
+        /** @brief   The fourth int 6. */
+        using  Int64 = int64_t;
+        /** @brief   The fourth u int 6. */
+        using  UInt64 = uint64_t;
 #endif // if defined(_MSC_VER)
-		/** @brief   The largest int. */
-		using LargestInt = Int64;
-		/** @brief   The largest u int. */
-		using LargestUInt = UInt64;
+        /** @brief   The largest int. */
+        using LargestInt = Int64;
+        /** @brief   The largest u int. */
+        using LargestUInt = UInt64;
 #endif // if defined(JSON_NO_INT64)
 
         /**
@@ -89,17 +89,17 @@ namespace trUtil
          *
          * @brief   Type of the value held by a Value object.
          */
-		enum ValueType 
-		{
-			NullValue = Json::ValueType::nullValue, ///'null' value
-			IntValue = Json::ValueType::intValue,      ///signed integer value
-			UintValue = Json::ValueType::uintValue,     ///unsigned integer value
-			RealValue = Json::ValueType::realValue,     ///double value
-			StringValue = Json::ValueType::stringValue,   ///UTF-8 string value
-			BooleanValue = Json::ValueType::booleanValue,  ///bool value
-			ArrayValue = Json::ValueType::arrayValue,    ///array value (ordered list)
-			ObjectValue = Json::ValueType::objectValue    ///object value (collection of name/value pairs).
-		};
+        enum ValueType 
+        {
+            NullValue = Json::ValueType::nullValue, ///'null' value
+            IntValue = Json::ValueType::intValue,      ///signed integer value
+            UintValue = Json::ValueType::uintValue,     ///unsigned integer value
+            RealValue = Json::ValueType::realValue,     ///double value
+            StringValue = Json::ValueType::stringValue,   ///UTF-8 string value
+            BooleanValue = Json::ValueType::booleanValue,  ///bool value
+            ArrayValue = Json::ValueType::arrayValue,    ///array value (ordered list)
+            ObjectValue = Json::ValueType::objectValue    ///object value (collection of name/value pairs).
+        };
 
         /**
          * @class   Value
@@ -137,12 +137,12 @@ namespace trUtil
          *          exceeded to avoid security holes in your app, but the Value API does *not* check
          *          bounds. That is the responsibility of the caller.
          */
-		class TR_UTIL_EXPORT Value
-		{
-		public:
+        class TR_UTIL_EXPORT Value
+        {
+        public:
 
-			/** @brief   The members. */
-			using Members = std::vector<std::string>;
+            /** @brief   The members. */
+            using Members = std::vector<std::string>;
 
             /**
              * @fn  Value::Value(Json::Value& value);
@@ -151,7 +151,7 @@ namespace trUtil
              *
              * @param [in,out]  value   The value.
              */
-			Value(Json::Value& value);
+            Value(Json::Value& value);
 
             /**
              * @fn  Value::Value(ValueType type = NullValue);
@@ -160,7 +160,7 @@ namespace trUtil
              *
              * @param   type    (Optional) The type.
              */
-			Value(ValueType type = NullValue);
+            Value(ValueType type = NullValue);
 
             /**
              * @fn  Value::Value(Int value);
@@ -169,7 +169,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			Value(Int value);
+            Value(Int value);
 
             /**
              * @fn  Value::Value(UInt value);
@@ -178,7 +178,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			Value(UInt value);
+            Value(UInt value);
 
             /**
              * @fn  Value::Value(Int64 value);
@@ -187,7 +187,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			Value(Int64 value);
+            Value(Int64 value);
 
             /**
              * @fn  Value::Value(UInt64 value);
@@ -196,7 +196,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			Value(UInt64 value);
+            Value(UInt64 value);
 
             /**
              * @fn  Value::Value(double value);
@@ -205,7 +205,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			Value(double value);
+            Value(double value);
 
             /**
              * @fn  Value::Value(const char* value);
@@ -214,7 +214,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			Value(const char* value); ///< Copy til first 0. (NULL causes to seg-fault.)
+            Value(const char* value); ///< Copy til first 0. (NULL causes to seg-fault.)
 
             /**
              * @fn  Value::Value(const char* begin, const char* end);
@@ -224,7 +224,7 @@ namespace trUtil
              * @param   begin   The begining value.
              * @param   end     The end.
              */
-			Value(const char* begin, const char* end); ///< Copy all, incl zeroes.
+            Value(const char* begin, const char* end); ///< Copy all, incl zeroes.
 
             /**
              * @fn  Value::Value(const std::string& value);
@@ -233,7 +233,7 @@ namespace trUtil
              *
              * @param   value   The value.
              */
-			Value(const std::string& value); ///< Copy data() til size(). Embedded zeroes too.
+            Value(const std::string& value); ///< Copy data() til size(). Embedded zeroes too.
 
             /**
              * @fn  Value::Value(bool value);
@@ -242,7 +242,7 @@ namespace trUtil
              *
              * @param   value   True to value.
              */
-			Value(bool value);
+            Value(bool value);
 
             /**
              * @fn  Value::Value(const Value& other);
@@ -251,7 +251,7 @@ namespace trUtil
              *
              * @param   other   The other.
              */
-			Value(const Value& other);
+            Value(const Value& other);
 
             /**
              * ctor 
@@ -276,7 +276,7 @@ namespace trUtil
              *
              * @return  The JSON value.
              */
-			Json::Value& GetJsonValue();
+            Json::Value& GetJsonValue();
 
             /**
              * @fn  const Json::Value& Value::GetJsonValue() const;
@@ -285,7 +285,7 @@ namespace trUtil
              *
              * @return  The JSON value.
              */
-			const Json::Value& GetJsonValue() const;
+            const Json::Value& GetJsonValue() const;
 
             /**
              * @fn  void Value::SetComment(const std::string& comment);
@@ -294,7 +294,7 @@ namespace trUtil
              *
              * @param   comment The comment.
              */
-			void SetComment(const std::string& comment);
+            void SetComment(const std::string& comment);
 
             /**
              * @fn  bool Value::HasComment() const;
@@ -303,7 +303,7 @@ namespace trUtil
              *
              * @return  True if comment, false if not.
              */
-			bool HasComment() const;
+            bool HasComment() const;
 
             /**
              * @fn  std::string Value::GetComment() const;
@@ -312,14 +312,14 @@ namespace trUtil
              *
              * @return  The comment.
              */
-			std::string GetComment() const;
+            std::string GetComment() const;
 
             /**
              * @fn  virtual void Value::Clear();
              *
              * @brief   Clears the internal JSON Root node.
              */
-			virtual void Clear();
+            virtual void Clear();
 
             /**
              * @fn  int Value::Size();
@@ -328,7 +328,7 @@ namespace trUtil
              *
              * @return  An int.
              */
-			int Size();
+            int Size();
 
             /**
              * @fn  void Value::Resize(int newSize);
@@ -337,7 +337,7 @@ namespace trUtil
              *
              * @param   newSize Size of the new.
              */
-			void Resize(int newSize);
+            void Resize(int newSize);
 
             /**
              * @fn  bool Value::IsValidIndex(int index) const;
@@ -348,7 +348,7 @@ namespace trUtil
              *
              * @return  True if valid index, false if not.
              */
-			bool IsValidIndex(int index) const;
+            bool IsValidIndex(int index) const;
 
             /**
              * @fn  bool Value::RemoveIndex(int index, Value *removedVal);
@@ -360,7 +360,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			bool RemoveIndex(int index, Value *removedVal);
+            bool RemoveIndex(int index, Value *removedVal);
 
             /**
              * @fn  Value Value::Index(int index);
@@ -381,7 +381,7 @@ namespace trUtil
              *
              * @return  The member names.
              */
-			const Value::Members GetMemberNames() const;
+            const Value::Members GetMemberNames() const;
 
             /**
              * @fn  bool Value::HasMember(const std::string& key) const;
@@ -392,7 +392,7 @@ namespace trUtil
              *
              * @return  True if member, false if not.
              */
-			bool HasMember(const std::string& key) const;
+            bool HasMember(const std::string& key) const;
 
             /**
              * @fn  virtual bool Value::KeyPresent(const std::string &key) const;
@@ -403,7 +403,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool KeyPresent(const std::string &key) const;
+            virtual bool KeyPresent(const std::string &key) const;
 
             /**
              * @fn  virtual bool Value::IsNull() const;
@@ -423,7 +423,7 @@ namespace trUtil
              *
              * @return  True if null, false if not.
              */
-			virtual bool IsNull(const int index) const;
+            virtual bool IsNull(const int index) const;
 
             /**
              * @fn  virtual bool Value::IsNull(const std::string& key) const;
@@ -452,7 +452,7 @@ namespace trUtil
              *
              * @return  True if empty, false if not.
              */
-			virtual bool IsEmpty() const;
+            virtual bool IsEmpty() const;
 
             /**
              * @fn  virtual bool Value::IsEmpty(const int index) const;
@@ -483,7 +483,7 @@ namespace trUtil
              *
              * @param   val The Value to append.
              */
-			virtual void Append(const Value& val);
+            virtual void Append(const Value& val);
 
             /**
              * @fn  virtual bool Value::IsBool() const;
@@ -492,7 +492,7 @@ namespace trUtil
              *
              * @return  True if bool, false if not.
              */
-			virtual bool IsBool() const;
+            virtual bool IsBool() const;
 
             /**
              * @fn  virtual bool Value::IsBool(const int index) const;
@@ -523,7 +523,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool GetBool() const;
+            virtual bool GetBool() const;
 
             /**
              * @fn  virtual bool Value::GetBool(const int index) const;
@@ -564,7 +564,7 @@ namespace trUtil
              *
              * @return  True if number, false if not.
              */
-			virtual bool IsNumber() const;
+            virtual bool IsNumber() const;
 
             /**
              * @fn  virtual bool Value::IsNumber(const int index) const;
@@ -595,7 +595,7 @@ namespace trUtil
              *
              * @return  True if int, false if not.
              */
-			virtual bool IsInt() const;
+            virtual bool IsInt() const;
 
             /**
              * @fn  virtual bool Value::IsInt(const int index) const;
@@ -626,7 +626,7 @@ namespace trUtil
              *
              * @return  The int.
              */
-			virtual int GetInt() const;
+            virtual int GetInt() const;
 
             /**
              * @fn  virtual int Value::GetInt(const int index) const;
@@ -667,7 +667,7 @@ namespace trUtil
              *
              * @return  True if double, false if not.
              */
-			virtual bool IsDouble() const;
+            virtual bool IsDouble() const;
 
             /**
              * @fn  virtual bool Value::IsDouble(const int index) const;
@@ -698,7 +698,7 @@ namespace trUtil
              *
              * @return  The double.
              */
-			virtual double GetDouble() const;
+            virtual double GetDouble() const;
 
             /**
              * @fn  virtual double Value::GetDouble(const int index) const;
@@ -739,7 +739,7 @@ namespace trUtil
              *
              * @return  True if u int, false if not.
              */
-			virtual bool IsUInt() const;
+            virtual bool IsUInt() const;
 
             /**
              * @fn  virtual bool Value::IsUInt(const int index) const;
@@ -770,7 +770,7 @@ namespace trUtil
              *
              * @return  The u int.
              */
-			virtual unsigned int GetUInt() const;
+            virtual unsigned int GetUInt() const;
 
             /**
              * @fn  virtual unsigned int Value::GetUInt(const int index) const;
@@ -811,7 +811,7 @@ namespace trUtil
              *
              * @return  True if int 64, false if not.
              */
-			virtual bool IsInt64() const;
+            virtual bool IsInt64() const;
 
             /**
              * @fn  virtual bool Value::IsInt64(const int index) const;
@@ -842,7 +842,7 @@ namespace trUtil
              *
              * @return  The int 64.
              */
-			virtual Int64 GetInt64() const;
+            virtual Int64 GetInt64() const;
 
             /**
              * @fn  virtual Int64 Value::GetInt64(const int index) const;
@@ -883,7 +883,7 @@ namespace trUtil
              *
              * @return  True if u int 64, false if not.
              */
-			virtual bool IsUInt64() const;
+            virtual bool IsUInt64() const;
 
             /**
              * @fn  virtual bool Value::IsUInt64(const int index) const;
@@ -914,7 +914,7 @@ namespace trUtil
              *
              * @return  The u int 64.
              */
-			virtual UInt64 GetUInt64() const;
+            virtual UInt64 GetUInt64() const;
 
             /**
              * @fn  virtual UInt64 Value::GetUInt64(const int index) const;
@@ -955,7 +955,7 @@ namespace trUtil
              *
              * @return  True if float, false if not.
              */
-			virtual bool IsFloat() const;
+            virtual bool IsFloat() const;
 
             /**
              * @fn  virtual bool Value::IsFloat(const int index) const;
@@ -986,7 +986,7 @@ namespace trUtil
              *
              * @return  The float.
              */
-			virtual float GetFloat() const;
+            virtual float GetFloat() const;
 
             /**
              * @fn  virtual float Value::GetFloat(const int index) const;
@@ -1027,7 +1027,7 @@ namespace trUtil
              *
              * @return  True if string, false if not.
              */
-			virtual bool IsString() const;
+            virtual bool IsString() const;
 
             /**
              * @fn  virtual bool Value::IsString(const int index) const;
@@ -1058,7 +1058,7 @@ namespace trUtil
              *
              * @return  The string.
              */
-			virtual const std::string GetString() const;
+            virtual const std::string GetString() const;
 
             /**
              * @fn  virtual const std::string Value::GetString(const int index) const;
@@ -1099,7 +1099,7 @@ namespace trUtil
              *
              * @return  True if array, false if not.
              */
-			virtual bool IsArray() const;
+            virtual bool IsArray() const;
 
             /**
              * @fn  virtual bool Value::IsArray(const int index) const;
@@ -1171,7 +1171,7 @@ namespace trUtil
              *
              * @return  True if object, false if not.
              */
-			virtual bool IsObject() const;
+            virtual bool IsObject() const;
 
             /**
              * @fn  virtual bool Value::IsObject(const int index) const;
@@ -1265,7 +1265,7 @@ namespace trUtil
              *
              * @return  The result of the operation.
              */
-			operator Json::Value() const;
+            operator Json::Value() const;
 
             /**
              * @fn  operator Json::Value& ();
@@ -1274,7 +1274,7 @@ namespace trUtil
              *
              * @return  The result of the operation.
              */
-			operator Json::Value& ();
+            operator Json::Value& ();
 
             /**
              * @fn  operator const Json::Value& () const;
@@ -1283,7 +1283,7 @@ namespace trUtil
              *
              * @return  A const.
              */
-			operator const Json::Value& () const;
+            operator const Json::Value& () const;
 
             /**
              * @fn  operator Json::Value* ();
@@ -1292,7 +1292,7 @@ namespace trUtil
              *
              * @return  The result of the operation.
              */
-			operator Json::Value* ();
+            operator Json::Value* ();
 
             ///// Access an array element (zero based index ).
             ///// If the array contains less than index element, then null value are
@@ -1332,7 +1332,7 @@ namespace trUtil
              *
              * @return  A shallow copy of this object.
              */
-			Value& operator=(Value other);
+            Value& operator=(Value other);
 
         protected:
 
@@ -1352,6 +1352,6 @@ namespace trUtil
          *
          * @return  The shifted result.
          */
-		TR_UTIL_EXPORT std::ostream& operator<<(std::ostream&, const Value& root);
-	}
+        TR_UTIL_EXPORT std::ostream& operator<<(std::ostream&, const Value& root);
+    }
 }

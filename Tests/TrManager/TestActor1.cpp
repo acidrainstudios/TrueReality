@@ -45,7 +45,7 @@ int TestActor1::mInstCount = 0;
 //////////////////////////////////////////////////////////////////////////
 TestActor1::TestActor1(const std::string name) : BaseClass(name)
 {
-	++mInstCount;
+    ++mInstCount;
 
     //NULL the actor ID
     mActor2Id = new trBase::UniqueId(false);
@@ -56,7 +56,7 @@ TestActor1::TestActor1(const std::string name) : BaseClass(name)
 //////////////////////////////////////////////////////////////////////////
 TestActor1::~TestActor1()
 {
-	--mInstCount;
+    --mInstCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ void TestActor1::BuildInvokables()
 //////////////////////////////////////////////////////////////////////////
 void TestActor1::OnTick(const trManager::MessageBase& msg)
 {
-	++mTickMsgCount;
+    ++mTickMsgCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -110,24 +110,24 @@ void TestActor1::OnAddedToSysMan()
 //////////////////////////////////////////////////////////////////////////
 int TestActor1::GetInstCount()
 {
-	return mInstCount;
+    return mInstCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
 bool TestActor1::SendTestMessage()
 {
-	if (!mActor2Id.IsNull())
-	{
-		return SendMessage(*new MessageTest(&GetUUID(), &mActor2Id));
-	}
-	else
-	{
-		return false;
-	}
+    if (!mActor2Id.IsNull())
+    {
+        return SendMessage(*new MessageTest(&GetUUID(), &mActor2Id));
+    }
+    else
+    {
+        return false;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////
 int TestActor1::GetTickMsgNum()
 {
-	return mTickMsgCount;
+    return mTickMsgCount;
 }

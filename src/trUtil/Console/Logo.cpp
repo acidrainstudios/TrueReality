@@ -36,7 +36,7 @@ namespace trUtil
 
 #ifdef TR_WIN
     #ifndef _DEBUG
-            system("cls");
+                system("cls");
     #endif
 #elif defined(TR_LINUX)
     #ifndef _DEBUG
@@ -67,6 +67,6 @@ namespace trUtil
             Console::TextColor(TXT_COLOR::DEFAULT);
 
         }
-    }
+    }    
 }
 

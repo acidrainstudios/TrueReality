@@ -55,10 +55,10 @@ namespace trUtil
         }
 
         enum
-        {	// parameters for hash table
-            bucket_size = 4,	// 0 < bucket_size
+        {    // parameters for hash table
+            bucket_size = 4,    // 0 < bucket_size
             min_buckets = 8
-        };	// min_buckets = 2 ^^ N, 0 < N
+        };    // min_buckets = 2 ^^ N, 0 < N
 
     };
 #else

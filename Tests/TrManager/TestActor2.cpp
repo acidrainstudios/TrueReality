@@ -62,7 +62,7 @@ void TestActor2::OnTick(const trManager::MessageBase& msg)
 //////////////////////////////////////////////////////////////////////////
 void TestActor2::OnTest(const trManager::MessageBase & msg)
 {
-	++mTestMsgCount;
+    ++mTestMsgCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -80,5 +80,5 @@ int TestActor2::GetInstCount()
 //////////////////////////////////////////////////////////////////////////
 int TestActor2::GetTestMsgCount()
 {
-	return mTestMsgCount;
+    return mTestMsgCount;
 }

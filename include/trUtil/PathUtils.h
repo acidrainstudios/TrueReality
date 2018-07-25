@@ -43,11 +43,11 @@ namespace trUtil
     namespace PathUtils
     {
 #ifdef TR_APPLE
-		const static std::string DEFAULT_TR_FOLDER("/TrueReality");
+        const static std::string DEFAULT_TR_FOLDER("/TrueReality");
 #elif defined(TR_WIN)
-		const static std::string DEFAULT_TR_FOLDER("\\TrueReality");
+        const static std::string DEFAULT_TR_FOLDER("\\TrueReality");
 #else
-		const static std::string DEFAULT_TR_FOLDER("/.trueReality");
+        const static std::string DEFAULT_TR_FOLDER("/.trueReality");
 #endif
         const static std::string DATA_PATH_DEFAULT("/Data");
         const static std::string STATIC_MESHES_PATH("/StaticMeshes");
@@ -73,7 +73,7 @@ namespace trUtil
         * If TR_USER_DATA Environmental variable is defined, it will return
         * the path in TR_USER_DATA
         */
-		TR_UTIL_EXPORT std::string GetUserDataPath();
+        TR_UTIL_EXPORT std::string GetUserDataPath();
 
         /**
         * Get the folder where TR will save and store the log files
@@ -111,10 +111,10 @@ namespace trUtil
         **/
         TR_UTIL_EXPORT void CreateDataPathTree();
 
-		/**
-		* Creates all the folders in the Data (TR_USER_DATA) folder, that includes Maps, GUI, Shaders, StaticMeshes, etc etc
-		**/
-		TR_UTIL_EXPORT void CreateUserDataPathTree();
+        /**
+        * Creates all the folders in the Data (TR_USER_DATA) folder, that includes Maps, GUI, Shaders, StaticMeshes, etc etc
+        **/
+        TR_UTIL_EXPORT void CreateUserDataPathTree();
 
         /**
         * Convenience function that calls CreateDataPathTree() and CreateUserDataPathTree();

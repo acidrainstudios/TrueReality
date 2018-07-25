@@ -54,7 +54,7 @@ namespace trUtil
         }
         else
         {
-            std::string errMsg = "Version File does not exist, generating a new one...";			
+            std::string errMsg = "Version File does not exist, generating a new one...";            
             LOG_W("Looking for file in : " + mVersion.GetFilePath())
             LOG_W(errMsg)
             std::cerr << errMsg << std::endl;
@@ -240,7 +240,7 @@ namespace trUtil
         catch (trUtil::Exception ex)
         {
             ex.LogException();
-        }		
+        }        
         return NULL;
     }
     

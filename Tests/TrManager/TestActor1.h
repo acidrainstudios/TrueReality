@@ -95,36 +95,36 @@ public:
      */
     virtual void OnAddedToSysMan() override;
 
-	/**
-	 * @fn	static int TestActor1::GetInstCount();
-	 *
-	 * @brief	Gets instance count for this class type. Used for error checking, and Unit Testing.
-	 *
-	 * @return	The instance count.
-	 */
-	static int GetInstCount();
+    /**
+     * @fn    static int TestActor1::GetInstCount();
+     *
+     * @brief    Gets instance count for this class type. Used for error checking, and Unit Testing.
+     *
+     * @return    The instance count.
+     */
+    static int GetInstCount();
 
-	/**
-	 * @fn	virtual bool TestActor1::SendTestMessage();
-	 *
-	 * @brief	Sends a test message.
-	 *
-	 * @return	True if it succeeds, false if it fails.
-	 */
-	virtual bool SendTestMessage();
+    /**
+     * @fn    virtual bool TestActor1::SendTestMessage();
+     *
+     * @brief    Sends a test message.
+     *
+     * @return    True if it succeeds, false if it fails.
+     */
+    virtual bool SendTestMessage();
 
-	/**
-	 * @fn	virtual int TestActor1::GetTickMsgNum() protected: static int mInstCount;
-	 *
-	 * @brief	Gets the number of tick messages this entity received so far.
-	 *
-	 * @return	The tick message number.
-	 */
-	virtual int GetTickMsgNum();
+    /**
+     * @fn    virtual int TestActor1::GetTickMsgNum() protected: static int mInstCount;
+     *
+     * @brief    Gets the number of tick messages this entity received so far.
+     *
+     * @return    The tick message number.
+     */
+    virtual int GetTickMsgNum();
 
 protected:
 
-	static int mInstCount;
+    static int mInstCount;
 
     /**
      * @fn  TestActor1::~TestActor1();
@@ -136,7 +136,7 @@ protected:
 private:
 
     trBase::UniqueId mActor2Id;
-	int mTickMsgCount = 0;
+    int mTickMsgCount = 0;
 
 };
 

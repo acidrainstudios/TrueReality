@@ -185,11 +185,11 @@ namespace trUtil
         return true;
     }
     
-	/////////////////////////////////////////////////////////////////////////////
-	std::string FileUtils::RunCommand(const std::string cmd)
-	{
-		return RunCommand(cmd.c_str());
-	}
+    /////////////////////////////////////////////////////////////////////////////
+    std::string FileUtils::RunCommand(const std::string cmd)
+    {
+        return RunCommand(cmd.c_str());
+    }
 
     /////////////////////////////////////////////////////////////////////////////
     std::string FileUtils::RunCommand(const char* cmd)
@@ -197,11 +197,11 @@ namespace trUtil
         char buffer[128];
         std::string result = "";
         
-#ifdef TR_WIN   // If we are in windows		
+#ifdef TR_WIN   // If we are in windows        
         std::shared_ptr<FILE> pipe(_popen(cmd, "r"), _pclose);
 #else
-    #ifdef TR_LINUX	// If we are in Linux		
-        std::shared_ptr<FILE> pipe(popen(cmd, "r"), pclose);				
+    #ifdef TR_LINUX    // If we are in Linux        
+        std::shared_ptr<FILE> pipe(popen(cmd, "r"), pclose);                
     #endif
 #endif
         if (!pipe) throw std::runtime_error("popen() failed!");

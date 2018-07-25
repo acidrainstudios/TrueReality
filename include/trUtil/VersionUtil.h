@@ -126,27 +126,27 @@ namespace trUtil
         * Returns the full version string
         */
         std::string GetVersionString();  
-		
-		/**
-		* Updates the version file to the most recent HG Revision and YTMM. 
-		*/
-		void UpdateVersion();
-		
+        
+        /**
+        * Updates the version file to the most recent HG Revision and YTMM. 
+        */
+        void UpdateVersion();
+        
     private:
-		JSON::File mVersion;
+        JSON::File mVersion;
 
-		/**
-		* Returns todays date in the YYMM format as string.
-		*/
-		std::string GetTodaysVersionDate();
+        /**
+        * Returns todays date in the YYMM format as string.
+        */
+        std::string GetTodaysVersionDate();
 
-		/**
-		* Returns the current system HG revision number.
-		* Note that the revision number is not the commit hash and could be different on
-		* individual systems. The best place to use this is on a build server.
-		* This needs TR_ROOT to be set, and .hg folder to be in TR_ROOT
-		*/
-		int GetCurrentCommitNum();		
+        /**
+        * Returns the current system HG revision number.
+        * Note that the revision number is not the commit hash and could be different on
+        * individual systems. The best place to use this is on a build server.
+        * This needs TR_ROOT to be set, and .hg folder to be in TR_ROOT
+        */
+        int GetCurrentCommitNum();        
     };
 }
 

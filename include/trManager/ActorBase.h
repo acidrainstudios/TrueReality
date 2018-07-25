@@ -155,15 +155,15 @@ namespace trManager
          * @fn  virtual bool ActorBase::AddActorModule(trManager::EntityBase& actorModule);
          *
          * @brief   Adds an Actor Module to the current Actor. NOTE: If this actor is never 
-         * 			registered with the System Manager, you manually need to remove attached Actor Modules, or
-         * 			there could be a memory leak. Use RemoveAllActorModules() to remove all at once or 
-         * 			RemoveActorModule(...) to remove them one at a time. 
+         *             registered with the System Manager, you manually need to remove attached Actor Modules, or
+         *             there could be a memory leak. Use RemoveAllActorModules() to remove all at once or 
+         *             RemoveActorModule(...) to remove them one at a time. 
          *
          * @param [in,out]  actorModule The actor module.
          *
          * @return  True if it succeeds, false if it fails.
          */
-		virtual bool AddActorModule(trManager::EntityBase& actorModule);
+        virtual bool AddActorModule(trManager::EntityBase& actorModule);
 
         /**
          * @fn  virtual bool ActorBase::RemoveActorModule(trManager::EntityBase& actorModule);
@@ -174,7 +174,7 @@ namespace trManager
          *
          * @return  True if it succeeds, false if it fails.
          */
-		virtual bool RemoveActorModule(trManager::EntityBase& actorModule);
+        virtual bool RemoveActorModule(trManager::EntityBase& actorModule);
 
         /**
          * @fn  virtual bool ActorBase::RemoveActorModule(const trBase::UniqueId& id);
@@ -185,16 +185,16 @@ namespace trManager
          *
          * @return  True if it succeeds, false if it fails.
          */
-		virtual bool RemoveActorModule(const trBase::UniqueId& id);
+        virtual bool RemoveActorModule(const trBase::UniqueId& id);
 
-		/**
-		 * @fn	virtual bool ActorBase::RemoveAllActorModule();
-		 *
-		 * @brief	Removes all attached actor modules from this actor.
-		 *
-		 * @return	True if it succeeds, false if it fails.
-		 */
-		virtual bool RemoveAllActorModules();
+        /**
+         * @fn    virtual bool ActorBase::RemoveAllActorModule();
+         *
+         * @brief    Removes all attached actor modules from this actor.
+         *
+         * @return    True if it succeeds, false if it fails.
+         */
+        virtual bool RemoveAllActorModules();
 
         /**
          * @fn  virtual trManager::EntityBase* ActorBase::FindActorModule(const trBase::UniqueId& id);
@@ -205,21 +205,21 @@ namespace trManager
          *
          * @return  Null if it fails, else the found actor module.
          */
-		virtual trManager::EntityBase* FindActorModule(const trBase::UniqueId& id);
+        virtual trManager::EntityBase* FindActorModule(const trBase::UniqueId& id);
 
-		/**
-		 * @fn	virtual void ActorBase::OnAddedToSysMan() override;
-		 *
-		 * @brief	Called by the System Manager when EntityBase Registration is complete.
-		 */
-		virtual void OnAddedToSysMan() override;
+        /**
+         * @fn    virtual void ActorBase::OnAddedToSysMan() override;
+         *
+         * @brief    Called by the System Manager when EntityBase Registration is complete.
+         */
+        virtual void OnAddedToSysMan() override;
 
-		/**
-		 * @fn	virtual void ActorBase::OnRemovedFromSysMan() override;
-		 *
-		 * @brief	Called by the System Manager after removing and Unregistering the EntityBase.
-		 */
-		virtual void OnRemovedFromSysMan() override;
+        /**
+         * @fn    virtual void ActorBase::OnRemovedFromSysMan() override;
+         *
+         * @brief    Called by the System Manager after removing and Unregistering the EntityBase.
+         */
+        virtual void OnRemovedFromSysMan() override;
 
     protected:
 
@@ -238,9 +238,9 @@ namespace trManager
          *
          * @param   tickMsg Message describing the tick.
          */
-		virtual void ActorModuleTick(const trManager::MessageBase& tickMsg);
+        virtual void ActorModuleTick(const trManager::MessageBase& tickMsg);
 
-	private:
+    private:
 
         /**
          * @using ActorModules = std::vector<trBase::SmrtPtr<trManager::EntityBase>>
@@ -248,10 +248,10 @@ namespace trManager
          * @brief   Defines an alias representing the actor modules.
          */
         using ActorModules = std::vector<trBase::SmrtPtr<trManager::EntityBase>>;
-		ActorModules mActorModules; //Actor Module Storage
+        ActorModules mActorModules; //Actor Module Storage
 
-		//Temp Storage for actor modules if this actor is disconnected and reconnected from and to System Manager. 
-		ActorModules mActModReAttachStore;
+        //Temp Storage for actor modules if this actor is disconnected and reconnected from and to System Manager. 
+        ActorModules mActModReAttachStore;
     };
 }
 
