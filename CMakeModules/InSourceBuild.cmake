@@ -21,15 +21,15 @@
 # Ensures that the user does not build in the source folder *******************
 # Unlike the build in CMake function, this returns a better Error Message *****
 # *****************************************************************************
-FUNCTION(CheckForInsourceBuild)
+FUNCTION (CHECK_FOR_INSOURCE_BUILD)
   # Find our paths, even with simlinks
-  GET_FILENAME_COMPONENT(srcdir "${CMAKE_SOURCE_DIR}" REALPATH)
-  GET_FILENAME_COMPONENT(bindir "${CMAKE_BINARY_DIR}" REALPATH)
+  GET_FILENAME_COMPONENT (srcdir "${CMAKE_SOURCE_DIR}" REALPATH)
+  GET_FILENAME_COMPONENT (bindir "${CMAKE_BINARY_DIR}" REALPATH)
 
-  IF("${srcdir}" STREQUAL "${bindir}")
-    MESSAGE("\nPlease select a different Build folder. In-source builds are not allowed.\n\n\n")
-    MESSAGE(FATAL_ERROR "Quitting configuration...\n\n")
+  IF ("${srcdir}" STREQUAL "${bindir}")
+    MESSAGE ("\nPlease select a different Build folder. In-source builds are not allowed.\n\n\n")
+    MESSAGE (FATAL_ERROR "Quitting configuration...\n\n")
   ENDIF()
 ENDFUNCTION()
 
-CheckForInsourceBuild()
+CHECK_FOR_INSOURCE_BUILD()
