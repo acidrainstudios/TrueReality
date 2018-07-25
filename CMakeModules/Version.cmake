@@ -33,11 +33,11 @@
 # TR_SO_PREFIX - The prefix that is used for all TR Libraries *****************
 # *****************************************************************************
 SET (TR_VERSION_FILE "${CMAKE_SOURCE_DIR}/Data/Config/Version.trver")
-FILE(READ ${TR_VERSION_FILE} TR_VERSION_CONTENT)
+FILE (READ ${TR_VERSION_FILE} TR_VERSION_CONTENT)
 
-IF("${TR_VERSION_CONTENT}" STREQUAL "")
+IF ("${TR_VERSION_CONTENT}" STREQUAL "")
     MESSAGE("Missing the version file")
-ENDIF()
+ENDIF ()
 
 STRING (REGEX MATCH "Build\" : ([0-9]+)" TR_VERSION_BUILD ${TR_VERSION_CONTENT})
 STRING (REGEX MATCH "Major\" : ([0-9]+)" TR_VERSION_MAJOR ${TR_VERSION_CONTENT})
@@ -59,9 +59,9 @@ SET (TR_SO_PREFIX "tr${TR_SOVERSION}-")
 # Prints the True Reality Version Info*****************************************
 # *****************************************************************************
 MACRO (PRINT_TR_VERSION)
-    IF(PROJECT_VERSION)
+    IF (PROJECT_VERSION)
         MESSAGE (STATUS "\nTrue Reality v${PROJECT_VERSION} \n")
-    ELSE()
+    ELSE ()
         MESSAGE ("\nTrue Reality v ERROR PROJECT_VERSION Not set \n")
-    ENDIF()    
-ENDMACRO (PRINT_TR_VERSION)
+    ENDIF ()    
+ENDMACRO ()
