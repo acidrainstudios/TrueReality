@@ -29,7 +29,7 @@
 # OpenThreads_FOUND - Defined if the dependency is found *************************
 # ********************************************************************************
 
-SET(DEPENDENCY "OpenThreads")
+SET (DEPENDENCY "OpenThreads")
 
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR OpenThreads/Thread
