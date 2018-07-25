@@ -15,19 +15,19 @@
 # along with this library; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Author: Maxim Serebrennik
+# @author Maxim Serebrennik
 
 # Set the library name and preprocessing
-SET(FILE_NAME trBase)
-SET(PRE_PROCESSING TR_BASE_LIBRARY)
+SET (FILE_NAME trBase)
+SET (PRE_PROCESSING TR_BASE_LIBRARY)
 
 # Set the source and include paths
-SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
-SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
+SET (HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
+SET (SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
 FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
-SET(PROJECT_BUILDABLE_SOURCES ${PROJECT_SOURCES})
+SET (PROJECT_BUILDABLE_SOURCES ${PROJECT_SOURCES})
 LIST(REMOVE_ITEM PROJECT_BUILDABLE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Vec2Impl.cpp)    #Do not build this file directly
 LIST(REMOVE_ITEM PROJECT_BUILDABLE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Vec3Impl.cpp)    #Do not build this file directly
 LIST(REMOVE_ITEM PROJECT_BUILDABLE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/Vec4Impl.cpp)    #Do not build this file directly
@@ -38,6 +38,9 @@ FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
 FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
 SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS}")
 
+# *****************************************************************************
+# Project Folder Setup ********************************************************
+# *****************************************************************************
 # Sets the header file folders in IDEs
 SET (HEADERS_GROUP "Header Files")
 SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS} ${BASE_GEN_HEADERS})
@@ -45,6 +48,9 @@ SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS} ${BASE_GEN_HEADERS})
 # Sets the source file folders in IDEs
 SET (SOURCES_GROUP "Source Files")
 SOURCE_GROUP (${SOURCES_GROUP} FILES ${PROJECT_SOURCES})
+# *****************************************************************************
+# *****************************************************************************
+# *****************************************************************************
 
 # Sets the libraries
 SET (EXTERNAL_LIBS)
