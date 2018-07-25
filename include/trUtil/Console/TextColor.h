@@ -22,13 +22,25 @@
 
 #include <trUtil/Export.h>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   Console
+ *
+ * @brief   .
+ */
 	namespace Console
 	{
-		/**
-		* Color Modes for the Console Window
-		**/
+        /**
+         * @enum    TXT_COLOR
+         *
+         * @brief   Color Modes for the Console Window
+         */
 		enum TR_UTIL_EXPORT TXT_COLOR
 		{
 			DEFAULT,
@@ -48,15 +60,21 @@ namespace trUtil
 			GRAY
 		};
 
-		/**
-		* Changes Text color in the console window....
-		**/
+        /**
+         * @fn  void TextColor(TXT_COLOR TextColor);
+         *
+         * @brief   Changes Text color in the console window....
+         *
+         * @param   TextColor   The text color.
+         */
 		void TR_UTIL_EXPORT TextColor(TXT_COLOR TextColor);
 
         /**
-        * Prints an example of all available colors
-        * This is usually used for testing and development
-        */
+         * @fn  void PrintAllColors();
+         *
+         * @brief   Prints an example of all available colors This is usually used for testing and
+         *          development.
+         */
         void TR_UTIL_EXPORT PrintAllColors();
 	}
 }
