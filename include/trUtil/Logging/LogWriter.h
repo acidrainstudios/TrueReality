@@ -33,19 +33,44 @@
 
 #include <osg/Referenced>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   Logging
+ *
+ * @brief   .
+ */
     namespace Logging
     {
-        /** Interface class to receive messages from the Log.  Derive and implement
-        *   the LogMessage() method to support custom handling of Log messages.
-        *   @see trUtil::Logging::Log::AddWriter()
-        */
+        /**
+         * @class   LogWriter
+         *
+         * @brief   Interface class to receive messages from the Log.  Derive and implement
+         *            the LogMessage() method to support custom handling of Log messages.
+         *
+         * @sa  trUtil::Logging::Log::AddWriter()
+         */
         class TR_UTIL_EXPORT LogWriter : public osg::Referenced
         {
         public:
+
+            /**
+             * @struct  LogData
+             *
+             * @brief   A log data.
+             */
             struct LogData
             {
+                /**
+                 * @fn  LogData() : logLevel(trUtil::Logging::LogLevel::LOG_DEBUG) , frameNumber() , line()
+                 *
+                 * @brief   Default constructor.
+                 */
                 LogData()
                 : logLevel(trUtil::Logging::LogLevel::LOG_DEBUG)
                 , frameNumber()
@@ -61,9 +86,22 @@ namespace trUtil
                 std::string msg;          ///<The message itself
             };
 
+            /**
+             * @fn  virtual void LogWriter::LogMessage(const LogData& logData) = 0;
+             *
+             * @brief   Logs a message.
+             *
+             * @param   logData Information describing the log.
+             */
             virtual void LogMessage(const LogData& logData) = 0;
 
         protected:
+
+            /**
+             * @fn  virtual LogWriter::~LogWriter()
+             *
+             * @brief   Destructor.
+             */
             virtual ~LogWriter() {}
 
         };
