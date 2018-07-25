@@ -68,7 +68,7 @@
 #   Boost_<C>_LIBRARY_DEBUG   - Component <C> library debug variant
 #   Boost_<C>_LIBRARY_RELEASE - Component <C> library release variant
 
-SET(DEPENDENCY "BoostLibs")
+SET (DEPENDENCY "BoostLibs")
 
 FIND_PACKAGE (Boost ${BoostLibs_FIND_VERSION} REQUIRED COMPONENTS 
     #atomic 
