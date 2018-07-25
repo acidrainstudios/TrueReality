@@ -27,7 +27,7 @@ namespace trUtil
     const std::string EnvVariables::TR_BIN = std::string("TR_BIN");
     const std::string EnvVariables::TR_INC = std::string("TR_INC");
     const std::string EnvVariables::TR_DATA = std::string("TR_DATA");
-	const std::string EnvVariables::TR_USER_DATA = std::string("TR_USER_DATA");
+    const std::string EnvVariables::TR_USER_DATA = std::string("TR_USER_DATA");
     const std::string EnvVariables::TR_PATH = std::string("TR_PATH");
     const std::string EnvVariables::TR_LOG_PATH = std::string("TR_LOG_PATH");
 }

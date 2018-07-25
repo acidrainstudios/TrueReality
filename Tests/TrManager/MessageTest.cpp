@@ -29,13 +29,13 @@ int MessageTest::mInstCount = 0;
 MessageTest::MessageTest(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID)
     : BaseClass(fromActorID, aboutActorID)
 {
-	++mInstCount;
+    ++mInstCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
 MessageTest::~MessageTest()
 {
-	--mInstCount;
+    --mInstCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -47,5 +47,5 @@ const std::string& MessageTest::GetMessageType() const
 //////////////////////////////////////////////////////////////////////////
 int MessageTest::GetInstCount()
 {
-	return mInstCount;
+    return mInstCount;
 }

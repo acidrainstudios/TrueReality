@@ -94,14 +94,14 @@ public:
      */
     static int GetInstCount();
 
-	/**
-	 * @fn	virtual int TestActor3::GetTestMsgCount();
-	 *
-	 * @brief	Gets the number of test messages that were received by this class.
-	 *
-	 * @return	The test message count.
-	 */
-	virtual int GetTestMsgCount();
+    /**
+     * @fn    virtual int TestActor3::GetTestMsgCount();
+     *
+     * @brief    Gets the number of test messages that were received by this class.
+     *
+     * @return    The test message count.
+     */
+    virtual int GetTestMsgCount();
 
 protected:
 
@@ -114,6 +114,6 @@ protected:
 
     static int mInstCount;
 
-	int mTestMsgCount = 0;
+    int mTestMsgCount = 0;
 };
 

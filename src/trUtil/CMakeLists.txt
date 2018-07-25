@@ -27,17 +27,17 @@ SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_SOURCES "${SOURCE_PATH}/*.cpp")
-FILE (GLOB CONSOLE_SOURCES	"${SOURCE_PATH}/Console/*.cpp")
-FILE (GLOB LOGGING_SOURCES	"${SOURCE_PATH}/Logging/*.cpp")
-FILE (GLOB JSON_SOURCES		"${SOURCE_PATH}/JSON/*.cpp")
+FILE (GLOB CONSOLE_SOURCES    "${SOURCE_PATH}/Console/*.cpp")
+FILE (GLOB LOGGING_SOURCES    "${SOURCE_PATH}/Logging/*.cpp")
+FILE (GLOB JSON_SOURCES        "${SOURCE_PATH}/JSON/*.cpp")
 SET (PROJECT_SOURCES "${BASE_SOURCES};${CONSOLE_SOURCES};${LOGGING_SOURCES};${JSON_SOURCES}")
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
 FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
-FILE (GLOB CONSOLE_HEADERS	"${HEADER_PATH}/Console/*.h")
-FILE (GLOB LOGGING_HEADERS	"${HEADER_PATH}/Logging/*.h")
-FILE (GLOB JSON_HEADERS		"${HEADER_PATH}/JSON/*.h")
+FILE (GLOB CONSOLE_HEADERS    "${HEADER_PATH}/Console/*.h")
+FILE (GLOB LOGGING_HEADERS    "${HEADER_PATH}/Logging/*.h")
+FILE (GLOB JSON_HEADERS        "${HEADER_PATH}/JSON/*.h")
 SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS};${CONSOLE_HEADERS};${LOGGING_HEADERS};${JSON_HEADERS}")
 
 # *****************************************************************************
@@ -82,22 +82,22 @@ SOURCE_GROUP (${SOURCES_JSON_GROUP} FILES ${JSON_SOURCES})
 # Sets the libraries
 SET (EXTERNAL_LIBS)
 IF (TR_BUILD_WITH_RELEASE)
-	SET (EXTERNAL_LIBS
-		${EXTERNAL_LIBS}
-		optimized ${OpenThreads_LIBRARY}
-		optimized ${OSG_LIBRARY} 
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        optimized ${OpenThreads_LIBRARY}
+        optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY} 
-		optimized ${JsonCpp_LIBRARY}
-	)
+        optimized ${JsonCpp_LIBRARY}
+    )
 ENDIF ()
 IF (TR_BUILD_WITH_DEBUG)
-	SET (EXTERNAL_LIBS
-		${EXTERNAL_LIBS}
-		debug ${OpenThreads_LIBRARY_DEBUG}
-		debug ${OSG_LIBRARY_DEBUG}
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        debug ${OpenThreads_LIBRARY_DEBUG}
+        debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG}
-		debug ${JsonCpp_LIBRARY_DEBUG} 
-	)
+        debug ${JsonCpp_LIBRARY_DEBUG} 
+    )
 ENDIF ()
 
 # Defines necessary preprocessor variables for project

@@ -36,9 +36,9 @@
 #include <iostream>
 
 /**
- * @class	ActorTests
+ * @class    ActorTests
  *
- * @brief	Sets up the unit test environment.
+ * @brief    Sets up the unit test environment.
  */
 class ActorTests : public ::testing::Test
 {
@@ -49,7 +49,7 @@ public:
     trBase::SmrtPtr<trCore::SystemDirector> mSysDirector;
 
     //////////////////////////////////////////////////////////////////////////
-	ActorTests()
+    ActorTests()
     {
         //Create an instance of the System Manager
         mSysMan = &trManager::SystemManager::GetInstance();
@@ -80,245 +80,245 @@ public:
 };
 
 /**
- * @fn	TEST_F(ActorTests, AddRemoveActors)
+ * @fn    TEST_F(ActorTests, AddRemoveActors)
  *
- * @brief	Tests the adding and removal of directors.
+ * @brief    Tests the adding and removal of directors.
  *
- * @param	parameter1	The first parameter.
- * @param	parameter2	The second parameter.
+ * @param    parameter1    The first parameter.
+ * @param    parameter2    The second parameter.
  */
 TEST_F(ActorTests, AddRemoveActor)
 {
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor1::GetInstCount(), 0);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor1::GetInstCount(), 0);
 
     //Add TestActor1 to the system
     trBase::SmrtPtr<TestActor1> actor = new TestActor1();
-	EXPECT_EQ(mSysMan->RegisterActor(*actor), true);
+    EXPECT_EQ(mSysMan->RegisterActor(*actor), true);
 
-	//We should have one instance of the actor
-	EXPECT_EQ(TestActor1::GetInstCount(), 1);
+    //We should have one instance of the actor
+    EXPECT_EQ(TestActor1::GetInstCount(), 1);
 
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 
-	//We should have one instance of the actor
-	EXPECT_EQ(TestActor1::GetInstCount(), 1);
+    //We should have one instance of the actor
+    EXPECT_EQ(TestActor1::GetInstCount(), 1);
 
-	EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
+    EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
 
-	//Release ownership of this pointer
-	actor.Release();
+    //Release ownership of this pointer
+    actor.Release();
 
-	//We should have one instance of the actor
-	EXPECT_EQ(TestActor1::GetInstCount(), 1);
+    //We should have one instance of the actor
+    EXPECT_EQ(TestActor1::GetInstCount(), 1);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor1::GetInstCount(), 0);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor1::GetInstCount(), 0);
 }
 
 /**
- * @fn	TEST_F(ActorTests, SendMessage)
+ * @fn    TEST_F(ActorTests, SendMessage)
  *
- * @brief	Tests the sending of messages between actors. 
+ * @brief    Tests the sending of messages between actors. 
  *
- * @param	parameter1	The first parameter.
- * @param	parameter2	The second parameter.
+ * @param    parameter1    The first parameter.
+ * @param    parameter2    The second parameter.
  */
 TEST_F(ActorTests, SendMessage)
 {
-	//Add TestActor1 to the system
-	trBase::SmrtPtr<TestActor1> actor = new TestActor1();
-	EXPECT_EQ(mSysMan->RegisterActor(*actor), true);
+    //Add TestActor1 to the system
+    trBase::SmrtPtr<TestActor1> actor = new TestActor1();
+    EXPECT_EQ(mSysMan->RegisterActor(*actor), true);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor2::GetInstCount(), 0);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor2::GetInstCount(), 0);
 
-	//Add TestActor2 to the system
-	trBase::SmrtPtr<TestActor2> actor2 = new TestActor2();
-	EXPECT_EQ(mSysMan->RegisterActor(*actor2), true);
+    //Add TestActor2 to the system
+    trBase::SmrtPtr<TestActor2> actor2 = new TestActor2();
+    EXPECT_EQ(mSysMan->RegisterActor(*actor2), true);
 
-	//Make sure we have one instance of the actor
-	EXPECT_EQ(TestActor2::GetInstCount(), 1);
-	
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Make sure we have one instance of the actor
+    EXPECT_EQ(TestActor2::GetInstCount(), 1);
+    
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Check if Actor1 has received two ticks by now
-	EXPECT_EQ(actor->GetTickMsgNum(), 2);
+    //Check if Actor1 has received two ticks by now
+    EXPECT_EQ(actor->GetTickMsgNum(), 2);
 
-	//No instances of the message should exist in the system yet
-	EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    //No instances of the message should exist in the system yet
+    EXPECT_EQ(MessageTest::GetInstCount(), 0);
 
-	//Send a test message
-	EXPECT_EQ(actor->SendTestMessage(), true);
+    //Send a test message
+    EXPECT_EQ(actor->SendTestMessage(), true);
 
-	//We should have one message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    //We should have one message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 1);
 
-	//Check that we have no messages yet
-	EXPECT_EQ(actor2->GetTestMsgCount(), 0);
+    //Check that we have no messages yet
+    EXPECT_EQ(actor2->GetTestMsgCount(), 0);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Check that we have one message
-	EXPECT_EQ(actor2->GetTestMsgCount(), 1);
+    //Check that we have one message
+    EXPECT_EQ(actor2->GetTestMsgCount(), 1);
 
-	//We should have no message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    //We should have no message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 0);
 
-	//Send a test message
-	EXPECT_EQ(actor->SendTestMessage(), true);
+    //Send a test message
+    EXPECT_EQ(actor->SendTestMessage(), true);
 
-	//We should have one message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    //We should have one message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 1);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
-	EXPECT_EQ(actor->SendTestMessage(), true);
-	mSysDirector->RunOnce();
-	EXPECT_EQ(actor->SendTestMessage(), true);
-	mSysDirector->RunOnce();
-	EXPECT_EQ(actor->SendTestMessage(), true);
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
+    EXPECT_EQ(actor->SendTestMessage(), true);
+    mSysDirector->RunOnce();
+    EXPECT_EQ(actor->SendTestMessage(), true);
+    mSysDirector->RunOnce();
+    EXPECT_EQ(actor->SendTestMessage(), true);
+    mSysDirector->RunOnce();
 
-	//Check that we have one message
-	EXPECT_EQ(actor2->GetTestMsgCount(), 5);
+    //Check that we have one message
+    EXPECT_EQ(actor2->GetTestMsgCount(), 5);
 
-	//We should have no message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    //We should have no message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 0);
 
-	EXPECT_EQ(mSysMan->UnregisterActor(actor2->GetUUID()), true);
-	EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
+    EXPECT_EQ(mSysMan->UnregisterActor(actor2->GetUUID()), true);
+    EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
 
-	//Release ownership of this pointer
-	actor2.Release();
-	actor.Release();
+    //Release ownership of this pointer
+    actor2.Release();
+    actor.Release();
 
-	//We should have one instance of the actor
-	EXPECT_EQ(TestActor2::GetInstCount(), 1);
-	EXPECT_EQ(TestActor1::GetInstCount(), 1);
+    //We should have one instance of the actor
+    EXPECT_EQ(TestActor2::GetInstCount(), 1);
+    EXPECT_EQ(TestActor1::GetInstCount(), 1);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor2::GetInstCount(), 0);
-	EXPECT_EQ(TestActor1::GetInstCount(), 0);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor2::GetInstCount(), 0);
+    EXPECT_EQ(TestActor1::GetInstCount(), 0);
 }
 
 TEST_F(ActorTests, Listener)
 {
-	//Add TestActor1 to the system
-	trBase::SmrtPtr<TestActor1> actor = new TestActor1();
-	EXPECT_EQ(mSysMan->RegisterActor(*actor), true);
-	
-	//Add TestActor2 to the system
-	trBase::SmrtPtr<TestActor2> actor2 = new TestActor2();
-	EXPECT_EQ(mSysMan->RegisterActor(*actor2), true);
-	
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Add TestActor1 to the system
+    trBase::SmrtPtr<TestActor1> actor = new TestActor1();
+    EXPECT_EQ(mSysMan->RegisterActor(*actor), true);
+    
+    //Add TestActor2 to the system
+    trBase::SmrtPtr<TestActor2> actor2 = new TestActor2();
+    EXPECT_EQ(mSysMan->RegisterActor(*actor2), true);
+    
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor3::GetInstCount(), 0);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor3::GetInstCount(), 0);
 
-	//Add TestActor3 to the system
-	trBase::SmrtPtr<TestActor3> actor3 = new TestActor3();
-	EXPECT_EQ(mSysMan->RegisterActor(*actor3), true);
+    //Add TestActor3 to the system
+    trBase::SmrtPtr<TestActor3> actor3 = new TestActor3();
+    EXPECT_EQ(mSysMan->RegisterActor(*actor3), true);
 
-	//Make the actor3 listen to messages about actor2
-	mSysMan->RegisterForMessagesAboutEntity(*actor3, actor2->GetUUID(), TestActor3::ON_TEST_ACTOR_2_INVOKABLE);
+    //Make the actor3 listen to messages about actor2
+    mSysMan->RegisterForMessagesAboutEntity(*actor3, actor2->GetUUID(), TestActor3::ON_TEST_ACTOR_2_INVOKABLE);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor3::GetInstCount(), 1);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor3::GetInstCount(), 1);
 
-	//No instances of the message should exist in the system yet
-	EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    //No instances of the message should exist in the system yet
+    EXPECT_EQ(MessageTest::GetInstCount(), 0);
 
-	//Send a test message
-	EXPECT_EQ(actor->SendTestMessage(), true);
+    //Send a test message
+    EXPECT_EQ(actor->SendTestMessage(), true);
 
-	//We should have one message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    //We should have one message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 1);
 
-	//Check that we have no messages yet
-	EXPECT_EQ(actor3->GetTestMsgCount(), 0);
+    //Check that we have no messages yet
+    EXPECT_EQ(actor3->GetTestMsgCount(), 0);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Check that we have one message
-	EXPECT_EQ(actor3->GetTestMsgCount(), 1);
+    //Check that we have one message
+    EXPECT_EQ(actor3->GetTestMsgCount(), 1);
 
-	//We should have no message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    //We should have no message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 0);
 
-	//Send a test message
-	EXPECT_EQ(actor->SendTestMessage(), true);
+    //Send a test message
+    EXPECT_EQ(actor->SendTestMessage(), true);
 
-	//We should have one message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    //We should have one message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 1);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
-	EXPECT_EQ(actor->SendTestMessage(), true);
-	mSysDirector->RunOnce();
-	EXPECT_EQ(actor->SendTestMessage(), true);
-	mSysDirector->RunOnce();
-	EXPECT_EQ(actor->SendTestMessage(), true);
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
+    EXPECT_EQ(actor->SendTestMessage(), true);
+    mSysDirector->RunOnce();
+    EXPECT_EQ(actor->SendTestMessage(), true);
+    mSysDirector->RunOnce();
+    EXPECT_EQ(actor->SendTestMessage(), true);
+    mSysDirector->RunOnce();
 
-	//Check that we have one message
-	EXPECT_EQ(actor3->GetTestMsgCount(), 5);
+    //Check that we have one message
+    EXPECT_EQ(actor3->GetTestMsgCount(), 5);
 
-	//We should have no message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    //We should have no message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 0);
 
-	//Unregister the actor
-	EXPECT_EQ(mSysMan->UnregisterActor(actor3->GetUUID()), true);
+    //Unregister the actor
+    EXPECT_EQ(mSysMan->UnregisterActor(actor3->GetUUID()), true);
 
-	//Release ownership of this pointer
-	actor3.Release();
+    //Release ownership of this pointer
+    actor3.Release();
 
-	//We should have one instance of the actor
-	EXPECT_EQ(TestActor3::GetInstCount(), 1);
+    //We should have one instance of the actor
+    EXPECT_EQ(TestActor3::GetInstCount(), 1);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor3::GetInstCount(), 0);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor3::GetInstCount(), 0);
 
-	//Unregister the rest of the actors
-	EXPECT_EQ(mSysMan->UnregisterActor(actor2->GetUUID()), true);
-	EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
+    //Unregister the rest of the actors
+    EXPECT_EQ(mSysMan->UnregisterActor(actor2->GetUUID()), true);
+    EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
 
-	//Release ownership of this pointer
-	actor2.Release();
-	actor.Release();
+    //Release ownership of this pointer
+    actor2.Release();
+    actor.Release();
 
-	//We should have one instance of the actor
-	EXPECT_EQ(TestActor2::GetInstCount(), 1);
-	EXPECT_EQ(TestActor1::GetInstCount(), 1);
+    //We should have one instance of the actor
+    EXPECT_EQ(TestActor2::GetInstCount(), 1);
+    EXPECT_EQ(TestActor1::GetInstCount(), 1);
 
-	//Advance System Manager one frame at a time
-	mSysDirector->RunOnce();
+    //Advance System Manager one frame at a time
+    mSysDirector->RunOnce();
 
-	//Make sure we dont have any instances of the actor
-	EXPECT_EQ(TestActor2::GetInstCount(), 0);
-	EXPECT_EQ(TestActor1::GetInstCount(), 0);
+    //Make sure we dont have any instances of the actor
+    EXPECT_EQ(TestActor2::GetInstCount(), 0);
+    EXPECT_EQ(TestActor1::GetInstCount(), 0);
 
-	//We should have no message in the system
-	EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    //We should have no message in the system
+    EXPECT_EQ(MessageTest::GetInstCount(), 0);
 }

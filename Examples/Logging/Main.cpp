@@ -38,17 +38,17 @@ static const std::string LOG_FILE_NAME = "LoggingExample.html";
 int main(int argc, char** argv)
 {
 
-	//Parse command line arguments
-	ParseCmdLineArgs(argc, argv);
+    //Parse command line arguments
+    ParseCmdLineArgs(argc, argv);
 
-	//Creates the default folders in the User Data folder. 
-	trUtil::PathUtils::CreateUserDataPathTree();
+    //Creates the default folders in the User Data folder. 
+    trUtil::PathUtils::CreateUserDataPathTree();
 
-	
-	try
-	{
-		//Show Logo
-		trUtil::Console::Logo();
+    
+    try
+    {
+        //Show Logo
+        trUtil::Console::Logo();
 
         //Sets the output type
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
@@ -150,15 +150,15 @@ int main(int argc, char** argv)
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-		std::cerr << "\nTrue Reality is now shutting down ... " << std::endl;
+        std::cerr << "\nTrue Reality is now shutting down ... " << std::endl;
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         LOG_A("True Reality is now shutting down ... ");
-	}
+    }
     catch (const trUtil::Exception& ex)
-	{
-		LOG_E(EXE_NAME + " caught an unhandled exception:\n" + ex.ToString());
+    {
+        LOG_E(EXE_NAME + " caught an unhandled exception:\n" + ex.ToString());
         ex.LogException(trUtil::Logging::LogLevel::LOG_ERROR);
-		return -1;
-	}
-	return 0;
+        return -1;
+    }
+    return 0;
 }

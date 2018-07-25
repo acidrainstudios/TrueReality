@@ -34,7 +34,7 @@ namespace trUtil
 {
     namespace Logging
     {
-		const std::string LogWriterFile::DEFAULT_LOG_FOLDER = std::string("/Logs");
+        const std::string LogWriterFile::DEFAULT_LOG_FOLDER = std::string("/Logs");
 
         ////////////////////////////////////////////////////////////////////////////////
         LogWriterFile::LogWriterFile()

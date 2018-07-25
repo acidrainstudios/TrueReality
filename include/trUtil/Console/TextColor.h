@@ -34,31 +34,31 @@ namespace trUtil
  *
  * @brief   .
  */
-	namespace Console
-	{
+    namespace Console
+    {
         /**
          * @enum    TXT_COLOR
          *
          * @brief   Color Modes for the Console Window
          */
-		enum TR_UTIL_EXPORT TXT_COLOR
-		{
-			DEFAULT,
-			BRIGHT_RED,
-			RED,
-			BRIGHT_GREEN,
-			GREEN,
-			BRIGHT_BLUE,
-			BLUE,
-			BRIGHT_YELLOW,
-			YELLOW,
-			WHITE,
-			BRIGHT_CYAN,
-			CYAN,
-			BRIGHT_MAGENTA,
-			MAGENTA,
-			GRAY
-		};
+        enum TR_UTIL_EXPORT TXT_COLOR
+        {
+            DEFAULT,
+            BRIGHT_RED,
+            RED,
+            BRIGHT_GREEN,
+            GREEN,
+            BRIGHT_BLUE,
+            BLUE,
+            BRIGHT_YELLOW,
+            YELLOW,
+            WHITE,
+            BRIGHT_CYAN,
+            CYAN,
+            BRIGHT_MAGENTA,
+            MAGENTA,
+            GRAY
+        };
 
         /**
          * @fn  void TextColor(TXT_COLOR TextColor);
@@ -67,7 +67,7 @@ namespace trUtil
          *
          * @param   TextColor   The text color.
          */
-		void TR_UTIL_EXPORT TextColor(TXT_COLOR TextColor);
+        void TR_UTIL_EXPORT TextColor(TXT_COLOR TextColor);
 
         /**
          * @fn  void PrintAllColors();
@@ -76,6 +76,6 @@ namespace trUtil
          *          development.
          */
         void TR_UTIL_EXPORT PrintAllColors();
-	}
+    }
 }
 

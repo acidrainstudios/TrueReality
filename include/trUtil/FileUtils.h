@@ -122,15 +122,15 @@ namespace trUtil
         }
 
 
-		/**
-		* Runs a command on the console, and returns the console printout in a form of a string. 
-		*/
-		std::string RunCommand(const char* cmd);
+        /**
+        * Runs a command on the console, and returns the console printout in a form of a string. 
+        */
+        std::string RunCommand(const char* cmd);
 
-		/**
-		* Runs a command on the console, and returns the console printout in a form of a string.
-		*/
-		std::string RunCommand(const std::string cmd);
+        /**
+        * Runs a command on the console, and returns the console printout in a form of a string.
+        */
+        std::string RunCommand(const std::string cmd);
 
         /**
         * @param strFile the path to the file to check.

@@ -28,9 +28,9 @@
 #include <string>
 
 /**
- * @class	MessageTest
+ * @class    MessageTest
  *
- * @brief	This is an example of a simple message that is passed between actors.
+ * @brief    This is an example of a simple message that is passed between actors.
  */
 class MessageTest : public trManager::MessageBase
 {
@@ -40,41 +40,41 @@ public:
     const static trUtil::RefStr MESSAGE_TYPE;           /// Holds the class/message type name for efficient comparisons
 
     /**
-     * @fn	MessageTest::MessageTest(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID);
+     * @fn    MessageTest::MessageTest(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID);
      *
-     * @brief	Constructor.
+     * @brief    Constructor.
      *
-     * @param	fromActorID 	Id of the actor that is sending the message.
-     * @param	aboutActorID	Identifier for the about actor.
+     * @param    fromActorID     Id of the actor that is sending the message.
+     * @param    aboutActorID    Identifier for the about actor.
      */
     MessageTest(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID);
 
     /**
-     * @fn	virtual const std::string& MessageTest::GetMessageType() const override;
+     * @fn    virtual const std::string& MessageTest::GetMessageType() const override;
      *
-     * @brief	Returns the Message type.
+     * @brief    Returns the Message type.
      *
-     * @return	The message type.
+     * @return    The message type.
      */
     virtual const std::string& GetMessageType() const override;
 
-	/**
-	 * @fn	static int MessageTest::GetInstCount();
-	 *
-	 * @brief	Gets instance count for this class type. Used for error checking, and Unit Testing.
-	 *
-	 * @return	The instance count.
-	 */
-	static int GetInstCount();
+    /**
+     * @fn    static int MessageTest::GetInstCount();
+     *
+     * @brief    Gets instance count for this class type. Used for error checking, and Unit Testing.
+     *
+     * @return    The instance count.
+     */
+    static int GetInstCount();
 
 protected:
 
-	static int mInstCount;
+    static int mInstCount;
 
     /**
-     * @fn	MessageTest::~MessageTest();
+     * @fn    MessageTest::~MessageTest();
      *
-     * @brief	Destructor.
+     * @brief    Destructor.
      */
     ~MessageTest();
 };

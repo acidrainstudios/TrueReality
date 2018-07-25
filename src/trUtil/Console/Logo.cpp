@@ -28,15 +28,15 @@
 
 namespace trUtil
 {
-	namespace Console
-	{
-		void Logo(void)
-		{
+    namespace Console
+    {
+        void Logo(void)
+        {
             trUtil::VersionUtil ver;
 
 #ifdef TR_WIN
     #ifndef _DEBUG
-			    system("cls");
+                system("cls");
     #endif
 #elif TR_LINUX
     #ifndef _DEBUG
@@ -45,28 +45,28 @@ namespace trUtil
 #endif
 
             Console::TextColor(TXT_COLOR::BRIGHT_BLUE);
-			std::cout << "    ***********************************************************************\n " << std::endl;
+            std::cout << "    ***********************************************************************\n " << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_RED);
-			std::cout << "                        ---------------------------- " << std::endl;
+            std::cout << "                        ---------------------------- " << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_YELLOW);
-			std::cout << "                                True Reality\n " << std::endl;
-			std::cout << "                            Version - " << ver.GetVersionString() << std::endl;
+            std::cout << "                                True Reality\n " << std::endl;
+            std::cout << "                            Version - " << ver.GetVersionString() << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_RED);
-			std::cout << "                        ----------------------------\n\n\n " << std::endl;
+            std::cout << "                        ----------------------------\n\n\n " << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_BLUE);
 
             
             std::cout << "       True Reality " << ver.GetMajorVersion() << "." << ver.GetMinorVersion();
-			std::cout << " is an Open Source SDK of Virtual Reality" << std::endl;
-			std::cout << "       Simulation Modules created and Copyright by Acid Rain Studios LLC" << std::endl;
-			std::cout << "       for product development, testing, and sale. Some modules are" << std::endl;
-			std::cout << "       commercially licensed and some are LGPL.\n\n" << std::endl;
-			std::cout << "               For more information, contact the developers at" << std::endl;
+            std::cout << " is an Open Source SDK of Virtual Reality" << std::endl;
+            std::cout << "       Simulation Modules created and Copyright by Acid Rain Studios LLC" << std::endl;
+            std::cout << "       for product development, testing, and sale. Some modules are" << std::endl;
+            std::cout << "       commercially licensed and some are LGPL.\n\n" << std::endl;
+            std::cout << "               For more information, contact the developers at" << std::endl;
             std::cout << "                        AcidRainStudiosLLC@gmail.com\n" << std::endl;
-			std::cout << "    ***********************************************************************\n\n\n " << std::endl;
+            std::cout << "    ***********************************************************************\n\n\n " << std::endl;
             Console::TextColor(TXT_COLOR::DEFAULT);
 
-		}
-	}	
+        }
+    }    
 }
 

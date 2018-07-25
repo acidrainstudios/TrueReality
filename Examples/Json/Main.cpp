@@ -39,22 +39,22 @@
 int main(int argc, char** argv)
 {
     const static std::string CONFIG_FILE_NAME = "JsonExampleConf.json";
-	std::string logFileName;
-	std::string logLevel;
-	
-	//Parse command line arguments
-	ParseCmdLineArgs(argc, argv, logFileName, logLevel);
+    std::string logFileName;
+    std::string logLevel;
+    
+    //Parse command line arguments
+    ParseCmdLineArgs(argc, argv, logFileName, logLevel);
 
-	//Creates the default folders in the User Data folder. 
-	trUtil::PathUtils::CreateUserDataPathTree();
+    //Creates the default folders in the User Data folder. 
+    trUtil::PathUtils::CreateUserDataPathTree();
 
-	//Setup our Logging options
-	trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
-	
-	try
-	{
-		//Show Logo
-		trUtil::Console::Logo();
+    //Setup our Logging options
+    trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
+    
+    try
+    {
+        //Show Logo
+        trUtil::Console::Logo();
 
         //Start program
         std::cout << "Creating a JSON Document" << std::endl;
@@ -148,15 +148,15 @@ int main(int argc, char** argv)
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-		std::cerr << "True Reality is now shutting down ... " << std::endl;
+        std::cerr << "True Reality is now shutting down ... " << std::endl;
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         LOG_A("True Reality is now shutting down ... ");
-	}
+    }
     catch (const trUtil::Exception& ex)
-	{
-		LOG_E(EXE_NAME + " caught an unhandled exception:\n" + ex.ToString());
+    {
+        LOG_E(EXE_NAME + " caught an unhandled exception:\n" + ex.ToString());
         ex.LogException(trUtil::Logging::LogLevel::LOG_ERROR);
-		return -1;
-	}
-	return 0;
+        return -1;
+    }
+    return 0;
 }

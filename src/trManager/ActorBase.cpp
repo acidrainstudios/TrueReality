@@ -38,20 +38,20 @@ namespace trManager
         BuildInvokables();
     }
 
-	//////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
     ActorBase::~ActorBase()
     {
     }
 
-	//////////////////////////////////////////////////////////////////////////
-	void ActorBase::ActorModuleTick(const trManager::MessageBase& msg)
-	{
-		//Access i by reference
-		for (auto&& i : mActorModules)
-		{
-			i->OnTick(msg);
-		}
-	}
+    //////////////////////////////////////////////////////////////////////////
+    void ActorBase::ActorModuleTick(const trManager::MessageBase& msg)
+    {
+        //Access i by reference
+        for (auto&& i : mActorModules)
+        {
+            i->OnTick(msg);
+        }
+    }
 
     //////////////////////////////////////////////////////////////////////////
     void ActorBase::RegisterForMessage(const std::string& messageType, const std::string& invokableName)
@@ -170,138 +170,138 @@ namespace trManager
         }
     }
 
-	//////////////////////////////////////////////////////////////////////////
-	bool ActorBase::AddActorModule(trManager::EntityBase& actorModule)
-	{
-		//Make sure we are dealing with an Actor Module, and not another entity
-		if (actorModule.GetEntityType() == trManager::EntityType::ACTOR_MODULE)
-		{
-			trBase::SmrtPtr<trManager::EntityBase> newActor = &actorModule;
-			mActorModules.push_back(newActor);
+    //////////////////////////////////////////////////////////////////////////
+    bool ActorBase::AddActorModule(trManager::EntityBase& actorModule)
+    {
+        //Make sure we are dealing with an Actor Module, and not another entity
+        if (actorModule.GetEntityType() == trManager::EntityType::ACTOR_MODULE)
+        {
+            trBase::SmrtPtr<trManager::EntityBase> newActor = &actorModule;
+            mActorModules.push_back(newActor);
 
             //Sets the parent of the Actor Module
             actorModule.SetParent(*this);
 
-			return true;
-		}
-		else
-		{
-			LOG_E("Attempted to add " + actorModule.GetEntityType().GetName() + " instead of an Actor Module")
-			return false;
-		}
-	}
+            return true;
+        }
+        else
+        {
+            LOG_E("Attempted to add " + actorModule.GetEntityType().GetName() + " instead of an Actor Module")
+            return false;
+        }
+    }
 
-	//////////////////////////////////////////////////////////////////////////
-	bool ActorBase::RemoveActorModule(trManager::EntityBase& actorModule)
-	{
-		//Make sure we are dealing with an Actor Module, and not another entity
-		if (actorModule.GetEntityType() == trManager::EntityType::ACTOR_MODULE)
-		{
-			//Find an Actor Module with the same reference
-			ActorModules::iterator found;
-			for (found = mActorModules.begin(); found != mActorModules.end(); ++found)
-			{
-				if (found->Get() == &actorModule)
-				{
+    //////////////////////////////////////////////////////////////////////////
+    bool ActorBase::RemoveActorModule(trManager::EntityBase& actorModule)
+    {
+        //Make sure we are dealing with an Actor Module, and not another entity
+        if (actorModule.GetEntityType() == trManager::EntityType::ACTOR_MODULE)
+        {
+            //Find an Actor Module with the same reference
+            ActorModules::iterator found;
+            for (found = mActorModules.begin(); found != mActorModules.end(); ++found)
+            {
+                if (found->Get() == &actorModule)
+                {
                     //Remove the parent reference from the actor module
                     found->Get()->ForgetParent();
 
                     //We found the actor module we need, remove it
-					mActorModules.erase(found);
+                    mActorModules.erase(found);
 
-					return true;
-				}
-			}
+                    return true;
+                }
+            }
 
-			//If you are here then you wanted to remove something that does not exist
-			LOG_E("Attempted to remove a module which does not exist")
-			return false;
-		}
-		else
-		{
-			LOG_E("Attempted to remove " + actorModule.GetEntityType().GetName() + " instead of an Actor Module")
-			return false;
-		}
+            //If you are here then you wanted to remove something that does not exist
+            LOG_E("Attempted to remove a module which does not exist")
+            return false;
+        }
+        else
+        {
+            LOG_E("Attempted to remove " + actorModule.GetEntityType().GetName() + " instead of an Actor Module")
+            return false;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	//////////////////////////////////////////////////////////////////////////
-	bool ActorBase::RemoveActorModule(const trBase::UniqueId& id)
-	{
-		trManager::EntityBase* foundModule = FindActorModule(id);
-		if (foundModule != nullptr)
-		{
-			return RemoveActorModule(*foundModule);
-		}
-		else
-		{
-			return false;
-		}
-	}
+    //////////////////////////////////////////////////////////////////////////
+    bool ActorBase::RemoveActorModule(const trBase::UniqueId& id)
+    {
+        trManager::EntityBase* foundModule = FindActorModule(id);
+        if (foundModule != nullptr)
+        {
+            return RemoveActorModule(*foundModule);
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-	//////////////////////////////////////////////////////////////////////////
-	bool ActorBase::RemoveAllActorModules()
-	{
-		for (int index = mActorModules.size() - 1; index >= 0; --index)
-		{
-			if (!RemoveActorModule(*mActorModules[index]))
-			{
-				//If one of the removals fail, stop and return a failure. 
-				LOG_E("Error in removing " + mActorModules[index]->GetEntityType().GetName())
-				return false;
-			}
-		}
+    //////////////////////////////////////////////////////////////////////////
+    bool ActorBase::RemoveAllActorModules()
+    {
+        for (int index = mActorModules.size() - 1; index >= 0; --index)
+        {
+            if (!RemoveActorModule(*mActorModules[index]))
+            {
+                //If one of the removals fail, stop and return a failure. 
+                LOG_E("Error in removing " + mActorModules[index]->GetEntityType().GetName())
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	//////////////////////////////////////////////////////////////////////////
-	trManager::EntityBase* ActorBase::FindActorModule(const trBase::UniqueId& id)
-	{
-		//Find an Actor Module with the same reference
-		ActorModules::iterator found;
-		for (found = mActorModules.begin(); found != mActorModules.end(); ++found)
-		{
-			if (found->Get()->GetUUID() == id)
-			{
-				//We found the actor module we need
-				return found->Get();
-			}
-		}
-		return nullptr;
-	}
+    //////////////////////////////////////////////////////////////////////////
+    trManager::EntityBase* ActorBase::FindActorModule(const trBase::UniqueId& id)
+    {
+        //Find an Actor Module with the same reference
+        ActorModules::iterator found;
+        for (found = mActorModules.begin(); found != mActorModules.end(); ++found)
+        {
+            if (found->Get()->GetUUID() == id)
+            {
+                //We found the actor module we need
+                return found->Get();
+            }
+        }
+        return nullptr;
+    }
 
-	//////////////////////////////////////////////////////////////////////////
-	void ActorBase::OnAddedToSysMan()
-	{
-		BaseClass::OnAddedToSysMan();
+    //////////////////////////////////////////////////////////////////////////
+    void ActorBase::OnAddedToSysMan()
+    {
+        BaseClass::OnAddedToSysMan();
 
-		//ReAttach all modules, if we have any saved in the reattach list. 
-		for (int index = 0; index < mActModReAttachStore.size(); ++index)
-		{
-			AddActorModule(*mActModReAttachStore[index]);
-		}
+        //ReAttach all modules, if we have any saved in the reattach list. 
+        for (int index = 0; index < mActModReAttachStore.size(); ++index)
+        {
+            AddActorModule(*mActModReAttachStore[index]);
+        }
 
-		//Clear the reattach list
-		mActModReAttachStore.clear();
-	}
+        //Clear the reattach list
+        mActModReAttachStore.clear();
+    }
 
-	//////////////////////////////////////////////////////////////////////////
-	void ActorBase::OnRemovedFromSysMan()
-	{
-		BaseClass::OnRemovedFromSysMan();
+    //////////////////////////////////////////////////////////////////////////
+    void ActorBase::OnRemovedFromSysMan()
+    {
+        BaseClass::OnRemovedFromSysMan();
 
-		//Make the vector a needed size to speed up assignment. 
-		mActModReAttachStore.reserve(mActorModules.size()); 
+        //Make the vector a needed size to speed up assignment. 
+        mActModReAttachStore.reserve(mActorModules.size()); 
 
-		//Store all the registered modules so we can re-attach them if we re-register with System Manager
-		for (int index = 0; index < mActorModules.size(); ++index)
-		{
-			mActModReAttachStore.push_back(mActorModules[index]);
-		}
+        //Store all the registered modules so we can re-attach them if we re-register with System Manager
+        for (int index = 0; index < mActorModules.size(); ++index)
+        {
+            mActModReAttachStore.push_back(mActorModules[index]);
+        }
 
-		//Remove all Modules to make sure we don't have a memory leak if this instance is deleted. 
-		RemoveAllActorModules();
-	}
+        //Remove all Modules to make sure we don't have a memory leak if this instance is deleted. 
+        RemoveAllActorModules();
+    }
 }

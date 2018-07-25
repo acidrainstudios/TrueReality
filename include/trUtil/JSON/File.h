@@ -40,26 +40,26 @@ namespace trUtil
  *
  * @brief   .
  */
-	namespace JSON
-	{
+    namespace JSON
+    {
         /**
          * @class   File
          *
          * @brief   A file.
          */
-		class TR_UTIL_EXPORT File : Base
-		{
-		public:
+        class TR_UTIL_EXPORT File : Base
+        {
+        public:
 
-			/** @brief   The default JSON file name. */
-			const static std::string DEFAULT_JSON_FILE_NAME;
+            /** @brief   The default JSON file name. */
+            const static std::string DEFAULT_JSON_FILE_NAME;
 
             /**
              * @fn  File::File();
              *
              * @brief   ctor.
              */
-			File();
+            File();
 
             /**
              * @fn  File::File(std::string fileName);
@@ -69,14 +69,14 @@ namespace trUtil
              *
              * @param   fileName    Filename of the file.
              */
-			File(std::string fileName);
+            File(std::string fileName);
 
             /**
              * @fn  File::~File();
              *
              * @brief   dtor.
              */
-			~File();
+            ~File();
 
             /**
              * @fn  virtual bool File::ReadFromFile(std::string fileName);
@@ -87,7 +87,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool ReadFromFile(std::string fileName);
+            virtual bool ReadFromFile(std::string fileName);
 
             /**
              * @fn  virtual bool File::ReadFromFile();
@@ -97,7 +97,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool ReadFromFile();
+            virtual bool ReadFromFile();
 
             /**
              * @fn  virtual bool File::WriteToFile(std::string fileName);
@@ -108,7 +108,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool WriteToFile(std::string fileName);
+            virtual bool WriteToFile(std::string fileName);
 
             /**
              * @fn  virtual bool File::WriteToFile();
@@ -118,7 +118,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool WriteToFile();
+            virtual bool WriteToFile();
 
             /**
              * @fn  virtual void File::SetFileName(std::string fileName);
@@ -127,7 +127,7 @@ namespace trUtil
              *
              * @param   fileName    Filename of the file.
              */
-			virtual void SetFileName(std::string fileName);
+            virtual void SetFileName(std::string fileName);
 
             /**
              * @fn  virtual std::string File::GetFileName() const;
@@ -136,7 +136,7 @@ namespace trUtil
              *
              * @return  The file name.
              */
-			virtual std::string GetFileName() const;
+            virtual std::string GetFileName() const;
 
             /**
              * @fn  virtual void File::SetFilePath(std::string newPath);
@@ -146,7 +146,7 @@ namespace trUtil
              *
              * @param   newPath Full pathname of the new file.
              */
-			virtual void SetFilePath(std::string newPath);
+            virtual void SetFilePath(std::string newPath);
 
             /**
              * @fn  virtual std::string File::GetFilePath() const;
@@ -155,7 +155,7 @@ namespace trUtil
              *
              * @return  The file path.
              */
-			virtual std::string GetFilePath() const;
+            virtual std::string GetFilePath() const;
 
             /**
              * @fn  virtual bool File::FileExists();
@@ -164,14 +164,14 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool FileExists();
+            virtual bool FileExists();
 
             /**
              * @fn  void File::Clear() override;
              *
              * @brief   Clears the internal JSON Root node.
              */
-			void Clear() override;
+            void Clear() override;
 
             /**
              * @fn  virtual Value& File::GetJSONRoot() override;
@@ -180,14 +180,14 @@ namespace trUtil
              *
              * @return  The JSON root.
              */
-			virtual Value& GetJSONRoot() override;
+            virtual Value& GetJSONRoot() override;
 
             /**
              * @fn  virtual void File::PrintJSONRoot() override;
              *
              * @brief   Prints out to the screen the whole JSON Root content.
              */
-			virtual void PrintJSONRoot() override;
+            virtual void PrintJSONRoot() override;
 
             /**
              * @fn  virtual bool File::KeyPresent(const std::string &key) const override;
@@ -198,7 +198,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool KeyPresent(const std::string &key) const override;
+            virtual bool KeyPresent(const std::string &key) const override;
 
             /**
              * @fn  virtual bool File::IsNull(const std::string &key) const override;
@@ -209,7 +209,7 @@ namespace trUtil
              *
              * @return  True if null, false if not.
              */
-			virtual bool IsNull(const std::string &key) const override;
+            virtual bool IsNull(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetNull(const std::string &key) override;
@@ -218,7 +218,7 @@ namespace trUtil
              *
              * @param   key The key.
              */
-			virtual void SetNull(const std::string &key) override;
+            virtual void SetNull(const std::string &key) override;
 
             /**
              * @fn  virtual bool File::IsBool(const std::string &key) const override;
@@ -229,7 +229,7 @@ namespace trUtil
              *
              * @return  True if bool, false if not.
              */
-			virtual bool IsBool(const std::string &key) const override;
+            virtual bool IsBool(const std::string &key) const override;
 
             /**
              * @fn  virtual bool File::GetBool(const std::string &key) const override;
@@ -240,7 +240,7 @@ namespace trUtil
              *
              * @return  True if it succeeds, false if it fails.
              */
-			virtual bool GetBool(const std::string &key) const override;
+            virtual bool GetBool(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetBool(const std::string &key, const bool &value) override;
@@ -250,7 +250,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetBool(const std::string &key, const bool &value) override;
+            virtual void SetBool(const std::string &key, const bool &value) override;
 
             /**
              * @fn  virtual bool File::IsTrue(const std::string &key) const override;
@@ -261,7 +261,7 @@ namespace trUtil
              *
              * @return  True if true, false if not.
              */
-			virtual bool IsTrue(const std::string &key) const override;
+            virtual bool IsTrue(const std::string &key) const override;
 
             /**
              * @fn  virtual bool File::IsFalse(const std::string &key) const override;
@@ -272,7 +272,7 @@ namespace trUtil
              *
              * @return  True if false, false if not.
              */
-			virtual bool IsFalse(const std::string &key) const override;
+            virtual bool IsFalse(const std::string &key) const override;
 
             /**
              * @fn  virtual bool File::IsNumber(const std::string &key) const override;
@@ -283,7 +283,7 @@ namespace trUtil
              *
              * @return  True if number, false if not.
              */
-			virtual bool IsNumber(const std::string &key) const override;
+            virtual bool IsNumber(const std::string &key) const override;
 
             /**
              * @fn  virtual bool File::IsInt(const std::string &key) const override;
@@ -294,7 +294,7 @@ namespace trUtil
              *
              * @return  True if int, false if not.
              */
-			virtual bool IsInt(const std::string &key) const override;
+            virtual bool IsInt(const std::string &key) const override;
 
             /**
              * @fn  virtual int File::GetInt(const std::string &key) const override;
@@ -305,7 +305,7 @@ namespace trUtil
              *
              * @return  The int.
              */
-			virtual int GetInt(const std::string &key) const override;
+            virtual int GetInt(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetInt(const std::string &key, const int &value) override;
@@ -315,7 +315,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetInt(const std::string &key, const int &value) override;
+            virtual void SetInt(const std::string &key, const int &value) override;
 
             /**
              * @fn  virtual bool File::IsDouble(const std::string &key) const override;
@@ -326,7 +326,7 @@ namespace trUtil
              *
              * @return  True if double, false if not.
              */
-			virtual bool IsDouble(const std::string &key) const override;
+            virtual bool IsDouble(const std::string &key) const override;
 
             /**
              * @fn  virtual double File::GetDouble(const std::string &key) const override;
@@ -337,7 +337,7 @@ namespace trUtil
              *
              * @return  The double.
              */
-			virtual double GetDouble(const std::string &key) const override;
+            virtual double GetDouble(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetDouble(const std::string &key, const double &value) override;
@@ -347,7 +347,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetDouble(const std::string &key, const double &value) override;
+            virtual void SetDouble(const std::string &key, const double &value) override;
 
             /**
              * @fn  virtual bool File::IsUInt(const std::string &key) const override;
@@ -358,7 +358,7 @@ namespace trUtil
              *
              * @return  True if u int, false if not.
              */
-			virtual bool IsUInt(const std::string &key) const override;
+            virtual bool IsUInt(const std::string &key) const override;
 
             /**
              * @fn  virtual unsigned int File::GetUInt(const std::string &key) const override;
@@ -369,7 +369,7 @@ namespace trUtil
              *
              * @return  The u int.
              */
-			virtual unsigned int GetUInt(const std::string &key) const override;
+            virtual unsigned int GetUInt(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetUInt(const std::string &key, const unsigned int &value) override;
@@ -379,7 +379,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetUInt(const std::string &key, const unsigned int &value) override;
+            virtual void SetUInt(const std::string &key, const unsigned int &value) override;
 
             /**
              * @fn  virtual bool File::IsInt64(const std::string &key) const override;
@@ -390,7 +390,7 @@ namespace trUtil
              *
              * @return  True if int 64, false if not.
              */
-			virtual bool IsInt64(const std::string &key) const override;
+            virtual bool IsInt64(const std::string &key) const override;
 
             /**
              * @fn  virtual Int64 File::GetInt64(const std::string &key) const override;
@@ -401,7 +401,7 @@ namespace trUtil
              *
              * @return  The int 64.
              */
-			virtual Int64 GetInt64(const std::string &key) const override;
+            virtual Int64 GetInt64(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetInt64(const std::string &key, const Int64 &value) override;
@@ -411,7 +411,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetInt64(const std::string &key, const Int64 &value) override;
+            virtual void SetInt64(const std::string &key, const Int64 &value) override;
 
             /**
              * @fn  virtual bool File::IsUInt64(const std::string &key) const override;
@@ -422,7 +422,7 @@ namespace trUtil
              *
              * @return  True if u int 64, false if not.
              */
-			virtual bool IsUInt64(const std::string &key) const override;
+            virtual bool IsUInt64(const std::string &key) const override;
 
             /**
              * @fn  virtual UInt64 File::GetUInt64(const std::string &key) const override;
@@ -433,7 +433,7 @@ namespace trUtil
              *
              * @return  The u int 64.
              */
-			virtual UInt64 GetUInt64(const std::string &key) const override;
+            virtual UInt64 GetUInt64(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetUInt64(const std::string &key, const UInt64 &value) override;
@@ -443,7 +443,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetUInt64(const std::string &key, const UInt64 &value) override;
+            virtual void SetUInt64(const std::string &key, const UInt64 &value) override;
 
             /**
              * @fn  virtual bool File::IsFloat(const std::string &key) const override;
@@ -454,7 +454,7 @@ namespace trUtil
              *
              * @return  True if float, false if not.
              */
-			virtual bool IsFloat(const std::string &key) const override;
+            virtual bool IsFloat(const std::string &key) const override;
 
             /**
              * @fn  virtual float File::GetFloat(const std::string &key) const override;
@@ -465,7 +465,7 @@ namespace trUtil
              *
              * @return  The float.
              */
-			virtual float GetFloat(const std::string &key) const override;
+            virtual float GetFloat(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetFloat(const std::string &key, const float &value) override;
@@ -475,7 +475,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetFloat(const std::string &key, const float &value) override;
+            virtual void SetFloat(const std::string &key, const float &value) override;
 
             /**
              * @fn  virtual bool File::IsString(const std::string &key) const override;
@@ -486,7 +486,7 @@ namespace trUtil
              *
              * @return  True if string, false if not.
              */
-			virtual bool IsString(const std::string &key) const override;
+            virtual bool IsString(const std::string &key) const override;
 
             /**
              * @fn  virtual const std::string File::GetString(const std::string &key) const override;
@@ -497,7 +497,7 @@ namespace trUtil
              *
              * @return  The string.
              */
-			virtual const std::string GetString(const std::string &key) const override;
+            virtual const std::string GetString(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetString(const std::string &key, const std::string &value) override;
@@ -507,7 +507,7 @@ namespace trUtil
              * @param   key     The key.
              * @param   value   The value.
              */
-			virtual void SetString(const std::string &key, const std::string &value) override;
+            virtual void SetString(const std::string &key, const std::string &value) override;
 
             /**
              * @fn  virtual bool File::IsArray(const std::string &key) const override;
@@ -518,7 +518,7 @@ namespace trUtil
              *
              * @return  True if array, false if not.
              */
-			virtual bool IsArray(const std::string &key) const override;
+            virtual bool IsArray(const std::string &key) const override;
 
             /**
              * @fn  virtual Array File::GetArray(const std::string &key) const override;
@@ -529,7 +529,7 @@ namespace trUtil
              *
              * @return  The array.
              */
-			virtual Array GetArray(const std::string &key) const override;
+            virtual Array GetArray(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetArray(const std::string &key, Array &value) override;
@@ -539,7 +539,7 @@ namespace trUtil
              * @param           key     The key.
              * @param [in,out]  value   The value.
              */
-			virtual void SetArray(const std::string &key, Array &value) override;
+            virtual void SetArray(const std::string &key, Array &value) override;
 
             /**
              * @fn  virtual bool File::IsObject(const std::string &key) const override;
@@ -550,7 +550,7 @@ namespace trUtil
              *
              * @return  True if object, false if not.
              */
-			virtual bool IsObject(const std::string &key) const override;
+            virtual bool IsObject(const std::string &key) const override;
 
             /**
              * @fn  virtual Object File::GetObject(const std::string &key) const override;
@@ -561,7 +561,7 @@ namespace trUtil
              *
              * @return  The object.
              */
-			virtual Object GetObject(const std::string &key) const override;
+            virtual Object GetObject(const std::string &key) const override;
 
             /**
              * @fn  virtual void File::SetObject(const std::string &key, Object &value) override;
@@ -571,16 +571,16 @@ namespace trUtil
              * @param           key     The key.
              * @param [in,out]  value   The value.
              */
-			virtual void SetObject(const std::string &key, Object &value) override;
+            virtual void SetObject(const std::string &key, Object &value) override;
 
-		private:
-			/** @brief   Filename of the file. */
-			std::string mFileName;
-			/** @brief   Full pathname of the file. */
-			std::string mFilePath;
+        private:
+            /** @brief   Filename of the file. */
+            std::string mFileName;
+            /** @brief   Full pathname of the file. */
+            std::string mFilePath;
 
             /** @brief   The root. */
             Value mRoot;
-		};
-	}
+        };
+    }
 }
