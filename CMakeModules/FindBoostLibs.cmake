@@ -107,7 +107,7 @@ FIND_PACKAGE (Boost ${BoostLibs_FIND_VERSION} REQUIRED COMPONENTS
 SET (${DEPENDENCY}_FOUND "NO")
 IF (Boost_FOUND)
     SET (${DEPENDENCY}_FOUND "YES")
-ENDIF (Boost_FOUND)
+ENDIF ()
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
