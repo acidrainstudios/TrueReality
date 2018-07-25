@@ -15,11 +15,11 @@
 # along with this library; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Author: Maxim Serebrennik
+# @author Maxim Serebrennik
 
 INCLUDE (CMakeDependentOption)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.11.0 FATAL_ERROR)
-CMAKE_POLICY(VERSION 3.11.0)
+CMAKE_POLICY (VERSION 3.11.0)
 
 # Sets the path to custom CMake modules. 
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
@@ -27,7 +27,7 @@ SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 # Sets a check to make sure cmake does change the source files.  
 SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 SET (CMAKE_DISABLE_IN_SOURCE_BUILD ON)
-INCLUDE(InSourceBuild)
+INCLUDE (InSourceBuild)
 
 # Sets up the install options
 SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
@@ -56,18 +56,18 @@ CMAKE_DEPENDENT_OPTION (TR_APP "Enables the building of trApp library" ON "TR_CO
 # *****************************************************************************
 # Sets Advanced options ***********************************************************
 # *****************************************************************************
-OPTION(TR_USE_DOUBLE_MATRIX "Set to OFF to build TR with float Matrix instead of double." ON)
-MARK_AS_ADVANCED(TR_USE_DOUBLE_MATRIX)
-OPTION(TR_USE_DOUBLE_VECTOR "Set to OFF to build TR with float Vector instead of double." ON)
-MARK_AS_ADVANCED(TR_USE_DOUBLE_VECTOR)
+OPTION (TR_USE_DOUBLE_MATRIX "Set to OFF to build TR with float Matrix instead of double." ON)
+MARK_AS_ADVANCED (TR_USE_DOUBLE_MATRIX)
+OPTION (TR_USE_DOUBLE_VECTOR "Set to OFF to build TR with float Vector instead of double." ON)
+MARK_AS_ADVANCED (TR_USE_DOUBLE_VECTOR)
 OPTION (TR_BUILD_VERSIONED_LIBRARIES "Enables the building of unique versioned shared libraries" ON)
-MARK_AS_ADVANCED(TR_BUILD_VERSIONED_LIBRARIES)
+MARK_AS_ADVANCED (TR_BUILD_VERSIONED_LIBRARIES)
 OPTION (TR_BUILD_WITH_RELEASE "Enables the building of the release version of True Reality" ON)
-MARK_AS_ADVANCED(TR_BUILD_WITH_RELEASE)
+MARK_AS_ADVANCED (TR_BUILD_WITH_RELEASE)
 OPTION (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of True Reality" ON)
-MARK_AS_ADVANCED(TR_BUILD_WITH_DEBUG)
+MARK_AS_ADVANCED (TR_BUILD_WITH_DEBUG)
 OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
-MARK_AS_ADVANCED(CMAKE_USE_RELATIVE_PATHS)
+MARK_AS_ADVANCED (CMAKE_USE_RELATIVE_PATHS)
 
 # *****************************************************************************
 # Sets Utilities options ******************************************************
@@ -108,31 +108,31 @@ IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
     TR_DETECT_DEPENDENCY (OSG 3.6.0)
     TR_DETECT_DEPENDENCY (OpenThreads)
     INCLUDE_DIRECTORIES (${OSG_INCLUDE_DIR} ${OpenThreads_INCLUDE_DIR})
-ENDIF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
+ENDIF ()
 
 # trUtil packages
 IF (TR_UTIL)
     TR_DETECT_DEPENDENCY (JsonCpp)
     INCLUDE_DIRECTORIES (${JSON_CPP_INCLUDE_DIR})
-ENDIF (TR_UTIL)
+ENDIF ()
 
 # trBase packages
 IF (TR_BASE)
     TR_DETECT_DEPENDENCY (BoostLibs 1.66.0)
     INCLUDE_DIRECTORIES (${Boost_INCLUDE_DIRS})
-ENDIF (TR_BASE)
+ENDIF ()
 
 # trBase packages
 IF (TR_VR)
     TR_DETECT_DEPENDENCY (OpenVR 1.0.14)
     INCLUDE_DIRECTORIES (${OpenVR_INCLUDE_DIRS})
-ENDIF (TR_VR)
+ENDIF ()
 
 # UNIT Tests
 IF (TR_BUILD_TESTS)
     TR_DETECT_DEPENDENCY (GoogleTest)
     INCLUDE_DIRECTORIES (${GOOGLE_TEST_INCLUDE_DIR})
-ENDIF (TR_BUILD_TESTS)
+ENDIF ()
 
 # *****************************************************************************
 # *****************************************************************************
@@ -144,17 +144,17 @@ INCLUDE (PlatformConfiguration)
 # *****************************************************************************
 # Set Float/Double Config header file *****************************************
 # *****************************************************************************
-SET(TR_FLOAT_DOUBLE_CONFIG_HEADER "${PROJECT_BINARY_DIR}/include/trUtil/TypeConfig.h")
-CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_FLOAT_DOUBLE_CONFIG_HEADER}")
+SET (TR_FLOAT_DOUBLE_CONFIG_HEADER "${PROJECT_BINARY_DIR}/include/trUtil/TypeConfig.h")
+CONFIGURE_FILE ("${CMAKE_CURRENT_SOURCE_DIR}/include/trUtil/TypeConfig.in" "${TR_FLOAT_DOUBLE_CONFIG_HEADER}")
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
 
 # Generates the selected sub-folders for the code base
-ADD_TR_SUBFOLDERS()
+ADD_TR_SUBFOLDERS ()
 
 #Copy all the needed files to the Build Folder
-TR_INSTALL_BUILD_OPTIONS()
+TR_INSTALL_BUILD_OPTIONS ()
 
 # Displays the current version of True Reality ********************************
-PRINT_TR_VERSION()
+PRINT_TR_VERSION ()
