@@ -15,9 +15,9 @@
 # along with this library; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Author: Maxim Serebrennik
+# @author Maxim Serebrennik
 
-#Set the executable name
+# Set the executable name
 SET(FILE_NAME exampleActors)
 
 # Set the source and include paths
