@@ -29,7 +29,7 @@
 # JsonCpp_FOUND - Defined if the dependency is found *****************************
 # ********************************************************************************
 
-SET(DEPENDENCY "JsonCpp")
+SET (DEPENDENCY "JsonCpp")
 
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR json/json.h    
