@@ -28,7 +28,7 @@
 # OpenVR_FOUND - Defined if the dependency is found **************************
 # ********************************************************************************
 
-SET(DEPENDENCY "OpenVR")
+SET (DEPENDENCY "OpenVR")
 
 # Finds the include files necessary for compilation
 FIND_PATH (${DEPENDENCY}_INCLUDE_DIR openvr/openvr.h
@@ -59,10 +59,10 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         $ENV{OPENVR_ROOT}/lib64
         $ENV{OPENVR_ROOT}/lib
         $ENV{OPENVR_ROOT}
+        $ENV{TR_LIB}
         $ENV{TR_ROOT}/Ext/lib64
         $ENV{TR_ROOT}/Ext/lib
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_LIB}
         $ENV{TR_ROOT}/lib64
         $ENV{TR_ROOT}/lib
         $ENV{TR_ROOT}
@@ -75,19 +75,19 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         /Library/Frameworks
     )
     MARK_AS_ADVANCED (${MYLIBRARY})
-ENDMACRO(FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
+ENDMACRO()
 
 IF (TR_BUILD_WITH_RELEASE)
     # Locates all OpenVR release libraries
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY openvr_api)
-ENDIF (TR_BUILD_WITH_RELEASE)
+ENDIF ()
 
 IF (TR_BUILD_WITH_DEBUG)
     # Locates all OpenVR debug libraries
     FIND_DEPENDENCY_LIBRARY (${DEPENDENCY}_LIBRARY_DEBUG openvr_apid)
-ENDIF (TR_BUILD_WITH_DEBUG)
+ENDIF ()
 
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_INCLUDE_DIR)
     SET (${DEPENDENCY}_FOUND "YES")
-ENDIF (${DEPENDENCY}_INCLUDE_DIR)
+ENDIF ()
