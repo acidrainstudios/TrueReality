@@ -15,15 +15,15 @@
 # along with this library; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Author: Maxim Serebrennik
+# @author Maxim Serebrennik
 
 # Set the library name and preprocessing
-SET(FILE_NAME trUtil)
-SET(PRE_PROCESSING TR_UTIL_LIBRARY)
+SET (FILE_NAME trUtil)
+SET (PRE_PROCESSING TR_UTIL_LIBRARY)
 
 # Set the source and include paths
-SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
-SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
+SET (HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
+SET (SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_SOURCES "${SOURCE_PATH}/*.cpp")
