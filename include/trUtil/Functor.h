@@ -30,6 +30,11 @@
 #include <stdlib.h>
 #include <utility>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
     // Generalized functor implementation. Concept inspired by Andrei Alexandrescu. 
@@ -38,6 +43,12 @@ namespace trUtil
     // 
     // Generalized functor class template 
 
+
+    /**
+     * @class   Functor
+     *
+     * @brief   A functor.
+     */
     template <typename R, class TList, unsigned int size = 4 * sizeof(void*)>
     class Functor
     {
@@ -45,16 +56,45 @@ namespace trUtil
         using ResultType = R ;
         using TypeListType = TList;
         using ParmsListType = typename CallParms<TList>::ParmsListType;
-        // default construction, assignment and destruction
+
+        /**
+         * @fn  Functor::Functor()
+         *
+         * @brief   default construction, assignment and destruction.
+         */
         Functor() : vptr_(0) {}
+
+        /**
+         * @fn  Functor::~Functor()
+         *
+         * @brief   Destructor.
+         */
         ~Functor()
         {
             if (vptr_) vptr_->destroy_(*this);
         }
+
+        /**
+         * @fn  Functor::Functor(Functor const& src)
+         *
+         * @brief   Copy constructor.
+         *
+         * @param   src Source for the.
+         */
         Functor(Functor const& src)
         {
             vptr_ = src.vptr_ ? src.vptr_->clone_(src, *this) : NULL;
         }
+
+        /**
+         * @fn  Functor& Functor::operator=(Functor const& src)
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   src Source for the.
+         *
+         * @return  A shallow copy of this object.
+         */
         Functor& operator=(Functor const& src)
         {
             if (this != &src) {
@@ -63,18 +103,49 @@ namespace trUtil
             }
             return *this;
         }
-        // is-empty selector
+
+        /**
+         * @fn  bool Functor::operator!() const
+         *
+         * @brief   is-empty selector.
+         *
+         * @return  The logical inverse of this value.
+         */
         bool operator!() const { return vptr_ == NULL; }
 
+        /**
+         * @fn  bool Functor::valid() const
+         *
+         * @brief   Valids this object.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
         bool valid() const { return vptr_ != NULL; }
 
-        // ctor for static fns and arbitrary functors 
+        /**
+         * @fn  template <typename F> explicit Functor::Functor(F const& fun)
+         *
+         * @brief   ctor for static fns and arbitrary functors.
+         *
+         * @tparam  F   Type of the f.
+         * @param   fun The fun.
+         */
         template <typename F> explicit Functor(F const& fun)
         {
             using StoredType = FunctorImpl<F>;
             vptr_ = _init<StoredType>(fun);
         }
-        // ctor for member fns (note: raw ptrs and smart ptrs are equally welcome in pobj)
+
+        /**
+         * @fn  template <class P, typename MF> explicit Functor::Functor(P const& pobj, MF memfun)
+         *
+         * @brief   ctor for member fns (note: raw ptrs and smart ptrs are equally welcome in pobj)
+         *
+         * @tparam  P   Type of the p.
+         * @tparam  MF  Type of the mf.
+         * @param   pobj    The pobj.
+         * @param   memfun  The memfun.
+         */
         template <class P, typename MF> explicit Functor(P const& pobj, MF memfun)
         {
             using StoredType = MemberFnImpl<P, MF>;
@@ -204,26 +275,58 @@ namespace trUtil
 
     // Helper functor creation functions
 
+
+        /**
+         * @fn  MakeFunctor(CallType fun)
+         *
+         * @brief   Constructor.
+         *
+         * @param   fun The fun.
+         */
     template <typename CallType> inline
         Functor<typename trUtil::FunTraits<CallType>::ResultType, typename trUtil::FunTraits<CallType>::TypeListType>
         MakeFunctor(CallType fun)
     {
         return trUtil::Functor<typename trUtil::FunTraits<CallType>::ResultType, typename trUtil::FunTraits<CallType>::TypeListType>(fun);
     }
+
+        /**
+         * @fn  MakeFunctor(CallType memfun, PObj* const pobj)
+         *
+         * @brief   Constructor.
+         *
+         * @param           memfun  The memfun.
+         * @param [in,out]  pobj    If non-null, the pobj.
+         */
     template <typename CallType, class PObj> inline
         Functor<typename trUtil::FunTraits<CallType>::ResultType, typename trUtil::FunTraits<CallType>::TypeListType>
-
         MakeFunctor(CallType memfun, PObj* const pobj)
     {
         return trUtil::Functor<typename trUtil::FunTraits<CallType>::ResultType, typename trUtil::FunTraits<CallType>::TypeListType>(pobj, memfun);
     }
 
+        /**
+         * @fn  MakeFunctor(Fun const& fun)
+         *
+         * @brief   Constructor.
+         *
+         * @param   fun The fun.
+         */
     template <typename CallType, class Fun> inline
         Functor<typename trUtil::FunTraits<CallType>::ResultType, typename trUtil::FunTraits<CallType>::TypeListType>
         MakeFunctor(Fun const& fun)
     {
         return trUtil::Functor<typename trUtil::FunTraits<CallType>::ResultType, typename trUtil::FunTraits<CallType>::TypeListType>(fun);
     }
+
+        /**
+         * @fn  MakeFunctor(CallType memfun, PObj& pobj)
+         *
+         * @brief   Constructor.
+         *
+         * @param           memfun  The memfun.
+         * @param [in,out]  pobj    The pobj.
+         */
     template <typename CallType, class PObj> inline
         Functor<typename trUtil::FunTraits<CallType>::ResultType, typename trUtil::FunTraits<CallType>::TypeListType>
         MakeFunctor(CallType memfun, PObj& pobj)
