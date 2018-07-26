@@ -27,8 +27,18 @@
 
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+    /**
+     * @class   VersionUtil
+     *
+     * @brief   A utility to read and control the engines version numbers.
+     */
     class TR_UTIL_EXPORT VersionUtil
     {
     public:
@@ -40,113 +50,183 @@ namespace trUtil
         const static std::string BUILD_VERSION;
 
         /**
-        * ctor
-        */
+         * @fn  VersionUtil::VersionUtil();
+         *
+         * @brief   ctor.
+         */
         VersionUtil();
 
         /**
-        * dtor
-        */
+         * @fn  VersionUtil::~VersionUtil();
+         *
+         * @brief   dtor.
+         */
         ~VersionUtil();
 
         /**
-        * Saves the version file currently in RAM to default location. 
-        */
+         * @fn  void VersionUtil::SaveVersionFile();
+         *
+         * @brief   Saves the version file currently in RAM to default location.
+         */
         void SaveVersionFile();
 
         /**
-        * Sets the version numbers
-        * Fills in the version numbers
-        */
+         * @fn  void VersionUtil::SetVersion(int maj, int min, std::string yymm, int build);
+         *
+         * @brief   Sets the version numbers. Fills in the version numbers.
+         *
+         * @param   maj     The maj.
+         * @param   min     The minimum.
+         * @param   yymm    The yymm.
+         * @param   build   The build.
+         */
         void SetVersion(int maj, int min, std::string yymm, int build);
 
         /**
-        * Sets the version numbers
-        * Fills in the version numbers
-        */
+         * @fn  void VersionUtil::SetVersion(int maj, int min, int yymm, int build);
+         *
+         * @brief   Sets the version numbers. Fills in the version numbers.
+         *
+         * @param   maj     The maj.
+         * @param   min     The minimum.
+         * @param   yymm    The yymm.
+         * @param   build   The build.
+         */
         void SetVersion(int maj, int min, int yymm, int build);
 
         /**
-        * Generates a copy of the version file in RAM.
-        */
+         * @fn  void VersionUtil::GenerateVersionStructure();
+         *
+         * @brief   Generates a copy of the version file in RAM.
+         */
         void GenerateVersionStructure();
 
         /**
-        * Increments the version number of the build by one and 
-        * sets the YYMM to current date. 
-        */
+         * @fn  void VersionUtil::IncrementVersion();
+         *
+         * @brief   Increments the version number of the build by one and sets the YYMM to current date.
+         */
         void IncrementVersion();
 
         /**
-        * Sets the Major part of the version string
-        */
+         * @fn  void VersionUtil::SetMajorVersion(int maj);
+         *
+         * @brief   Sets the Major part of the version string.
+         *
+         * @param   maj The maj.
+         */
         void SetMajorVersion(int maj);
 
         /**
-        * Gets the Major part of the version string
-        */
+         * @fn  int VersionUtil::GetMajorVersion();
+         *
+         * @brief   Gets the Major part of the version string.
+         *
+         * @return  The major version.
+         */
         int GetMajorVersion();
 
         /**
-        * Sets the Minor part of the version string
-        */
+         * @fn  void VersionUtil::SetMinorVersion(int min);
+         *
+         * @brief   Sets the Minor part of the version string.
+         *
+         * @param   min The minimum.
+         */
         void SetMinorVersion(int min);
 
         /**
-        * Gets the Minor part of the version string
-        */
+         * @fn  int VersionUtil::GetMinorVersion();
+         *
+         * @brief   Gets the Minor part of the version string.
+         *
+         * @return  The minor version.
+         */
         int GetMinorVersion();
 
         /**
-        * Gets the Year/Month part of the version string
-        */
+         * @fn  std::string VersionUtil::GetYYMMVersion();
+         *
+         * @brief   Gets the Year/Month part of the version string.
+         *
+         * @return  The yymm version.
+         */
         std::string GetYYMMVersion();
 
         /**
-        * Sets the Year/Month part of the version string
-        */
+         * @fn  void VersionUtil::SetYYMMVersion(std::string yymm);
+         *
+         * @brief   Sets the Year/Month part of the version string.
+         *
+         * @param   yymm    The yymm.
+         */
         void SetYYMMVersion(std::string yymm);
 
         /**
-        * Sets the Year/Month part of the version string
-        */
+         * @fn  void VersionUtil::SetYYMMVersion(int yymm);
+         *
+         * @brief   Sets the Year/Month part of the version string.
+         *
+         * @param   yymm    The yymm.
+         */
         void SetYYMMVersion(int yymm);
 
         /**
-        * Sets the Build part of the version string
-        */
+         * @fn  void VersionUtil::SetBuildVersion(int build);
+         *
+         * @brief   Sets the Build part of the version string.
+         *
+         * @param   build   The build.
+         */
         void SetBuildVersion(int build);
 
         /**
-        * Gets the Build part of the version string
-        */
+         * @fn  int VersionUtil::GetBuildVersion();
+         *
+         * @brief   Gets the Build part of the version string.
+         *
+         * @return  The build version.
+         */
         int GetBuildVersion();
 
         /**
-        * Returns the full version string
-        */
+         * @fn  std::string VersionUtil::GetVersionString();
+         *
+         * @brief   Returns the full version string.
+         *
+         * @return  The version string.
+         */
         std::string GetVersionString();  
-        
+
         /**
-        * Updates the version file to the most recent HG Revision and YTMM. 
-        */
+         * @fn  void VersionUtil::UpdateVersion();
+         *
+         * @brief   Updates the version file to the most recent HG/Git Revision and YTMM.
+         */
         void UpdateVersion();
         
     private:
         JSON::File mVersion;
 
         /**
-        * Returns todays date in the YYMM format as string.
-        */
+         * @fn  std::string VersionUtil::GetTodaysVersionDate();
+         *
+         * @brief   Returns todays date in the YYMM format as string.
+         *
+         * @return  The todays version date.
+         */
         std::string GetTodaysVersionDate();
 
         /**
-        * Returns the current system HG revision number.
-        * Note that the revision number is not the commit hash and could be different on
-        * individual systems. The best place to use this is on a build server.
-        * This needs TR_ROOT to be set, and .hg folder to be in TR_ROOT
-        */
+         * @fn  int VersionUtil::GetCurrentCommitNum();
+         *
+         * @brief   Returns the current system HG/Git revision number. Note that the revision number is
+         *          not the commit hash and could be different on individual systems. The best place to
+         *          use this is on a build server. This needs TR_ROOT to be set, and .hg or .git folder
+         *          to be in TR_ROOT.
+         *
+         * @return  The current commit number.
+         */
         int GetCurrentCommitNum();        
     };
 }
-
