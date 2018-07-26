@@ -21,10 +21,10 @@
 * Class Inspired by the Delta3D Engine
 * http://delta3dengine.org/
 *
-* @authorErik Johnson 06/06/2006
+* @author Erik Johnson 06/06/2006
 *
 * Bits is a derivation from the Bits.h file of the CADKit project, Usul:
-* @authorPerry L. Miller IV
+* @author Perry L. Miller IV
 * http://cadkit.sourceforge.net/
 *
 * @author Maxim Serebrennik
@@ -32,67 +32,105 @@
 #pragma once
 #include "Export.h"
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
-{
+{    
     /**
-    * @namespace trUtil::Bits
+    * @namespace   Bits
     *
-    * Contains bit-wise operation functionality which makes using bits
-    * a little "bit" easier.
+    * @brief   Contains bit-wise operation functionality which makes using bits a little "bit" easier. 
     */
     namespace Bits
     {
-
         /**
-        * See if the "bits" are in "number".
-        * @code
-        * unsigned int accum = 3;
-        * Bits::Has( accum, 1 ); //true
-        * Bits::Has( accum, 7 ); //false
-        * @endcode
-        */
+         * @fn  template < class N, class B > inline bool Has(N number, B bits)
+         *
+         * @brief   See if the "bits" are in "number".
+         *          @code
+         *          unsigned int accum = 3;
+         *          Bits::Has( accum, 1 ); //true
+         *          Bits::Has( accum, 7 ); //false
+         *          @endcode.
+         *
+         * @tparam  N   Type of the n.
+         * @tparam  B   Type of the b.
+         * @param   number  Number of.
+         * @param   bits    The bits.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
         template < class N, class B > inline bool Has(N number, B bits)
         {
             return ((number & bits) == (static_cast<N>(bits)));
         }
 
         /**
-        * Add the "bits" to "number".
-        * @code
-        * unsigned int accum = 1;
-        * accum = Bits::Add(accum, 7); //Has(accum, 1) and Has(accum, 7) == true
-        * @endcode
-        */
+         * @fn  template < class N, class B > inline N Add(N number, B bits)
+         *
+         * @brief   Add the "bits" to "number".
+         *          @code
+         *          unsigned int accum = 1;
+         *          accum = Bits::Add(accum, 7); //Has(accum, 1) and Has(accum, 7) == true
+         *          @endcode.
+         *
+         * @tparam  N   Type of the n.
+         * @tparam  B   Type of the b.
+         * @param   number  Number of.
+         * @param   bits    The bits.
+         *
+         * @return  A N.
+         */
         template < class N, class B > inline N Add(N number, B bits)
         {
             return (number | bits);
         }
 
         /**
-        * Remove the "bits" from "number".
-        * @code
-        * unsigned int accum = 3;
-        * accum = Bits::Remove(accum, 2); //Has(accum,3) == false, Has(accum,1) == true
-        * @endcode
-        */
+         * @fn  template < class N, class B > inline N Remove(N number, B bits)
+         *
+         * @brief   Remove the "bits" from "number".
+         *          @code
+         *          unsigned int accum = 3;
+         *          accum = Bits::Remove(accum, 2); //Has(accum,3) == false, Has(accum,1) == true
+         *          @endcode.
+         *
+         * @tparam  N   Type of the n.
+         * @tparam  B   Type of the b.
+         * @param   number  Number of.
+         * @param   bits    The bits.
+         *
+         * @return  A N.
+         */
         template < class N, class B > inline N Remove(N number, B bits)
         {
             return ((number & bits) ? (number ^ bits) : number);
         }
 
         /**
-        * Toggle the "bits" in "number".
-        * @code
-        * unsigned int accum = 3;
-        * unsigned int newBits;
-        * newBits = Bits::Toggle(accum, 1); //newBits = 2
-        * newBits = Bits::Toggle(accum, 1); //newBits = 3
-        * @endcode
-        */
+         * @fn  template < class N, class B > inline N Toggle(N number, B bits)
+         *
+         * @brief   Toggle the "bits" in "number".
+         *          @code
+         *          unsigned int accum = 3;
+         *          unsigned int newBits;
+         *          newBits = Bits::Toggle(accum, 1); //newBits = 2
+         *          newBits = Bits::Toggle(accum, 1); //newBits = 3
+         *          @endcode.
+         *
+         * @tparam  N   Type of the n.
+         * @tparam  B   Type of the b.
+         * @param   number  Number of.
+         * @param   bits    The bits.
+         *
+         * @return  A N.
+         */
         template < class N, class B > inline N Toggle(N number, B bits)
         {
             return (number ^ bits);
         }
     } 
 }
-
