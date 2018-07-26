@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright ï¿½ 2018 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -262,7 +262,6 @@ namespace trUtil
     void DateTime::GetGMTTime(unsigned& year, unsigned& month, unsigned& day, unsigned& hour, unsigned& min, unsigned& sec) const
     {
         DateTime dt(GetGMTTime());
-
         year = dt.mYears;
         month = dt.mMonths;
         day = dt.mDays;
@@ -401,14 +400,13 @@ namespace trUtil
     ////////////////////////////////////////////////////////////////////
     float DateTime::CalcGMTOffset(tm& timeParts, bool factorLocalDayLightSavingsIntoGMTOffset)
     {
-        float result = 0.0f;
 #ifdef TR_WIN
         _tzset();
         long tz; 
         _get_timezone(&tz);
         tz = tz * -1;
-        //long tz = timezone * -1; //Commented out because of deprecation warnings
-        result = tz / 3600.0f;
+        float result = tz / 3600.0f;
+        
         if (factorLocalDayLightSavingsIntoGMTOffset)
         {
             result += timeParts.tm_isdst;
@@ -418,7 +416,8 @@ namespace trUtil
         // But the dateTime wants the value without it taken into account, so we have to
         // subtract it back out.
         long tz = timeParts.tm_gmtoff;
-        result = tz / 3600.0f;
+        float result = tz / 3600.0f;
+        
         if (!factorLocalDayLightSavingsIntoGMTOffset)
         {
             result -= timeParts.tm_isdst;
@@ -431,7 +430,12 @@ namespace trUtil
     void DateTime::SetGMTOffset(double /*latitude*/, double longitude, bool dayLightSavings)
     {
         double offset = 7.5;
-        if (longitude < 0.0f) { offset = -offset; }
+        
+        if (longitude < 0.0f) 
+        {
+            offset = -offset;
+        }
+        
         mGMTOffset = float(int(dayLightSavings) + int((longitude + offset) / 15.0));
     }
 
@@ -656,14 +660,15 @@ namespace trUtil
     {
         if (t != nullptr)
         {
-            bool result = false;
 #ifdef TR_WIN
-            result = gmtime_s(&timeParts, t) != EINVAL;
+            bool result = gmtime_s(&timeParts, t) != EINVAL;
 #else
-            result = gmtime_r(t, &timeParts) != nullptr;
+            bool result = gmtime_r(t, &timeParts) != nullptr;
 #endif
             if (result)
+            {
                 return;
+            }
         }
 
         memset(&timeParts, 0, sizeof(tm));
@@ -674,14 +679,15 @@ namespace trUtil
     {
         if (t != nullptr)
         {
-            bool result = false;
 #ifdef TR_WIN
-            result = localtime_s(&timeParts, t) != EINVAL;
+            bool result = localtime_s(&timeParts, t) != EINVAL;
 #else
-            result = localtime_r(t, &timeParts) != nullptr;
+            bool result = localtime_r(t, &timeParts) != nullptr;
 #endif
             if (result)
+            {
                 return;
+            }
         }
 
         memset(&timeParts, 0, sizeof(tm));
