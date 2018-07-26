@@ -26,89 +26,149 @@
 
 #include <ostream>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
     /**
-     * This class represents a type-safe Enumeration pattern.  It allows one to
-     * also enumerate an Enumeration thus looking up values in a list fashion. Unlike
-     * EnumerationString, EnumerationNumeric also stores an integer value with each Enum. 
+     * @class   EnumerationNumeric
+     *
+     * @brief   This class represents a type-safe Enumeration pattern.  It allows one to also
+     *          enumerate an Enumeration thus looking up values in a list fashion. Unlike
+     *          EnumerationString, EnumerationNumeric also stores an integer value with each Enum.
      */
     class TR_UTIL_EXPORT EnumerationNumeric : public EnumerationString
     {
     public:
-        using BaseClass = EnumerationString; /// Adds an easy and swappable access to the base class
+        /** @brief   / Adds an easy and swappable access to the base class. */
+        using BaseClass = EnumerationString;
 
         /**
-         * Returns the Numeric value of the Enum
+         * @fn  unsigned int EnumerationNumeric::GetID() const;
+         *
+         * @brief   Returns the Numeric value of the Enum.
+         *
+         * @return  The identifier.
          */
         unsigned int GetID() const;
-        
+
         /**
-         * Equality test for an EnumerationNumeric. This comparison option takes in an unsigned integer.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator==(const unsigned int &id) const
+         *
+         * @brief   Equality test for an EnumerationNumeric. This comparison option takes in an unsigned
+         *          integer. Inlined because it's called frequently.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are considered equivalent.
          */
         bool operator==(const unsigned int &id) const
         {
             return (mID == id);
         }
-        
+
         /**
-         * Inequality test for an EnumerationNumeric. This comparison option takes in an unsigned integer.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator!=(const unsigned int &id) const
+         *
+         * @brief   Inequality test for an EnumerationNumeric. This comparison option takes in an
+         *          unsigned integer. Inlined because it's called frequently.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are not considered equivalent.
          */
         bool operator!=(const unsigned int &id) const
         {
             return (mID != id);
         }
-        
+
         /**
-         * Greater than test for an EnumerationNumeric. This comparison option takes in an unsigned integer.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator>(const unsigned int &id) const
+         *
+         * @brief   Greater than test for an EnumerationNumeric. This comparison option takes in an
+         *          unsigned integer. Inlined because it's called frequently.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is greater than to the second.
          */
         bool operator>(const unsigned int &id) const
         {
             return (mID > id);
         }
-        
+
         /**
-         * Less than test for an EnumerationNumeric. This comparison option takes in an unsigned integer.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator<(const unsigned int &id) const
+         *
+         * @brief   Less than test for an EnumerationNumeric. This comparison option takes in an unsigned
+         *          integer. Inlined because it's called frequently.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is less than the second.
          */
         bool operator<(const unsigned int &id) const
         {
             return (mID < id);
         }
-        
+
         /**
-         * Greater than test for an EnumerationNumeric. This comparison option takes in an EnumerationNumeric.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator>(const EnumerationNumeric &e) const
+         *
+         * @brief   Greater than test for an EnumerationNumeric. This comparison option takes in an
+         *          EnumerationNumeric. Inlined because it's called frequently.
+         *
+         * @param   e   The EnumerationNumeric to process.
+         *
+         * @return  True if the first parameter is greater than to the second.
          */
         bool operator>(const EnumerationNumeric &e) const
         {
             return (mID > e.mID);
         }
-        
+
         /**
-         * Less than test for an EnumerationNumeric. This comparison option takes in an EnumerationNumeric.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator<(const EnumerationNumeric &e) const
+         *
+         * @brief   Less than test for an EnumerationNumeric. This comparison option takes in an
+         *          EnumerationNumeric. Inlined because it's called frequently.
+         *
+         * @param   e   The EnumerationNumeric to process.
+         *
+         * @return  True if the first parameter is less than the second.
          */
         bool operator<(const EnumerationNumeric &e) const
         {
             return (mID < e.mID);
         }
-        
+
         /**
-         * Equality test for an EnumerationNumeric. This comparison option takes in an EnumerationNumeric.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator==(const EnumerationNumeric &e) const
+         *
+         * @brief   Equality test for an EnumerationNumeric. This comparison option takes in an
+         *          EnumerationNumeric. Inlined because it's called frequently.
+         *
+         * @param   e   The EnumerationNumeric to process.
+         *
+         * @return  True if the parameters are considered equivalent.
          */
         bool operator==(const EnumerationNumeric &e) const
         {
             return (this == &e);
         }
-        
+
         /**
-         * Inequality test for an EnumerationNumeric. This comparison option takes in an EnumerationNumeric.
-         * Inlined because it's called frequently
+         * @fn  bool EnumerationNumeric::operator!=(const EnumerationNumeric &e) const
+         *
+         * @brief   Inequality test for an EnumerationNumeric. This comparison option takes in an
+         *          EnumerationNumeric. Inlined because it's called frequently.
+         *
+         * @param   e   The EnumerationNumeric to process.
+         *
+         * @return  True if the parameters are not considered equivalent.
          */
         bool operator!=(const EnumerationNumeric &e) const
         {
@@ -116,59 +176,106 @@ namespace trUtil
         }
 
         /**
-         * Overloaded string compare operator for the EnumerationNumeric.  This will compare
-         * the string to this EnumerationNumeric getName() value.
-         * @param rhs
-         * @return True if they are equal.
-         * @note
-         *  Uses the STL string compare method implying that the rules for string
-         *  equality are the same as they are for the STL string compare method.
+         * @fn  bool EnumerationNumeric::operator==(const std::string& rhs) const;
+         *
+         * @brief   Overloaded string compare operator for the EnumerationNumeric.  This will compare the
+         *          string to this EnumerationNumeric getName() value.
+         *
+         * @param   rhs .
+         *
+         * @return  True if they are equal.
+         *          @note
+         *          Uses the STL string compare method implying that the rules for string equality are
+         *          the same as they are for the STL string compare method.
          */
         bool operator==(const std::string& rhs) const;
 
         /**
-         * Overloaded inequality test for this EnumerationNumeric's string value.
+         * @fn  bool EnumerationNumeric::operator!=(const std::string& rhs) const;
+         *
+         * @brief   Overloaded inequality test for this EnumerationNumeric's string value.
+         *
+         * @param   rhs The right hand side.
+         *
+         * @return  True if the parameters are not considered equivalent.
          */
         bool operator!=(const std::string& rhs) const;
 
         /**
-         * Overloaded less than test for this EnumerationNumeric's string value.
+         * @fn  bool EnumerationNumeric::operator<(const std::string& rhs) const;
+         *
+         * @brief   Overloaded less than test for this EnumerationNumeric's string value.
+         *
+         * @param   rhs The right hand side.
+         *
+         * @return  True if the first parameter is less than the second.
          */
         bool operator<(const std::string& rhs) const;
 
         /**
-         * Overloaded greater than test for this EnumerationNumeric's string value.
+         * @fn  bool EnumerationNumeric::operator>(const std::string& rhs) const;
+         *
+         * @brief   Overloaded greater than test for this EnumerationNumeric's string value.
+         *
+         * @param   rhs The right hand side.
+         *
+         * @return  True if the first parameter is greater than to the second.
          */
         bool operator>(const std::string& rhs) const;
 
     protected:
+
         /**
-         * ctor
-         * Protected to prevent creation of an instance. 
+         * @fn  EnumerationNumeric::EnumerationNumeric(const std::string& name, unsigned int orderId);
+         *
+         * @brief   ctor Protected to prevent creation of an instance.
+         *
+         * @param   name    The name.
+         * @param   orderId Identifier for the order.
          */
         EnumerationNumeric(const std::string& name, unsigned int orderId);
 
         /**
-         * dtor
+         * @fn  EnumerationNumeric::~EnumerationNumeric();
+         *
+         * @brief   dtor.
          */
         ~EnumerationNumeric();
 
     private:
+        /** @brief   The identifier. */
         unsigned int mID;
 
         /**
-         * Private assignment operator to enforce EnumerationNumeric storage by reference.
+         * @fn  EnumerationNumeric& EnumerationNumeric::operator=(const EnumerationNumeric&);
+         *
+         * @brief   Private assignment operator to enforce EnumerationNumeric storage by reference.
+         *
+         * @param   parameter1  The first parameter.
+         *
+         * @return  A shallow copy of this object.
          */
         EnumerationNumeric& operator=(const EnumerationNumeric&);
 
         /**
-         * Private copy constructor to enforce EnumerationNumeric storage by reference.
+         * @fn  EnumerationNumeric::EnumerationNumeric(const EnumerationNumeric&);
+         *
+         * @brief   Private copy constructor to enforce EnumerationNumeric storage by reference.
+         *
+         * @param   parameter1  The first parameter.
          */
         EnumerationNumeric(const EnumerationNumeric&);
     };
 
-    /**
-     * Helper method to print EnumerationNumeric to an output stream.
-     */
+     /**
+      * @fn std::ostream& operator<<(std::ostream& os, const EnumerationString& e);
+      *
+      * @brief  Helper method to print EnumerationNumeric to an output stream.
+      *
+      * @param [in,out] os  The operating system.
+      * @param          e   The EnumerationString to process.
+      *
+      * @return The shifted result.
+      */
     TR_UTIL_EXPORT std::ostream& operator<<(std::ostream& os, const EnumerationString& e);
 }
