@@ -30,6 +30,11 @@
 
 #include <trUtil/TypeList.h>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
     /**
