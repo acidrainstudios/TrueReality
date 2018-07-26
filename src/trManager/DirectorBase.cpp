@@ -48,7 +48,7 @@ namespace trManager
     {      
         if (first.Valid() && second.Valid())
         {
-            if (first->GetEntityType() == EntityType::DIRECTOR && first->GetEntityType() == EntityType::DIRECTOR)
+            if (first->GetEntityType() == EntityType::DIRECTOR && second->GetEntityType() == EntityType::DIRECTOR)
             {
                 // The lower the value, the higher the priority
                 return (static_cast<trManager::DirectorBase*>(first.Get())->GetDirectorPriority().GetID() < static_cast<trManager::DirectorBase*>(second.Get())->GetDirectorPriority().GetID());
