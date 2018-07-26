@@ -31,22 +31,65 @@
 
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
     /**
-    * A string wrapper that will make sure that all of the strings with the same value
-    * will point to the same memory.  The strings are only accessible as const, but
-    * a new string may be assigned to the reference string. 
-    */
+     * @class   RefStr
+     *
+     * @brief   A string wrapper that will make sure that all of the strings with the same value will
+     *          point to the same memory.  The strings are only accessible as const, but a new string
+     *          may be assigned to the reference string.
+     */
     class TR_UTIL_EXPORT RefStr
     {
     public:
-        /// @return the number of shared strings.
+
+        /**
+         * @fn  static size_t RefStr::GetSharedStringCount();
+         *
+         * @brief   Gets shared string count.
+         *
+         * @return  the number of shared strings.
+         */
         static size_t GetSharedStringCount();
 
+        /**
+         * @fn  RefStr::RefStr(const std::string& value = "");
+         *
+         * @brief   Constructor.
+         *
+         * @param   value   (Optional) The value.
+         */
         RefStr(const std::string& value = "");
+
+        /**
+         * @fn  RefStr::RefStr(const char* value);
+         *
+         * @brief   Constructor.
+         *
+         * @param   value   The value.
+         */
         RefStr(const char* value);
+
+        /**
+         * @fn  RefStr::RefStr(const RefStr& toCopy);
+         *
+         * @brief   Copy constructor.
+         *
+         * @param   toCopy  to copy.
+         */
         RefStr(const RefStr& toCopy);
+
+        /**
+         * @fn  RefStr::~RefStr();
+         *
+         * @brief   Destructor.
+         */
         ~RefStr();
 
         operator const std::string&() const { return *mString; }
@@ -59,6 +102,13 @@ namespace trUtil
         const std::string* operator->() const { return mString; }
         std::string::value_type operator[](int index) const { return (*mString)[index]; }
 
+        /**
+         * @fn  const char* RefStr::c_str() const
+         *
+         * @brief   Gets the string.
+         *
+         * @return  Null if it fails, else a pointer to a const char.
+         */
         const char* c_str() const { return mString->c_str(); }
 
         bool operator<(const trUtil::RefStr& toCompare) const
