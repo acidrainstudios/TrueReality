@@ -24,28 +24,55 @@
 
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   DefaultSettings
+ *
+ * @brief   .
+ */
     namespace DefaultSettings
     {
         /**
-        * Sets the default Scene, Camera, and Window Settings.
-        */
+         * @fn  void SetDefaultSettings(dtABC::BaseABC& app);
+         *
+         * @brief   Sets the default Scene, Camera, and Window Settings.
+         *
+         * @param [in,out]  app The application.
+         */
         //void TR_UTIL_EXPORT SetDefaultSettings(dtABC::BaseABC& app);
 
         /**
-        * Finds and returns the name of the map to be loaded from the command line. 
-        */
+         * @fn  void ParseMapNameArgument(int argc, char** argv, std::string &mapName);
+         *
+         * @brief   Finds and returns the name of the map to be loaded from the command line.
+         *
+         * @param           argc    The argc.
+         * @param [in,out]  argv    If non-null, the argv.
+         * @param [in,out]  mapName Name of the map.
+         */
         void TR_UTIL_EXPORT ParseMapNameArgument(int argc, char** argv, std::string &mapName);
 
         /**
-        * Sets engines default paths and project context.
-        */
+         * @fn  void SetDefaultPaths();
+         *
+         * @brief   Sets engines default paths and project context.
+         */
         //void TR_UTIL_EXPORT SetDefaultPaths();
 
         /**
-        * Sets up all the default logging options for the software.
-        */
+         * @fn  void SetupLoggingOptions(const std::string logFileName, const std::string& logLevel);
+         *
+         * @brief   Sets up all the default logging options for the software.
+         *
+         * @param   logFileName Filename of the log file.
+         * @param   logLevel    The log level.
+         */
         void TR_UTIL_EXPORT SetupLoggingOptions(const std::string logFileName, const std::string& logLevel);
     }
 }
