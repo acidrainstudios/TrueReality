@@ -222,14 +222,14 @@ namespace trUtil
     /////////////////////////////////////////////////////////////////////////////
     void FileUtils::FileCopy(const std::string& strSrc, const std::string& strDest, bool bOverwrite) const
     {
-        FILE* pSrcFile;
-        FILE* pDestFile;
-
-        struct stat tagStat;
-
         // Make absolutely certain these two strings don't point to the same file.
         if (!IsSameFile(strSrc, strDest))
         {
+            FILE* pSrcFile;
+            FILE* pDestFile;
+
+            struct stat tagStat;
+
             if (!FileExists(strSrc))
             {
                 throw trUtil::FileNotFoundException(
