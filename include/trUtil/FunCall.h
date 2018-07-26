@@ -25,6 +25,11 @@
 
 #include <trUtil/TypeList.h>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
     /**
@@ -35,6 +40,14 @@ namespace trUtil
 
     // Functor calls helpers
 
+
+    /**
+     * @struct  CallParms<TYPELIST_0()>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_0()    Type of the typelist 0()
+     */
     template <class TList> struct CallParms;
     template <>
     struct CallParms<TYPELIST_0()>
@@ -42,6 +55,14 @@ namespace trUtil
         using ParmsListType = trUtil::InstantiateH<trUtil::NullType, trUtil::TupleHolder>;
         static inline ParmsListType Make() { return ParmsListType(); }
     };
+
+    /**
+     * @struct  CallParms<TYPELIST_1(P1)>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_1(P1)  Type of the typelist 1( p 1)
+     */
     template <typename P1>
     struct CallParms<TYPELIST_1(P1)>
     {
@@ -51,6 +72,15 @@ namespace trUtil
             return ParmsListType(p1);
         }
     };
+
+    /**
+     * @struct  CallParms<TYPELIST_2(P1,P2)>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_2(P1   Type of the typelist 2( p 1.
+     * @tparam  P2)             Type of the 2)
+     */
     template <typename P1, typename P2>
     struct CallParms<TYPELIST_2(P1, P2)>
     {
@@ -61,6 +91,16 @@ namespace trUtil
                 typename trUtil::TailAt<ParmsListType, 0>::Result(p2));
         }
     };
+
+    /**
+     * @struct  CallParms<TYPELIST_3(P1,P2,P3)>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_3(P1   Type of the typelist 3( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3)             Type of the 3)
+     */
     template <typename P1, typename P2, typename P3>
     struct CallParms<TYPELIST_3(P1, P2, P3)>
     {
@@ -72,6 +112,17 @@ namespace trUtil
                 typename trUtil::TailAt<ParmsListType, 1>::Result(p3)));
         }
     };
+
+    /**
+     * @struct  CallParms<TYPELIST_4(P1,P2,P3,P4)>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_4(P1   Type of the typelist 4( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4)             Type of the 4)
+     */
     template <typename P1, typename P2, typename P3, typename P4>
     struct CallParms<TYPELIST_4(P1, P2, P3, P4)>
     {
@@ -84,6 +135,18 @@ namespace trUtil
                 typename trUtil::TailAt<ParmsListType, 2>::Result(p4))));
         }
     };
+
+    /**
+     * @struct  CallParms<TYPELIST_5(P1,P2,P3,P4,P5)>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_5(P1   Type of the typelist 5( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4              Type of the p 4.
+     * @tparam  P5)             Type of the 5)
+     */
     template <typename P1, typename P2, typename P3, typename P4, typename P5>
     struct CallParms<TYPELIST_5(P1, P2, P3, P4, P5)>
     {
@@ -97,6 +160,19 @@ namespace trUtil
                 typename trUtil::TailAt<ParmsListType, 3>::Result(p5)))));
         }
     };
+
+    /**
+     * @struct  CallParms<TYPELIST_6(P1,P2,P3,P4,P5,P6)>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_6(P1   Type of the typelist 6( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4              Type of the p 4.
+     * @tparam  P5              Type of the p 5.
+     * @tparam  P6)             Type of the 6)
+     */
     template <typename P1, typename P2, typename P3, typename P4, typename P5, typename P6>
     struct CallParms<TYPELIST_6(P1, P2, P3, P4, P5, P6)>
     {
@@ -111,6 +187,20 @@ namespace trUtil
                 typename trUtil::TailAt<ParmsListType, 4>::Result(p6))))));
         }
     };
+
+    /**
+     * @struct  CallParms<TYPELIST_7(P1,P2,P3,P4,P5,P6,P7)>
+     *
+     * @brief   A call parameters.
+     *
+     * @tparam  TYPELIST_7(P1   Type of the typelist 7( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4              Type of the p 4.
+     * @tparam  P5              Type of the p 5.
+     * @tparam  P6              Type of the p 6.
+     * @tparam  P7)             Type of the 7)
+     */
     template <typename P1, typename P2, typename P3, typename P4, typename P5, typename P6, typename P7>
     struct CallParms<TYPELIST_7(P1, P2, P3, P4, P5, P6, P7)>
     {
@@ -127,6 +217,15 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_0()>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_0()    Type of the typelist 0()
+     */
     template <typename CallType, typename R, class TList> struct FunctorCall;
     template <typename CallType, typename R>
     struct FunctorCall<CallType, R, TYPELIST_0()>
@@ -141,6 +240,16 @@ namespace trUtil
             return ((*pobj).*memfun)();
         }
     };
+
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_1(P1)>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_1(P1)  Type of the typelist 1( p 1)
+     */
     template <typename CallType, typename R, typename P1>
     struct FunctorCall<CallType, R, TYPELIST_1(P1)>
     {
@@ -154,6 +263,17 @@ namespace trUtil
             return ((*pobj).*memfun)(trUtil::GetH<0>(parms).value);
         }
     };
+
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_2(P1,P2)>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_2(P1   Type of the typelist 2( p 1.
+     * @tparam  P2)             Type of the 2)
+     */
     template <typename CallType, typename R, typename P1, typename P2>
     struct FunctorCall<CallType, R, TYPELIST_2(P1, P2)>
     {
@@ -171,6 +291,18 @@ namespace trUtil
                 trUtil::GetH<1>(parms).value);
         }
     };
+
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_3(P1,P2,P3)>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_3(P1   Type of the typelist 3( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3)             Type of the 3)
+     */
     template <typename CallType, typename R, typename P1, typename P2, typename P3>
     struct FunctorCall<CallType, R, TYPELIST_3(P1, P2, P3)>
     {
@@ -190,6 +322,19 @@ namespace trUtil
                 trUtil::GetH<2>(parms).value);
         }
     };
+
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_4(P1,P2,P3,P4)>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_4(P1   Type of the typelist 4( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4)             Type of the 4)
+     */
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4>
     struct FunctorCall<CallType, R, TYPELIST_4(P1, P2, P3, P4)>
     {
@@ -211,6 +356,20 @@ namespace trUtil
                 trUtil::GetH<3>(parms).value);
         }
     };
+
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_5(P1,P2,P3,P4,P5)>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_5(P1   Type of the typelist 5( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4              Type of the p 4.
+     * @tparam  P5)             Type of the 5)
+     */
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4, typename P5>
     struct FunctorCall<CallType, R, TYPELIST_5(P1, P2, P3, P4, P5)>
     {
@@ -234,6 +393,21 @@ namespace trUtil
                 trUtil::GetH<4>(parms).value);
         }
     };
+
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_6(P1,P2,P3,P4,P5,P6)>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_6(P1   Type of the typelist 6( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4              Type of the p 4.
+     * @tparam  P5              Type of the p 5.
+     * @tparam  P6)             Type of the 6)
+     */
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4, typename P5, typename P6>
     struct FunctorCall<CallType, R, TYPELIST_6(P1, P2, P3, P4, P5, P6)>
     {
@@ -259,6 +433,22 @@ namespace trUtil
                 trUtil::GetH<5>(parms).value);
         }
     };
+
+    /**
+     * @struct  FunctorCall<CallType,R,TYPELIST_7(P1,P2,P3,P4,P5,P6,P7)>
+     *
+     * @brief   A functor call.
+     *
+     * @tparam  CallType        Type of the call type.
+     * @tparam  R               Type of the r.
+     * @tparam  TYPELIST_7(P1   Type of the typelist 7( p 1.
+     * @tparam  P2              Type of the p 2.
+     * @tparam  P3              Type of the p 3.
+     * @tparam  P4              Type of the p 4.
+     * @tparam  P5              Type of the p 5.
+     * @tparam  P6              Type of the p 6.
+     * @tparam  P7)             Type of the 7)
+     */
     template <typename CallType, typename R, typename P1, typename P2, typename P3, typename P4, typename P5, typename P6, typename P7>
     struct FunctorCall<CallType, R, TYPELIST_7(P1, P2, P3, P4, P5, P6, P7)>
     {
