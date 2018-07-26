@@ -32,76 +32,112 @@
 
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
-    /*
-    * This is the exception class used throughout the engine.  Users should derive
-    * and create concrete instances.
-    */
+    /**
+     * @class   Exception
+     *
+     * @brief   This is the exception class used throughout the engine.  Users should derive and
+     *          create concrete instances.
+     */
     class TR_UTIL_EXPORT Exception
     {
     public:
 
-
         /**
-        * Constructor - Initializes the exception and logs it.
-        *  @param message - Message to display about the exception.
-        *  @param filename - File the exception was thrown from.
-        *  @param linenum - Line number in the file from which the
-        *  exception was thrown.
-        */
+         * @fn  Exception::Exception(const std::string& message, const std::string& filename, unsigned int linenum);
+         *
+         * @brief   Constructor - Initializes the exception and logs it.
+         *
+         * @param   message     - Message to display about the exception.
+         * @param   filename    - File the exception was thrown from.
+         * @param   linenum     - Line number in the file from which the exception was thrown.
+         */
         Exception(const std::string& message, const std::string& filename, unsigned int linenum);
 
-        /*
-        * Destructor
-        */
+        /**
+         * @fn  virtual Exception::~Exception();
+         *
+         * @brief   Destructor.
+         */
         virtual ~Exception();
 
-        /*
-        * @return the message to be displayed when this exception is thrown.
-        */
+        /**
+         * @fn  const std::string& Exception::What() const;
+         *
+         * @brief   The message to be displayed when this exception is thrown.
+         *
+         * @return  A reference to a const std::string.
+         */
         const std::string& What() const;
 
-        /*
-        * @return the filename associated with this exception.
-        */
+        /**
+         * @fn  const std::string& Exception::File() const;
+         *
+         * @brief   The filename associated with this exception.
+         *
+         * @return  A reference to a const std::string.
+         */
         const std::string& File() const;
 
         /**
-        * @return the line number associated with this exception.
-        */
+         * @fn  unsigned int Exception::Line() const;
+         *
+         * @brief   The line number associated with this exception.
+         *
+         * @return  An int.
+         */
         unsigned int Line() const;
 
         /**
-        * Converts this exception to a string.  The string contains the reason,
-        * line number and file the exception was thrown from.
-        * @return The string version of this exception.
-        */
+         * @fn  std::string Exception::ToString() const;
+         *
+         * @brief   Converts this exception to a string.  The string contains the reason, line number and
+         *          file the exception was thrown from.
+         *
+         * @return  The string version of this exception.
+         */
         std::string ToString() const;
 
         /**
-        * Prints the exception to the console.
-        */
+         * @fn  void Exception::Print() const;
+         *
+         * @brief   Prints the exception to the console.
+         */
         void Print() const;
 
         /**
-        * logs the exception to the default logger.
-        * @param level  The level/type of logging
-        */
+         * @fn  void Exception::LogException(trUtil::Logging::LogLevel level = trUtil::Logging::LogLevel::LOG_ERROR) const;
+         *
+         * @brief   Logs the exception to the default logger.
+         *
+         * @param   level   (Optional) The level/type of logging.
+         */
         void LogException(trUtil::Logging::LogLevel level = trUtil::Logging::LogLevel::LOG_ERROR) const;
 
         /**
-        * logs the exception to the following log level using the logger.
-        * @param level  The level/type of logging
-        * @param loggerName the name passed to "getInstance" of the Logger.
-        */
+         * @fn  void Exception::LogException(trUtil::Logging::LogLevel level, const std::string& loggerName) const;
+         *
+         * @brief   Logs the exception to the following log level using the logger.
+         *
+         * @param   level       The level/type of logging.
+         * @param   loggerName  the name passed to "getInstance" of the Logger.
+         */
         void LogException(trUtil::Logging::LogLevel level, const std::string& loggerName) const;
 
         /**
-        * logs the exception to the following log level using the given logger.
-        * @param level  The level/type of logging
-        * @param logger the actual log instance used to log.
-        */
+         * @fn  void Exception::LogException(trUtil::Logging::LogLevel level, trUtil::Logging::Log& logger) const;
+         *
+         * @brief   Logs the exception to the following log level using the given logger.
+         *
+         * @param           level   The level/type of logging.
+         * @param [in,out]  logger  the actual log instance used to log.
+         */
         void LogException(trUtil::Logging::LogLevel level, trUtil::Logging::Log& logger) const;
 
     private:
@@ -109,6 +145,15 @@ namespace trUtil
         unsigned int mLineNum;
     };
 
+     /**
+      * @fn std::ostream& operator<< (std::ostream& o, const Exception& ex);
+      *
+      * @brief  Stream insertion operator.
+      *
+      * @param [in,out] o   The std::ostream to process.
+      * @param          ex  The ex.
+      *
+      * @return The shifted result.
+      */
     TR_UTIL_EXPORT std::ostream& operator << (std::ostream& o, const Exception& ex);
 }
-
