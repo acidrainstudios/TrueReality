@@ -225,27 +225,28 @@ namespace trUtil
         // Make absolutely certain these two strings don't point to the same file.
         if (!IsSameFile(strSrc, strDest))
         {
-            FILE* pSrcFile;
-            FILE* pDestFile;
-
-            struct stat tagStat;
-
-            if (!FileExists(strSrc))
-            {
-                throw trUtil::FileNotFoundException(
-                    std::string("Source file does not exist: \"") + strSrc + "\"", __FILE__, __LINE__);
-            }
-
-            // Open the source file for reading.
-            pSrcFile = fopen(strSrc.c_str(), "rb");
-            if (pSrcFile == nullptr)
-            {
-                throw trUtil::FileUtilIOException(
-                    std::string("Unable to open source file for reading: \"") + strSrc + "\"", __FILE__, __LINE__);
-            }
+                FILE* pSrcFile;
 
             try
             {
+                FILE* pDestFile;
+                struct stat tagStat;
+
+                if (!FileExists(strSrc))
+                {
+                    throw trUtil::FileNotFoundException(
+                        std::string("Source file does not exist: \"") + strSrc + "\"", __FILE__, __LINE__);
+                }
+
+                // Open the source file for reading.
+                pSrcFile = fopen(strSrc.c_str(), "rb");
+                if (pSrcFile == nullptr)
+                {
+                    throw trUtil::FileUtilIOException(
+                        std::string("Unable to open source file for reading: \"") + strSrc + "\"", __FILE__, __LINE__);
+                }
+
+            
                 if (mLogger->IsLevelEnabled(trUtil::Logging::LogLevel::LOG_DEBUG))
                 {
                     mLogger->LogMessage(trUtil::Logging::LogLevel::LOG_DEBUG, __FUNCTION__, __LINE__, "Source file exists.");
