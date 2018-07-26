@@ -70,7 +70,7 @@ ADD_DEFINITIONS (-D${PRE_PROCESSING})
 ADD_LIBRARY (${FILE_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 
 # Links the external libraries to the newly created library
-TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS}trCore trUtil trBase)
+TARGET_LINK_LIBRARIES (${FILE_NAME} ${EXTERNAL_LIBS} trCore trUtil trBase)
 
 # Place the project in a folder
 SET_TARGET_PROPERTIES (${FILE_NAME} PROPERTIES FOLDER "TrueRealitySDK")
