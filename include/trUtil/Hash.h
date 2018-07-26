@@ -28,13 +28,29 @@
 
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
     /**
-    * This Hash class and its implementations are taken from the libstdc++ hash_fun.h
-    */
+     * @struct  hash
+     *
+     * @brief   This Hash class and its implementations are taken from the libstdc++ hash_fun.h.
+     *
+     * @tparam  _Key    Type of the key.
+     */
     template<class _Key> struct hash;
 
+    /**
+     * @struct  hash<_Key*>
+     *
+     * @brief   A hash.
+     *
+     * @tparam  _Key    Type of the key.
+     */
     template<class _Key> struct hash<_Key*>
     {
         size_t operator()(const _Key* keyPtr) const
@@ -43,6 +59,15 @@ namespace trUtil
         }
     };
 
+    /**
+     * @fn  inline size_t __hash_string(const char* __s)
+     *
+     * @brief   Hash string.
+     *
+     * @param   __s The s.
+     *
+     * @return  A size_t.
+     */
     inline size_t __hash_string(const char* __s)
     {
         unsigned long __h = 0;
@@ -51,6 +76,11 @@ namespace trUtil
         return size_t(__h);
     }
 
+    /**
+     * @struct  hash<const std::string>
+     *
+     * @brief   A string>.
+     */
     template<> struct hash<const std::string>
     {
         size_t operator()(const std::string& string) const
@@ -59,6 +89,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<std::string>
+     *
+     * @brief   A string>.
+     */
     template<> struct hash<std::string>
     {
         size_t operator()(const std::string& string) const
@@ -67,6 +102,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<char*>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<char*>
     {
         size_t operator()(const char* __s) const
@@ -75,6 +115,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<const char*>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<const char*>
     {
         size_t operator()(const char* __s) const
@@ -83,6 +128,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<char>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<char>
     {
         size_t operator()(char __x) const
@@ -91,6 +141,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<unsigned char>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<unsigned char>
     {
         size_t operator()(unsigned char __x) const
@@ -99,6 +154,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<signed char>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<signed char>
     {
         size_t operator()(unsigned char __x) const
@@ -107,6 +167,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<short>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<short>
     {
         size_t operator()(short __x) const
@@ -115,6 +180,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<unsigned short>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<unsigned short>
     {
         size_t operator()(unsigned short __x) const
@@ -123,6 +193,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<int>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<int>
     {
         size_t operator()(int __x) const
@@ -131,6 +206,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<unsigned int>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<unsigned int>
     {
         size_t operator()(unsigned int __x) const
@@ -139,6 +219,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<long>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<long>
     {
         size_t operator()(long __x) const
@@ -147,6 +232,11 @@ namespace trUtil
         }
     };
 
+    /**
+     * @struct  hash<unsigned long>
+     *
+     * @brief   A hash.
+     */
     template<> struct hash<unsigned long>
     {
         size_t operator()(unsigned long __x) const
