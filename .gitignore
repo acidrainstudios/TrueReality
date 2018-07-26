@@ -19,3 +19,4 @@ cmake_install.cmake
 CMakeCache.txt
 include/trUtil/TypeConfig.h
 TR_Ext_0.1_msvc14.1_x64.zip
+build*
