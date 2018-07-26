@@ -39,38 +39,70 @@
 #include <vector>
 #include <algorithm>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
+/**
+ * @namespace   StringUtils
+ *
+ * @brief   .
+ */
     namespace StringUtils
     {
         class IsSpace;
 
-        /**
-        * Constant value for a blank String
-        */
+        /** @brief   Constant value for a blank String. */
         static const std::string STR_BLANK("");
 
+        /**
+         * @class   StringTokenizer
+         *
+         * @brief   The predicate should evaluate to true when applied to a separator.
+         */
         template <class Pred = IsSpace>
         class StringTokenizer
         {
         public:
-            //The predicate should evaluate to true when applied to a separator.
-            static void tokenize(std::vector<std::string>& tokens,
-                const std::string& stringToParse,
-                const Pred& predFxn = Pred());
 
-            static void tokenize(std::vector<std::string>& tokens,
-                const std::string& stringToParse,
-                const std::string& delimiter);
+            /**
+             * @fn  static void StringTokenizer::tokenize(std::vector<std::string>& tokens, const std::string& stringToParse, const Pred& predFxn = Pred());
+             *
+             * @brief   The predicate should evaluate to true when applied to a separator.
+             *
+             * @param [in,out]  tokens          The tokens.
+             * @param           stringToParse   The string to parse.
+             * @param           predFxn         (Optional) The predicate fxn.
+             */
+            static void tokenize(std::vector<std::string>& tokens, const std::string& stringToParse, const Pred& predFxn = Pred());
+
+            /**
+             * @fn  static void StringTokenizer::tokenize(std::vector<std::string>& tokens, const std::string& stringToParse, const std::string& delimiter);
+             *
+             * @brief   The predicate should evaluate to true when applied to a separator.
+             *
+             * @param [in,out]  tokens          The tokens.
+             * @param           stringToParse   The string to parse.
+             * @param           delimiter       The predicate fxn.
+             */
+            static void tokenize(std::vector<std::string>& tokens, const std::string& stringToParse, const std::string& delimiter);
         };
 
         /**
-        * The predicate should evaluate to true when applied to a separator.
-        */
+         * @fn  inline void StringTokenizer<Pred>::tokenize(std::vector<std::string>& tokens, const std::string& stringToParse, const Pred& predFxn)
+         *
+         * @brief   The predicate should evaluate to true when applied to a separator.
+         *
+         * @tparam  Pred    Type of the predicate.
+         * @param [in,out]  tokens          The tokens.
+         * @param           stringToParse   The string to parse.
+         * @param           predFxn         The predicate fxn.
+         */
         template <class Pred>
-        inline void StringTokenizer<Pred>::tokenize(std::vector<std::string>& tokens,
-            const std::string& stringToParse,
-            const Pred& predFxn)
+        inline void StringTokenizer<Pred>::tokenize(std::vector<std::string>& tokens, const std::string& stringToParse, const Pred& predFxn)
         {
             //First clear the results std::vector
             tokens.clear();
@@ -97,9 +129,12 @@ namespace trUtil
             }
         }        
 
-        /** \brief A functor which tests if a character is whitespace.
-        * This "predicate" needed to have 'state', the locale member.
-        */
+        /**
+         * @class   IsSpace
+         *
+         * @brief   A functor which tests if a character is whitespace. This "predicate" needed to
+         *          have 'state', the locale member.
+         */
         class TR_UTIL_EXPORT IsSpace : public std::unary_function<char, bool>
         {
             TR_DISABLE_WARNING_START_MSVC(4251)
@@ -115,8 +150,10 @@ namespace trUtil
         };
 
         /**
-        * Determines if the current character is a forward slash.
-        */
+         * @class   IsSlash
+         *
+         * @brief   Determines if the current character is a forward slash.
+         */
         class IsSlash : public std::unary_function<char, bool>
         {
         public:
@@ -124,9 +161,11 @@ namespace trUtil
         };
 
         /**
-        * Generic string delimeter check function class.  Based on the character
-        * passed to the constructor, this class will check for that character.
-        */
+         * @class   IsDelimeter
+         *
+         * @brief   Generic string delimeter check function class.  Based on the character passed to the
+         *          constructor, this class will check for that character.
+         */
         class IsDelimeter : public std::unary_function<char, bool>
         {
         public:
@@ -136,46 +175,87 @@ namespace trUtil
             char mDelimeter;
         };
 
-        /**
-        * Trims whitespace off the front and end of a string
-        * @param toTrim the string to trim.
-        */
+         /**
+          * @fn const std::string& Trim(std::string& toTrim);
+          *
+          * @brief  Trims whitespace off the front and end of a string.
+          *
+          * @param [in,out] toTrim  the string to trim.
+          *
+          * @return A reference to a const std::string.
+          */
         TR_UTIL_EXPORT const std::string& Trim(std::string& toTrim);
 
-        /**
-        * Compares strings like strcmp or stricmp or strcasecmp.
-        * @param one the first string to compare
-        * @param two the string to compare one to.
-        * @param caseSenstive optional parameter to specify case sensitivity, which defaults to on.
-        * @return 0 for equal, negative for one less that two, and positive for one > two.
-        */
+         /**
+          * @fn int StrCompare(const std::string& one, const std::string& two, bool caseSensitive = true);
+          *
+          * @brief  Compares strings like strcmp or stricmp or strcasecmp.
+          *
+          * @param  one             the first string to compare.
+          * @param  two             the string to compare one to.
+          * @param  caseSensitive   (Optional) optional parameter to specify case sensitivity, which
+          *                         defaults to on.
+          *
+          * @return 0 for equal, negative for one less that two, and positive for one > two.
+          */
         TR_UTIL_EXPORT int StrCompare(const std::string& one, const std::string& two, bool caseSensitive = true);
 
-        /**
-        * Converts the whole string to lower case
-        */
+         /**
+          * @fn void ToLowerCase(std::string& str);
+          *
+          * @brief  Converts the whole string to lower case.
+          *
+          * @param [in,out] str The string.
+          */
         TR_UTIL_EXPORT void ToLowerCase(std::string& str);
 
-        /**
-        * Converts the whole string to lower case, slower version
-        */
+         /**
+          * @fn std::string ToLowerCase(const std::string& str);
+          *
+          * @brief  Converts the whole string to lower case, slower version.
+          *
+          * @param  str The string.
+          *
+          * @return Str as a std::string.
+          */
         TR_UTIL_EXPORT std::string ToLowerCase(const std::string& str);
 
-        /**
-        * Converts the whole string to upper case
-        */
+         /**
+          * @fn void ToUpperCase(std::string& str);
+          *
+          * @brief  Converts the whole string to upper case.
+          *
+          * @param [in,out] str The string.
+          */
         TR_UTIL_EXPORT void ToUpperCase(std::string& str);
 
-        /**
-        * Converts the whole string to upper case, slower version
-        */
+         /**
+          * @fn std::string ToUpperCase(const std::string& str);
+          *
+          * @brief  Converts the whole string to upper case, slower version.
+          *
+          * @param  str The string.
+          *
+          * @return Str as a std::string.
+          */
         TR_UTIL_EXPORT std::string ToUpperCase(const std::string& str);
 
         /**
-        * A functor for using std::find or whatever that will compare two strings case sensitive or insensitive.
-        */
+         * @struct  StrCompareFunc
+         *
+         * @brief   A functor for using std::find or whatever that will compare two strings case
+         *          sensitive or insensitive.
+         */
         struct StrCompareFunc
         {
+            /**
+             * @fn  StrCompareFunc(const std::string& mainString, bool caseSensitive = true)
+             *
+             * @brief   Constructor.
+             *
+             * @param   mainString      The main string.
+             * @param   caseSensitive   (Optional) True to case sensitive.
+             */
             StrCompareFunc(const std::string& mainString, bool caseSensitive = true)
             : mString(mainString)
             , mCaseSensitive(caseSensitive)
@@ -192,20 +272,25 @@ namespace trUtil
         };
 
         /**
-        * A templated function for taking any of the osg vector types and reading the data from a string.
-        * If the string is empty or "NULL" it will set the vector to all 0s. It expects the data to be the proper number
-        * floating point values.  The function will fail if there are not enough values.
-        *
-        * @param value the string data.
-        * @param vec the vector to fill.
-        * @param size the length of the vector since the osg types have no way to query that.
-        * @param numberPrecision This value indicates how much precision the numbers will
-        *    contain when read from the string.  (setprecision on std::istream)
-        * @return true if reading the data was successful or false if not.
-        */
+         * @fn  bool ParseVec(const std::string& value, VecType& vec, unsigned size, unsigned numberPrecision = 16)
+         *
+         * @brief   A templated function for taking any of the osg vector types and reading the data from
+         *          a string. If the string is empty or "NULL" it will set the vector to all 0s. It
+         *          expects the data to be the proper number floating point values.  The function will
+         *          fail if there are not enough values.
+         *
+         * @param           value           the string data.
+         * @param [in,out]  vec             the vector to fill.
+         * @param           size            the length of the vector since the osg types have no way to
+         *                                  query that.
+         * @param           numberPrecision (Optional) This value indicates how much precision the
+         *                                  numbers will contain when read from the string.
+         *                                  (setprecision on std::istream)
+         *
+         * @return  true if reading the data was successful or false if not.
+         */
         template<class VecType>
-        bool ParseVec(const std::string& value, VecType& vec, unsigned size,
-            unsigned numberPrecision = 16)
+        bool ParseVec(const std::string& value, VecType& vec, unsigned size, unsigned numberPrecision = 16)
         {
             bool result = true;
             unsigned int i;
@@ -235,17 +320,22 @@ namespace trUtil
         }
 
         /**
-        * A utility function to convert a basic type into a string. Use
-        * template argument T for the type you'd like to convert.
-        *
-        * @param t the instance of the type to converted.
-        *
-        * Typical use:
-        * @code
-        * float num = 5.67f;
-        * std::string mynum = StringUtils::ToType<float>( num );
-        * @endcode
-        */
+         * @fn  std::string ToString(const T& t, int precision = -1)
+         *
+         * @brief   A utility function to convert a basic type into a string. Use template argument T for
+         *          the type you'd like to convert.
+         *
+         * @param   t           the instance of the type to converted.
+         *                      
+         *                      Typical use:
+         *                      @code
+         *                      float num = 5.67f;
+         *                      std::string mynum = StringUtils::ToString( num );
+         *                      @endcode.
+         * @param   precision   (Optional) The precision.
+         *
+         * @return  A std::string that represents this object.
+         */
         template<typename T>
         std::string ToString(const T& t, int precision = -1)
         {
@@ -258,17 +348,22 @@ namespace trUtil
             return ss.str();
         }
         
+
         /**
-        * Converts a string to a specified type.
-        * @param the string to be converted to the specified template argument type.
-        * @return the type that you specify as the template argument.
-        *
-        * Typical use:
-        * @code
-        * std::string mystring("0");
-        * float myfloat = StringUtils::FromString<float>( mystring );
-        * @endcode
-        */        
+         * @fn  T FromString(const std::string& u)
+         *
+         * @brief   Converts a string to a specified type.
+         *
+         * @param   u   string to be converted to the specified template argument type.
+         *
+         * @return  the type that you specify as the template argument.
+         *          
+         *          Typical use:
+         *          @code
+         *          std::string mystring("0");
+         *          float myfloat = StringUtils::FromString&lt;float&gt;( mystring );
+         *          @endcode.
+         */
         template<typename T>
         T FromString(const std::string& u)
         {
@@ -279,40 +374,73 @@ namespace trUtil
             return result;
         }
 
+
         /**
-        * Special exception for bool where things like "True", "TRUE", and "true" should be accepted.
-        */
+         * @fn  bool FromString<bool>(const std::string& u);
+         *
+         * @brief   Special exception for bool where things like "True", "TRUE", and "true" should be
+         *          accepted.
+         *
+         * @tparam  bool    Type of the bool.
+         * @param   u   The std::string to process.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
         template<>
         bool TR_UTIL_EXPORT FromString<bool>(const std::string& u);
 
+        /**
+         * @fn  bool Match(const char* wildCards, const char* str);
+         *
+         * @brief   Matches.
+         *
+         * @param   wildCards   The wild cards.
+         * @param   str         The string.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
         bool TR_UTIL_EXPORT Match(const char* wildCards, const char* str);
-      
-        /// @return a string with text as an int value padded to the size specified.
+
+        /**
+         * @fn  void MakeIndexString(unsigned index, std::string& toFill, unsigned paddedLength = 4);
+         *
+         * @brief   Makes index string.
+         *
+         * @return  a string with text as an int value padded to the size specified.
+         *
+         * @param           index           Zero-based index of the.
+         * @param [in,out]  toFill          to fill.
+         * @param           paddedLength    (Optional) Length of the padded.
+         */
         void TR_UTIL_EXPORT MakeIndexString(unsigned index, std::string& toFill, unsigned paddedLength = 4);
 
         /**
-        * Reads the next token fromm the given string data.
-        * This will also remove the token from the data string
-        * and return you the token (with the open and close characters removed).
-        * The beginning of the data string must always begin with
-        * an opening character or this will cause problems.
-        *
-        * @param[in]  data  The string data.
-        * @param[out] outToken  The first token from the string data.
-        * @param[in]  openChar  The character that starts the token
-        * @param[in]  closeChar  The character that ends the token
-        * @return true if a token was found.
-        */
+         * @fn  bool TakeToken(std::string& data, std::string& outToken, char openChar, char closeChar);
+         *
+         * @brief   Reads the next token fromm the given string data. This will also remove the token
+         *          from the data string and return you the token (with the open and close characters
+         *          removed). The beginning of the data string must always begin with an opening
+         *          character or this will cause problems.
+         *
+         * @param [in]  data        The string data.
+         * @param [out] outToken    The first token from the string data.
+         * @param [in]  openChar    The character that starts the token.
+         * @param [in]  closeChar   The character that ends the token.
+         *
+         * @return  true if a token was found.
+         */
         bool TR_UTIL_EXPORT TakeToken(std::string& data, std::string& outToken, char openChar, char closeChar);
 
         /**
-        * Finds all instances of the findWhat string in the string modifiedString
-        * and replaces them with the replaceWith string.
-        *
-        * @param[out] modifiedString The string we are modifying
-        * @param[in]  findWhat       The string we want to remove from modifiedString
-        * @param[in]  replaceWith    The string we want to put in modifiedString
-        */
+         * @fn  void FindAndReplace(std::string& modifiedString, const std::string& findWhat, const std::string& replaceWith);
+         *
+         * @brief   Finds all instances of the findWhat string in the string modifiedString and replaces
+         *          them with the replaceWith string.
+         *
+         * @param [out] modifiedString  The string we are modifying.
+         * @param [in]  findWhat        The string we want to remove from modifiedString.
+         * @param [in]  replaceWith     The string we want to put in modifiedString.
+         */
         void TR_UTIL_EXPORT FindAndReplace(std::string& modifiedString, const std::string& findWhat, const std::string& replaceWith);
 
     }
