@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "nigels-com/glew": "^2.1.0",
-    "OpenSceneGraph": "openscenegraph/OpenSceneGraph/tree/OpenSceneGraph-3.6.2",
+    "OpenSceneGraph": "openscenegraph/OpenSceneGraph",
     "boostorg/boost": "^boost-1.66.0",
     "freetype": "^2.9",
     "FFmpeg/FFmpeg": "^3.4.2",
