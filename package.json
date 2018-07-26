@@ -10,18 +10,18 @@
     { "name": "Alexander Koufos", "email": "akoufos@gmail.com", "url": "" }
   ],
   "dependencies": {
-    "GLEW": "^2.1.0",
+    "nigels-com/glew": "^2.1.0",
     "openscenegraph/OpenSceneGraph": "^3.6.1",
     "boostorg/boost": "^boost-1.66.0",
     "freetype": "^2.9",
-    "FFMpeg": "^3.4.2",
+    "FFmpeg/FFmpeg": "^3.4.2",
     "gdal": "^2.2.4",
-    "googletest": "^1.8.0",
+    "google/googletest": "^1.8.0",
     "jpeg": "^9c",
-    "jsoncpp": "^1.8.4",    
+    "open-source-parsers/jsoncpp": "^1.8.4",    
     "libpng": "^1.6.32",
     "tiff": "^4.0.9",
-    "zlib": "^1.2.11"
+    "madler/zlib": "^1.2.11"
   },
   "os": ["win32", "linux"],
   "cpu": ["x64"]
