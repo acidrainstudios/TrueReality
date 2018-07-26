@@ -119,7 +119,7 @@ namespace trUtil
         }
         
         /////////////////////////////////////////////////////////////////////////////
-        void SetDataPath(std::string path)
+        void SetDataPath(std::string& path)
         {
             mDataPath = path;
         }

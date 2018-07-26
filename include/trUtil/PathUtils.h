@@ -124,14 +124,14 @@ namespace trUtil
         TR_UTIL_EXPORT std::string GetDataPath();
 
          /**
-          * @fn void SetDataPath(std::string path);
+          * @fn void SetDataPath(std::string& path);
           *
           * @brief  Overwrites the Data path. If this is set, TR will ignore the TR_DATA varible and use
           *         the passed in value instead.
           *
-          * @param  path    Full pathname of the file.
+          * @param [in,out] path    Full pathname of the file.
           */
-        TR_UTIL_EXPORT void SetDataPath(std::string path);
+        TR_UTIL_EXPORT void SetDataPath(std::string& path);
 
          /**
           * @fn void CreateDataPathTree();
