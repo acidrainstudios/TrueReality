@@ -26,63 +26,71 @@
 
 #include <string>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {
-    //Disable warning for stl classes 
-    //Needs to have dll-interface to be used by clients of class
+    /**
+     * @brief   Disable warning for stl classes Needs to have dll-interface to be used by clients of
+     *          class.
+     */
     TR_DISABLE_WARNING_START_MSVC(4251)   
-        
+
+    /**
+     * @class   EnvVariables
+     *
+     * @brief   An environment variables.
+     */
     class TR_UTIL_EXPORT EnvVariables
     {
     public:
 
-        /**
-        * Environmental Variable that points to the Root folder of the engine
-        */
+        /** @brief   Environmental Variable that points to the Root folder of the engine. */
         const static std::string TR_ROOT;
         
-        /**
-        * Environmental Variable that points to the Library folders of the engine
-        */
+        /** @brief   Environmental Variable that points to the Library folders of the engine. */
         const static std::string TR_LIB;
 
-        /**
-        * Environmental Variable that points to the Binary folders of the engine
-        */
+        /** @brief   Environmental Variable that points to the Binary folders of the engine. */
         const static std::string TR_BIN;
 
-        /**
-        * Environmental Variable that points to the Include folders of the engine
-        */
+        /** @brief   Environmental Variable that points to the Include folders of the engine. */
         const static std::string TR_INC;
 
         /**
-        * Environmental Variable that points to the Data folder of the engine
-        * The Data folder should have general art and system content
-        * If this variable is not present the engine will search for the Data Folder in TR_ROOT.
-        */
+         * @brief   Environmental Variable that points to the Data folder of the engine The Data folder
+         *          should have general art and system content If this variable is not present the engine
+         *          will search for the Data Folder in TR_ROOT.
+         */
         const static std::string TR_DATA;
 
         /**
-        * Environmental Variable that points to the User Data folder of the engine
-        * The Data folder should have the log files and general art and user content
-        * If this variable is not present the engine will search for the User Data Folder in Users Home
-        * and MyDocuments directories.
-        */
+         * @brief   Environmental Variable that points to the User Data folder of the engine The Data
+         *          folder should have the log files and general art and user content If this variable is
+         *          not present the engine will search for the User Data Folder in Users Home and
+         *          MyDocuments directories.
+         */
         const static std::string TR_USER_DATA;
 
         /**
-        * Environmental Variable that should be upended to the PATH variable, to give the engine 
-        * access to its resources. 
-        */
+         * @brief   Environmental Variable that should be upended to the PATH variable, to give the
+         *          engine access to its resources.
+         */
         const static std::string TR_PATH;
 
-        /**
-        * Environmental Variable holds the path of the custom Log folder. 
-        */
+        /** @brief   Environmental Variable holds the path of the custom Log folder. */
         const static std::string TR_LOG_PATH;
 
     protected:
+
+        /**
+         * @fn  EnvVariables::EnvVariables()
+         *
+         * @brief   Default constructor.
+         */
         EnvVariables(){};
     };
     TR_DISABLE_WARNING_END
