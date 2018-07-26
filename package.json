@@ -11,6 +11,7 @@
   ],
   "dependencies": {
     "nigels-com/glew": "^2.1.0",
+    "OpenSceneGraph": "openscenegraph/OpenSceneGraph#fb40a0d",
     "openscenegraph/OpenSceneGraph": "^3.6.1",
     "boostorg/boost": "^boost-1.66.0",
     "freetype": "^2.9",
