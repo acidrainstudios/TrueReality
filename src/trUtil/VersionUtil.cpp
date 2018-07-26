@@ -237,7 +237,7 @@ namespace trUtil
             //Convert the string to an integer
             return trUtil::StringUtils::FromString<int>(rev);
         }
-        catch (trUtil::Exception ex)
+        catch (trUtil::Exception &ex)
         {
             ex.LogException();
         }        
