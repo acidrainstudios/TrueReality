@@ -24,48 +24,68 @@
 
 #include <osg/Timer>
 
+/**
+ * @namespace   trUtil
+ *
+ * @brief   .
+ */
 namespace trUtil
 {    
-     /**
-     * @using unsigned int64 TimeTicks
-     *
-     * @brief   64bit Integer to hold the Timers time ticks.
-     */
+
 #if defined(_MSC_VER)
+    /** @brief   64bit Integer to hold the Timers time ticks. */
     using TimeTicks = unsigned __int64;
 #else
+    /** @brief   64bit Integer to hold the Timers time ticks. */
     using TimeTicks = unsigned long long;
 #endif
 
     /**
-     * @fn  void TR_UTIL_EXPORT AppSleep(unsigned int milliseconds);
+     * @fn  void AppSleep(unsigned int milliseconds);
      *
-     * @brief   Puts the current application thread to sleep for a given number of milliseconds. 
-     *
-     * @param   milliseconds    The milliseconds.
+     * @brief   Puts the current application thread to sleep for a given number of milliseconds.
      *
      * @return  A TR_UTIL_EXPORT.
+     *
+     * @param   milliseconds    The milliseconds.
      */
     void TR_UTIL_EXPORT AppSleep(unsigned int milliseconds);
 
-   /**
-    * Timer class is used for measuring elapsed time or time between two points.
-    */
+    /**
+     * @class   Timer
+     *
+     * @brief   Timer class is used for measuring elapsed time or time between two points.
+     */
     class TR_UTIL_EXPORT Timer
     {
     public:
+
+        /**
+         * @fn  Timer::Timer();
+         *
+         * @brief   Default constructor.
+         */
         Timer();
+
+        /**
+         * @fn  Timer::~Timer();
+         *
+         * @brief   Destructor.
+         */
         ~Timer();
 
         /**
-        * Creates and returns a global timer. 
-        * This allows the user to use the timer class as a singleton. 
-        * It can still be declared locally though, without the use of Instance()
-        */
+         * @fn  static const Timer* Timer::Instance();
+         *
+         * @brief   Creates and returns a global timer. This allows the user to use the timer class as a
+         *          singleton. It can still be declared locally though, without the use of Instance()
+         *
+         * @return  Null if it fails, else a pointer to a const Timer.
+         */
         static const Timer* Instance();
 
         /**
-         * @fn  TimeTicks Timer::Tick() const
+         * @fn  TimeTicks Timer::Tick()
          *
          * @brief   Get the timers tick value.
          *
@@ -86,7 +106,7 @@ namespace trUtil
         void SetStartTick() { mTimer.setStartTick(); }
 
         /**
-         * @fn  void Timer::SetStartTick(TimeTicks t)
+         * @fn  void Timer::SetStartTick(TimeTicks t);
          *
          * @brief   Set the start tick to a custom value.
          *
@@ -179,18 +199,30 @@ namespace trUtil
         double ElapsedMicroseconds() const { return mTimer.time_u(); }
 
         /**
-        * Get elapsed time in nanoseconds.
-        */
+         * @fn  double Timer::ElapsedNanoseconds() const
+         *
+         * @brief   Get elapsed time in nanoseconds.
+         *
+         * @return  A double.
+         */
         double ElapsedNanoseconds() const { return mTimer.time_n(); }
 
         /**
-        * Get the number of seconds per CPU tick.
-        */
+         * @fn  double Timer::GetSecondsPerCPUTick() const
+         *
+         * @brief   Get the number of seconds per CPU tick.
+         *
+         * @return  The seconds per CPU tick.
+         */
         double GetSecondsPerCPUTick() const { return mTimer.getSecondsPerTick(); }
 
         /**
-        * Get the number of seconds per tick.
-        */
+         * @fn  double Timer::GetSecondsPerTick() const
+         *
+         * @brief   Get the number of seconds per tick.
+         *
+         * @return  The seconds per tick.
+         */
         double GetSecondsPerTick() const { return (double)(mNewTicks - mOldTicks)*GetSecondsPerCPUTick(); }
 
     private:
@@ -200,4 +232,3 @@ namespace trUtil
         TimeTicks mCustomTicks = 0;
     };
 }
-
