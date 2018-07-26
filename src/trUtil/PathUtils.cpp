@@ -261,7 +261,7 @@ namespace trUtil
                         modpath.at(i) = ';';
                     }
                 }
-                catch (std::out_of_range myexcept)
+                catch (std::out_of_range &myexcept)
                 {
                     LOG_W(myexcept.what());
                 }
