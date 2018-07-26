@@ -28,12 +28,30 @@
 namespace trUtil
 {
     /**
-    * Exception used for methods invalid parameters.
-    */
+     * @class   ExceptionInvalidParameter
+     *
+     * @brief   Exception used for methods invalid parameters.
+     */
     class TR_UTIL_EXPORT ExceptionInvalidParameter : public trUtil::Exception
     {
     public:
+
+        /**
+         * @fn  ExceptionInvalidParameter::ExceptionInvalidParameter(const std::string& message, const std::string& filename, unsigned int linenum);
+         *
+         * @brief   Constructor.
+         *
+         * @param   message     The message.
+         * @param   filename    Filename of the file.
+         * @param   linenum     The linenum.
+         */
         ExceptionInvalidParameter(const std::string& message, const std::string& filename, unsigned int linenum);
+
+        /**
+         * @fn  virtual ExceptionInvalidParameter::~ExceptionInvalidParameter()
+         *
+         * @brief   Destructor.
+         */
         virtual ~ExceptionInvalidParameter() {};
     };
 
