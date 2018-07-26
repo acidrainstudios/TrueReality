@@ -66,13 +66,15 @@ namespace trUtil
         //void TR_UTIL_EXPORT SetDefaultPaths();
 
         /**
-         * @fn  void SetupLoggingOptions(const std::string logFileName, const std::string& logLevel);
+         * @fn  void SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel);
          *
          * @brief   Sets up all the default logging options for the software.
+         *
+         * @return  A TR_UTIL_EXPORT.
          *
          * @param   logFileName Filename of the log file.
          * @param   logLevel    The log level.
          */
-        void TR_UTIL_EXPORT SetupLoggingOptions(const std::string logFileName, const std::string& logLevel);
+        void TR_UTIL_EXPORT SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel);
     }
 }
