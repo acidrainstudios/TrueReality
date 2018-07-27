@@ -67,6 +67,11 @@ MACRO (ADD_TR_SUBFOLDERS)
 
 # Examples folders
     MESSAGE (STATUS "Creating Selected Example Folders")
+    IF (EXAMPLES_VIRTUAL_REALITY)
+        ADD_SUBDIRECTORY (Examples/VirtualReality)
+        SET (EXAMPLES_VIRTUAL_REALITY_AVAILABLE "YES")
+    ENDIF ()
+
     IF (EXAMPLES_LOGGING)
         ADD_SUBDIRECTORY (Examples/Logging)
         SET (EXAMPLES_LOGGING_AVAILABLE "YES")
