@@ -81,6 +81,7 @@ namespace trVR
         virtual ~VrBase() = default;
         
         vr::IVRSystem* mVrSystem = nullptr; /// Pointer for OpenVR's IVRSystem
+        vr::IVRRenderModels* mVrRenderModels = nullptr; /// Pointer for OpenVR's IVRRenderModels
         
     private:
         std::string GetDeviceProperty(vr::TrackedDeviceProperty property);

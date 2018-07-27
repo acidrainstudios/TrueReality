@@ -24,6 +24,8 @@
 
 #include <trUtil/Logging/Log.h>
 
+#include "trUtil/StringUtils.h"
+
 namespace trVR
 {
     const trUtil::RefStr VrBase::CLASS_TYPE = trUtil::RefStr("trVR::VrBase");
@@ -50,10 +52,60 @@ namespace trVR
             mVrSystem = nullptr;
             LOG_E("Unable to initialize the OpenVR library. OpenVR error: "
                 + std::string(vr::VR_GetVRInitErrorAsEnglishDescription(initErr)))
+            return;
         }
         else
         {
-            LOG_I("Connected to headset successfully!")
+            LOG_I("Connected to OpenVR library successfully!")
         }
+        
+        if (!vr::VRCompositor())
+        {
+            mVrSystem = nullptr;
+            LOG_E("Unable to initialize the compositor.")
+            return;
+        }
+        else
+        {
+            LOG_I("Compositor initialized successfully!")
+        }
+        
+        mVrRenderModels = static_cast<vr::IVRRenderModels*>(vr::VR_GetGenericInterface(vr::IVRRenderModels_Version, &initErr));
+        
+        if (!mVrRenderModels)
+        {
+            mVrSystem = nullptr;
+            vr::VR_Shutdown();
+            LOG_E("Unable to get render models interface. OpenVR error: "
+                + std::string(vr::VR_GetVRInitErrorAsEnglishDescription(initErr)))
+            return;
+        }
+        else
+        {
+            LOG_I("Render models interface initialized!")
+        }
+        
+        std::string driver = GetDeviceProperty(vr::Prop_TrackingSystemName_String);
+        std::string device = GetDeviceProperty(vr::Prop_SerialNumber_String);
+        
+        LOG_I("HMD driver name: " + driver)
+        LOG_I("HMD device serial number: " + device)
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    std::string VrBase::GetDeviceProperty(vr::TrackedDeviceProperty property)
+    {
+        uint32_t bufferLen = mVrSystem->GetStringTrackedDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, property, nullptr, 0);
+        
+        if (bufferLen == 0)
+        {
+            return trUtil::StringUtils::STR_BLANK;
+        }
+        
+        char* buffer = new char[bufferLen];
+        bufferLen = mVrSystem->GetStringTrackedDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, property, buffer, bufferLen);
+        std::string result = buffer;
+        delete []buffer;
+        return result;
     }
 }
