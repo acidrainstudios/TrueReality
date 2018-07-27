@@ -69,7 +69,7 @@ namespace trUtil
         //}
 
         //////////////////////////////////////////////////////////////////////////
-        void SetupLoggingOptions(const std::string logFileName, const std::string& logLevel)
+        void SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel)
         {
             //Set the Log file name. 
             if (!logFileName.empty())

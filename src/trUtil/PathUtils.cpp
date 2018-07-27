@@ -119,7 +119,7 @@ namespace trUtil
         }
         
         /////////////////////////////////////////////////////////////////////////////
-        void SetDataPath(std::string path)
+        void SetDataPath(std::string& path)
         {
             mDataPath = path;
         }
@@ -247,7 +247,7 @@ namespace trUtil
             
             std::string modpath = pathList;
             std::string::size_type pathLength = pathList.size();
-            for (std::string::size_type i = 0; i < pathLength; i++)
+            for (std::string::size_type i = 0; i < pathLength; ++i)
             {
 #ifdef TR_WIN
                 try
@@ -261,7 +261,7 @@ namespace trUtil
                         modpath.at(i) = ';';
                     }
                 }
-                catch (std::out_of_range myexcept)
+                catch (std::out_of_range &myexcept)
                 {
                     LOG_W(myexcept.what());
                 }
@@ -285,7 +285,7 @@ namespace trUtil
             std::string pathString = "";
             
             using StringDeque = std::deque<std::string>;
-            for (StringDeque::iterator itr = pathList.begin(); itr != pathList.end(); itr++)
+            for (StringDeque::iterator itr = pathList.begin(); itr != pathList.end(); ++itr)
             {
                 pathString += *itr;
                 

@@ -52,7 +52,7 @@ namespace trUtil
         class LogImpl //: std::stringbuf
         {
         public:
-            LogImpl(const std::string& name)
+            explicit LogImpl(const std::string& name)
                 : mOutputStreamBit(Log::STANDARD)
                 , mName(name)
                 , mLevel(DEFAULT_LOG_LEVEL)
