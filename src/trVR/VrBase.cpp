@@ -22,6 +22,8 @@
  */
 #include <trVR/VrBase.h>
 
+#include <trUtil/Logging/Log.h>
+
 namespace trVR
 {
     const trUtil::RefStr VrBase::CLASS_TYPE = trUtil::RefStr("trVR::VrBase");
@@ -35,5 +37,23 @@ namespace trVR
     const std::string& VrBase::GetType() const
     {
         return CLASS_TYPE;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    void VrBase::Init()
+    {
+        vr::EVRInitError initErr = vr::VRInitError_None;
+        mVrSystem = vr::VR_Init(&initErr, vr::VRApplication_Scene);
+        
+        if (initErr != vr::VRInitError_None)
+        {
+            mVrSystem = nullptr;
+            LOG_E("Unable to initialize the OpenVR library. OpenVR error: "
+                + std::string(vr::VR_GetVRInitErrorAsEnglishDescription(initErr)))
+        }
+        else
+        {
+            LOG_I("Connected to headset successfully!")
+        }
     }
 }

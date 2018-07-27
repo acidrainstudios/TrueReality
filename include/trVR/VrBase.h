@@ -25,6 +25,9 @@
 #include <trVR/Export.h>
 
 #include <trBase/Base.h>
+#include <trBase/SmrtPtr.h>
+
+#include <openvr/openvr.h>
 
 namespace trVR
 {
@@ -63,6 +66,11 @@ namespace trVR
          * Returns the class type
          */
         virtual const std::string& GetType() const override;
+        
+        /**
+         * Initializes the VR instance
+         */
+        void Init();
 
     protected:
         /**
@@ -71,6 +79,10 @@ namespace trVR
          * @brief   dtor
          */
         virtual ~VrBase() = default;
+        
+        vr::IVRSystem* mVrSystem = nullptr; /// Pointer for OpenVR's IVRSystem
+        
     private:
+        std::string GetDeviceProperty(vr::TrackedDeviceProperty property);
     };
 }
