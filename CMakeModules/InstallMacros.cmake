@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2018 Acid Rain Studios LLC
+# Copyright ï¿½ 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -28,7 +28,7 @@ MACRO (TR_INSTALL_OPTIONS arg)
         IF (MSVC_IDE)
             INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
 	    ELSEIF (UNIX)
-            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
         ENDIF ()
     ENDIF()
 
@@ -39,8 +39,8 @@ MACRO (TR_INSTALL_OPTIONS arg)
             INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
             INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
 	    ELSEIF (UNIX)
-            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION ${PROJECT_NAME})
-            INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION ${PROJECT_NAME})            
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
+            INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)            
         ENDIF ()
     ENDIF()
     
@@ -55,9 +55,9 @@ MACRO (TR_INSTALL_OPTIONS arg)
 	ELSEIF (UNIX)
         INSTALL (
             TARGETS ${arg}
-            RUNTIME DESTINATION ${PROJECT_NAME}/bin
-            LIBRARY DESTINATION ${PROJECT_NAME}/lib
-            ARCHIVE DESTINATION ${PROJECT_NAME}/lib
+            RUNTIME DESTINATION bin
+            LIBRARY DESTINATION lib
+            ARCHIVE DESTINATION lib
             )
     ENDIF ()
 ENDMACRO ()
