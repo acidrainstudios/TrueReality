@@ -38,7 +38,9 @@ static const std::string LOG_FILE_NAME = "VRExample.html";
 */
 int main(int argc, char** argv)
 {
-
+    //Set default logging level
+    trUtil::DefaultSettings::SetupLoggingOptions(LOG_FILE_NAME, "Info");
+    
     //Parse command line arguments
     ParseCmdLineArgs(argc, argv);
 
