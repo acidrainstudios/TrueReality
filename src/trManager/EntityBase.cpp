@@ -33,7 +33,7 @@ namespace trManager
     const trUtil::RefStr EntityBase::ON_TICK_REMOTE_INVOKABLE("OnTickRemote");
 
     //////////////////////////////////////////////////////////////////////////
-    EntityBase::EntityBase(const std::string name) : BaseClass(name)
+    EntityBase::EntityBase(const std::string& name) : BaseClass(name)
     {
         mEntityType = &EntityType::INVALID;
     }

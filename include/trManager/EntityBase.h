@@ -56,13 +56,13 @@ namespace trManager
         const static trUtil::RefStr ON_TICK_REMOTE_INVOKABLE;           /// Invokable for Tick Remote messages
 
         /**
-         * @fn  EntityBase::EntityBase(const std::string name = CLASS_TYPE);
+         * @fn  EntityBase(const std::string& name = CLASS_TYPE);
          *
          * @brief   Constructor.
          *
          * @param   name    (Optional) The name.
          */
-        EntityBase(const std::string name = CLASS_TYPE);
+        EntityBase(const std::string& name = CLASS_TYPE);
 
         /**
          * @fn  virtual const std::string& EntityBase::GetType() const override = 0;
