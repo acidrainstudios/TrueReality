@@ -47,13 +47,13 @@ namespace trManager
         const static trUtil::RefStr CLASS_TYPE;                 /// Holds the class type name for efficient comparisons
 
         /**
-         * @fn  ActorBase::ActorBase(const std::string name = CLASS_TYPE);
+         * @fn  ActorBase(const std::string& name = CLASS_TYPE);
          *
          * @brief   ctor.
          *
          * @param   name    (Optional) The name.
          */
-        ActorBase(const std::string name = CLASS_TYPE);
+        ActorBase(const std::string& name = CLASS_TYPE);
 
         /**
         * Returns the class type
