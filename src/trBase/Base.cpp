@@ -28,7 +28,7 @@ namespace trBase
     const trUtil::RefStr Base::CLASS_TYPE = trUtil::RefStr("trBase::Base");
 
     //////////////////////////////////////////////////////////////////////////
-    Base::Base(const std::string name) : mName(name)
+    Base::Base(const std::string& name) : mName(name)
     {
         LOG_D("Creating class with the name: " + GetName())
     }

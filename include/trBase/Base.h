@@ -42,9 +42,13 @@ namespace trBase
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
         /**
-        * ctor
-        */
-        Base(const std::string name = CLASS_TYPE);
+         * @fn  Base(const std::string& name = CLASS_TYPE);
+         *
+         * @brief   ctor.
+         *
+         * @param   name    (Optional) The name.
+         */
+        Base(const std::string& name = CLASS_TYPE);
 
         /**
         * Returns the class type
