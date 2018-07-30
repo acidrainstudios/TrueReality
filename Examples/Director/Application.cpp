@@ -29,7 +29,7 @@
 const trUtil::RefStr Application::CLASS_TYPE = trUtil::RefStr("Application");
 
 //////////////////////////////////////////////////////////////////////////
-Application::Application(const std::string name) : BaseClass(name)
+Application::Application(const std::string& name) : BaseClass(name)
 {
     //Create the Test Director
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_GREEN);
