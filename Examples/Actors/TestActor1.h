@@ -37,13 +37,13 @@ public:
     const static trUtil::RefStr ON_ENTITY_UNREGISTERED_INVOKABLE;   /// Invokable for Entity Registered messages
 
     /**
-     * @fn  TestActor1::TestActor1(const std::string name = CLASS_TYPE);
+     * @fn  TestActor1::TestActor1(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestActor1(const std::string name = CLASS_TYPE);
+    TestActor1(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestActor1::GetType() const override

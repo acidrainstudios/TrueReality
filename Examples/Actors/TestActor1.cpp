@@ -40,8 +40,14 @@ const trUtil::RefStr TestActor1::CLASS_TYPE("TestActor1");
 const trUtil::RefStr TestActor1::ON_ENTITY_REGISTERED_INVOKABLE("OnEntityRegistered");
 const trUtil::RefStr TestActor1::ON_ENTITY_UNREGISTERED_INVOKABLE("OnEntityUnregistered");
 
-//////////////////////////////////////////////////////////////////////////
-TestActor1::TestActor1(const std::string name) : BaseClass(name)
+/**
+ * @fn  TestActor1::TestActor1(const std::string& name)
+ *
+ * @brief   ///////////////////////////////////////////////////////////////////////.
+ *
+ * @param   name    The name.
+ */
+TestActor1::TestActor1(const std::string& name) : BaseClass(name)
 {
     //NULL the actor ID
     mActor2Id = new trBase::UniqueId(false);
