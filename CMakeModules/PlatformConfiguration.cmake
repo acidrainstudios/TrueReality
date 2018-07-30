@@ -79,7 +79,7 @@ IF (UNIX)
     OPTION (CMAKE_VERBOSE_MAKEFILE "Users may enable the option in their local build tree to get more verbose output from Makefile builds and show each command line as it is launched." ON)
     OPTION (CMAKE_COLOR_MAKEFILE "When enabled, the generated Makefiles will produce colored output. Default is ON" ON)
 
-    SET (CMAKE_INSTALL_PREFIX "/opt/${PROJECT_NAME}" CACHE STRING "TrueReality default install folder" FORCE)    
+    SET (CMAKE_INSTALL_PREFIX "/usr/local/${PROJECT_NAME}" CACHE STRING "TrueReality default install folder" FORCE)    
 ENDIF()
 
 IF (WIN32)
