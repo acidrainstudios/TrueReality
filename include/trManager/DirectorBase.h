@@ -44,13 +44,13 @@ namespace trManager
         const static trUtil::RefStr CLASS_TYPE;             /// Holds the class type name for efficient comparisons
 
         /**
-         * @fn  DirectorBase::DirectorBase(const std::string name = CLASS_TYPE);
+         * @fn  DirectorBase(const std::string& name = CLASS_TYPE);
          *
          * @brief   ctor.
          *
          * @param   name    (Optional) The name.
          */
-        DirectorBase(const std::string name = CLASS_TYPE);
+        DirectorBase(const std::string& name = CLASS_TYPE);
 
         /**
          * @fn  static bool DirectorBase::CompareComponentPriority(const trBase::SmrtPtr<trManager::EntityBase>& first, const trBase::SmrtPtr<trManager::EntityBase>& second);

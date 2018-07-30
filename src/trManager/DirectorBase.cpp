@@ -31,7 +31,7 @@ namespace trManager
     const trUtil::RefStr DirectorBase::CLASS_TYPE = trUtil::RefStr("trManager::DirectorBase");
 
     //////////////////////////////////////////////////////////////////////////
-    DirectorBase::DirectorBase(const std::string name) : BaseClass(name)
+    DirectorBase::DirectorBase(const std::string& name) : BaseClass(name)
     {
         mDirectorPriority = DirectorPriority::NORMAL;
         mEntityType = EntityType::DIRECTOR;
