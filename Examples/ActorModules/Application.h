@@ -31,13 +31,13 @@ public:
     const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
     /**
-     * @fn  Application::Application(const std::string name = CLASS_TYPE);
+     * @fn  Application::Application(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    Application(const std::string name = CLASS_TYPE);
+    Application(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& Application::GetType() const override;
