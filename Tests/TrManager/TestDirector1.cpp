@@ -47,7 +47,7 @@ const trUtil::RefStr TestDirector1::CLASS_TYPE("TestDirector1");
 const trUtil::RefStr TestDirector1::ON_TEST_MESSAGE_INVOKABLE = trUtil::RefStr("OnTestMessageInvokable");
 
 //////////////////////////////////////////////////////////////////////////
-TestDirector1::TestDirector1(const std::string name) : BaseClass(name)
+TestDirector1::TestDirector1(const std::string& name) : BaseClass(name)
 {
     BuildInvokables();
 }
