@@ -36,13 +36,13 @@ public:
     const static trUtil::RefStr ON_TEST_INVOKABLE;  /// Invokable for Test messages
 
     /**
-     * @fn  TestActor2::TestActor2(const std::string name = CLASS_TYPE);
+     * @fn  TestActor2::TestActor2(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestActor2(const std::string name = CLASS_TYPE);
+    TestActor2(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestActor2::GetType() const override

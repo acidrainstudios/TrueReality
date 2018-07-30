@@ -37,7 +37,7 @@ const trUtil::RefStr TestActor2::ON_TEST_INVOKABLE("OnTest");
 int TestActor2::mInstCount = 0;
 
 //////////////////////////////////////////////////////////////////////////
-TestActor2::TestActor2(const std::string name) : BaseClass(name)
+TestActor2::TestActor2(const std::string& name) : BaseClass(name)
 {
     BuildInvokables();
     ++mInstCount;
