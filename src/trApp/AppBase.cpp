@@ -28,7 +28,7 @@ namespace trApp
     const trUtil::RefStr AppBase::CLASS_TYPE = trUtil::RefStr("trApp::AppBase");
 
     //////////////////////////////////////////////////////////////////////////
-    AppBase::AppBase(const std::string name) : BaseClass(name)
+    AppBase::AppBase(const std::string& name) : BaseClass(name)
     {
         //Create an instance of the System Manager
         mSysMan = &trManager::SystemManager::GetInstance();

@@ -43,13 +43,13 @@ namespace trApp
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
         /**
-         * @fn  AppBase::AppBase(const std::string name = CLASS_TYPE);
+         * @fn  AppBase::AppBase(const std::string& name = CLASS_TYPE);
          *
          * @brief   Default constructor.
          *
          * @param   name    (Optional) The name of the class.
          */
-        AppBase(const std::string name = CLASS_TYPE);
+        AppBase(const std::string& name = CLASS_TYPE);
 
         /**
          * @fn  virtual const std::string& AppBase::GetType() const override;
