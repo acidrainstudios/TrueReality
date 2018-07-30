@@ -35,41 +35,23 @@ MACRO (TR_INSTALL_OPTIONS arg)
     IF(TR_HEADERS_INSTALLED EQUAL 0)      
         SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
         INSTALL(CODE "MESSAGE(\"Installing the SDKs headers folder.\")")
-        IF (MSVC_IDE)
-            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
-            INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
-	    ELSEIF (UNIX)
-            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
-            INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)            
-        ENDIF ()
+        INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
+        INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
     ENDIF()
     
     INSTALL (CODE "MESSAGE(\"Installing the ${arg} project.\")")
-    IF (MSVC_IDE)
-        INSTALL (
+    INSTALL (
             TARGETS ${arg}
             RUNTIME DESTINATION bin
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib
             )
-	ELSEIF (UNIX)
-        INSTALL (
-            TARGETS ${arg}
-            RUNTIME DESTINATION bin
-            LIBRARY DESTINATION lib
-            ARCHIVE DESTINATION lib
-            )
-    ENDIF ()
 ENDMACRO ()
 
 # *****************************************************************************
 # Configures the build folder, making sure it has all the needed data files ***
 # *****************************************************************************
 MACRO (TR_INSTALL_BUILD_OPTIONS)
-        MESSAGE (STATUS "Copying the Data folder to ${CMAKE_BINARY_DIR} \n")
-        IF (MSVC_IDE)
-            FILE(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
-	    ELSEIF (UNIX)
-            FILE(COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION ${PROJECT_NAME})
-        ENDIF ()
+    MESSAGE (STATUS "Copying the Data folder to ${CMAKE_BINARY_DIR} \n")
+    FILE (COPY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
 ENDMACRO ()
