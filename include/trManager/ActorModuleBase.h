@@ -44,16 +44,16 @@ namespace trManager
         const static trUtil::RefStr CLASS_TYPE;             /// Holds the class type name for efficient comparisons
 
         /**
-         * @fn  ActorModuleBase::ActorModuleBase(const std::string name = CLASS_TYPE);
+         * @fn  ActorModuleBase(const std::string& name = CLASS_TYPE);
          *
          * @brief   ctor.
          *
          * @param   name    (Optional) The name.
          */
-        ActorModuleBase(const std::string name = CLASS_TYPE);
+        ActorModuleBase(const std::string& name = CLASS_TYPE);
 
         /**
-         * @fn  virtual const std::string& ActorModuleBase::GetType() const override = 0;
+         * @fn  virtual const std::string& GetType() const override = 0;
          *
          * @brief   Returns the class type.
          *
@@ -62,7 +62,7 @@ namespace trManager
         virtual const std::string& GetType() const override = 0;
 
         /**
-         * @fn  virtual void ActorModuleBase::OnTick(const trManager::MessageBase& msg);
+         * @fn  virtual void OnTick(const trManager::MessageBase& msg);
          *
          * @brief   Function that will receive Tick Messages from the System Manager.
          *
@@ -71,7 +71,7 @@ namespace trManager
         virtual void OnTick(const trManager::MessageBase& msg);
 
         /**
-         * @fn  virtual void ActorModuleBase::OnMessage(const trManager::MessageBase& msg);
+         * @fn  virtual void OnMessage(const trManager::MessageBase& msg);
          *
          * @brief   Function that is used by the Systems Manager to deliver all messages to the Director.
          *
@@ -80,7 +80,7 @@ namespace trManager
         virtual void OnMessage(const trManager::MessageBase& msg);
 
         /**
-         * @fn  virtual void ActorModuleBase::BuildInvokables() override;
+         * @fn  virtual void BuildInvokables() override;
          *
          * @brief   Builds the default invokables for this class.
          */
@@ -89,7 +89,7 @@ namespace trManager
     protected:
 
         /**
-         * @fn  ActorModuleBase::~ActorModuleBase();
+         * @fn  ~ActorModuleBase();
          *
          * @brief   dtor.
          */

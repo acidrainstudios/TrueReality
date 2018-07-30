@@ -30,7 +30,7 @@ namespace trManager
     const trUtil::RefStr ActorModuleBase::CLASS_TYPE = trUtil::RefStr("trManager::ActorModuleBase");
 
     //////////////////////////////////////////////////////////////////////////
-    ActorModuleBase::ActorModuleBase(const std::string name) : BaseClass(name)
+    ActorModuleBase::ActorModuleBase(const std::string& name) : BaseClass(name)
     {
         mEntityType = EntityType::ACTOR_MODULE;
         BuildInvokables();
