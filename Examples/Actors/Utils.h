@@ -25,7 +25,14 @@
 static const std::string PROGRAM_NAME = "TrueReality";
 static const std::string EXE_NAME = "exampleActors";
 
-/*
-* Parses the command line variables that are passed in to the executable
-*/
+/**
+ * @fn  void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::string& logLevel);
+ *
+ * @brief   Parses the command line variables that are passed in to the executable.
+ *
+ * @param [in,out]  argc        The argc.
+ * @param [in,out]  argv        If non-null, the argv.
+ * @param [in,out]  logFileName Filename of the log file.
+ * @param [in,out]  logLevel    The log level.
+ */
 void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::string& logLevel);
