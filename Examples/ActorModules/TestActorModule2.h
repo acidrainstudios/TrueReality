@@ -34,13 +34,13 @@ public:
     const static trUtil::RefStr ON_TEST_ACTOR_2_INVOKABLE;  /// Invokable for messages going to TestActor2
 
     /**
-     * @fn  TestActorModule2::TestActorModule2(const std::string name = CLASS_TYPE);
+     * @fn  TestActorModule2::TestActorModule2(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestActorModule2(const std::string name = CLASS_TYPE);
+    TestActorModule2(const std::string& name = CLASS_TYPE);
 
     /**
     * @fn  virtual const std::string& TestActorModule2::GetType() const override

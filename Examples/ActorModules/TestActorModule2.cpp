@@ -31,8 +31,9 @@
 
 const trUtil::RefStr TestActorModule2::CLASS_TYPE("TestActorModule2");
 int TestActorModule2::mInstCount = 0;
+
 //////////////////////////////////////////////////////////////////////////
-TestActorModule2::TestActorModule2(const std::string name) : BaseClass(name)
+TestActorModule2::TestActorModule2(const std::string& name) : BaseClass(name)
 {
     ++mInstCount;
     BuildInvokables();
