@@ -36,13 +36,13 @@ public:
     const static int SPEED_FRAME_NUMBER = 5;        ///Number of frames on which the TimeScale should be increased. 
 
     /**
-     * @fn  TestDirector::TestDirector(const std::string name = CLASS_TYPE);
+     * @fn  TestDirector::TestDirector(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestDirector(const std::string name = CLASS_TYPE);
+    TestDirector(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestDirector::GetType() const override

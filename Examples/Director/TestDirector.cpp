@@ -42,7 +42,7 @@
 const trUtil::RefStr TestDirector::CLASS_TYPE = trUtil::RefStr("TestDirector");
 
 //////////////////////////////////////////////////////////////////////////
-TestDirector::TestDirector(const std::string name) : BaseClass(name)
+TestDirector::TestDirector(const std::string& name) : BaseClass(name)
 {
 }
 
