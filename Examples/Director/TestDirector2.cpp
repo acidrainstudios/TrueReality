@@ -29,7 +29,7 @@ const trUtil::RefStr TestDirector2::CLASS_TYPE = trUtil::RefStr("TestDirector2")
 int TestDirector2::mInstCount = 0;
 
 //////////////////////////////////////////////////////////////////////////
-TestDirector2::TestDirector2(const std::string name) : BaseClass(name)
+TestDirector2::TestDirector2(const std::string& name) : BaseClass(name)
 {
     ++mInstCount;
 }
