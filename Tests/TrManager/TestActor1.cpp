@@ -43,7 +43,7 @@ const trUtil::RefStr TestActor1::ON_ENTITY_UNREGISTERED_INVOKABLE("OnEntityUnreg
 int TestActor1::mInstCount = 0;
 
 //////////////////////////////////////////////////////////////////////////
-TestActor1::TestActor1(const std::string name) : BaseClass(name)
+TestActor1::TestActor1(const std::string& name) : BaseClass(name)
 {
     ++mInstCount;
 
