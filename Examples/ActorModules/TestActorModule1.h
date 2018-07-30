@@ -32,13 +32,13 @@ public:
     const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
     /**
-     * @fn  TestActorModule1::TestActorModule1(const std::string name = CLASS_TYPE);
+     * @fn  TestActorModule1::TestActorModule1(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestActorModule1(const std::string name = CLASS_TYPE);
+    TestActorModule1(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestActorModule1::GetType() const override

@@ -32,7 +32,7 @@
 const trUtil::RefStr TestActorModule1::CLASS_TYPE("TestActorModule1");
 
 //////////////////////////////////////////////////////////////////////////
-TestActorModule1::TestActorModule1(const std::string name) : BaseClass(name)
+TestActorModule1::TestActorModule1(const std::string& name) : BaseClass(name)
 {
     BuildInvokables();
 }
