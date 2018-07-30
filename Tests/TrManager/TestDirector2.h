@@ -31,15 +31,15 @@ public:
     using BaseClass = trManager::DirectorBase;      /// Adds an easy and swappable access to the base class
 
     const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
-    
+
     /**
-     * @fn  TestDirector2::TestDirector2(const std::string name = CLASS_TYPE);
+     * @fn  TestDirector2::TestDirector2(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestDirector2(const std::string name = CLASS_TYPE);
+    TestDirector2(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestDirector2::GetType() const override
