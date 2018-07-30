@@ -36,13 +36,13 @@ public:
     const static trUtil::RefStr ON_TEST_ACTOR_2_INVOKABLE;  /// Invokable for messages going to TestActor2
 
     /**
-     * @fn  TestActor3::TestActor3(const std::string name = CLASS_TYPE);
+     * @fn  TestActor3::TestActor3(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestActor3(const std::string name = CLASS_TYPE);
+    TestActor3(const std::string& name = CLASS_TYPE);
 
     /**
     * @fn  virtual const std::string& TestActor3::GetType() const override
