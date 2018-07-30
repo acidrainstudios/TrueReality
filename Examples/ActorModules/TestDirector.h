@@ -44,7 +44,7 @@ public:
      *
      * @param   name    (Optional) The name.
      */
-    TestDirector(const std::string name = CLASS_TYPE);
+    TestDirector(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestDirector::GetType() const override
