@@ -51,24 +51,40 @@ namespace trBase
         Base(const std::string& name = CLASS_TYPE);
 
         /**
-        * Returns the class type
-        */
+         * @fn  virtual const std::string& Base::GetType() const override = 0;
+         *
+         * @brief   Returns the class type.
+         *
+         * @return  The type.
+         */
         virtual const std::string& GetType() const override = 0;
 
         /**
-        * Sets this instances name
-        */
+         * @fn  virtual void Base::SetName(const std::string& name);
+         *
+         * @brief   Sets this instances name.
+         *
+         * @param   name    The name.
+         */
         virtual void SetName(const std::string& name);
 
         /**
-        * Returns this instances name
-        */
+         * @fn  virtual const std::string& Base::GetName();
+         *
+         * @brief   Returns this instances name.
+         *
+         * @return  The name.
+         */
         virtual const std::string& GetName();
 
         /**
-        * Overwrites the default internal UUID with the passed in one. 
-        * This should be done very carefully.
-        */
+         * @fn  virtual void Base::SetUUID(const trBase::UniqueId& id);
+         *
+         * @brief   Overwrites the default internal UUID with the passed in one. This should be done very
+         *          carefully.
+         *
+         * @param   id  The identifier.
+         */
         virtual void SetUUID(const trBase::UniqueId& id);
 
         /**
@@ -78,13 +94,15 @@ namespace trBase
 
     protected:
 
-        /** Base destructor. Note, that it is protected so that classes cannot
-        be deleted other than by being dereferenced and the reference
-        count being zero (see trBase::SmrtClass), preventing the deletion
-        of nodes which are still in use. This also means that
-        Nodes cannot be created on stack i.e Node node will not compile,
-        forcing all nodes to be created on the heap i.e Node* node
-        = new Node().*/
+        /**
+         * @fn  Base::~Base();
+         *
+         * @brief   Base destructor. Note, that it is protected so that classes cannot be deleted other
+         *          than by being dereferenced and the reference count being zero (see trBase::SmrtClass),
+         *          preventing the deletion of nodes which are still in use. This also means that Nodes
+         *          cannot be created on stack i.e Node node will not compile, forcing all nodes to be
+         *          created on the heap i.e Node* node = new Node().
+         */
         ~Base();
 
     private:
