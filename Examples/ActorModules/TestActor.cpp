@@ -29,7 +29,7 @@
 const trUtil::RefStr TestActor::CLASS_TYPE("TestActor");
 
 //////////////////////////////////////////////////////////////////////////
-TestActor::TestActor(const std::string name) : BaseClass(name)
+TestActor::TestActor(const std::string& name) : BaseClass(name)
 {
     //Add a new Actor Module to the Actor
     AddActorModule(*new TestActorModule1());

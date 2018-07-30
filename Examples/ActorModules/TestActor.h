@@ -40,7 +40,7 @@ public:
      *
      * @param   name    (Optional) The name.
      */
-    TestActor(const std::string name = CLASS_TYPE);
+    TestActor(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestActor::GetType() const override
