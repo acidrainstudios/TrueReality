@@ -40,13 +40,13 @@ public:
     const static int KILL_ACTOR_FRAME_NUMBER = 20;          ///Number of frames when the created actor is removed.
 
     /**
-     * @fn  TestDirector::TestDirector(const std::string name = CLASS_TYPE);
+     * @fn  TestDirector::TestDirector(const std::string& name = CLASS_TYPE);
      *
      * @brief   Constructor.
      *
      * @param   name    (Optional) The name.
      */
-    TestDirector(const std::string name = CLASS_TYPE);
+    TestDirector(const std::string& name = CLASS_TYPE);
 
     /**
      * @fn  virtual const std::string& TestDirector::GetType() const override
