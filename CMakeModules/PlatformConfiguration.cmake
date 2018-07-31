@@ -27,9 +27,9 @@ SET (LIBRARY_OUTPUT_PATH ${OUTPUT_LIBDIR})
 SET (CMAKE_ARCHIVE_OUTPUT_DIRECTORY  ${OUTPUT_LIBDIR} CACHE PATH "build directory")
 SET (CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${OUTPUT_BINDIR} CACHE PATH "build directory")
 IF (MSVC_IDE)
-	SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_BINDIR} CACHE PATH "build directory")
+    SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_BINDIR} CACHE PATH "build directory")
 ELSE ()
-	SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_LIBDIR} CACHE PATH "build directory")
+    SET (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_LIBDIR} CACHE PATH "build directory")
 ENDIF ()
 
 # Sets the Debug and Release library naming formats, but not executables.
@@ -65,7 +65,7 @@ INCLUDE_DIRECTORIES (
 # *****************************************************************************
 IF (APPLE)
     MESSAGE (STATUS "\nConfiguring for Apple")
-	OPTION (TC_BUILD_FOR_IOS OFF)
+    OPTION (TC_BUILD_FOR_IOS OFF)
 ENDIF ()
 
 IF (UNIX)
@@ -79,37 +79,41 @@ IF (UNIX)
     OPTION (CMAKE_VERBOSE_MAKEFILE "Users may enable the option in their local build tree to get more verbose output from Makefile builds and show each command line as it is launched." ON)
     OPTION (CMAKE_COLOR_MAKEFILE "When enabled, the generated Makefiles will produce colored output. Default is ON" ON)
 
-    SET (CMAKE_INSTALL_PREFIX "/usr/local/${PROJECT_NAME}" CACHE STRING "TrueReality default install folder" FORCE)
+    IF (CMAKE_INSTALL_PREFIX STREQUAL "/usr/local" OR CMAKE_INSTALL_PREFIX STREQUAL "/usr/local/")
+        SET (CMAKE_INSTALL_PREFIX "/usr/local/${PROJECT_NAME}" CACHE STRING "TrueReality default install folder" FORCE)
+    ELSEIF (CMAKE_INSTALL_PREFIX STREQUAL "/opt" OR CMAKE_INSTALL_PREFIX STREQUAL "/opt/")
+        SET (CMAKE_INSTALL_PREFIX "/opt/${PROJECT_NAME}" CACHE STRING "TrueReality default install folder" FORCE)
+    ENDIF ()
 ENDIF ()
 
 IF (WIN32)
     MESSAGE (STATUS "\nConfiguring for Windows")
 
-	IF (MSVC_IDE)
+    IF (MSVC_IDE)
 	
-		# Enables folder creation in VS projects. 
-		SET_PROPERTY (GLOBAL PROPERTY USE_FOLDERS ON)
+        # Enables folder creation in VS projects. 
+        SET_PROPERTY (GLOBAL PROPERTY USE_FOLDERS ON)
 	
-		# Enable multicore builds
-		OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
-		MARK_AS_ADVANCED (TR_BUILD_WITH_MP)
-		IF (TR_BUILD_WITH_MP)
-			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
-		ENDIF ()
+        # Enable multicore builds
+        OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
+        MARK_AS_ADVANCED (TR_BUILD_WITH_MP)
+        IF (TR_BUILD_WITH_MP)
+            SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
+        ENDIF ()
 		
-		# Enable strict checking
-		OPTION (TR_BUILD_WITH_STRICT "Enables the Option STRICT for VS compiler" ON)
-		MARK_AS_ADVANCED (TR_BUILD_WITH_STRICT)
-		IF (TR_BUILD_WITH_STRICT)
-			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSTRICT")
-		ENDIF ()
+        # Enable strict checking
+        OPTION (TR_BUILD_WITH_STRICT "Enables the Option STRICT for VS compiler" ON)
+        MARK_AS_ADVANCED (TR_BUILD_WITH_STRICT)
+        IF (TR_BUILD_WITH_STRICT)
+            SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSTRICT")
+        ENDIF ()
 		
-		# Reduce the number of default headers included in a VS build
-		OPTION (TR_BUILD_WITH_LEAN_AND_MEAN "Enables the option LEAN_AND_MEAN for VS compiler, to speed up compilation" ON)
-		MARK_AS_ADVANCED (TR_BUILD_WITH_LEAN_AND_MEAN)
-		IF (TR_BUILD_WITH_LEAN_AND_MEAN)
-			SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DWIN32_LEAN_AND_MEAN")
-		ENDIF ()
+        # Reduce the number of default headers included in a VS build
+        OPTION (TR_BUILD_WITH_LEAN_AND_MEAN "Enables the option LEAN_AND_MEAN for VS compiler, to speed up compilation" ON)
+        MARK_AS_ADVANCED (TR_BUILD_WITH_LEAN_AND_MEAN)
+        IF (TR_BUILD_WITH_LEAN_AND_MEAN)
+            SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DWIN32_LEAN_AND_MEAN")
+        ENDIF ()
 
         #If we are using Boost
         IF (BoostLibs_FOUND)
@@ -124,7 +128,7 @@ IF (WIN32)
             #Sets temporary warning suppression flags. These should be revisited and rechecked at every VS version and Ext dependency change. 
             SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")     #GTest uses old TR1 Namespaces 
         ENDIF ()
-	ENDIF ()
+    ENDIF ()
 ENDIF ()
 
 # For each configuration (Debug, Release, MinSizeRel... and/or anything the
