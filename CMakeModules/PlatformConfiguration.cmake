@@ -66,21 +66,21 @@ INCLUDE_DIRECTORIES (
 IF (APPLE)
     MESSAGE (STATUS "\nConfiguring for Apple")
 	OPTION (TC_BUILD_FOR_IOS OFF)
-ENDIF()
+ENDIF ()
 
 IF (UNIX)
     MESSAGE (STATUS "\nConfiguring for Unix")
-	READ_GCC_VERSION()
-	SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
-	IF (GCC_VERSION LESS 6.0.0)
-		MESSAGE (STATUS "GCC Version: " ${GCC_VERSION})
+    READ_GCC_VERSION()
+    SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
+    IF (GCC_VERSION LESS 6.0.0)
+        MESSAGE (STATUS "GCC Version: " ${GCC_VERSION})
         MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
-    ENDIF (GCC_VERSION LESS 6.0.0)
+    ENDIF ()
     OPTION (CMAKE_VERBOSE_MAKEFILE "Users may enable the option in their local build tree to get more verbose output from Makefile builds and show each command line as it is launched." ON)
     OPTION (CMAKE_COLOR_MAKEFILE "When enabled, the generated Makefiles will produce colored output. Default is ON" ON)
 
-    SET (CMAKE_INSTALL_PREFIX "/usr/local/${PROJECT_NAME}" CACHE STRING "TrueReality default install folder" FORCE)    
-ENDIF()
+    SET (CMAKE_INSTALL_PREFIX "/usr/local/${PROJECT_NAME}" CACHE STRING "TrueReality default install folder" FORCE)
+ENDIF ()
 
 IF (WIN32)
     MESSAGE (STATUS "\nConfiguring for Windows")
@@ -117,13 +117,13 @@ IF (WIN32)
             SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE") #Boost has a bug with using an old config file with VS2017
             SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DBOOST_ALL_DYN_LINK")                     #Force only boost dynamic libraries to be used
             LINK_DIRECTORIES (${LINK_DIRECTORIES} ${Boost_LIBRARY_DIRS})                        #Force all projects to have boost dirs as aditional library paths
-        ENDIF()
+        ENDIF ()
 
         #If we are using Google Test
         IF (GoogleTest_FOUND)
             #Sets temporary warning suppression flags. These should be revisited and rechecked at every VS version and Ext dependency change. 
             SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")     #GTest uses old TR1 Namespaces 
-        ENDIF()
+        ENDIF ()
 	ENDIF ()
 ENDIF ()
 
