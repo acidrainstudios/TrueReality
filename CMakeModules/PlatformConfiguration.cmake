@@ -94,7 +94,7 @@ IF (WIN32)
         # Enables folder creation in VS projects. 
         SET_PROPERTY (GLOBAL PROPERTY USE_FOLDERS ON)
 	
-        # Enable multicore builds
+        # Enable multi-core builds
         OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
         MARK_AS_ADVANCED (TR_BUILD_WITH_MP)
         IF (TR_BUILD_WITH_MP)
