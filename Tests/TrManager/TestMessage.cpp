@@ -19,7 +19,7 @@
 * @author Maxim Serebrennik
 */
 
-#include "MessageTest.h"
+#include "TestMessage.h"
 
 const trUtil::RefStr TestMessage::MESSAGE_TYPE("trManager::TestMessage");
 

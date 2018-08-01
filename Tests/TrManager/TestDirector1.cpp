@@ -21,7 +21,7 @@
 
 #include "TestDirector1.h"
 #include "TestDirector2.h"
-#include "MessageTest.h"
+#include "TestMessage.h"
 
 #include <trCore/MessagePostEventTraversal.h>
 #include <trCore/MessageEventTraversal.h>

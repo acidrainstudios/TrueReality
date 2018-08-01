@@ -24,7 +24,7 @@
 #include "TestActor1.h"
 #include "TestActor2.h"
 #include "TestActor3.h"
-#include "MessageTest.h"
+#include "TestMessage.h"
 
 #include <trCore/MessageSystemControl.h>
 #include <trCore/SystemControls.h>

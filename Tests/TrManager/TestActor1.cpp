@@ -21,7 +21,7 @@
 
 #include "TestActor1.h"
 #include "TestActor2.h"
-#include "MessageTest.h"
+#include "TestMessage.h"
 
 #include <trUtil/Console/TextColor.h>
 #include <trManager/MessageEntityUnregistered.h>

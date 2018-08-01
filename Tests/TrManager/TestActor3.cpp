@@ -21,7 +21,7 @@
 
 #include "TestActor3.h"
 #include "TestActor2.h"
-#include "MessageTest.h"
+#include "TestMessage.h"
 
 #include <trUtil/Console/TextColor.h>
 #include <trManager/SystemManager.h>

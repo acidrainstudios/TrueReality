@@ -20,7 +20,7 @@
 */
 
 #include "TestDirector2.h"
-#include "MessageTest.h"
+#include "TestMessage.h"
 
 const trUtil::RefStr TestDirector2::CLASS_TYPE("TestDirector2");
 
