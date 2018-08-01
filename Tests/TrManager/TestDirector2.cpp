@@ -41,7 +41,7 @@ TestDirector2::~TestDirector2()
 //////////////////////////////////////////////////////////////////////////
 bool TestDirector2::SendTestMessage()
 {
-    return SendMessage(*new MessageTest(&GetUUID(), nullptr));
+    return SendMessage(*new TestMessage(&GetUUID(), nullptr));
 }
 
 //////////////////////////////////////////////////////////////////////////

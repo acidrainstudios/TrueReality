@@ -106,7 +106,7 @@ void TestDirector1::OnTick(const trManager::MessageBase &msg)
 void TestDirector1::OnAddedToSysMan()
 {
     RegisterForMessage(trManager::MessageTick::MESSAGE_TYPE, ON_TICK_INVOKABLE);
-    RegisterForMessage(MessageTest::MESSAGE_TYPE, ON_TEST_MESSAGE_INVOKABLE);
+    RegisterForMessage(TestMessage::MESSAGE_TYPE, ON_TEST_MESSAGE_INVOKABLE);
 }
 
 //////////////////////////////////////////////////////////////////////////

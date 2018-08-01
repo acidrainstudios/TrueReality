@@ -21,31 +21,31 @@
 
 #include "MessageTest.h"
 
-const trUtil::RefStr MessageTest::MESSAGE_TYPE("trManager::MessageTest");
+const trUtil::RefStr TestMessage::MESSAGE_TYPE("trManager::TestMessage");
 
-int MessageTest::mInstCount = 0;
+int TestMessage::mInstCount = 0;
 
 //////////////////////////////////////////////////////////////////////////
-MessageTest::MessageTest(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID)
+TestMessage::TestMessage(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID)
     : BaseClass(fromActorID, aboutActorID)
 {
     ++mInstCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
-MessageTest::~MessageTest()
+TestMessage::~TestMessage()
 {
     --mInstCount;
 }
 
 //////////////////////////////////////////////////////////////////////////
-const std::string& MessageTest::GetMessageType() const
+const std::string& TestMessage::GetMessageType() const
 {
     return MESSAGE_TYPE;
 }
 
 //////////////////////////////////////////////////////////////////////////
-int MessageTest::GetInstCount()
+int TestMessage::GetInstCount()
 {
     return mInstCount;
 }

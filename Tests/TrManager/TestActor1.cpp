@@ -118,7 +118,7 @@ bool TestActor1::SendTestMessage()
 {
     if (!mActor2Id.IsNull())
     {
-        return SendMessage(*new MessageTest(&GetUUID(), &mActor2Id));
+        return SendMessage(*new TestMessage(&GetUUID(), &mActor2Id));
     }
     else
     {

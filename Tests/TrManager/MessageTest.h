@@ -28,11 +28,11 @@
 #include <string>
 
 /**
- * @class    MessageTest
+ * @class    TestMessage
  *
  * @brief    This is an example of a simple message that is passed between actors.
  */
-class MessageTest : public trManager::MessageBase
+class TestMessage : public trManager::MessageBase
 {
 public:
     using BaseClass = trManager::MessageBase;           /// Adds an easy and swappable access to the base class
@@ -40,17 +40,17 @@ public:
     const static trUtil::RefStr MESSAGE_TYPE;           /// Holds the class/message type name for efficient comparisons
 
     /**
-     * @fn    MessageTest::MessageTest(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID);
+     * @fn    TestMessage::TestMessage(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID);
      *
      * @brief    Constructor.
      *
      * @param    fromActorID     Id of the actor that is sending the message.
      * @param    aboutActorID    Identifier for the about actor.
      */
-    MessageTest(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID);
+    TestMessage(const trBase::UniqueId* fromActorID, const trBase::UniqueId* aboutActorID);
 
     /**
-     * @fn    virtual const std::string& MessageTest::GetMessageType() const override;
+     * @fn    virtual const std::string& TestMessage::GetMessageType() const override;
      *
      * @brief    Returns the Message type.
      *
@@ -59,7 +59,7 @@ public:
     virtual const std::string& GetMessageType() const override;
 
     /**
-     * @fn    static int MessageTest::GetInstCount();
+     * @fn    static int TestMessage::GetInstCount();
      *
      * @brief    Gets instance count for this class type. Used for error checking, and Unit Testing.
      *
@@ -72,9 +72,9 @@ protected:
     static int mInstCount;
 
     /**
-     * @fn    MessageTest::~MessageTest();
+     * @fn    TestMessage::~TestMessage();
      *
      * @brief    Destructor.
      */
-    ~MessageTest();
+    ~TestMessage();
 };

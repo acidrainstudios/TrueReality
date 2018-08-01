@@ -138,13 +138,13 @@ TEST_F(ActorTests, SendMessage)
     EXPECT_EQ(actor->GetTickMsgNum(), 2);
 
     //No instances of the message should exist in the system yet
-    EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    EXPECT_EQ(TestMessage::GetInstCount(), 0);
 
     //Send a test message
     EXPECT_EQ(actor->SendTestMessage(), true);
 
     //We should have one message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    EXPECT_EQ(TestMessage::GetInstCount(), 1);
 
     //Check that we have no messages yet
     EXPECT_EQ(actor2->GetTestMsgCount(), 0);
@@ -156,13 +156,13 @@ TEST_F(ActorTests, SendMessage)
     EXPECT_EQ(actor2->GetTestMsgCount(), 1);
 
     //We should have no message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    EXPECT_EQ(TestMessage::GetInstCount(), 0);
 
     //Send a test message
     EXPECT_EQ(actor->SendTestMessage(), true);
 
     //We should have one message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    EXPECT_EQ(TestMessage::GetInstCount(), 1);
 
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
@@ -177,7 +177,7 @@ TEST_F(ActorTests, SendMessage)
     EXPECT_EQ(actor2->GetTestMsgCount(), 5);
 
     //We should have no message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    EXPECT_EQ(TestMessage::GetInstCount(), 0);
 
     EXPECT_EQ(mSysMan->UnregisterActor(actor2->GetUUID()), true);
     EXPECT_EQ(mSysMan->UnregisterActor(actor->GetUUID()), true);
@@ -228,13 +228,13 @@ TEST_F(ActorTests, Listener)
     EXPECT_EQ(TestActor3::GetInstCount(), 1);
 
     //No instances of the message should exist in the system yet
-    EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    EXPECT_EQ(TestMessage::GetInstCount(), 0);
 
     //Send a test message
     EXPECT_EQ(actor->SendTestMessage(), true);
 
     //We should have one message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    EXPECT_EQ(TestMessage::GetInstCount(), 1);
 
     //Check that we have no messages yet
     EXPECT_EQ(actor3->GetTestMsgCount(), 0);
@@ -246,13 +246,13 @@ TEST_F(ActorTests, Listener)
     EXPECT_EQ(actor3->GetTestMsgCount(), 1);
 
     //We should have no message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    EXPECT_EQ(TestMessage::GetInstCount(), 0);
 
     //Send a test message
     EXPECT_EQ(actor->SendTestMessage(), true);
 
     //We should have one message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 1);
+    EXPECT_EQ(TestMessage::GetInstCount(), 1);
 
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
@@ -267,7 +267,7 @@ TEST_F(ActorTests, Listener)
     EXPECT_EQ(actor3->GetTestMsgCount(), 5);
 
     //We should have no message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    EXPECT_EQ(TestMessage::GetInstCount(), 0);
 
     //Unregister the actor
     EXPECT_EQ(mSysMan->UnregisterActor(actor3->GetUUID()), true);
@@ -304,5 +304,5 @@ TEST_F(ActorTests, Listener)
     EXPECT_EQ(TestActor1::GetInstCount(), 0);
 
     //We should have no message in the system
-    EXPECT_EQ(MessageTest::GetInstCount(), 0);
+    EXPECT_EQ(TestMessage::GetInstCount(), 0);
 }

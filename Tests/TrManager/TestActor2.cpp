@@ -68,7 +68,7 @@ void TestActor2::OnTest(const trManager::MessageBase & msg)
 //////////////////////////////////////////////////////////////////////////
 void TestActor2::OnAddedToSysMan()
 {
-    RegisterForMessage(MessageTest::MESSAGE_TYPE, ON_TEST_INVOKABLE);
+    RegisterForMessage(TestMessage::MESSAGE_TYPE, ON_TEST_INVOKABLE);
 }
 
 //////////////////////////////////////////////////////////////////////////
