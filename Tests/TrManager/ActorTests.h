@@ -29,7 +29,7 @@
 /**
  * @class    ActorTests
  *
- * @brief    Sets up the unit test environment.
+ * @brief    Sets up the unit test environment for Actor classes.
  */
 class ActorTests : public ::testing::Test
 {
