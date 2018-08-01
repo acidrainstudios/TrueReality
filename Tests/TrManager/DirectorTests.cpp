@@ -19,63 +19,48 @@
 * @author Maxim Serebrennik
 */
 
+#include "DirectorTests.h"
+
 #include "TestDirector1.h"
 #include "TestDirector2.h"
 
 #include <gtest/gtest.h>
 
-#include <trBase/SmrtPtr.h>
 #include <trCore/MessageSystemControl.h>
 #include <trCore/SystemControls.h>
-#include <trCore/SystemDirector.h>
 #include <trManager/DirectorPriority.h>
-#include <trManager/SystemManager.h>
 
 #include <iostream>
 
-/**
- * @class    DirectorTests
- *
- * @brief    Sets up the unit test environment.
- */
-class DirectorTests : public ::testing::Test
+//////////////////////////////////////////////////////////////////////////
+DirectorTests::DirectorTests()
 {
-public:
+    //Create an instance of the System Manager
+    mSysMan = &trManager::SystemManager::GetInstance();
 
-    trBase::SmrtPtr<trManager::SystemManager> mSysMan;
-    
-    trBase::SmrtPtr<trCore::SystemDirector> mSysDirector;
+    //Create and register the System Director
+    mSysDirector = new trCore::SystemDirector();
 
-    //////////////////////////////////////////////////////////////////////////
-    DirectorTests()
-    {
-        //Create an instance of the System Manager
-        mSysMan = &trManager::SystemManager::GetInstance();
+    //We want the System Director to get and handle all messages before any other Director. 
+    mSysMan->RegisterDirector(*mSysDirector, trManager::DirectorPriority::HIGHEST);
 
-        //Create and register the System Director
-        mSysDirector = new trCore::SystemDirector();
+}
 
-        //We want the System Director to get and handle all messages before any other Director. 
-        mSysMan->RegisterDirector(*mSysDirector, trManager::DirectorPriority::HIGHEST);
+//////////////////////////////////////////////////////////////////////////
+DirectorTests::~DirectorTests()
+{
+    //Create a System Control Shutdown message
+    trBase::SmrtPtr<trCore::MessageSystemControl> msg = new trCore::MessageSystemControl(NULL, trCore::SystemControls::SHUT_DOWN);
 
-    }
+    //Send message
+    mSysMan->SendMessage(*msg);
 
-    //////////////////////////////////////////////////////////////////////////
-    ~DirectorTests()
-    {
-        //Create a System Control Shutdown message
-        trBase::SmrtPtr<trCore::MessageSystemControl> msg = new trCore::MessageSystemControl(NULL, trCore::SystemControls::SHUT_DOWN);
+    //Remove all Directors from the system
+    mSysMan->UnregisterAllDirectors();
 
-        //Send message
-        mSysMan->SendMessage(*msg);
-
-        //Remove all Directors from the system
-        mSysMan->UnregisterAllDirectors();
-
-        //Advance System Manager one frame
-        mSysDirector->RunOnce();
-    }
-};
+    //Advance System Manager one frame
+    mSysDirector->RunOnce();
+}
 
 /**
  * @fn  TEST_F(DirectorTest, AddRemoveDirector)
