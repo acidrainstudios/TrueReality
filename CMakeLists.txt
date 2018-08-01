@@ -97,6 +97,7 @@ CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTOR_MODULES "Enables the building of examples
 # Sets Test options ***********************************************************
 # *****************************************************************************
 OPTION (TR_BUILD_TESTS "Enables the building of Unit Tests" ON)
+CMAKE_DEPENDENT_OPTION (TESTS_TR_BASE "Enables the building of trBase Unit Tests" ON "TR_BUILD_TESTS; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TESTS_TR_MANAGER "Enables the building of trManager Unit Tests" ON "TR_BUILD_TESTS; TR_CORE; TR_MANAGER; TR_BASE" OFF)
 # *****************************************************************************
 # *****************************************************************************
