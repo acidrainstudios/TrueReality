@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright ï¿½ 2018 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -72,7 +72,66 @@ TEST_F(MatrixTests, CreateMatrix)
     EXPECT_EQ(mTestMatrix(3, 1), 0.0);
     EXPECT_EQ(mTestMatrix(3, 2), 0.0);
     EXPECT_EQ(mTestMatrix(3, 3), 1.0);
+    
+    // Create a new matrix using the default constructor
+    mTestMatrixF1 = trBase::Matrixf();
 
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrixF1(0, 0), 1.0);
+    EXPECT_EQ(mTestMatrixF1(0, 1), 0.0);
+    EXPECT_EQ(mTestMatrixF1(0, 2), 0.0);
+    EXPECT_EQ(mTestMatrixF1(0, 3), 0.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrixF1(1, 0), 0.0);
+    EXPECT_EQ(mTestMatrixF1(1, 1), 1.0);
+    EXPECT_EQ(mTestMatrixF1(1, 2), 0.0);
+    EXPECT_EQ(mTestMatrixF1(1, 3), 0.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrixF1(2, 0), 0.0);
+    EXPECT_EQ(mTestMatrixF1(2, 1), 0.0);
+    EXPECT_EQ(mTestMatrixF1(2, 2), 1.0);
+    EXPECT_EQ(mTestMatrixF1(2, 3), 0.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixF1(3, 0), 0.0);
+    EXPECT_EQ(mTestMatrixF1(3, 1), 0.0);
+    EXPECT_EQ(mTestMatrixF1(3, 2), 0.0);
+    EXPECT_EQ(mTestMatrixF1(3, 3), 1.0);
+    
+    // Create a new matrix using the default constructor
+    mTestMatrixD1 = trBase::Matrixd();
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrixD1(0, 0), 1.0);
+    EXPECT_EQ(mTestMatrixD1(0, 1), 0.0);
+    EXPECT_EQ(mTestMatrixD1(0, 2), 0.0);
+    EXPECT_EQ(mTestMatrixD1(0, 3), 0.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrixD1(1, 0), 0.0);
+    EXPECT_EQ(mTestMatrixD1(1, 1), 1.0);
+    EXPECT_EQ(mTestMatrixD1(1, 2), 0.0);
+    EXPECT_EQ(mTestMatrixD1(1, 3), 0.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrixD1(2, 0), 0.0);
+    EXPECT_EQ(mTestMatrixD1(2, 1), 0.0);
+    EXPECT_EQ(mTestMatrixD1(2, 2), 1.0);
+    EXPECT_EQ(mTestMatrixD1(2, 3), 0.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixD1(3, 0), 0.0);
+    EXPECT_EQ(mTestMatrixD1(3, 1), 0.0);
+    EXPECT_EQ(mTestMatrixD1(3, 2), 0.0);
+    EXPECT_EQ(mTestMatrixD1(3, 3), 1.0);
 }
 
 /**

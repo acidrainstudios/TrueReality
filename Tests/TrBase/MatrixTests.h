@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright ï¿½ 2018 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -25,6 +25,8 @@
 
 #include <trBase/SmrtPtr.h>
 #include <trBase/Matrix.h>
+#include <trBase/Matrixf.h>
+#include <trBase/Matrixd.h>
 #include <trBase/Quat.h>
 
 /**
@@ -39,6 +41,10 @@ public:
     
     /** @brief   The test matrix. */
     trBase::Matrix mTestMatrix;
+    trBase::Matrixd mTestMatrixD1;
+    trBase::Matrixd mTestMatrixD2;
+    trBase::Matrixf mTestMatrixF1;
+    trBase::Matrixf mTestMatrixF2;
 
     /** @brief   The test quaternion. */
     trBase::Quat mTestQuat;
