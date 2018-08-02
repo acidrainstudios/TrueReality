@@ -457,17 +457,124 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
  */
 TEST_F(MatrixTests, CreateMatrixFromQuat)
 {
-    /*    
-    a -b -c -d
-    b  a -d  c
-    c  d  a -b      <-> (a, d, c, d)
-    d -c  b  a
-    https://www.youtube.com/watch?v=3Ki14CsP_9k
+    /*
+    q = (x, y, z, w) --->
+    M =
+    (w*w + x*x - y*y - z*z)      (2*x*y - 2*w*z)          (2*x*z + 2*w*y)      0
+        (2*x*y + 2*w*z)      (w*w - x*x + y*y - z*z)      (2*y*z - 2*w*x)      0
+        (2*x*z - 2*w*y)          (2*y*z + 2*w*x)      (w*w - x*x - y*y + z*z)  0
+               0                        0                        0             1
+    
+    L = length(q)^2
+    True Reality & Open Scene Graph use normalized matrices for the conversion, therefore
+     all values in the matrix above (except M(4,4)) needs to be divided by L
+    https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation
+    http://www.mrelusive.com/publications/papers/SIMD-From-Quaternion-to-Matrix-and-Back.pdf
     */
 
     // Create a test quaternion
     mTestQuat.Set(1.0, 0.0, 0.0, 0.0);
 
+    // Create a matrix 
+    mTestMatrix = trBase::Matrix(mTestQuat);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrix(0, 0), 1.0);
+    EXPECT_EQ(mTestMatrix(0, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(0, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(0, 3), 0.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrix(1, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(1, 1), -1.0);
+    EXPECT_EQ(mTestMatrix(1, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(1, 3), 0.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrix(2, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(2, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(2, 2), -1.0);
+    EXPECT_EQ(mTestMatrix(2, 3), 0.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrix(3, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 3), 1.0);
+    
+    // Create a test quaternion
+    mTestQuat.Set(0.0, 1.0, 0.0, 0.0);
+    
+    // Create a matrix 
+    mTestMatrix = trBase::Matrix(mTestQuat);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrix(0, 0), -1.0);
+    EXPECT_EQ(mTestMatrix(0, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(0, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(0, 3), 0.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrix(1, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(1, 1), 1.0);
+    EXPECT_EQ(mTestMatrix(1, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(1, 3), 0.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrix(2, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(2, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(2, 2), -1.0);
+    EXPECT_EQ(mTestMatrix(2, 3), 0.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrix(3, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 3), 1.0);
+
+    // Create a test quaternion 
+    mTestQuat.Set(0.0, 0.0, 1.0, 0.0);
+    
+    // Create a matrix 
+    mTestMatrix = trBase::Matrix(mTestQuat);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrix(0, 0), -1.0);
+    EXPECT_EQ(mTestMatrix(0, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(0, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(0, 3), 0.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrix(1, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(1, 1), -1.0);
+    EXPECT_EQ(mTestMatrix(1, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(1, 3), 0.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrix(2, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(2, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(2, 2), 1.0);
+    EXPECT_EQ(mTestMatrix(2, 3), 0.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrix(3, 0), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 1), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 2), 0.0);
+    EXPECT_EQ(mTestMatrix(3, 3), 1.0);
+
+
+    // Create a test quaternion
+    mTestQuat.Set(0.0, 0.0, 0.0, 1.0);
+    
     // Create a matrix 
     mTestMatrix = trBase::Matrix(mTestQuat);
 
@@ -498,110 +605,6 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrix(3, 2), 0.0);
     EXPECT_EQ(mTestMatrix(3, 3), 1.0);
 
-    std::cout << "Getting strange results....need to check the math...didnt read the paper yet" << std::endl;
-    std::cout << mTestMatrix << std::endl; 
-    // http://www.mrelusive.com/publications/papers/SIMD-From-Quaternion-to-Matrix-and-Back.pdf
-    
-    // Create a test quaternion
-    mTestQuat.Set(0.0, 1.0, 0.0, 0.0);
-    
-    // Create a matrix 
-    mTestMatrix = trBase::Matrix(mTestQuat);
-
-    // Test if the matrix is valid
-    EXPECT_EQ(mTestMatrix.Valid(), true);
-
-    // Test the first row values
-    EXPECT_EQ(mTestMatrix(0, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(0, 1), -1.0);
-    EXPECT_EQ(mTestMatrix(0, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(0, 3), 0.0);
-
-    // Test the second row values
-    EXPECT_EQ(mTestMatrix(1, 0), 1.0);
-    EXPECT_EQ(mTestMatrix(1, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(1, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(1, 3), 0.0);
-
-    // Test the third row values
-    EXPECT_EQ(mTestMatrix(2, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(2, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(2, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(2, 3), -1.0);
-
-    // Test the fourth row values
-    EXPECT_EQ(mTestMatrix(3, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(3, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(3, 2), 1.0);
-    EXPECT_EQ(mTestMatrix(3, 3), 0.0);
-
-    // Create a test quaternion 
-    mTestQuat.Set(0.0, 0.0, 1.0, 0.0);
-    
-    // Create a matrix 
-    mTestMatrix = trBase::Matrix(mTestQuat);
-
-    // Test if the matrix is valid
-    EXPECT_EQ(mTestMatrix.Valid(), true);
-
-    // Test the first row values
-    EXPECT_EQ(mTestMatrix(0, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(0, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(0, 2), -1.0);
-    EXPECT_EQ(mTestMatrix(0, 3), 0.0);
-
-    // Test the second row values
-    EXPECT_EQ(mTestMatrix(1, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(1, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(1, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(1, 3), 1.0);
-
-    // Test the third row values
-    EXPECT_EQ(mTestMatrix(2, 0), 1.0);
-    EXPECT_EQ(mTestMatrix(2, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(2, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(2, 3), 0.0);
-
-    // Test the fourth row values
-    EXPECT_EQ(mTestMatrix(3, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(3, 1), -1.0);
-    EXPECT_EQ(mTestMatrix(3, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(3, 3), 0.0);
-
-
-    // Create a test quaternion
-    mTestQuat.Set(0.0, 0.0, 0.0, 1.0);
-    
-    // Create a matrix 
-    mTestMatrix = trBase::Matrix(mTestQuat);
-
-    // Test if the matrix is valid
-    EXPECT_EQ(mTestMatrix.Valid(), true);
-
-    // Test the first row values
-    EXPECT_EQ(mTestMatrix(0, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(0, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(0, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(0, 3), -1.0);
-
-    // Test the second row values
-    EXPECT_EQ(mTestMatrix(1, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(1, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(1, 2), -1.0);
-    EXPECT_EQ(mTestMatrix(1, 3), 0.0);
-
-    // Test the third row values
-    EXPECT_EQ(mTestMatrix(2, 0), 0.0);
-    EXPECT_EQ(mTestMatrix(2, 1), 1.0);
-    EXPECT_EQ(mTestMatrix(2, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(2, 3), 0.0);
-
-    // Test the fourth row values
-    EXPECT_EQ(mTestMatrix(3, 0), 1.0);
-    EXPECT_EQ(mTestMatrix(3, 1), 0.0);
-    EXPECT_EQ(mTestMatrix(3, 2), 0.0);
-    EXPECT_EQ(mTestMatrix(3, 3), 0.0);
-
 
     // Create a test quaternion
     mTestQuat.Set(2.3, 3.4, 5.6, 7.8);
@@ -613,26 +616,26 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrix.Valid(), true);
 
     // Test the first row values
-    EXPECT_EQ(mTestMatrix(0, 0), 2.3);
-    EXPECT_EQ(mTestMatrix(0, 1), -3.4);
-    EXPECT_EQ(mTestMatrix(0, 2), -5.6);
-    EXPECT_EQ(mTestMatrix(0, 3), -7.8);
+    EXPECT_NEAR(mTestMatrix(0, 0), 0.212838148, 1e-8);
+    EXPECT_NEAR(mTestMatrix(0, 1), 0.944520862, 1e-8);
+    EXPECT_NEAR(mTestMatrix(0, 2), -0.250160477, 1e-8);
+    EXPECT_EQ(mTestMatrix(0, 3), 0);
 
     // Test the second row values
-    EXPECT_EQ(mTestMatrix(1, 0), 3.4);
-    EXPECT_EQ(mTestMatrix(1, 1), 2.3);
-    EXPECT_EQ(mTestMatrix(1, 2), -7.8);
-    EXPECT_EQ(mTestMatrix(1, 3), 5.6);
+    EXPECT_NEAR(mTestMatrix(1, 0), -0.657679963, 1e-8);
+    EXPECT_NEAR(mTestMatrix(1, 1), 0.32783127, 1e-8);
+    EXPECT_NEAR(mTestMatrix(1, 2), 0.678221, 1e-8);
+    EXPECT_EQ(mTestMatrix(1, 3), 0);
 
     // Test the third row values
-    EXPECT_EQ(mTestMatrix(2, 0), 5.6);
-    EXPECT_EQ(mTestMatrix(2, 1), 7.8);
-    EXPECT_EQ(mTestMatrix(2, 2), 2.3);
-    EXPECT_EQ(mTestMatrix(2, 3), -3.4);
+    EXPECT_NEAR(mTestMatrix(2, 0), 0.72260431, 1e-8);
+    EXPECT_NEAR(mTestMatrix(2, 1), 0.020174232, 1e-8);
+    EXPECT_NEAR(mTestMatrix(2, 2), 0.690967446, 1e-8);
+    EXPECT_EQ(mTestMatrix(2, 3), 0);
 
     // Test the fourth row values
-    EXPECT_EQ(mTestMatrix(3, 0), 7.8);
-    EXPECT_EQ(mTestMatrix(3, 1), -5.6);
-    EXPECT_EQ(mTestMatrix(3, 2), 3.4);
-    EXPECT_EQ(mTestMatrix(3, 3), 2.3);
+    EXPECT_EQ(mTestMatrix(3, 0), 0);
+    EXPECT_EQ(mTestMatrix(3, 1), 0);
+    EXPECT_EQ(mTestMatrix(3, 2), 0);
+    EXPECT_EQ(mTestMatrix(3, 3), 1.0);
 }
