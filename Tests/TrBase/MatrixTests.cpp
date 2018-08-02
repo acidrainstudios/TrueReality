@@ -176,6 +176,72 @@ TEST_F(MatrixTests, CreateMatrixFromNum)
     EXPECT_EQ(mTestMatrix(3, 1), 2.5);
     EXPECT_EQ(mTestMatrix(3, 2), 2.6);
     EXPECT_EQ(mTestMatrix(3, 3), 0.8);
+
+    // Create a double matrix
+    mTestMatrixD1 = trBase::Matrixd(1.0, 2.0, 3.0, 4.0,
+                                    5.0, 6.0, 7.0, 8.0,
+                                    9.0, 8.0, 7.0, 6.0,
+                                    5.0, 4.0, 3.0, 2.0);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrixD1(0, 0), 1.0);
+    EXPECT_EQ(mTestMatrixD1(0, 1), 2.0);
+    EXPECT_EQ(mTestMatrixD1(0, 2), 3.0);
+    EXPECT_EQ(mTestMatrixD1(0, 3), 4.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrixD1(1, 0), 5.0);
+    EXPECT_EQ(mTestMatrixD1(1, 1), 6.0);
+    EXPECT_EQ(mTestMatrixD1(1, 2), 7.0);
+    EXPECT_EQ(mTestMatrixD1(1, 3), 8.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrixD1(2, 0), 9.0);
+    EXPECT_EQ(mTestMatrixD1(2, 1), 8.0);
+    EXPECT_EQ(mTestMatrixD1(2, 2), 7.0);
+    EXPECT_EQ(mTestMatrixD1(2, 3), 6.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixD1(3, 0), 5.0);
+    EXPECT_EQ(mTestMatrixD1(3, 1), 4.0);
+    EXPECT_EQ(mTestMatrixD1(3, 2), 3.0);
+    EXPECT_EQ(mTestMatrixD1(3, 3), 2.0);
+    
+    // Create a float matrix
+    mTestMatrixF1 = trBase::Matrixf(9.0, 8.0, 7.0, 6.0,
+                                    5.0, 4.0, 3.0, 2.0,
+                                    1.0, 2.0, 3.0, 4.0,
+                                    5.0, 6.0, 7.0, 8.0);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrixF1(0, 0), 9.0);
+    EXPECT_EQ(mTestMatrixF1(0, 1), 8.0);
+    EXPECT_EQ(mTestMatrixF1(0, 2), 7.0);
+    EXPECT_EQ(mTestMatrixF1(0, 3), 6.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrixF1(1, 0), 5.0);
+    EXPECT_EQ(mTestMatrixF1(1, 1), 4.0);
+    EXPECT_EQ(mTestMatrixF1(1, 2), 3.0);
+    EXPECT_EQ(mTestMatrixF1(1, 3), 2.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrixF1(2, 0), 1.0);
+    EXPECT_EQ(mTestMatrixF1(2, 1), 2.0);
+    EXPECT_EQ(mTestMatrixF1(2, 2), 3.0);
+    EXPECT_EQ(mTestMatrixF1(2, 3), 4.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixF1(3, 0), 5.0);
+    EXPECT_EQ(mTestMatrixF1(3, 1), 6.0);
+    EXPECT_EQ(mTestMatrixF1(3, 2), 7.0);
+    EXPECT_EQ(mTestMatrixF1(3, 3), 8.0);
 }
 
 /**
