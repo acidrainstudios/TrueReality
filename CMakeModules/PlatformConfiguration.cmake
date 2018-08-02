@@ -51,7 +51,11 @@ SET (CMAKE_MINSIZEREL_POSTFIX "-rms" CACHE STRING "Set MinSizeRel library postfi
 
 # Sets Available Build Types
 SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
-SET (CMAKE_BUILD_TYPE "Release" CACHE STRING "TrueReality default build type" FORCE)
+
+IF (NOT CMAKE_BUILD_TYPE STREQUAL "Release" AND NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+    SET (CMAKE_BUILD_TYPE "Release" CACHE STRING "TrueReality default build type" FORCE)
+ENDIF ()
+
 
 # Sets the include directories; Visible to all CMakeLists.txt files
 INCLUDE_DIRECTORIES (
@@ -151,4 +155,4 @@ SET (CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} CACHE STRING "You may add addition
 SET (CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 
-MESSAGE(STATUS "Configuring to use C++ ${CMAKE_CXX_STANDARD} standard")
+MESSAGE(STATUS "Configuring to use C++ ${CMAKE_CXX_STANDARD} standard with a ${CMAKE_BUILD_TYPE} build.")
