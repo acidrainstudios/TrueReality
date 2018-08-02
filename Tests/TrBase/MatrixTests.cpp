@@ -638,4 +638,64 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrix(3, 1), 0);
     EXPECT_EQ(mTestMatrix(3, 2), 0);
     EXPECT_EQ(mTestMatrix(3, 3), 1.0);
+    
+    // Create a matrix 
+    mTestMatrixF1 = trBase::Matrixf(mTestQuat);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatrixF1(0, 0), 0.212838148, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 1), 0.944520862, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 2), -0.250160477, 1e-6);
+    EXPECT_EQ(mTestMatrixF1(0, 3), 0);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatrixF1(1, 0), -0.657679963, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 1), 0.32783127, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 2), 0.678221, 1e-6);
+    EXPECT_EQ(mTestMatrixF1(1, 3), 0);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatrixF1(2, 0), 0.72260431, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 1), 0.020174232, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 2), 0.690967446, 1e-6);
+    EXPECT_EQ(mTestMatrixF1(2, 3), 0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixF1(3, 0), 0);
+    EXPECT_EQ(mTestMatrixF1(3, 1), 0);
+    EXPECT_EQ(mTestMatrixF1(3, 2), 0);
+    EXPECT_EQ(mTestMatrixF1(3, 3), 1.0);
+    
+    // Create a matrix 
+    mTestMatrixD1 = trBase::Matrixd(mTestQuat);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatrixD1(0, 0), 0.212838148, 1e-8);
+    EXPECT_NEAR(mTestMatrixD1(0, 1), 0.944520862, 1e-8);
+    EXPECT_NEAR(mTestMatrixD1(0, 2), -0.250160477, 1e-8);
+    EXPECT_EQ(mTestMatrixD1(0, 3), 0);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatrixD1(1, 0), -0.657679963, 1e-8);
+    EXPECT_NEAR(mTestMatrixD1(1, 1), 0.32783127, 1e-8);
+    EXPECT_NEAR(mTestMatrixD1(1, 2), 0.678221, 1e-8);
+    EXPECT_EQ(mTestMatrixD1(1, 3), 0);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatrixD1(2, 0), 0.72260431, 1e-8);
+    EXPECT_NEAR(mTestMatrixD1(2, 1), 0.020174232, 1e-8);
+    EXPECT_NEAR(mTestMatrixD1(2, 2), 0.690967446, 1e-8);
+    EXPECT_EQ(mTestMatrixD1(2, 3), 0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixD1(3, 0), 0);
+    EXPECT_EQ(mTestMatrixD1(3, 1), 0);
+    EXPECT_EQ(mTestMatrixD1(3, 2), 0);
+    EXPECT_EQ(mTestMatrixD1(3, 3), 1.0);
 }
