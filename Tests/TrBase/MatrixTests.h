@@ -29,6 +29,10 @@
 #include <trBase/Matrixf.h>
 #include <trBase/Quat.h>
 
+#include <osg/Matrix>
+#include <osg/Matrixd>
+#include <osg/Matrixf>
+
 #include <array>
 
 /**
@@ -47,6 +51,10 @@ public:
     trBase::Matrixd mTestMatrixD2;
     trBase::Matrixf mTestMatrixF1;
     trBase::Matrixf mTestMatrixF2;
+    
+    osg::Matrix mTestMatOsg;
+    osg::Matrix mTestMatOsgD;
+    osg::Matrix mTestMatOsgF;
     
     /** @brief  The test arrays. */
     double mArrayD [16] = { 2.1, 4.3, 5.6, 4.5,

@@ -890,3 +890,122 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrixD1(3, 2), 0);
     EXPECT_EQ(mTestMatrixD1(3, 3), 1.0);
 }
+
+/**
+ * @fn  TEST_F(MatrixTests, GetOSGMatrix)
+ *
+ * @brief   Test the method for returning an OSG matrix
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(MatrixTests, GetOSGMatrix)
+{
+    // Create a new matrix
+    mTestMatrixF1 = trBase::Matrixf(mArrayF);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+    
+    // Get the OSG matrix
+    mTestMatOsgF = mTestMatrixF1.GetOSGMatrix();
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatOsgF.valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatOsgF(0, 0), 3.2, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(0, 1), 4.3, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(0, 2), 5.4, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(0, 3), 6.5, 1e-6);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatOsgF(1, 0), 7.6, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(1, 1), 8.7, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(1, 2), 9.8, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(1, 3), 0.9, 1e-6);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatOsgF(2, 0), 0.8, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(2, 1), 0.7, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(2, 2), 0.6, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(2, 3), 0.5, 1e-6);
+
+    // Test the fourth row values
+    EXPECT_NEAR(mTestMatOsgF(3, 0), 0.4, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(3, 1), 0.3, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(3, 2), 0.2, 1e-6);
+    EXPECT_NEAR(mTestMatOsgF(3, 3), 0.1, 1e-6);
+    
+    // Create a new matrix
+    mTestMatrixD1 = trBase::Matrixd(mArrayD);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+    
+    // Get the OSG matrix
+    mTestMatOsgD = mTestMatrixD1.GetOSGMatrix();
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatOsgD.valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatOsgD(0, 0), 2.1);
+    EXPECT_EQ(mTestMatOsgD(0, 1), 4.3);
+    EXPECT_EQ(mTestMatOsgD(0, 2), 5.6);
+    EXPECT_EQ(mTestMatOsgD(0, 3), 4.5);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatOsgD(1, 0), 7.8);
+    EXPECT_EQ(mTestMatOsgD(1, 1), 8.7);
+    EXPECT_EQ(mTestMatOsgD(1, 2), 8.9);
+    EXPECT_EQ(mTestMatOsgD(1, 3), 0.5);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatOsgD(2, 0), 5.6);
+    EXPECT_EQ(mTestMatOsgD(2, 1), 6.6);
+    EXPECT_EQ(mTestMatOsgD(2, 2), 7.3);
+    EXPECT_EQ(mTestMatOsgD(2, 3), 2.5);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatOsgD(3, 0), 4.5);
+    EXPECT_EQ(mTestMatOsgD(3, 1), 3.3);
+    EXPECT_EQ(mTestMatOsgD(3, 2), 2.6);
+    EXPECT_EQ(mTestMatOsgD(3, 3), 8.3);
+    
+    // Create a new matrix
+    mTestMatrix = trBase::Matrix(mArrayF);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+    
+    // Get the OSG matrix
+    mTestMatOsg = mTestMatrix.GetOSGMatrix();
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatOsg.valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatOsg(0, 0), 3.2, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(0, 1), 4.3, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(0, 2), 5.4, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(0, 3), 6.5, 1e-6);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatOsg(1, 0), 7.6, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(1, 1), 8.7, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(1, 2), 9.8, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(1, 3), 0.9, 1e-6);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatOsg(2, 0), 0.8, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(2, 1), 0.7, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(2, 2), 0.6, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(2, 3), 0.5, 1e-6);
+
+    // Test the fourth row values
+    EXPECT_NEAR(mTestMatOsg(3, 0), 0.4, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(3, 1), 0.3, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(3, 2), 0.2, 1e-6);
+    EXPECT_NEAR(mTestMatOsg(3, 3), 0.1, 1e-6);
+}
