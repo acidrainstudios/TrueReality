@@ -29,6 +29,8 @@
 #include <trBase/Matrixd.h>
 #include <trBase/Quat.h>
 
+#include <array>
+
 /**
  * @class   MatrixTests
  *
@@ -39,12 +41,22 @@ class MatrixTests : public ::testing::Test
 
 public:
     
-    /** @brief   The test matrix. */
+    /** @brief   The test matrices. */
     trBase::Matrix mTestMatrix;
     trBase::Matrixd mTestMatrixD1;
     trBase::Matrixd mTestMatrixD2;
     trBase::Matrixf mTestMatrixF1;
     trBase::Matrixf mTestMatrixF2;
+    
+    /** @brief  The test arrays. */
+    double mArrayD [16] = { 2.1, 4.3, 5.6, 4.5,
+                            7.8, 8.7, 8.9, 0.5,
+                            5.6, 6.6, 7.3, 2.5,
+                            4.5, 3.3, 2.6, 8.3  };
+    float mArrayF [16] = {  3.2, 4.3, 5.4, 6.5,
+                            7.6, 8.7, 9.8, 0.9,
+                            0.8, 0.7, 0.6, 0.5,
+                            0.4, 0.3, 0.2, 0.1  };
 
     /** @brief   The test quaternion. */
     trBase::Quat mTestQuat;
@@ -63,4 +75,3 @@ public:
      */
     ~MatrixTests();
 };
-

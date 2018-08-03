@@ -447,6 +447,69 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
     EXPECT_EQ(mTestMatrix(3, 3), 2.0);
 }
 
+TEST_F(MatrixTests, CreateMatrixFromArray)
+{
+    // Create a new matrix
+    mTestMatrix = trBase::Matrix(mArrayF);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatrix(0, 0), 3.2, 1e-6);
+    EXPECT_NEAR(mTestMatrix(0, 1), 4.3, 1e-6);
+    EXPECT_NEAR(mTestMatrix(0, 2), 5.4, 1e-6);
+    EXPECT_NEAR(mTestMatrix(0, 3), 6.5, 1e-6);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatrix(1, 0), 7.6, 1e-6);
+    EXPECT_NEAR(mTestMatrix(1, 1), 8.7, 1e-6);
+    EXPECT_NEAR(mTestMatrix(1, 2), 9.8, 1e-6);
+    EXPECT_NEAR(mTestMatrix(1, 3), 0.9, 1e-6);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatrix(2, 0), 0.8, 1e-6);
+    EXPECT_NEAR(mTestMatrix(2, 1), 0.7, 1e-6);
+    EXPECT_NEAR(mTestMatrix(2, 2), 0.6, 1e-6);
+    EXPECT_NEAR(mTestMatrix(2, 3), 0.5, 1e-6);
+
+    // Test the fourth row values
+    EXPECT_NEAR(mTestMatrix(3, 0), 0.4, 1e-6);
+    EXPECT_NEAR(mTestMatrix(3, 1), 0.3, 1e-6);
+    EXPECT_NEAR(mTestMatrix(3, 2), 0.2, 1e-6);
+    EXPECT_NEAR(mTestMatrix(3, 3), 0.1, 1e-6);
+    
+    // Create a new matrix
+    mTestMatrix = trBase::Matrix(mArrayD);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrix(0, 0), 2.1);
+    EXPECT_EQ(mTestMatrix(0, 1), 4.3);
+    EXPECT_EQ(mTestMatrix(0, 2), 5.6);
+    EXPECT_EQ(mTestMatrix(0, 3), 4.5);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrix(1, 0), 7.8);
+    EXPECT_EQ(mTestMatrix(1, 1), 8.7);
+    EXPECT_EQ(mTestMatrix(1, 2), 8.9);
+    EXPECT_EQ(mTestMatrix(1, 3), 0.5);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrix(2, 0), 5.6);
+    EXPECT_EQ(mTestMatrix(2, 1), 6.6);
+    EXPECT_EQ(mTestMatrix(2, 2), 7.3);
+    EXPECT_EQ(mTestMatrix(2, 3), 2.5);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrix(3, 0), 4.5);
+    EXPECT_EQ(mTestMatrix(3, 1), 3.3);
+    EXPECT_EQ(mTestMatrix(3, 2), 2.6);
+    EXPECT_EQ(mTestMatrix(3, 3), 8.3);
+}
+
 /**
  * @fn  TEST_F(MatrixTests, CreateMatrixFromQuat)
  *
