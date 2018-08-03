@@ -1566,3 +1566,38 @@ TEST_F(MatrixTests, SetMatrixFromArray)
     EXPECT_EQ(mTestMatrix(3, 2), 2.6);
     EXPECT_EQ(mTestMatrix(3, 3), 8.3);
 }
+
+/**
+ * @fn  TEST_F(MatrixTests, GetPointer)
+ *
+ * @brief   Test the method for returning a Matrix pointer
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(MatrixTests, GetPointer)
+{
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+    
+    // Test if the pointer is NULL
+    EXPECT_EQ(nullptr, mMatPtrF);
+    
+    // Get the float pointer holding the float matrix
+    mMatPtrF = mTestMatrixF1.Ptr();
+    
+    // Test if the pointer is NULL
+    EXPECT_NE(nullptr, mMatPtrF);
+    
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+    
+    // Test if the pointer is NULL
+    EXPECT_EQ(nullptr, mMatPtrD);
+    
+    // Get the double pointer holding the double matrix
+    mMatPtrD = mTestMatrixD1.Ptr();
+    
+    // Test if the pointer is NULL
+    EXPECT_NE(nullptr, mMatPtrD);
+}

@@ -69,6 +69,10 @@ public:
 
     /** @brief   The test quaternion. */
     trBase::Quat mTestQuat;
+    
+    /** @brief    The test pointers. */
+    double* mMatPtrD = nullptr;
+    float* mMatPtrF = nullptr;
 
     /**
      * @fn  public::MatrixTests();
