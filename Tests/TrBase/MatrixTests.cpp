@@ -135,7 +135,7 @@ TEST_F(MatrixTests, CreateMatrix)
 }
 
 /**
- * @fn  TEST_F(MatrixTests, CreateMatrix)
+ * @fn  TEST_F(MatrixTests, CreateMatrixFromNum)
  *
  * @brief   Test the creation of a Matrix from raw input
  *
@@ -1013,7 +1013,7 @@ TEST_F(MatrixTests, GetOSGMatrix)
 /**
  * @fn  TEST_F(MatrixTests, CompareMatrix)
  *
- * @brief   Test the method for returning an OSG matrix
+ * @brief   Test the method for comparing two matrices
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
@@ -1061,4 +1061,114 @@ TEST_F(MatrixTests, CompareMatrix)
     // Compare the matrices
     EXPECT_EQ(mTestMatrix.Compare(mTestMatrix2), -1);
     EXPECT_EQ(mTestMatrix2.Compare(mTestMatrix), 1);
+}
+
+/**
+ * @fn  TEST_F(MatrixTests, SetMatrixFromNum)
+ *
+ * @brief   Test the setting of a Matrix from raw input
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(MatrixTests, SetMatrixFromNum)
+{
+    // Set the matrix from input
+    mTestMatrix.Set(1.2, 1.3, 1.4, 0.5,
+                    1.6, 1.7, 1.8, 0.6,
+                    2.0, 2.1, 2.2, 0.7,
+                    2.4, 2.5, 2.6, 0.8);
+    
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrix(0, 0), 1.2);
+    EXPECT_EQ(mTestMatrix(0, 1), 1.3);
+    EXPECT_EQ(mTestMatrix(0, 2), 1.4);
+    EXPECT_EQ(mTestMatrix(0, 3), 0.5);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrix(1, 0), 1.6);
+    EXPECT_EQ(mTestMatrix(1, 1), 1.7);
+    EXPECT_EQ(mTestMatrix(1, 2), 1.8);
+    EXPECT_EQ(mTestMatrix(1, 3), 0.6);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrix(2, 0), 2.0);
+    EXPECT_EQ(mTestMatrix(2, 1), 2.1);
+    EXPECT_EQ(mTestMatrix(2, 2), 2.2);
+    EXPECT_EQ(mTestMatrix(2, 3), 0.7);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrix(3, 0), 2.4);
+    EXPECT_EQ(mTestMatrix(3, 1), 2.5);
+    EXPECT_EQ(mTestMatrix(3, 2), 2.6);
+    EXPECT_EQ(mTestMatrix(3, 3), 0.8);
+
+    // Set the double matrix
+    mTestMatrixD1.Set(1.0, 2.0, 3.0, 4.0,
+                      5.0, 6.0, 7.0, 8.0,
+                      9.0, 8.0, 7.0, 6.0,
+                      5.0, 4.0, 3.0, 2.0);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrixD1(0, 0), 1.0);
+    EXPECT_EQ(mTestMatrixD1(0, 1), 2.0);
+    EXPECT_EQ(mTestMatrixD1(0, 2), 3.0);
+    EXPECT_EQ(mTestMatrixD1(0, 3), 4.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrixD1(1, 0), 5.0);
+    EXPECT_EQ(mTestMatrixD1(1, 1), 6.0);
+    EXPECT_EQ(mTestMatrixD1(1, 2), 7.0);
+    EXPECT_EQ(mTestMatrixD1(1, 3), 8.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrixD1(2, 0), 9.0);
+    EXPECT_EQ(mTestMatrixD1(2, 1), 8.0);
+    EXPECT_EQ(mTestMatrixD1(2, 2), 7.0);
+    EXPECT_EQ(mTestMatrixD1(2, 3), 6.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixD1(3, 0), 5.0);
+    EXPECT_EQ(mTestMatrixD1(3, 1), 4.0);
+    EXPECT_EQ(mTestMatrixD1(3, 2), 3.0);
+    EXPECT_EQ(mTestMatrixD1(3, 3), 2.0);
+    
+    // Set the float matrix
+    mTestMatrixF1.Set(9.0, 8.0, 7.0, 6.0,
+                      5.0, 4.0, 3.0, 2.0,
+                      1.0, 2.0, 3.0, 4.0,
+                      5.0, 6.0, 7.0, 8.0);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrixF1(0, 0), 9.0);
+    EXPECT_EQ(mTestMatrixF1(0, 1), 8.0);
+    EXPECT_EQ(mTestMatrixF1(0, 2), 7.0);
+    EXPECT_EQ(mTestMatrixF1(0, 3), 6.0);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrixF1(1, 0), 5.0);
+    EXPECT_EQ(mTestMatrixF1(1, 1), 4.0);
+    EXPECT_EQ(mTestMatrixF1(1, 2), 3.0);
+    EXPECT_EQ(mTestMatrixF1(1, 3), 2.0);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrixF1(2, 0), 1.0);
+    EXPECT_EQ(mTestMatrixF1(2, 1), 2.0);
+    EXPECT_EQ(mTestMatrixF1(2, 2), 3.0);
+    EXPECT_EQ(mTestMatrixF1(2, 3), 4.0);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixF1(3, 0), 5.0);
+    EXPECT_EQ(mTestMatrixF1(3, 1), 6.0);
+    EXPECT_EQ(mTestMatrixF1(3, 2), 7.0);
+    EXPECT_EQ(mTestMatrixF1(3, 3), 8.0);
 }
