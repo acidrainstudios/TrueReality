@@ -47,14 +47,15 @@ public:
     
     /** @brief   The test matrices. */
     trBase::Matrix mTestMatrix;
+    trBase::Matrix mTestMatrix2;
     trBase::Matrixd mTestMatrixD1;
     trBase::Matrixd mTestMatrixD2;
     trBase::Matrixf mTestMatrixF1;
     trBase::Matrixf mTestMatrixF2;
     
     osg::Matrix mTestMatOsg;
-    osg::Matrix mTestMatOsgD;
-    osg::Matrix mTestMatOsgF;
+    osg::Matrixd mTestMatOsgD;
+    osg::Matrixf mTestMatOsgF;
     
     /** @brief  The test arrays. */
     double mArrayD [16] = { 2.1, 4.3, 5.6, 4.5,

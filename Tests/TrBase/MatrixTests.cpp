@@ -1009,3 +1009,56 @@ TEST_F(MatrixTests, GetOSGMatrix)
     EXPECT_NEAR(mTestMatOsg(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatOsg(3, 3), 0.1, 1e-6);
 }
+
+/**
+ * @fn  TEST_F(MatrixTests, CompareMatrix)
+ *
+ * @brief   Test the method for returning an OSG matrix
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(MatrixTests, CompareMatrix)
+{
+    // Test if the matrices are valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+    EXPECT_EQ(mTestMatrixF2.Valid(), true);
+    
+    // Compare the matrices
+    EXPECT_EQ(mTestMatrixF1.Compare(mTestMatrixF2), 0);
+    
+    // Create a new matrix
+    mTestMatrixF1 = trBase::Matrixf(mArrayF);
+    
+    // Compare the matrices
+    EXPECT_EQ(mTestMatrixF1.Compare(mTestMatrixF2), 1);
+    EXPECT_EQ(mTestMatrixF2.Compare(mTestMatrixF1), -1);
+
+    // Test if the matrices are valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+    EXPECT_EQ(mTestMatrixD2.Valid(), true);
+    
+    // Compare the matrices
+    EXPECT_EQ(mTestMatrixD1.Compare(mTestMatrixD2), 0);
+    
+    // Create a new matrix
+    mTestMatrixD1 = trBase::Matrixd(mArrayD);
+    
+    // Compare the matrices
+    EXPECT_EQ(mTestMatrixD1.Compare(mTestMatrixD2), 1);
+    EXPECT_EQ(mTestMatrixD2.Compare(mTestMatrixD1), -1);
+    
+    // Test if the matrices are valid
+    EXPECT_EQ(mTestMatrix.Valid(), true);
+    EXPECT_EQ(mTestMatrix2.Valid(), true);
+    
+    // Compare the matrices
+    EXPECT_EQ(mTestMatrix.Compare(mTestMatrix2), 0);
+    
+    // Create a new matrix
+    mTestMatrix2 = trBase::Matrix(mArrayD);
+    
+    // Compare the matrices
+    EXPECT_EQ(mTestMatrix.Compare(mTestMatrix2), -1);
+    EXPECT_EQ(mTestMatrix2.Compare(mTestMatrix), 1);
+}
