@@ -447,8 +447,136 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
     EXPECT_EQ(mTestMatrix(3, 3), 2.0);
 }
 
+/**
+ * @fn  TEST_F(MatrixTests, CreateMatrixFromArray)
+ *
+ * @brief   Test the creation of a Matrix from an array
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
 TEST_F(MatrixTests, CreateMatrixFromArray)
 {
+    // Create a new matrix
+    mTestMatrixF1 = trBase::Matrix(mArrayF);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatrixF1(0, 0), 3.2, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 1), 4.3, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 2), 5.4, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 3), 6.5, 1e-6);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatrixF1(1, 0), 7.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 1), 8.7, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 2), 9.8, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 3), 0.9, 1e-6);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatrixF1(2, 0), 0.8, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 1), 0.7, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 2), 0.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 3), 0.5, 1e-6);
+
+    // Test the fourth row values
+    EXPECT_NEAR(mTestMatrixF1(3, 0), 0.4, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(3, 1), 0.3, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(3, 2), 0.2, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(3, 3), 0.1, 1e-6);
+    
+    // Create a new matrix
+    mTestMatrixF1 = trBase::Matrix(mArrayD);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixF1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatrixF1(0, 0), 2.1, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 1), 4.3, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 2), 5.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(0, 3), 4.5, 1e-6);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatrixF1(1, 0), 7.8, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 1), 8.7, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 2), 8.9, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(1, 3), 0.5, 1e-6);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatrixF1(2, 0), 5.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 1), 6.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 2), 7.3, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(2, 3), 2.5, 1e-6);
+
+    // Test the fourth row values
+    EXPECT_NEAR(mTestMatrixF1(3, 0), 4.5, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(3, 1), 3.3, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(3, 2), 2.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixF1(3, 3), 8.3, 1e-6);
+    
+    // Create a new matrix
+    mTestMatrixD1 = trBase::Matrix(mArrayF);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_NEAR(mTestMatrixD1(0, 0), 3.2, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(0, 1), 4.3, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(0, 2), 5.4, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(0, 3), 6.5, 1e-6);
+
+    // Test the second row values
+    EXPECT_NEAR(mTestMatrixD1(1, 0), 7.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(1, 1), 8.7, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(1, 2), 9.8, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(1, 3), 0.9, 1e-6);
+
+    // Test the third row values
+    EXPECT_NEAR(mTestMatrixD1(2, 0), 0.8, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(2, 1), 0.7, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(2, 2), 0.6, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(2, 3), 0.5, 1e-6);
+
+    // Test the fourth row values
+    EXPECT_NEAR(mTestMatrixD1(3, 0), 0.4, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(3, 1), 0.3, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(3, 2), 0.2, 1e-6);
+    EXPECT_NEAR(mTestMatrixD1(3, 3), 0.1, 1e-6);
+    
+    // Create a new matrix
+    mTestMatrixD1 = trBase::Matrix(mArrayD);
+
+    // Test if the matrix is valid
+    EXPECT_EQ(mTestMatrixD1.Valid(), true);
+
+    // Test the first row values
+    EXPECT_EQ(mTestMatrixD1(0, 0), 2.1);
+    EXPECT_EQ(mTestMatrixD1(0, 1), 4.3);
+    EXPECT_EQ(mTestMatrixD1(0, 2), 5.6);
+    EXPECT_EQ(mTestMatrixD1(0, 3), 4.5);
+
+    // Test the second row values
+    EXPECT_EQ(mTestMatrixD1(1, 0), 7.8);
+    EXPECT_EQ(mTestMatrixD1(1, 1), 8.7);
+    EXPECT_EQ(mTestMatrixD1(1, 2), 8.9);
+    EXPECT_EQ(mTestMatrixD1(1, 3), 0.5);
+
+    // Test the third row values
+    EXPECT_EQ(mTestMatrixD1(2, 0), 5.6);
+    EXPECT_EQ(mTestMatrixD1(2, 1), 6.6);
+    EXPECT_EQ(mTestMatrixD1(2, 2), 7.3);
+    EXPECT_EQ(mTestMatrixD1(2, 3), 2.5);
+
+    // Test the fourth row values
+    EXPECT_EQ(mTestMatrixD1(3, 0), 4.5);
+    EXPECT_EQ(mTestMatrixD1(3, 1), 3.3);
+    EXPECT_EQ(mTestMatrixD1(3, 2), 2.6);
+    EXPECT_EQ(mTestMatrixD1(3, 3), 8.3);
+    
     // Create a new matrix
     mTestMatrix = trBase::Matrix(mArrayF);
 

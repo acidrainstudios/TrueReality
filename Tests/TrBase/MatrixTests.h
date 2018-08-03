@@ -25,8 +25,8 @@
 
 #include <trBase/SmrtPtr.h>
 #include <trBase/Matrix.h>
-#include <trBase/Matrixf.h>
 #include <trBase/Matrixd.h>
+#include <trBase/Matrixf.h>
 #include <trBase/Quat.h>
 
 #include <array>
