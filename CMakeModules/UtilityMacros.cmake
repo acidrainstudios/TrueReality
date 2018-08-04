@@ -58,6 +58,11 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (TR_START_AVAILABLE "YES")
     ENDIF ()
 
+    IF (TR_MPEG)
+    	ADD_SUBDIRECTORY (src/trMPEG)
+        SET (TR_MPEG_AVAILABLE "YES")
+    ENDIF ()
+
 # Utilities folders
     MESSAGE (STATUS "Creating Selected Utility Folders")
     IF (TR_VERSION)
