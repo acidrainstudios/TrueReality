@@ -25,9 +25,13 @@
 
 #include <trBase/SmrtPtr.h>
 #include <trBase/Matrix.h>
-#include <trBase/Matrixf.h>
 #include <trBase/Matrixd.h>
+#include <trBase/Matrixf.h>
 #include <trBase/Quat.h>
+
+#include <osg/Matrix>
+#include <osg/Matrixd>
+#include <osg/Matrixf>
 
 #include <array>
 
@@ -43,10 +47,15 @@ public:
     
     /** @brief   The test matrices. */
     trBase::Matrix mTestMatrix;
+    trBase::Matrix mTestMatrix2;
     trBase::Matrixd mTestMatrixD1;
     trBase::Matrixd mTestMatrixD2;
     trBase::Matrixf mTestMatrixF1;
     trBase::Matrixf mTestMatrixF2;
+    
+    osg::Matrix mTestMatOsg;
+    osg::Matrixd mTestMatOsgD;
+    osg::Matrixf mTestMatOsgF;
     
     /** @brief  The test arrays. */
     double mArrayD [16] = { 2.1, 4.3, 5.6, 4.5,
@@ -60,6 +69,10 @@ public:
 
     /** @brief   The test quaternion. */
     trBase::Quat mTestQuat;
+    
+    /** @brief    The test pointers. */
+    double* mMatPtrD = nullptr;
+    float* mMatPtrF = nullptr;
 
     /**
      * @fn  public::MatrixTests();
