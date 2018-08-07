@@ -57,12 +57,12 @@ IF (TR_BUILD_WITH_RELEASE)
         optimized ${OSG_DB_LIBRARY} 
         optimized ${OSG_GA_LIBRARY} 
         optimized ${OSG_VIEWER_LIBRARY} 
-        optimized ${FFMPEG_LIBAVUTIL_LIBRARIES} 
-        optimized ${FFMPEG_LIBAVCODEC_LIBRARIES} 
-        optimized ${FFMPEG_LIBAVFORMAT_LIBRARIES}
-        optimized ${FFMPEG_LIBAVDEVICE_LIBRARIES}        
-        optimized ${FFMPEG_LIBSWRESAMPLE_LIBRARIES}   
-        optimized ${FFMPEG_LIBSWSCALE_LIBRARIES}   
+        optimized ${FFMPEG_LIBAVUTIL_LIBRARY} 
+        optimized ${FFMPEG_LIBAVCODEC_LIBRARY} 
+        optimized ${FFMPEG_LIBAVFORMAT_LIBRARY}
+        optimized ${FFMPEG_LIBAVDEVICE_LIBRARY}        
+        optimized ${FFMPEG_LIBSWRESAMPLE_LIBRARY}   
+        optimized ${FFMPEG_LIBSWSCALE_LIBRARY}   
         optimized ${OPENGL_gl_LIBRARY}    
         optimized ${Boost_THREAD_LIBRARY_RELEASE}
         optimized ${Boost_SYSTEM_LIBRARY_RELEASE}
@@ -76,12 +76,12 @@ IF (TR_BUILD_WITH_DEBUG)
         debug ${OSG_DB_LIBRARY_DEBUG} 
         debug ${OSG_GA_LIBRARY_DEBUG}
         debug ${OSG_VIEWER_LIBRARY_DEBUG}
-        debug ${FFMPEG_LIBAVUTIL_LIBRARIES} 
-        debug ${FFMPEG_LIBAVCODEC_LIBRARIES}
-        debug ${FFMPEG_LIBAVFORMAT_LIBRARIES}
-        debug ${FFMPEG_LIBAVDEVICE_LIBRARIES} 
-        debug ${FFMPEG_LIBSWRESAMPLE_LIBRARIES}
-        debug ${FFMPEG_LIBSWSCALE_LIBRARIES}   
+        debug ${FFMPEG_LIBAVUTIL_LIBRARY} 
+        debug ${FFMPEG_LIBAVCODEC_LIBRARY}
+        debug ${FFMPEG_LIBAVFORMAT_LIBRARY}
+        debug ${FFMPEG_LIBAVDEVICE_LIBRARY} 
+        debug ${FFMPEG_LIBSWRESAMPLE_LIBRARY}
+        debug ${FFMPEG_LIBSWSCALE_LIBRARY}   
         debug ${OPENGL_gl_LIBRARY}  
         debug ${Boost_THREAD_LIBRARY_DEBUG}
         debug ${Boost_SYSTEM_LIBRARY_DEBUG}
