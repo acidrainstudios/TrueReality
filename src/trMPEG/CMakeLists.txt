@@ -62,7 +62,8 @@ IF (TR_BUILD_WITH_RELEASE)
         optimized ${FFMPEG_LIBAVFORMAT_LIBRARY}
         optimized ${FFMPEG_LIBAVDEVICE_LIBRARY}        
         optimized ${FFMPEG_LIBSWRESAMPLE_LIBRARY}   
-        optimized ${FFMPEG_LIBSWSCALE_LIBRARY}   
+        optimized ${FFMPEG_LIBSWSCALE_LIBRARY} 
+        optimized ${GLEW_LIBRARY_RELEASE}
         optimized ${OPENGL_gl_LIBRARY}    
         optimized ${Boost_THREAD_LIBRARY_RELEASE}
         optimized ${Boost_SYSTEM_LIBRARY_RELEASE}
@@ -81,7 +82,8 @@ IF (TR_BUILD_WITH_DEBUG)
         debug ${FFMPEG_LIBAVFORMAT_LIBRARY}
         debug ${FFMPEG_LIBAVDEVICE_LIBRARY} 
         debug ${FFMPEG_LIBSWRESAMPLE_LIBRARY}
-        debug ${FFMPEG_LIBSWSCALE_LIBRARY}   
+        debug ${FFMPEG_LIBSWSCALE_LIBRARY}  
+        debug ${GLEW_LIBRARY_DEBUG}
         debug ${OPENGL_gl_LIBRARY}  
         debug ${Boost_THREAD_LIBRARY_DEBUG}
         debug ${Boost_SYSTEM_LIBRARY_DEBUG}
