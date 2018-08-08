@@ -540,5 +540,12 @@ namespace trUtil
             return GetDataPath() + CONFIG_PATH;
         }
 
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetUserStaticMeshesPath()
+        {
+            return GetUserDataPath() + STATIC_MESHES_PATH;
+        }
+
+        
     }
 }
