@@ -528,6 +528,10 @@ namespace trUtil
             return GetDataPath() + SHADERS_PATH;
         }
 
-        
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetGUIPath()
+        {
+            return GetDataPath() + GUI_PATH;
+        }
     }
 }

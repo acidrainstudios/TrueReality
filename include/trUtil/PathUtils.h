@@ -142,9 +142,16 @@ namespace trUtil
          *
          * @return  The shaders path.
          */
-        std::string GetShadersPath();
-        
-        
+        TR_UTIL_EXPORT std::string GetShadersPath();
+
+        /**
+         * @fn  std::string GetGUIPath();
+         *
+         * @brief   Gets graphical user interface path.
+         *
+         * @return  The graphical user interface path.
+         */
+        TR_UTIL_EXPORT std::string GetGUIPath();
 
          /**
           * @fn std::string GetLogPath();
