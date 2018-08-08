@@ -60,13 +60,6 @@ namespace trMPEG
         CodecH264(const std::string& name = CLASS_TYPE);
 
         /**
-         * @fn  CodecH264::~CodecH264();
-         *
-         * @brief   Destructor.
-         */
-        ~CodecH264();
-
-        /**
          * @fn  virtual const std::string& CodecH264::GetType() const override;
          *
          * @brief   Returns the class type.
@@ -74,6 +67,14 @@ namespace trMPEG
          * @return  The type.
          */
         virtual const std::string& GetType() const override;
+
+    protected:
+
+        /**
+         * @fn  CodecH264::~CodecH264();
+         *
+         * @brief   Destructor.
+         */
+        ~CodecH264();
     };
 }
-
