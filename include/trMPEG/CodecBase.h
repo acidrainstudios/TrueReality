@@ -63,13 +63,6 @@ namespace trMPEG
         CodecBase(const std::string& name = CLASS_TYPE);
 
         /**
-        * @fn  CodecBase::~CodecBase();
-        *
-        * @brief   Destructor.
-        */
-        ~CodecBase();
-
-        /**
          * @fn  virtual const std::string& CodecBase::GetType() const override;
          *
          * @brief   Returns the class type.
@@ -115,5 +108,12 @@ namespace trMPEG
 
         /** @brief   Identifier for the codec. */
         AVCodecID mCodecID;
+
+        /**
+        * @fn  CodecBase::~CodecBase();
+        *
+        * @brief   Destructor.
+        */
+        ~CodecBase();
     };
 }
