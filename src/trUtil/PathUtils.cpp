@@ -533,5 +533,12 @@ namespace trUtil
         {
             return GetDataPath() + GUI_PATH;
         }
+
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetConfigPath()
+        {
+            return GetDataPath() + CONFIG_PATH;
+        }
+
     }
 }

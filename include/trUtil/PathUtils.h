@@ -153,6 +153,15 @@ namespace trUtil
          */
         TR_UTIL_EXPORT std::string GetGUIPath();
 
+        /**
+         * @fn  std::string GetConfigPath();
+         *
+         * @brief   Gets configuration path.
+         *
+         * @return  The configuration path.
+         */
+        TR_UTIL_EXPORT std::string GetConfigPath();
+
          /**
           * @fn std::string GetLogPath();
           *
