@@ -498,6 +498,12 @@ namespace trUtil
             return GetDataPath() + SKELETAL_MESHES_PATH;
         }
 
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetSoundsPath()
+        {
+            return GetDataPath() + SOUNDS_PATH;
+        }
+
         
     }
 }

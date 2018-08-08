@@ -99,6 +99,16 @@ namespace trUtil
          */
         TR_UTIL_EXPORT std::string GetSkeletalMeshesPath();
 
+        /**
+         * @fn  std::string GetSoundsPath();
+         *
+         * @brief   Gets sounds path.
+         *
+         * @return  The sounds path.
+         */
+        TR_UTIL_EXPORT std::string GetSoundsPath();
+        
+        
 
          /**
           * @fn std::string GetLogPath();
