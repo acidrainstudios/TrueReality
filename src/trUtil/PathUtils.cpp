@@ -516,6 +516,12 @@ namespace trUtil
             return GetDataPath() + TEXTURES_PATH;
         }
 
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetTerrainsPath()
+        {
+            return GetDataPath() + TERRAINS_PATH;
+        }
+
         
     }
 }
