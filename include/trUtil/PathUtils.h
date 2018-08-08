@@ -60,14 +60,14 @@ namespace trUtil
         const static std::string GUI_PATH("/GUI");
         const static std::string CONFIG_PATH("/Config");
 
-         /**
-          * @fn std::string GetHomeDirectory();
-          *
-          * @brief  Get the USER Home directory.
-          *
-          * @return The home directory.
-          */
-        TR_UTIL_EXPORT std::string GetHomeDirectory();
+        /**
+         * @fn  TR_UTIL_EXPORT std::string GetUserHomeDirectory();
+         *
+         * @brief   Get the USER Home directory.
+         *
+         * @return  The home directory.
+         */
+        TR_UTIL_EXPORT std::string GetUserHomeDirectory();
 
          /**
           * @fn std::string GetUserDataPath();
@@ -126,7 +126,7 @@ namespace trUtil
          /**
           * @fn void SetDataPath(std::string& path);
           *
-          * @brief  Overwrites the Data path. If this is set, TR will ignore the TR_DATA varible and use
+          * @brief  Overwrites the Data path. If this is set, TR will ignore the TR_DATA variable and use
           *         the passed in value instead.
           *
           * @param [in,out] path    Full pathname of the file.

@@ -57,7 +57,7 @@ namespace trUtil
         static std::string mDataPath = trUtil::StringUtils::STR_BLANK;
         
         /////////////////////////////////////////////////////////////////////////////
-        std::string GetHomeDirectory()
+        std::string GetUserHomeDirectory()
         {
             std::string homedir;
 #ifdef TR_WIN
