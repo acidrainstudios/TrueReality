@@ -84,12 +84,13 @@ CMAKE_DEPENDENT_OPTION (TR_VERSION "Enables the building of trVersion Utility" O
 # Sets Example options ********************************************************
 # *****************************************************************************
 OPTION (TR_BUILD_EXAMPLES "Enables the building of TR demos and examples" ON)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_VIRTUAL_REALITY "Enables the building of examplesVR project" ON "TR_BUILD_EXAMPLES; TR_UTIL; TR_VR" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_LOGGING "Enables the building of examplesLogging project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of examplesJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_DIRECTOR "Enables the building of examplesDirector project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTORS "Enables the building of examplesActors project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTOR_MODULES "Enables the building of examplesActorModuless project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTORS "Enables the building of exampleActors project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTOR_MODULES "Enables the building of exampleActorModules project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_DIRECTOR "Enables the building of exampleDirector project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of exampleJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_LOGGING "Enables the building of exampleLogging project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_MPEG_CAST "Enables the building of exampleMPEGCast project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_UTIL; TR_BASE; TR_MPEG" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_VIRTUAL_REALITY "Enables the building of exampleVR project" ON "TR_BUILD_EXAMPLES; TR_UTIL; TR_VR" OFF)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
