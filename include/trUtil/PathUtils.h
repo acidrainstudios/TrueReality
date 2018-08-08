@@ -107,6 +107,15 @@ namespace trUtil
          * @return  The sounds path.
          */
         TR_UTIL_EXPORT std::string GetSoundsPath();
+
+        /**
+         * @fn  std::string GetParticlesPath();
+         *
+         * @brief   Gets particles path.
+         *
+         * @return  The particles path.
+         */
+        TR_UTIL_EXPORT std::string GetParticlesPath();
         
         
 
