@@ -485,5 +485,11 @@ namespace trUtil
                 return false;
             }
         }
+
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetStaticMeshesPath()
+        {
+            return GetDataPath() + STATIC_MESHES_PATH;
+        }
     }
 }

@@ -81,6 +81,15 @@ namespace trUtil
           */
         TR_UTIL_EXPORT std::string GetUserDataPath();
 
+        /**
+         * @fn  std::string GetStaticMeshesPath();
+         *
+         * @brief   Gets static meshes path.
+         *
+         * @return  The static meshes path.
+         */
+        TR_UTIL_EXPORT std::string GetStaticMeshesPath();
+
          /**
           * @fn std::string GetLogPath();
           *
