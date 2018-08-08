@@ -134,8 +134,17 @@ namespace trUtil
          * @return  The terrain path.
          */
         TR_UTIL_EXPORT std::string GetTerrainsPath();
-        
 
+        /**
+         * @fn  std::string GetShadersPath();
+         *
+         * @brief   Gets shaders path.
+         *
+         * @return  The shaders path.
+         */
+        std::string GetShadersPath();
+        
+        
 
          /**
           * @fn std::string GetLogPath();
