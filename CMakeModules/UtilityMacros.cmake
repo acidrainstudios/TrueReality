@@ -72,25 +72,6 @@ MACRO (ADD_TR_SUBFOLDERS)
 
 # Examples folders
     MESSAGE (STATUS "Creating Selected Example Folders")
-    IF (EXAMPLES_VIRTUAL_REALITY)
-        ADD_SUBDIRECTORY (Examples/VirtualReality)
-        SET (EXAMPLES_VIRTUAL_REALITY_AVAILABLE "YES")
-    ENDIF ()
-
-    IF (EXAMPLES_LOGGING)
-        ADD_SUBDIRECTORY (Examples/Logging)
-        SET (EXAMPLES_LOGGING_AVAILABLE "YES")
-    ENDIF ()
-
-    IF (EXAMPLES_JSON)
-        ADD_SUBDIRECTORY (Examples/Json)
-        SET (EXAMPLES_JSON_AVAILABLE "YES")
-    ENDIF ()
-    
-    IF (EXAMPLES_DIRECTOR)
-        ADD_SUBDIRECTORY (Examples/Director)
-        SET (EXAMPLES_DIRECTOR_AVAILABLE "YES")
-    ENDIF ()
     
     IF (EXAMPLES_ACTORS)
         ADD_SUBDIRECTORY (Examples/Actors)
@@ -102,6 +83,31 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (EXAMPLES_ACTOR_MODULES_AVAILABLE "YES")
     ENDIF ()
     
+    IF (EXAMPLES_DIRECTOR)
+        ADD_SUBDIRECTORY (Examples/Director)
+        SET (EXAMPLES_DIRECTOR_AVAILABLE "YES")
+    ENDIF ()
+
+    IF (EXAMPLES_JSON)
+        ADD_SUBDIRECTORY (Examples/Json)
+        SET (EXAMPLES_JSON_AVAILABLE "YES")
+    ENDIF ()  
+
+    IF (EXAMPLES_MPEG_CAST)
+        ADD_SUBDIRECTORY (Examples/MPEGCast)
+        SET (EXAMPLES_MPEG_CAST_AVAILABLE "YES")
+    ENDIF ()
+
+    IF (EXAMPLES_LOGGING)
+        ADD_SUBDIRECTORY (Examples/Logging)
+        SET (EXAMPLES_LOGGING_AVAILABLE "YES")
+    ENDIF ()
+
+    IF (EXAMPLES_VIRTUAL_REALITY)
+        ADD_SUBDIRECTORY (Examples/VirtualReality)
+        SET (EXAMPLES_VIRTUAL_REALITY_AVAILABLE "YES")
+    ENDIF ()
+
  # Unit Test Folders
     MESSAGE (STATUS "Creating Selected Tests Folders")
     
