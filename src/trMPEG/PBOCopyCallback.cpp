@@ -81,11 +81,11 @@ namespace trMPEG
         //Check if we have something to copy
         if(copyPBOCopyCallback != 0)
         {
-            mReadyForCopying == true;
+            mReadyForCopying = true;
         }
         else
         {
-            mReadyForCopying == false;
+            mReadyForCopying = false;
         }
 
         if (copyPBOCopyCallback == 0)
