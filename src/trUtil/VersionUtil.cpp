@@ -45,7 +45,7 @@ namespace trUtil
     VersionUtil::VersionUtil()
     {
         mVersion.SetFileName(VERSION_FILE_NAME);
-        mVersion.SetFilePath(trUtil::PathUtils::GetDataPath() + PathUtils::CONFIG_PATH);
+        mVersion.SetFilePath(trUtil::PathUtils::GetConfigPath());
         
         //If there is no version file, create one
         if (mVersion.FileExists())
