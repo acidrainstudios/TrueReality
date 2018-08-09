@@ -558,5 +558,11 @@ namespace trUtil
             return GetUserDataPath() + SOUNDS_PATH;
         }
 
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetUserParticlesPath()
+        {
+            return GetUserDataPath() + PARTICLES_PATH;
+        }
+
     }
 }
