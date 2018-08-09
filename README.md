@@ -15,7 +15,7 @@ True Reality (TR) is an open source LGPL Game and Simulation Engine written enti
 * [Repo Wiki](https://github.com/acidrainstudios/TrueReality/wiki)
 * [Repo Guidelines](https://github.com/acidrainstudios/TrueReality/wiki/Repository-Guidelines)
 
-### How do I get set up? (Coming Soon) ###
+### How do I get set up? ###
 * Building TR
 * Summary of set up
 * Configuration
