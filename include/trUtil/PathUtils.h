@@ -179,6 +179,15 @@ namespace trUtil
          * @return  The user skeletal meshes path.
          */
         TR_UTIL_EXPORT std::string GetUserSkeletalMeshesPath();
+
+        /**
+         * @fn  std::string GetUserSoundsPath();
+         *
+         * @brief   Gets user sounds path.
+         *
+         * @return  The user sounds path.
+         */
+        TR_UTIL_EXPORT std::string GetUserSoundsPath();
         
 
          /**
