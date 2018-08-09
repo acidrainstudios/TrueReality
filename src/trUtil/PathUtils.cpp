@@ -576,5 +576,12 @@ namespace trUtil
             return GetUserDataPath() + TERRAINS_PATH;
         }
 
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetUserShadersPath()
+        {
+            return GetUserDataPath() + SHADERS_PATH;
+        }
+
+
     }
 }
