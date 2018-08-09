@@ -588,6 +588,10 @@ namespace trUtil
             return GetUserDataPath() + GUI_PATH;
         }
 
-
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetUserConfigPath()
+        {
+            return GetUserDataPath() + CONFIG_PATH;
+        }
     }
 }

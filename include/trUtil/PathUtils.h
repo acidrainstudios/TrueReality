@@ -233,7 +233,15 @@ namespace trUtil
          * @return  The user graphical user interface path.
          */
         TR_UTIL_EXPORT std::string GetUserGUIPath();
-        
+
+        /**
+         * @fn  std::string GetUserConfigPath();
+         *
+         * @brief   Gets user configuration path.
+         *
+         * @return  The user configuration path.
+         */
+        TR_UTIL_EXPORT std::string GetUserConfigPath();
 
          /**
           * @fn std::string GetLogPath();
