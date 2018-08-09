@@ -197,6 +197,15 @@ namespace trUtil
          * @return  The user particles path.
          */
         TR_UTIL_EXPORT std::string GetUserParticlesPath();
+
+        /**
+         * @fn  std::string GetUserTexturesPath();
+         *
+         * @brief   Gets user textures path.
+         *
+         * @return  The user textures path.
+         */
+        TR_UTIL_EXPORT std::string GetUserTexturesPath();
 ;
 
          /**

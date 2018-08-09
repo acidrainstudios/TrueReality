@@ -564,5 +564,12 @@ namespace trUtil
             return GetUserDataPath() + PARTICLES_PATH;
         }
 
+        /////////////////////////////////////////////////////////////////////////////
+        std::string GetUserTexturesPath()
+        {
+            return GetUserDataPath() + TEXTURES_PATH;
+        }
+
+
     }
 }
