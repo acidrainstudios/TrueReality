@@ -171,6 +171,15 @@ namespace trUtil
          */
         TR_UTIL_EXPORT std::string GetUserStaticMeshesPath();
 
+        /**
+         * @fn  std::string GetUserSkeletalMeshesPath();
+         *
+         * @brief   Gets user skeletal meshes path.
+         *
+         * @return  The user skeletal meshes path.
+         */
+        TR_UTIL_EXPORT std::string GetUserSkeletalMeshesPath();
+        
 
          /**
           * @fn std::string GetLogPath();
