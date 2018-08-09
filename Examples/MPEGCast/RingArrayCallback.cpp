@@ -42,18 +42,19 @@ void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr)
     if (mFirstFrame)
     {
         mTimer.SetStartTick(0);
-        mNewTicks = mTimer.Tick();
+        mTimer.Tick();
         mFirstFrame = false;
     }
 
-    trBase::SmrtPtr<RingArray> ring = static_cast<RingArray*>(nodePtr);
+    mRing = static_cast<RingArray*>(nodePtr);
 
-    if (ring.Valid())
+    if (mRing != nullptr)
     {
-        mOldTicks = mNewTicks;
-        mNewTicks = mTimer.Tick();
+        //Update our timed loop
+        mTimer.Tick();
 
-        ring->Update(nodePtr, nvPtr, (double)(mNewTicks - mOldTicks)*mTimer.GetSecondsPerTick());
+        //Pass the frame time to the ring update
+        mRing->Update(nodePtr, nvPtr, mTimer.GetSecondsPerTick());
     }
     else
     {

@@ -63,8 +63,6 @@ private:
 
     bool mFirstFrame = true;
     trUtil::Timer mTimer;
-        
-    trUtil::TimeTicks mOldTicks = 0;
-    trUtil::TimeTicks mNewTicks = 0.00000000001;
-    trUtil::TimeTicks mCustomTicks = 0;
+
+    RingArray* mRing = nullptr;
 };
