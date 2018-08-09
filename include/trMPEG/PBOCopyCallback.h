@@ -121,7 +121,8 @@ namespace trMPEG
         mutable unsigned int mCurrentPBOIndex = 0;
         mutable unsigned int mNextPBOIndex = 0;
         mutable bool mReadyForCopying = false;
-
+        mutable int mPixelFormatSize = 0;
+        
         GLenum mPixelFormat = GL_RGBA;
         GLenum mType = GL_UNSIGNED_BYTE;
         int mWidth = 800;

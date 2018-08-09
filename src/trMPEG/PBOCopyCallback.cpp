@@ -138,23 +138,22 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     void PBOCopyCallback::GenerateBuffer(GLuint& PBOCopyCallback) const
     {
-        int formatSize = 0;
         glGenBuffers(1, &PBOCopyCallback);
         glBindBuffer(GL_PIXEL_PACK_BUFFER, PBOCopyCallback);
 
         if (mPixelFormat == GL_RGB)
         {
-            formatSize = 3;
+            mPixelFormatSize = 3;
         }
         else if (mPixelFormat == GL_RGBA)
         {
-            formatSize = 4;
+            mPixelFormatSize = 4;
         }
         else
         {
             LOG_E("Unsupported pixel format was detected")
-            formatSize = 0;
+            mPixelFormatSize = 0;
         }
-        glBufferData(GL_PIXEL_PACK_BUFFER, mWidth * mHeight * formatSize, 0, GL_STREAM_READ);
+        glBufferData(GL_PIXEL_PACK_BUFFER, mWidth * mHeight * mPixelFormatSize, 0, GL_STREAM_READ);
     }
 }
