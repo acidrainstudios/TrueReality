@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright ï¿½ 2018 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -234,7 +234,7 @@ namespace trUtil
                     userDir = path + DEFAULT_TR_FOLDER;
                 }
 #else
-                userDir = GetHomeDirectory() + DEFAULT_TR_FOLDER;
+                userDir = GetUserHomeDirectory() + DEFAULT_TR_FOLDER;
 #endif
                 return userDir;
             }           
