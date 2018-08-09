@@ -206,7 +206,16 @@ namespace trUtil
          * @return  The user textures path.
          */
         TR_UTIL_EXPORT std::string GetUserTexturesPath();
-;
+
+        /**
+         * @fn  std::string GetUserTerrainsPath();
+         *
+         * @brief   Gets user terrain path.
+         *
+         * @return  The user terrain path.
+         */
+        TR_UTIL_EXPORT std::string GetUserTerrainsPath();
+
 
          /**
           * @fn std::string GetLogPath();
