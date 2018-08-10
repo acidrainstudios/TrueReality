@@ -34,6 +34,25 @@ MatrixTests::~MatrixTests()
 }
 
 /**
+ * @fn  TEST_F(MatrixTests, Matrix)
+ *
+ * @brief   Test of Matrix class definition, between Matrixf and Matrixd
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(MatrixTests, Matrix)
+{
+#ifdef TR_USE_DOUBLE_MATRIX
+    EXPECT_EQ(typeid(trBase::Matrix), typeid(trBase::Matrixd));
+    EXPECT_NE(typeid(trBase::Matrix), typeid(trBase::Matrixf));
+#else
+    EXPECT_EQ(typeid(trBase::Matrix), typeid(trBase::Matrixf));
+    EXPECT_NE(typeid(trBase::Matrix), typeid(trBase::Matrixd));
+#endif
+}
+
+/**
  * @fn  TEST_F(MatrixTests, CreateMatrix)
  *
  * @brief   Test the creation of a default Matrix.
