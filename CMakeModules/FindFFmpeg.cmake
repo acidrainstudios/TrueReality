@@ -1,4 +1,4 @@
-# True Reality Open Source Game and Simulation Engine
+﻿# True Reality Open Source Game and Simulation Engine
 # Copyright © 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
@@ -121,7 +121,6 @@ IF (TR_BUILD_WITH_RELEASE)
     FFMPEG_FIND_LIB(LIBAVCODEC  avcodec  avcodec.h)
     FFMPEG_FIND_LIB(LIBAVUTIL   avutil   avutil.h)
     FFMPEG_FIND_LIB(LIBSWRESAMPLE   swresample   swresample.h)
-    FFMPEG_FIND_LIB(LIBAVRESAMPLE   avresample   avresample.h)
     FFMPEG_FIND_LIB(LIBSWSCALE  swscale  swscale.h)
 ENDIF ()
 
@@ -132,7 +131,6 @@ IF (TR_BUILD_WITH_DEBUG)
     FFMPEG_FIND_LIB(LIBAVCODEC  avcodec  avcodec.h)
     FFMPEG_FIND_LIB(LIBAVUTIL   avutil   avutil.h)
     FFMPEG_FIND_LIB(LIBSWRESAMPLE   swresample   swresample.h)
-    FFMPEG_FIND_LIB(LIBAVRESAMPLE   avresample   avresample.h)
     FFMPEG_FIND_LIB(LIBSWSCALE  swscale  swscale.h)
 ENDIF ()
 
