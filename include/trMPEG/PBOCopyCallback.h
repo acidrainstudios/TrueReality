@@ -49,16 +49,16 @@ namespace trMPEG
     public:
 
         /**
-         * @fn  PBOCopyCallback::PBOCopyCallback(int width, int height, int PBOCopyCallbackSize = 2, GLenum pixelFormat = GL_RGBA);
+         * @fn  PBOCopyCallback::PBOCopyCallback(int width, int height, GLenum pixelFormat = GL_RGBA, int PBOCopyCallbackSize = 2);
          *
          * @brief   Constructor.
          *
          * @param   width               The width of the frame.
          * @param   height              The height of the frame.
-         * @param   PBOCopyCallbackSize (Optional) Size of the pbo copy callback.
          * @param   pixelFormat         (Optional) The pixel format.
+         * @param   PBOCopyCallbackSize (Optional) Size of the pbo copy callback.
          */
-        PBOCopyCallback(int width, int height, int PBOCopyCallbackSize = 2, GLenum pixelFormat = GL_RGBA);
+        PBOCopyCallback(int width, int height, GLenum pixelFormat = GL_RGBA, int PBOCopyCallbackSize = 2);
 
         /**
          * @fn  PBOCopyCallback::~PBOCopyCallback();
@@ -93,16 +93,6 @@ namespace trMPEG
         virtual void ReadPixels() const;
 
         /**
-         * @fn  virtual void PBOCopyCallback::HandleData(const GLubyte* src) const = 0;
-         *
-         * @brief   Method that will receive the copied data for users post processing. Should be
-         *          overwritten by the user to get the data.
-         *
-         * @param   src Source for the.
-         */
-        virtual void HandleData(const GLubyte* src) const = 0;
-
-        /**
          * @fn  virtual void PBOCopyCallback::SetSilent(bool silent);
          *
          * @brief   Sets logging and general screen messaging off.
@@ -117,6 +107,7 @@ namespace trMPEG
 
         mutable bool mGlewInit = false;
 
+        mutable GLubyte* mFrameData = nullptr;
         mutable PBOBuffer mPBOBuffer;
         mutable unsigned int mCurrentPBOIndex = 0;
         mutable unsigned int mNextPBOIndex = 0;

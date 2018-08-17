@@ -34,7 +34,7 @@
 namespace trMPEG
 {
     //////////////////////////////////////////////////////////////////////////
-    PBOCopyCallback::PBOCopyCallback(int width, int height, int PBOCopyCallbackSize, GLenum pixelFormat)
+    PBOCopyCallback::PBOCopyCallback(int width, int height, GLenum pixelFormat, int PBOCopyCallbackSize)
     {
         mPixelFormat = pixelFormat;
         mHeight = height;
@@ -108,13 +108,11 @@ namespace trMPEG
 
             //Get the data from the previous read
             glBindBuffer(GL_PIXEL_PACK_BUFFER, copyPBOCopyCallback);
-            GLubyte *src = static_cast<GLubyte*>(glMapBuffer(GL_PIXEL_PACK_BUFFER_ARB, GL_READ_ONLY_ARB));
+            mFrameData = static_cast<GLubyte*>(glMapBuffer(GL_PIXEL_PACK_BUFFER_ARB, GL_READ_ONLY_ARB));
 
-            if (src)
+            if (mFrameData)
             {
                 glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
-
-                HandleData(src);
             }
 
             glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
