@@ -26,16 +26,16 @@ static const std::string PROGRAM_NAME = "TrueReality";
 static const std::string EXE_NAME = "exampleMPEGCast";
 
 /**
- * @fn  void ParseCmdLineArgs(int& argc, char** argv, std::string& arg1, std::string& arg2, std::string& arg3, std::string& logFileName, std::string& logLevel);
+ * @fn  void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel);
  *
  * @brief   Parses the command line variables that are passed in to the executable.
  *
- * @param [in,out]  argc        The argc.
- * @param [in,out]  argv        If non-null, the argv.
- * @param [in,out]  arg1        The first argument.
- * @param [in,out]  arg2        The second argument.
- * @param [in,out]  arg3        The third argument.
+ * @param [in,out]  argc        System argument count.
+ * @param [in,out]  argv        System argument values.
+ * @param [in,out]  mpegType    Type of MPEG.
+ * @param [in,out]  fileName    Filename of the output file, or UDP for broadcast.
+ * @param [in,out]  ip          The UDP broadcast IP.
  * @param [in,out]  logFileName Filename of the log file.
  * @param [in,out]  logLevel    The log level.
  */
-void ParseCmdLineArgs(int& argc, char** argv, std::string& arg1, std::string& arg2, std::string& arg3, std::string& logFileName, std::string& logLevel);
+void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel);
