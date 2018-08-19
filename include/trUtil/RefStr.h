@@ -92,7 +92,24 @@ namespace trUtil
          */
         ~RefStr();
 
+        /**
+         * @fn  operator const std::string&() const
+         *
+         * @brief   Implicit conversion operator from RefStr to std::string;
+         *
+         * @return  A const.
+         */
         operator const std::string&() const { return *mString; }
+
+        /**
+         * @fn  operator const RefStr::char*() const
+         *
+         * @brief   Implicit conversion operator from RefStr to const char*.
+         *
+         * @return  A const.
+         */
+        operator const char*() const { return mString->c_str(); }
+        
         trUtil::RefStr& operator=(const std::string& value);
         trUtil::RefStr& operator=(const trUtil::RefStr& value);
 
@@ -147,6 +164,7 @@ namespace trUtil
         }
 
         const std::string& Get() const { return *mString; }
+
     private:
         const std::string* mString;
 
