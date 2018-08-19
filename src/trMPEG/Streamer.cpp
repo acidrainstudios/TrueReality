@@ -266,7 +266,7 @@ namespace trMPEG
         *codec = avcodec_find_encoder(codecId);
         if (!(*codec)) 
         {
-            LOG_E("Could not find encoder for " + std::string(avcodec_get_name(codecId)))
+            LOG_E("Could not find encoder for " + trUtil::RefStr(avcodec_get_name(codecId)))
             exit(1);
         }
         strCont->stream = avformat_new_stream(formatContext, nullptr);
