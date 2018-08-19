@@ -676,7 +676,7 @@ namespace trMPEG
                 }                             
 
                 //Change the image from RGBA/RGB to YUV
-                int num = sws_scale(rgbToYuvCtx, rgbFrame->data, rgbFrame->linesize, 0, rgbFrame->height, mVidStream.finalFrame->data, mVidStream.finalFrame->linesize);
+                sws_scale(rgbToYuvCtx, rgbFrame->data, rgbFrame->linesize, 0, rgbFrame->height, mVidStream.finalFrame->data, mVidStream.finalFrame->linesize);
 
                 //Flip the image vertically 
                 if (mFlipImageVertically)
