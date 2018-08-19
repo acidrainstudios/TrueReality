@@ -505,18 +505,16 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     void Streamer::EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const
     {
-        int ret;
         int gotPacket = 0;
-        AVFrame* framePtr = nullptr;
 
-        framePtr = GenerateVideoFrame(codecContext, strCont);
+        AVFrame* framePtr = GenerateVideoFrame(codecContext, strCont);
 
         if (framePtr)
         {
             av_init_packet(&mVidPkt);
 
             /* Encode the image */
-            ret = avcodec_encode_video2(codecContext, &mVidPkt, framePtr, &gotPacket);
+            int ret = avcodec_encode_video2(codecContext, &mVidPkt, framePtr, &gotPacket);
             if (ret < 0)
             {
                 LOG_E("Error encoding video frame.")
