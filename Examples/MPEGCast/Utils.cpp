@@ -31,7 +31,7 @@
 #include <trUtil/Exception.h>
 #include <trUtil/Logging/Log.h>
 
-void ParseCmdLineArgs(int& argc, char** argv, std::string& arg1, std::string& arg2, std::string& arg3, std::string& logFileName, std::string& logLevel)
+void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel)
 {
     osg::ArgumentParser arguments(&argc, argv);
 
@@ -43,15 +43,14 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& arg1, std::string& ar
         trUtil::Logging::LOG_INFO_STR + ", " +
         trUtil::Logging::LOG_WARNING_STR + ", " +
         trUtil::Logging::LOG_ERROR_STR + "");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--mpeg <Mpeg Type> <UDP> <IP:PORT>", "Records a file with a given mpeg format");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--mpeg <Mpeg Type>", "Records a file with a given mpeg format");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--mpeg <Mpeg Type> <File Name>", "Records a custom named file with a given mpeg format");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--ip <IP:PORT>", "Sets the IP and Port for broadcasting");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--mpegType <Mpeg Type>", "Records a file with a given mpeg format. Values are mpeg2, mpeg4, h264, h265");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--output <File Name/UDP>", "Sets a file name (don not put an extension). Use UDP for the name to start a broadcast");
 
-    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " mpeg2 test", "Records test.mpg");
-    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " mpeg4 MyTest", "Records MyTest.mp4");
-    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " h265 UDP 130.46.208.38:7000", "Broadcasts h265 format through UDP on 130.46.208.38:7000");
-    arguments.getApplicationUsage()->addCommandLineOption("<Mpeg Type>", "mpeg2, mpeg4, h264, h265");
-    arguments.getApplicationUsage()->addCommandLineOption("<File Name>", "File name with no extension. Use 'UDP' as the name to enable broadcasting.");
+    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType h264", "Records OutputVid.h264");
+    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType mpeg2 --output test", "Records test.mpg");
+    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType mpeg4 --output MyTest", "Records MyTest.mp4");
+    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType h265 --output UDP --ip 130.46.208.38:7000", "Broadcasts h265 format through UDP on 130.46.208.38:7000");
 
     if (arguments.read("--help") == true ||
         arguments.read("/help") == true ||
@@ -65,29 +64,19 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& arg1, std::string& ar
 
     arguments.read("--logFileName", logFileName);
     arguments.read("--logLevel", logLevel);
-    arguments.read("--mpeg", arg1);
-    arguments.read("--mpeg", arg1, arg2);
-    arguments.read("--mpeg", arg1, arg2, arg3);
+    arguments.read("--mpegType", mpegType);
+    arguments.read("--output", fileName);
+    arguments.read("--ip", ip);
 
     //Check what kind of MPEG compression we want. 
-    if ((arg1 != "mpeg4") && (arg1 != "h264") && (arg1 != "h265"))
+    if ((mpegType != "mpeg4") && (mpegType != "h264") && (mpegType != "h265"))
     {
-        arg1 = "mpeg2";
+        mpegType = "mpeg2";
     }
 
-    //Check if the user wants to set a file name.
-    if (argc > 2)
+    //Check if we have a set IP if UDP was selected
+    if ((fileName == "UDP") && (ip == ""))
     {
-        arg2 = argv[2];
-
-        //Check is this should be a UDP broadcast
-        if (arg2 == "UDP" && argc > 3)
-        {
-            arg3 = argv[3];
-        }
-        else if (arg2 == "UDP")
-        {
-            arg2 = "";
-        }
+        fileName = "";
     }
 }
