@@ -205,10 +205,15 @@ namespace trMPEG
         std::this_thread::yield();
 
         //Sleep to make sure the worker received encoder thread shutdown signal
-        mEncodeThreadLock.lock();
+/*        mEncodeThreadLock.lock();
         std::cerr << "Waiting for signal from mEncodeThreadShutdownCond" << std::endl;
         mEncodeThreadShutdownCond.wait(mEncodeThreadLock);
-        mEncodeThreadLock.unlock();    
+        mEncodeThreadLock.unlock(); */   
+
+        while (!mEncodeThreadShutdown)
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        }
 
         //Write the file trailer if needed
         av_write_trailer(mFormatContextPtr);
@@ -688,11 +693,16 @@ namespace trMPEG
             }            
         }        
 
-        std::cerr << "mEncodeThreadShutdownCond sending signal" << std::endl;
-        //Signal that the Encoding loop is shutdown
         mEncodeThreadLock.lock();
-        mEncodeThreadShutdownCond.notify_all();
-        mEncodeThreadLock.unlock();
+        //Signal that the worker is shutdown
+        mEncodeThreadShutdown = true;        
+        mEncodeThreadLock.unlock(); 
+
+        //std::cerr << "mEncodeThreadShutdownCond sending signal" << std::endl;
+        ////Signal that the Encoding loop is shutdown
+        //mEncodeThreadLock.lock();
+        //mEncodeThreadShutdownCond.notify_all();
+        //mEncodeThreadLock.unlock();
 
         if (!mSilent)
         {

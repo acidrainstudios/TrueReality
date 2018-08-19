@@ -506,7 +506,8 @@ namespace trMPEG
         //Variables used in encoding thread
         std::thread* mEncodeThreadPtr = nullptr;
         mutable std::mutex mEncodeThreadLock;
-        mutable std::condition_variable_any mEncodeThreadShutdownCond;
+        mutable bool mEncodeThreadShutdown = false;
+        //mutable std::condition_variable_any mEncodeThreadShutdownCond;
         bool mMainThreadActive = true;
 
         mutable std::vector<uint8_t> mTextureData;
