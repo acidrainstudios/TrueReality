@@ -20,10 +20,14 @@
 */
 #pragma once
 
-#include <string>
+#include <trUtil/RefStr.h>
 
-static const std::string PROGRAM_NAME = "TrueReality";
-static const std::string EXE_NAME = "exampleMPEGCast";
+#include <trBase/SmrtPtr.h>
+
+#include <osg/LightSource>
+
+static const trUtil::RefStr PROGRAM_NAME = "TrueReality";
+static const trUtil::RefStr EXE_NAME = "exampleMPEGCast";
 
 /**
  * @fn  void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel);
@@ -39,3 +43,14 @@ static const std::string EXE_NAME = "exampleMPEGCast";
  * @param [in,out]  logLevel    The log level.
  */
 void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel);
+
+/**
+ * @fn  osg::LightSource* CreateLight(int lightNum);
+ *
+ * @brief   Creates a light source.
+ *
+ * @param   lightNum    The light number.
+ *
+ * @return  Null if it fails, else the new light.
+ */
+osg::LightSource* CreateLight(int lightNum);

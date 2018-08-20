@@ -19,17 +19,18 @@
 * @author Maxim Serebrennik
 */
 
-#include <Examples/Logging/Utils.h>
+#include <Examples/MPEGCast/Utils.h>
+
+#include <trUtil/Exception.h>
+#include <trUtil/Logging/Log.h>
+
+#include <osg/ArgumentParser>
+#include <osg/Light>
+#include <osgDB/FileNameUtils>
 
 #include <iostream>
 #include <cstdlib>
 #include <sstream>
-
-#include <osg/ArgumentParser>
-#include <osgDB/FileNameUtils>
-
-#include <trUtil/Exception.h>
-#include <trUtil/Logging/Log.h>
 
 void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel)
 {
@@ -79,4 +80,19 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string
     {
         fileName = "";
     }
+}
+
+//////////////////////////////////////////////////////////////////////////
+osg::LightSource* CreateLight(int lightNum)
+{
+    trBase::SmrtPtr<osg::Light> light = new osg::Light;
+    light->setLightNum(0);
+    light->setDiffuse(osg::Vec4(1.0, 1.0, 1.0, 1.0));
+    light->setPosition(osg::Vec4(0.0f, 100.0f, 0.0f, 1.0f));
+    light->setConstantAttenuation(0.00001);
+
+    osg::LightSource* lightSource0 = new osg::LightSource;
+    lightSource0->setLight(light);
+
+    return lightSource0;
 }
