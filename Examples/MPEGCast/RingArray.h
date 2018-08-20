@@ -149,7 +149,7 @@ protected:
 private:
 		
     const double MAX_RING_SPEED = 5.0;
-    const double RING_ACCEL = 0.001;
+    const double RING_ACCEL = 0.1;
     const double START_DELAY = 5.0;
 
 	trBase::SmrtPtr<osg::Group> mRing1;

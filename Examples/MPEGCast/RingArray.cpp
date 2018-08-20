@@ -21,9 +21,13 @@
 
 #include "RingArray.h"
 
+#include <trBase/SmrtPtr.h>
 #include <trUtil/Math.h>
 #include <trUtil/PathUtils.h>
 
+#include <osg/Light>
+#include <osg/LightSource>
+#include <osg/LightModel>
 #include <osg/Math>
 #include <osgDB/ReadFile>
 
@@ -116,7 +120,7 @@ void RingArray::UpdateRing1Slide(double deltaTime)
         //Calculate the speed
         if (mRing1SlideSpeed < MAX_RING_SPEED)
         {
-            mRing1SlideSpeed += RING_ACCEL;
+            mRing1SlideSpeed += RING_ACCEL * deltaTime;
         }
 
         //Calculate the new position
@@ -145,7 +149,7 @@ void RingArray::UpdateRing2Angle(double deltaTime)
         //Calculate the speed
         if (mRing2RotationSpeed < MAX_RING_SPEED)
         {
-            mRing2RotationSpeed += RING_ACCEL;
+            mRing2RotationSpeed += RING_ACCEL * deltaTime;
         }
 
         //Calculate the new position
@@ -175,7 +179,7 @@ void RingArray::UpdateRing2Slide(double deltaTime)
         //Calculate the speed
         if (mRing2SlideSpeed < MAX_RING_SPEED)
         {
-            mRing2SlideSpeed += RING_ACCEL;
+            mRing2SlideSpeed += RING_ACCEL * deltaTime;
         }
 
         //Calculate the new position
@@ -204,7 +208,7 @@ void RingArray::UpdateRing3Angle(double deltaTime)
         //Calculate the speed
         if (mRing3RotationSpeed < MAX_RING_SPEED)
         {
-            mRing3RotationSpeed += RING_ACCEL;
+            mRing3RotationSpeed += RING_ACCEL * deltaTime;
         }
 
         //Calculate the new position
@@ -233,7 +237,7 @@ void RingArray::UpdateRing3Slide(double deltaTime)
         //Calculate the speed
         if (mRing3SlideSpeed < MAX_RING_SPEED)
         {
-            mRing3SlideSpeed += RING_ACCEL;
+            mRing3SlideSpeed += RING_ACCEL * deltaTime;
         }
 
         //Calculate the new position
@@ -262,7 +266,7 @@ void RingArray::UpdateRing4Angle(double deltaTime)
         //Calculate the speed
         if (mRing4RotationSpeed < MAX_RING_SPEED)
         {
-            mRing4RotationSpeed += RING_ACCEL;
+            mRing4RotationSpeed += RING_ACCEL * deltaTime;
         }
 
         //Calculate the new position
