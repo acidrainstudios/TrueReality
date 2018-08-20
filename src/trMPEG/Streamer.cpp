@@ -65,14 +65,7 @@ namespace trMPEG
 	{
         // Wait for threads to comeback and terminate
         if (mEncodeThreadPtr)
-        {
-            if (!mSilent)
-            {
-                std::cerr << "Encoding Thread " << mEncodeThreadPtr->get_id() << " Joining Main thread " << std::this_thread::get_id() << std::endl;
-            }
-
-            mEncodeThreadPtr->join();
-            
+        {           
             if (!mSilent)
             {
                 std::cerr << "Deleting Dead Encoding Thread " << std::endl;
@@ -197,22 +190,18 @@ namespace trMPEG
     void Streamer::ShutDown()
     {
         //Signal the worker thread to shut down
-        mEncodeThreadLock.lock();
-        mMainThreadActive = false;       
-        mEncodeThreadLock.unlock();
-
-        //Make sure this thread is not hugging the CPU core. 
-        std::this_thread::yield();
-
-        //Sleep to make sure the worker received encoder thread shutdown signal
-/*        mEncodeThreadLock.lock();
-        std::cerr << "Waiting for signal from mEncodeThreadShutdownCond" << std::endl;
-        mEncodeThreadShutdownCond.wait(mEncodeThreadLock);
-        mEncodeThreadLock.unlock(); */   
-
-        while (!mEncodeThreadShutdown)
+        mMainThreadActive = false; 
+        
+        if (!mSilent)
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::cerr << "Main thread waiting for Encoder thread " << mEncodeThreadPtr->get_id() << " to join Main thread " << std::this_thread::get_id() << std::endl;
+        }
+
+        mEncodeThreadPtr->join();
+
+        if (!mSilent)
+        {
+            std::cerr << "Encoding Thread " << mEncodeThreadPtr->get_id() << " Joined Main thread " << std::this_thread::get_id() << std::endl;
         }
 
         //Write the file trailer if needed
@@ -576,7 +565,7 @@ namespace trMPEG
         while (!mIsInit)
         {
             // Wait until the Streamer is initialized 
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::yield();
         }
 
         //Get a lock to allocate resources
@@ -610,19 +599,14 @@ namespace trMPEG
         }
 
         mEncodeThreadLock.unlock();
-        //Make sure this thread is not hugging the CPU core. 
-        std::this_thread::yield();
 
         while (mMainThreadActive)
         {
-            //Make sure this thread is not hugging the CPU core. 
-            std::this_thread::yield();
-
-            //Lock the encoding thread mutex for this scope
-            std::lock_guard<std::mutex> lock(mEncodeThreadLock);
-
             if (mNewFrameReady && mTextureData.size() > 0)
             {
+                //Lock the encoding thread mutex for this scope
+                std::lock_guard<std::mutex> lock(mEncodeThreadLock);
+
                 //Update the time it took to encode one frame
                 if (oldTicks == 0)
                 {
@@ -688,19 +672,13 @@ namespace trMPEG
 
                 //Mark that we just consumed a frame and can use a new one on the next loop
                 mNewFrameReady = false;
-            }            
+            } 
+            else
+            {
+                //Make sure this thread is not hugging the CPU core.
+                std::this_thread::yield();
+            }
         }        
-
-        mEncodeThreadLock.lock();
-        //Signal that the worker is shutdown
-        mEncodeThreadShutdown = true;        
-        mEncodeThreadLock.unlock(); 
-
-        //std::cerr << "mEncodeThreadShutdownCond sending signal" << std::endl;
-        ////Signal that the Encoding loop is shutdown
-        //mEncodeThreadLock.lock();
-        //mEncodeThreadShutdownCond.notify_all();
-        //mEncodeThreadLock.unlock();
 
         if (!mSilent)
         {
@@ -715,13 +693,11 @@ namespace trMPEG
         //If the encoding frame is not done or we have no data, skip this loop
         if (!mNewFrameReady && frameData)
         {
-
-            mEncodeThreadLock.lock();
             // Copy Frame Data into a variable that will be used by the encoding thread. 
             mTextureData.assign(frameData, frameData + mFrameWidth * mFrameHeight * mPixFmtSize);
                                  
+            // Send signal to the Encoder thread that New Frame Data is ready
             mNewFrameReady = true;
-            mEncodeThreadLock.unlock();
         }
     }
 

@@ -51,6 +51,7 @@ extern "C"
 
 //#include <boost/thread/thread.hpp>
 
+#include <atomic>
 #include <condition_variable>
 #include <mutex>
 #include <thread>
@@ -470,7 +471,7 @@ namespace trMPEG
 
     private:
 
-        bool mIsInit = false;
+        std::atomic<bool> mIsInit = false;
         bool mSilent = true;
         bool mIsBroadcast = false;
         trUtil::RefStr mPublisher;
@@ -502,16 +503,12 @@ namespace trMPEG
         mutable AVPacket mVidPkt = { 0 };
         mutable StreamContainer mVidStream = { 0 };        
         
-
         //Variables used in encoding thread
-        std::thread* mEncodeThreadPtr = nullptr;
+        std::thread* mEncodeThreadPtr = nullptr; 
         mutable std::mutex mEncodeThreadLock;
-        mutable bool mEncodeThreadShutdown = false;
-        //mutable std::condition_variable_any mEncodeThreadShutdownCond;
-        bool mMainThreadActive = true;
-
+        std::atomic<bool> mMainThreadActive = true;
         mutable std::vector<uint8_t> mTextureData;
-        mutable bool mNewFrameReady = false;
+        mutable std::atomic<bool> mNewFrameReady = false;
         mutable double mFrameTimeLength = 0.01;
         mutable int mTotalFramePTSCounter = 0;
         mutable int mFramePTSLength = 0;
