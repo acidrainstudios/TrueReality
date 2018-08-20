@@ -25,9 +25,6 @@
 #include <trUtil/Math.h>
 #include <trUtil/PathUtils.h>
 
-#include <osg/Light>
-#include <osg/LightSource>
-#include <osg/LightModel>
 #include <osg/Math>
 #include <osgDB/ReadFile>
 
