@@ -19,50 +19,129 @@
 * @author Maxim Serebrennik
 */
 
-#include <Examples/Logging/Utils.h>
+#pragma once
 
+#include <GL/glew.h> //Needs to be included before anything with gl.h
+
+#include "Utils.h"
+#include "RingArray.h"
+#include "RingArrayCallback.h"
+#include "TxtrCameraObject.h"
+#include "WinDefaultConfig.h"
+
+#include <trBase/SmrtPtr.h>
 #include <trUtil/DefaultSettings.h>
 #include <trUtil/PathUtils.h>
-#include <trUtil/Exception.h>
-#include <trUtil/Console/Logo.h>
-#include <trUtil/Console/TextColor.h>
-#include <trUtil/Logging/Log.h>
+#include <trUtil/RefStr.h>
+
+#include <osg/Camera>
+#include <osg/Geometry>
+#include <osg/Texture2D>
+#include <osgDB/ReadFile>
+#include <osgGA/TrackballManipulator>
+#include <osgViewer/CompositeViewer>
+#include <osgViewer/View>
+#include <osgViewer/ViewerEventHandlers>
 
 #include <iostream>
 
+static const trUtil::RefStr COW_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/OsgCow/cow.osg");
+static const trUtil::RefStr CUBE_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ColorCube/ColorCube.osg");
+
+static const int WIN_WIDTH = 1280;
+static const int WIN_HEIGHT = 720;
+static const int WIN_POS_X = 100;
+static const int WIN_POS_Y = 100;
+
+static const double CAM_NEAR_CLIP = 0.1;
+static const double CAM_FAR_CLIP = 10000.0;
+static const double CAM_FOV = 25;
+
+static const int SAMPLE_NUM = 4;
+
 
 /**
-* Software's main function. 
-*/
+ * @fn  int main(int argc, char** argv)
+ *
+ * @brief   Main entry-point for this application.
+ *
+ * @param   argc    The number of command-line arguments provided.
+ * @param   argv    An array of command-line argument strings.
+ *
+ * @return  Exit-code for the process - 0 for success, else an error code.
+ */
 int main(int argc, char** argv)
 {
+    std::cout << "OSG Mpeg Demo\n\n" << std::endl;
 
-    //Parse command line arguments
-    ParseCmdLineArgs(argc, argv);
+    //Check for command line options.
+    std::string mpegType = "";
+    std::string fileName = "";
+    std::string ip = "";
+    std::string logFileName = "";
+    std::string logLevel = "";
+    ParseCmdLineArgs(argc, argv, mpegType, fileName, ip, logFileName, logLevel);
 
     //Creates the default folders in the User Data folder. 
     trUtil::PathUtils::CreateUserDataPathTree();
+
+    //Setup our Logging options
+    trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);    
+
+    //Create the root node
+    trBase::SmrtPtr<osg::Group> rootNode = new osg::Group();
+
+    //Create our scene
+    trBase::SmrtPtr<RingArray> ringNode = new RingArray(80);
+    trBase::SmrtPtr<RingArrayCallback> modelCallback = new RingArrayCallback();
+    ringNode->setUpdateCallback(modelCallback);
+
+    //Place a cube in the texture scene
+    trBase::SmrtPtr<osg::PositionAttitudeTransform> cube = new osg::PositionAttitudeTransform();
+    cube->addChild(osgDB::readNodeFile(CUBE_MODEL));
+    cube->setScale(osg::Vec3f(400, 400, 400));
+    cube->setAttitude(osg::Quat(0.2, osg::X_AXIS, 0.2, osg::Y_AXIS, 0.2, osg::Z_AXIS));
+    ringNode->addChild(cube);
+
+    //Place a light in the texture scene
+    trBase::SmrtPtr<osg::LightSource> light = CreateLight(0);
+    ringNode->addChild(light.Get());
+
+    //Create the render to texture structure
+    trBase::SmrtPtr<TxtrCameraObject> camObject = new TxtrCameraObject(ringNode, WIN_WIDTH, WIN_HEIGHT, mpegType, fileName, ip);
+
+    //Create our View
+    trBase::SmrtPtr<osgViewer::View> mainView = new osgViewer::View();
+    mainView->setSceneData(rootNode.Get());
+    mainView->apply(new WinDefaultConfig(WIN_POS_X, WIN_POS_Y, WIN_WIDTH, WIN_HEIGHT, 0U, true, CAM_NEAR_CLIP, CAM_FAR_CLIP, CAM_FOV));
+
+    //Adds the statistics handler. 
+    mainView->addEventHandler(new osgViewer::StatsHandler);
+
+    //Setup the scene
+    rootNode->addChild(camObject->GetCamera());
+    rootNode->addChild(camObject->GetRenderTarget());
+    rootNode->addChild(osgDB::readNodeFile(COW_MODEL));
+
+    //Set up the viewer
+    osgViewer::CompositeViewer viewer;
+    viewer.addView(mainView);
     
-
-
-    try
+    //Set up the main frame loop
+    if ((mainView->getCameraManipulator() == 0) && mainView->getCamera()->getAllowEventFocus())
     {
-        //Show Logo
-        trUtil::Console::Logo();
-
-        
-
-        //Ending program
-        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-        std::cerr << "\nTrue Reality is now shutting down ... " << std::endl;
-        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
-        LOG_A("True Reality is now shutting down ... ");
+        mainView->setCameraManipulator(new osgGA::TrackballManipulator());
     }
-    catch (const trUtil::Exception& ex)
+    viewer.setReleaseContextAtEndOfFrameHint(true);
+    if (!viewer.isRealized())
     {
-        LOG_E(EXE_NAME + " caught an unhandled exception:\n" + ex.ToString());
-        ex.LogException(trUtil::Logging::LogLevel::LOG_ERROR);
-        return -1;
+        viewer.realize();
+    }
+
+    //Run the main frame loop
+    while (!viewer.done())
+    {
+        viewer.frame();
     }
     return 0;
 }
