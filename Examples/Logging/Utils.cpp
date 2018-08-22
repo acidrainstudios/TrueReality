@@ -49,6 +49,6 @@ void ParseCmdLineArgs(int& argc, char** argv)
         arguments.read("/?") == true)
     {
         arguments.getApplicationUsage()->write(std::cout);
-        exit(1);
+        exit(0);
     }
 }
