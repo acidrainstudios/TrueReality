@@ -157,9 +157,9 @@ namespace trMPEG
                     output_file.open(file_name.str().c_str());
                     output_file << "P3 " << codec_ctx->width << " " << codec_ctx->height << " 255\n";
 
-                    for (int y = 0; y < codec_ctx->height; y++)
+                    for (int y = 0; y < codec_ctx->height; ++y)
                     {
-                        for (int x = 0; x < codec_ctx->width * 3; x++)
+                        for (int x = 0; x < codec_ctx->width * 3; ++x)
                         {
                             output_file << (int)(picture_rgb->data[0] + y * picture_rgb->linesize[0])[x] << " ";
                         }
