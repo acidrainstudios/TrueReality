@@ -46,7 +46,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string
         trUtil::Logging::LOG_ERROR_STR + "");
     arguments.getApplicationUsage()->addCommandLineOption("\n--ip <IP:PORT>", "Sets the IP and Port for broadcasting");
     arguments.getApplicationUsage()->addCommandLineOption("\n--mpegType <Mpeg Type>", "Records a file with a given mpeg format. Values are mpeg2, mpeg4, h264, h265");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--output <File Name/UDP>", "Sets a file name (don not put an extension). Use UDP for the name to start a broadcast");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--output <File Name/UDP>", "Sets a file name (Do not put an extension). Use UDP for the name to start a broadcast");
 
     arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType h264", "Records OutputVid.h264");
     arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType mpeg2 --output test", "Records test.mpg");
