@@ -54,7 +54,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::str
         arguments.read("/?") == true)
     {
         arguments.getApplicationUsage()->write(std::cout);
-        exit(1);
+        exit(0);
     }
 
     arguments.read("--logFileName", logFileName);
