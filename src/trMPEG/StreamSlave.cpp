@@ -93,8 +93,7 @@ namespace trMPEG
         av_read_play(format_ctx);    //play RTSP
 
         // Get the codec
-        AVCodec *codec = NULL;
-        codec = avcodec_find_decoder(AV_CODEC_ID_H264);
+        AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_H264);
         if (!codec)
         {
             exit(1);
