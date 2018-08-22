@@ -53,7 +53,7 @@ namespace trMPEG
         // Open the initial context variables that are needed
         SwsContext *img_convert_ctx;
         AVFormatContext* format_ctx = avformat_alloc_context();
-        AVCodecContext* codec_ctx = NULL;
+        AVCodecContext* codec_ctx = nullptr;
         int video_stream_index;
 
         // Register everything
@@ -61,12 +61,12 @@ namespace trMPEG
         avformat_network_init();
 
         //open RTSP
-        if (avformat_open_input(&format_ctx, "rtsp://134.169.178.187:8554/h264.3gp", NULL, NULL) != 0)
+        if (avformat_open_input(&format_ctx, "rtsp://134.169.178.187:8554/h264.3gp", nullptr, nullptr) != 0)
         {
             exit(1);
         }
 
-        if (avformat_find_stream_info(format_ctx, NULL) < 0)
+        if (avformat_find_stream_info(format_ctx, nullptr) < 0)
         {
             exit(1);
         }
@@ -86,7 +86,7 @@ namespace trMPEG
         //open output file
         AVFormatContext* output_ctx = avformat_alloc_context();
 
-        AVStream* stream = NULL;
+        AVStream* stream = nullptr;
         int cnt = 0;
 
         //start reading packets from stream and write them to file
@@ -106,14 +106,14 @@ namespace trMPEG
         avcodec_copy_context(codec_ctx, format_ctx->streams[video_stream_index]->codec);
         std::ofstream output_file;
 
-        if (avcodec_open2(codec_ctx, codec, NULL) < 0)
+        if (avcodec_open2(codec_ctx, codec, nullptr) < 0)
         {
             exit(1);
         }
 
         img_convert_ctx = sws_getContext(codec_ctx->width, codec_ctx->height,
             codec_ctx->pix_fmt, codec_ctx->width, codec_ctx->height, AV_PIX_FMT_RGB24,
-            SWS_BICUBIC, NULL, NULL, NULL);
+            SWS_BICUBIC, nullptr, nullptr, nullptr);
 
         int size = avpicture_get_size(AV_PIX_FMT_YUV420P, codec_ctx->width, codec_ctx->height);
 
@@ -134,7 +134,7 @@ namespace trMPEG
             {    //packet is video
 
                 std::cout << "2 Is Video" << std::endl;
-                if (stream == NULL)
+                if (stream == nullptr)
                 {
                     //create stream in file
                     std::cout << "3 create stream" << std::endl;
