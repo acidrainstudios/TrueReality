@@ -72,31 +72,31 @@ namespace trMPEG
         virtual const std::string& GetType() const override;
 
         /**
-         * @fn  virtual std::string CodecBase::GetFileExtension();
+         * @fn  virtual const std::string& CodecBase::GetFileExtension() const;
          *
          * @brief   Gets file extension.
          *
          * @return  The file extension.
          */
-        virtual std::string GetFileExtension();
+        virtual const std::string& GetFileExtension() const;
 
         /**
-         * @fn  virtual std::string CodecBase::GetMpegType();
+         * @fn  virtual const std::string& CodecBase::GetMpegType() const;
          *
          * @brief   Gets the MPEG type.
          *
          * @return  The MPEG type.
          */
-        virtual std::string GetMpegType();
+        virtual const std::string& GetMpegType() const;
 
         /**
-         * @fn  virtual AVCodecID CodecBase::GetEncoderType();
+         * @fn  virtual const AVCodecID& CodecBase::GetEncoderType();
          *
          * @brief   Gets encoder type in the form of AV Codec ID.
          *
          * @return  Null if it fails, else the encoder type.
          */
-        virtual AVCodecID GetEncoderType();
+        virtual const AVCodecID& GetEncoderType() const;
 
     protected:
 

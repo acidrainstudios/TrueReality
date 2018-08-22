@@ -762,7 +762,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetStreamType(StreamType type)
+    void Streamer::SetStreamType(StreamType& type)
     {
         if (!mIsInit)
         {
@@ -771,7 +771,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    Streamer::StreamType Streamer::GetStreamType()
+    const Streamer::StreamType& Streamer::GetStreamType() const
     {
         return mStreamType;
     }

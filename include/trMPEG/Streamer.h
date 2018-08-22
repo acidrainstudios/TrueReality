@@ -255,22 +255,22 @@ namespace trMPEG
         const trMPEG::CodecBase* GetMpegType();
 
         /**
-         * @fn  void Streamer::SetStreamType(StreamType type);
+         * @fn  void Streamer::SetStreamType(StreamType& type);
          *
          * @brief   Sets stream output type. It can be a file, or a broadcast to a network port.
          *
-         * @param   type    The type.
+         * @param [in,out]  type    The type.
          */
-        void SetStreamType(StreamType type);
+        void SetStreamType(StreamType& type);
 
         /**
-         * @fn  StreamType Streamer::GetStreamType();
+         * @fn  const StreamType& Streamer::GetStreamType() const;
          *
          * @brief   Gets stream type.
          *
          * @return  The stream type.
          */
-        StreamType GetStreamType();
+        const StreamType& GetStreamType() const;
 
         /**
          * @fn  void Streamer::SetResolution(int width, int height);

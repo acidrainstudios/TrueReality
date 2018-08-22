@@ -45,19 +45,19 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    std::string CodecBase::GetFileExtension()
+    const std::string& CodecBase::GetFileExtension() const
     {
         return mExtension;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    std::string CodecBase::GetMpegType()
+    const std::string& CodecBase::GetMpegType() const
     {
         return mMpegType;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    AVCodecID CodecBase::GetEncoderType()
+    const AVCodecID& CodecBase::GetEncoderType() const
     {
         return mCodecID;
     }
