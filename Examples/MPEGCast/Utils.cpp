@@ -39,7 +39,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string
     arguments.getApplicationUsage()->setApplicationName(PROGRAM_NAME);
         
     arguments.getApplicationUsage()->addCommandLineOption("\n--help, /help, -h, /h, /?  ", "Show this help screen.");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueReality_Log.html");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueRealityLog.html");
     arguments.getApplicationUsage()->addCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
         trUtil::Logging::LOG_INFO_STR + ", " +
         trUtil::Logging::LOG_WARNING_STR + ", " +

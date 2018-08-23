@@ -47,7 +47,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::str
     arguments.getApplicationUsage()->addCommandLineOption("\n--setVer <Maj> <Min> <YYMM> <Build>", "Sets the softwares version");
     arguments.getApplicationUsage()->addCommandLineOption("\n--incVer                   ", "Increments the softwares version");
     arguments.getApplicationUsage()->addCommandLineOption("\n--updateVer                ", "Update the softwares version using .hg Revision and current YYMM");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueReality_Log.html");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueRealityLog.html");
     arguments.getApplicationUsage()->addCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
     trUtil::Logging::LOG_INFO_STR + ", " +
     trUtil::Logging::LOG_WARNING_STR + ", " +
