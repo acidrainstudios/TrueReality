@@ -103,7 +103,8 @@ namespace trMPEG
             RGB,
             RGBA
         };
-             
+        
+        const static trUtil::RefStr DEFAULT_TITLE;
         const static trUtil::RefStr DEFAULT_PUBLISHER;
         const static trUtil::RefStr DEFAULT_COPYRIGHT;
         const static trUtil::RefStr DEFAULT_FILE_NAME;
