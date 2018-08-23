@@ -30,6 +30,7 @@
 #include "WinDefaultConfig.h"
 
 #include <trBase/SmrtPtr.h>
+#include <trUtil/Console/Logo.h>
 #include <trUtil/DefaultSettings.h>
 #include <trUtil/PathUtils.h>
 #include <trUtil/RefStr.h>
@@ -72,6 +73,9 @@ static const int SAMPLE_NUM = 4;
  */
 int main(int argc, char** argv)
 {
+    //Show Logo
+    trUtil::Console::Logo();
+
     std::cout << "OSG Mpeg Demo\n\n" << std::endl;
 
     //Check for command line options.
