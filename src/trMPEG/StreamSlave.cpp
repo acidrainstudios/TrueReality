@@ -129,15 +129,15 @@ namespace trMPEG
         while (av_read_frame(format_ctx, &packet) >= 0 && cnt < 1000)
         { //read ~ 1000 frames
 
-            std::cout << "1 Frame: " << cnt << std::endl;
+            std::cerr << "1 Frame: " << cnt << std::endl;
             if (packet.stream_index == video_stream_index)
             {    //packet is video
 
-                std::cout << "2 Is Video" << std::endl;
+                std::cerr << "2 Is Video" << std::endl;
                 if (stream == nullptr)
                 {
                     //create stream in file
-                    std::cout << "3 create stream" << std::endl;
+                    std::cerr << "3 create stream" << std::endl;
                     stream = avformat_new_stream(output_ctx, format_ctx->streams[video_stream_index]->codec->codec);
                     avcodec_copy_context(stream->codec, format_ctx->streams[video_stream_index]->codec);
                     stream->sample_aspect_ratio = format_ctx->streams[video_stream_index]->codec->sample_aspect_ratio;
@@ -145,9 +145,9 @@ namespace trMPEG
 
                 int check = 0;
                 packet.stream_index = stream->id;
-                std::cout << "4 decoding" << std::endl;
+                std::cerr << "4 decoding" << std::endl;
                 int result = avcodec_decode_video2(codec_ctx, picture, &check, &packet);
-                std::cout << "Bytes decoded " << result << " check " << check << std::endl;
+                std::cerr << "Bytes decoded " << result << " check " << check << std::endl;
 
                 if (cnt > 100)    //cnt < 0)
                 {
