@@ -21,6 +21,8 @@
 
 #include <trMPEG/StreamSlave.h>
 
+#include <trUtil/Logging/Log.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -61,11 +63,14 @@ namespace trMPEG
         avformat_network_init();
 
         //open RTSP
-        if (avformat_open_input(&format_ctx, "rtsp://134.169.178.187:8554/h264.3gp", nullptr, nullptr) != 0)
+        //if (avformat_open_input(&format_ctx, "rtsp://134.169.178.187:8554/h264.3gp", nullptr, nullptr) != 0)
+        LOG_D("Opening Input")
+        if (avformat_open_input(&format_ctx, "udp://@:7000", nullptr, nullptr) != 0)
         {
             exit(1);
         }
 
+        LOG_D("Finding Input Stream")
         if (avformat_find_stream_info(format_ctx, nullptr) < 0)
         {
             exit(1);
