@@ -19,7 +19,7 @@
 * @author Maxim Serebrennik
 */
 
-#include <trMPEG/Streamer.h>
+#include <trMPEG/StreamServer.h>
 
 #include <trUtil/Logging/Log.h>
 #include <trUtil/StringUtils.h>
@@ -36,18 +36,18 @@
 
 namespace trMPEG
 {   
-    const trUtil::RefStr Streamer::DEFAULT_TITLE = trUtil::RefStr("trMPEG Broadcast");
-    const trUtil::RefStr Streamer::DEFAULT_PUBLISHER = trUtil::RefStr("trMPEG");
-    const trUtil::RefStr Streamer::DEFAULT_COPYRIGHT = trUtil::RefStr("Acid Rain Studios LLC");
-    const trUtil::RefStr Streamer::DEFAULT_FILE_NAME = trUtil::RefStr("OutputVid");
-    const trUtil::RefStr Streamer::DEFAULT_UDP_ADDRS = trUtil::RefStr("127.0.0.1:7000");
-    const int Streamer::DEFAULT_BIT_RATE = 2000;
-    const int Streamer::DEFAULT_FRAME_WIDTH = 800;
-    const int Streamer::DEFAULT_FRAME_HEIGHT = 600;
-    const int Streamer::DEFAULT_FRAME_RATE = 60;
+    const trUtil::RefStr StreamServer::DEFAULT_TITLE = trUtil::RefStr("trMPEG Broadcast");
+    const trUtil::RefStr StreamServer::DEFAULT_PUBLISHER = trUtil::RefStr("trMPEG");
+    const trUtil::RefStr StreamServer::DEFAULT_COPYRIGHT = trUtil::RefStr("Acid Rain Studios LLC");
+    const trUtil::RefStr StreamServer::DEFAULT_FILE_NAME = trUtil::RefStr("OutputVid");
+    const trUtil::RefStr StreamServer::DEFAULT_UDP_ADDRS = trUtil::RefStr("127.0.0.1:7000");
+    const int StreamServer::DEFAULT_BIT_RATE = 2000;
+    const int StreamServer::DEFAULT_FRAME_WIDTH = 800;
+    const int StreamServer::DEFAULT_FRAME_HEIGHT = 600;
+    const int StreamServer::DEFAULT_FRAME_RATE = 60;
 
 	//////////////////////////////////////////////////////////////////////////
-	Streamer::Streamer()
+	StreamServer::StreamServer()
 	{
         mFileName = DEFAULT_FILE_NAME;
         mUDPAddrs = DEFAULT_UDP_ADDRS;
@@ -62,7 +62,7 @@ namespace trMPEG
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	Streamer::~Streamer()
+	StreamServer::~StreamServer()
 	{
         // Wait for threads to comeback and terminate
         if (mEncodeThreadPtr)
@@ -84,7 +84,7 @@ namespace trMPEG
 	}
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::Init()
+    void StreamServer::Init()
     {
         int ret; // Error checking return
         AVCodec *videoCodec = nullptr;
@@ -182,13 +182,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    bool Streamer::IsInit() const
+    bool StreamServer::IsInit() const
     {
         return mIsInit;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::ShutDown()
+    void StreamServer::ShutDown()
     {
         //Signal the worker thread to shut down
         mMainThreadActive = false; 
@@ -230,7 +230,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetSilent(bool silent)
+    void StreamServer::SetSilent(bool silent)
     {
         mSilent = silent;
         if (mSilent)
@@ -244,13 +244,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    bool Streamer::IsSilent()
+    bool StreamServer::IsSilent()
     {
         return mSilent;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::ConfigureStream(StreamContainer *strCont, AVFormatContext *formatContext, AVCodec **codec, enum AVCodecID codecId)
+    void StreamServer::ConfigureStream(StreamContainer *strCont, AVFormatContext *formatContext, AVCodec **codec, enum AVCodecID codecId)
     {
         /* find the encoder */
         *codec = avcodec_find_encoder(codecId);
@@ -352,7 +352,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::OpenVideoCodec(AVCodecContext *codecContext, AVCodec *codec, StreamContainer *strCont, AVDictionary *optArg)
+    void StreamServer::OpenVideoCodec(AVCodecContext *codecContext, AVCodec *codec, StreamContainer *strCont, AVDictionary *optArg)
     {
         int ret;
         AVDictionary *opt = nullptr;
@@ -403,7 +403,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    AVFrame* Streamer::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const
+    AVFrame* StreamServer::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const
     {
         AVFrame *newFrame;
         int ret;
@@ -437,7 +437,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    AVFrame* Streamer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const
+    AVFrame* StreamServer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const
     {           
         if (codecContext->pix_fmt != AV_PIX_FMT_YUV420P)
         {
@@ -500,7 +500,7 @@ namespace trMPEG
     }
     
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const
+    void StreamServer::EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const
     {
         int gotPacket = 0;
 
@@ -542,7 +542,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::FlipYUV420Frame(AVFrame* frame) const
+    void StreamServer::FlipYUV420Frame(AVFrame* frame) const
     {
         for (int i = 0; i < 4; i++)
         {
@@ -559,7 +559,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetFlipImageVertically(bool flip)
+    void StreamServer::SetFlipImageVertically(bool flip)
     {
         if (!mIsInit)
         {
@@ -568,11 +568,11 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////   
-    void Streamer::operator()() const
+    void StreamServer::operator()() const
     {
         while (!mIsInit)
         {
-            // Wait until the Streamer is initialized 
+            // Wait until the StreamServer is initialized 
             std::this_thread::yield();
         }
 
@@ -696,7 +696,7 @@ namespace trMPEG
     }    
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::Encode(const GLubyte* frameData) const
+    void StreamServer::Encode(const GLubyte* frameData) const
     {
         //If the encoding frame is not done or we have no data, skip this loop
         if (!mNewFrameReady && frameData)
@@ -710,7 +710,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetFileName(std::string fileName)
+    void StreamServer::SetFileName(std::string fileName)
     {
         if (fileName != "")
         {
@@ -719,13 +719,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    std::string Streamer::GetFileName()
+    std::string StreamServer::GetFileName()
     {
         return mFileName;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetBroadcast(bool isBroadcast)
+    void StreamServer::SetBroadcast(bool isBroadcast)
     {
         if (!mIsInit)
         {
@@ -734,13 +734,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    bool Streamer::IsBroadcast()
+    bool StreamServer::IsBroadcast()
     {
         return mIsBroadcast;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetUDPAddress(std::string address)
+    void StreamServer::SetUDPAddress(std::string address)
     {
         if (!mIsInit)
         {
@@ -749,13 +749,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    std::string Streamer::GetUDPAddress()
+    std::string StreamServer::GetUDPAddress()
     {
         return mUDPAddrs;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetMpegType(trMPEG::CodecBase *type)
+    void StreamServer::SetMpegType(trMPEG::CodecBase *type)
     {
         if (!mIsInit)
         {
@@ -764,13 +764,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    const trMPEG::CodecBase* Streamer::GetMpegType()
+    const trMPEG::CodecBase* StreamServer::GetMpegType()
     {
         return mCodecContainer.Get();
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetStreamType(StreamType& type)
+    void StreamServer::SetStreamType(StreamType& type)
     {
         if (!mIsInit)
         {
@@ -779,13 +779,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    const Streamer::StreamType& Streamer::GetStreamType() const
+    const StreamServer::StreamType& StreamServer::GetStreamType() const
     {
         return mStreamType;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetResolution(int width, int height)
+    void StreamServer::SetResolution(int width, int height)
     {
         if (!mIsInit)
         {
@@ -796,14 +796,14 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::GetResolution(int& width, int& height)
+    void StreamServer::GetResolution(int& width, int& height)
     {
         width = mFrameWidth;
         height = mFrameHeight;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetWidth(int width)
+    void StreamServer::SetWidth(int width)
     {
         if (!mIsInit)
         {
@@ -812,13 +812,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    int Streamer::GetWidth()
+    int StreamServer::GetWidth()
     {
         return mFrameWidth;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetHeight(int height)
+    void StreamServer::SetHeight(int height)
     {
         if (!mIsInit)
         {
@@ -827,13 +827,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    int Streamer::GetHeight()
+    int StreamServer::GetHeight()
     {
         return mFrameHeight;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetFrameRate(int fps)
+    void StreamServer::SetFrameRate(int fps)
     {
         if (!mIsInit)
         {
@@ -847,13 +847,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    int Streamer::GetFrameRate()
+    int StreamServer::GetFrameRate()
     {
         return mFrameRate;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetBitRate(int bitRate)
+    void StreamServer::SetBitRate(int bitRate)
     {
         if (!mIsInit)
         {
@@ -862,13 +862,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    int Streamer::GetBitRate()
+    int StreamServer::GetBitRate()
     {
         return mBitRate;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetInputPixelFormat(PixelFormat format)
+    void StreamServer::SetInputPixelFormat(PixelFormat format)
     {
         if (!mIsInit)
         {
@@ -891,7 +891,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    Streamer::PixelFormat Streamer::GetInputPixelFormat()
+    StreamServer::PixelFormat StreamServer::GetInputPixelFormat()
     {
         return mPixFmt;
     }

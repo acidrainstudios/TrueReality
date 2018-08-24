@@ -25,7 +25,7 @@
 #include <trMPEG/CodecH265.h>
 #include <trMPEG/CodecMpeg2.h>
 #include <trMPEG/CodecMpeg4.h>
-#include <trMPEG/Streamer.h>
+#include <trMPEG/StreamServer.h>
 
 #include <osg/Geometry>
 #include <osgDB/WriteFile>

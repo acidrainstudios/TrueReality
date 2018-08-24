@@ -74,11 +74,11 @@ namespace trMPEG
     };
 
 	/**
-	 * @class	Streamer
+	 * @class	StreamServer
 	 *
-	 * @brief	A MPEG streamer.
+	 * @brief	This class can stream a captured set of images over a network or to a file in an mpeg format
 	 */
-	class TR_MPEG_EXPORT Streamer
+	class TR_MPEG_EXPORT StreamServer
 	{
 	public:    
 
@@ -115,21 +115,21 @@ namespace trMPEG
         const static int DEFAULT_FRAME_RATE;
 
         /**
-         * @fn  Streamer::Streamer();
+         * @fn  StreamServer::StreamServer();
          *
          * @brief   Default constructor.
          */
-		Streamer();
+		StreamServer();
 
         /**
-         * @fn  Streamer::~Streamer();
+         * @fn  StreamServer::~StreamServer();
          *
          * @brief   Destructor.
          */
-		~Streamer();
+		~StreamServer();
 
         /**
-         * @fn  void Streamer::Init();
+         * @fn  void StreamServer::Init();
          *
          * @brief   Initializes the MPEG Stream. This should be called after all the settings and presets
          *          are set.
@@ -137,7 +137,7 @@ namespace trMPEG
         void Init();
 
         /**
-         * @fn  bool Streamer::IsInit() const;
+         * @fn  bool StreamServer::IsInit() const;
          *
          * @brief   Query if this object is initialized.
          *
@@ -146,14 +146,14 @@ namespace trMPEG
         bool IsInit() const;
 
         /**
-         * @fn  void Streamer::ShutDown();
+         * @fn  void StreamServer::ShutDown();
          *
          * @brief   Shuts down the MPEG Stream and frees any resources it is using.
          */
         void ShutDown();
 
         /**
-         * @fn  void Streamer::SetSilent(bool silent);
+         * @fn  void StreamServer::SetSilent(bool silent);
          *
          * @brief   Sets logging and general screen messaging off. 
          *          
@@ -162,7 +162,7 @@ namespace trMPEG
         void SetSilent(bool silent);
 
         /**
-         * @fn  bool Streamer::IsSilent();
+         * @fn  bool StreamServer::IsSilent();
          *
          * @brief   Query if this objects logging and general screen messaging is on or off. 
          *
@@ -171,7 +171,7 @@ namespace trMPEG
         bool IsSilent();
 
         /**
-         * @fn  void Streamer::Encode(const GLubyte* frameData) const;
+         * @fn  void StreamServer::Encode(const GLubyte* frameData) const;
          *
          * @brief   Encodes the given texture data.
          *
@@ -180,7 +180,7 @@ namespace trMPEG
         void Encode(const GLubyte* frameData) const;
 
         /**
-         * @fn  void Streamer::SetFileName(std::string fileName);
+         * @fn  void StreamServer::SetFileName(std::string fileName);
          *
          * @brief   Sets name of the output file.
          *          
@@ -190,7 +190,7 @@ namespace trMPEG
         void SetFileName(std::string fileName);
 
         /**
-         * @fn  std::string Streamer::GetFileName();
+         * @fn  std::string StreamServer::GetFileName();
          *
          * @brief   Gets file name of the output file.
          *
@@ -199,7 +199,7 @@ namespace trMPEG
         std::string GetFileName();
 
         /**
-         * @fn  void Streamer::SetBroadcast(bool isBroadcast);
+         * @fn  void StreamServer::SetBroadcast(bool isBroadcast);
          *
          * @brief   Sets if the stream should be a broadcast instead of a file
          *
@@ -208,7 +208,7 @@ namespace trMPEG
         void SetBroadcast(bool isBroadcast);
 
         /**
-         * @fn  bool Streamer::IsBroadcast();
+         * @fn  bool StreamServer::IsBroadcast();
          *
          * @brief   Query if the stream is
          *           a broadcast instead of a file.
@@ -218,7 +218,7 @@ namespace trMPEG
         bool IsBroadcast();
 
         /**
-         * @fn  void Streamer::SetUDPAddress(std::string address);
+         * @fn  void StreamServer::SetUDPAddress(std::string address);
          *
          * @brief   Sets UDP address where the stream will be broadcast. Ex: SetUDPAddress(130.46.208.38:7000);
          *
@@ -227,7 +227,7 @@ namespace trMPEG
         void SetUDPAddress(std::string address);
 
         /**
-         * @fn  std::string Streamer::GetUDPAddress();
+         * @fn  std::string StreamServer::GetUDPAddress();
          *
          * @brief   Gets UDP address where the stream will be broadcast.
          *
@@ -236,7 +236,7 @@ namespace trMPEG
         std::string GetUDPAddress();
 
         /**
-         * @fn  void Streamer::SetMpegType(trMPEG::CodecBase type);
+         * @fn  void StreamServer::SetMpegType(trMPEG::CodecBase type);
          *
          * @brief   Sets MPEG typy by taking in a codec type class derived from CodecBase
          *          This method takes ownership of the passed in pointer and will release 
@@ -247,7 +247,7 @@ namespace trMPEG
         void SetMpegType(trMPEG::CodecBase *type);
 
         /**
-         * @fn  const trMPEG::CodecBase* Streamer::GetMpegType();
+         * @fn  const trMPEG::CodecBase* StreamServer::GetMpegType();
          *
          * @brief   Gets MPEG type downcast to CodecBase.
          *
@@ -256,7 +256,7 @@ namespace trMPEG
         const trMPEG::CodecBase* GetMpegType();
 
         /**
-         * @fn  void Streamer::SetStreamType(StreamType& type);
+         * @fn  void StreamServer::SetStreamType(StreamType& type);
          *
          * @brief   Sets stream output type. It can be a file, or a broadcast to a network port.
          *
@@ -265,7 +265,7 @@ namespace trMPEG
         void SetStreamType(StreamType& type);
 
         /**
-         * @fn  const StreamType& Streamer::GetStreamType() const;
+         * @fn  const StreamType& StreamServer::GetStreamType() const;
          *
          * @brief   Gets stream type.
          *
@@ -274,7 +274,7 @@ namespace trMPEG
         const StreamType& GetStreamType() const;
 
         /**
-         * @fn  void Streamer::SetResolution(int width, int height);
+         * @fn  void StreamServer::SetResolution(int width, int height);
          *
          * @brief   Sets the MPEG resolution.
          *
@@ -284,7 +284,7 @@ namespace trMPEG
         void SetResolution(int width, int height);
 
         /**
-         * @fn  void Streamer::GetResolution(int& width, int& height);
+         * @fn  void StreamServer::GetResolution(int& width, int& height);
          *
          * @brief   Gets a resolution but filling out the passed in parameters by reference.
          *
@@ -294,7 +294,7 @@ namespace trMPEG
         void GetResolution(int& width, int& height);
 
         /**
-         * @fn  void Streamer::SetWidth(int width);
+         * @fn  void StreamServer::SetWidth(int width);
          *
          * @brief   Sets the MPEG width.
          *
@@ -303,7 +303,7 @@ namespace trMPEG
         void SetWidth(int width);
 
         /**
-         * @fn  int Streamer::GetWidth();
+         * @fn  int StreamServer::GetWidth();
          *
          * @brief   Gets the MPEG width.
          *
@@ -312,7 +312,7 @@ namespace trMPEG
         int GetWidth();
 
         /**
-         * @fn  void Streamer::SetHeight(int height);
+         * @fn  void StreamServer::SetHeight(int height);
          *
          * @brief   Sets the MPEG height.
          *
@@ -321,7 +321,7 @@ namespace trMPEG
         void SetHeight(int height);
 
         /**
-         * @fn  int Streamer::GetHeight();
+         * @fn  int StreamServer::GetHeight();
          *
          * @brief   Gets the MPEG height.
          *
@@ -330,7 +330,7 @@ namespace trMPEG
         int GetHeight();
 
         /**
-         * @fn  void Streamer::SetFrameRate(int fps);
+         * @fn  void StreamServer::SetFrameRate(int fps);
          *
          * @brief   Sets frame rate of the created MPEG or stream.
          *
@@ -339,7 +339,7 @@ namespace trMPEG
         void SetFrameRate(int fps);
 
         /**
-         * @fn  int Streamer::GetFrameRate();
+         * @fn  int StreamServer::GetFrameRate();
          *
          * @brief   Gets frame rate of the created MPEG or stream.
          *
@@ -348,7 +348,7 @@ namespace trMPEG
         int GetFrameRate();
 
         /**
-         * @fn  void Streamer::SetBitRate(int bitRate);
+         * @fn  void StreamServer::SetBitRate(int bitRate);
          *
          * @brief   Sets bit rate of the created MPEG in bits.
          *
@@ -357,7 +357,7 @@ namespace trMPEG
         void SetBitRate(int bitRate);
 
         /**
-         * @fn  int Streamer::GetBitRate();
+         * @fn  int StreamServer::GetBitRate();
          *
          * @brief   Gets bit rate of the created MPEG in bits.
          *
@@ -366,7 +366,7 @@ namespace trMPEG
         int GetBitRate();
 
         /**
-         * @fn  void Streamer::SetInputPixelFormat(PixelFormat format);
+         * @fn  void StreamServer::SetInputPixelFormat(PixelFormat format);
          *
          * @brief   Sets input pixel format.
          *
@@ -375,7 +375,7 @@ namespace trMPEG
         void SetInputPixelFormat(PixelFormat format);
 
         /**
-         * @fn  PixelFormat Streamer::GetInputPixelFormat();
+         * @fn  PixelFormat StreamServer::GetInputPixelFormat();
          *
          * @brief   Gets input pixel format.
          *
@@ -384,7 +384,7 @@ namespace trMPEG
         PixelFormat GetInputPixelFormat();
 
         /**
-         * @fn  void Streamer::SetFlipImageVertically(bool flip);
+         * @fn  void StreamServer::SetFlipImageVertically(bool flip);
          *
          * @brief   Flip image vertically.
          *
@@ -393,7 +393,7 @@ namespace trMPEG
         void SetFlipImageVertically(bool flip);
 
         /**
-         * @fn  void Streamer::operator()() const;
+         * @fn  void StreamServer::operator()() const;
          *
          * @brief   Operator that is used for the worker thread.
          */
@@ -402,7 +402,7 @@ namespace trMPEG
     protected:
 
         /**
-         * @fn  AVFrame* Streamer::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
+         * @fn  AVFrame* StreamServer::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
          *
          * @brief   Creates and Allocates a frame.
          *
@@ -415,7 +415,7 @@ namespace trMPEG
         AVFrame* AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
 
         /**
-         * @fn  AVFrame* Streamer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const;
+         * @fn  AVFrame* StreamServer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const;
          *
          * @brief   Generates a video frame converting color spectrums if needed.
          *
@@ -427,7 +427,7 @@ namespace trMPEG
         AVFrame* GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const;
 
         /**
-         * @fn  void Streamer::ConfigureStream(OutputStream *outputStream, AVFormatContext *formatContext, AVCodec **codec, enum AVCodecID codecId);
+         * @fn  void StreamServer::ConfigureStream(OutputStream *outputStream, AVFormatContext *formatContext, AVCodec **codec, enum AVCodecID codecId);
          *
          * @brief   Configure the output stream.
          *
@@ -439,7 +439,7 @@ namespace trMPEG
         void ConfigureStream(StreamContainer *strCont, AVFormatContext *formatContext, AVCodec **codec, enum AVCodecID codecId);
 
         /**
-         * @fn  void Streamer::OpenVideoCodec(AVCodecContext *codecContext, AVCodec *codec, StreamContainer *strCont, AVDictionary *optArg);
+         * @fn  void StreamServer::OpenVideoCodec(AVCodecContext *codecContext, AVCodec *codec, StreamContainer *strCont, AVDictionary *optArg);
          *
          * @brief   Opens the video codec.
          *
@@ -451,7 +451,7 @@ namespace trMPEG
         void OpenVideoCodec(AVCodecContext *codecContext, AVCodec *codec, StreamContainer *strCont, AVDictionary *optArg);
 
         /**
-         * @fn  void Streamer::EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;
+         * @fn  void StreamServer::EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;
          *
          * @brief   Encode one video frame and send it to the muxer.
          *
@@ -462,7 +462,7 @@ namespace trMPEG
         void EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;
 
         /**
-         * @fn  void Streamer::FlipYUV420Frame(AVFrame* frame) const;
+         * @fn  void StreamServer::FlipYUV420Frame(AVFrame* frame) const;
          *
          * @brief   Flips a frame that is encoded in YUV420 format vertically.
          *

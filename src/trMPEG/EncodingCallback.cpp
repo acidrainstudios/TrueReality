@@ -45,19 +45,19 @@ namespace trMPEG
     {
         if (!mSilent)
         {
-            LOG_I("Initializing the MPEG Streamer...")
-            std::cout << "Initializing the MPEG Streamer..." << std::endl;
+            LOG_I("Initializing the MPEG StreamServer...")
+            std::cout << "Initializing the MPEG StreamServer..." << std::endl;
         }
         
-        //Setup the MPEG Streamer     
+        //Setup the MPEG StreamServer     
         if (mPixelFormat == GL_RGB)
         {
-            mStream.SetInputPixelFormat(Streamer::PixelFormat::RGB);
+            mStream.SetInputPixelFormat(StreamServer::PixelFormat::RGB);
             LOG_D("Setting MPEG Stream to RGB format")
         }
         else if (mPixelFormat == GL_RGBA)
         {
-            mStream.SetInputPixelFormat(Streamer::PixelFormat::RGBA);
+            mStream.SetInputPixelFormat(StreamServer::PixelFormat::RGBA);
             LOG_D("Setting MPEG Stream to RGBA format")
         }        
         mStream.SetFlipImageVertically(true);
@@ -144,13 +144,13 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void EncodingCallback::SetStreamType(Streamer::StreamType type)
+    void EncodingCallback::SetStreamType(StreamServer::StreamType type)
     {
         mStream.SetStreamType(type);
     }
 
     //////////////////////////////////////////////////////////////////////////
-    Streamer::StreamType EncodingCallback::GetStreamType()
+    StreamServer::StreamType EncodingCallback::GetStreamType()
     {
         return mStream.GetStreamType();
     }

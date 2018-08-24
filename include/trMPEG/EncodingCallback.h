@@ -24,7 +24,7 @@
 #include <trMPEG/Export.h>
 
 #include <trMPEG/PBOCopyCallback.h>
-#include <trMPEG/Streamer.h>
+#include <trMPEG/StreamServer.h>
 
 #include <trBase/SmrtPtr.h>
 
@@ -192,22 +192,22 @@ namespace trMPEG
         const trMPEG::CodecBase* GetMpegType();
 
         /**
-         * @fn  void EncodingCallback::SetStreamType(Streamer::StreamType type);
+         * @fn  void EncodingCallback::SetStreamType(StreamServer::StreamType type);
          *
          * @brief   Sets stream output type. It can be a file, or a broadcast to a network port.
          *
          * @param   type    The type.
          */
-        void SetStreamType(Streamer::StreamType type);
+        void SetStreamType(StreamServer::StreamType type);
 
         /**
-         * @fn  Streamer::StreamType EncodingCallback::GetStreamType();
+         * @fn  StreamServer::StreamType EncodingCallback::GetStreamType();
          *
          * @brief   Gets stream type.
          *
          * @return  The stream type.
          */
-        Streamer::StreamType GetStreamType();
+        StreamServer::StreamType GetStreamType();
 
         /**
          * @fn  void EncodingCallback::SetResolution(int width, int height);
@@ -322,6 +322,6 @@ namespace trMPEG
         bool mEnabled = true;
 
         osg::Texture* mTexturePtr;
-        trMPEG::Streamer mStream;
+        trMPEG::StreamServer mStream;
     };
 }
