@@ -65,7 +65,7 @@ namespace trMPEG
         //open RTSP
         //if (avformat_open_input(&format_ctx, "rtsp://134.169.178.187:8554/h264.3gp", nullptr, nullptr) != 0)
         LOG_D("Opening Input")
-        if (avformat_open_input(&format_ctx, "udp://@:7000", nullptr, nullptr) != 0)
+        if (avformat_open_input(&format_ctx, "udp://192.168.1.152:7000", nullptr, nullptr) != 0)
         {
             exit(1);
         }
@@ -98,7 +98,8 @@ namespace trMPEG
         av_read_play(format_ctx);    //play RTSP
 
         // Get the codec
-        AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_H264);
+        //AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_H264);
+        AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_MPEG2VIDEO);
         if (!codec)
         {
             exit(1);
