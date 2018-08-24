@@ -27,7 +27,7 @@
 #include <osg/LightSource>
 
 static const trUtil::RefStr PROGRAM_NAME = "TrueReality";
-static const trUtil::RefStr EXE_NAME = "exampleMPEGCast";
+static const trUtil::RefStr EXE_NAME = "exampleMPEGServer";
 
 /**
  * @fn  void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel);
