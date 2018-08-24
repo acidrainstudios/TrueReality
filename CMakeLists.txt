@@ -90,6 +90,7 @@ CMAKE_DEPENDENT_OPTION (EXAMPLES_DIRECTOR "Enables the building of exampleDirect
 CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of exampleJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_LOGGING "Enables the building of exampleLogging project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_MPEG_CAST "Enables the building of exampleMPEGCast project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_UTIL; TR_BASE; TR_MPEG" OFF)
+CMAKE_DEPENDENT_OPTION (EXAMPLES_MPEG_SLAVE "Enables the building of exampleMPEGSlave project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_UTIL; TR_BASE; TR_MPEG" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_VIRTUAL_REALITY "Enables the building of exampleVR project" ON "TR_BUILD_EXAMPLES; TR_UTIL; TR_VR" OFF)
 # *****************************************************************************
 # *****************************************************************************

@@ -41,7 +41,7 @@ namespace trUtil
         std::string LogFile::mTitle("True Reality SDK Log File");
 #endif
 
-        const std::string LogFile::LOG_FILE_DEFAULT_NAME("TrueReality_Log.html");
+        const std::string LogFile::LOG_FILE_DEFAULT_NAME("TrueRealityLog.html");
         std::string LogFile::mLogFileName = LOG_FILE_DEFAULT_NAME;
 
         //////////////////////////////////////////////////////////////////////////

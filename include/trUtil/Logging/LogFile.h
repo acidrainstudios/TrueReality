@@ -62,7 +62,7 @@ namespace trUtil
             /**
              * @fn  static void LogFile::SetFileName(const std::string& name);
              *
-             * @brief   Change the name of the log file (defaults to "TrueReality_Log.html")
+             * @brief   Change the name of the log file (defaults to "TrueRealityLog.html")
              *
              * @param   name    The name.
              */

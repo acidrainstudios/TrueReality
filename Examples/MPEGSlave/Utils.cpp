@@ -46,7 +46,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string
         trUtil::Logging::LOG_ERROR_STR + "");
     arguments.getApplicationUsage()->addCommandLineOption("\n--ip <IP:PORT>", "Sets the IP and Port for broadcasting");
     arguments.getApplicationUsage()->addCommandLineOption("\n--mpegType <Mpeg Type>", "Records a file with a given mpeg format. Values are mpeg2, mpeg4, h264, h265");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--output <File Name/UDP>", "Sets a file name (Do not put an extension). Use UDP for the name to start a broadcast");
+    arguments.getApplicationUsage()->addCommandLineOption("\n--output <File Name/UDP>", "Sets a file name (don not put an extension). Use UDP for the name to start a broadcast");
 
     arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType h264", "Records OutputVid.h264");
     arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --mpegType mpeg2 --output test", "Records test.mpg");
@@ -60,7 +60,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string
         arguments.read("/?") == true)
     {
         arguments.getApplicationUsage()->write(std::cout);
-        exit(0);
+        exit(1);
     }
 
     arguments.read("--logFileName", logFileName);
@@ -80,19 +80,4 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string
     {
         fileName = "";
     }
-}
-
-//////////////////////////////////////////////////////////////////////////
-osg::LightSource* CreateLight(int lightNum)
-{
-    trBase::SmrtPtr<osg::Light> light = new osg::Light;
-    light->setLightNum(0);
-    light->setDiffuse(osg::Vec4(1.0, 1.0, 1.0, 1.0));
-    light->setPosition(osg::Vec4(0.0f, 100.0f, 0.0f, 1.0f));
-    light->setConstantAttenuation(0.00001);
-
-    osg::LightSource* lightSource0 = new osg::LightSource;
-    lightSource0->setLight(light);
-
-    return lightSource0;
 }

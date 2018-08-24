@@ -35,7 +35,8 @@
 #include <chrono>
 
 namespace trMPEG
-{    
+{   
+    const trUtil::RefStr Streamer::DEFAULT_TITLE = trUtil::RefStr("trMPEG Broadcast");
     const trUtil::RefStr Streamer::DEFAULT_PUBLISHER = trUtil::RefStr("trMPEG");
     const trUtil::RefStr Streamer::DEFAULT_COPYRIGHT = trUtil::RefStr("Acid Rain Studios LLC");
     const trUtil::RefStr Streamer::DEFAULT_FILE_NAME = trUtil::RefStr("OutputVid");
@@ -336,11 +337,18 @@ namespace trMPEG
             mCodecContextPtr->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
         }  
 
-        // Set stream information
+        // Set stream metadata
         av_dict_set(&strCont->stream->metadata, "publisher", DEFAULT_PUBLISHER, 0);
         av_dict_set(&formatContext->metadata, "publisher", DEFAULT_PUBLISHER, 0);
         av_dict_set(&strCont->stream->metadata, "copyright", DEFAULT_COPYRIGHT, 0);
         av_dict_set(&formatContext->metadata, "copyright", DEFAULT_COPYRIGHT, 0);
+        av_dict_set(&strCont->stream->metadata, "service_name", DEFAULT_PUBLISHER, 0);
+        av_dict_set(&formatContext->metadata, "service_name", DEFAULT_PUBLISHER, 0);
+        av_dict_set(&strCont->stream->metadata, "service_provider", DEFAULT_COPYRIGHT, 0);
+        av_dict_set(&formatContext->metadata, "service_provider", DEFAULT_COPYRIGHT, 0);
+        av_dict_set(&strCont->stream->metadata, "title", DEFAULT_TITLE, 0);
+        av_dict_set(&formatContext->metadata, "title", DEFAULT_TITLE, 0);  
+        
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -762,7 +770,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Streamer::SetStreamType(StreamType type)
+    void Streamer::SetStreamType(StreamType& type)
     {
         if (!mIsInit)
         {
@@ -771,7 +779,7 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    Streamer::StreamType Streamer::GetStreamType()
+    const Streamer::StreamType& Streamer::GetStreamType() const
     {
         return mStreamType;
     }
