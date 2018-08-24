@@ -19,7 +19,7 @@
 * @author Maxim Serebrennik
 */
 
-#include <Examples/MPEGCast/Utils.h>
+#include <Examples/MPEGServer/Utils.h>
 
 #include <trUtil/Exception.h>
 #include <trUtil/Logging/Log.h>
