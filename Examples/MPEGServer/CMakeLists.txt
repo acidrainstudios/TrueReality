@@ -18,11 +18,11 @@
 # @author Maxim Serebrennik
 
 # Set the executable name
-SET(FILE_NAME exampleMPEGCast)
+SET(FILE_NAME exampleMPEGServer)
 
 # Set the source and include paths
-SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/Examples/MPEGCast)
-SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/Examples/MPEGCast)
+SET(HEADER_PATH ${CMAKE_SOURCE_DIR}/Examples/MPEGServer)
+SET(SOURCE_PATH ${CMAKE_SOURCE_DIR}/Examples/MPEGServer)
 
 # Sets the sources using "GLOB"
 FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
