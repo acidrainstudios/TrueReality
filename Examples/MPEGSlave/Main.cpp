@@ -53,6 +53,44 @@ osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlForm
 }
 
 //////////////////////////////////////////////////////////////////////////
+osg::Geode* GenerateRenderTarget(osg::Texture2D* texture)
+{
+    int screenWidth = texture->getTextureWidth();
+    int screenHeight = texture->getTextureHeight();
+
+    trBase::SmrtPtr<osg::Vec3Array> verticies = new osg::Vec3Array();
+    verticies->push_back(osg::Vec3(-screenWidth, 0.0, -screenHeight));
+    verticies->push_back(osg::Vec3(-screenWidth, 0.0, screenHeight));
+    verticies->push_back(osg::Vec3(screenWidth, 0.0, -screenHeight));
+    verticies->push_back(osg::Vec3(screenWidth, 0.0, screenHeight));
+
+    trBase::SmrtPtr<osg::Vec2Array> texCoords = new osg::Vec2Array();
+    texCoords->push_back(osg::Vec2(0.0, 0.0));
+    texCoords->push_back(osg::Vec2(0.0, 1.0));
+    texCoords->push_back(osg::Vec2(1.0, 0.0));
+    texCoords->push_back(osg::Vec2(1.0, 1.0));
+
+    trBase::SmrtPtr<osg::Vec3Array> normals = new osg::Vec3Array();
+    normals->push_back(osg::Vec3(0.0, -1.0, 0.0));
+
+    trBase::SmrtPtr<osg::Geometry> quad = new osg::Geometry;
+    quad->setVertexArray(verticies.Get());
+    quad->setNormalArray(normals.Get());
+    quad->setNormalBinding(osg::Geometry::BIND_OVERALL);
+    quad->setTexCoordArray(0, texCoords.Get());
+    quad->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::TRIANGLE_STRIP, 0, 4));
+
+    trBase::SmrtPtr<osg::StateSet> stateset = new osg::StateSet;
+    stateset->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
+    quad->setStateSet(stateset);
+
+    osg::Geode* texNodePtr = new osg::Geode();
+    texNodePtr->addDrawable(quad.Get());
+
+    return texNodePtr;
+}
+
+//////////////////////////////////////////////////////////////////////////
 /**
  * @fn  int main(int argc, char** argv)
  *
@@ -86,6 +124,7 @@ int main(int argc, char** argv)
         trUtil::Console::Logo();
 
         trBase::SmrtPtr<osg::Texture2D> mTextureTarget = GenerateTexture(800, 600, GL_RGB);
+        trBase::SmrtPtr<osg::Geode> mRenderTraget = GenerateRenderTarget(mTextureTarget);
 
         trBase::SmrtPtr<osg::Image> image = new osg::Image();
         trBase::SmrtPtr<osg::Texture2D> texture = new osg::Texture2D();
