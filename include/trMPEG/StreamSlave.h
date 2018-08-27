@@ -23,6 +23,10 @@
 
 #include "Export.h"
 
+#include <trBase/SmrtPtr.h>
+
+#include <osg/Image>
+
 extern "C"
 {
 #include <libavcodec/avcodec.h>
@@ -58,16 +62,22 @@ namespace trMPEG
          */
         ~StreamSlave();
 
-        void Connect();
+        void Connect(osg::Image* targetImage);
 
         void Update();
 
     protected:
 
+        trBase::SmrtPtr<osg::Image> mImageTarget;
+
         AVFrame* mPictureYUV = nullptr;
         uint8_t* mPictureYUVBuffer = nullptr;
         AVFrame* mPictureRGB = nullptr;
         uint8_t* mPictureRGBBuffer = nullptr;
+
+        int mFrameCounter = 0;
+
+        AVStream* mStream = nullptr;
 
         AVFormatContext* mFrmtContext = nullptr;
         AVFormatContext* mOutputFrmtContext = nullptr;
@@ -80,6 +90,6 @@ namespace trMPEG
 
         int mVideoStreamIndex = 0;
 
-        std::ofstream mOutputFile;
+        //std::ofstream mOutputFile;
     };
 }

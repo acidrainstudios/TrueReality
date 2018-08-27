@@ -60,8 +60,10 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void StreamSlave::Connect()
+    void StreamSlave::Connect(osg::Image* targetImage)
     {
+        mImageTarget = targetImage;
+
         // Open the initial context variables that are needed        
         mFrmtContext = avformat_alloc_context();
         
@@ -141,43 +143,54 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     void StreamSlave::Update()
     {
-        AVStream* stream = nullptr;
-        int cnt = 0;
+        //while (av_read_frame(mFrmtContext, &mPacket) >= 0 && cnt < 1000)
+        av_read_frame(mFrmtContext, &mPacket);
+        //{ //read ~ 1000 frames
 
-        while (av_read_frame(mFrmtContext, &mPacket) >= 0 && cnt < 1000)
-        { //read ~ 1000 frames
-
-            std::cerr << "1 Frame: " << cnt << std::endl;
+            //std::cerr << "1 Frame: " << cnt << std::endl;
             if (mPacket.stream_index == mVideoStreamIndex)
             {    //packet is video
 
-                std::cerr << "2 Is Video" << std::endl;
-                if (stream == nullptr)
+                //std::cerr << "2 Is Video" << std::endl;
+                if (mStream == nullptr)
                 {
                     //create stream in file
                     std::cerr << "3 create stream" << std::endl;
-                    stream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
-                    avcodec_copy_context(stream->codec, mFrmtContext->streams[mVideoStreamIndex]->codec);
-                    stream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
+                    mStream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
+                    avcodec_copy_context(mStream->codec, mFrmtContext->streams[mVideoStreamIndex]->codec);
+                    mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
                 }
 
                 int check = 0;
-                mPacket.stream_index = stream->id;
-                std::cerr << "4 decoding" << std::endl;
+                mPacket.stream_index = mStream->id;
+                //std::cerr << "4 decoding" << std::endl;
                 int result = avcodec_decode_video2(mCodecContext, mPictureYUV, &check, &mPacket);
-                std::cerr << "Bytes decoded " << result << " check " << check << std::endl;
+                std::cerr << "Frame: " << mFrameCounter <<" Bytes decoded " << result << " check " << check << std::endl;
 
+                
                 //memcpy(mImage->data(), src, mWidth * mHeight * (mPixelFormat == GL_RGB ? 3 : 4));
 
-                if (cnt > 500)    //cnt < 0)
+                if (mFrameCounter > 100)    //cnt < 0)
                 {
                     sws_scale(mFrameConvertCtx, mPictureYUV->data, mPictureYUV->linesize, 0, mCodecContext->height, mPictureRGB->data, mPictureRGB->linesize);
-                    std::stringstream file_name;
-                    file_name << "test" << cnt << ".ppm";
+                    /*std::stringstream file_name;
+                    file_name << "test" << mFrameCounter << ".ppm";
                     mOutputFile.open(file_name.str().c_str());
-                    mOutputFile << "P3 " << mCodecContext->width << " " << mCodecContext->height << " 255\n";
+                    mOutputFile << "P3 " << mCodecContext->width << " " << mCodecContext->height << " 255\n";*/
 
-                    for (int y = 0; y < mCodecContext->height; ++y)
+
+                    if (mImageTarget.Valid())
+                    {
+                        std::cerr << "Writing Frame: " << mFrameCounter << std::endl;
+                        //memcpy(mImageTarget->data(), mPictureRGB->data, mCodecContext->width * mCodecContext->height * 3);
+                        memcpy(mImageTarget->data(), mPictureRGB->data[0], mPictureRGB->linesize[0] * mCodecContext->height);
+                        std::cerr << "Copied Data" << std::endl;
+                        mImageTarget->dirty();
+                        std::cerr << "Done!" << std::endl;
+                    }
+
+
+                    /*for (int y = 0; y < mCodecContext->height; ++y)
                     {
                         for (int x = 0; x < mCodecContext->width * 3; ++x)
                         {
@@ -185,12 +198,12 @@ namespace trMPEG
                         }
 
                     }
-                    mOutputFile.close();
+                    mOutputFile.close();*/
                 }
-                cnt++;
+                ++mFrameCounter;
             }
             av_free_packet(&mPacket);
             av_init_packet(&mPacket);
-        }
+        //}
     }
 }
