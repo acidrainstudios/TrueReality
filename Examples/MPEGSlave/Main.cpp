@@ -22,6 +22,7 @@
 #pragma once
 
 #include "Utils.h"
+#include "WinDefaultConfig.h"
 
 #include <trBase/SmrtPtr.h>
 #include <trMPEG/StreamSlave.h>
@@ -37,13 +38,26 @@
 #include <osg/Geode>
 #include <osg/Geometry>
 #include <osg/Texture2D>
-#include <osgViewer/Viewer>
+#include <osgGA/TrackballManipulator>
+#include <osgViewer/CompositeViewer>
+#include <osgViewer/ViewerEventHandlers>
 #include <osgViewer/GraphicsWindow>
 #include <osgDB/ReadFile>
 
 #include <iostream>
 
 static const trUtil::RefStr RING_TEXTURE = trUtil::RefStr(trUtil::PathUtils::GetTexturesPath() + "/RingArrayStill/RingArray.jpg");
+
+static const int WIN_WIDTH = 1280;
+static const int WIN_HEIGHT = 720;
+static const int WIN_POS_X = 200;
+static const int WIN_POS_Y = 200;
+
+static const double CAM_NEAR_CLIP = 0.1;
+static const double CAM_FAR_CLIP = 10000.0;
+static const double CAM_FOV = 25;
+
+static const int SAMPLE_NUM = 4;
 
 //////////////////////////////////////////////////////////////////////////
 osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlFormat)
@@ -55,6 +69,8 @@ osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlForm
     textureTargetPtr->setFilter(osg::Texture2D::MIN_FILTER, osg::Texture2D::LINEAR_MIPMAP_LINEAR);
     textureTargetPtr->setFilter(osg::Texture2D::MAG_FILTER, osg::Texture2D::LINEAR);
 
+    //trBase::SmrtPtr<osg::Image> image = new osg::Image();//osgDB::readImageFile(RING_TEXTURE);
+    //image->allocateImage(WIN_WIDTH, WIN_HEIGHT, 0, GL_RGB, );
     trBase::SmrtPtr<osg::Image> image = osgDB::readImageFile(RING_TEXTURE);
     textureTargetPtr->setImage(image.Get());
 
@@ -132,16 +148,45 @@ int main(int argc, char** argv)
         //Show Logo
         trUtil::Console::Logo();
 
-        trBase::SmrtPtr<osg::Texture2D> mTextureTarget = GenerateTexture(800, 600, GL_RGB);
-        trBase::SmrtPtr<osg::Geode> mRenderTraget = GenerateRenderTarget(mTextureTarget);
+        trBase::SmrtPtr<osg::Texture2D> textureTarget = GenerateTexture(WIN_WIDTH, WIN_HEIGHT, GL_RGB);
+        trBase::SmrtPtr<osg::Geode> rootNode = GenerateRenderTarget(textureTarget);
 
-        osgViewer::Viewer viewer;
-        viewer.setSceneData(mRenderTraget);
-        //viewer.getWindows()
-        viewer.run();
+        //Create our View
+        trBase::SmrtPtr<osgViewer::View> mainView = new osgViewer::View();
+        mainView->setSceneData(rootNode.Get());
+        mainView->apply(new WinDefaultConfig(WIN_POS_X, WIN_POS_Y, WIN_WIDTH, WIN_HEIGHT, 0U, true, CAM_NEAR_CLIP, CAM_FAR_CLIP, CAM_FOV));
 
-        //trMPEG::StreamSlave stream;
-        //stream.Run();
+        //Adds the statistics handler. 
+        mainView->addEventHandler(new osgViewer::StatsHandler);
+
+        //Set up the viewer
+        osgViewer::CompositeViewer viewer;
+        viewer.addView(mainView);
+
+        //Set up the stream reader
+        trMPEG::StreamSlave stream;
+        stream.Connect(textureTarget->getImage());
+
+        //Set up the main frame loop
+        if ((mainView->getCameraManipulator() == 0) && mainView->getCamera()->getAllowEventFocus())
+        {
+            mainView->setCameraManipulator(new osgGA::TrackballManipulator());
+        }
+        viewer.setReleaseContextAtEndOfFrameHint(true);
+        if (!viewer.isRealized())
+        {
+            viewer.realize();
+        }
+
+        //Run the main frame loop
+        while (!viewer.done())
+        {
+            stream.Update();
+            viewer.frame();
+        }
+        return 0;
+
+        
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
