@@ -37,8 +37,13 @@
 #include <osg/Geode>
 #include <osg/Geometry>
 #include <osg/Texture2D>
+#include <osgViewer/Viewer>
+#include <osgViewer/GraphicsWindow>
+#include <osgDB/ReadFile>
 
 #include <iostream>
+
+static const trUtil::RefStr RING_TEXTURE = trUtil::RefStr(trUtil::PathUtils::GetTexturesPath() + "/RingArrayStill/RingArray.jpg");
 
 //////////////////////////////////////////////////////////////////////////
 osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlFormat)
@@ -49,6 +54,10 @@ osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlForm
     textureTargetPtr->setInternalFormat(pxlFormat);
     textureTargetPtr->setFilter(osg::Texture2D::MIN_FILTER, osg::Texture2D::LINEAR_MIPMAP_LINEAR);
     textureTargetPtr->setFilter(osg::Texture2D::MAG_FILTER, osg::Texture2D::LINEAR);
+
+    trBase::SmrtPtr<osg::Image> image = osgDB::readImageFile(RING_TEXTURE);
+    textureTargetPtr->setImage(image.Get());
+
     return textureTargetPtr;
 }
 
@@ -126,14 +135,13 @@ int main(int argc, char** argv)
         trBase::SmrtPtr<osg::Texture2D> mTextureTarget = GenerateTexture(800, 600, GL_RGB);
         trBase::SmrtPtr<osg::Geode> mRenderTraget = GenerateRenderTarget(mTextureTarget);
 
-        trBase::SmrtPtr<osg::Image> image = new osg::Image();
-        trBase::SmrtPtr<osg::Texture2D> texture = new osg::Texture2D();
-        texture->setImage(image.Get());
-        trBase::SmrtPtr<osg::Drawable> quad = osg::createTexturedQuadGeometry(osg::Vec3(), osg::Vec3(1.0f, 0.0f, 0.0), osg::Vec3(0.0f, 0.0f, 1.0f));
+        osgViewer::Viewer viewer;
+        viewer.setSceneData(mRenderTraget);
+        //viewer.getWindows()
+        viewer.run();
 
-
-        trMPEG::StreamSlave stream;
-        stream.Run();
+        //trMPEG::StreamSlave stream;
+        //stream.Run();
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
