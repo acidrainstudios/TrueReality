@@ -158,17 +158,18 @@ protected:
     ~TxtrCameraObject();
 
     /**
-     * @fn  virtual osg::Texture2D* TxtrCameraObject::GenerateTexture(int screenWidth = DEFAULT_SCREEN_WIDTH, int screenHeight = DEFAULT_SCREEN_HEIGHT);
+     * @fn  virtual osg::Texture2D* TxtrCameraObject::GenerateTexture(int screenWidth = DEFAULT_SCREEN_WIDTH, int screenHeight = DEFAULT_SCREEN_HEIGHT, GLint pxlFormat = GL_RGBA);
      *
      * @brief   Generates a texture target for rendering.
      *
      * @param   screenWidth     (Optional) Width of the screen.
      * @param   screenHeight    (Optional) Height of the screen.
+     * @param   pxlFormat       (Optional) The pixel format.
      *
      * @return  Null if it fails, else the texture pointer. The pointer is unmanaged so the user
      *          needs to release it after he is done with it.
      */
-    virtual osg::Texture2D* GenerateTexture(int screenWidth = DEFAULT_SCREEN_WIDTH, int screenHeight = DEFAULT_SCREEN_HEIGHT);
+    virtual osg::Texture2D* GenerateTexture(int screenWidth = DEFAULT_SCREEN_WIDTH, int screenHeight = DEFAULT_SCREEN_HEIGHT, GLint pxlFormat = GL_RGBA);
 
     /**
      * @fn  virtual osg::Geode* TxtrCameraObject::GenerateRenderTarget(osg::Texture2D* texture);

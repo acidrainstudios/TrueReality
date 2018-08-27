@@ -117,12 +117,12 @@ TxtrCameraObject::~TxtrCameraObject()
 }
 
 //////////////////////////////////////////////////////////////////////////
-osg::Texture2D* TxtrCameraObject::GenerateTexture(int screenWidth, int screenHeight)
+osg::Texture2D* TxtrCameraObject::GenerateTexture(int screenWidth, int screenHeight, GLint pxlFormat)
 {
     osg::Texture2D* textureTargetPtr = new osg::Texture2D();
     textureTargetPtr->setResizeNonPowerOfTwoHint(false);
     textureTargetPtr->setTextureSize(screenWidth, screenHeight);
-    textureTargetPtr->setInternalFormat(GL_RGBA);
+    textureTargetPtr->setInternalFormat(pxlFormat);
     textureTargetPtr->setFilter(osg::Texture2D::MIN_FILTER, osg::Texture2D::LINEAR_MIPMAP_LINEAR);
     textureTargetPtr->setFilter(osg::Texture2D::MAG_FILTER, osg::Texture2D::LINEAR);
     return textureTargetPtr;
