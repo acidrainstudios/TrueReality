@@ -23,6 +23,16 @@
 
 #include "Export.h"
 
+extern "C"
+{
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+//#include <libavformat/avio.h>
+#include <libswscale/swscale.h>
+}
+
+#include <fstream>
+
 namespace trMPEG
 {
     /**
@@ -48,12 +58,28 @@ namespace trMPEG
          */
         ~StreamSlave();
 
-        /**
-         * @fn  void StreamSlave::Run();
-         *
-         * @brief   Starts capturing the MPEG Stream
-         */
-        void Run();
+        void Connect();
 
+        void Update();
+
+    protected:
+
+        AVFrame* mPictureYUV = nullptr;
+        uint8_t* mPictureYUVBuffer = nullptr;
+        AVFrame* mPictureRGB = nullptr;
+        uint8_t* mPictureRGBBuffer = nullptr;
+
+        AVFormatContext* mFrmtContext = nullptr;
+        AVFormatContext* mOutputFrmtContext = nullptr;
+
+        AVCodecContext* mCodecContext = nullptr;
+
+        SwsContext* mFrameConvertCtx = nullptr;
+
+        AVPacket mPacket;
+
+        int mVideoStreamIndex = 0;
+
+        std::ofstream mOutputFile;
     };
 }
