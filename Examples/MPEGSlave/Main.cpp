@@ -23,6 +23,7 @@
 
 #include "Utils.h"
 
+#include <trBase/SmrtPtr.h>
 #include <trMPEG/StreamSlave.h>
 #include <trUtil/Console/Logo.h>
 #include <trUtil/Console/TextColor.h>
@@ -31,8 +32,27 @@
 #include <trUtil/Logging/Log.h>
 #include <trUtil/PathUtils.h>
 
+#include <osg/Image>
+#include <osg/ImageStream>
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/Texture2D>
+
 #include <iostream>
 
+//////////////////////////////////////////////////////////////////////////
+osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlFormat)
+{
+    osg::Texture2D* textureTargetPtr = new osg::Texture2D();
+    textureTargetPtr->setResizeNonPowerOfTwoHint(false);
+    textureTargetPtr->setTextureSize(screenWidth, screenHeight);
+    textureTargetPtr->setInternalFormat(pxlFormat);
+    textureTargetPtr->setFilter(osg::Texture2D::MIN_FILTER, osg::Texture2D::LINEAR_MIPMAP_LINEAR);
+    textureTargetPtr->setFilter(osg::Texture2D::MAG_FILTER, osg::Texture2D::LINEAR);
+    return textureTargetPtr;
+}
+
+//////////////////////////////////////////////////////////////////////////
 /**
  * @fn  int main(int argc, char** argv)
  *
@@ -64,6 +84,14 @@ int main(int argc, char** argv)
     {
         //Show Logo
         trUtil::Console::Logo();
+
+        trBase::SmrtPtr<osg::Texture2D> mTextureTarget = GenerateTexture(800, 600, GL_RGB);
+
+        trBase::SmrtPtr<osg::Image> image = new osg::Image();
+        trBase::SmrtPtr<osg::Texture2D> texture = new osg::Texture2D();
+        texture->setImage(image.Get());
+        trBase::SmrtPtr<osg::Drawable> quad = osg::createTexturedQuadGeometry(osg::Vec3(), osg::Vec3(1.0f, 0.0f, 0.0), osg::Vec3(0.0f, 0.0f, 1.0f));
+
 
         trMPEG::StreamSlave stream;
         stream.Run();
