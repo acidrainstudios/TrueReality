@@ -3,6 +3,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/acidrainstudios/truereality.svg?style=for-the-badge)
 ![GitHub release](https://img.shields.io/github/release/acidrainstudios/truereality.svg?style=for-the-badge)
 ![90+%](https://img.shields.io/github/languages/top/acidrainstudios/truereality.svg?style=for-the-badge&colorB=green)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3d4c232d277c45fd8ca75eb3c05e7517)](https://app.codacy.com/app/acidrainstudiosllc/TrueReality?utm_source=github.com&utm_medium=referral&utm_content=acidrainstudios/TrueReality&utm_campaign=Badge_Grade_Settings)
 [![License](https://img.shields.io/github/license/acidrainstudios/truereality.svg?style=for-the-badge)](https://github.com/acidrainstudios/TrueReality/blob/master/LICENSE)
 
 
