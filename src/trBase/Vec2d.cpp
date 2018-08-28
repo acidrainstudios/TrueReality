@@ -32,8 +32,8 @@ namespace trBase
 {
     //////////////////////////////////////////////////////////////////////////
     Vec2d::Vec2d(const osg::Vec2f &v)
+        : mVec(static_cast<double>(v.x()), static_cast<double>(v.y()))
     {
-        mVec.set(static_cast<double>(v.x()), static_cast<double>(v.y()));
     }
 
     //////////////////////////////////////////////////////////////////////////
