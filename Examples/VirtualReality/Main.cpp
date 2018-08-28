@@ -39,7 +39,7 @@ static const std::string LOG_FILE_NAME = "VRExample.html";
 int main(int argc, char** argv)
 {
     //Set default logging level
-    trUtil::DefaultSettings::SetupLoggingOptions(LOG_FILE_NAME, "Info");
+    trUtil::DefaultSettings::SetupLoggingOptions(LOG_FILE_NAME, "Debug");
     
     //Parse command line arguments
     ParseCmdLineArgs(argc, argv);
@@ -55,6 +55,19 @@ int main(int argc, char** argv)
         trBase::SmrtPtr<trVR::VrBase> vrInstance = new trVR::VrBase;
         
         vrInstance->Init();
+        
+        //while (vrInstance->IsSystemReady())
+        for (unsigned int i = 0; i < 1000; ++i)
+        {
+            vrInstance->GetHeadsetPose();
+            if (i % 50 == 0)
+            {
+                std::cout << "Orientation: " << vrInstance->GetOrientation() << std::endl;
+                std::cout << "Position: " << vrInstance->GetPosition() << std::endl;
+            }
+        }
+        
+        vrInstance->Shutdown();
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
