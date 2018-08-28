@@ -31,8 +31,8 @@ namespace trBase
 {
     //////////////////////////////////////////////////////////////////////////
     Vec3d::Vec3d(const osg::Vec3f &v)
-    {
-        mVec.set(static_cast<double>(v.x()), static_cast<double>(v.y()), static_cast<double>(v.z()));
+        : mVec(static_cast<double>(v.x()), static_cast<double>(v.y()), static_cast<double>(v.z()))
+    {        
     }
 
     //////////////////////////////////////////////////////////////////////////
