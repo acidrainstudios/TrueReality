@@ -14,10 +14,13 @@ CMakeFiles/*
 *.log
 *.stamp
 *.depend
+*.swp
 cmake_install.cmake
 CMakeCache.txt
 include/trUtil/TypeConfig.h
 build/*
+build-release/*
+build-debug/*
 TR_Ext_0.2_msvc14.15_x64.zip
 Data.zip
 Data/GUI/*
