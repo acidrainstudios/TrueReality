@@ -52,9 +52,13 @@ public:
     trBase::Vec3d mTestRadVec = trBase::Vec3d(-0.436, 1.204, 2.094);
     trBase::Vec3d mTestDegVec = trBase::Vec3d(-25.000, 69.000, 120.000);
 
-    trBase::Vec3d mXVec = trBase::Vec3d(1.0, 0.0, 0.0);
-    trBase::Vec3d mYVec = trBase::Vec3d(0.0, 1.0, 0.0);
-    trBase::Vec3d mZVec = trBase::Vec3d(0.0, 0.0, 1.0);
+    trBase::Vec3d mXVecD = trBase::Vec3d(1.0, 0.0, 0.0);
+    trBase::Vec3d mYVecD = trBase::Vec3d(0.0, 1.0, 0.0);
+    trBase::Vec3d mZVecD = trBase::Vec3d(0.0, 0.0, 1.0);
+
+    trBase::Vec3f mXVecF = trBase::Vec3f(1.0f, 0.0f, 0.0f);
+    trBase::Vec3f mYVecF = trBase::Vec3f(0.0f, 1.0f, 0.0f);
+    trBase::Vec3f mZVecF = trBase::Vec3f(0.0f, 0.0f, 1.0f);
 
     /**
      * @fn  public::QuatTests();
