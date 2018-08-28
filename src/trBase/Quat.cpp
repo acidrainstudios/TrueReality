@@ -291,6 +291,12 @@ namespace trBase
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void Quat::Clear()
+    {
+        mQuat.set(0.0, 0.0, 0.0, 1.0);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     void Quat::Slerp(value_type  t, const Quat& from, const Quat& to)
     {
         mQuat.slerp(t, from, to);

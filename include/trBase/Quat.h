@@ -386,6 +386,13 @@ namespace trBase
         void GetRotate(value_type& angle, Vec3d& vec) const;
 
         /**
+         * @fn  void Quat::Clear();
+         *
+         * @brief   Clears this object to its blank/initial state.
+         */
+        void Clear();
+
+        /**
          * @brief   Spherical Linear Interpolation. As t goes from 0 to 1, the Quat object goes from
          *          "from" to "to".
          *
