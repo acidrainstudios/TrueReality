@@ -172,7 +172,34 @@ TEST_F(QuatTests, CreateQuatFromFloats)
     EXPECT_EQ(mTestQuat.W(), 1.0);
 }
 
+/**
+ * @fn  TEST_F(QuatTests, CreateQuatFromVec4f)
+ *
+ * @brief   Test the creation of a Quaternion from a Float Vector.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(QuatTests, CreateQuatFromVec4f)
+{
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
 
+    mTestQuat = trBase::Quat(mTestQuatVecF);
+    EXPECT_NEAR(mTestQuat.X(), 0.635, 1e-6);
+    EXPECT_NEAR(mTestQuat.Y(), 0.431, 1e-6);
+    EXPECT_NEAR(mTestQuat.Z(), 0.390, 1e-6);
+    EXPECT_NEAR(mTestQuat.W(), 0.508, 1e-6);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+}
 
 
     /**
