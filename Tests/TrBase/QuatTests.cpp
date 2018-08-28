@@ -231,9 +231,9 @@ TEST_F(QuatTests, CreateQuatFromVec4d)
 }
 
 /**
- * @fn  TEST_F(QuatTests, CreateQuatFromVec4d)
+ * @fn  TEST_F(QuatTests, CreateQuatFromAngleAndAxisF)
  *
- * @brief   Test the creation of a Quaternion from a Radian angle and an Axis
+ * @brief   Test the creation of a Quaternion from a Radian angle and a Float Axis.
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
@@ -247,10 +247,10 @@ TEST_F(QuatTests, CreateQuatFromAngleAndAxisF)
     EXPECT_EQ(mTestQuat.W(), 1.0);
 
     mTestQuat = trBase::Quat(1.216, mXVecF);
-    EXPECT_NEAR(mTestQuat.X(), 0.571f, 1e-3);
+    EXPECT_NEAR(mTestQuat.X(), 0.571227019423115823f, 1e-6);
     EXPECT_NEAR(mTestQuat.Y(), 0.0f, 1e-3);
     EXPECT_NEAR(mTestQuat.Z(), 0.0f, 1e-3);
-    EXPECT_NEAR(mTestQuat.W(), 0.821f, 1e-3);
+    EXPECT_NEAR(mTestQuat.W(), 0.820792112706368093f, 1e-6);
 
     mTestQuat.Clear();
     EXPECT_EQ(mTestQuat.X(), 0.0);
@@ -260,9 +260,9 @@ TEST_F(QuatTests, CreateQuatFromAngleAndAxisF)
 
     mTestQuat = trBase::Quat(1.216, mYVecF);
     EXPECT_NEAR(mTestQuat.X(), 0.0f, 1e-3);
-    EXPECT_NEAR(mTestQuat.Y(), 0.571f, 1e-3);
+    EXPECT_NEAR(mTestQuat.Y(), 0.571227019423115823f, 1e-6);
     EXPECT_NEAR(mTestQuat.Z(), 0.0f, 1e-3);
-    EXPECT_NEAR(mTestQuat.W(), 0.821f, 1e-3);
+    EXPECT_NEAR(mTestQuat.W(), 0.820792112706368093f, 1e-6);
 
     mTestQuat.Clear();
     EXPECT_EQ(mTestQuat.X(), 0.0);
@@ -273,8 +273,61 @@ TEST_F(QuatTests, CreateQuatFromAngleAndAxisF)
     mTestQuat = trBase::Quat(1.216, mZVecF);
     EXPECT_NEAR(mTestQuat.X(), 0.0f, 1e-3);
     EXPECT_NEAR(mTestQuat.Y(), 0.0f, 1e-3);
-    EXPECT_NEAR(mTestQuat.Z(), 0.571f, 1e-3);
-    EXPECT_NEAR(mTestQuat.W(), 0.821f, 1e-3);
+    EXPECT_NEAR(mTestQuat.Z(), 0.571227019423115823f, 1e-6);
+    EXPECT_NEAR(mTestQuat.W(), 0.820792112706368093f, 1e-6);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+}
+
+/**
+ * @fn  TEST_F(QuatTests, CreateQuatFromAngleAndAxisD)
+ *
+ * @brief   Test the creation of a Quaternion from a Radian angle and a Double Axis.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(QuatTests, CreateQuatFromAngleAndAxisD)
+{
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+
+    mTestQuat = trBase::Quat(1.216, mXVecD);
+    EXPECT_EQ(mTestQuat.X(), 0.571227019423115823);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 0.820792112706368093);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+
+    mTestQuat = trBase::Quat(1.216, mYVecD);
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.571227019423115823);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 0.820792112706368093);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+
+    mTestQuat = trBase::Quat(1.216, mZVecD);
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.571227019423115823);
+    EXPECT_EQ(mTestQuat.W(), 0.820792112706368093);
 
     mTestQuat.Clear();
     EXPECT_EQ(mTestQuat.X(), 0.0);
