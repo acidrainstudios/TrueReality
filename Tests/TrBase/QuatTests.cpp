@@ -365,6 +365,34 @@ TEST_F(QuatTests, CreateQuatFromAnglesAndAxisesF)
     EXPECT_EQ(mTestQuat.W(), 1.0);
 }
 
+/**
+ * @fn  TEST_F(QuatTests, CreateQuatFromAnglesAndAxisesD)
+ *
+ * @brief   Test the creation of a Quaternion from a Radian angles and a Double Axises.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(QuatTests, CreateQuatFromAnglesAndAxisesD)
+{
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+
+    mTestQuat = trBase::Quat(-0.436, mXVecD, 1.216, mYVecD, 1.955, mZVecD);
+    EXPECT_EQ(mTestQuat.X(), -0.5616464971941317);
+    EXPECT_EQ(mTestQuat.Y(), 0.1646312318780489);
+    EXPECT_EQ(mTestQuat.Z(), 0.7334867735370875);
+    EXPECT_EQ(mTestQuat.W(), 0.345610941270718);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+}
 
     /**
         trBase::Vec4d mTestQuatVec = trBase::Vec4d(0.635, 0.431, 0.390, 0.508);
