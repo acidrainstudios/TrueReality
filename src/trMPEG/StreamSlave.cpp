@@ -89,7 +89,7 @@ namespace trMPEG
         //search video stream
         for (unsigned int i = 0; i < mFrmtContext->nb_streams; ++i)
         {
-            if (mFrmtContext->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO)
+            if (mFrmtContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO)
             {
                 mVideoStreamIndex = i;
             }
