@@ -25,7 +25,10 @@
 #include <trVR/Export.h>
 
 #include <trBase/Base.h>
+#include <trBase/Matrix.h>
+#include <trBase/Quat.h>
 #include <trBase/SmrtPtr.h>
+#include <trBase/Vec3.h>
 
 #include <openvr/openvr.h>
 
@@ -71,6 +74,60 @@ namespace trVR
          * Initializes the VR instance
          */
         void Init();
+        
+        /**
+         * Returns the last orientation of the device.
+         * @return quaternion holding the orientation of the device
+         */
+        trBase::Quat GetOrientation() const;
+        
+        /**
+         * Returns the last position of the device.
+         * @return vector containing the position of the device.
+         */
+        trBase::Vec3 GetPosition() const;
+        
+        /**
+         * Gets the current pose of the headset and sets the member variables.
+         */
+        void GetHeadsetPose();
+        
+        /**
+         * Takes an OpenVR matrix and converts it to a trBase::Matrix
+         * @param mat OpenVR matrix type
+         * @return trBase::Matrix containing the OpenVR matrix data.
+         */
+        trBase::Matrix ConvertOpenvrMatrix(const vr::HmdMatrix34_t& mat);
+        
+        /**
+         * Takes an OpenVR matrix and converts it to a trBase::Matrix
+         * @param mat OpenVR matrix type
+         * @return trBase::Matrix containing the OpenVR matrix data.
+         */
+        trBase::Matrix ConvertOpenvrMatrix(const vr::HmdMatrix44_t& mat);
+        
+        /**
+         * Returns the status of the HMD
+         * @return Boolean containing the status of the headset
+         */
+        bool IsHMDPresent() const;
+        
+        /**
+         * Returns the status of the OpenVR/SteamVR system
+         * @return Boolean containing the status of the OpenVR/SteamVR system
+         */
+        bool IsSystemReady() const;
+        
+        /**
+         * Returns the initialization status of the class.
+         * @return Boolean containing the status of the initialization of the class
+         */
+        bool IsInit() const;
+        
+        /**
+         * Performs the shutdown process of OpenVR/SteamVR
+         */
+        void Shutdown();
 
     protected:
         /**
@@ -85,5 +142,10 @@ namespace trVR
         
     private:
         std::string GetDeviceProperty(vr::TrackedDeviceProperty property);
+        
+        bool mInit = false; /// Class initialization status
+        trBase::Quat mOrientation; /// Headset orientation
+        trBase::Vec3 mPosition; /// Headset position
+        bool mSysReady = false; /// OpenVR system initialization status
     };
 }
