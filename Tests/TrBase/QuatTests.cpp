@@ -114,6 +114,35 @@ TEST_F(QuatTests, CreateQuatFromOSGQuat)
     EXPECT_EQ(mTestQuat.W(), 1.0);
 }
 
+/**
+ * @fn  TEST_F(QuatTests, CreateQuatFromDoubles)
+ *
+ * @brief   Test the creation of a Quaternion from Doubles
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(QuatTests, CreateQuatFromDoubles)
+{
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+
+    mTestQuat = trBase::Quat(0.635, 0.431, 0.390, 0.508);
+    EXPECT_EQ(mTestQuat.X(), 0.635);
+    EXPECT_EQ(mTestQuat.Y(), 0.431);
+    EXPECT_EQ(mTestQuat.Z(), 0.390);
+    EXPECT_EQ(mTestQuat.W(), 0.508);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+}
+
 
 
 
