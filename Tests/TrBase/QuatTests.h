@@ -25,6 +25,9 @@
 
 #include <trBase/Quat.h>
 #include <trBase/Vec4d.h>
+#include <trBase/Vec4f.h>
+#include <trBase/Vec3d.h>
+#include <trBase/Vec3f.h>
 
 #include <osg/Quat>
 
@@ -42,6 +45,7 @@ public:
     trBase::Quat mTestQuat;
 
     // Quaternion values in quat, degrees and radians
+    trBase::Quat mQuat = trBase::Quat(0.635, 0.431, 0.390, 0.508);
     osg::Quat mOsgQuat = osg::Quat(0.635, 0.431, 0.390, 0.508);
     trBase::Vec4d mTestQuatVec = trBase::Vec4d(0.635, 0.431, 0.390, 0.508);
     trBase::Vec3d mTestRadVec = trBase::Vec3d(-0.436, 1.204, 2.094);

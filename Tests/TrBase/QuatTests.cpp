@@ -37,7 +37,7 @@ QuatTests::~QuatTests()
 /**
  * @fn  TEST_F(MatrixTests, CreateMatrix)
  *
- * @brief   Test the creation of a default Matrix.
+ * @brief   Test the creation of a default Quaternion.
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
@@ -50,6 +50,35 @@ TEST_F(QuatTests, CreateQuaternion)
     EXPECT_EQ(mTestQuat.Y(), 0.0);
     EXPECT_EQ(mTestQuat.Z(), 0.0);
     EXPECT_EQ(mTestQuat.W(), 1.0);
+}
+
+/**
+ * @fn  TEST_F(QuatTests, CreateQuatFromQuat)
+ *
+ * @brief   Test the creation of a Quaternion from a Quaternion
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(QuatTests, CreateQuatFromQuat)
+{
+    EXPECT_EQ(mQuat.X(), 0.635);
+    EXPECT_EQ(mQuat.Y(), 0.431);
+    EXPECT_EQ(mQuat.Z(), 0.390);
+    EXPECT_EQ(mQuat.W(), 0.508);
+
+    mTestQuat = trBase::Quat(mQuat);
+    EXPECT_EQ(mTestQuat.X(), 0.635);
+    EXPECT_EQ(mTestQuat.Y(), 0.431);
+    EXPECT_EQ(mTestQuat.Z(), 0.390);
+    EXPECT_EQ(mTestQuat.W(), 0.508);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+}
 
 
     /**
@@ -59,4 +88,3 @@ TEST_F(QuatTests, CreateQuaternion)
 
         EXPECT_NEAR(mTestMatrixF1(3, 0), 4.5, 1e-6);
     */
-}
