@@ -27,60 +27,61 @@ namespace trBase
 {
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat()
+        :mQuat()
     {}
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(const Quat& q)
+        :mQuat(q.X(), q.Y(), q.Z(), q.W())
     {
-        mQuat.set(q.X(), q.Y(), q.Z(), q.W());
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(const osg::Quat& q)
+        :mQuat(q.x(), q.y(), q.z(), q.w())
     {
-        mQuat.set(q.x(), q.y(), q.z(), q.w());
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(value_type x, value_type y, value_type z, value_type w)
+        :mQuat(x, y, z, w)
     {
-        mQuat.set(x, y, z, w);
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(const Vec4f& v)
+        :mQuat(v)
     {
-        mQuat.set(v);
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(const Vec4d& v)
+        :mQuat(v)
     {
-        mQuat.set(v);
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(value_type angle, const Vec3f& axis)
+        :mQuat(angle, axis)
     {
-        mQuat.makeRotate(angle, axis);
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(value_type angle, const Vec3d& axis)
+        :mQuat(angle, axis)
     {
-        mQuat.makeRotate(angle, axis);
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(value_type angle1, const Vec3f& axis1, value_type angle2, const Vec3f& axis2, value_type angle3, const Vec3f& axis3)
+        :mQuat(angle1, axis1, angle2, axis2, angle3, axis3)
     {
-        mQuat.makeRotate(angle1, axis1, angle2, axis2, angle3, axis3);
     }
 
     //////////////////////////////////////////////////////////////////////////
     Quat::Quat(value_type angle1, const Vec3d& axis1, value_type angle2, const Vec3d& axis2, value_type angle3, const Vec3d& axis3)
+        :mQuat(angle1, axis1, angle2, axis2, angle3, axis3)
     {
-        mQuat.makeRotate(angle1, axis1, angle2, axis2, angle3, axis3);
     }
 
     //////////////////////////////////////////////////////////////////////////
