@@ -80,6 +80,42 @@ TEST_F(QuatTests, CreateQuatFromQuat)
     EXPECT_EQ(mTestQuat.W(), 1.0);
 }
 
+/**
+ * @fn  TEST_F(QuatTests, CreateQuatFromOSGQuat)
+ *
+ * @brief   Test the creation of a Quaternion from an OSG Quaternion
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(QuatTests, CreateQuatFromOSGQuat)
+{
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+
+    EXPECT_EQ(mOsgQuat.x(), 0.635);
+    EXPECT_EQ(mOsgQuat.y(), 0.431);
+    EXPECT_EQ(mOsgQuat.z(), 0.390);
+    EXPECT_EQ(mOsgQuat.w(), 0.508);
+
+    mTestQuat = trBase::Quat(mOsgQuat);
+    EXPECT_EQ(mTestQuat.X(), 0.635);
+    EXPECT_EQ(mTestQuat.Y(), 0.431);
+    EXPECT_EQ(mTestQuat.Z(), 0.390);
+    EXPECT_EQ(mTestQuat.W(), 0.508);
+
+    mTestQuat.Clear();
+    EXPECT_EQ(mTestQuat.X(), 0.0);
+    EXPECT_EQ(mTestQuat.Y(), 0.0);
+    EXPECT_EQ(mTestQuat.Z(), 0.0);
+    EXPECT_EQ(mTestQuat.W(), 1.0);
+}
+
+
+
 
     /**
         trBase::Vec4d mTestQuatVec = trBase::Vec4d(0.635, 0.431, 0.390, 0.508);

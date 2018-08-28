@@ -47,10 +47,14 @@ public:
     // Quaternion values in quat, degrees and radians
     trBase::Quat mQuat = trBase::Quat(0.635, 0.431, 0.390, 0.508);
     osg::Quat mOsgQuat = osg::Quat(0.635, 0.431, 0.390, 0.508);
-    trBase::Vec4d mTestQuatVec = trBase::Vec4d(0.635, 0.431, 0.390, 0.508);
+    trBase::Vec4d mTestQuatVecD = trBase::Vec4d(0.635, 0.431, 0.390, 0.508);
+    trBase::Vec4f mTestQuatVecF = trBase::Vec4d(0.635f, 0.431f, 0.390f, 0.508f);
     trBase::Vec3d mTestRadVec = trBase::Vec3d(-0.436, 1.204, 2.094);
     trBase::Vec3d mTestDegVec = trBase::Vec3d(-25.000, 69.000, 120.000);
 
+    trBase::Vec3d mXVec = trBase::Vec3d(1.0, 0.0, 0.0);
+    trBase::Vec3d mYVec = trBase::Vec3d(0.0, 1.0, 0.0);
+    trBase::Vec3d mZVec = trBase::Vec3d(0.0, 0.0, 1.0);
 
     /**
      * @fn  public::QuatTests();
