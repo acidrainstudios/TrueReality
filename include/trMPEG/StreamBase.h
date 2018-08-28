@@ -23,6 +23,24 @@
 
 #include "Export.h"
 
+extern "C"
+{
+    // Includes for FFMPEG
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/mathematics.h>
+#include <libavutil/opt.h>
+#include <libswscale/swscale.h>
+#include <libswresample/swresample.h>
+
+#pragma comment(lib, "avcodec")
+#pragma comment(lib, "avutil")
+#pragma comment(lib, "avformat")
+#pragma comment(lib, "swscale")
+#pragma comment(lib, "swresample")
+}
+
 namespace trMPEG
 {
     /**
@@ -47,5 +65,20 @@ namespace trMPEG
          * @brief   Destructor.
          */
         ~StreamBase();
+
+    protected:
+
+        /**
+         * @fn  AVFrame* StreamBase::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
+         *
+         * @brief   Creates and Allocates a frame.
+         *
+         * @param   pixFmt  The pixel format.
+         * @param   width   The width of the frame.
+         * @param   height  The height of the frame.
+         *
+         * @return  Null if it fails, else a pointer to an AVFrame.
+         */
+        AVFrame* AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
     };
 }

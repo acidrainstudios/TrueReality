@@ -403,40 +403,6 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    AVFrame* StreamServer::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const
-    {
-        AVFrame *newFrame;
-        int ret;
-        newFrame = av_frame_alloc();
-        if (!newFrame)
-        {
-            LOG_E("Could not allocate frame")
-            return nullptr;
-        }
-            
-        newFrame->format = pixFmt;
-        newFrame->width = width;
-        newFrame->height = height;
-
-        /* Allocate the data buffers for the frame */
-        ret = av_frame_get_buffer(newFrame, 32);
-        if (ret < 0) 
-        {
-            LOG_E("Could not allocate frame data.")
-            exit(1);
-        }
-
-        /* Make sure the frame data is writable */
-        if (int val = av_frame_make_writable(newFrame) < 0)
-        {
-            LOG_E("Frame data is not writable: " + trUtil::StringUtils::ToString<int>(val));
-            exit(1);
-        }
-
-        return newFrame;
-    }
-
-    //////////////////////////////////////////////////////////////////////////
     AVFrame* StreamServer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const
     {           
         if (codecContext->pix_fmt != AV_PIX_FMT_YUV420P)

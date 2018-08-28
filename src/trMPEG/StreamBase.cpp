@@ -21,6 +21,27 @@
 
 #include <trMPEG/StreamBase.h>
 
+#include <trUtil/StringUtils.h>
+#include <trUtil/Logging/Log.h>
+
+extern "C"
+{
+    // Includes for FFMPEG
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/mathematics.h>
+#include <libavutil/opt.h>
+#include <libswscale/swscale.h>
+#include <libswresample/swresample.h>
+
+#pragma comment(lib, "avcodec")
+#pragma comment(lib, "avutil")
+#pragma comment(lib, "avformat")
+#pragma comment(lib, "swscale")
+#pragma comment(lib, "swresample")
+}
+
 namespace trMPEG
 {
     //////////////////////////////////////////////////////////////////////////
@@ -31,5 +52,39 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     StreamBase::~StreamBase()
     {
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    AVFrame* StreamBase::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const
+    {
+        AVFrame *newFrame;
+        int ret;
+        newFrame = av_frame_alloc();
+        if (!newFrame)
+        {
+            LOG_E("Could not allocate frame")
+            return nullptr;
+        }
+
+        newFrame->format = pixFmt;
+        newFrame->width = width;
+        newFrame->height = height;
+
+        /* Allocate the data buffers for the frame */
+        ret = av_frame_get_buffer(newFrame, 32);
+        if (ret < 0)
+        {
+            LOG_E("Could not allocate frame data.")
+                exit(1);
+        }
+
+        /* Make sure the frame data is writable */
+        if (int val = av_frame_make_writable(newFrame) < 0)
+        {
+            LOG_E("Frame data is not writable: " + trUtil::StringUtils::ToString<int>(val));
+            exit(1);
+        }
+
+        return newFrame;
     }
 }

@@ -43,6 +43,7 @@ extern "C"
 
 #include <trBase/SmrtPtr.h>
 #include <trMPEG/CodecBase.h>
+#include <trMPEG/StreamBase.h>
 #include <trUtil/RefStr.h>
 
 #include <osg/Matrix>
@@ -78,7 +79,7 @@ namespace trMPEG
 	 *
 	 * @brief	This class can stream a captured set of images over a network or to a file in an mpeg format
 	 */
-	class TR_MPEG_EXPORT StreamServer
+	class TR_MPEG_EXPORT StreamServer : public trMPEG::StreamBase
 	{
 	public:    
 
@@ -400,19 +401,6 @@ namespace trMPEG
         void operator()() const;
 
     protected:
-
-        /**
-         * @fn  AVFrame* StreamServer::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
-         *
-         * @brief   Creates and Allocates a frame.
-         *
-         * @param   pixFmt  The pixel format.
-         * @param   width   The width of the frame.
-         * @param   height  The height of the frame.
-         *
-         * @return  Null if it fails, else a pointer to an AVFrame.
-         */
-        AVFrame* AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
 
         /**
          * @fn  AVFrame* StreamServer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const;
