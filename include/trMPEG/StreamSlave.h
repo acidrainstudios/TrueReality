@@ -74,8 +74,6 @@ namespace trMPEG
         AVFrame* mFrameYUV = nullptr;
         AVFrame* mFrameRGB = nullptr;
 
-        int mFrameCounter = 0;
-
         AVStream* mStream = nullptr;
 
         AVFormatContext* mFrmtContext = nullptr;

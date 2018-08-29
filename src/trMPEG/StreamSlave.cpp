@@ -139,8 +139,8 @@ namespace trMPEG
 
             if (mStream == nullptr)
             {
-                //create stream in file
-                std::cerr << "3 create stream" << std::endl;
+                //Create stream
+                std::cerr << "Creating stream" << std::endl;
                 mStream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
                 avcodec_copy_context(mStream->codec, mFrmtContext->streams[mVideoStreamIndex]->codec);
                 mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
@@ -157,20 +157,17 @@ namespace trMPEG
 
             if (check >= 0)
             {
-                std::cerr << "Frame: " << mCodecContext->frame_number << " Bytes decoded " << mCodecContext->frame_bits << " check " << check << std::endl;
+                std::cerr << "Frame: " << mCodecContext->frame_number << " check " << check << std::endl;
                 
                 sws_scale(mFrameConvertCtx, mFrameYUV->data, mFrameYUV->linesize, 0, mCodecContext->height, mFrameRGB->data, mFrameRGB->linesize);
 
                 if (mImageTarget.Valid())
                 {
-                    std::cerr << "Writing Frame: " << mFrameCounter << std::endl;
+                    std::cerr << "Writing Frame..." << std::endl;
                     memcpy(mImageTarget->data(), mFrameRGB->data[0], mFrameRGB->linesize[0] * mCodecContext->height);
-                    std::cerr << "Copied Data" << std::endl;
-
                     mImageTarget->dirty();
                     std::cerr << "Done!" << std::endl;
                 }
-                ++mFrameCounter;
             }           
         }
         av_packet_unref(&mPacket);
