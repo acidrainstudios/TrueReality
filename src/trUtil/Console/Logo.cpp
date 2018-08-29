@@ -50,7 +50,7 @@ namespace trUtil
             std::cout << "                        ---------------------------- " << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_YELLOW);
             std::cout << "                                True Reality\n " << std::endl;
-            std::cout << "                            Version - " << ver.GetVersionString() << std::endl;
+            std::cout << "                          Version - " << ver.GetVersionString() << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_RED);
             std::cout << "                        ----------------------------\n\n\n " << std::endl;
             Console::TextColor(TXT_COLOR::BRIGHT_BLUE);
