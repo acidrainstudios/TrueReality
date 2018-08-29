@@ -47,11 +47,8 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     StreamSlave::~StreamSlave()
     {
-
-        av_free(mPictureYUV);
-        av_free(mPictureRGB);
-        av_free(mPictureYUVBuffer);
-        av_free(mPictureRGBBuffer);
+        av_frame_free(&mPictureYUV);
+        av_frame_free(&mPictureRGB);
 
         av_read_pause(mFrmtContext);
         avio_close(mOutputFrmtContext->pb);
@@ -74,8 +71,8 @@ namespace trMPEG
 
         //Open a UDP port
         LOG_D("Opening Input")
-            //if (avformat_open_input(&mFrmtContext, "udp://192.168.1.152:7000", nullptr, nullptr) != 0)
-            if (avformat_open_input(&mFrmtContext, "udp://130.46.208.38:7000", nullptr, nullptr) != 0)
+            if (avformat_open_input(&mFrmtContext, "udp://192.168.1.152:7000", nullptr, nullptr) != 0)
+            //if (avformat_open_input(&mFrmtContext, "udp://130.46.208.38:7000", nullptr, nullptr) != 0)
             {
                 exit(1);
             }
@@ -128,16 +125,8 @@ namespace trMPEG
             mCodecContext->pix_fmt, mCodecContext->width, mCodecContext->height, AV_PIX_FMT_RGB24,
             SWS_BICUBIC, nullptr, nullptr, nullptr);
 
-        int yuvSize = avpicture_get_size(AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
-
-        mPictureYUVBuffer = (uint8_t*)(av_malloc(yuvSize));
-        mPictureYUV = av_frame_alloc();
-        mPictureRGB = av_frame_alloc();
-        int rgbSize = avpicture_get_size(AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
-
-        uint8_t* mPictureRGBBuffer = (uint8_t*)(av_malloc(rgbSize));
-        avpicture_fill((AVPicture *)mPictureYUV, mPictureYUVBuffer, AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
-        avpicture_fill((AVPicture *)mPictureRGB, mPictureRGBBuffer, AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
+        mPictureYUV = AllocateFrame(AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
+        mPictureRGB = AllocateFrame(AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
     }
 
     //////////////////////////////////////////////////////////////////////////

@@ -24,6 +24,7 @@
 #include "Export.h"
 
 #include <trBase/SmrtPtr.h>
+#include <trMPEG/StreamBase.h>
 
 #include <osg/Image>
 
@@ -44,7 +45,7 @@ namespace trMPEG
      *
      * @brief   This class is used to read in a UDP MPEG broadcast from a network or a file source
      */
-    class TR_MPEG_EXPORT StreamSlave
+    class TR_MPEG_EXPORT StreamSlave : public trMPEG::StreamBase
     {
     public:
 
@@ -71,9 +72,9 @@ namespace trMPEG
         trBase::SmrtPtr<osg::Image> mImageTarget;
 
         AVFrame* mPictureYUV = nullptr;
-        uint8_t* mPictureYUVBuffer = nullptr;
+        //uint8_t* mPictureYUVBuffer = nullptr;
         AVFrame* mPictureRGB = nullptr;
-        uint8_t* mPictureRGBBuffer = nullptr;
+        //uint8_t* mPictureRGBBuffer = nullptr;
 
         int mFrameCounter = 0;
 
