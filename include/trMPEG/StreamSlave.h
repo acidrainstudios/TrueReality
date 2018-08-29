@@ -72,9 +72,7 @@ namespace trMPEG
         trBase::SmrtPtr<osg::Image> mImageTarget;
 
         AVFrame* mPictureYUV = nullptr;
-        //uint8_t* mPictureYUVBuffer = nullptr;
         AVFrame* mPictureRGB = nullptr;
-        //uint8_t* mPictureRGBBuffer = nullptr;
 
         int mFrameCounter = 0;
 
@@ -90,7 +88,5 @@ namespace trMPEG
         AVPacket mPacket;
 
         int mVideoStreamIndex = 0;
-
-        //std::ofstream mOutputFile;
     };
 }

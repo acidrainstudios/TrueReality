@@ -99,8 +99,8 @@ namespace trMPEG
 
         
 
-        //start reading packets from stream and write them to file
-        av_read_play(mFrmtContext);    //play RTSP
+        //start reading packets from stream
+        av_read_play(mFrmtContext);    //play Stream
 
         // Get the codec
         //AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_H264);
@@ -132,67 +132,43 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     void StreamSlave::Update()
     {
-        //while (av_read_frame(mFrmtContext, &mPacket) >= 0 && cnt < 1000)
         av_read_frame(mFrmtContext, &mPacket);
-        //{ //read ~ 1000 frames
 
-            //std::cerr << "1 Frame: " << cnt << std::endl;
-            if (mPacket.stream_index == mVideoStreamIndex)
-            {    //packet is video
+        if (mPacket.stream_index == mVideoStreamIndex)
+        {    
 
-                //std::cerr << "2 Is Video" << std::endl;
-                if (mStream == nullptr)
-                {
-                    //create stream in file
-                    std::cerr << "3 create stream" << std::endl;
-                    mStream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
-                    avcodec_copy_context(mStream->codec, mFrmtContext->streams[mVideoStreamIndex]->codec);
-                    mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
-                }
-
-                int check = 0;
-                mPacket.stream_index = mStream->id;
-                //std::cerr << "4 decoding" << std::endl;
-                int result = avcodec_decode_video2(mCodecContext, mPictureYUV, &check, &mPacket);
-                std::cerr << "Frame: " << mFrameCounter <<" Bytes decoded " << result << " check " << check << std::endl;
-
-                
-                //memcpy(mImage->data(), src, mWidth * mHeight * (mPixelFormat == GL_RGB ? 3 : 4));
-
-                if (mFrameCounter > 100)    //cnt < 0)
-                {
-                    sws_scale(mFrameConvertCtx, mPictureYUV->data, mPictureYUV->linesize, 0, mCodecContext->height, mPictureRGB->data, mPictureRGB->linesize);
-                    /*std::stringstream file_name;
-                    file_name << "test" << mFrameCounter << ".ppm";
-                    mOutputFile.open(file_name.str().c_str());
-                    mOutputFile << "P3 " << mCodecContext->width << " " << mCodecContext->height << " 255\n";*/
-
-
-                    if (mImageTarget.Valid())
-                    {
-                        std::cerr << "Writing Frame: " << mFrameCounter << std::endl;
-                        //memcpy(mImageTarget->data(), mPictureRGB->data, mCodecContext->width * mCodecContext->height * 3);
-                        memcpy(mImageTarget->data(), mPictureRGB->data[0], mPictureRGB->linesize[0] * mCodecContext->height);
-                        std::cerr << "Copied Data" << std::endl;
-                        mImageTarget->dirty();
-                        std::cerr << "Done!" << std::endl;
-                    }
-
-
-                    /*for (int y = 0; y < mCodecContext->height; ++y)
-                    {
-                        for (int x = 0; x < mCodecContext->width * 3; ++x)
-                        {
-                            mOutputFile << (int)(mPictureRGB->data[0] + y * mPictureRGB->linesize[0])[x] << " ";
-                        }
-
-                    }
-                    mOutputFile.close();*/
-                }
-                ++mFrameCounter;
+            if (mStream == nullptr)
+            {
+                //create stream in file
+                std::cerr << "3 create stream" << std::endl;
+                mStream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
+                avcodec_copy_context(mStream->codec, mFrmtContext->streams[mVideoStreamIndex]->codec);
+                mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
             }
-            av_free_packet(&mPacket);
-            av_init_packet(&mPacket);
-        //}
+
+            int check = 0;
+            mPacket.stream_index = mStream->id;
+            
+            int result = avcodec_decode_video2(mCodecContext, mPictureYUV, &check, &mPacket);
+            std::cerr << "Frame: " << mFrameCounter <<" Bytes decoded " << result << " check " << check << std::endl;
+
+            if (mFrameCounter > 100)    //cnt < 0)
+            {
+                sws_scale(mFrameConvertCtx, mPictureYUV->data, mPictureYUV->linesize, 0, mCodecContext->height, mPictureRGB->data, mPictureRGB->linesize);
+
+                if (mImageTarget.Valid())
+                {
+                    std::cerr << "Writing Frame: " << mFrameCounter << std::endl;
+                    memcpy(mImageTarget->data(), mPictureRGB->data[0], mPictureRGB->linesize[0] * mCodecContext->height);
+                    std::cerr << "Copied Data" << std::endl;
+            
+                    mImageTarget->dirty();
+                    std::cerr << "Done!" << std::endl;
+                }
+            }
+            ++mFrameCounter;
+        }
+        av_packet_unref(&mPacket);
+        av_init_packet(&mPacket);
     }
 }
