@@ -159,6 +159,9 @@ namespace trMPEG
             {
                 std::cerr << "Frame: " << mCodecContext->frame_number << " check " << check << std::endl;
                 
+                //Flips the frame vertical 
+                FlipYUV420Frame(mFrameYUV);
+
                 sws_scale(mFrameConvertCtx, mFrameYUV->data, mFrameYUV->linesize, 0, mCodecContext->height, mFrameRGB->data, mFrameRGB->linesize);
 
                 if (mImageTarget.Valid())
@@ -168,7 +171,11 @@ namespace trMPEG
                     mImageTarget->dirty();
                     std::cerr << "Done!" << std::endl;
                 }
-            }           
+            } 
+            else
+            {
+                std::cerr << "Bad Check " << check << std::endl;
+            }
         }
         av_packet_unref(&mPacket);
         av_init_packet(&mPacket);
