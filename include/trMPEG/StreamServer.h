@@ -449,15 +449,6 @@ namespace trMPEG
          */
         void EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;
 
-        /**
-         * @fn  void StreamServer::FlipYUV420Frame(AVFrame* frame) const;
-         *
-         * @brief   Flips a frame that is encoded in YUV420 format vertically.
-         *
-         * @param [in,out]  frame   If non-null, the frame.
-         */
-        void FlipYUV420Frame(AVFrame* frame) const;
-
     private:
 
         std::atomic<bool> mIsInit = false;

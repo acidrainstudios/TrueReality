@@ -80,5 +80,14 @@ namespace trMPEG
          * @return  Null if it fails, else a pointer to an AVFrame.
          */
         AVFrame* AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
+
+        /**
+         * @fn  void StreamBase::FlipYUV420Frame(AVFrame* frame) const;
+         *
+         * @brief   Flips a frame that is encoded in YUV420 format vertically.
+         *
+         * @param [in,out]  frame   If non-null, the frame.
+         */
+        void FlipYUV420Frame(AVFrame* frame) const;
     };
 }
