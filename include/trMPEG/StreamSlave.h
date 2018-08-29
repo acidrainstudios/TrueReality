@@ -71,8 +71,8 @@ namespace trMPEG
 
         trBase::SmrtPtr<osg::Image> mImageTarget;
 
-        AVFrame* mPictureYUV = nullptr;
-        AVFrame* mPictureRGB = nullptr;
+        AVFrame* mFrameYUV = nullptr;
+        AVFrame* mFrameRGB = nullptr;
 
         int mFrameCounter = 0;
 

@@ -47,8 +47,8 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     StreamSlave::~StreamSlave()
     {
-        av_frame_free(&mPictureYUV);
-        av_frame_free(&mPictureRGB);
+        av_frame_free(&mFrameYUV);
+        av_frame_free(&mFrameRGB);
 
         av_read_pause(mFrmtContext);
         avio_close(mOutputFrmtContext->pb);
@@ -125,8 +125,8 @@ namespace trMPEG
             mCodecContext->pix_fmt, mCodecContext->width, mCodecContext->height, AV_PIX_FMT_RGB24,
             SWS_BICUBIC, nullptr, nullptr, nullptr);
 
-        mPictureYUV = AllocateFrame(AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
-        mPictureRGB = AllocateFrame(AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
+        mFrameYUV = AllocateFrame(AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
+        mFrameRGB = AllocateFrame(AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -153,18 +153,18 @@ namespace trMPEG
             avcodec_send_packet(mCodecContext, &mPacket);
             
             //Read one frame from the Context
-            check = avcodec_receive_frame(mCodecContext, mPictureYUV);
+            check = avcodec_receive_frame(mCodecContext, mFrameYUV);
 
             if (check >= 0)
             {
                 std::cerr << "Frame: " << mCodecContext->frame_number << " Bytes decoded " << mCodecContext->frame_bits << " check " << check << std::endl;
                 
-                sws_scale(mFrameConvertCtx, mPictureYUV->data, mPictureYUV->linesize, 0, mCodecContext->height, mPictureRGB->data, mPictureRGB->linesize);
+                sws_scale(mFrameConvertCtx, mFrameYUV->data, mFrameYUV->linesize, 0, mCodecContext->height, mFrameRGB->data, mFrameRGB->linesize);
 
                 if (mImageTarget.Valid())
                 {
                     std::cerr << "Writing Frame: " << mFrameCounter << std::endl;
-                    memcpy(mImageTarget->data(), mPictureRGB->data[0], mPictureRGB->linesize[0] * mCodecContext->height);
+                    memcpy(mImageTarget->data(), mFrameRGB->data[0], mFrameRGB->linesize[0] * mCodecContext->height);
                     std::cerr << "Copied Data" << std::endl;
 
                     mImageTarget->dirty();
