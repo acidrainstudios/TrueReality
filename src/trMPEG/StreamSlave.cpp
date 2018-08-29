@@ -154,10 +154,11 @@ namespace trMPEG
             
             //Read one frame from the Context
             check = avcodec_receive_frame(mCodecContext, mPictureYUV);
-            std::cerr << "Frame: " << mCodecContext->frame_number <<" Bytes decoded " << mCodecContext->frame_bits << " check " << check << std::endl;
 
-            if (mFrameCounter > 100)    //cnt < 0)
+            if (check >= 0)
             {
+                std::cerr << "Frame: " << mCodecContext->frame_number << " Bytes decoded " << mCodecContext->frame_bits << " check " << check << std::endl;
+                
                 sws_scale(mFrameConvertCtx, mPictureYUV->data, mPictureYUV->linesize, 0, mCodecContext->height, mPictureRGB->data, mPictureRGB->linesize);
 
                 if (mImageTarget.Valid())
@@ -165,12 +166,12 @@ namespace trMPEG
                     std::cerr << "Writing Frame: " << mFrameCounter << std::endl;
                     memcpy(mImageTarget->data(), mPictureRGB->data[0], mPictureRGB->linesize[0] * mCodecContext->height);
                     std::cerr << "Copied Data" << std::endl;
-            
+
                     mImageTarget->dirty();
                     std::cerr << "Done!" << std::endl;
                 }
-            }
-            ++mFrameCounter;
+                ++mFrameCounter;
+            }           
         }
         av_packet_unref(&mPacket);
         av_init_packet(&mPacket);
