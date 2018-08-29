@@ -149,8 +149,12 @@ namespace trMPEG
             int check = 0;
             mPacket.stream_index = mStream->id;
             
-            int result = avcodec_decode_video2(mCodecContext, mPictureYUV, &check, &mPacket);
-            std::cerr << "Frame: " << mFrameCounter <<" Bytes decoded " << result << " check " << check << std::endl;
+            // Sending a packet for decoding
+            avcodec_send_packet(mCodecContext, &mPacket);
+            
+            //Read one frame from the Context
+            check = avcodec_receive_frame(mCodecContext, mPictureYUV);
+            std::cerr << "Frame: " << mCodecContext->frame_number <<" Bytes decoded " << mCodecContext->frame_bits << " check " << check << std::endl;
 
             if (mFrameCounter > 100)    //cnt < 0)
             {
