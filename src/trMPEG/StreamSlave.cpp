@@ -114,7 +114,7 @@ namespace trMPEG
         mCodecContext = avcodec_alloc_context3(codec);
 
         avcodec_get_context_defaults3(mCodecContext, codec);
-        CopyContextData(mFrmtContext->streams[mVideoStreamIndex]->codec, mCodecContext);
+        avcodec_parameters_to_context(mCodecContext, mFrmtContext->streams[mVideoStreamIndex]->codecpar);
 
         if (avcodec_open2(mCodecContext, codec, nullptr) < 0)
         {

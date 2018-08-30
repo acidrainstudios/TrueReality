@@ -89,15 +89,5 @@ namespace trMPEG
          * @param [in,out]  frame   If non-null, the frame.
          */
         void FlipYUV420Frame(AVFrame* frame) const;
-
-        /**
-         * @fn  void StreamBase::CopyContextData(const AVCodecContext *srcContext, AVCodecContext *dstContext);
-         *
-         * @brief   Copies the context data.
-         *
-         * @param           srcContext  Source Context.
-         * @param [in,out]  dstContext  If non-null, destination Context.
-         */
-        void CopyContextData(const AVCodecContext *srcContext, AVCodecContext *dstContext);
     };
 }
