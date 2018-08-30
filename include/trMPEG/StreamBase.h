@@ -89,5 +89,11 @@ namespace trMPEG
          * @param [in,out]  frame   If non-null, the frame.
          */
         void FlipYUV420Frame(AVFrame* frame) const;
+
+        AVCodec* FindDecoderByCodecID(AVCodecID id);
+
+        AVCodec* FindEncoderByCodecID(AVCodecID id);
+
+        bool CheckCodecValidity(AVCodec& codec);
     };
 }

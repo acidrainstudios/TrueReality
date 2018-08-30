@@ -75,13 +75,13 @@ namespace trMPEG
         if (ret < 0)
         {
             LOG_E("Could not allocate frame data.")
-                exit(1);
+            exit(1);
         }
 
         /* Make sure the frame data is writable */
         if (int val = av_frame_make_writable(newFrame) < 0)
         {
-            LOG_E("Frame data is not writable: " + trUtil::StringUtils::ToString<int>(val));
+            LOG_E("Frame data is not writable: " + trUtil::StringUtils::ToString<int>(val))
             exit(1);
         }
 
@@ -102,6 +102,30 @@ namespace trMPEG
                 frame->data[i] += frame->linesize[i] * (frame->height - 1);
             }
             frame->linesize[i] = -frame->linesize[i];
+        }
+    }
+    AVCodec * StreamBase::FindDecoderByCodecID(AVCodecID id)
+    {
+        return nullptr;
+    }
+    AVCodec * StreamBase::FindEncoderByCodecID(AVCodecID id)
+    {
+        return nullptr;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool StreamBase::CheckCodecValidity(AVCodec& codec)
+    {
+        if (codec.id == AV_CODEC_ID_MPEG1VIDEO || codec.id == AV_CODEC_ID_MPEG2VIDEO
+            || codec.id == AV_CODEC_ID_H264 || codec.id == AV_CODEC_ID_HEVC)
+        {
+            LOG_D("The codec is supported")
+            return true;
+        }
+        else
+        {
+            LOG_W("Unsuported Codec found, trMPEG might not work right")
+            return false;
         }
     }
 }
