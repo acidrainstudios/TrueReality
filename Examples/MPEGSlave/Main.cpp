@@ -46,8 +46,6 @@
 
 #include <iostream>
 
-static const trUtil::RefStr RING_TEXTURE = trUtil::RefStr(trUtil::PathUtils::GetTexturesPath() + "/RingArrayStill/RingArray.jpg");
-
 static const int WIN_WIDTH = 1280;
 static const int WIN_HEIGHT = 720;
 static const int WIN_POS_X = 200;
@@ -69,9 +67,8 @@ osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlForm
     textureTargetPtr->setFilter(osg::Texture2D::MIN_FILTER, osg::Texture2D::LINEAR_MIPMAP_LINEAR);
     textureTargetPtr->setFilter(osg::Texture2D::MAG_FILTER, osg::Texture2D::LINEAR);
 
-    //trBase::SmrtPtr<osg::Image> image = new osg::Image();//osgDB::readImageFile(RING_TEXTURE);
-    //image->allocateImage(WIN_WIDTH, WIN_HEIGHT, 0, GL_RGB, );
-    trBase::SmrtPtr<osg::Image> image = osgDB::readImageFile(RING_TEXTURE);
+    trBase::SmrtPtr<osg::Image> image = new osg::Image();
+    image->allocateImage(WIN_WIDTH, WIN_HEIGHT, 1, GL_RGB, GL_UNSIGNED_BYTE);
     textureTargetPtr->setImage(image.Get());
 
     return textureTargetPtr;
