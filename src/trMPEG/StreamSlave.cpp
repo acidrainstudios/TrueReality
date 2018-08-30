@@ -51,9 +51,6 @@ namespace trMPEG
         av_frame_free(&mFrameRGB);
 
         av_read_pause(mFrmtContext);
-        avio_close(mOutputFrmtContext->pb);
-        avformat_free_context(mOutputFrmtContext);
-
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -94,11 +91,6 @@ namespace trMPEG
 
         av_init_packet(&mPacket);
 
-        //Open output file
-        mOutputFrmtContext = avformat_alloc_context();
-
-        
-
         //start reading packets from stream
         av_read_play(mFrmtContext);    //play Stream
 
@@ -136,20 +128,6 @@ namespace trMPEG
 
         if (mPacket.stream_index == mVideoStreamIndex)
         {    
-
-            if (mStream == nullptr)
-            {
-                //Create stream
-                std::cerr << "Creating stream" << std::endl;
-                AVCodec* codec = avcodec_find_encoder(mFrmtContext->streams[mVideoStreamIndex]->codecpar->codec_id);
-                mStream = avformat_new_stream(mOutputFrmtContext, codec);
-
-                avcodec_parameters_copy(mFrmtContext->streams[mVideoStreamIndex]->codecpar, mStream->codecpar);
-
-                std::cerr << "Aspect Ratio" << std::endl;
-                mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codecpar->sample_aspect_ratio;
-            }
-
             int check = 0;
             mPacket.stream_index = mFrmtContext->streams[mVideoStreamIndex]->id;
             

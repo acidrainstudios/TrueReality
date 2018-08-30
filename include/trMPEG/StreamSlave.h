@@ -74,10 +74,7 @@ namespace trMPEG
         AVFrame* mFrameYUV = nullptr;
         AVFrame* mFrameRGB = nullptr;
 
-        AVStream* mStream = nullptr;
-
         AVFormatContext* mFrmtContext = nullptr;
-        AVFormatContext* mOutputFrmtContext = nullptr;
 
         AVCodecContext* mCodecContext = nullptr;
 
