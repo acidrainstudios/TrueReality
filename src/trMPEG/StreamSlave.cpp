@@ -143,7 +143,7 @@ namespace trMPEG
                 std::cerr << "Creating stream" << std::endl;
                 mStream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
 
-                CopyContextData(mStream->codec, mFrmtContext->streams[mVideoStreamIndex]->codec);
+                avcodec_parameters_copy(mFrmtContext->streams[mVideoStreamIndex]->codecpar, mStream->codecpar);
 
                 std::cerr << "Aspect Ratio" << std::endl;
                 mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
