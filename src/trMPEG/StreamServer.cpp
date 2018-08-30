@@ -252,13 +252,9 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     void StreamServer::ConfigureStream(StreamContainer *strCont, AVFormatContext *formatContext, AVCodec **codec, enum AVCodecID codecId)
     {
-        /* find the encoder */
-        *codec = avcodec_find_encoder(codecId);
-        if (!(*codec)) 
-        {
-            LOG_E("Could not find encoder for " + trUtil::RefStr(avcodec_get_name(codecId)))
-            exit(1);
-        }
+        /* Find the Encoder Codec */
+        *codec = FindEncoderCodecByID(codecId);
+
         strCont->stream = avformat_new_stream(formatContext, nullptr);
         if (!strCont->stream)
         {
