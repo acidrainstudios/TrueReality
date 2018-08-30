@@ -34,9 +34,3 @@ If you need information on the project, please contact one of the engine's lead 
 * @DieSlower 
 
 * @exoticDFT
-
-
-## Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/badges/shields/graphs/contributors"><img src="https://opencollective.com/shields/contributors.svg?width=890" /></a>
