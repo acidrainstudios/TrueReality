@@ -104,4 +104,19 @@ namespace trMPEG
             frame->linesize[i] = -frame->linesize[i];
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void StreamBase::CopyContextData(const AVCodecContext* srcContext, AVCodecContext* dstContext)
+    {
+        AVCodecParameters* params = new AVCodecParameters();
+        
+        //Copy the context into a temporary pointer
+        avcodec_parameters_from_context(params, srcContext);
+
+        //Copy the temprory data into the context
+        avcodec_parameters_to_context(dstContext, params);
+
+        delete params;
+        params = nullptr;
+    }
 }
