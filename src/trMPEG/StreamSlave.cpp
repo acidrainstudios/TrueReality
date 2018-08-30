@@ -141,16 +141,17 @@ namespace trMPEG
             {
                 //Create stream
                 std::cerr << "Creating stream" << std::endl;
-                mStream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
+                AVCodec* codec = avcodec_find_encoder(mFrmtContext->streams[mVideoStreamIndex]->codecpar->codec_id);
+                mStream = avformat_new_stream(mOutputFrmtContext, codec);
 
                 avcodec_parameters_copy(mFrmtContext->streams[mVideoStreamIndex]->codecpar, mStream->codecpar);
 
                 std::cerr << "Aspect Ratio" << std::endl;
-                mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
+                mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codecpar->sample_aspect_ratio;
             }
 
             int check = 0;
-            mPacket.stream_index = mStream->id;
+            mPacket.stream_index = mFrmtContext->streams[mVideoStreamIndex]->id;
             
             // Sending a packet for decoding
             avcodec_send_packet(mCodecContext, &mPacket);
