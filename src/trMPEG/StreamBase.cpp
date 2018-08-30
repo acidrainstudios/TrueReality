@@ -21,8 +21,9 @@
 
 #include <trMPEG/StreamBase.h>
 
-#include <trUtil/StringUtils.h>
 #include <trUtil/Logging/Log.h>
+#include <trUtil/RefStr.h>
+#include <trUtil/StringUtils.h>
 
 extern "C"
 {
@@ -104,27 +105,39 @@ namespace trMPEG
             frame->linesize[i] = -frame->linesize[i];
         }
     }
-    AVCodec * StreamBase::FindDecoderByCodecID(AVCodecID id)
-    {
-        return nullptr;
-    }
-    AVCodec * StreamBase::FindEncoderByCodecID(AVCodecID id)
+    AVCodec * StreamBase::FindDecoderCodecByID(AVCodecID id)
     {
         return nullptr;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    bool StreamBase::CheckCodecValidity(AVCodec& codec)
+    AVCodec* StreamBase::FindEncoderCodecByID(AVCodecID id)
     {
-        if (codec.id == AV_CODEC_ID_MPEG1VIDEO || codec.id == AV_CODEC_ID_MPEG2VIDEO
-            || codec.id == AV_CODEC_ID_H264 || codec.id == AV_CODEC_ID_HEVC)
+        AVCodec* codec = avcodec_find_encoder(id);
+        CheckCodecValidity(codec);
+        return codec;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool StreamBase::CheckCodecValidity(const AVCodec* codec) const
+    {
+        // Make sure we found some codec
+        if (codec == nullptr)
         {
-            LOG_D("The codec is supported")
+            LOG_E("Could not find the needed Codec")
+            exit(1);
+        }
+
+        // Check if the found codec is supported
+        if (codec->id == AV_CODEC_ID_MPEG1VIDEO || codec->id == AV_CODEC_ID_MPEG2VIDEO
+            || codec->id == AV_CODEC_ID_H264 || codec->id == AV_CODEC_ID_HEVC)
+        {
+            LOG_D("The Codec " + trUtil::RefStr(avcodec_get_name(codec->id)) + " is supported")
             return true;
         }
         else
         {
-            LOG_W("Unsuported Codec found, trMPEG might not work right")
+            LOG_W(trUtil::RefStr(avcodec_get_name(codec->id)) + " is an unsupported Codec, trMPEG might not work correctly")
             return false;
         }
     }

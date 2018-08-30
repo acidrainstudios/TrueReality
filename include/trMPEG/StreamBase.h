@@ -90,10 +90,37 @@ namespace trMPEG
          */
         void FlipYUV420Frame(AVFrame* frame) const;
 
-        AVCodec* FindDecoderByCodecID(AVCodecID id);
+        /**
+         * @fn  AVCodec* StreamBase::FindDecoderCodecByID(AVCodecID id);
+         *
+         * @brief   Attempts to find a Codec for Decoding.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  Null if it fails, else the found decoder codec by identifier.
+         */
+        AVCodec* FindDecoderCodecByID(AVCodecID id);
 
-        AVCodec* FindEncoderByCodecID(AVCodecID id);
+        /**
+         * @fn  AVCodec* StreamBase::FindEncoderCodecByID(AVCodecID id);
+         *
+         * @brief   Attempts to find a Codec for Encoding.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  Null if it fails, else the found encoder by codec identifier.
+         */
+        AVCodec* FindEncoderCodecByID(AVCodecID id);
 
-        bool CheckCodecValidity(AVCodec& codec);
+        /**
+         * @fn  bool StreamBase::CheckCodecValidity(const AVCodec* codec) const;
+         *
+         * @brief   Check codec to make sure one was found, and it supported by this library.
+         *
+         * @param   codec   The codec.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool CheckCodecValidity(const AVCodec* codec) const;
     };
 }
