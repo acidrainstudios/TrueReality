@@ -219,22 +219,14 @@ namespace trMPEG
         bool IsBroadcast();
 
         /**
-         * @fn  void StreamServer::SetUDPAddress(std::string address);
+         * @fn  virtual void StreamServer::SetUDPAddress(std::string address) override;
          *
-         * @brief   Sets UDP address where the stream will be broadcast. Ex: SetUDPAddress(130.46.208.38:7000);
+         * @brief   Sets UDP address where the stream will be broadcast. Ex:
+         *          SetUDPAddress(130.46.208.38:7000);
          *
          * @param   address The address.
          */
-        void SetUDPAddress(std::string address);
-
-        /**
-         * @fn  std::string StreamServer::GetUDPAddress();
-         *
-         * @brief   Gets UDP address where the stream will be broadcast.
-         *
-         * @return  The UDP address.
-         */
-        std::string GetUDPAddress();
+        virtual void SetUDPAddress(std::string address) override;
 
         /**
          * @fn  void StreamServer::SetMpegType(trMPEG::CodecBase type);
@@ -385,13 +377,13 @@ namespace trMPEG
         PixelFormat GetInputPixelFormat();
 
         /**
-         * @fn  void StreamServer::SetFlipImageVertically(bool flip);
+         * @fn  virtual void StreamServer::SetFlipImageVertically(bool flip) override;
          *
          * @brief   Flip image vertically.
          *
          * @param   flip    True to flip.
          */
-        void SetFlipImageVertically(bool flip);
+        virtual void SetFlipImageVertically(bool flip) override;
 
         /**
          * @fn  void StreamServer::operator()() const;
@@ -401,6 +393,45 @@ namespace trMPEG
         void operator()() const;
 
     protected:
+
+        std::atomic<bool> mIsInit = false;
+        bool mSilent = true;
+        bool mIsBroadcast = false;
+        trUtil::RefStr mPublisher;
+        trUtil::RefStr mCopyright;
+
+        int mBitRate;
+        int mFrameWidth;
+        int mFrameHeight;
+        int mFrameRate;
+        int mPixFmtSize = 3;
+        PixelFormat mPixFmt = PixelFormat::RGB;
+        AVRational mFrameRateRat;
+        const AVRational mTimeBaseRat = { 1, 1000 };      
+
+        osg::Vec4 mRGBData;
+
+        StreamType mStreamType;
+        trUtil::RefStr mFileName;
+
+        trBase::SmrtPtr<trMPEG::CodecBase> mCodecContainer;
+
+        AVOutputFormat *mOutputFormatPtr = nullptr;
+        AVCodecContext *mCodecContextPtr = nullptr;
+        mutable AVFormatContext *mFormatContextPtr = nullptr;
+
+        mutable AVPacket mVidPkt = { 0 };
+        mutable StreamContainer mVidStream = { 0 };
+
+        //Variables used in encoding thread
+        std::thread* mEncodeThreadPtr = nullptr;
+        mutable std::mutex mEncodeThreadLock;
+        std::atomic<bool> mMainThreadActive = true;
+        mutable std::vector<uint8_t> mTextureData;
+        mutable std::atomic<bool> mNewFrameReady = false;
+        mutable double mFrameTimeLength = 0.01;
+        mutable int mTotalFramePTSCounter = 0;
+        mutable int mFramePTSLength = 0;
 
         /**
          * @fn  AVFrame* StreamServer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const;
@@ -447,59 +478,6 @@ namespace trMPEG
          * @param [in,out]  frmtCont        If non-null, context for the format.
          * @param [in,out]  strCont         If non-null, the stream container.
          */
-        void EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;
-
-        /**
-         * @fn  void StreamServer::FlipYUV420Frame(AVFrame* frame) const;
-         *
-         * @brief   Flips a frame that is encoded in YUV420 format vertically.
-         *
-         * @param [in,out]  frame   If non-null, the frame.
-         */
-        void FlipYUV420Frame(AVFrame* frame) const;
-
-    private:
-
-        std::atomic<bool> mIsInit = false;
-        bool mSilent = true;
-        bool mIsBroadcast = false;
-        trUtil::RefStr mPublisher;
-        trUtil::RefStr mCopyright;
-
-        int mBitRate;
-        int mFrameWidth;
-        int mFrameHeight;
-        int mFrameRate;     
-        int mPixFmtSize = 3;
-        PixelFormat mPixFmt = PixelFormat::RGB;
-        AVRational mFrameRateRat;
-        const AVRational mTimeBaseRat = { 1, 1000 };
-        
-        bool mFlipImageVertically = false;
-
-        osg::Vec4 mRGBData;
-
-        StreamType mStreamType;
-        trUtil::RefStr mFileName;
-        trUtil::RefStr mUDPAddrs;
-                        
-        trBase::SmrtPtr<trMPEG::CodecBase> mCodecContainer;
-
-        AVOutputFormat *mOutputFormatPtr = nullptr;
-        AVCodecContext *mCodecContextPtr = nullptr;
-        mutable AVFormatContext *mFormatContextPtr = nullptr;
-
-        mutable AVPacket mVidPkt = { 0 };
-        mutable StreamContainer mVidStream = { 0 };        
-        
-        //Variables used in encoding thread
-        std::thread* mEncodeThreadPtr = nullptr; 
-        mutable std::mutex mEncodeThreadLock;
-        std::atomic<bool> mMainThreadActive = true;
-        mutable std::vector<uint8_t> mTextureData;
-        mutable std::atomic<bool> mNewFrameReady = false;
-        mutable double mFrameTimeLength = 0.01;
-        mutable int mTotalFramePTSCounter = 0;
-        mutable int mFramePTSLength = 0;
+        void EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;       
 	};
 }

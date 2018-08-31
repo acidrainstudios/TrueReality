@@ -21,8 +21,8 @@
 
 #include <trMPEG/StreamBase.h>
 
-#include <trUtil/StringUtils.h>
 #include <trUtil/Logging/Log.h>
+#include <trUtil/StringUtils.h>
 
 extern "C"
 {
@@ -55,6 +55,12 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
+    std::string StreamBase::GetUDPAddress()
+    {
+        return mUDPAddrs;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     AVFrame* StreamBase::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const
     {
         AVFrame *newFrame;
@@ -75,16 +81,73 @@ namespace trMPEG
         if (ret < 0)
         {
             LOG_E("Could not allocate frame data.")
-                exit(1);
+            exit(1);
         }
 
         /* Make sure the frame data is writable */
         if (int val = av_frame_make_writable(newFrame) < 0)
         {
-            LOG_E("Frame data is not writable: " + trUtil::StringUtils::ToString<int>(val));
+            LOG_E("Frame data is not writable: " + trUtil::StringUtils::ToString<int>(val))
             exit(1);
         }
 
         return newFrame;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void StreamBase::FlipYUV420Frame(AVFrame* frame) const
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (i != 0)
+            {
+                frame->data[i] += frame->linesize[i] * ((frame->height >> 1) - 1);
+            }
+            else
+            {
+                frame->data[i] += frame->linesize[i] * (frame->height - 1);
+            }
+            frame->linesize[i] = -frame->linesize[i];
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    AVCodec * StreamBase::FindDecoderCodecByID(AVCodecID id)
+    {        
+        AVCodec* codec = avcodec_find_decoder(id);
+        CheckCodecValidity(codec);
+        return codec;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    AVCodec* StreamBase::FindEncoderCodecByID(AVCodecID id)
+    {
+        AVCodec* codec = avcodec_find_encoder(id);
+        CheckCodecValidity(codec);
+        return codec;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool StreamBase::CheckCodecValidity(const AVCodec* codec) const
+    {
+        // Make sure we found some codec
+        if (codec == nullptr)
+        {
+            LOG_E("Could not find the needed Codec")
+            exit(1);
+        }
+
+        // Check if the found codec is supported
+        if (codec->id == AV_CODEC_ID_MPEG1VIDEO || codec->id == AV_CODEC_ID_MPEG2VIDEO
+            || codec->id == AV_CODEC_ID_H264 || codec->id == AV_CODEC_ID_HEVC)
+        {
+            LOG_D("The Codec " + trUtil::RefStr(avcodec_get_name(codec->id)) + " is supported")
+            return true;
+        }
+        else
+        {
+            LOG_W(trUtil::RefStr(avcodec_get_name(codec->id)) + " is an unsupported Codec, trMPEG might not work correctly")
+            return false;
+        }
     }
 }

@@ -110,8 +110,7 @@ namespace trUtil
          */
         operator const char*() const { return mString->c_str(); }
         
-        trUtil::RefStr& operator=(const std::string& value);
-        trUtil::RefStr& operator=(const trUtil::RefStr& value);
+        trUtil::RefStr& operator=(const RefStr& value);
 
         RefStr operator+(const std::string& string) const;
         RefStr operator+(const RefStr& RefStr) const;

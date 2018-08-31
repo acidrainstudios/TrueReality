@@ -22,6 +22,7 @@
 #include <trMPEG/StreamSlave.h>
 
 #include <trUtil/Logging/Log.h>
+#include <trUtil/StringUtils.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,163 +48,155 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     StreamSlave::~StreamSlave()
     {
-
-        av_free(mPictureYUV);
-        av_free(mPictureRGB);
-        av_free(mPictureYUVBuffer);
-        av_free(mPictureRGBBuffer);
-
+        av_frame_free(&mFrameYUV);
+        av_frame_free(&mFrameRGB);
         av_read_pause(mFrmtContext);
-        avio_close(mOutputFrmtContext->pb);
-        avformat_free_context(mOutputFrmtContext);
+        avformat_close_input(&mFrmtContext);
+    }
 
+    //////////////////////////////////////////////////////////////////////////
+    void StreamSlave::SetUDPAddress(std::string address)
+    {        
+        mUDPAddrs = address;        
     }
 
     //////////////////////////////////////////////////////////////////////////
     void StreamSlave::Connect(osg::Image* targetImage)
     {
+
         mImageTarget = targetImage;
 
         // Open the initial context variables that are needed        
-        mFrmtContext = avformat_alloc_context();
-        
+        mFrmtContext = avformat_alloc_context();        
 
         // Register everything
         av_register_all();
         avformat_network_init();
 
-        //Open a UDP port
+        if (mUDPAddrs == trUtil::StringUtils::STR_BLANK)
+        {
+            mUDPAddrs = "udp://130.46.208.38:7000";
+        }
+
+        // Open a UDP port
         LOG_D("Opening Input")
-            //if (avformat_open_input(&mFrmtContext, "udp://192.168.1.152:7000", nullptr, nullptr) != 0)
-            if (avformat_open_input(&mFrmtContext, "udp://130.46.208.38:7000", nullptr, nullptr) != 0)
-            {
-                exit(1);
-            }
+        if (avformat_open_input(&mFrmtContext, trUtil::RefStr("udp://" + mUDPAddrs), nullptr, nullptr) != 0)
+        {
+            LOG_E("Cant open an input at " + mUDPAddrs)
+            exit(1);
+        }
 
         LOG_D("Finding Input Stream")
-            if (avformat_find_stream_info(mFrmtContext, nullptr) < 0)
-            {
-                exit(1);
-            }
+        if (avformat_find_stream_info(mFrmtContext, nullptr) < 0)
+        {
+            LOG_E("Cant Finding an Input Stream")
+            exit(1);
+        }
 
-        //search video stream
+        // Search video stream
         for (unsigned int i = 0; i < mFrmtContext->nb_streams; ++i)
         {
             if (mFrmtContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO)
             {
-                mVideoStreamIndex = i;
+                mInputStream = mFrmtContext->streams[i];
             }
         }
 
+        if (mInputStream == nullptr)
+        {
+            LOG_E("No Video Stream found")
+            exit(1);
+        }   
+
         av_init_packet(&mPacket);
 
-        //Open output file
-        mOutputFrmtContext = avformat_alloc_context();
-
-        
-
-        //start reading packets from stream and write them to file
-        av_read_play(mFrmtContext);    //play RTSP
+        // Start playing the stream
+        av_read_play(mFrmtContext);    
 
         // Get the codec
-        //AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_H264);
-        AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_MPEG2VIDEO);
-        if (!codec)
-        {
-            exit(1);
-        }
+        AVCodec *codec = FindDecoderCodecByID(mInputStream->codecpar->codec_id);
 
         // Add this to allocate the context by codec
         mCodecContext = avcodec_alloc_context3(codec);
 
         avcodec_get_context_defaults3(mCodecContext, codec);
-        avcodec_copy_context(mCodecContext, mFrmtContext->streams[mVideoStreamIndex]->codec);
+        avcodec_parameters_to_context(mCodecContext, mInputStream->codecpar);
 
+        /* Threading options */
+        mCodecContext->thread_count = 4;
+        mCodecContext->thread_type = FF_THREAD_SLICE;
+        mCodecContext->slices = 16;
+
+        mCodecContext->slice_flags = SLICE_FLAG_ALLOW_FIELD;
+
+        //AVDictionaryEntry *tag = nullptr;
+        //tag = av_dict_get(mFrmtContext->metadata, "publisher", tag, AV_DICT_IGNORE_SUFFIX);
+        //if (tag != nullptr)
+        //{
+        //    std::cout << tag->key << " : " << tag->value << std::endl;
+        //}
+        //else
+        //{
+        //    std::cout << "NOP" << std::endl;
+        //}   
+
+        // Initialize context
         if (avcodec_open2(mCodecContext, codec, nullptr) < 0)
         {
+            LOG_E("Could not initialize Context with " + trUtil::RefStr(avcodec_get_name(codec->id)) + " codec")
             exit(1);
         }
 
-        mFrameConvertCtx = sws_getContext(mCodecContext->width, mCodecContext->height,
-            mCodecContext->pix_fmt, mCodecContext->width, mCodecContext->height, AV_PIX_FMT_RGB24,
-            SWS_BICUBIC, nullptr, nullptr, nullptr);
+        // Create a color conversion context
+        mFrameConvertCtx = sws_getContext(mCodecContext->width, mCodecContext->height, mCodecContext->pix_fmt, 
+                                            mCodecContext->width, mCodecContext->height, AV_PIX_FMT_RGB24, SWS_BICUBIC, nullptr, nullptr, nullptr);
 
-        int yuvSize = avpicture_get_size(AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
-
-        mPictureYUVBuffer = (uint8_t*)(av_malloc(yuvSize));
-        mPictureYUV = av_frame_alloc();
-        mPictureRGB = av_frame_alloc();
-        int rgbSize = avpicture_get_size(AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
-
-        uint8_t* mPictureRGBBuffer = (uint8_t*)(av_malloc(rgbSize));
-        avpicture_fill((AVPicture *)mPictureYUV, mPictureYUVBuffer, AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
-        avpicture_fill((AVPicture *)mPictureRGB, mPictureRGBBuffer, AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
+        mFrameYUV = AllocateFrame(AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
+        mFrameRGB = AllocateFrame(AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
     }
 
     //////////////////////////////////////////////////////////////////////////
     void StreamSlave::Update()
     {
-        //while (av_read_frame(mFrmtContext, &mPacket) >= 0 && cnt < 1000)
+        // Read one frame from the Formant Context Stream
+        av_init_packet(&mPacket);
         av_read_frame(mFrmtContext, &mPacket);
-        //{ //read ~ 1000 frames
-
-            //std::cerr << "1 Frame: " << cnt << std::endl;
-            if (mPacket.stream_index == mVideoStreamIndex)
-            {    //packet is video
-
-                //std::cerr << "2 Is Video" << std::endl;
-                if (mStream == nullptr)
-                {
-                    //create stream in file
-                    std::cerr << "3 create stream" << std::endl;
-                    mStream = avformat_new_stream(mOutputFrmtContext, mFrmtContext->streams[mVideoStreamIndex]->codec->codec);
-                    avcodec_copy_context(mStream->codec, mFrmtContext->streams[mVideoStreamIndex]->codec);
-                    mStream->sample_aspect_ratio = mFrmtContext->streams[mVideoStreamIndex]->codec->sample_aspect_ratio;
-                }
-
-                int check = 0;
-                mPacket.stream_index = mStream->id;
-                //std::cerr << "4 decoding" << std::endl;
-                int result = avcodec_decode_video2(mCodecContext, mPictureYUV, &check, &mPacket);
-                std::cerr << "Frame: " << mFrameCounter <<" Bytes decoded " << result << " check " << check << std::endl;
-
-                
-                //memcpy(mImage->data(), src, mWidth * mHeight * (mPixelFormat == GL_RGB ? 3 : 4));
-
-                if (mFrameCounter > 100)    //cnt < 0)
-                {
-                    sws_scale(mFrameConvertCtx, mPictureYUV->data, mPictureYUV->linesize, 0, mCodecContext->height, mPictureRGB->data, mPictureRGB->linesize);
-                    /*std::stringstream file_name;
-                    file_name << "test" << mFrameCounter << ".ppm";
-                    mOutputFile.open(file_name.str().c_str());
-                    mOutputFile << "P3 " << mCodecContext->width << " " << mCodecContext->height << " 255\n";*/
-
-
-                    if (mImageTarget.Valid())
-                    {
-                        std::cerr << "Writing Frame: " << mFrameCounter << std::endl;
-                        //memcpy(mImageTarget->data(), mPictureRGB->data, mCodecContext->width * mCodecContext->height * 3);
-                        memcpy(mImageTarget->data(), mPictureRGB->data[0], mPictureRGB->linesize[0] * mCodecContext->height);
-                        std::cerr << "Copied Data" << std::endl;
-                        mImageTarget->dirty();
-                        std::cerr << "Done!" << std::endl;
-                    }
-
-
-                    /*for (int y = 0; y < mCodecContext->height; ++y)
-                    {
-                        for (int x = 0; x < mCodecContext->width * 3; ++x)
-                        {
-                            mOutputFile << (int)(mPictureRGB->data[0] + y * mPictureRGB->linesize[0])[x] << " ";
-                        }
-
-                    }
-                    mOutputFile.close();*/
-                }
-                ++mFrameCounter;
+            
+        // Send a packet for decoding to the codec context
+        avcodec_send_packet(mCodecContext, &mPacket);
+            
+        //Read one frame from the Context, if one is read, save it into a YUV Frame
+        if (avcodec_receive_frame(mCodecContext, mFrameYUV) >= 0)
+        {                
+            //Flip the image vertically 
+            if (mFlipImageVertically)
+            {
+                FlipYUV420Frame(mFrameYUV);
             }
-            av_free_packet(&mPacket);
-            av_init_packet(&mPacket);
-        //}
+
+            // Convert YUV to RGB
+            sws_scale(mFrameConvertCtx, mFrameYUV->data, mFrameYUV->linesize, 0, mCodecContext->height, mFrameRGB->data, mFrameRGB->linesize);
+
+            if (mImageTarget.Valid())
+            { // Copy the frame data into the Image, and dirty the image to make sure it refreshes
+                memcpy(mImageTarget->data(), mFrameRGB->data[0], mFrameRGB->linesize[0] * mCodecContext->height);
+                mImageTarget->dirty();
+            }
+        } 
+        else
+        {
+            LOG_D("No (Bad) Frame Data...")
+        }
+        
+        //std::cerr << mCodecContext->frame_number << std::endl;
+
+        // Clear Packet Data
+        av_packet_unref(&mPacket);        
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void StreamSlave::SetFlipImageVertically(bool flip)
+    {
+        mFlipImageVertically = flip;
     }
 }

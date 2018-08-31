@@ -23,6 +23,8 @@
 
 #include "Export.h"
 
+#include <trUtil/RefStr.h>
+
 extern "C"
 {
     // Includes for FFMPEG
@@ -66,7 +68,39 @@ namespace trMPEG
          */
         ~StreamBase();
 
+        /**
+         * @fn  void StreamBase::SetUDPAddress(std::string address);
+         *
+         * @brief   Sets UDP address for stream reading/broadcasting. Ex:
+         *          SetUDPAddress(130.46.208.38:7000);
+         *
+         * @param   address The address.
+         */
+        virtual void SetUDPAddress(std::string address) = 0;
+
+        /**
+         * @fn  std::string StreamBase::GetUDPAddress();
+         *
+         * @brief   Gets UDP address for reading/broadcasting.
+         *
+         * @return  The UDP address.
+         */
+        std::string GetUDPAddress();
+
+        /**
+         * @fn  virtual void StreamBase::SetFlipImageVertically(bool flip) = 0;
+         *
+         * @brief   Flip image vertically.
+         *
+         * @param   flip    True to flip.
+         */
+        virtual void SetFlipImageVertically(bool flip) = 0;
+
     protected:
+
+        trUtil::RefStr mUDPAddrs;
+
+        bool mFlipImageVertically = false;
 
         /**
          * @fn  AVFrame* StreamBase::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
@@ -80,5 +114,47 @@ namespace trMPEG
          * @return  Null if it fails, else a pointer to an AVFrame.
          */
         AVFrame* AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
+
+        /**
+         * @fn  void StreamBase::FlipYUV420Frame(AVFrame* frame) const;
+         *
+         * @brief   Flips a frame that is encoded in YUV420 format vertically.
+         *
+         * @param [in,out]  frame   If non-null, the frame.
+         */
+        void FlipYUV420Frame(AVFrame* frame) const;
+
+        /**
+         * @fn  AVCodec* StreamBase::FindDecoderCodecByID(AVCodecID id);
+         *
+         * @brief   Attempts to find a Codec for Decoding.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  Null if it fails, else the found decoder codec by identifier.
+         */
+        AVCodec* FindDecoderCodecByID(AVCodecID id);
+
+        /**
+         * @fn  AVCodec* StreamBase::FindEncoderCodecByID(AVCodecID id);
+         *
+         * @brief   Attempts to find a Codec for Encoding.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  Null if it fails, else the found encoder by codec identifier.
+         */
+        AVCodec* FindEncoderCodecByID(AVCodecID id);
+
+        /**
+         * @fn  bool StreamBase::CheckCodecValidity(const AVCodec* codec) const;
+         *
+         * @brief   Check codec to make sure one was found, and it supported by this library.
+         *
+         * @param   codec   The codec.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool CheckCodecValidity(const AVCodec* codec) const;
     };
 }

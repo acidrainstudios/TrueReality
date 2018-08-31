@@ -24,6 +24,7 @@
 #include "Export.h"
 
 #include <trBase/SmrtPtr.h>
+#include <trMPEG/StreamBase.h>
 
 #include <osg/Image>
 
@@ -44,7 +45,7 @@ namespace trMPEG
      *
      * @brief   This class is used to read in a UDP MPEG broadcast from a network or a file source
      */
-    class TR_MPEG_EXPORT StreamSlave
+    class TR_MPEG_EXPORT StreamSlave : public trMPEG::StreamBase
     {
     public:
 
@@ -62,34 +63,54 @@ namespace trMPEG
          */
         ~StreamSlave();
 
+        /**
+         * @fn  virtual void StreamSlave::SetUDPAddress(std::string address) override;
+         *
+         * @brief   Sets UDP address where the stream be read from. Ex: SetUDPAddress(130.46.208.38:7000);
+         *
+         * @param   address The address.
+         */
+        virtual void SetUDPAddress(std::string address) override;
+
+        /**
+         * @fn  void StreamSlave::Connect(osg::Image* targetImage);
+         *
+         * @brief   Connects to the network stream, and sets the target image 
+         *
+         * @param [in,out]  targetImage If non-null, the target image to connect.
+         */
         void Connect(osg::Image* targetImage);
 
+        /**
+         * @fn  void StreamSlave::Update();
+         *
+         * @brief   Updates the target image from connected stream data
+         */
         void Update();
+
+        /**
+         * @fn  virtual void StreamSlave::SetFlipImageVertically(bool flip) override;
+         *
+         * @brief   Flip image vertically.
+         *
+         * @param   flip    True to flip.
+         */
+        virtual void SetFlipImageVertically(bool flip) override;
 
     protected:
 
         trBase::SmrtPtr<osg::Image> mImageTarget;
 
-        AVFrame* mPictureYUV = nullptr;
-        uint8_t* mPictureYUVBuffer = nullptr;
-        AVFrame* mPictureRGB = nullptr;
-        uint8_t* mPictureRGBBuffer = nullptr;
+        AVFrame* mFrameYUV = nullptr;
+        AVFrame* mFrameRGB = nullptr;
 
-        int mFrameCounter = 0;
-
-        AVStream* mStream = nullptr;
-
+        AVStream* mInputStream = nullptr;
         AVFormatContext* mFrmtContext = nullptr;
-        AVFormatContext* mOutputFrmtContext = nullptr;
 
         AVCodecContext* mCodecContext = nullptr;
 
         SwsContext* mFrameConvertCtx = nullptr;
 
         AVPacket mPacket;
-
-        int mVideoStreamIndex = 0;
-
-        //std::ofstream mOutputFile;
     };
 }
