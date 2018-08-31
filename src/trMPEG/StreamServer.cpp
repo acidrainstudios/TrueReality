@@ -694,12 +694,6 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
-    std::string StreamServer::GetUDPAddress()
-    {
-        return mUDPAddrs;
-    }
-
-    //////////////////////////////////////////////////////////////////////////
     void StreamServer::SetMpegType(trMPEG::CodecBase *type)
     {
         if (!mIsInit)

@@ -163,6 +163,7 @@ int main(int argc, char** argv)
 
         //Set up the stream reader
         trMPEG::StreamSlave stream;
+        stream.SetUDPAddress(ip);
         stream.SetFlipImageVertically(true);
         stream.Connect(textureTarget->getImage());
 

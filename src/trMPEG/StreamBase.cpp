@@ -55,6 +55,12 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
+    std::string StreamBase::GetUDPAddress()
+    {
+        return mUDPAddrs;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     AVFrame* StreamBase::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const
     {
         AVFrame *newFrame;

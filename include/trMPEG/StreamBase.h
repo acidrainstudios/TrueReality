@@ -69,6 +69,25 @@ namespace trMPEG
         ~StreamBase();
 
         /**
+         * @fn  void StreamBase::SetUDPAddress(std::string address);
+         *
+         * @brief   Sets UDP address for stream reading/broadcasting. Ex:
+         *          SetUDPAddress(130.46.208.38:7000);
+         *
+         * @param   address The address.
+         */
+        virtual void SetUDPAddress(std::string address) = 0;
+
+        /**
+         * @fn  std::string StreamBase::GetUDPAddress();
+         *
+         * @brief   Gets UDP address for reading/broadcasting.
+         *
+         * @return  The UDP address.
+         */
+        std::string GetUDPAddress();
+
+        /**
          * @fn  virtual void StreamBase::SetFlipImageVertically(bool flip) = 0;
          *
          * @brief   Flip image vertically.

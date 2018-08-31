@@ -219,22 +219,14 @@ namespace trMPEG
         bool IsBroadcast();
 
         /**
-         * @fn  void StreamServer::SetUDPAddress(std::string address);
+         * @fn  virtual void StreamServer::SetUDPAddress(std::string address) override;
          *
-         * @brief   Sets UDP address where the stream will be broadcast. Ex: SetUDPAddress(130.46.208.38:7000);
+         * @brief   Sets UDP address where the stream will be broadcast. Ex:
+         *          SetUDPAddress(130.46.208.38:7000);
          *
          * @param   address The address.
          */
-        void SetUDPAddress(std::string address);
-
-        /**
-         * @fn  std::string StreamServer::GetUDPAddress();
-         *
-         * @brief   Gets UDP address where the stream will be broadcast.
-         *
-         * @return  The UDP address.
-         */
-        std::string GetUDPAddress();
+        virtual void SetUDPAddress(std::string address) override;
 
         /**
          * @fn  void StreamServer::SetMpegType(trMPEG::CodecBase type);
