@@ -27,7 +27,10 @@
 #include <trBase/Base.h>
 #include <trUtil/RefStr.h>
 
+#include <openvr/openvr.h>
+
 #include <iostream>
+#include <memory>
 
 namespace trVR
 {
@@ -45,11 +48,13 @@ namespace trVR
         DeviceBase& operator=(const DeviceBase& orig) = delete;
 
         virtual const std::string& GetType() const override;
+        
+        std::string GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property);
 
     protected:
         virtual ~DeviceBase() = default;
 
     private:
-
+        std::weak_ptr<vr::IVRSystem> mVrSystem;
     };
 }

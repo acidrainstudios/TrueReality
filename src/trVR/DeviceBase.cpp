@@ -36,4 +36,21 @@ namespace trVR
     {
         return CLASS_TYPE;
     }
+    
+    //////////////////////////////////////////////////////////////////////////
+    std::string DeviceBase::GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property)
+    {
+        uint32_t bufferLen = mVrSystem.lock()->GetStringTrackedDeviceProperty(deviceIndex, property, nullptr, 0);
+        
+        if (bufferLen == 0)
+        {
+            return "EMPTY";
+        }
+        
+        char* buffer = new char[bufferLen];
+        bufferLen = mVrSystem.lock()->GetStringTrackedDeviceProperty(deviceIndex, property, buffer, bufferLen);
+        std::string result = buffer;
+        delete []buffer;
+        return result;
+    }
 }
