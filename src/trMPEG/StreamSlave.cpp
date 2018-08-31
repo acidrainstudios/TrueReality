@@ -188,6 +188,8 @@ namespace trMPEG
             LOG_D("No (Bad) Frame Data...")
         }
         
+        //std::cerr << mCodecContext->frame_number << std::endl;
+
         // Clear Packet Data
         av_packet_unref(&mPacket);        
     }
