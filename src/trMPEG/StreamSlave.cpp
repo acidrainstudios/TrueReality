@@ -66,47 +66,42 @@ namespace trMPEG
         av_register_all();
         avformat_network_init();
 
-        //Open a UDP port
+        // Open a UDP port
         LOG_D("Opening Input")
-            if (avformat_open_input(&mFrmtContext, "udp://192.168.1.152:7000", nullptr, nullptr) != 0)
-            //if (avformat_open_input(&mFrmtContext, "udp://130.46.208.38:7000", nullptr, nullptr) != 0)
-            {
-                exit(1);
-            }
+        if (avformat_open_input(&mFrmtContext, "udp://192.168.1.152:7000", nullptr, nullptr) != 0)
+        //if (avformat_open_input(&mFrmtContext, "udp://130.46.208.38:7000", nullptr, nullptr) != 0)
+        {
+            exit(1);
+        }
 
         LOG_D("Finding Input Stream")
-            if (avformat_find_stream_info(mFrmtContext, nullptr) < 0)
-            {
-                exit(1);
-            }
+        if (avformat_find_stream_info(mFrmtContext, nullptr) < 0)
+        {
+            exit(1);
+        }
 
-        //search video stream
+        // Search video stream
         for (unsigned int i = 0; i < mFrmtContext->nb_streams; ++i)
         {
             if (mFrmtContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO)
             {
-                mVideoStreamIndex = i;
+                mInputStream = mFrmtContext->streams[i];
             }
         }
 
         av_init_packet(&mPacket);
 
-        //start reading packets from stream
+        // Start reading packets from stream
         av_read_play(mFrmtContext);    //play Stream
 
         // Get the codec
-        //AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_H264);
-        AVCodec *codec = avcodec_find_decoder(AV_CODEC_ID_MPEG2VIDEO);
-        if (!codec)
-        {
-            exit(1);
-        }
+        AVCodec *codec = FindDecoderCodecByID(mInputStream->codecpar->codec_id);
 
         // Add this to allocate the context by codec
         mCodecContext = avcodec_alloc_context3(codec);
 
         avcodec_get_context_defaults3(mCodecContext, codec);
-        avcodec_parameters_to_context(mCodecContext, mFrmtContext->streams[mVideoStreamIndex]->codecpar);
+        avcodec_parameters_to_context(mCodecContext, mInputStream->codecpar);
 
         if (avcodec_open2(mCodecContext, codec, nullptr) < 0)
         {
@@ -124,42 +119,35 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     void StreamSlave::Update()
     {
-        av_read_frame(mFrmtContext, &mPacket);
-
-        if (mPacket.stream_index == mVideoStreamIndex)
-        {    
-            int check = 0;
-            mPacket.stream_index = mFrmtContext->streams[mVideoStreamIndex]->id;
-            
-            // Sending a packet for decoding
-            avcodec_send_packet(mCodecContext, &mPacket);
-            
-            //Read one frame from the Context
-            check = avcodec_receive_frame(mCodecContext, mFrameYUV);
-
-            if (check >= 0)
-            {
-                std::cerr << "Frame: " << mCodecContext->frame_number << " check " << check << std::endl;
-                
-                //Flips the frame vertical 
-                FlipYUV420Frame(mFrameYUV);
-
-                sws_scale(mFrameConvertCtx, mFrameYUV->data, mFrameYUV->linesize, 0, mCodecContext->height, mFrameRGB->data, mFrameRGB->linesize);
-
-                if (mImageTarget.Valid())
-                {
-                    std::cerr << "Writing Frame..." << std::endl;
-                    memcpy(mImageTarget->data(), mFrameRGB->data[0], mFrameRGB->linesize[0] * mCodecContext->height);
-                    mImageTarget->dirty();
-                    std::cerr << "Done!" << std::endl;
-                }
-            } 
-            else
-            {
-                std::cerr << "Bad Check " << check << std::endl;
-            }
-        }
-        av_packet_unref(&mPacket);
+        // Read one frame from the Formant Context Stream
         av_init_packet(&mPacket);
+        av_read_frame(mFrmtContext, &mPacket);
+            
+        // Send a packet for decoding to the codec context
+        avcodec_send_packet(mCodecContext, &mPacket);
+            
+        //Read one frame from the Context, if one is read, save it into a YUV Frame
+        if (avcodec_receive_frame(mCodecContext, mFrameYUV) >= 0)
+        {
+            std::cerr << "Frame: " << mCodecContext->frame_number << std::endl;
+                
+            //Flips the frame vertical 
+            FlipYUV420Frame(mFrameYUV);
+
+            sws_scale(mFrameConvertCtx, mFrameYUV->data, mFrameYUV->linesize, 0, mCodecContext->height, mFrameRGB->data, mFrameRGB->linesize);
+
+            if (mImageTarget.Valid())
+            {
+                std::cerr << "Writing Frame..." << std::endl;
+                memcpy(mImageTarget->data(), mFrameRGB->data[0], mFrameRGB->linesize[0] * mCodecContext->height);
+                mImageTarget->dirty();
+            }
+        } 
+        else
+        {
+            std::cerr << "Bad Frame " << std::endl;
+        }
+        
+        av_packet_unref(&mPacket);        
     }
 }

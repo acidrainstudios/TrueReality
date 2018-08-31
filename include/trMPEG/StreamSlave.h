@@ -74,6 +74,7 @@ namespace trMPEG
         AVFrame* mFrameYUV = nullptr;
         AVFrame* mFrameRGB = nullptr;
 
+        AVStream* mInputStream = nullptr;
         AVFormatContext* mFrmtContext = nullptr;
 
         AVCodecContext* mCodecContext = nullptr;
@@ -81,7 +82,5 @@ namespace trMPEG
         SwsContext* mFrameConvertCtx = nullptr;
 
         AVPacket mPacket;
-
-        int mVideoStreamIndex = 0;
     };
 }
