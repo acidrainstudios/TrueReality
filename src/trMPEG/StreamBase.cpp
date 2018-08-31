@@ -22,7 +22,6 @@
 #include <trMPEG/StreamBase.h>
 
 #include <trUtil/Logging/Log.h>
-#include <trUtil/RefStr.h>
 #include <trUtil/StringUtils.h>
 
 extern "C"

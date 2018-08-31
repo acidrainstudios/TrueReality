@@ -23,6 +23,8 @@
 
 #include "Export.h"
 
+#include <trUtil/RefStr.h>
+
 extern "C"
 {
     // Includes for FFMPEG
@@ -67,6 +69,8 @@ namespace trMPEG
         ~StreamBase();
 
     protected:
+
+        trUtil::RefStr mUDPAddrs;
 
         /**
          * @fn  AVFrame* StreamBase::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;

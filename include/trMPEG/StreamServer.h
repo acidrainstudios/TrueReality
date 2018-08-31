@@ -402,6 +402,47 @@ namespace trMPEG
 
     protected:
 
+        std::atomic<bool> mIsInit = false;
+        bool mSilent = true;
+        bool mIsBroadcast = false;
+        trUtil::RefStr mPublisher;
+        trUtil::RefStr mCopyright;
+
+        int mBitRate;
+        int mFrameWidth;
+        int mFrameHeight;
+        int mFrameRate;
+        int mPixFmtSize = 3;
+        PixelFormat mPixFmt = PixelFormat::RGB;
+        AVRational mFrameRateRat;
+        const AVRational mTimeBaseRat = { 1, 1000 };
+
+        bool mFlipImageVertically = false;
+
+        osg::Vec4 mRGBData;
+
+        StreamType mStreamType;
+        trUtil::RefStr mFileName;
+
+        trBase::SmrtPtr<trMPEG::CodecBase> mCodecContainer;
+
+        AVOutputFormat *mOutputFormatPtr = nullptr;
+        AVCodecContext *mCodecContextPtr = nullptr;
+        mutable AVFormatContext *mFormatContextPtr = nullptr;
+
+        mutable AVPacket mVidPkt = { 0 };
+        mutable StreamContainer mVidStream = { 0 };
+
+        //Variables used in encoding thread
+        std::thread* mEncodeThreadPtr = nullptr;
+        mutable std::mutex mEncodeThreadLock;
+        std::atomic<bool> mMainThreadActive = true;
+        mutable std::vector<uint8_t> mTextureData;
+        mutable std::atomic<bool> mNewFrameReady = false;
+        mutable double mFrameTimeLength = 0.01;
+        mutable int mTotalFramePTSCounter = 0;
+        mutable int mFramePTSLength = 0;
+
         /**
          * @fn  AVFrame* StreamServer::GenerateVideoFrame(AVCodecContext *codecContext, StreamContainer *strCont) const;
          *
@@ -447,50 +488,6 @@ namespace trMPEG
          * @param [in,out]  frmtCont        If non-null, context for the format.
          * @param [in,out]  strCont         If non-null, the stream container.
          */
-        void EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;
-
-    private:
-
-        std::atomic<bool> mIsInit = false;
-        bool mSilent = true;
-        bool mIsBroadcast = false;
-        trUtil::RefStr mPublisher;
-        trUtil::RefStr mCopyright;
-
-        int mBitRate;
-        int mFrameWidth;
-        int mFrameHeight;
-        int mFrameRate;     
-        int mPixFmtSize = 3;
-        PixelFormat mPixFmt = PixelFormat::RGB;
-        AVRational mFrameRateRat;
-        const AVRational mTimeBaseRat = { 1, 1000 };
-        
-        bool mFlipImageVertically = false;
-
-        osg::Vec4 mRGBData;
-
-        StreamType mStreamType;
-        trUtil::RefStr mFileName;
-        trUtil::RefStr mUDPAddrs;
-                        
-        trBase::SmrtPtr<trMPEG::CodecBase> mCodecContainer;
-
-        AVOutputFormat *mOutputFormatPtr = nullptr;
-        AVCodecContext *mCodecContextPtr = nullptr;
-        mutable AVFormatContext *mFormatContextPtr = nullptr;
-
-        mutable AVPacket mVidPkt = { 0 };
-        mutable StreamContainer mVidStream = { 0 };        
-        
-        //Variables used in encoding thread
-        std::thread* mEncodeThreadPtr = nullptr; 
-        mutable std::mutex mEncodeThreadLock;
-        std::atomic<bool> mMainThreadActive = true;
-        mutable std::vector<uint8_t> mTextureData;
-        mutable std::atomic<bool> mNewFrameReady = false;
-        mutable double mFrameTimeLength = 0.01;
-        mutable int mTotalFramePTSCounter = 0;
-        mutable int mFramePTSLength = 0;
+        void EncodeVideoFrame(AVCodecContext *codecContext, AVFormatContext *frmtCont, StreamContainer *strCont) const;       
 	};
 }
