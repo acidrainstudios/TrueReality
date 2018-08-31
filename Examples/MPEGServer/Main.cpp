@@ -36,18 +36,22 @@
 #include <trUtil/RefStr.h>
 
 #include <osg/Camera>
+#include <osg/Depth>
 #include <osg/Geometry>
 #include <osg/Texture2D>
 #include <osgDB/ReadFile>
 #include <osgGA/TrackballManipulator>
+#include <osgGA/UFOManipulator>
+#include <osgGA/StandardManipulator>
 #include <osgViewer/CompositeViewer>
 #include <osgViewer/View>
 #include <osgViewer/ViewerEventHandlers>
 
 #include <iostream>
 
-static const trUtil::RefStr COW_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/OsgCow/cow.osg");
+static const trUtil::RefStr COW_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/OsgCow/OsgCow.osg");
 static const trUtil::RefStr CUBE_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ColorCube/ColorCube.osg");
+static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ConstructSkybox/ConstructSkybox.obj");
 
 static const int WIN_WIDTH = 1280;
 static const int WIN_HEIGHT = 720;
@@ -122,7 +126,18 @@ int main(int argc, char** argv)
     //Adds the statistics handler. 
     mainView->addEventHandler(new osgViewer::StatsHandler);
 
+    //trBase::SmrtPtr<osg::Node> skyBox = osgDB::readNodeFile(SKY_BOX_MODEL);
+    //skyBox->getOrCreateStateSet()->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+    //skyBox->setCullingActive(false);
+    //skyBox->getStateSet()->setAttributeAndModes(new osg::Depth(osg::Depth::LEQUAL, 1.0f, 1.0f));
+    //skyBox->getStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+    //skyBox->getStateSet()->setMode(GL_CULL_FACE, osg::StateAttribute::ON);
+    //skyBox->getStateSet()->setRenderBinDetails(INT_MAX, "RenderBin");
+    //skyBox->getStateSet()->setRenderBinToInherit();
+
     //Setup the scene
+    //camObject->GetCamera()->addChild(skyBox);
+    //rootNode->addChild(skyBox);
     rootNode->addChild(camObject->GetCamera());
     rootNode->addChild(camObject->GetRenderTarget());
     rootNode->addChild(osgDB::readNodeFile(COW_MODEL));
@@ -135,6 +150,7 @@ int main(int argc, char** argv)
     if ((mainView->getCameraManipulator() == 0) && mainView->getCamera()->getAllowEventFocus())
     {
         mainView->setCameraManipulator(new osgGA::TrackballManipulator());
+        //mainView->setCameraManipulator(new osgGA::UFOManipulator());
     }
     viewer.setReleaseContextAtEndOfFrameHint(true);
     if (!viewer.isRealized())
