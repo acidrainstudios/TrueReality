@@ -30,16 +30,14 @@ static const trUtil::RefStr PROGRAM_NAME = "TrueReality";
 static const trUtil::RefStr EXE_NAME = "exampleMPEGSlave";
 
 /**
- * @fn  void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel);
+ * @fn  void ParseCmdLineArgs(int& argc, char** argv, std::string& ip, std::string& logFileName, std::string& logLevel);
  *
  * @brief   Parses the command line variables that are passed in to the executable.
  *
  * @param [in,out]  argc        System argument count.
  * @param [in,out]  argv        System argument values.
- * @param [in,out]  mpegType    Type of MPEG.
- * @param [in,out]  fileName    Filename of the output file, or UDP for broadcast.
  * @param [in,out]  ip          The UDP broadcast IP.
  * @param [in,out]  logFileName Filename of the log file.
  * @param [in,out]  logLevel    The log level.
  */
-void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string& fileName, std::string& ip, std::string& logFileName, std::string& logLevel);
+void ParseCmdLineArgs(int& argc, char** argv, std::string& ip, std::string& logFileName, std::string& logLevel);

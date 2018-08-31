@@ -125,20 +125,21 @@ osg::Geode* GenerateRenderTarget(osg::Texture2D* texture)
  */
 int main(int argc, char** argv)
 {
-    //Set our logging levels
-    trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::STANDARD);
-    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
-
     //Check for command line options.
     std::string logFileName = "";
     std::string logLevel = "";
-    //ParseCmdLineArgs(argc, argv, mpegType, fileName, ip, logFileName, logLevel);
+    std::string ip = "";
+    ParseCmdLineArgs(argc, argv, ip, logFileName, logLevel);
 
     //Creates the default folders in the User Data folder. 
     trUtil::PathUtils::CreateUserDataPathTree();
 
     //Setup our Logging options
-    //trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
+    trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
+
+    //Set our logging levels
+    trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::STANDARD);
+    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
 
     try
     {
@@ -162,6 +163,7 @@ int main(int argc, char** argv)
 
         //Set up the stream reader
         trMPEG::StreamSlave stream;
+        stream.SetFlipImageVertically(true);
         stream.Connect(textureTarget->getImage());
 
         //Set up the main frame loop
