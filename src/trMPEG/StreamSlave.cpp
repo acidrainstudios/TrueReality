@@ -22,6 +22,7 @@
 #include <trMPEG/StreamSlave.h>
 
 #include <trUtil/Logging/Log.h>
+#include <trUtil/StringUtils.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -54,24 +55,31 @@ namespace trMPEG
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void StreamSlave::SetUDPAddress(std::string address)
+    {        
+        mUDPAddrs = address;        
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     void StreamSlave::Connect(osg::Image* targetImage)
     {
         mImageTarget = targetImage;
 
         // Open the initial context variables that are needed        
-        mFrmtContext = avformat_alloc_context();
-        
+        mFrmtContext = avformat_alloc_context();        
 
         // Register everything
         av_register_all();
         avformat_network_init();
 
-        mUDPAddrs = "udp://192.168.1.152:7000";
-        //mUDPAddrs = "udp://130.46.208.38:7000";
+        if (mUDPAddrs == trUtil::StringUtils::STR_BLANK)
+        {
+            mUDPAddrs = "udp://130.46.208.38:7000";
+        }
 
         // Open a UDP port
         LOG_D("Opening Input")
-        if (avformat_open_input(&mFrmtContext, mUDPAddrs, nullptr, nullptr) != 0)
+        if (avformat_open_input(&mFrmtContext, trUtil::RefStr("udp://" + mUDPAddrs), nullptr, nullptr) != 0)
         {
             LOG_E("Cant open an input at " + mUDPAddrs)
             exit(1);
@@ -91,6 +99,12 @@ namespace trMPEG
             {
                 mInputStream = mFrmtContext->streams[i];
             }
+        }
+
+        if (mInputStream == nullptr)
+        {
+            LOG_E("No Video Stream found")
+            exit(1);
         }
 
         av_init_packet(&mPacket);

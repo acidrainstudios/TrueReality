@@ -64,6 +64,15 @@ namespace trMPEG
         ~StreamSlave();
 
         /**
+         * @fn  virtual void StreamSlave::SetUDPAddress(std::string address) override;
+         *
+         * @brief   Sets UDP address where the stream be read from. Ex: SetUDPAddress(130.46.208.38:7000);
+         *
+         * @param   address The address.
+         */
+        virtual void SetUDPAddress(std::string address) override;
+
+        /**
          * @fn  void StreamSlave::Connect(osg::Image* targetImage);
          *
          * @brief   Connects to the network stream, and sets the target image 
