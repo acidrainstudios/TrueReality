@@ -66,17 +66,21 @@ namespace trMPEG
         av_register_all();
         avformat_network_init();
 
+        mUDPAddrs = "udp://192.168.1.152:7000";
+        //mUDPAddrs = "udp://130.46.208.38:7000";
+
         // Open a UDP port
         LOG_D("Opening Input")
-        if (avformat_open_input(&mFrmtContext, "udp://192.168.1.152:7000", nullptr, nullptr) != 0)
-        //if (avformat_open_input(&mFrmtContext, "udp://130.46.208.38:7000", nullptr, nullptr) != 0)
+        if (avformat_open_input(&mFrmtContext, mUDPAddrs, nullptr, nullptr) != 0)
         {
+            LOG_E("Cant open an input at " + mUDPAddrs)
             exit(1);
         }
 
         LOG_D("Finding Input Stream")
         if (avformat_find_stream_info(mFrmtContext, nullptr) < 0)
         {
+            LOG_E("Cant Finding an Input Stream")
             exit(1);
         }
 
@@ -91,8 +95,8 @@ namespace trMPEG
 
         av_init_packet(&mPacket);
 
-        // Start reading packets from stream
-        av_read_play(mFrmtContext);    //play Stream
+        // Start playing the stream
+        av_read_play(mFrmtContext);    
 
         // Get the codec
         AVCodec *codec = FindDecoderCodecByID(mInputStream->codecpar->codec_id);
@@ -103,14 +107,16 @@ namespace trMPEG
         avcodec_get_context_defaults3(mCodecContext, codec);
         avcodec_parameters_to_context(mCodecContext, mInputStream->codecpar);
 
+        // Initialize context
         if (avcodec_open2(mCodecContext, codec, nullptr) < 0)
         {
+            LOG_E("Could not initialize Context with " + trUtil::RefStr(avcodec_get_name(codec->id)) + " codec")
             exit(1);
         }
 
-        mFrameConvertCtx = sws_getContext(mCodecContext->width, mCodecContext->height,
-            mCodecContext->pix_fmt, mCodecContext->width, mCodecContext->height, AV_PIX_FMT_RGB24,
-            SWS_BICUBIC, nullptr, nullptr, nullptr);
+        // Create a color conversion context
+        mFrameConvertCtx = sws_getContext(mCodecContext->width, mCodecContext->height, mCodecContext->pix_fmt, 
+                                            mCodecContext->width, mCodecContext->height, AV_PIX_FMT_RGB24, SWS_BICUBIC, nullptr, nullptr, nullptr);
 
         mFrameYUV = AllocateFrame(AV_PIX_FMT_YUV420P, mCodecContext->width, mCodecContext->height);
         mFrameRGB = AllocateFrame(AV_PIX_FMT_RGB24, mCodecContext->width, mCodecContext->height);
@@ -128,26 +134,34 @@ namespace trMPEG
             
         //Read one frame from the Context, if one is read, save it into a YUV Frame
         if (avcodec_receive_frame(mCodecContext, mFrameYUV) >= 0)
-        {
-            std::cerr << "Frame: " << mCodecContext->frame_number << std::endl;
-                
-            //Flips the frame vertical 
-            FlipYUV420Frame(mFrameYUV);
+        {                
+            //Flip the image vertically 
+            if (mFlipImageVertically)
+            {
+                FlipYUV420Frame(mFrameYUV);
+            }
 
+            // Convert YUV to RGB
             sws_scale(mFrameConvertCtx, mFrameYUV->data, mFrameYUV->linesize, 0, mCodecContext->height, mFrameRGB->data, mFrameRGB->linesize);
 
             if (mImageTarget.Valid())
-            {
-                std::cerr << "Writing Frame..." << std::endl;
+            { // Copy the frame data into the Image, and dirty the image to make sure it refreshes
                 memcpy(mImageTarget->data(), mFrameRGB->data[0], mFrameRGB->linesize[0] * mCodecContext->height);
                 mImageTarget->dirty();
             }
         } 
         else
         {
-            std::cerr << "Bad Frame " << std::endl;
+            LOG_D("No (Bad) Frame Data...")
         }
         
+        // Clear Packet Data
         av_packet_unref(&mPacket);        
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void StreamSlave::SetFlipImageVertically(bool flip)
+    {
+        mFlipImageVertically = flip;
     }
 }
