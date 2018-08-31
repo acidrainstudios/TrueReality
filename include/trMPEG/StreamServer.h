@@ -385,13 +385,13 @@ namespace trMPEG
         PixelFormat GetInputPixelFormat();
 
         /**
-         * @fn  void StreamServer::SetFlipImageVertically(bool flip);
+         * @fn  virtual void StreamServer::SetFlipImageVertically(bool flip) override;
          *
          * @brief   Flip image vertically.
          *
          * @param   flip    True to flip.
          */
-        void SetFlipImageVertically(bool flip);
+        virtual void SetFlipImageVertically(bool flip) override;
 
         /**
          * @fn  void StreamServer::operator()() const;
@@ -415,9 +415,7 @@ namespace trMPEG
         int mPixFmtSize = 3;
         PixelFormat mPixFmt = PixelFormat::RGB;
         AVRational mFrameRateRat;
-        const AVRational mTimeBaseRat = { 1, 1000 };
-
-        bool mFlipImageVertically = false;
+        const AVRational mTimeBaseRat = { 1, 1000 };      
 
         osg::Vec4 mRGBData;
 
