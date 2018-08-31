@@ -132,13 +132,6 @@ namespace trUtil
     }
 
     /////////////////////////////////////////////////////////////
-    trUtil::RefStr& RefStr::operator=(const std::string& value)
-    {
-        Intern(value);
-        return *this;
-    }
-
-    /////////////////////////////////////////////////////////////
     trUtil::RefStr& RefStr::operator=(const trUtil::RefStr& value)
     {
         if (this == &value)
