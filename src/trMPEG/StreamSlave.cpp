@@ -49,8 +49,8 @@ namespace trMPEG
     {
         av_frame_free(&mFrameYUV);
         av_frame_free(&mFrameRGB);
-
         av_read_pause(mFrmtContext);
+        avformat_close_input(&mFrmtContext);
     }
 
     //////////////////////////////////////////////////////////////////////////
