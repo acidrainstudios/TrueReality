@@ -63,9 +63,30 @@ namespace trMPEG
          */
         ~StreamSlave();
 
+        /**
+         * @fn  void StreamSlave::Connect(osg::Image* targetImage);
+         *
+         * @brief   Connects to the network stream, and sets the target image 
+         *
+         * @param [in,out]  targetImage If non-null, the target image to connect.
+         */
         void Connect(osg::Image* targetImage);
 
+        /**
+         * @fn  void StreamSlave::Update();
+         *
+         * @brief   Updates the target image from connected stream data
+         */
         void Update();
+
+        /**
+         * @fn  virtual void StreamSlave::SetFlipImageVertically(bool flip) override;
+         *
+         * @brief   Flip image vertically.
+         *
+         * @param   flip    True to flip.
+         */
+        virtual void SetFlipImageVertically(bool flip) override;
 
     protected:
 

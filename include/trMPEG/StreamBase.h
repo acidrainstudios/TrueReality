@@ -68,9 +68,20 @@ namespace trMPEG
          */
         ~StreamBase();
 
+        /**
+         * @fn  virtual void StreamBase::SetFlipImageVertically(bool flip) = 0;
+         *
+         * @brief   Flip image vertically.
+         *
+         * @param   flip    True to flip.
+         */
+        virtual void SetFlipImageVertically(bool flip) = 0;
+
     protected:
 
         trUtil::RefStr mUDPAddrs;
+
+        bool mFlipImageVertically = false;
 
         /**
          * @fn  AVFrame* StreamBase::AllocateFrame(enum AVPixelFormat pixFmt, int width, int height) const;
