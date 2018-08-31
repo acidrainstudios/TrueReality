@@ -31,6 +31,7 @@
 #include <trBase/Vec3.h>
 
 #include <openvr/openvr.h>
+#include <osg/Texture2D>
 
 namespace trVR
 {
@@ -47,7 +48,7 @@ namespace trVR
          * @brief   ctor
          * @param   name    The name of the class type.
          */
-        VrBase(const std::string name = CLASS_TYPE);
+        VrBase(const std::string& name = CLASS_TYPE);
 
         /**
          * @fn VrBase::VrBase(const VrBase& orig)
@@ -128,6 +129,9 @@ namespace trVR
          * Performs the shutdown process of OpenVR/SteamVR
          */
         void Shutdown();
+        
+        bool SubmitFrame(osg::Texture2D* leftTex, osg::Texture2D* rightTex, int contextID = 0,
+                         vr::EColorSpace colorSpace = vr::EColorSpace::ColorSpace_Gamma);
 
     protected:
         /**
@@ -141,7 +145,9 @@ namespace trVR
         vr::IVRRenderModels* mVrRenderModels = nullptr; /// Pointer for OpenVR's IVRRenderModels
         
     private:
-        std::string GetDeviceProperty(vr::TrackedDeviceProperty property);
+        std::string GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property);
+        
+        std::string DisplayCompositorError(vr::EVRCompositorError error);
         
         bool mInit = false; /// Class initialization status
         trBase::Quat mOrientation; /// Headset orientation
