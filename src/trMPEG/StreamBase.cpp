@@ -105,9 +105,13 @@ namespace trMPEG
             frame->linesize[i] = -frame->linesize[i];
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////
     AVCodec * StreamBase::FindDecoderCodecByID(AVCodecID id)
-    {
-        return nullptr;
+    {        
+        AVCodec* codec = avcodec_find_decoder(id);
+        CheckCodecValidity(codec);
+        return codec;
     }
 
     //////////////////////////////////////////////////////////////////////////
