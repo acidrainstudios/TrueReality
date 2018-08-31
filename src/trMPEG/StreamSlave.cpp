@@ -63,6 +63,7 @@ namespace trMPEG
     //////////////////////////////////////////////////////////////////////////
     void StreamSlave::Connect(osg::Image* targetImage)
     {
+
         mImageTarget = targetImage;
 
         // Open the initial context variables that are needed        
@@ -105,7 +106,7 @@ namespace trMPEG
         {
             LOG_E("No Video Stream found")
             exit(1);
-        }
+        }   
 
         av_init_packet(&mPacket);
 
@@ -120,6 +121,24 @@ namespace trMPEG
 
         avcodec_get_context_defaults3(mCodecContext, codec);
         avcodec_parameters_to_context(mCodecContext, mInputStream->codecpar);
+
+        /* Threading options */
+        mCodecContext->thread_count = 4;
+        mCodecContext->thread_type = FF_THREAD_SLICE;
+        mCodecContext->slices = 16;
+
+        mCodecContext->slice_flags = SLICE_FLAG_ALLOW_FIELD;
+
+        //AVDictionaryEntry *tag = nullptr;
+        //tag = av_dict_get(mFrmtContext->metadata, "publisher", tag, AV_DICT_IGNORE_SUFFIX);
+        //if (tag != nullptr)
+        //{
+        //    std::cout << tag->key << " : " << tag->value << std::endl;
+        //}
+        //else
+        //{
+        //    std::cout << "NOP" << std::endl;
+        //}   
 
         // Initialize context
         if (avcodec_open2(mCodecContext, codec, nullptr) < 0)
