@@ -19,45 +19,51 @@
 * @author Maxim Serebrennik
 */
 
-#include "RingArray.h"
-#include "RingArrayCallback.h"
+#include <trCore/SceneObjects/RingArray.h>
+#include <trCore/SceneObjects/RingArrayCallback.h>
 
 #include <trBase/SmrtPtr.h>
 #include <trUtil/Logging/Log.h>
 
-//////////////////////////////////////////////////////////////////////////
-RingArrayCallback::RingArrayCallback()
+namespace trCore
 {
-}
-
-//////////////////////////////////////////////////////////////////////////
-RingArrayCallback::~RingArrayCallback()
-{
-}
-
-//////////////////////////////////////////////////////////////////////////
-void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr)
-{
-    //Set the timer at 0 on the first run. 
-    if (mFirstFrame)
+    namespace SceneObjects
     {
-        mTimer.SetStartTick(0);
-        mTimer.Tick();
-        mFirstFrame = false;
-    }
+        //////////////////////////////////////////////////////////////////////////
+        RingArrayCallback::RingArrayCallback()
+        {
+        }
 
-    mRing = static_cast<RingArray*>(nodePtr);
+        //////////////////////////////////////////////////////////////////////////
+        RingArrayCallback::~RingArrayCallback()
+        {
+        }
 
-    if (mRing != nullptr)
-    {
-        //Update our timed loop
-        mTimer.Tick();
+        //////////////////////////////////////////////////////////////////////////
+        void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr)
+        {
+            //Set the timer at 0 on the first run. 
+            if (mFirstFrame)
+            {
+                mTimer.SetStartTick(0);
+                mTimer.Tick();
+                mFirstFrame = false;
+            }
 
-        //Pass the frame time to the ring update
-        mRing->Update(nodePtr, nvPtr, mTimer.GetSecondsPerTick());
-    }
-    else
-    {
-        LOG_E ("Callback not connected to a RingArray")
+            mRing = static_cast<RingArray*>(nodePtr);
+
+            if (mRing != nullptr)
+            {
+                //Update our timed loop
+                mTimer.Tick();
+
+                //Pass the frame time to the ring update
+                mRing->Update(nodePtr, nvPtr, mTimer.GetSecondsPerTick());
+            }
+            else
+            {
+                LOG_E("Callback not connected to a RingArray")
+            }
+        }
     }
 }
