@@ -53,7 +53,7 @@ namespace trCore
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void RingArray::Update(osg::Node* node, osg::NodeVisitor* nv, double deltaTime)
+        void RingArray::Update(double deltaTime)
         {
             UpdateRing1Slide(deltaTime);
         }

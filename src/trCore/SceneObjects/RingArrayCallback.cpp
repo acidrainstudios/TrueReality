@@ -41,29 +41,27 @@ namespace trCore
 
         //////////////////////////////////////////////////////////////////////////
         void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr)
-        {
-            //Set the timer at 0 on the first run. 
+        {            
             if (mFirstFrame)
             {
+                //Set the timer at 0 on the first run. 
                 mTimer.SetStartTick(0);
                 mTimer.Tick();
-                mFirstFrame = false;
+                mFirstFrame = false;          
             }
 
-            mRing = static_cast<RingArray*>(nodePtr);
-
-            if (mRing != nullptr)
+            if (nodePtr != nullptr)
             {
                 //Update our timed loop
                 mTimer.Tick();
 
                 //Pass the frame time to the ring update
-                mRing->Update(nodePtr, nvPtr, mTimer.GetSecondsPerTick());
+                static_cast<RingArray*>(nodePtr)->Update(mTimer.GetSecondsPerTick());
             }
             else
             {
                 LOG_E("Callback not connected to a RingArray")
-            }
+            }            
         }
     }
 }

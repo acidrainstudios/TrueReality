@@ -69,11 +69,9 @@ namespace trCore
              *
              * @brief   This function gets called by the RingArrayCallback.
              *
-             * @param [in,out]  node        If non-null, the node.
-             * @param [in,out]  nv          If non-null, the nv.
              * @param           deltaTime   The delta time between frames.
              */
-            virtual void Update(osg::Node* node, osg::NodeVisitor* nv, double deltaTime);
+            virtual void Update(double deltaTime);
 
         protected:
 

@@ -69,8 +69,6 @@ namespace trCore
 
             bool mFirstFrame = true;
             trUtil::Timer mTimer;
-
-            RingArray* mRing = nullptr;
         };
     }
 }
