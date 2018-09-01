@@ -37,4 +37,9 @@ namespace trBase
     */
     using Vec3 = Vec3f;
 #endif
+
+
+    const Vec3 X_AXIS(1.0, 0.0, 0.0);
+    const Vec3 Y_AXIS(0.0, 1.0, 0.0);
+    const Vec3 Z_AXIS(0.0, 0.0, 1.0);
 }
