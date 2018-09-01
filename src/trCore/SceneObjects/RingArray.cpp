@@ -22,6 +22,8 @@
 #include <trCore/SceneObjects/RingArray.h>
 
 #include <trBase/SmrtPtr.h>
+#include <trBase/Vec3.h>
+#include <trBase/Quat.h>
 #include <trUtil/Math.h>
 #include <trUtil/PathUtils.h>
 
@@ -49,7 +51,7 @@ namespace trCore
         //////////////////////////////////////////////////////////////////////////
         RingArray::RingArray(double angleCorrection) : RingArray()
         {
-            mAngleCorrection->setAttitude(*new osg::Quat(osg::DegreesToRadians(angleCorrection), osg::Z_AXIS));
+            mAngleCorrection->setAttitude(*new trBase::Quat(trUtil::Math::Deg2Rad(angleCorrection), trBase::Z_AXIS));
         }
 
         //////////////////////////////////////////////////////////////////////////
@@ -132,7 +134,7 @@ namespace trCore
                     mRing1SlideAngle -= trUtil::Math::TWO_PI;
                 }
 
-                mRing1Slide->setAttitude(osg::Quat(mRing1SlideAngle, osg::X_AXIS));
+                mRing1Slide->setAttitude(trBase::Quat(mRing1SlideAngle, trBase::X_AXIS));
 
                 UpdateRing2Angle(deltaTime);
             }
@@ -162,7 +164,7 @@ namespace trCore
                 }
 
 
-                mRing2Rotation->setAttitude(osg::Quat(mRing2RotationAngle, osg::Y_AXIS));
+                mRing2Rotation->setAttitude(trBase::Quat(mRing2RotationAngle, trBase::Y_AXIS));
 
                 UpdateRing2Slide(deltaTime);
             }
@@ -191,7 +193,7 @@ namespace trCore
                     mRing2SlideAngle -= trUtil::Math::TWO_PI;
                 }
 
-                mRing2Slide->setAttitude(osg::Quat(mRing2SlideAngle, osg::X_AXIS));
+                mRing2Slide->setAttitude(trBase::Quat(mRing2SlideAngle, trBase::X_AXIS));
 
                 UpdateRing3Angle(deltaTime);
             }
@@ -220,7 +222,7 @@ namespace trCore
                     mRing3RotationAngle -= trUtil::Math::TWO_PI;
                 }
 
-                mRing3Rotation->setAttitude(osg::Quat(mRing3RotationAngle, osg::Y_AXIS));
+                mRing3Rotation->setAttitude(trBase::Quat(mRing3RotationAngle, trBase::Y_AXIS));
 
                 UpdateRing3Slide(deltaTime);
             }
@@ -249,7 +251,7 @@ namespace trCore
                     mRing3SlideAngle -= trUtil::Math::TWO_PI;
                 }
 
-                mRing3Slide->setAttitude(osg::Quat(mRing3SlideAngle, osg::X_AXIS));
+                mRing3Slide->setAttitude(trBase::Quat(mRing3SlideAngle, trBase::X_AXIS));
 
                 UpdateRing4Angle(deltaTime);
             }
@@ -278,7 +280,7 @@ namespace trCore
                     mRing4RotationAngle -= trUtil::Math::TWO_PI;
                 }
 
-                mRing4Rotation->setAttitude(osg::Quat(mRing4RotationAngle, osg::Y_AXIS));
+                mRing4Rotation->setAttitude(trBase::Quat(mRing4RotationAngle, trBase::Y_AXIS));
             }
             else
             {
