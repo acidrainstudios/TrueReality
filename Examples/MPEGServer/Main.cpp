@@ -24,12 +24,12 @@
 #include <GL/glew.h> //Needs to be included before anything with gl.h
 
 #include "Utils.h"
-#include "RingArray.h"
-#include "RingArrayCallback.h"
 #include "TxtrCameraObject.h"
 #include "WinDefaultConfig.h"
 
 #include <trBase/SmrtPtr.h>
+#include <trCore/SceneObjects/RingArray.h>
+#include <trCore/SceneObjects/RingArrayCallback.h>
 #include <trUtil/Console/Logo.h>
 #include <trUtil/DefaultSettings.h>
 #include <trUtil/PathUtils.h>
@@ -100,8 +100,8 @@ int main(int argc, char** argv)
     trBase::SmrtPtr<osg::Group> rootNode = new osg::Group();
 
     //Create our scene
-    trBase::SmrtPtr<RingArray> ringNode = new RingArray(80);
-    trBase::SmrtPtr<RingArrayCallback> modelCallback = new RingArrayCallback();
+    trBase::SmrtPtr<trCore::SceneObjects::RingArray> ringNode = new trCore::SceneObjects::RingArray(80);
+    trBase::SmrtPtr<trCore::SceneObjects::RingArrayCallback> modelCallback = new trCore::SceneObjects::RingArrayCallback();
     ringNode->setUpdateCallback(modelCallback);
 
     //Place a cube in the texture scene
