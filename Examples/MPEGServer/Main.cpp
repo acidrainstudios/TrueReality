@@ -27,7 +27,9 @@
 #include "TxtrCameraObject.h"
 #include "WinDefaultConfig.h"
 
+#include <trBase/Quat.h>
 #include <trBase/SmrtPtr.h>
+#include <trBase/Vec3.h>
 #include <trCore/SceneObjects/RingArray.h>
 #include <trCore/SceneObjects/RingArrayCallback.h>
 #include <trUtil/Console/Logo.h>
@@ -107,8 +109,8 @@ int main(int argc, char** argv)
     //Place a cube in the texture scene
     trBase::SmrtPtr<osg::PositionAttitudeTransform> cube = new osg::PositionAttitudeTransform();
     cube->addChild(osgDB::readNodeFile(CUBE_MODEL));
-    cube->setScale(osg::Vec3f(400, 400, 400));
-    cube->setAttitude(osg::Quat(0.2, osg::X_AXIS, 0.2, osg::Y_AXIS, 0.2, osg::Z_AXIS));
+    cube->setScale(trBase::Vec3(400, 400, 400));
+    cube->setAttitude(trBase::Quat(0.2, trBase::X_AXIS, 0.2, trBase::Y_AXIS, 0.2, trBase::Z_AXIS));
     ringNode->addChild(cube);
 
     //Place a light in the texture scene
@@ -134,6 +136,7 @@ int main(int argc, char** argv)
     //skyBox->getStateSet()->setMode(GL_CULL_FACE, osg::StateAttribute::ON);
     //skyBox->getStateSet()->setRenderBinDetails(INT_MAX, "RenderBin");
     //skyBox->getStateSet()->setRenderBinToInherit();
+
 
     //Setup the scene
     //camObject->GetCamera()->addChild(skyBox);
