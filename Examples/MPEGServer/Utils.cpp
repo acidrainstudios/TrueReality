@@ -86,13 +86,13 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& mpegType, std::string
 osg::LightSource* CreateLight(int lightNum)
 {
     trBase::SmrtPtr<osg::Light> light = new osg::Light;
-    light->setLightNum(0);
+    light->setLightNum(lightNum);
     light->setDiffuse(osg::Vec4(1.0, 1.0, 1.0, 1.0));
     light->setPosition(osg::Vec4(0.0f, 100.0f, 0.0f, 1.0f));
     light->setConstantAttenuation(0.00001);
 
-    osg::LightSource* lightSource0 = new osg::LightSource;
-    lightSource0->setLight(light);
+    osg::LightSource* lightSource = new osg::LightSource;
+    lightSource->setLight(light);
 
-    return lightSource0;
+    return lightSource;
 }
