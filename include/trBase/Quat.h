@@ -308,8 +308,10 @@ namespace trBase
         void MakeRotate(value_type  angle, const Vec3d& vec);
 
         /**
-         * @brief   Set a quaternion which will perform a rotation of an angle around the axis given by
-         *          the vector(x, y, z).
+         * @brief   Set a quaternion which will perform a rotation of an angles around three axes given by
+         *          the vectors(x, y, z).
+         *          Creates a quaternion after making three individual quaternions, one for each angle and axis, and multiplying them together.
+         *          Q = q(angle1, axis1)*q(angle2, axis2)*q(angle3, axis3)
          *
          * @param   angle1  The first angle.
          * @param   axis1   The first axis.
@@ -321,8 +323,10 @@ namespace trBase
         void MakeRotate(value_type  angle1, const Vec3f& axis1, value_type  angle2, const Vec3f& axis2, value_type  angle3, const Vec3f& axis3);
 
         /**
-         * @brief   Set a quaternion which will perform a rotation of an angle around the axis given by
-         *          the vector(x, y, z).
+         * @brief   Set a quaternion which will perform a rotation of an angles around three axes given by
+         *          the vectors(x, y, z).
+         *          Creates a quaternion after making three individual quaternions, one for each angle and axis, and multiplying them together.
+         *          Q = q(angle1, axis1)*q(angle2, axis2)*q(angle3, axis3)
          *
          * @param   angle1  The first angle.
          * @param   axis1   The first axis.
