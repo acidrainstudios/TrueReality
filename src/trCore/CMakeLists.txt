@@ -26,23 +26,34 @@ SET (HEADER_PATH ${CMAKE_SOURCE_DIR}/include/${FILE_NAME})
 SET (SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
-FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
+FILE (GLOB BASE_SOURCES "${SOURCE_PATH}/*.cpp")
+FILE (GLOB SCENE_OBJECTS_SOURCES "${SOURCE_PATH}/SceneObjects/*.cpp")
+SET (PROJECT_SOURCES "${BASE_SOURCES};${SCENE_OBJECTS_SOURCES}")
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
 FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
-SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS}")
+FILE (GLOB SCENE_OBJECTS_HEADERS "${HEADER_PATH}/SceneObjects/*.h")
+SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS};${SCENE_OBJECTS_HEADERS}")
 
 # *****************************************************************************
-# Project Folder Setup ********************************************************
+# Project Folder Setup*********************************************************
 # *****************************************************************************
 # Sets the header file folders in IDEs
 SET (HEADERS_GROUP "Header Files")
 SOURCE_GROUP (${HEADERS_GROUP} FILES ${BASE_HEADERS} ${BASE_GEN_HEADERS})
-
 # Sets the source file folders in IDEs
 SET (SOURCES_GROUP "Source Files")
-SOURCE_GROUP (${SOURCES_GROUP} FILES ${PROJECT_SOURCES})
+SOURCE_GROUP (${SOURCES_GROUP} FILES ${BASE_SOURCES})
+
+# SceneObjects Groups***************************************************************
+# Sets the header file folders in IDEs
+SET (HEADERS_SCENE_OBJECTS_GROUP "${HEADERS_GROUP}\\SceneObjects")
+SOURCE_GROUP (${HEADERS_SCENE_OBJECTS_GROUP} FILES ${SCENE_OBJECTS_HEADERS})
+# Sets the source file folders in IDEs
+SET (SOURCES_SCENE_OBJECTS_GROUP "${SOURCES_GROUP}\\SceneObjects")
+SOURCE_GROUP (${SOURCES_SCENE_OBJECTS_GROUP} FILES ${SCENE_OBJECTS_SOURCES})
+
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
