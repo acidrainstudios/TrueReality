@@ -41,6 +41,8 @@ namespace trCore
         {
         public:
 
+            using BaseClass = osg::Transform;           /// Adds an easy and swappable access to the base class
+
             /**
              * @fn  SkyBoxNode::SkyBoxNode();
              *
