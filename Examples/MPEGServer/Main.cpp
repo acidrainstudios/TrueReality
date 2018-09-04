@@ -125,9 +125,6 @@ int main(int argc, char** argv)
     mainView->setSceneData(rootNode.Get());
     mainView->apply(new WinDefaultConfig(WIN_POS_X, WIN_POS_Y, WIN_WIDTH, WIN_HEIGHT, 0U, true, CAM_NEAR_CLIP, CAM_FAR_CLIP, CAM_FOV));
 
-    //Make sure the cull planes are set manually
-    mainView->getCamera()->setComputeNearFarMode(osg::Camera::DO_NOT_COMPUTE_NEAR_FAR);
-
     //Adds the statistics handler. 
     mainView->addEventHandler(new osgViewer::StatsHandler);    
 

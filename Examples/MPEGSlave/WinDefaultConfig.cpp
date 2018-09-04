@@ -146,6 +146,9 @@ void WinDefaultConfig::Configure(osgViewer::View& view) const
 
     //Setup the background clear color. 
     view.getCamera()->setClearColor(osg::Vec4(1.0, 0.0, 1.0, 1.0));
+
+    //Make sure the near and far cull planes are set manually and are not recomputed
+    view.getCamera()->setComputeNearFarMode(osg::Camera::DO_NOT_COMPUTE_NEAR_FAR);
 }
 
 //////////////////////////////////////////////////////////////////////////
