@@ -47,7 +47,7 @@ namespace trCore
             {
                 osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
                 matrix.preMult(osg::Matrix::translate(cv->getEyeLocal()));
-            return true;
+                return true;
             }
             else
             {
@@ -58,7 +58,22 @@ namespace trCore
         //////////////////////////////////////////////////////////////////////////
         bool SkyBoxNode::computeWorldToLocalMatrix(osg::Matrix & matrix, osg::NodeVisitor * nv) const
         {
-            return true;
+            if (nv && nv->getVisitorType() == osg::NodeVisitor::CULL_VISITOR)
+            {
+                osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
+                matrix.preMult(osg::Matrix::translate(cv->getEyeLocal()));
+                return true;
+            }
+            else
+            {
+                return BaseClass::computeWorldToLocalMatrix(matrix, nv);
+            }
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+        bool SkyBoxNode::LoadFile(std::string fileName)
+        {
+            return false;
         }
 
         //////////////////////////////////////////////////////////////////////////
