@@ -22,6 +22,7 @@
 #include <trCore\SceneObjects\SkyBoxNode.h>
 
 #include <osg/Depth>
+#include <osgUtil/CullVisitor>
 
 namespace trCore
 {
@@ -34,7 +35,7 @@ namespace trCore
            getOrCreateStateSet()->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
            getStateSet()->setAttributeAndModes(new osg::Depth(osg::Depth::LEQUAL, 1.0f, 1.0f));
            getStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
-           getStateSet()->setMode(GL_CULL_FACE, osg::StateAttribute::ON);
+           getStateSet()->setMode(GL_CULL_FACE, osg::StateAttribute::OFF);
            getStateSet()->setRenderBinDetails(INT_MAX, "RenderBin");
            getStateSet()->setRenderBinToInherit();
         }
@@ -42,13 +43,22 @@ namespace trCore
         //////////////////////////////////////////////////////////////////////////
         bool SkyBoxNode::computeLocalToWorldMatrix(osg::Matrix & matrix, osg::NodeVisitor * nv) const
         {
-            return false;
+            if (nv && nv->getVisitorType() == osg::NodeVisitor::CULL_VISITOR)
+            {
+                osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
+                matrix.preMult(osg::Matrix::translate(cv->getEyeLocal()));
+            return true;
+            }
+            else
+            {
+                return BaseClass::computeLocalToWorldMatrix(matrix, nv);
+            }
         }
 
         //////////////////////////////////////////////////////////////////////////
         bool SkyBoxNode::computeWorldToLocalMatrix(osg::Matrix & matrix, osg::NodeVisitor * nv) const
         {
-            return false;
+            return true;
         }
 
         //////////////////////////////////////////////////////////////////////////
