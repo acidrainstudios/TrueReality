@@ -22,6 +22,7 @@
 #include <trCore\SceneObjects\SkyBoxNode.h>
 
 #include <osg/Depth>
+#include <osgDB/ReadFile>
 #include <osgUtil/CullVisitor>
 
 namespace trCore
@@ -73,7 +74,16 @@ namespace trCore
         //////////////////////////////////////////////////////////////////////////
         bool SkyBoxNode::LoadFile(std::string fileName)
         {
-            return false;
+            mNode = osgDB::readNodeFile(fileName);
+            if (mNode.Valid())
+            {
+                addChild(mNode);
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
 
         //////////////////////////////////////////////////////////////////////////

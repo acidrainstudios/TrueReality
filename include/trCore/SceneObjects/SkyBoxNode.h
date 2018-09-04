@@ -23,7 +23,10 @@
 
 #include <trCore/Export.h>
 
+#include <trBase/SmrtPtr.h>
+
 #include <osg/Matrix>
+#include <osg/Node>
 #include <osg/NodeVisitor>
 #include <osg/Transform>
 
@@ -74,7 +77,20 @@ namespace trCore
              */
             virtual bool computeWorldToLocalMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
 
+            /**
+             * @fn  bool SkyBoxNode::LoadFile(std::string fileName);
+             *
+             * @brief   Loads a  geometry file. Path and file name should be passed in
+             *
+             * @param   fileName    Filename of the file.
+             *
+             * @return  True if it succeeds, false if it fails.
+             */
+            bool LoadFile(std::string fileName);
+
         protected:
+
+            trBase::SmrtPtr<osg::Node> mNode = nullptr;
 
             /**
              * @fn  SkyBoxNode::~SkyBoxNode();
@@ -82,7 +98,6 @@ namespace trCore
              * @brief   Destructor.
              */
             ~SkyBoxNode();
-
         };
     }
 }
