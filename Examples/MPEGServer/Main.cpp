@@ -32,13 +32,13 @@
 #include <trBase/Vec3.h>
 #include <trCore/SceneObjects/RingArray.h>
 #include <trCore/SceneObjects/RingArrayCallback.h>
+#include <trCore/SceneObjects/SkyBoxNode.h>
 #include <trUtil/Console/Logo.h>
 #include <trUtil/DefaultSettings.h>
 #include <trUtil/PathUtils.h>
 #include <trUtil/RefStr.h>
 
 #include <osg/Camera>
-#include <osg/Depth>
 #include <osg/Geometry>
 #include <osg/Texture2D>
 #include <osgDB/ReadFile>
@@ -128,18 +128,10 @@ int main(int argc, char** argv)
     //Adds the statistics handler. 
     mainView->addEventHandler(new osgViewer::StatsHandler);
 
-    //trBase::SmrtPtr<osg::Node> skyBox = osgDB::readNodeFile(SKY_BOX_MODEL);
-    //skyBox->getOrCreateStateSet()->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
-    //skyBox->setCullingActive(false);
-    //skyBox->getStateSet()->setAttributeAndModes(new osg::Depth(osg::Depth::LEQUAL, 1.0f, 1.0f));
-    //skyBox->getStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
-    //skyBox->getStateSet()->setMode(GL_CULL_FACE, osg::StateAttribute::ON);
-    //skyBox->getStateSet()->setRenderBinDetails(INT_MAX, "RenderBin");
-    //skyBox->getStateSet()->setRenderBinToInherit();
-
+    //trBase::SmrtPtr<trCore::SceneObjects::SkyBoxNode> skyBox = new trCore::SceneObjects::SkyBoxNode();
+    //skyBox->LoadFile(SKY_BOX_MODEL);
 
     //Setup the scene
-    //camObject->GetCamera()->addChild(skyBox);
     //rootNode->addChild(skyBox);
     rootNode->addChild(camObject->GetCamera());
     rootNode->addChild(camObject->GetRenderTarget());
