@@ -61,7 +61,7 @@ static const int WIN_POS_X = 100;
 static const int WIN_POS_Y = 100;
 
 static const double CAM_NEAR_CLIP = 0.1;
-static const double CAM_FAR_CLIP = 10000.0;
+static const double CAM_FAR_CLIP = 1000000.0;
 static const double CAM_FOV = 25;
 
 static const int SAMPLE_NUM = 4;
@@ -125,14 +125,17 @@ int main(int argc, char** argv)
     mainView->setSceneData(rootNode.Get());
     mainView->apply(new WinDefaultConfig(WIN_POS_X, WIN_POS_Y, WIN_WIDTH, WIN_HEIGHT, 0U, true, CAM_NEAR_CLIP, CAM_FAR_CLIP, CAM_FOV));
 
-    //Adds the statistics handler. 
-    mainView->addEventHandler(new osgViewer::StatsHandler);
+    //Make sure the cull planes are set manually
+    mainView->getCamera()->setComputeNearFarMode(osg::Camera::DO_NOT_COMPUTE_NEAR_FAR);
 
-    //trBase::SmrtPtr<trCore::SceneObjects::SkyBoxNode> skyBox = new trCore::SceneObjects::SkyBoxNode();
-    //skyBox->LoadFile(SKY_BOX_MODEL);
+    //Adds the statistics handler. 
+    mainView->addEventHandler(new osgViewer::StatsHandler);    
+
+    trBase::SmrtPtr<trCore::SceneObjects::SkyBoxNode> skyBox = new trCore::SceneObjects::SkyBoxNode();
+    skyBox->LoadFile(SKY_BOX_MODEL);
 
     //Setup the scene
-    //rootNode->addChild(skyBox);
+    rootNode->addChild(skyBox);
     rootNode->addChild(camObject->GetCamera());
     rootNode->addChild(camObject->GetRenderTarget());
     rootNode->addChild(osgDB::readNodeFile(COW_MODEL));
@@ -145,7 +148,6 @@ int main(int argc, char** argv)
     if ((mainView->getCameraManipulator() == 0) && mainView->getCamera()->getAllowEventFocus())
     {
         mainView->setCameraManipulator(new osgGA::TrackballManipulator());
-        //mainView->setCameraManipulator(new osgGA::UFOManipulator());
     }
     viewer.setReleaseContextAtEndOfFrameHint(true);
     if (!viewer.isRealized())
