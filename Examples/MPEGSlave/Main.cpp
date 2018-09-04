@@ -25,6 +25,7 @@
 #include "WinDefaultConfig.h"
 
 #include <trBase/SmrtPtr.h>
+#include <trCore/SceneObjects/SkyBoxNode.h>
 #include <trMPEG/StreamSlave.h>
 #include <trUtil/Console/Logo.h>
 #include <trUtil/Console/TextColor.h>
@@ -52,10 +53,12 @@ static const int WIN_POS_X = 200;
 static const int WIN_POS_Y = 200;
 
 static const double CAM_NEAR_CLIP = 0.1;
-static const double CAM_FAR_CLIP = 10000.0;
+static const double CAM_FAR_CLIP = 1000000.0;
 static const double CAM_FOV = 25;
 
 static const int SAMPLE_NUM = 4;
+
+static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ConstructSkybox/ConstructSkybox.obj");
 
 //////////////////////////////////////////////////////////////////////////
 osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlFormat)
@@ -149,10 +152,18 @@ int main(int argc, char** argv)
         trBase::SmrtPtr<osg::Texture2D> textureTarget = GenerateTexture(WIN_WIDTH, WIN_HEIGHT, GL_RGB);
         trBase::SmrtPtr<osg::Geode> rootNode = GenerateRenderTarget(textureTarget);
 
+        //Add Skybox
+        trBase::SmrtPtr<trCore::SceneObjects::SkyBoxNode> skyBox = new trCore::SceneObjects::SkyBoxNode();
+        skyBox->LoadFile(SKY_BOX_MODEL);
+        rootNode->addChild(skyBox);
+
         //Create our View
         trBase::SmrtPtr<osgViewer::View> mainView = new osgViewer::View();
         mainView->setSceneData(rootNode.Get());
         mainView->apply(new WinDefaultConfig(WIN_POS_X, WIN_POS_Y, WIN_WIDTH, WIN_HEIGHT, 0U, true, CAM_NEAR_CLIP, CAM_FAR_CLIP, CAM_FOV));
+
+        //Make sure the cull planes are set manually
+        mainView->getCamera()->setComputeNearFarMode(osg::Camera::DO_NOT_COMPUTE_NEAR_FAR);
 
         //Adds the statistics handler. 
         mainView->addEventHandler(new osgViewer::StatsHandler);
