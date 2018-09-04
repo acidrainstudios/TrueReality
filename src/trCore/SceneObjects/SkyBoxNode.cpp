@@ -21,12 +21,9 @@
 
 #include <trCore\SceneObjects\SkyBoxNode.h>
 
-#include <trBase/Vec3.h>
-
 #include <osg/Depth>
 #include <osgDB/ReadFile>
 #include <osgUtil/CullVisitor>
-#include <osgUtil/UpdateVisitor>
 
 namespace trCore
 {
@@ -34,15 +31,11 @@ namespace trCore
     {
         //////////////////////////////////////////////////////////////////////////
         SkyBoxNode::SkyBoxNode()
-        {
-            setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+        {           
             setCullingActive(false);
             getOrCreateStateSet()->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
-            //getStateSet()->setAttributeAndModes(new osg::Depth(osg::Depth::LEQUAL, 1.0f, 1000.0f));
             getStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
-            getStateSet()->setMode(GL_CULL_FACE, osg::StateAttribute::OFF);
             getStateSet()->setRenderBinDetails(INT_MIN, "RenderBin");
-            //getStateSet()->setRenderBinToInherit();
         }
 
         //////////////////////////////////////////////////////////////////////////
@@ -52,7 +45,6 @@ namespace trCore
             {
                 osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
                 matrix.preMult(osg::Matrix::translate(cv->getEyeLocal()));
-                std::cerr << trBase::Vec3(cv->getEyeLocal()) << std::endl;
                 return true;
             }
             else
@@ -68,7 +60,6 @@ namespace trCore
             {
                 osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
                 matrix.postMult(osg::Matrix::translate(cv->getEyeLocal()));
-                std::cerr << trBase::Vec3(cv->getEyeLocal()) << std::endl;
                 return true;
             }
             else
