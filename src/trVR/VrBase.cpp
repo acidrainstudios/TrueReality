@@ -30,7 +30,7 @@ namespace trVR
     const trUtil::RefStr VrBase::CLASS_TYPE = trUtil::RefStr("trVR::VrBase");
     
     //////////////////////////////////////////////////////////////////////////
-    VrBase::VrBase(const std::string name) : BaseClass(name)
+    VrBase::VrBase(const std::string& name) : BaseClass(name)
     {
     }
     
@@ -84,9 +84,9 @@ namespace trVR
             LOG_I("Render models interface initialized!")
         }
 
-        LOG_I("Driver name: " + GetDeviceProperty(vr::Prop_TrackingSystemName_String))
-        LOG_I("Device serial number: " + GetDeviceProperty(vr::Prop_SerialNumber_String))
-        LOG_I("HMD model: " + GetDeviceProperty(vr::Prop_ModelNumber_String))
+        LOG_I("Driver name: " + GetDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_TrackingSystemName_String))
+        LOG_I("Device serial number: " + GetDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_SerialNumber_String))
+        LOG_I("HMD model: " + GetDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_ModelNumber_String))
 
         mInit = true;
     }
@@ -180,19 +180,96 @@ namespace trVR
     }
     
     //////////////////////////////////////////////////////////////////////////
-    std::string VrBase::GetDeviceProperty(vr::TrackedDeviceProperty property)
+    bool VrBase::SubmitFrame(osg::Texture2D* leftTex, osg::Texture2D* rightTex,
+                             int contextID, vr::EColorSpace colorSpace)
     {
-        uint32_t bufferLen = mVrSystem->GetStringTrackedDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, property, nullptr, 0);
+        // Do left eye stuff
+        LOG_D("Creating left eye texture.")
+        GLuint tex = leftTex->getTextureObject(contextID)->id();
+        
+        LOG_D("Using left eye texture.")
+        vr::Texture_t leftEyeTex = {(void*)tex,
+                                    vr::TextureType_OpenGL, colorSpace};
+        
+        LOG_D("Submitting left eye texture.")
+        vr::EVRCompositorError lErr = vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTex);
+        
+        if (lErr != vr::VRCompositorError_None)
+        {
+            LOG_E("Left eye submit error: " + DisplayCompositorError(lErr))
+        }
+        else
+        {
+            LOG_D("Left eye successfully submitted.")
+        }
+        
+        // Do right eye stuff
+        LOG_D("Creating right eye texture.")
+        tex = rightTex->getTextureObject(contextID)->id();
+        
+        LOG_D("Using right eye texture.")
+        vr::Texture_t rightEyeTex = {(void*)tex,
+                                    vr::TextureType_OpenGL, colorSpace};
+        
+        LOG_D("Submitting right eye texture.")
+        vr::EVRCompositorError rErr = vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTex);
+        
+        if (rErr != vr::VRCompositorError_None)
+        {
+            LOG_E("Right eye submit error: " + DisplayCompositorError(rErr))
+        }
+        
+        return lErr == vr::VRCompositorError_None && rErr == vr::VRCompositorError_None;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    std::string VrBase::GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property)
+    {
+        uint32_t bufferLen = mVrSystem->GetStringTrackedDeviceProperty(deviceIndex, property, nullptr, 0);
         
         if (bufferLen == 0)
         {
-            return trUtil::StringUtils::STR_BLANK;
+            return "Blank device property.";
         }
         
         char* buffer = new char[bufferLen];
-        bufferLen = mVrSystem->GetStringTrackedDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, property, buffer, bufferLen);
+        bufferLen = mVrSystem->GetStringTrackedDeviceProperty(deviceIndex, property, buffer, bufferLen);
         std::string result = buffer;
         delete []buffer;
         return result;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    std::string VrBase::DisplayCompositorError(vr::EVRCompositorError error)
+    {
+        switch (error)
+        {
+            case vr::EVRCompositorError::VRCompositorError_AlreadySubmitted:
+                return "Already submitted.";
+            case vr::EVRCompositorError::VRCompositorError_DoNotHaveFocus:
+                return "Compositor doesn't have focus.";
+            case vr::EVRCompositorError::VRCompositorError_IncompatibleVersion:
+                return "Incompatible version.";
+            case vr::EVRCompositorError::VRCompositorError_IndexOutOfRange:
+                return "Index out of range.";
+            case vr::EVRCompositorError::VRCompositorError_InvalidBounds:
+                return "Invalid bounds.";
+            case vr::EVRCompositorError::VRCompositorError_InvalidTexture:
+                return "Invalid texture.";
+            case vr::EVRCompositorError::VRCompositorError_IsNotSceneApplication:
+                return "This is not a scene application";
+            case vr::EVRCompositorError::VRCompositorError_None:
+                return "No error.";
+            case vr::EVRCompositorError::VRCompositorError_RequestFailed:
+                return "Request has failed.";
+            case vr::EVRCompositorError::VRCompositorError_SharedTexturesNotSupported:
+                return "Shared texture is not supported.";
+            case vr::EVRCompositorError::VRCompositorError_TextureIsOnWrongDevice:
+                return "Texture is on the wrong device.";
+            case vr::EVRCompositorError::VRCompositorError_TextureUsesUnsupportedFormat:
+                return "Texture format is unsupported.";
+            default:
+                return "Error is unknown! This should never happen.";
+        }
     }
 }
