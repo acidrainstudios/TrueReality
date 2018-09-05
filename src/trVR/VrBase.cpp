@@ -90,6 +90,34 @@ namespace trVR
 
         mInit = true;
     }
+
+	//////////////////////////////////////////////////////////////////////////
+	bool VrBase::InitializeRenderTargets()
+	{
+		if (!mVrSystem)
+		{
+			return false;
+		}
+
+		mVrSystem->GetRecommendedRenderTargetSize(&mRenderWidth, &mRenderHeight);
+
+		return true;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	bool VrBase::CreateFrameBuffer(int width, int height, FramebufferDesc& framebufferDesc)
+	{
+		glGenFramebuffers(1, &framebufferDesc.mRenderFramebufferId);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.mRenderFramebufferId);
+
+		return true;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	vr::IVRSystem* VrBase::GetVrSystem()
+	{
+		return mVrSystem;
+	}
     
     //////////////////////////////////////////////////////////////////////////
     trBase::Quat VrBase::GetOrientation() const
@@ -185,42 +213,49 @@ namespace trVR
     {
         // Do left eye stuff
         LOG_D("Creating left eye texture.")
-        GLuint tex = leftTex->getTextureObject(contextID)->id();
-        
-        LOG_D("Using left eye texture.")
-        vr::Texture_t leftEyeTex = {(void*)tex,
-                                    vr::TextureType_OpenGL, colorSpace};
-        
-        LOG_D("Submitting left eye texture.")
-        vr::EVRCompositorError lErr = vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTex);
-        
-        if (lErr != vr::VRCompositorError_None)
-        {
-            LOG_E("Left eye submit error: " + DisplayCompositorError(lErr))
-        }
-        else
-        {
-            LOG_D("Left eye successfully submitted.")
-        }
+        GLuint texL = leftTex->getTextureObject(contextID)->id();
         
         // Do right eye stuff
         LOG_D("Creating right eye texture.")
-        tex = rightTex->getTextureObject(contextID)->id();
+        GLuint texR = rightTex->getTextureObject(contextID)->id();
         
-        LOG_D("Using right eye texture.")
-        vr::Texture_t rightEyeTex = {(void*)tex,
-                                    vr::TextureType_OpenGL, colorSpace};
-        
-        LOG_D("Submitting right eye texture.")
-        vr::EVRCompositorError rErr = vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTex);
-        
-        if (rErr != vr::VRCompositorError_None)
-        {
-            LOG_E("Right eye submit error: " + DisplayCompositorError(rErr))
-        }
-        
-        return lErr == vr::VRCompositorError_None && rErr == vr::VRCompositorError_None;
+		return SubmitFrame(texL, texR, contextID, colorSpace);
     }
+
+	//////////////////////////////////////////////////////////////////////////
+	bool VrBase::SubmitFrame(GLuint leftTex, GLuint rightTex, int contextID,
+		                     vr::EColorSpace colorSpace)
+	{
+		LOG_D("Using left eye texture.")
+		vr::Texture_t leftEyeTex = { (void*)(uintptr_t)leftTex,
+										vr::TextureType_OpenGL, colorSpace };
+
+		LOG_D("Submitting left eye texture.")
+		vr::EVRCompositorError lErr = vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTex);
+
+		if (lErr != vr::VRCompositorError_None)
+		{
+			LOG_E("Left eye submit error: " + DisplayCompositorError(lErr))
+		}
+		else
+		{
+			LOG_D("Left eye successfully submitted.")
+		}
+
+		LOG_D("Using right eye texture.")
+		vr::Texture_t rightEyeTex = { (void*)(uintptr_t)rightTex,
+										vr::TextureType_OpenGL, colorSpace };
+
+		LOG_D("Submitting right eye texture.")
+		vr::EVRCompositorError rErr = vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTex);
+
+		if (rErr != vr::VRCompositorError_None)
+		{
+			LOG_E("Right eye submit error: " + DisplayCompositorError(rErr))
+		}
+
+		return lErr == vr::VRCompositorError_None && rErr == vr::VRCompositorError_None;
+	}
     
     //////////////////////////////////////////////////////////////////////////
     std::string VrBase::GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property)
