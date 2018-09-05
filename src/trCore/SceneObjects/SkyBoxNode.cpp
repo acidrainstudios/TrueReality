@@ -19,7 +19,7 @@
 * @author Maxim Serebrennik
 */
 
-#include <trCore\SceneObjects\SkyBoxNode.h>
+#include <trCore/SceneObjects/SkyBoxNode.h>
 
 #include <osg/Depth>
 #include <osgDB/ReadFile>
