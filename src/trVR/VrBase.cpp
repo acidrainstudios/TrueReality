@@ -114,6 +114,75 @@ namespace trVR
 
         return lInit && rInit;
     }
+    
+    //////////////////////////////////////////////////////////////////////////
+    void VrBase::CalculateEyeAdjustment()
+    {
+        vr::HmdMatrix34_t mat;
+        
+        mat = mVrSystem->GetEyeToHeadTransform(vr::Eye_Left);
+        mLeftEyeAdjustment = ConvertOpenvrMatrix(mat).GetTrans();
+        mat = mVrSystem->GetEyeToHeadTransform(vr::Eye_Right);
+        mRightEyeAdjustment = ConvertOpenvrMatrix(mat).GetTrans();
+        
+        trBase::Vec3 pupilDistVec = mLeftEyeAdjustment - mRightEyeAdjustment;
+        LOG_A ("Interpupillary distance (IPD) is " + trUtil::StringUtils::ToString(pupilDistVec.Length()))
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    void VrBase::CalculateProjectionMatrices()
+    {
+        vr::HmdMatrix44_t mat;
+        
+        // Sets the left eye's projection matrix
+        mat = mVrSystem->GetProjectionMatrix(vr::Eye_Left, 1.0e-6, 1.0e15);
+        mLeftProjectionMatrix = ConvertOpenvrMatrix(mat);
+        
+        // Sets the right eye's projection matrix
+        mat = mVrSystem->GetProjectionMatrix(vr::Eye_Right, 1.0e-6, 1.0e15);
+        mRightProjectionMatrix = ConvertOpenvrMatrix(mat);
+        
+        // Sets the center of the headset's projection matrix
+        mCenterProjectionMatrix = mLeftProjectionMatrix.operator*(0.5)
+            + mRightProjectionMatrix.operator*(0.5);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void VrBase::CalculateViewMatrices()
+    {
+        mLeftViewMatrix.MakeTranslate(-mLeftEyeAdjustment);
+        mRightViewMatrix.MakeTranslate(-mRightEyeAdjustment);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    trBase::Matrix VrBase::GetCenterProjectionMatrix() const
+    {
+        return mCenterProjectionMatrix;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    trBase::Matrix VrBase::GetLeftProjectionMatrix() const
+    {
+        return mLeftProjectionMatrix;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    trBase::Matrix VrBase::GetRightProjectionMatrix() const
+    {
+        return mRightProjectionMatrix;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    trBase::Matrix VrBase::GetLeftViewMatrix() const
+    {
+        return mLeftViewMatrix;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    trBase::Matrix VrBase::GetRightViewMatrix() const
+    {
+        return mRightViewMatrix;
+    }
 
     //////////////////////////////////////////////////////////////////////////
     bool VrBase::CreateFrameBuffer(int width, int height, FramebufferDesc& framebufferDesc)

@@ -79,7 +79,59 @@ namespace trVR
         void Init();
 
         bool InitializeRenderTargets();
+        
+        /**
+         * Calculates and stores the left and right eye adjustment distances
+         * from the center of the headset
+         */
+        void CalculateEyeAdjustment();
+        
+        /**
+         * Calculates and stores the center, left and right projection matrices
+         * needed for the cameras to render the correct scene data
+         */
+        void CalculateProjectionMatrices();
+        
+        /**
+         * Calculates and stores the center, left and right view matrices needed
+         * for the cameras to render the correct scene data
+         */
+        void CalculateViewMatrices();
+        
+        /**
+         * Returns the center projection matrix of the headset
+         * @return Center projection matrix of the headset
+         */
+        trBase::Matrix GetCenterProjectionMatrix() const;
+        
+        /**
+         * Returns the left eye projection matrix of the headset
+         * @return Left projection matrix of the headset
+         */
+        trBase::Matrix GetLeftProjectionMatrix() const;
+        
+        /**
+         * Returns the right eye projection matrix of the headset
+         * @return Right projection matrix of the headset
+         */
+        trBase::Matrix GetRightProjectionMatrix() const;
+        
+        /**
+         * Returns the left view matrix of the headset
+         * @return Left view matrix of the headset
+         */
+        trBase::Matrix GetLeftViewMatrix() const;
+        
+        /**
+         * Returns the right view matrix of the headset
+         * @return Right view matrix of the headset
+         */
+        trBase::Matrix GetRightViewMatrix() const;
 
+        /**
+         * Gets the IVRSystem pointer to be used outside the class.
+         * @return Pointer to the IVRSystem.
+         */
         vr::IVRSystem* GetVrSystem();
         
         /**
@@ -136,9 +188,27 @@ namespace trVR
          */
         void Shutdown();
         
+        /**
+         * Takes two OSG 2D textures, representing the left and right eye scenes,
+         * as input, gets their locations within the graphics context and submits
+         * these to the headset via the other SubmitFrame method.
+         * @param leftTex OSG Texture2D containing the left eye scene
+         * @param rightTex OSG Texture2D containing the right eye scene
+         * @param contextID The graphics context in which to pull the textures
+         * @param colorSpace OpenVR color space used for the textures within the headset
+         * @return Boolean containing the success of the submission to the headset
+         */
         bool SubmitFrame(osg::Texture2D* leftTex, osg::Texture2D* rightTex, int contextID = 0,
                          vr::EColorSpace colorSpace = vr::EColorSpace::ColorSpace_Gamma);
 
+        /**
+         * Takes two GL handles, representing the left and right eye textures, as
+         * input and submits these to the headset.
+         * @param leftTex GL texture location within the corresponding context
+         * @param rightTex GL texture location within the corresponding context
+         * @param colorSpace OpenVR color space used for the textures within the headset
+         * @return Boolean containing the success of the submission to the headset
+         */
         bool SubmitFrame(GLuint leftTex, GLuint rightTex, 
                          vr::EColorSpace colorSpace = vr::EColorSpace::ColorSpace_Gamma);
 
@@ -156,11 +226,11 @@ namespace trVR
     private:
         struct FramebufferDesc
         {
-                GLuint mDepthBufferId;
-                GLuint mRenderTextureId;
-                GLuint mRenderFramebufferId;
-                GLuint mResolveTextureId;
-                GLuint mResolveFramebufferId;
+            GLuint mDepthBufferId;
+            GLuint mRenderTextureId;
+            GLuint mRenderFramebufferId;
+            GLuint mResolveTextureId;
+            GLuint mResolveFramebufferId;
         };
 
         std::string GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property);
@@ -175,6 +245,13 @@ namespace trVR
         trBase::Quat mOrientation; /// Headset orientation
         trBase::Vec3 mPosition; /// Headset position
         bool mSysReady = false; /// OpenVR system initialization status
+        trBase::Matrix mCenterProjectionMatrix; /// Projection matrix for center of headset
+        trBase::Matrix mLeftProjectionMatrix; /// Projection matrix for left eye
+        trBase::Matrix mRightProjectionMatrix; /// Projection matrix for right eye
+        trBase::Matrix mLeftViewMatrix; /// View matrix for left eye
+        trBase::Matrix mRightViewMatrix; /// View matrix for right eye
+        trBase::Vec3 mLeftEyeAdjustment; /// View adjustment for left eye
+        trBase::Vec3 mRightEyeAdjustment; /// View adjustment for right eye
         FramebufferDesc mLeftEyeDesc;
         FramebufferDesc mRightEyeDesc;
     };
