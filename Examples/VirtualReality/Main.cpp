@@ -46,6 +46,8 @@
 #include <iostream>
 
 #include "trUtil/FileUtils.h"
+#include "trBase/ObsrvrPtr.h"
+#include "trCore/SceneObjects/SkyBoxNode.h"
 
 static const std::string LOG_FILE_NAME = "VRExample.html";
 
@@ -60,6 +62,11 @@ static const double CAM_FOV = 25;
 
 static const int SAMPLE_NUM = 4;
 
+static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ConstructSkybox/ConstructSkybox.obj");
+        
+static GLuint mTestFbo = 0;
+static GLuint mTestTex = 0;
+
 //////////////////////////////////////////////////////////////////////////
 osg::Texture2D* GenerateTexture(int renderWidth, int renderHeight, GLenum pxlFormat)
 {
@@ -72,9 +79,9 @@ osg::Texture2D* GenerateTexture(int renderWidth, int renderHeight, GLenum pxlFor
 
     trBase::SmrtPtr<osg::Image> image = new osg::Image();
     image->allocateImage(renderWidth, renderHeight, 1, GL_RGBA8, GL_UNSIGNED_BYTE);
-    //trBase::SmrtPtr<osg::Image> image = osgDB::readImageFile(trUtil::PathUtils::GetTexturesPath() + "/Grid/Grid.jpg");
-    //image->setPixelFormat(GL_RGBA);
-    //image->setDataType(GL_UNSIGNED_BYTE);
+//    trBase::SmrtPtr<osg::Image> image = osgDB::readImageFile(trUtil::PathUtils::GetTexturesPath() + "/Grid/Grid.jpg");
+//    image->setPixelFormat(GL_RGBA);
+//    image->setDataType(GL_UNSIGNED_BYTE);
     textureTargetPtr->setImage(image.Get());
 
     return textureTargetPtr;
@@ -119,21 +126,114 @@ osg::Geode* GenerateRenderTarget(osg::Texture2D* texture)
 }
 
 //////////////////////////////////////////////////////////////////////////
-GLuint FboTest(const osg::State& state, int width, int height)
+bool CreateFBO(const osg::State& state, int width, int height)
 {
     const osg::GLExtensions* fbo_ext = state.get<osg::GLExtensions>();
-    GLuint testFbo;
-    GLuint testTex;
     
-    fbo_ext->glGenFramebuffers(1, &testFbo);
+    if (fbo_ext)
+    {
+        fbo_ext->glGenFramebuffers(1, &mTestFbo);
+
+        glGenTextures(1, &mTestTex);
+        glBindTexture(GL_TEXTURE_2D, mTestTex);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);	// check FBO status
+
+        GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
+        if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+        {
+            LOG_W("Problem setting up frame buffer object.")
+            return false;
+        }
+        
+        return true;
+    }
     
-    glGenTextures(1, &testTex);
-    glBindTexture(GL_TEXTURE_2D, testTex);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+class PreRenderDrawCallback : public osg::Camera::DrawCallback
+{
+public:
+    PreRenderDrawCallback(osg::Camera* camera)
+        : mCamera(camera) {}
+    virtual void operator()(osg::RenderInfo& info) const;
+protected:
+    osg::ref_ptr<osg::Camera> mCamera;
+};
+
+//////////////////////////////////////////////////////////////////////////
+void PreRenderDrawCallback::operator()(osg::RenderInfo& info) const
+{
+    const osg::GLExtensions* fbo_ext = info.getState()->get<osg::GLExtensions>();
     
-    return testTex;
+    if (fbo_ext)
+    {
+        fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, mTestFbo);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////
+class RealizeOperation : public osg::GraphicsOperation
+{
+public:
+    explicit RealizeOperation(int width, int height)
+        : osg::GraphicsOperation("RealizeOperation", false)
+        , mHeight(height)
+        , mWidth(width) 
+        {}
+    virtual void operator()(osg::GraphicsContext* gc);
+    bool IsRealized() const { return mIsRealized; }
+protected:
+    OpenThreads::Mutex mMutex;
+    bool mIsRealized = false;
+    int mHeight = 1600;
+    int mWidth = 1400;
+};
+
+//////////////////////////////////////////////////////////////////////////
+void RealizeOperation::operator()(osg::GraphicsContext* gc)
+{
+    if (!mIsRealized)
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(mMutex);
+        gc->makeCurrent();
+        
+        if (osgViewer::GraphicsWindow* window = dynamic_cast<osgViewer::GraphicsWindow*>(gc))
+        {
+            // Forces the vsync off by running wglSwapIntervalEXT(0)
+            window->setSyncToVBlank(false);
+        }
+        
+        osg::ref_ptr<osg::State> state = gc->getState();
+        CreateFBO(*state, mWidth, mHeight);
+    }
+    
+    mIsRealized = true;
+}
+
+//////////////////////////////////////////////////////////////////////////
+class SwapCallback : public osg::GraphicsContext::SwapCallback
+{
+public:
+    explicit SwapCallback(trBase::SmrtPtr<trVR::VrBase> device)
+        : mDevice(device)
+        {}
+    void swapBuffersImplementation(osg::GraphicsContext* gc) override;
+    unsigned int GetFrameNumber() const { return mFrameNumber; }
+private:
+    trBase::ObsrvrPtr<trVR::VrBase> mDevice;
+    unsigned int mFrameNumber = 0;
+};
+
+//////////////////////////////////////////////////////////////////////////
+void SwapCallback::swapBuffersImplementation(osg::GraphicsContext* gc)
+{
+    mDevice->SubmitFrame(mTestTex, mTestTex);
+    
+    gc->swapBuffersImplementation();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -143,8 +243,8 @@ osg::GraphicsContext::Traits* CreateGraphicsContextTraits()
 
 	if (!wsi)
 	{
-		osg::notify(osg::NOTICE) << "Error, no WindowSystemInterface available, cannot create windows." << std::endl;
-		return 0;
+            LOG_E("No WindowSystemInterface available, cannot create windows.")
+            return 0;
 	}
 
 	// Get the screen identifiers set in environment variable DISPLAY
@@ -154,15 +254,15 @@ osg::GraphicsContext::Traits* CreateGraphicsContextTraits()
 	// If displayNum has not been set, reset it to 0.
 	if (si.displayNum < 0)
 	{
-		si.displayNum = 0;
-		osg::notify(osg::INFO) << "Couldn't get display number, setting to 0" << std::endl;
+            si.displayNum = 0;
+            LOG_W("Couldn't get display number, setting to 0")
 	}
 
 	// If screenNum has not been set, reset it to 0.
 	if (si.screenNum < 0)
 	{
-		si.screenNum = 0;
-		osg::notify(osg::INFO) << "Couldn't get screen number, setting to 0" << std::endl;
+            si.screenNum = 0;
+            LOG_W("Couldn't get screen number, setting to 0")
 	}
 
 	unsigned int width, height;
@@ -203,97 +303,90 @@ int main(int argc, char** argv)
         //Show Logo
         trUtil::Console::Logo();
 
-		//GLenum nGlewError = glewInit();
-		//if (nGlewError != GLEW_OK)
-		//{
-		//	printf("%s - Error initializing GLEW! %s\n", __FUNCTION__, glewGetErrorString(nGlewError));
-		//	return false;
-		//}
-		//glGetError(); // to clear the error caused deep in GLEW
+        trBase::SmrtPtr<trVR::VrBase> vrInstance = new trVR::VrBase;
 
-		trBase::SmrtPtr<trVR::VrBase> vrInstance = new trVR::VrBase;
+        vrInstance->Init();
 
-		vrInstance->Init();
-
-		uint32_t renderHeight, renderWidth;
-		vrInstance->GetVrSystem()->GetRecommendedRenderTargetSize(&renderWidth, &renderHeight);
+        uint32_t renderHeight, renderWidth;
+        vrInstance->GetVrSystem()->GetRecommendedRenderTargetSize(&renderWidth, &renderHeight);
 
         trBase::SmrtPtr<osg::Texture2D> textureTarget = GenerateTexture(renderWidth, renderHeight, GL_RGBA8);
         trBase::SmrtPtr<osg::Geode> rootNode = GenerateRenderTarget(textureTarget);
 
-        //Create our View
-        //trBase::SmrtPtr<osgViewer::View> mainView = new osgViewer::View();
-        //mainView->setSceneData(rootNode.Get());
-        //mainView->apply(new WinDefaultConfig(WIN_POS_X, WIN_POS_Y, WIN_WIDTH, WIN_HEIGHT, 0U, true, CAM_NEAR_CLIP, CAM_FAR_CLIP, CAM_FOV));
+        // Get the suggested context traits
+        osg::ref_ptr<osg::GraphicsContext::Traits> traits = CreateGraphicsContextTraits();
+        traits->windowName = "True Reality - VR Example";
 
-		// Get the suggested context traits
-		osg::ref_ptr<osg::GraphicsContext::Traits> traits = CreateGraphicsContextTraits();
-		traits->windowName = "TR - Example VR";
+        // Create a graphic context based on our desired traits
+        osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits);
 
-		// Create a graphic context based on our desired traits
-		osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits);
+        if (!gc)
+        {
+            LOG_E("GraphicsWindow has not been created successfully")
+            return 1;
+        }
 
-		if (!gc)
-		{
-			osg::notify(osg::NOTICE) << "Error, GraphicsWindow has not been created successfully" << std::endl;
-			return 1;
-		}
+        if (gc.valid())
+        {
+            gc->setClearColor(osg::Vec4(0.2f, 0.2f, 0.4f, 1.0f));
+            gc->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        }
 
-		if (gc.valid())
-		{
-			gc->setClearColor(osg::Vec4(0.2f, 0.2f, 0.4f, 1.0f));
-			gc->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		}
+        // Create Trackball manipulator
+        osg::ref_ptr<osgGA::CameraManipulator> cameraManipulator = new osgGA::TrackballManipulator;
+        
+        // Setup skybox
+        trBase::SmrtPtr<trCore::SceneObjects::SkyBoxNode> skyBox = new trCore::SceneObjects::SkyBoxNode();
+        
+        if (!skyBox->LoadFile(SKY_BOX_MODEL))
+        {
+            return 0;
+        }
+        
+        rootNode->addChild(skyBox);
 
-		// Create Trackball manipulator
-		osg::ref_ptr<osgGA::CameraManipulator> cameraManipulator = new osgGA::TrackballManipulator;
+        //Set up the viewer
+        osgViewer::Viewer viewer;
+        
+        // Add scene data to view
+        viewer.setSceneData(rootNode.Get());
 
-		//Set up the viewer
-		osgViewer::Viewer viewer;
+        // Force single threaded to make sure that no other thread can use the GL context
+        viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
+        viewer.getCamera()->setPreDrawCallback(new PreRenderDrawCallback(viewer.getCamera()));
+        viewer.getCamera()->setClearColor(osg::Vec4(0.0f, 0.5f, 0.0f, 1.0f));
+        viewer.getCamera()->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        viewer.getCamera()->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
+        viewer.getCamera()->setRenderOrder(osg::Camera::PRE_RENDER, 1);
+        viewer.getCamera()->setAllowEventFocus(false);
+        viewer.getCamera()->setReferenceFrame(osg::Transform::RELATIVE_RF);
+        viewer.getCamera()->setViewport(0, 0, traits->width, traits->height);
+        viewer.getCamera()->setGraphicsContext(gc);
 
-		// Force single threaded to make sure that no other thread can use the GL context
-		viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
-		viewer.getCamera()->setGraphicsContext(gc);
-		viewer.getCamera()->setViewport(0, 0, traits->width, traits->height);
-
-		// Disable automatic computation of near and far plane
-		viewer.getCamera()->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
-		viewer.setCameraManipulator(cameraManipulator);
-
-        ////Adds the statistics handler. 
-        //mainView->addEventHandler(new osgViewer::StatsHandler);
-
-        ////Set up the viewer
-        //osgViewer::CompositeViewer viewer;
-        //viewer.addView(mainView);
-
-        ////Set up the main frame loop
-        //if ((mainView->getCameraManipulator() == 0) && mainView->getCamera()->getAllowEventFocus())
-        //{
-        //    mainView->setCameraManipulator(new osgGA::TrackballManipulator());
-        //}
+        // Disable automatic computation of near and far plane
+        viewer.getCamera()->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
+        viewer.setCameraManipulator(cameraManipulator);
 
         viewer.setReleaseContextAtEndOfFrameHint(true);
+        
+        // Runs during the realize operations of OSG
+        osg::ref_ptr<RealizeOperation> realizeOperatation = new RealizeOperation(renderWidth, renderHeight);
+        viewer.setRealizeOperation(realizeOperatation.get());
         
         if (!viewer.isRealized())
         {
             viewer.realize();
         }
+        
+        // Setup the swap callback for handling the submission of frames
+        osg::ref_ptr<SwapCallback> swapCallback = new SwapCallback(vrInstance);
+        gc->setSwapCallback(swapCallback);
 
         //Run the main frame loop
-        while (!viewer.done())        
-        //while (vrInstance->IsSystemReady())
-        //for (unsigned int i = 0; i < 1000; ++i)
+        while (!viewer.done())
         {
-			GLuint test = FboTest(*(gc->getState()), renderWidth, renderHeight);
             vrInstance->GetHeadsetPose();
             viewer.frame();
-            
-            if (textureTarget->getTextureObject(0))
-            {
-                //vrInstance->SubmitFrame(textureTarget, textureTarget);
-				vrInstance->SubmitFrame(test, test);
-            }
         }
         
         vrInstance->Shutdown();
