@@ -41,6 +41,7 @@
 #include <osgGA/TrackballManipulator>
 #include <osgViewer/CompositeViewer>
 #include <osgViewer/GraphicsWindow>
+#include <osgViewer/Renderer>
 #include <osgViewer/ViewerEventHandlers>
 
 #include <iostream>
@@ -237,6 +238,49 @@ void SwapCallback::swapBuffersImplementation(osg::GraphicsContext* gc)
 }
 
 //////////////////////////////////////////////////////////////////////////
+class InitialDrawCallback : public osg::Camera::DrawCallback
+{
+public:
+    virtual void operator()(osg::RenderInfo& info) const
+    {
+        osg::GraphicsOperation* go = info.getCurrentCamera()->getRenderer();
+        osgViewer::Renderer* renderer = dynamic_cast<osgViewer::Renderer*>(go);
+        if (renderer != nullptr)
+        {
+            // Disable normal OSG FBO camera setup because it will undo the MSAA FBO configuration.
+            renderer->setCameraRequiresSetUp(false);
+        }
+    }
+};
+
+//////////////////////////////////////////////////////////////////////////
+osg::Camera* CreateRTTCamera(const int& eye, const int& width, const int& height, const osg::Vec4& clearColor, osg::GraphicsContext* gc)
+{
+    osg::ref_ptr<osg::Camera> camera = new osg::Camera();
+    camera->setClearColor(clearColor);
+    camera->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    camera->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
+    camera->setRenderOrder(osg::Camera::PRE_RENDER, eye);
+    camera->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
+    camera->setAllowEventFocus(false);
+    camera->setReferenceFrame(osg::Transform::RELATIVE_RF);
+    camera->setViewport(0, 0, width, height);
+    camera->setGraphicsContext(gc);
+
+    // Here we avoid doing anything regarding OSG camera RTT attachment.
+    // Ideally we would use automatic methods within OSG for handling RTT but in this
+    // case it seemed simpler to handle FBO creation and selection within this class.
+
+    // This initial draw callback is used to disable normal OSG camera setup which 
+    // would undo our RTT FBO configuration.
+    camera->setInitialDrawCallback(new InitialDrawCallback());
+
+    camera->setPreDrawCallback(new PreRenderDrawCallback(camera.get()));
+
+    return camera.release();
+}
+
+//////////////////////////////////////////////////////////////////////////
 osg::GraphicsContext::Traits* CreateGraphicsContextTraits()
 {
 	osg::GraphicsContext::WindowingSystemInterface* wsi = osg::GraphicsContext::getWindowingSystemInterface();
@@ -313,6 +357,16 @@ int main(int argc, char** argv)
         trBase::SmrtPtr<osg::Texture2D> textureTarget = GenerateTexture(renderWidth, renderHeight, GL_RGBA8);
         trBase::SmrtPtr<osg::Geode> rootNode = GenerateRenderTarget(textureTarget);
 
+        // Setup skybox
+        trBase::SmrtPtr<trCore::SceneObjects::SkyBoxNode> skyBox = new trCore::SceneObjects::SkyBoxNode();
+
+        if (!skyBox->LoadFile(SKY_BOX_MODEL))
+        {
+            return 0;
+        }
+
+        rootNode->addChild(skyBox);
+
         // Get the suggested context traits
         osg::ref_ptr<osg::GraphicsContext::Traits> traits = CreateGraphicsContextTraits();
         traits->windowName = "True Reality - VR Example";
@@ -334,16 +388,6 @@ int main(int argc, char** argv)
 
         // Create Trackball manipulator
         osg::ref_ptr<osgGA::CameraManipulator> cameraManipulator = new osgGA::TrackballManipulator;
-        
-        // Setup skybox
-        trBase::SmrtPtr<trCore::SceneObjects::SkyBoxNode> skyBox = new trCore::SceneObjects::SkyBoxNode();
-        
-        if (!skyBox->LoadFile(SKY_BOX_MODEL))
-        {
-            return 0;
-        }
-        
-        rootNode->addChild(skyBox);
 
         //Set up the viewer
         osgViewer::Viewer viewer;
@@ -351,21 +395,26 @@ int main(int argc, char** argv)
         // Add scene data to view
         viewer.setSceneData(rootNode.Get());
 
-        // Force single threaded to make sure that no other thread can use the GL context
-        viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
-        viewer.getCamera()->setPreDrawCallback(new PreRenderDrawCallback(viewer.getCamera()));
-        viewer.getCamera()->setClearColor(osg::Vec4(0.0f, 0.5f, 0.0f, 1.0f));
-        viewer.getCamera()->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        viewer.getCamera()->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
-        viewer.getCamera()->setRenderOrder(osg::Camera::PRE_RENDER, 1);
-        viewer.getCamera()->setAllowEventFocus(false);
-        viewer.getCamera()->setReferenceFrame(osg::Transform::RELATIVE_RF);
-        viewer.getCamera()->setViewport(0, 0, traits->width, traits->height);
-        viewer.getCamera()->setGraphicsContext(gc);
+        // Get main camera from view/viewer
+        osg::ref_ptr<osg::Camera> camera = viewer.getCamera();
+        camera->setName("Main camera");
+        osg::Vec4 clearColor = camera->getClearColor();
 
         // Disable automatic computation of near and far plane
-        viewer.getCamera()->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
+        camera->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
         viewer.setCameraManipulator(cameraManipulator);
+
+        // Force single threaded to make sure that no other thread can use the GL context
+        viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
+        camera->setGraphicsContext(gc);
+        camera->setViewport(0, 0, traits->width, traits->height);
+
+        // Create RTT Camera and remove main camera
+        //camera->setProjectionMatrix(osg::Matrix::identity());
+        osg::ref_ptr<osg::Camera> leftCamera = CreateRTTCamera(0, renderWidth, renderHeight, clearColor, gc);
+        leftCamera->setName("Left Eye Camera");
+        viewer.addSlave(leftCamera.get(), true);
+        camera->setGraphicsContext(nullptr);
 
         viewer.setReleaseContextAtEndOfFrameHint(true);
         
