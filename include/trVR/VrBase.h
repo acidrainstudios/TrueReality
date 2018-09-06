@@ -78,9 +78,9 @@ namespace trVR
          */
         void Init();
 
-		bool InitializeRenderTargets();
+        bool InitializeRenderTargets();
 
-		vr::IVRSystem* GetVrSystem();
+        vr::IVRSystem* GetVrSystem();
         
         /**
          * Returns the last orientation of the device.
@@ -139,8 +139,8 @@ namespace trVR
         bool SubmitFrame(osg::Texture2D* leftTex, osg::Texture2D* rightTex, int contextID = 0,
                          vr::EColorSpace colorSpace = vr::EColorSpace::ColorSpace_Gamma);
 
-		bool SubmitFrame(GLuint leftTex, GLuint rightTex, int contextID = 0,
-						 vr::EColorSpace colorSpace = vr::EColorSpace::ColorSpace_Gamma);
+        bool SubmitFrame(GLuint leftTex, GLuint rightTex, 
+                         vr::EColorSpace colorSpace = vr::EColorSpace::ColorSpace_Gamma);
 
     protected:
         /**
@@ -154,28 +154,28 @@ namespace trVR
         vr::IVRRenderModels* mVrRenderModels = nullptr; /// Pointer for OpenVR's IVRRenderModels
         
     private:
-		struct FramebufferDesc
-		{
-			GLuint mDepthBufferId;
-			GLuint mRenderTextureId;
-			GLuint mRenderFramebufferId;
-			GLuint mResolveTextureId;
-			GLuint mResolveFramebufferId;
-		};
+        struct FramebufferDesc
+        {
+                GLuint mDepthBufferId;
+                GLuint mRenderTextureId;
+                GLuint mRenderFramebufferId;
+                GLuint mResolveTextureId;
+                GLuint mResolveFramebufferId;
+        };
 
         std::string GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property);
         
         std::string DisplayCompositorError(vr::EVRCompositorError error);
 
-		bool CreateFrameBuffer(int width, int height, FramebufferDesc& framebufferDesc);
-        
-		uint32_t mRenderHeight = 0; /// Preferred height of the render target
-		uint32_t mRenderWidth = 0; /// Preferred width of the render target
+        bool CreateFrameBuffer(int width, int height, FramebufferDesc& framebufferDesc);
+
+        uint32_t mRenderHeight = 0; /// Preferred height of the render target
+        uint32_t mRenderWidth = 0; /// Preferred width of the render target
         bool mInit = false; /// Class initialization status
         trBase::Quat mOrientation; /// Headset orientation
         trBase::Vec3 mPosition; /// Headset position
         bool mSysReady = false; /// OpenVR system initialization status
-		FramebufferDesc mLeftEyeDesc;
-		FramebufferDesc mRightEyeDesc;
+        FramebufferDesc mLeftEyeDesc;
+        FramebufferDesc mRightEyeDesc;
     };
 }

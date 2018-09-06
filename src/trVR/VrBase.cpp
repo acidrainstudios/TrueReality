@@ -88,36 +88,76 @@ namespace trVR
         LOG_I("Device serial number: " + GetDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_SerialNumber_String))
         LOG_I("HMD model: " + GetDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_ModelNumber_String))
 
+//        if (!InitializeRenderTargets())
+//        {
+//            LOG_W("Problem initializing render targets.")
+//        }
+        
         mInit = true;
     }
 
-	//////////////////////////////////////////////////////////////////////////
-	bool VrBase::InitializeRenderTargets()
+    //////////////////////////////////////////////////////////////////////////
+    bool VrBase::InitializeRenderTargets()
+    {
+        bool lInit = false;
+        bool rInit = false;
+        
+        if (!mVrSystem)
+        {
+            return false;
+        }
+
+        mVrSystem->GetRecommendedRenderTargetSize(&mRenderWidth, &mRenderHeight);
+        
+        lInit = CreateFrameBuffer(mRenderWidth, mRenderHeight, mLeftEyeDesc);
+        rInit = CreateFrameBuffer(mRenderWidth, mRenderHeight, mRightEyeDesc);
+
+        return lInit && rInit;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool VrBase::CreateFrameBuffer(int width, int height, FramebufferDesc& framebufferDesc)
+    {
+        glGenFramebuffers(1, &framebufferDesc.mRenderFramebufferId);
+        glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.mRenderFramebufferId);
+        
+        glGenRenderbuffers(1, &framebufferDesc.mDepthBufferId);
+	glBindRenderbuffer(GL_RENDERBUFFER, framebufferDesc.mDepthBufferId);
+	glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH_COMPONENT, width, height);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,	framebufferDesc.mDepthBufferId);
+
+	glGenTextures(1, &framebufferDesc.mRenderTextureId );
+	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, framebufferDesc.mRenderTextureId );
+	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGBA8, width, height, true);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, framebufferDesc.mRenderTextureId, 0);
+
+	glGenFramebuffers(1, &framebufferDesc.mResolveFramebufferId );
+	glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.mResolveFramebufferId);
+
+	glGenTextures(1, &framebufferDesc.mResolveTextureId );
+	glBindTexture(GL_TEXTURE_2D, framebufferDesc.mResolveTextureId );
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, framebufferDesc.mResolveTextureId, 0);
+
+	// check FBO status
+	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	if (status != GL_FRAMEBUFFER_COMPLETE)
 	{
-		if (!mVrSystem)
-		{
-			return false;
-		}
-
-		mVrSystem->GetRecommendedRenderTargetSize(&mRenderWidth, &mRenderHeight);
-
-		return true;
+		return false;
 	}
 
-	//////////////////////////////////////////////////////////////////////////
-	bool VrBase::CreateFrameBuffer(int width, int height, FramebufferDesc& framebufferDesc)
-	{
-		glGenFramebuffers(1, &framebufferDesc.mRenderFramebufferId);
-		glBindFramebuffer(GL_FRAMEBUFFER, framebufferDesc.mRenderFramebufferId);
+	glBindFramebuffer( GL_FRAMEBUFFER, 0 );
 
-		return true;
-	}
+	return true;
+    }
 
-	//////////////////////////////////////////////////////////////////////////
-	vr::IVRSystem* VrBase::GetVrSystem()
-	{
-		return mVrSystem;
-	}
+    //////////////////////////////////////////////////////////////////////////
+    vr::IVRSystem* VrBase::GetVrSystem()
+    {
+            return mVrSystem;
+    }
     
     //////////////////////////////////////////////////////////////////////////
     trBase::Quat VrBase::GetOrientation() const
@@ -158,6 +198,47 @@ namespace trVR
         }
     }
     
+//    //////////////////////////////////////////////////////////////////////////
+//    void VrBase::GetControllerPose()
+//    {
+//        vr::VRCompositor()->SetTrackingSpace(vr::TrackingUniverseStanding);
+//        
+//        vr::TrackedDevicePose_t poses[vr::k_unMaxTrackedDeviceCount];
+//        
+//        for (unsigned int i = 0; i < vr::k_unMaxTrackedDeviceCount; ++i)
+//        {
+//            poses[i].bPoseIsValid = false;
+//        }
+//        
+//        vr::VRCompositor()->WaitGetPoses(poses, vr::k_unMaxTrackedDeviceCount, nullptr, 0);
+//        
+//        for (unsigned int i = 0; i < vr::k_unMaxTrackedDeviceCount; ++i)
+//        {
+//            const vr::TrackedDevicePose_t& pose = poses[i];
+//            
+//            if (mVrSystem->IsTrackedDeviceConnected(i))
+//            {
+//                LOG_D("Device class: " + GetDeviceProperty(i, vr::Prop_DeviceClass_Int32));
+//                LOG_D("Tracking system: " + GetDeviceProperty(i, vr::Prop_TrackingSystemName_String));
+//                LOG_D("Model number: " + GetDeviceProperty(i, vr::Prop_ModelNumber_String));
+//            }
+//            
+//            if (vr::VRSystem()->GetTrackedDeviceClass(i) == vr::TrackedDeviceClass::TrackedDeviceClass_HMD)
+//            {
+//                LOG_D("Found HMD!")
+//                if (pose.bPoseIsValid)
+//                {
+//                    trBase::Matrix matrix = ConvertOpenvrMatrix(pose.mDeviceToAbsoluteTracking);
+//                    trBase::Matrix poseTransform = trBase::Matrix::Inverse(matrix);
+//                    mOrientation.Set(poseTransform.GetRotate());
+//                    mPosition.Set(poseTransform.GetTrans());
+//                    LOG_D("Orientation: " + mOrientation.ToString())
+//                    LOG_D("Position: " + mPosition.ToString())
+//                }
+//            }
+//        }
+//    }
+    
     //////////////////////////////////////////////////////////////////////////
     trBase::Matrix VrBase::ConvertOpenvrMatrix(const vr::HmdMatrix34_t& mat)
     {
@@ -167,6 +248,7 @@ namespace trVR
             mat.m[0][2], mat.m[1][2], mat.m[2][2], 0.0,
             mat.m[0][3], mat.m[1][3], mat.m[2][3], 1.0
         );
+        
         return matrix;
     }
     
@@ -179,6 +261,7 @@ namespace trVR
             mat.m[0][2], mat.m[1][2], mat.m[2][2], mat.m[3][2],
             mat.m[0][3], mat.m[1][3], mat.m[2][3], mat.m[3][3]
         );
+        
         return matrix;
     }
     
@@ -219,43 +302,40 @@ namespace trVR
         LOG_D("Creating right eye texture.")
         GLuint texR = rightTex->getTextureObject(contextID)->id();
         
-		return SubmitFrame(texL, texR, contextID, colorSpace);
+        return SubmitFrame(texL, texR, colorSpace);
     }
 
-	//////////////////////////////////////////////////////////////////////////
-	bool VrBase::SubmitFrame(GLuint leftTex, GLuint rightTex, int contextID,
-		                     vr::EColorSpace colorSpace)
-	{
-		LOG_D("Using left eye texture.")
-		vr::Texture_t leftEyeTex = { (void*)(uintptr_t)leftTex,
-										vr::TextureType_OpenGL, colorSpace };
+    //////////////////////////////////////////////////////////////////////////
+    bool VrBase::SubmitFrame(GLuint leftTex, GLuint rightTex, vr::EColorSpace colorSpace)
+    {
+        LOG_D("Using left eye texture.")
+        vr::Texture_t leftEyeTex = {(void*)(uintptr_t)leftTex, vr::TextureType_OpenGL, colorSpace};
 
-		LOG_D("Submitting left eye texture.")
-		vr::EVRCompositorError lErr = vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTex);
+        LOG_D("Submitting left eye texture.")
+        vr::EVRCompositorError lErr = vr::VRCompositor()->Submit(vr::Eye_Left, &leftEyeTex);
 
-		if (lErr != vr::VRCompositorError_None)
-		{
-			LOG_E("Left eye submit error: " + DisplayCompositorError(lErr))
-		}
-		else
-		{
-			LOG_D("Left eye successfully submitted.")
-		}
+        if (lErr != vr::VRCompositorError_None)
+        {
+            LOG_E("Left eye submit error: " + DisplayCompositorError(lErr))
+        }
+        else
+        {
+            LOG_D("Left eye successfully submitted.")
+        }
 
-		LOG_D("Using right eye texture.")
-		vr::Texture_t rightEyeTex = { (void*)(uintptr_t)rightTex,
-										vr::TextureType_OpenGL, colorSpace };
+        LOG_D("Using right eye texture.")
+        vr::Texture_t rightEyeTex = {(void*)(uintptr_t)rightTex, vr::TextureType_OpenGL, colorSpace};
 
-		LOG_D("Submitting right eye texture.")
-		vr::EVRCompositorError rErr = vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTex);
+        LOG_D("Submitting right eye texture.")
+        vr::EVRCompositorError rErr = vr::VRCompositor()->Submit(vr::Eye_Right, &rightEyeTex);
 
-		if (rErr != vr::VRCompositorError_None)
-		{
-			LOG_E("Right eye submit error: " + DisplayCompositorError(rErr))
-		}
+        if (rErr != vr::VRCompositorError_None)
+        {
+            LOG_E("Right eye submit error: " + DisplayCompositorError(rErr))
+        }
 
-		return lErr == vr::VRCompositorError_None && rErr == vr::VRCompositorError_None;
-	}
+        return lErr == vr::VRCompositorError_None && rErr == vr::VRCompositorError_None;
+    }
     
     //////////////////////////////////////////////////////////////////////////
     std::string VrBase::GetDeviceProperty(vr::TrackedDeviceIndex_t deviceIndex, vr::TrackedDeviceProperty property)
