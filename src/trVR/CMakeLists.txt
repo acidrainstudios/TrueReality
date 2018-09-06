@@ -53,17 +53,17 @@ SET (EXTERNAL_LIBS)
 IF (TR_BUILD_WITH_RELEASE)
     SET (EXTERNAL_LIBS
         ${EXTERNAL_LIBS}
-        optimized ${OpenVR_LIBRARY}
         optimized ${GLEW_LIBRARY_RELEASE}
-        optimized ${OPENGL_gl_LIBRARY}
+        optimized ${OPENGL_opengl_LIBRARY}
+        optimized ${OpenVR_LIBRARY}
     )
 ENDIF (TR_BUILD_WITH_RELEASE)
 IF (TR_BUILD_WITH_DEBUG)
     SET (EXTERNAL_LIBS
         ${EXTERNAL_LIBS}
-        debug ${OpenVR_LIBRARY_DEBUG}
         debug ${GLEW_LIBRARY_DEBUG}
-        debug ${OPENGL_gl_LIBRARY}
+        debug ${OPENGL_opengl_LIBRARY}
+        debug ${OpenVR_LIBRARY_DEBUG}
     )
 ENDIF (TR_BUILD_WITH_DEBUG)
 

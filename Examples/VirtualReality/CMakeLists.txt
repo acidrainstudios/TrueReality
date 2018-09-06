@@ -35,6 +35,8 @@ SET (EXTERNAL_LIBS)
 IF (TR_BUILD_WITH_RELEASE)
     SET (EXTERNAL_LIBS
         ${EXTERNAL_LIBS}
+        optimized ${GLEW_LIBRARY_RELEASE}
+        optimized ${OPENGL_opengl_LIBRARY}
         optimized ${OpenThreads_LIBRARY}
         optimized ${OSG_LIBRARY} 
         optimized ${OSG_DB_LIBRARY}
@@ -43,6 +45,8 @@ ENDIF ()
 IF (TR_BUILD_WITH_DEBUG)
     SET (EXTERNAL_LIBS
         ${EXTERNAL_LIBS}
+        debug ${GLEW_LIBRARY_DEBUG}
+        debug ${OPENGL_opengl_LIBRARY}
         debug ${OpenThreads_LIBRARY_DEBUG}
         debug ${OSG_LIBRARY_DEBUG}
         debug ${OSG_DB_LIBRARY_DEBUG} 
