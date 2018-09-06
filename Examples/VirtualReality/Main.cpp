@@ -23,8 +23,12 @@
 #include <Examples/VirtualReality/Utils.h>
 #include <Examples/VirtualReality/WinDefaultConfig.h>
 
+#include <trBase/ObsrvrPtr.h>
+#include <trBase/Vec4.h>
+#include <trCore/SceneObjects/SkyBoxNode.h>
 #include <trUtil/DefaultSettings.h>
 #include <trUtil/Exception.h>
+#include <trUtil/FileUtils.h>
 #include <trUtil/PathUtils.h>
 #include <trUtil/Console/Logo.h>
 #include <trUtil/Console/TextColor.h>
@@ -45,10 +49,6 @@
 #include <osgViewer/ViewerEventHandlers>
 
 #include <iostream>
-
-#include "trUtil/FileUtils.h"
-#include "trBase/ObsrvrPtr.h"
-#include "trCore/SceneObjects/SkyBoxNode.h"
 
 static const std::string LOG_FILE_NAME = "VRExample.html";
 
@@ -254,6 +254,65 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////
+enum class CameraType
+{
+    CAMERA_LEFT = 0,
+    CAMERA_RIGHT = 1,
+    MAX = 2
+};
+
+//////////////////////////////////////////////////////////////////////////
+class UpdateSlaveCallback : public osg::View::Slave::UpdateSlaveCallback
+{
+public:
+    UpdateSlaveCallback(CameraType type, trVR::VrBase* vrInstance, SwapCallback* swapCallback)
+    : mCameraType(type)
+    , mVrInstance(vrInstance)
+    , mSwapCallback(swapCallback)
+    {}
+    
+    virtual void updateSlave(osg::View& view, osg::View::Slave& slave) override;
+private:
+    CameraType mCameraType = CameraType::MAX;
+    trBase::SmrtPtr<trVR::VrBase> mVrInstance;
+    osg::ref_ptr<SwapCallback> mSwapCallback;
+};
+
+//////////////////////////////////////////////////////////////////////////
+void UpdateSlaveCallback::updateSlave(osg::View& view, osg::View::Slave& slave)
+{
+    if (mCameraType == CameraType::CAMERA_LEFT)
+    {
+        mVrInstance->GetHeadsetPose();
+    }
+    
+    trBase::Vec3 position = mVrInstance->GetPosition();
+    trBase::Quat orientation = mVrInstance->GetOrientation();
+    
+    trBase::Matrix viewOffset;
+    
+    switch (mCameraType)
+    {
+        case CameraType::CAMERA_LEFT:
+            viewOffset = mVrInstance->GetLeftViewMatrix();
+            break;
+        case CameraType::CAMERA_RIGHT:
+            viewOffset = mVrInstance->GetLeftViewMatrix();
+            break;
+        default:
+            LOG_W("Camera type is not set. This is a problem.")
+            break;
+    }
+    
+    viewOffset.PreMultRotate(orientation);
+    viewOffset.SetTrans(viewOffset.GetTrans() + position);
+    
+    slave._viewOffset = viewOffset;
+    
+    slave.updateSlaveImplementation(view);
+}
+
+//////////////////////////////////////////////////////////////////////////
 osg::Camera* CreateRTTCamera(const int& eye, const int& width, const int& height, const osg::Vec4& clearColor, osg::GraphicsContext* gc)
 {
     osg::ref_ptr<osg::Camera> camera = new osg::Camera();
@@ -362,7 +421,8 @@ int main(int argc, char** argv)
 
         if (!skyBox->LoadFile(SKY_BOX_MODEL))
         {
-            return 0;
+            LOG_E("Cannot load the skybox model. Something went wrong")
+//            return 0;
         }
 
         rootNode->addChild(skyBox);
@@ -385,6 +445,10 @@ int main(int argc, char** argv)
             gc->setClearColor(osg::Vec4(0.2f, 0.2f, 0.4f, 1.0f));
             gc->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         }
+        
+        // Setup the swap callback for handling the submission of frames
+        osg::ref_ptr<SwapCallback> swapCallback = new SwapCallback(vrInstance);
+        gc->setSwapCallback(swapCallback);
 
         // Create Trackball manipulator
         osg::ref_ptr<osgGA::CameraManipulator> cameraManipulator = new osgGA::TrackballManipulator;
@@ -398,7 +462,7 @@ int main(int argc, char** argv)
         // Get main camera from view/viewer
         osg::ref_ptr<osg::Camera> camera = viewer.getCamera();
         camera->setName("Main camera");
-        osg::Vec4 clearColor = camera->getClearColor();
+        trBase::Vec4 clearColor = camera->getClearColor();
 
         // Disable automatic computation of near and far plane
         camera->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
@@ -409,14 +473,28 @@ int main(int argc, char** argv)
         camera->setGraphicsContext(gc);
         camera->setViewport(0, 0, traits->width, traits->height);
 
-        // Create RTT Camera and remove main camera
-        //camera->setProjectionMatrix(osg::Matrix::identity());
-        osg::ref_ptr<osg::Camera> leftCamera = CreateRTTCamera(0, renderWidth, renderHeight, clearColor, gc);
+        // Create RTT Camera and remove rendering of the main camera
+        camera->setProjectionMatrix(vrInstance->GetCenterProjectionMatrix());
+        osg::ref_ptr<osg::Camera> leftCamera = CreateRTTCamera(vr::Eye_Left, renderWidth, renderHeight, clearColor.GetOSGVector(), gc);
         leftCamera->setName("Left Eye Camera");
-        viewer.addSlave(leftCamera.get(), true);
+        viewer.addSlave(leftCamera.get(),
+                        vrInstance->GetLeftProjectionMatrix(),
+                        vrInstance->GetLeftViewMatrix(),
+                        true);
+        viewer.getSlave(0)._updateSlaveCallback
+            = new UpdateSlaveCallback(CameraType::CAMERA_LEFT, vrInstance.Get(), swapCallback.get());
+        osg::ref_ptr<osg::Camera> rightCamera = CreateRTTCamera(vr::Eye_Right, renderWidth, renderHeight, clearColor.GetOSGVector(), gc);
+        leftCamera->setName("Right Eye Camera");
+        viewer.addSlave(rightCamera.get(),
+                        vrInstance->GetRightProjectionMatrix(),
+                        vrInstance->GetRightViewMatrix(),
+                        true);
+        viewer.getSlave(1)._updateSlaveCallback
+            = new UpdateSlaveCallback(CameraType::CAMERA_RIGHT, vrInstance.Get(), swapCallback.get());
         camera->setGraphicsContext(nullptr);
 
         viewer.setReleaseContextAtEndOfFrameHint(true);
+        viewer.setLightingMode(osg::View::SKY_LIGHT);
         
         // Runs during the realize operations of OSG
         osg::ref_ptr<RealizeOperation> realizeOperatation = new RealizeOperation(renderWidth, renderHeight);
@@ -426,15 +504,11 @@ int main(int argc, char** argv)
         {
             viewer.realize();
         }
-        
-        // Setup the swap callback for handling the submission of frames
-        osg::ref_ptr<SwapCallback> swapCallback = new SwapCallback(vrInstance);
-        gc->setSwapCallback(swapCallback);
 
         //Run the main frame loop
         while (!viewer.done())
         {
-            vrInstance->GetHeadsetPose();
+            //vrInstance->GetHeadsetPose();
             viewer.frame();
         }
         
