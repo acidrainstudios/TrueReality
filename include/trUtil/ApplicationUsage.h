@@ -153,6 +153,24 @@ namespace trUtil
         void AddCommandLineOption(const std::string& option, const std::string& explanation, const std::string &defaultValue = "");
 
         /**
+         * @fn  void ApplicationUsage::SetCommandLineOptions(const UsageMap& usageMap);
+         *
+         * @brief   Sets command line options.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetCommandLineOptions(const UsageMap& usageMap);
+
+        /**
+         * @fn  const UsageMap& ApplicationUsage::GetCommandLineOptions() const;
+         *
+         * @brief   Gets command line options.
+         *
+         * @return  The command line options.
+         */
+        const UsageMap& GetCommandLineOptions() const;
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.

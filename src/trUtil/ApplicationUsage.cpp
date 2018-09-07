@@ -91,6 +91,18 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::SetCommandLineOptions(const UsageMap& usageMap)
+    {
+        mAppUsage->setCommandLineOptions(usageMap);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap& ApplicationUsage::GetCommandLineOptions() const
+    {
+        return mAppUsage->getCommandLineOptions();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.Get();
