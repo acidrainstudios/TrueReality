@@ -123,6 +123,33 @@ namespace trUtil
          */
         void AddUsageExplanation(Type type, const std::string& option, const std::string& explanation);
 
+        /**
+         * @fn  operator osg::ApplicationUsage& ();
+         *
+         * @brief   Implicit conversion operator to OSG ApplicationUsage.
+         *
+         * @return  The result of the operation.
+         */
+        operator osg::ApplicationUsage& ();
+
+        /**
+         * @fn  operator const osg::ApplicationUsage& () const;
+         *
+         * @brief   Implicit conversion operator to OSG ApplicationUsage.
+         *
+         * @return  A const.
+         */
+        operator const osg::ApplicationUsage& () const;
+
+        /**
+         * @fn  operator osg::ApplicationUsage* ();
+         *
+         * @brief   Implicit conversion operator to OSG ApplicationUsage.
+         *
+         * @return  The result of the operation.
+         */
+        operator osg::ApplicationUsage* ();
+
     protected:
         /**
          * @fn  ApplicationUsage::~ApplicationUsage();

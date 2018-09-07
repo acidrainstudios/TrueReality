@@ -73,6 +73,24 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::operator osg::ApplicationUsage&()
+    {
+        return *mAppUsage.Get();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::operator const osg::ApplicationUsage&() const
+    {
+        return *mAppUsage.Get();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::operator osg::ApplicationUsage*()
+    {
+        return mAppUsage.Get();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::~ApplicationUsage()
     {
     }
