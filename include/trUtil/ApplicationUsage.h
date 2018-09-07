@@ -28,6 +28,7 @@
 #include <osg/ApplicationUsage>
 
 #include <string>
+#include <map>
 
 
 /**
@@ -45,6 +46,9 @@ namespace trUtil
     class TR_UTIL_EXPORT ApplicationUsage
     {
     public:
+
+        /** @brief   The message to command usage map. */
+        using UsageMap = std::map<std::string, std::string>;
 
         /**
          * @fn  ApplicationUsage::ApplicationUsage();
