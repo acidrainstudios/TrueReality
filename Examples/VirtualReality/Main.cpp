@@ -158,7 +158,7 @@ bool CreateFBO(const osg::State& state, int width, int height)
 class PreRenderDrawCallback : public osg::Camera::DrawCallback
 {
 public:
-    PreRenderDrawCallback(osg::Camera* camera)
+    explicit PreRenderDrawCallback(osg::Camera* camera)
         : mCamera(camera) {}
     virtual void operator()(osg::RenderInfo& info) const;
 protected:
