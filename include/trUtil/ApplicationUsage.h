@@ -50,6 +50,15 @@ namespace trUtil
         /** @brief   The message to command usage map. */
         using UsageMap = std::map<std::string, std::string>;
 
+        enum class Type
+        {
+            NO_HELP = osg::ApplicationUsage::NO_HELP,
+            COMMAND_LINE_OPTION = osg::ApplicationUsage::COMMAND_LINE_OPTION,
+            ENVIRONMENTAL_VARIABLE = osg::ApplicationUsage::ENVIRONMENTAL_VARIABLE,
+            KEYBOARD_MOUSE_BINDING = osg::ApplicationUsage::KEYBOARD_MOUSE_BINDING,
+            HELP_ALL = KEYBOARD_MOUSE_BINDING | ENVIRONMENTAL_VARIABLE | COMMAND_LINE_OPTION
+        };
+
         /**
          * @fn  ApplicationUsage::ApplicationUsage();
          *
