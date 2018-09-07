@@ -225,7 +225,7 @@ namespace trUtil
         // Make absolutely certain these two strings don't point to the same file.
         if (!IsSameFile(strSrc, strDest))
         {
-                FILE* pSrcFile;
+            FILE* pSrcFile = nullptr;
 
             try
             {
