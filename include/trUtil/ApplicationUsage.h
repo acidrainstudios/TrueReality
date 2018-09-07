@@ -112,6 +112,17 @@ namespace trUtil
          */
         const std::string& GetDescription() const;
 
+        /**
+         * @fn  void ApplicationUsage::AddUsageExplanation(Type type, const std::string& option, const std::string& explanation);
+         *
+         * @brief   Adds an usage explanation.
+         *
+         * @param   type        The type.
+         * @param   option      The option.
+         * @param   explanation The explanation.
+         */
+        void AddUsageExplanation(Type type, const std::string& option, const std::string& explanation);
+
     protected:
         /**
          * @fn  ApplicationUsage::~ApplicationUsage();

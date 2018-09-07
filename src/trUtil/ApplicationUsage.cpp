@@ -67,6 +67,12 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::AddUsageExplanation(Type type, const std::string & option, const std::string & explanation)
+    {
+        mAppUsage->addUsageExplanation(static_cast<osg::ApplicationUsage::Type>(type), option, explanation);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::~ApplicationUsage()
     {
     }
