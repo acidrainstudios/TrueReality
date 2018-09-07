@@ -124,6 +124,24 @@ namespace trUtil
         void AddUsageExplanation(Type type, const std::string& option, const std::string& explanation);
 
         /**
+         * @fn  void ApplicationUsage::SetCommandLineUsage(const std::string& explanation);
+         *
+         * @brief   Sets command line usage.
+         *
+         * @param   explanation The explanation.
+         */
+        void SetCommandLineUsage(const std::string& explanation);
+
+        /**
+         * @fn  const std::string& ApplicationUsage::GetCommandLineUsage() const;
+         *
+         * @brief   Gets command line usage.
+         *
+         * @return  The command line usage.
+         */
+        const std::string& GetCommandLineUsage() const;
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.

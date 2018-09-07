@@ -73,6 +73,18 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::SetCommandLineUsage(const std::string& explanation)
+    {
+        mAppUsage->setCommandLineUsage(explanation);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const std::string& ApplicationUsage::GetCommandLineUsage() const
+    {
+        return mAppUsage->getCommandLineUsage();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.Get();
