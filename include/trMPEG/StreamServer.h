@@ -394,7 +394,7 @@ namespace trMPEG
 
     protected:
 
-        std::atomic<bool> mIsInit = false;
+        std::atomic<bool> mIsInit = { false };
         bool mSilent = true;
         bool mIsBroadcast = false;
         trUtil::RefStr mPublisher;
@@ -426,9 +426,9 @@ namespace trMPEG
         //Variables used in encoding thread
         std::thread* mEncodeThreadPtr = nullptr;
         mutable std::mutex mEncodeThreadLock;
-        std::atomic<bool> mMainThreadActive = true;
+        std::atomic<bool> mMainThreadActive = { true };
         mutable std::vector<uint8_t> mTextureData;
-        mutable std::atomic<bool> mNewFrameReady = false;
+        mutable std::atomic<bool> mNewFrameReady = { false };
         mutable double mFrameTimeLength = 0.01;
         mutable int mTotalFramePTSCounter = 0;
         mutable int mFramePTSLength = 0;
