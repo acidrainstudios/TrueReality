@@ -19,9 +19,7 @@
 * @author Maxim Serebrennik
 */
 
-#include <trUtil\ApplicationUsage.h>
-
-#include <trBase/SmrtPtr.h>
+#include <trUtil/ApplicationUsage.h>
 
 /**
  * @namespace   trUtil
@@ -117,19 +115,19 @@ namespace trUtil
     //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
-        return *mAppUsage.Get();
+        return *mAppUsage.get();
     }
 
     //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator const osg::ApplicationUsage&() const
     {
-        return *mAppUsage.Get();
+        return *mAppUsage.get();
     }
 
     //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage*()
     {
-        return mAppUsage.Get();
+        return mAppUsage.get();
     }
 
     //////////////////////////////////////////////////////////////////////////

@@ -23,9 +23,8 @@
 
 #include <trUtil/Export.h>
 
-#include <trBase/SmrtPtr.h>
-
 #include <osg/ApplicationUsage>
+#include <osg/ref_ptr>
 
 #include <string>
 #include <map>
@@ -225,7 +224,7 @@ namespace trUtil
 
     private:
 
-        trBase::SmrtPtr<osg::ApplicationUsage> mAppUsage = nullptr;
+       osg::ref_ptr<osg::ApplicationUsage> mAppUsage = nullptr;
     };
 }
 
