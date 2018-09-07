@@ -62,6 +62,24 @@ namespace trUtil
          */
         ApplicationUsage(const std::string& commandLineUsage);
 
+        /**
+         * @fn  void ApplicationUsage::SetApplicationName(const std::string& name);
+         *
+         * @brief   Sets the Applications Name. It is used in Application description
+         *
+         * @param   name    The name.
+         */
+        void SetApplicationName(const std::string& name);
+
+        /**
+         * @fn  const std::string& ApplicationUsage::GetApplicationName() const;
+         *
+         * @brief   Gets the stored application name.
+         *
+         * @return  The application name.
+         */
+        const std::string& GetApplicationName() const;
+
     protected:
         /**
          * @fn  ApplicationUsage::~ApplicationUsage();

@@ -43,6 +43,18 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::SetApplicationName(const std::string& name)
+    {
+        mAppUsage->setApplicationName(name);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const std::string& ApplicationUsage::GetApplicationName() const
+    {
+        return mAppUsage->getApplicationName();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::~ApplicationUsage()
     {
     }
