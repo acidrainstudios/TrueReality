@@ -99,7 +99,7 @@ IF (WIN32)
         SET_PROPERTY (GLOBAL PROPERTY USE_FOLDERS ON)
 	
         # Set all the initial CXX options
-        SET (CMAKE_CXX_FLAGS " /DWIN32 /D_WINDOWS /Wall /GR /EHsc /nologo")
+        SET (CMAKE_CXX_FLAGS " /DWIN32 /D_WINDOWS /W3 /GR /EHsc /nologo")
 
         # Enable multi-core builds
         OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
