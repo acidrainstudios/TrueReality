@@ -171,6 +171,24 @@ namespace trUtil
         const UsageMap& GetCommandLineOptions() const;
 
         /**
+         * @fn  void ApplicationUsage::SetCommandLineOptionsDefaults(const UsageMap& usageMap);
+         *
+         * @brief   Sets command line options defaults.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetCommandLineOptionsDefaults(const UsageMap& usageMap);
+
+        /**
+         * @fn  const UsageMap& ApplicationUsage::GetCommandLineOptionsDefaults() const;
+         *
+         * @brief   Gets command line options defaults.
+         *
+         * @return  The command line options defaults.
+         */
+        const UsageMap& GetCommandLineOptionsDefaults() const;
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.
