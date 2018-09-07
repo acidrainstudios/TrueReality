@@ -85,6 +85,12 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::AddCommandLineOption(const std::string& option, const std::string& explanation, const std::string& defaultValue)
+    {
+        mAppUsage->addCommandLineOption(option, explanation, defaultValue);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.Get();

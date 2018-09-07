@@ -142,6 +142,17 @@ namespace trUtil
         const std::string& GetCommandLineUsage() const;
 
         /**
+         * @fn  void ApplicationUsage::AddCommandLineOption(const std::string& option, const std::string& explanation, const std::string &defaultValue = "");
+         *
+         * @brief   Adds a command line option.
+         *
+         * @param   option          The option.
+         * @param   explanation     The explanation.
+         * @param   defaultValue    (Optional) The default value.
+         */
+        void AddCommandLineOption(const std::string& option, const std::string& explanation, const std::string &defaultValue = "");
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.
