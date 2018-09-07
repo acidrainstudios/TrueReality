@@ -55,6 +55,18 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::SetDescription(const std::string& desc)
+    {
+        mAppUsage->setDescription(desc);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const std::string& ApplicationUsage::GetDescription() const
+    {
+        return mAppUsage->getDescription();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::~ApplicationUsage()
     {
     }

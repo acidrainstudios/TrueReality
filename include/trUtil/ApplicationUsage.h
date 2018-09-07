@@ -80,6 +80,25 @@ namespace trUtil
          */
         const std::string& GetApplicationName() const;
 
+        /**
+         * @fn  void ApplicationUsage::SetDescription(const std::string& desc);
+         *
+         * @brief   If non-empty, the Description is typically shown by the Help Handler as text on the
+         *          Help display (which also lists keyboard abbreviations.)
+         *
+         * @param   desc    The description.
+         */
+        void SetDescription(const std::string& desc);
+
+        /**
+         * @fn  const std::string& ApplicationUsage::GetDescription() const;
+         *
+         * @brief   Gets the description.
+         *
+         * @return  The description.
+         */
+        const std::string& GetDescription() const;
+
     protected:
         /**
          * @fn  ApplicationUsage::~ApplicationUsage();
