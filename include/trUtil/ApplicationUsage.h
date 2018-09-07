@@ -23,7 +23,12 @@
 
 #include <trUtil/Export.h>
 
+#include <trBase/SmrtPtr.h>
+
 #include <osg/ApplicationUsage>
+
+#include <string>
+
 
 /**
  * @namespace   trUtil
@@ -40,8 +45,34 @@ namespace trUtil
     class TR_UTIL_EXPORT ApplicationUsage
     {
     public:
+
+        /**
+         * @fn  ApplicationUsage::ApplicationUsage();
+         *
+         * @brief   Default constructor.
+         */
         ApplicationUsage();
+
+        /**
+         * @fn  ApplicationUsage::ApplicationUsage(const std::string& commandLineUsage);
+         *
+         * @brief   Default constructor.
+         *
+         * @param   commandLineUsage    The command line usage.
+         */
+        ApplicationUsage(const std::string& commandLineUsage);
+
+    protected:
+        /**
+         * @fn  ApplicationUsage::~ApplicationUsage();
+         *
+         * @brief   Destructor.
+         */
         ~ApplicationUsage();
+
+    private:
+
+        trBase::SmrtPtr<osg::ApplicationUsage> mAppUsage = nullptr;
     };
 }
 

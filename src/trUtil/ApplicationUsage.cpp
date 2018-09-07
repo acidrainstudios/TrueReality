@@ -21,6 +21,8 @@
 
 #include <trUtil\ApplicationUsage.h>
 
+#include <trBase/SmrtPtr.h>
+
 /**
  * @namespace   trUtil
  *
@@ -31,6 +33,13 @@ namespace trUtil
     //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::ApplicationUsage()
     {
+        mAppUsage = new osg::ApplicationUsage();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::ApplicationUsage(const std::string& commandLineUsage)
+    {
+        mAppUsage = new osg::ApplicationUsage(commandLineUsage);
     }
 
     //////////////////////////////////////////////////////////////////////////
