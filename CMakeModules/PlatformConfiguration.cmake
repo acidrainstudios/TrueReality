@@ -98,6 +98,9 @@ IF (WIN32)
         # Enables folder creation in VS projects. 
         SET_PROPERTY (GLOBAL PROPERTY USE_FOLDERS ON)
 	
+        # Set all the initial CXX options
+        SET (CMAKE_CXX_FLAGS " /DWIN32 /D_WINDOWS /Wall /GR /EHsc /nologo")
+
         # Enable multi-core builds
         OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
         MARK_AS_ADVANCED (TR_BUILD_WITH_MP)
@@ -149,10 +152,12 @@ FOREACH (CONF ${CMAKE_CONFIGURATION_TYPES})
     ENDIF ()
 ENDFOREACH ()
 
-# Expose CMAKE_INCLUDE_PATH and CMAKE_LIBARY_PATH to the GUI so users
+# Expose CMAKE variables to the GUI so users
 # may set these values without needing to manipulate the environment.
 SET (CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
+SET (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} CACHE STRING "CXX Flags" FORCE)
+
 
 MESSAGE(STATUS "Configuring to use C++ ${CMAKE_CXX_STANDARD} standard with a ${CMAKE_BUILD_TYPE} build.")

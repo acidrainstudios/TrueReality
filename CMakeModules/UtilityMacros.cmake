@@ -155,8 +155,7 @@ MACRO (TR_TARGET_OPTIONS arg)
     )
     IF (MSVC_IDE)
         TARGET_COMPILE_OPTIONS (
-            ${arg} PRIVATE
-            /nologo /GR
+            ${arg} PRIVATE            
             $<$<CONFIG:Debug>:/Od /Ob0 /RTC1 /D_DEBUG /Zi>
             $<$<CONFIG:RelWithDebInfo>:/MD /Zi /O2 /Ob1 /D>            
             $<$<CONFIG:Release>:/O2 /Ob2 /MD>
