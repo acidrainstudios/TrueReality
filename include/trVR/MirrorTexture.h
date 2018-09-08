@@ -50,10 +50,13 @@ namespace trVR
         MirrorTexture(const std::string& name = CLASS_TYPE);
 
         /**
-         * Specialized constructor
-         * @param state osg state 
-         * @param width
-         * @param height
+         * @brief Specialized constructor that initializes the class with the
+         * provided parameters
+         * 
+         * @param state OSG state from within a graphics context
+         * @param width Width of the texture
+         * @param height Height of the texture
+         * @param name Name/type of the class
          */
         MirrorTexture(osg::State* state, GLuint width, GLuint height);
 
