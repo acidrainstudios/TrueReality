@@ -24,6 +24,8 @@
 #include <Examples/VirtualReality/WinDefaultConfig.h>
 
 #include <trBase/ObsrvrPtr.h>
+#include <trBase/SmrtClass.h>
+#include <trBase/SmrtPtr.h>
 #include <trBase/Vec4.h>
 #include <trCore/SceneObjects/SkyBoxNode.h>
 #include <trUtil/DefaultSettings.h>
@@ -34,6 +36,8 @@
 #include <trUtil/Console/TextColor.h>
 #include <trUtil/Logging/Log.h>
 #include <trVR/VrBase.h>
+#include <trVR/MirrorTexture.h>
+#include <trVR/OpenVRTexture.h>
 
 #include <osg/Geode>
 #include <osg/Geometry>
@@ -67,6 +71,9 @@ static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::Ge
         
 static GLuint mTestFbo = 0;
 static GLuint mTestTex = 0;
+static trBase::SmrtPtr<trVR::OpenVRTexture> mLeftEye;
+static trBase::SmrtPtr<trVR::OpenVRTexture> mRightEye;
+static trBase::SmrtPtr<trVR::MirrorTexture> mMirrored;
 
 //////////////////////////////////////////////////////////////////////////
 osg::Texture2D* GenerateTexture(int renderWidth, int renderHeight, GLenum pxlFormat)
@@ -142,6 +149,7 @@ bool CreateFBO(const osg::State& state, int width, int height)
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);	// check FBO status
 
         GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
+        
         if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
         {
             LOG_W("Problem setting up frame buffer object.")
@@ -158,11 +166,14 @@ bool CreateFBO(const osg::State& state, int width, int height)
 class PreRenderDrawCallback : public osg::Camera::DrawCallback
 {
 public:
-    explicit PreRenderDrawCallback(osg::Camera* camera)
-        : mCamera(camera) {}
+    explicit PreRenderDrawCallback(osg::Camera* camera, trVR::OpenVRTexture* texture)
+        : mCamera(camera)
+        , mTexture(texture)
+        {}
     virtual void operator()(osg::RenderInfo& info) const;
 protected:
     osg::ref_ptr<osg::Camera> mCamera;
+    trBase::SmrtPtr<trVR::OpenVRTexture> mTexture;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -172,7 +183,16 @@ void PreRenderDrawCallback::operator()(osg::RenderInfo& info) const
     
     if (fbo_ext)
     {
-        fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, mTestFbo);
+        fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, mTexture->GetResolveFbo());
+        
+#ifdef _DEBUG
+        GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
+        
+        if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+        {
+            LOG_W("GL status of buffer: " + trUtil::StringUtils::ToString(status))
+        }
+#endif
     }
 }
 
@@ -209,7 +229,9 @@ void RealizeOperation::operator()(osg::GraphicsContext* gc)
         }
         
         osg::ref_ptr<osg::State> state = gc->getState();
-        CreateFBO(*state, mWidth, mHeight);
+//        CreateFBO(*state, mWidth, mHeight);
+        mLeftEye = new trVR::OpenVRTexture(*state, mWidth, mHeight, "Left Eye Texture");
+        mRightEye = new trVR::OpenVRTexture(*state, mWidth, mHeight, "Right Eye Texture");
     }
     
     mIsRealized = true;
@@ -232,7 +254,7 @@ private:
 //////////////////////////////////////////////////////////////////////////
 void SwapCallback::swapBuffersImplementation(osg::GraphicsContext* gc)
 {
-    mDevice->SubmitFrame(mTestTex, mTestTex);
+    mDevice->SubmitFrame(mLeftEye->GetColorTex(), mRightEye->GetColorTex());
     
     gc->swapBuffersImplementation();
 }
@@ -245,6 +267,7 @@ public:
     {
         osg::GraphicsOperation* go = info.getCurrentCamera()->getRenderer();
         osgViewer::Renderer* renderer = dynamic_cast<osgViewer::Renderer*>(go);
+        
         if (renderer != nullptr)
         {
             // Disable normal OSG FBO camera setup because it will undo the MSAA FBO configuration.
@@ -313,7 +336,7 @@ void UpdateSlaveCallback::updateSlave(osg::View& view, osg::View::Slave& slave)
 }
 
 //////////////////////////////////////////////////////////////////////////
-osg::Camera* CreateRTTCamera(const int& eye, const int& width, const int& height, const osg::Vec4& clearColor, osg::GraphicsContext* gc)
+osg::Camera* CreateRTTCamera(const int& eye, trVR::OpenVRTexture* texture, const osg::Vec4& clearColor, osg::GraphicsContext* gc)
 {
     osg::ref_ptr<osg::Camera> camera = new osg::Camera();
     camera->setClearColor(clearColor);
@@ -323,7 +346,7 @@ osg::Camera* CreateRTTCamera(const int& eye, const int& width, const int& height
     camera->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
     camera->setAllowEventFocus(false);
     camera->setReferenceFrame(osg::Transform::RELATIVE_RF);
-    camera->setViewport(0, 0, width, height);
+    camera->setViewport(0, 0, texture->GetWidth(), texture->GetHeight());
     camera->setGraphicsContext(gc);
 
     // Here we avoid doing anything regarding OSG camera RTT attachment.
@@ -334,7 +357,7 @@ osg::Camera* CreateRTTCamera(const int& eye, const int& width, const int& height
     // would undo our RTT FBO configuration.
     camera->setInitialDrawCallback(new InitialDrawCallback());
 
-    camera->setPreDrawCallback(new PreRenderDrawCallback(camera.get()));
+    camera->setPreDrawCallback(new PreRenderDrawCallback(camera.get(), texture));
 
     return camera.release();
 }
@@ -385,6 +408,61 @@ osg::GraphicsContext::Traits* CreateGraphicsContextTraits()
 	traits->vsync = false; // VSync should always be disabled for because HMD submit handles the timing of the swap.
 
 	return traits.release();
+}
+
+//////////////////////////////////////////////////////////////////////////
+bool ConfigureViewer(osgViewer::Viewer& viewer, trBase::SmrtPtr<trVR::VrBase>& vrInstance)
+{
+    bool isConfigured = false;
+    
+    // Get main camera from view/viewer
+    osg::ref_ptr<osg::Camera> camera = viewer.getCamera();
+    camera->setName("Main camera");
+    trBase::Vec4 clearColor = camera->getClearColor();
+    
+    // Get graphics context from viewer's camera
+    osg::ref_ptr<osg::GraphicsContext> gc = camera->getGraphicsContext();
+        
+    // Setup the swap callback for handling the submission of frames
+    osg::ref_ptr<SwapCallback> swapCallback = new SwapCallback(vrInstance);
+    gc->setSwapCallback(swapCallback);
+    
+    // Disable automatic computation of near and far plane
+    camera->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
+    
+    // Set main camera to center projection matrix
+    camera->setProjectionMatrix(vrInstance->GetCenterProjectionMatrix());
+
+    // Create left RTT Camera
+    osg::ref_ptr<osg::Camera> leftCamera 
+        = CreateRTTCamera(vr::Eye_Left, mLeftEye, clearColor.GetOSGVector(), gc);
+    leftCamera->setName("Left Eye Camera");
+    viewer.addSlave(leftCamera.get(),
+                    vrInstance->GetLeftProjectionMatrix(),
+                    vrInstance->GetLeftViewMatrix(),
+                    true);
+    viewer.getSlave(0)._updateSlaveCallback
+        = new UpdateSlaveCallback(CameraType::CAMERA_LEFT, vrInstance.Get(), swapCallback.get());
+
+    // Create right RTT Camera
+    osg::ref_ptr<osg::Camera> rightCamera
+        = CreateRTTCamera(vr::Eye_Right, mRightEye, clearColor.GetOSGVector(), gc);
+    leftCamera->setName("Right Eye Camera");
+    viewer.addSlave(rightCamera.get(),
+                    vrInstance->GetRightProjectionMatrix(),
+                    vrInstance->GetRightViewMatrix(),
+                    true);
+    viewer.getSlave(1)._updateSlaveCallback
+        = new UpdateSlaveCallback(CameraType::CAMERA_RIGHT, vrInstance.Get(), swapCallback.get());
+    
+    viewer.setLightingMode(osg::View::SKY_LIGHT);
+
+    // Remove rendering of the main camera
+    camera->setGraphicsContext(nullptr);
+    
+    isConfigured = true;
+    
+    return isConfigured;
 }
 
 /**
@@ -445,56 +523,23 @@ int main(int argc, char** argv)
             gc->setClearColor(osg::Vec4(0.2f, 0.2f, 0.4f, 1.0f));
             gc->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         }
-        
-        // Setup the swap callback for handling the submission of frames
-        osg::ref_ptr<SwapCallback> swapCallback = new SwapCallback(vrInstance);
-        gc->setSwapCallback(swapCallback);
 
         // Create Trackball manipulator
         osg::ref_ptr<osgGA::CameraManipulator> cameraManipulator = new osgGA::TrackballManipulator;
 
         //Set up the viewer
         osgViewer::Viewer viewer;
+
+        // Force single threaded to make sure that no other thread can use the GL context
+        viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
+        viewer.getCamera()->setGraphicsContext(gc);
+        viewer.getCamera()->setViewport(0, 0, traits->width, traits->height);
         
         // Add scene data to view
         viewer.setSceneData(rootNode.Get());
 
-        // Get main camera from view/viewer
-        osg::ref_ptr<osg::Camera> camera = viewer.getCamera();
-        camera->setName("Main camera");
-        trBase::Vec4 clearColor = camera->getClearColor();
-
-        // Disable automatic computation of near and far plane
-        camera->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
         viewer.setCameraManipulator(cameraManipulator);
-
-        // Force single threaded to make sure that no other thread can use the GL context
-        viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
-        camera->setGraphicsContext(gc);
-        camera->setViewport(0, 0, traits->width, traits->height);
-
-        // Create RTT Camera and remove rendering of the main camera
-        camera->setProjectionMatrix(vrInstance->GetCenterProjectionMatrix());
-        osg::ref_ptr<osg::Camera> leftCamera = CreateRTTCamera(vr::Eye_Left, renderWidth, renderHeight, clearColor.GetOSGVector(), gc);
-        leftCamera->setName("Left Eye Camera");
-        viewer.addSlave(leftCamera.get(),
-                        vrInstance->GetLeftProjectionMatrix(),
-                        vrInstance->GetLeftViewMatrix(),
-                        true);
-        viewer.getSlave(0)._updateSlaveCallback
-            = new UpdateSlaveCallback(CameraType::CAMERA_LEFT, vrInstance.Get(), swapCallback.get());
-        osg::ref_ptr<osg::Camera> rightCamera = CreateRTTCamera(vr::Eye_Right, renderWidth, renderHeight, clearColor.GetOSGVector(), gc);
-        leftCamera->setName("Right Eye Camera");
-        viewer.addSlave(rightCamera.get(),
-                        vrInstance->GetRightProjectionMatrix(),
-                        vrInstance->GetRightViewMatrix(),
-                        true);
-        viewer.getSlave(1)._updateSlaveCallback
-            = new UpdateSlaveCallback(CameraType::CAMERA_RIGHT, vrInstance.Get(), swapCallback.get());
-        camera->setGraphicsContext(nullptr);
-
         viewer.setReleaseContextAtEndOfFrameHint(true);
-        viewer.setLightingMode(osg::View::SKY_LIGHT);
         
         // Runs during the realize operations of OSG
         osg::ref_ptr<RealizeOperation> realizeOperatation = new RealizeOperation(renderWidth, renderHeight);
@@ -503,6 +548,12 @@ int main(int argc, char** argv)
         if (!viewer.isRealized())
         {
             viewer.realize();
+        }
+        
+        // Finish the viewer's configuration after it has been realized
+        if (!ConfigureViewer(viewer, vrInstance))
+        {
+            return 0;
         }
 
         //Run the main frame loop

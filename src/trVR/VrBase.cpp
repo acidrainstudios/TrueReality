@@ -95,6 +95,7 @@ namespace trVR
         
         CalculateEyeAdjustments();
         CalculateProjectionMatrices();
+        CalculateViewMatrices();
         
         mInit = true;
     }
