@@ -28,6 +28,8 @@
 
 #include <trBase/Base.h>
 
+#include <osg/State>
+
 namespace trVR
 {
     class TR_VR_EXPORT OpenVRTexture : public trBase::Base
@@ -44,6 +46,17 @@ namespace trVR
          * @param   name    The name of the class type.
          */
         OpenVRTexture(const std::string& name = CLASS_TYPE);
+        
+        /**
+         * @brief Specialized constructor that initializes the class with the
+         * provided parameters
+         * 
+         * @param state OSG state from within a graphics context
+         * @param width Width of the texture
+         * @param height Height of the texture
+         * @param name Name/type of the class
+         */
+        OpenVRTexture(osg::State& state, int width, int height, const std::string& name = CLASS_TYPE);
 
         /**
          * @fn OpenVRTexture::OpenVRTexture(const OpenVRTexture& orig)
@@ -66,14 +79,38 @@ namespace trVR
          */
         virtual const std::string& GetType() const override;
         
+        /**
+         * @brief Initialization method for the class
+         * 
+         * @param state OSG state from within a graphics context
+         * @param width Width of the texture
+         * @param height Height of the texture
+         * @param name Name/type of the class
+         */
         bool Initialize(osg::State& state, int width, int height);
         
+        /**
+         * Returns the GL handle for the color texture
+         * @return GL handle for the color texture
+         */
         GLuint GetColorTex();
         
+        /**
+         * Returns the height of the GL texture
+         * @return Height of the GL texture
+         */
         GLuint GetHeight() const;
         
+        /**
+         * Returns the GL handle for the resolve FBO
+         * @return GL handle for the resolve FBO
+         */
         GLuint GetResolveFbo();
         
+        /**
+         * Returns the width of the GL texture
+         * @return Width of the GL texture
+         */
         GLuint GetWidth() const;
     protected:
         /**

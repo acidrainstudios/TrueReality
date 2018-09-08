@@ -35,6 +35,12 @@ namespace trVR
     }
     
     //////////////////////////////////////////////////////////////////////////
+    OpenVRTexture::OpenVRTexture(osg::State& state, int width, int height, const std::string& name) : BaseClass(name)
+    {
+        Initialize(state, width, height);
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
     const std::string& OpenVRTexture::GetType() const
     {
         return CLASS_TYPE;
@@ -43,6 +49,9 @@ namespace trVR
     //////////////////////////////////////////////////////////////////////////
     bool OpenVRTexture::Initialize(osg::State& state, int width, int height)
     {
+        mWidth = width;
+        mHeight = height;
+        
         const osg::GLExtensions* fbo_ext = state.get<osg::GLExtensions>();
     
         if (fbo_ext)
