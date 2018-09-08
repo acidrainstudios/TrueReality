@@ -149,6 +149,7 @@ bool CreateFBO(const osg::State& state, int width, int height)
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);	// check FBO status
 
         GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
+        
         if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
         {
             LOG_W("Problem setting up frame buffer object.")
@@ -183,6 +184,15 @@ void PreRenderDrawCallback::operator()(osg::RenderInfo& info) const
     if (fbo_ext)
     {
         fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, mTexture->GetResolveFbo());
+        
+#ifdef _DEBUG
+        GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
+        
+        if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+        {
+            LOG_W("GL status of buffer: " + trUtil::StringUtils::ToString(status))
+        }
+#endif
     }
 }
 
@@ -219,7 +229,7 @@ void RealizeOperation::operator()(osg::GraphicsContext* gc)
         }
         
         osg::ref_ptr<osg::State> state = gc->getState();
-        CreateFBO(*state, mWidth, mHeight);
+//        CreateFBO(*state, mWidth, mHeight);
         mLeftEye = new trVR::OpenVRTexture(*state, mWidth, mHeight, "Left Eye Texture");
         mRightEye = new trVR::OpenVRTexture(*state, mWidth, mHeight, "Right Eye Texture");
     }
@@ -244,7 +254,7 @@ private:
 //////////////////////////////////////////////////////////////////////////
 void SwapCallback::swapBuffersImplementation(osg::GraphicsContext* gc)
 {
-    mDevice->SubmitFrame(mTestTex, mTestTex);
+    mDevice->SubmitFrame(mLeftEye->GetColorTex(), mRightEye->GetColorTex());
     
     gc->swapBuffersImplementation();
 }
@@ -257,6 +267,7 @@ public:
     {
         osg::GraphicsOperation* go = info.getCurrentCamera()->getRenderer();
         osgViewer::Renderer* renderer = dynamic_cast<osgViewer::Renderer*>(go);
+        
         if (renderer != nullptr)
         {
             // Disable normal OSG FBO camera setup because it will undo the MSAA FBO configuration.
