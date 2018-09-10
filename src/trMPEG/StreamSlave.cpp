@@ -111,7 +111,7 @@ namespace trMPEG
         av_init_packet(&mPacket);
 
         // Start playing the stream
-        av_read_play(mFrmtContext);    
+        //av_read_play(mFrmtContext);    
 
         // Get the codec
         AVCodec *codec = FindDecoderCodecByID(mInputStream->codecpar->codec_id);
@@ -126,19 +126,7 @@ namespace trMPEG
         mCodecContext->thread_count = 4;
         mCodecContext->thread_type = FF_THREAD_SLICE;
         mCodecContext->slices = 16;
-
         mCodecContext->slice_flags = SLICE_FLAG_ALLOW_FIELD;
-
-        //AVDictionaryEntry *tag = nullptr;
-        //tag = av_dict_get(mFrmtContext->metadata, "publisher", tag, AV_DICT_IGNORE_SUFFIX);
-        //if (tag != nullptr)
-        //{
-        //    std::cout << tag->key << " : " << tag->value << std::endl;
-        //}
-        //else
-        //{
-        //    std::cout << "NOP" << std::endl;
-        //}   
 
         // Initialize context
         if (avcodec_open2(mCodecContext, codec, nullptr) < 0)
@@ -159,7 +147,7 @@ namespace trMPEG
     void StreamSlave::Update()
     {
         // Read one frame from the Formant Context Stream
-        av_init_packet(&mPacket);
+        //av_init_packet(&mPacket);
         av_read_frame(mFrmtContext, &mPacket);
             
         // Send a packet for decoding to the codec context
@@ -191,7 +179,7 @@ namespace trMPEG
         //std::cerr << mCodecContext->frame_number << std::endl;
 
         // Clear Packet Data
-        av_packet_unref(&mPacket);        
+        av_packet_unref(&mPacket);    
     }
 
     //////////////////////////////////////////////////////////////////////////
