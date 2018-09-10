@@ -293,8 +293,8 @@ namespace trMPEG
         strCont->stream->codec->time_base = strCont->stream->time_base;
 
         mCodecContextPtr->time_base = strCont->stream->time_base;
-        mCodecContextPtr->gop_size = 10;               // Emit one intra frame every ten frames at most
-        mCodecContextPtr->keyint_min = 5;
+        mCodecContextPtr->gop_size = 3;               // Emit one intra frame every three frames at most
+        mCodecContextPtr->keyint_min = 1;
         mCodecContextPtr->pix_fmt = AV_PIX_FMT_YUV420P;
 
         //Set Buffering options
