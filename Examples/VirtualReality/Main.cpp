@@ -179,21 +179,27 @@ protected:
 //////////////////////////////////////////////////////////////////////////
 void PreRenderDrawCallback::operator()(osg::RenderInfo& info) const
 {
-    const osg::GLExtensions* fbo_ext = info.getState()->get<osg::GLExtensions>();
-    
-    if (fbo_ext)
-    {
-        fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, mTexture->GetResolveFbo());
-        
-#ifdef _DEBUG
-        GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
-        
-        if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
-        {
-            LOG_W("GL status of buffer: " + trUtil::StringUtils::ToString(status))
-        }
-#endif
-    }
+    mTexture->PreRenderUpdate(info);
+}
+
+//////////////////////////////////////////////////////////////////////////
+class PostRenderDrawCallback : public osg::Camera::DrawCallback
+{
+public:
+    explicit PostRenderDrawCallback(osg::Camera* camera, trVR::OpenVRTexture* texture)
+        : mCamera(camera)
+        , mTexture(texture)
+        {}
+    virtual void operator()(osg::RenderInfo& info) const;
+protected:
+    osg::ref_ptr<osg::Camera> mCamera;
+    trBase::SmrtPtr<trVR::OpenVRTexture> mTexture;
+};
+
+//////////////////////////////////////////////////////////////////////////
+void PostRenderDrawCallback::operator()(osg::RenderInfo& info) const
+{
+    mTexture->PostRenderUpdate(info);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -229,6 +235,12 @@ void RealizeOperation::operator()(osg::GraphicsContext* gc)
         }
         
         osg::ref_ptr<osg::State> state = gc->getState();
+        
+        if (!state.valid())
+        {
+            LOG_E("The state is not state. This should not happen.")
+        }
+        
 //        CreateFBO(*state, mWidth, mHeight);
         mLeftEye = new trVR::OpenVRTexture(*state, mWidth, mHeight, "Left Eye Texture");
         mRightEye = new trVR::OpenVRTexture(*state, mWidth, mHeight, "Right Eye Texture");
@@ -358,6 +370,7 @@ osg::Camera* CreateRTTCamera(const int& eye, trVR::OpenVRTexture* texture, const
     camera->setInitialDrawCallback(new InitialDrawCallback());
 
     camera->setPreDrawCallback(new PreRenderDrawCallback(camera.get(), texture));
+    camera->setPostDrawCallback(new PostRenderDrawCallback(camera.get(), texture));
 
     return camera.release();
 }
@@ -500,7 +513,9 @@ int main(int argc, char** argv)
         if (!skyBox->LoadFile(SKY_BOX_MODEL))
         {
             LOG_E("Cannot load the skybox model. Something went wrong")
-//            return 0;
+#ifndef _DEBUG
+            return 0;
+#endif
         }
 
         rootNode->addChild(skyBox);
@@ -556,12 +571,7 @@ int main(int argc, char** argv)
             return 0;
         }
 
-        //Run the main frame loop
-        while (!viewer.done())
-        {
-            //vrInstance->GetHeadsetPose();
-            viewer.frame();
-        }
+        viewer.run();
         
         vrInstance->Shutdown();
 
