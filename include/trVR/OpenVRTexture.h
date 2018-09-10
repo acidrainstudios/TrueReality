@@ -87,7 +87,11 @@ namespace trVR
          * @param height Height of the texture
          * @param name Name/type of the class
          */
-        bool Initialize(osg::State& state, int width, int height);
+        bool Initialize(osg::State& state, const int width, const int height);
+        
+        void PostRenderUpdate(osg::RenderInfo& info);
+        
+        void PreRenderUpdate(osg::RenderInfo& info);
         
         /**
          * Returns the GL handle for the color texture
