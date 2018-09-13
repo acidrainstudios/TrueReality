@@ -62,7 +62,7 @@ static const int WIN_POS_Y = 100;
 
 static const double CAM_NEAR_CLIP = 0.1;
 static const double CAM_FAR_CLIP = 1000000.0;
-static const double CAM_FOV = 25;
+static const double CAM_FOV = 60;
 
 static const int SAMPLE_NUM = 4;
 
