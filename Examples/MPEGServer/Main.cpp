@@ -51,9 +51,9 @@
 
 #include <iostream>
 
-static const trUtil::RefStr COW_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/OsgCow/OsgCow.osg");
-static const trUtil::RefStr CUBE_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ColorCube/ColorCube.osg");
-static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ConstructSkybox/ConstructSkybox.obj");
+static const trUtil::RefStr COW_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/OsgCow/OsgCow.osgb");
+static const trUtil::RefStr CUBE_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ColorCube/ColorCube.osgb");
+static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ConstructSkybox/ConstructSkybox.osgb");
 
 static const int WIN_WIDTH = 1280;
 static const int WIN_HEIGHT = 720;

@@ -58,7 +58,7 @@ static const double CAM_FOV = 25;
 
 static const int SAMPLE_NUM = 4;
 
-static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ConstructSkybox/ConstructSkybox.obj");
+static const trUtil::RefStr SKY_BOX_MODEL = trUtil::RefStr(trUtil::PathUtils::GetStaticMeshesPath() + "/ConstructSkybox/ConstructSkybox.objb");
 
 //////////////////////////////////////////////////////////////////////////
 osg::Texture2D* GenerateTexture(int screenWidth, int screenHeight, GLint pxlFormat)

@@ -36,10 +36,10 @@ namespace trCore
 {
     namespace SceneObjects
     {
-        const std::string RingArray::RING_1_FILE_NAME("/RingArray/Ring1.obj");
-        const std::string RingArray::RING_2_FILE_NAME("/RingArray/Ring2.obj");
-        const std::string RingArray::RING_3_FILE_NAME("/RingArray/Ring3.obj");
-        const std::string RingArray::RING_4_FILE_NAME("/RingArray/Ring4.obj");
+        const std::string RingArray::RING_1_FILE_NAME("/RingArray/Ring1.osgb");
+        const std::string RingArray::RING_2_FILE_NAME("/RingArray/Ring2.osgb");
+        const std::string RingArray::RING_3_FILE_NAME("/RingArray/Ring3.osgb");
+        const std::string RingArray::RING_4_FILE_NAME("/RingArray/Ring4.osgb");
 
         //////////////////////////////////////////////////////////////////////////
         RingArray::RingArray()
