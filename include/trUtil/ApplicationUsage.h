@@ -190,13 +190,31 @@ namespace trUtil
         /**
          * @fn  void ApplicationUsage::AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue = "");
          *
-         * @brief   Adds an environmental variable explination.
+         * @brief   Adds an environmental variable usage explanation.
          *
          * @param   option          The option.
          * @param   explanation     The explanation.
          * @param   defaultValue    (Optional) The default value.
          */
         void AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue = "");
+
+        /**
+         * @fn  void ApplicationUsage::SetEnvironmentalVariables(const UsageMap& usageMap);
+         *
+         * @brief   Sets environmental variables usage.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetEnvironmentalVariables(const UsageMap& usageMap);
+
+        /**
+         * @fn  const UsageMap& ApplicationUsage::GetEnvironmentalVariables() const;
+         *
+         * @brief   Gets environmental variables usage.
+         *
+         * @return  The environmental variables.
+         */
+        const UsageMap& GetEnvironmentalVariables() const;
 
         /**
          * @fn  operator osg::ApplicationUsage& ();

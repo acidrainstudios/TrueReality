@@ -119,6 +119,18 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::SetEnvironmentalVariables(const UsageMap& usageMap)
+    {
+        mAppUsage->setEnvironmentalVariables(usageMap);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap& ApplicationUsage::GetEnvironmentalVariables() const
+    {
+        return mAppUsage->getEnvironmentalVariables();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.get();
