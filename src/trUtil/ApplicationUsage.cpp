@@ -113,6 +113,12 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue)
+    {
+        mAppUsage->addEnvironmentalVariable(option, explanation, defaultValue);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.get();

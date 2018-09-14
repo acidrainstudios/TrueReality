@@ -188,6 +188,17 @@ namespace trUtil
         const UsageMap& GetCommandLineOptionsDefaults() const;
 
         /**
+         * @fn  void ApplicationUsage::AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue = "");
+         *
+         * @brief   Adds an environmental variable explination.
+         *
+         * @param   option          The option.
+         * @param   explanation     The explanation.
+         * @param   defaultValue    (Optional) The default value.
+         */
+        void AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue = "");
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.
