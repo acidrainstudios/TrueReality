@@ -161,6 +161,18 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::SetKeyboardMouseBindings(const UsageMap& usageMap)
+    {
+        mAppUsage->setKeyboardMouseBindings(usageMap);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap& ApplicationUsage::GetKeyboardMouseBindings() const
+    {
+        return mAppUsage->getKeyboardMouseBindings();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.get();

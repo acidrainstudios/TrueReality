@@ -265,6 +265,23 @@ namespace trUtil
          */
         void AddKeyboardMouseBinding(const std::string& option, const std::string& explanation);
 
+        /**
+         * @fn  void ApplicationUsage::SetKeyboardMouseBindings(const UsageMap& usageMap);
+         *
+         * @brief   Sets keyboard mouse bindings usage.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetKeyboardMouseBindings(const UsageMap& usageMap);
+
+        /**
+         * @fn  const UsageMap& ApplicationUsage::GetKeyboardMouseBindings() const;
+         *
+         * @brief   Gets keyboard mouse bindings usage.
+         *
+         * @return  The keyboard mouse bindings.
+         */
+        const UsageMap& GetKeyboardMouseBindings() const;
 
         /**
          * @fn  operator osg::ApplicationUsage& ();
