@@ -217,6 +217,25 @@ namespace trUtil
         const UsageMap& GetEnvironmentalVariables() const;
 
         /**
+         * @fn  void ApplicationUsage::SetEnvironmentalVariablesDefaults(const UsageMap& usageMap);
+         *
+         * @brief   Sets environmental variables usage default usage map.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetEnvironmentalVariablesDefaults(const UsageMap& usageMap);
+
+        /**
+         * @fn  const UsageMap& ApplicationUsage::GetEnvironmentalVariablesDefaults() const;
+         *
+         * @brief   Gets environmental variables usage default usage map.
+         *
+         * @return  The environmental variables defaults.
+         */
+        const UsageMap& GetEnvironmentalVariablesDefaults() const;
+
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.
