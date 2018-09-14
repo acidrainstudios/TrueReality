@@ -41,7 +41,7 @@ namespace trVR
     }
     
     //////////////////////////////////////////////////////////////////////////
-    void VrBase::Init()
+    void VrBase::Init(const double zNear, const double zFar)
     {
         vr::EVRInitError initErr = vr::VRInitError_None;
         mVrSystem = vr::VR_Init(&initErr, vr::VRApplication_Scene);
@@ -88,10 +88,9 @@ namespace trVR
         LOG_I("Device serial number: " + GetDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_SerialNumber_String))
         LOG_I("HMD model: " + GetDeviceProperty(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_ModelNumber_String))
 
-//        if (!InitializeRenderTargets())
-//        {
-//            LOG_W("Problem initializing render targets.")
-//        }
+
+        mZFar = zFar;
+        mZNear = zNear;
         
         CalculateEyeAdjustments();
         CalculateProjectionMatrices();
@@ -120,6 +119,12 @@ namespace trVR
     }
     
     //////////////////////////////////////////////////////////////////////////
+    void VrBase::ResetHeadsetOrientation() const
+    {
+        mVrSystem->ResetSeatedZeroPose();
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
     void VrBase::CalculateEyeAdjustments()
     {
         vr::HmdMatrix34_t mat;
@@ -141,11 +146,11 @@ namespace trVR
         vr::HmdMatrix44_t mat;
         
         // Sets the left eye's projection matrix
-        mat = mVrSystem->GetProjectionMatrix(vr::Eye_Left, 1.0e-6, 1.0e15);
+        mat = mVrSystem->GetProjectionMatrix(vr::Eye_Left, mZNear, mZFar);
         mLeftProjectionMatrix = ConvertOpenvrMatrix(mat);
         
         // Sets the right eye's projection matrix
-        mat = mVrSystem->GetProjectionMatrix(vr::Eye_Right, 1.0e-6, 1.0e15);
+        mat = mVrSystem->GetProjectionMatrix(vr::Eye_Right, mZNear, mZFar);
         mRightProjectionMatrix = ConvertOpenvrMatrix(mat);
         
         // Sets the center of the headset's projection matrix
@@ -158,6 +163,27 @@ namespace trVR
     {
         mLeftViewMatrix.MakeTranslate(-mLeftEyeAdjustment);
         mRightViewMatrix.MakeTranslate(-mRightEyeAdjustment);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    trBase::Vec3 VrBase::CalculateProjectionOffset(const int& eye)
+    {
+        trBase::Vec3 offset;
+        
+        switch (eye)
+        {
+            case vr::Eye_Left:
+                offset.Set(-mLeftProjectionMatrix(2, 0), 0.0, 0.0);
+                break;
+            case vr::Eye_Right:
+                offset.Set(-mRightProjectionMatrix(2, 0), 0.0, 0.0);
+                break;
+            default:
+                LOG_E("The eye provided is unknown. This should never happen.")
+                break;
+        }
+        
+        return offset;
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -244,6 +270,18 @@ namespace trVR
     trBase::Vec3 VrBase::GetPosition() const
     {
         return mPosition;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    double VrBase::GetFarClippingPlane() const
+    {
+        return mZFar;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    double VrBase::GetNearClippingPlane() const
+    {
+        return mZNear;
     }
     
     //////////////////////////////////////////////////////////////////////////
