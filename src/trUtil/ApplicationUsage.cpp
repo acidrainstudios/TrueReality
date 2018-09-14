@@ -179,6 +179,18 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::Write(std::ostream& output, const UsageMap& um, unsigned int widthOfOutput, bool showDefaults, const UsageMap& ud)
+    {
+        mAppUsage->write(output, um, widthOfOutput, showDefaults, ud);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::Write(std::ostream& output, Type type, unsigned int widthOfOutput, bool showDefaults)
+    {
+        mAppUsage->write(output, static_cast<unsigned int>(type), widthOfOutput, showDefaults);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.get();

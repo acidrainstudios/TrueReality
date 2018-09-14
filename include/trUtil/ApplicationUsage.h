@@ -297,6 +297,32 @@ namespace trUtil
         void GetFormattedString(std::string& str, const UsageMap& um, unsigned int widthOfOutput = 80, bool showDefaults = false, const UsageMap& ud = UsageMap());
 
         /**
+         * @fn  void ApplicationUsage::Write(std::ostream& output, const UsageMap& um, unsigned int widthOfOutput = 80, bool showDefaults = false, const UsageMap& ud = UsageMap());
+         *
+         * @brief   Writes out all the settings to the screen.
+         *
+         * @param [in,out]  output          The output stream.
+         * @param           um              The usage map.
+         * @param           widthOfOutput   (Optional) Width of the output.
+         * @param           showDefaults    (Optional) True to show, false to hide the defaults.
+         * @param           ud              (Optional) The ud.
+         */
+        void Write(std::ostream& output, const UsageMap& um, unsigned int widthOfOutput = 80, bool showDefaults = false, const UsageMap& ud = UsageMap());
+
+        /**
+         * @fn  void ApplicationUsage::Write(std::ostream& output, Type type = Type::COMMAND_LINE_OPTION, unsigned int widthOfOutput = 80, bool showDefaults = false);
+         *
+         * @brief   Writes.
+         *
+         * @param [in,out]  output          The output stream.
+         * @param           type            (Optional) The type.
+         * @param           widthOfOutput   (Optional) Width of the output.
+         * @param           showDefaults    (Optional) True to show, false to hide the defaults.
+         */
+        void Write(std::ostream& output, Type type = Type::COMMAND_LINE_OPTION, unsigned int widthOfOutput = 80, bool showDefaults = false);
+
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.
