@@ -234,6 +234,37 @@ namespace trUtil
          */
         const UsageMap& GetEnvironmentalVariablesDefaults() const;
 
+        /**
+         * @fn  void ApplicationUsage::AddKeyboardMouseBinding(const std::string& prefix, int key, const std::string& explanation);
+         *
+         * @brief   Adds a keyboard mouse binding usage.
+         *
+         * @param   prefix      The prefix.
+         * @param   key         The key.
+         * @param   explanation The explanation.
+         */
+        void AddKeyboardMouseBinding(const std::string& prefix, int key, const std::string& explanation);
+
+        /**
+         * @fn  void ApplicationUsage::AddKeyboardMouseBinding(int key, const std::string& explanation);
+         *
+         * @brief   Adds a keyboard mouse binding usage.
+         *
+         * @param   key         The key.
+         * @param   explanation The explanation.
+         */
+        void AddKeyboardMouseBinding(int key, const std::string& explanation);
+
+        /**
+         * @fn  void ApplicationUsage::AddKeyboardMouseBinding(const std::string& option, const std::string& explanation);
+         *
+         * @brief   Adds a keyboard mouse binding usage.
+         *
+         * @param   option      The option.
+         * @param   explanation The explanation.
+         */
+        void AddKeyboardMouseBinding(const std::string& option, const std::string& explanation);
+
 
         /**
          * @fn  operator osg::ApplicationUsage& ();

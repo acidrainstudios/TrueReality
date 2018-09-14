@@ -143,6 +143,24 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::AddKeyboardMouseBinding(const std::string& prefix, int key, const std::string& explanation)
+    {
+        mAppUsage->addKeyboardMouseBinding(prefix, key, explanation);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::AddKeyboardMouseBinding(int key, const std::string& explanation)
+    {
+        mAppUsage->addKeyboardMouseBinding(key, explanation);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::AddKeyboardMouseBinding(const std::string& option, const std::string& explanation)
+    {
+        mAppUsage->addKeyboardMouseBinding(option, explanation);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.get();
