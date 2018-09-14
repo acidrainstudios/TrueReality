@@ -66,6 +66,15 @@ namespace trUtil
         ApplicationUsage();
 
         /**
+         * @fn  ApplicationUsage::ApplicationUsage(osg::ApplicationUsage* applicationUsage);
+         *
+         * @brief   Wraps an osg ApplicationUsage, and uses it as the internal class.
+         *
+         * @param [in,out]  applicationUsage    The application usage.
+         */
+        ApplicationUsage(osg::ApplicationUsage* applicationUsage);
+
+        /**
          * @fn  ApplicationUsage::ApplicationUsage(const std::string& commandLineUsage);
          *
          * @brief   Default constructor.

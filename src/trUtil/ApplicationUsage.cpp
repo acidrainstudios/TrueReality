@@ -35,6 +35,12 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::ApplicationUsage(osg::ApplicationUsage* applicationUsage)
+    {
+        mAppUsage = applicationUsage;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::ApplicationUsage(const std::string& commandLineUsage)
     {
         mAppUsage = new osg::ApplicationUsage(commandLineUsage);
