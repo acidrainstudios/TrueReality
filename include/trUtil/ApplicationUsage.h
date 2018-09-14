@@ -321,6 +321,14 @@ namespace trUtil
          */
         void Write(std::ostream& output, Type type = Type::COMMAND_LINE_OPTION, unsigned int widthOfOutput = 80, bool showDefaults = false);
 
+        /**
+         * @fn  void ApplicationUsage::WriteEnvironmentSettings(std::ostream& output);
+         *
+         * @brief   Writes out the environment settings.
+         *
+         * @param [in,out]  output  The output.
+         */
+        void WriteEnvironmentSettings(std::ostream& output);
 
         /**
          * @fn  operator osg::ApplicationUsage& ();

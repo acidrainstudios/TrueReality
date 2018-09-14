@@ -191,6 +191,12 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void ApplicationUsage::WriteEnvironmentSettings(std::ostream& output)
+    {
+        mAppUsage->writeEnvironmentSettings(output);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::operator osg::ApplicationUsage&()
     {
         return *mAppUsage.get();
