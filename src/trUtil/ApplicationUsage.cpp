@@ -149,6 +149,12 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::operator const osg::ApplicationUsage*() const
+    {
+        return mAppUsage.get();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ApplicationUsage::~ApplicationUsage()
     {
     }

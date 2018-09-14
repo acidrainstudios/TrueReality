@@ -243,6 +243,15 @@ namespace trUtil
          */
         operator osg::ApplicationUsage* ();
 
+        /**
+         * @fn  operator osg::ApplicationUsage* ();
+         *
+         * @brief   Implicit conversion operator to OSG ApplicationUsage.
+         *
+         * @return  The result of the operation.
+         */
+        operator const osg::ApplicationUsage* () const;
+
     protected:
         /**
          * @fn  ApplicationUsage::~ApplicationUsage();
