@@ -284,6 +284,19 @@ namespace trUtil
         const UsageMap& GetKeyboardMouseBindings() const;
 
         /**
+         * @fn  void ApplicationUsage::GetFormattedString(std::string& str, const UsageMap& um, unsigned int widthOfOutput = 80, bool showDefaults = false, const UsageMap& ud = UsageMap());
+         *
+         * @brief   Gets formatted string.
+         *
+         * @param [in,out]  str             The string.
+         * @param           um              The usage map.
+         * @param           widthOfOutput   (Optional) Width of the output.
+         * @param           showDefaults    (Optional) True to show, false to hide the defaults.
+         * @param           ud              (Optional) The usage map default.
+         */
+        void GetFormattedString(std::string& str, const UsageMap& um, unsigned int widthOfOutput = 80, bool showDefaults = false, const UsageMap& ud = UsageMap());
+
+        /**
          * @fn  operator osg::ApplicationUsage& ();
          *
          * @brief   Implicit conversion operator to OSG ApplicationUsage.
