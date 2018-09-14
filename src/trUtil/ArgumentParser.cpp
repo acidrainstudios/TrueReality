@@ -24,6 +24,101 @@
 namespace trUtil
 {
     //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::Parameter(bool& value)
+    {
+        mParam = new osg::ArgumentParser::Parameter(value);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::Parameter(float& value)
+    {
+        mParam = new osg::ArgumentParser::Parameter(value);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::Parameter(double& value)
+    {
+        mParam = new osg::ArgumentParser::Parameter(value);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::Parameter(int& value)
+    {
+        mParam = new osg::ArgumentParser::Parameter(value);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::Parameter(unsigned int& value)
+    {
+        mParam = new osg::ArgumentParser::Parameter(value);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::Parameter(std::string& value)
+    {
+        mParam = new osg::ArgumentParser::Parameter(value);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::Parameter(const Parameter& param)
+    {
+        mParam = new osg::ArgumentParser::Parameter(param);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::~Parameter()
+    {
+        if (mParam != nullptr)
+        {
+            delete mParam;
+            mParam = nullptr;
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter& ArgumentParser::Parameter::operator = (const Parameter& param)
+    {
+        mParam = param.mParam;
+        return *this;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline bool ArgumentParser::Parameter::Valid(const char* str) const
+    {
+        return mParam->valid(str);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Parameter::Assign(const char* str)
+    {
+        return mParam->assign(str);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::operator osg::ArgumentParser::Parameter() const
+    {
+        return *mParam;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::operator osg::ArgumentParser::Parameter&()
+    {
+        return *mParam;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::operator const osg::ArgumentParser::Parameter&() const
+    {
+        return *mParam;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ArgumentParser::Parameter::operator osg::ArgumentParser::Parameter*()
+    {
+        return mParam;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     ArgumentParser::ArgumentParser()
     {
     }
@@ -33,4 +128,3 @@ namespace trUtil
     {
     }
 }
-
