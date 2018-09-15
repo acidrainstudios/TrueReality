@@ -117,22 +117,22 @@ namespace trBase
          *
          * @brief   ctor.
          *
-         * @param   a00 The 00.
-         * @param   a01 The first a 0.
-         * @param   a02 The second a 0.
-         * @param   a03 The third a 0.
-         * @param   a10 The 10.
-         * @param   a11 The first a 1.
-         * @param   a12 The second a 1.
-         * @param   a13 The third a 1.
-         * @param   a20 The 20.
-         * @param   a21 The first a 2.
-         * @param   a22 The second a 2.
-         * @param   a23 The third a 2.
-         * @param   a30 The 30.
-         * @param   a31 The first a 3.
-         * @param   a32 The second a 3.
-         * @param   a33 The third a 3.
+         * @param   a00 The [0][0] value of the matrix.
+         * @param   a01 The [0][1] value of the matrix.
+         * @param   a02 The [0][2] value of the matrix.
+         * @param   a03 The [0][3] value of the matrix.
+         * @param   a10 The [1][0] value of the matrix.
+         * @param   a11 The [1][1] value of the matrix.
+         * @param   a12 The [1][2] value of the matrix.
+         * @param   a13 The [1][3] value of the matrix.
+         * @param   a20 The [2][0] value of the matrix.
+         * @param   a21 The [2][1] value of the matrix.
+         * @param   a22 The [2][2] value of the matrix.
+         * @param   a23 The [2][3] value of the matrix.
+         * @param   a30 The [3][0] value of the matrix.
+         * @param   a31 The [3][1] value of the matrix.
+         * @param   a32 The [3][2] value of the matrix.
+         * @param   a33 The [3][3] value of the matrix.
          */
         Matrixf(value_type a00, value_type a01, value_type a02, value_type a03,
             value_type a10, value_type a11, value_type a12, value_type a13,
@@ -234,22 +234,22 @@ namespace trBase
          *
          * @brief   Set the current Matrix from a passed in values.
          *
-         * @param   a00 The 00.
-         * @param   a01 The first a 0.
-         * @param   a02 The second a 0.
-         * @param   a03 The third a 0.
-         * @param   a10 The 10.
-         * @param   a11 The first a 1.
-         * @param   a12 The second a 1.
-         * @param   a13 The third a 1.
-         * @param   a20 The 20.
-         * @param   a21 The first a 2.
-         * @param   a22 The second a 2.
-         * @param   a23 The third a 2.
-         * @param   a30 The 30.
-         * @param   a31 The first a 3.
-         * @param   a32 The second a 3.
-         * @param   a33 The third a 3.
+         * @param   a00 The [0][0] value of the matrix.
+         * @param   a01 The [0][1] value of the matrix.
+         * @param   a02 The [0][2] value of the matrix.
+         * @param   a03 The [0][3] value of the matrix.
+         * @param   a10 The [1][0] value of the matrix.
+         * @param   a11 The [1][1] value of the matrix.
+         * @param   a12 The [1][2] value of the matrix.
+         * @param   a13 The [1][3] value of the matrix.
+         * @param   a20 The [2][0] value of the matrix.
+         * @param   a21 The [2][1] value of the matrix.
+         * @param   a22 The [2][2] value of the matrix.
+         * @param   a23 The [2][3] value of the matrix.
+         * @param   a30 The [3][0] value of the matrix.
+         * @param   a31 The [3][1] value of the matrix.
+         * @param   a32 The [3][2] value of the matrix.
+         * @param   a33 The [3][3] value of the matrix.
          */
         void Set(value_type a00, value_type a01, value_type a02, value_type a03,
             value_type a10, value_type a11, value_type a12, value_type a13,
