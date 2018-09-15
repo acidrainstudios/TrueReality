@@ -23,6 +23,7 @@
 #include <trBase/Export.h>
 
 #include <osg/Matrixf>
+#include <osg/Matrixd>
 
 #include <trBase/Matrixd.h>
 #include <trBase/Quat.h>
@@ -47,6 +48,24 @@ namespace trBase
         * ctor
         */
         Matrixf();
+
+        /**
+         * @fn  Matrixf::Matrixf(const osg::Matrixf& mat);
+         *
+         * @brief   ctor.
+         *
+         * @param   mat The matrix.
+         */
+        Matrixf(const osg::Matrixf& mat);
+
+        /**
+         * @fn  Matrixf::Matrixf(const osg::Matrixd& mat);
+         *
+         * @brief   ctor.
+         *
+         * @param   mat The matrix.
+         */
+        Matrixf(const osg::Matrixd& mat);
 
         /**
         * ctor
