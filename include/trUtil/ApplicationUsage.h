@@ -84,6 +84,13 @@ namespace trUtil
         ApplicationUsage(const std::string& commandLineUsage);
 
         /**
+         * @fn  ApplicationUsage::~ApplicationUsage();
+         *
+         * @brief   Destructor.
+         */
+        ~ApplicationUsage();
+
+        /**
          * @fn  void ApplicationUsage::SetApplicationName(const std::string& name);
          *
          * @brief   Sets the Applications Name. It is used in Application description
@@ -376,15 +383,6 @@ namespace trUtil
         operator const osg::ApplicationUsage* () const;
 
     protected:
-        /**
-         * @fn  ApplicationUsage::~ApplicationUsage();
-         *
-         * @brief   Destructor.
-         */
-        ~ApplicationUsage();
-
-    private:
-
        osg::ref_ptr<osg::ApplicationUsage> mAppUsage = nullptr;
     };
 }

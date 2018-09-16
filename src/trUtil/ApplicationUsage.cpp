@@ -47,6 +47,11 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::~ApplicationUsage()
+    {
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     void ApplicationUsage::SetApplicationName(const std::string& name)
     {
         mAppUsage->setApplicationName(name);
@@ -224,10 +229,5 @@ namespace trUtil
     ApplicationUsage::operator const osg::ApplicationUsage*() const
     {
         return mAppUsage.get();
-    }
-
-    //////////////////////////////////////////////////////////////////////////
-    ApplicationUsage::~ApplicationUsage()
-    {
     }
 }
