@@ -119,12 +119,24 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
-    ArgumentParser::ArgumentParser()
+    ArgumentParser::ArgumentParser(int* argc, char **argv)
     {
+        mArgParserPtr = new osg::ArgumentParser(argc, argv);
     }
 
     //////////////////////////////////////////////////////////////////////////
     ArgumentParser::~ArgumentParser()
     {
+        if (mArgParserPtr != nullptr)
+        {
+            delete mArgParserPtr;
+            mArgParserPtr = nullptr;
+        }        
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::IsOption(const char * str) const
+    {
+        return mArgParserPtr->isOption(str);
     }
 }

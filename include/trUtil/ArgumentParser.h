@@ -194,11 +194,14 @@ namespace trUtil
         };
 
         /**
-         * @fn  ArgumentParser::ArgumentParser();
+         * @fn  ArgumentParser::ArgumentParser(int* argc, char **argv);
          *
-         * @brief   Default constructor.
+         * @brief   Default constructor that takes the argc and argv from the main function for command line parsing.
+         *
+         * @param [in,out]  argc    If non-null, the argc.
+         * @param [in,out]  argv    If non-null, the argv.
          */
-        ArgumentParser();
+        ArgumentParser(int* argc, char **argv);
 
         /**
          * @fn  ArgumentParser::~ArgumentParser();
@@ -206,7 +209,20 @@ namespace trUtil
          * @brief   Destructor.
          */
         ~ArgumentParser();
+
+        /**
+         * @fn  bool ArgumentParser::IsOption(const char* str) const;
+         *
+         * @brief   Return true if the specified string is an option in the form
+         *          -option or --option.
+         *
+         * @param   str The string.
+         *
+         * @return  True if option, false if not.
+         */
+        bool IsOption(const char* str) const;
+
+        protected:            
+            osg::ArgumentParser* mArgParserPtr = nullptr;
     };
 }
-
-
