@@ -121,40 +121,55 @@ namespace trUtil
     //////////////////////////////////////////////////////////////////////////
     ArgumentParser::ArgumentParser(int* argc, char **argv)
     {
-        mArgParserPtr = new osg::ArgumentParser(argc, argv);
+        mArgParser = std::make_unique<osg::ArgumentParser>(argc, argv);
+        mAppUsage = std::make_unique<ApplicationUsage>(mArgParser->getApplicationUsage());
     }
 
     //////////////////////////////////////////////////////////////////////////
     ArgumentParser::~ArgumentParser()
-    {
-        if (mArgParserPtr != nullptr)
-        {
-            delete mArgParserPtr;
-            mArgParserPtr = nullptr;
-        }        
+    {       
     }
 
     //////////////////////////////////////////////////////////////////////////
     bool ArgumentParser::IsOption(const char* str) const
     {
-        return mArgParserPtr->isOption(str);
+        return mArgParser->isOption(str);
     }
 
     //////////////////////////////////////////////////////////////////////////
     bool ArgumentParser::IsString(const char* str) const
     {
-        return mArgParserPtr->isString(str);
+        return mArgParser->isString(str);
     }
 
     //////////////////////////////////////////////////////////////////////////
     bool ArgumentParser::IsNumber(const char* str) const
     {
-        return mArgParserPtr->isNumber(str);
+        return mArgParser->isNumber(str);
     }
 
     //////////////////////////////////////////////////////////////////////////
     bool ArgumentParser::IsBool(const char* str) const
     {
-        return mArgParserPtr->isBool(str);
+        return mArgParser->isBool(str);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetApplicationUsage(ApplicationUsage* usage)
+    {
+        mAppUsage.reset(usage);
+        mArgParser->setApplicationUsage(mAppUsage.get()->operator osg::ApplicationUsage *());
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage* ArgumentParser::GetApplicationUsage()
+    {
+        return mAppUsage.get();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage* ArgumentParser::GetApplicationUsage() const
+    {
+        return mAppUsage.get();
     }
 }

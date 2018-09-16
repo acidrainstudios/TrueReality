@@ -23,10 +23,13 @@
 
 #include <trUtil/Export.h>
 
+#include <trUtil/ApplicationUsage.h>
 #include <trUtil/ArgumentParser.h>
 
 #include <osg/ArgumentParser>
 #include <osg/ref_ptr>
+
+#include <memory>
 
 /**
  * @namespace   trUtil
@@ -158,7 +161,7 @@ namespace trUtil
              *
              * @return  The result of the operation.
              */
-            operator osg::ArgumentParser::Parameter () const;
+            operator osg::ArgumentParser::Parameter() const;
 
             /**
              * @fn  operator osg::ArgumentParser::Parameter& ();
@@ -256,9 +259,37 @@ namespace trUtil
          */
         bool IsBool(const char* str) const;
 
+        /**
+         * @fn  void ArgumentParser::SetApplicationUsage(ApplicationUsage* usage);
+         *
+         * @brief   Sets application usage.
+         *
+         * @param [in,out]  usage   If non-null, the usage.
+         */
+        void SetApplicationUsage(ApplicationUsage* usage);
+
+        /**
+         * @fn  ApplicationUsage* ArgumentParser::GetApplicationUsage();
+         *
+         * @brief   Gets application usage.
+         *
+         * @return  Null if it fails, else a pointer to an ApplicationUsage.
+         */
+        ApplicationUsage* GetApplicationUsage();
+
+        /**
+         * @fn  const ApplicationUsage* ArgumentParser::GetApplicationUsage() const;
+         *
+         * @brief   Gets application usage.
+         *
+         * @return  Null if it fails, else the application usage.
+         */
+        const ApplicationUsage* GetApplicationUsage() const;
 
 
-        protected:            
-            osg::ArgumentParser* mArgParserPtr = nullptr;
+    protected:
+
+        std::unique_ptr<osg::ArgumentParser> mArgParser;
+        std::unique_ptr<ApplicationUsage> mAppUsage;
     };
 }
