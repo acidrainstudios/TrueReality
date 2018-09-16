@@ -172,4 +172,16 @@ namespace trUtil
     {
         return mAppUsage.get();
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    int& ArgumentParser::GetArgc()
+    {
+        return mArgParser->argc();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    char** ArgumentParser::GetArgv()
+    {
+        return mArgParser->argv();
+    }
 }

@@ -286,6 +286,24 @@ namespace trUtil
          */
         const ApplicationUsage* GetApplicationUsage() const;
 
+        /**
+         * @fn  int& ArgumentParser::GetArgc();
+         *
+         * @brief   Return the argument count.
+         *
+         * @return  The argc.
+         */
+        int& GetArgc();
+
+        /**
+         * @fn  char** ArgumentParser::GetArgv();
+         *
+         * @brief   Return the argument array.
+         *
+         * @return  Null if it fails, else the argv.
+         */
+        char** GetArgv();
+
 
     protected:
 
