@@ -184,4 +184,16 @@ namespace trUtil
     {
         return mArgParser->argv();
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    std::string ArgumentParser::GetApplicationName() const
+    {
+        return mArgParser->getApplicationName();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    int ArgumentParser::Find(const std::string& str) const
+    {
+        return mArgParser->find(str);
+    }
 }

@@ -304,6 +304,27 @@ namespace trUtil
          */
         char** GetArgv();
 
+        /**
+         * @fn  std::string ArgumentParser::GetApplicationName() const;
+         *
+         * @brief   Return the application name, as specified by argv[0].
+         *
+         * @return  The application name.
+         */
+        std::string GetApplicationName() const;
+
+        /**
+         * @fn  int ArgumentParser::Find(const std::string& str) const;
+         *
+         * @brief   Return the position of an occurrence of a string in the argument list. Return -1 if
+         *          no string is found.
+         *
+         * @param   str The string.
+         *
+         * @return  An int.
+         */
+        int Find(const std::string& str) const;
+
 
     protected:
 
