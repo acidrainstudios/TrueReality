@@ -222,6 +222,42 @@ namespace trUtil
          */
         bool IsOption(const char* str) const;
 
+        /**
+         * @fn  bool ArgumentParser::IsString(const char* str) const;
+         *
+         * @brief   Return true if string is non-NULL and not an option in the form
+         *          -option or --option.
+         *
+         * @param   str The string.
+         *
+         * @return  True if string, false if not.
+         */
+        bool IsString(const char* str) const;
+
+        /**
+         * @fn  bool ArgumentParser::IsNumber(const char* str) const;
+         *
+         * @brief   Return true if specified parameter is a number.
+         *
+         * @param   str The string.
+         *
+         * @return  True if number, false if not.
+         */
+        bool IsNumber(const char* str) const;
+
+        /**
+         * @fn  bool ArgumentParser::IsBool(const char* str) const;
+         *
+         * @brief   Return true if specified parameter is a bool.
+         *
+         * @param   str The string.
+         *
+         * @return  True if bool, false if not.
+         */
+        bool IsBool(const char* str) const;
+
+
+
         protected:            
             osg::ArgumentParser* mArgParserPtr = nullptr;
     };

@@ -135,8 +135,26 @@ namespace trUtil
     }
 
     //////////////////////////////////////////////////////////////////////////
-    bool ArgumentParser::IsOption(const char * str) const
+    bool ArgumentParser::IsOption(const char* str) const
     {
         return mArgParserPtr->isOption(str);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::IsString(const char* str) const
+    {
+        return mArgParserPtr->isString(str);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::IsNumber(const char* str) const
+    {
+        return mArgParserPtr->isNumber(str);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::IsBool(const char* str) const
+    {
+        return mArgParserPtr->isBool(str);
     }
 }
