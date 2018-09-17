@@ -182,6 +182,9 @@ namespace trVR
                 LOG_E("The eye provided is unknown. This should never happen.")
                 break;
         }
+#ifdef _DEBUG
+        LOG_D("Projection matrix offset: " + offset.ToString())
+#endif
         
         return offset;
     }
