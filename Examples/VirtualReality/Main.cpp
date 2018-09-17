@@ -62,7 +62,7 @@
 
 #include <iostream>
 
-//#define USE_SLAVES
+#define USE_SLAVES
 //#define USE_GL
 
 static const std::string LOG_FILE_NAME = "VRExample.html";
@@ -370,6 +370,14 @@ void UpdateSlaveCallback::updateSlave(osg::View& view, osg::View::Slave& slave)
             LOG_W("Camera type is not set. This is a problem.")
             break;
     }
+
+#ifdef _DEBUG
+    std::cout << "VR view: " << std::endl;
+    std::cout << "[" << viewOffset(0,0) << ", " << viewOffset(0,1) << ", " << viewOffset(0,2) <<  ", " << viewOffset(0,3) << "]," << std::endl;
+    std::cout << "[" << viewOffset(1,0) << ", " << viewOffset(1,1) << ", " << viewOffset(1,2) <<  ", " << viewOffset(1,3) << "]," << std::endl;
+    std::cout << "[" << viewOffset(2,0) << ", " << viewOffset(2,1) << ", " << viewOffset(2,2) <<  ", " << viewOffset(2,3) << "]," << std::endl;
+    std::cout << "[" << viewOffset(3,0) << ", " << viewOffset(3,1) << ", " << viewOffset(3,2) <<  ", " << viewOffset(3,3) << "]" << std::endl;
+#endif
     
     viewOffset.PreMultRotate(orientation);
     viewOffset.SetTrans(viewOffset.GetTrans() + position);
@@ -377,6 +385,20 @@ void UpdateSlaveCallback::updateSlave(osg::View& view, osg::View::Slave& slave)
     slave._viewOffset = viewOffset;
     
     slave.updateSlaveImplementation(view);
+
+#ifdef _DEBUG
+    osg::Vec3 eye, center, up;
+    slave._camera->getViewMatrixAsLookAt(eye, center, up);
+    
+    std::cout << "<" << eye.x() << ", " << eye.y() << ", " << eye.z() << ">" << std::endl;
+    std::cout << "<" << center.x() << ", " << center.y() << ", " << center.z() << ">" << std::endl;
+    std::cout << "<" << up.x() << ", " << up.y() << ", " << up.z() << ">" << std::endl;
+    std::cout << "Slave view: " << std::endl;
+    std::cout << "[" << slave._camera->getViewMatrix()(0,0) << ", " << slave._camera->getViewMatrix()(0,1) << ", " << slave._camera->getViewMatrix()(0,2) <<  ", " << slave._camera->getViewMatrix()(0,3) << "]," << std::endl;
+    std::cout << "[" << slave._camera->getViewMatrix()(1,0) << ", " << slave._camera->getViewMatrix()(1,1) << ", " << slave._camera->getViewMatrix()(1,2) <<  ", " << slave._camera->getViewMatrix()(1,3) << "]," << std::endl;
+    std::cout << "[" << slave._camera->getViewMatrix()(2,0) << ", " << slave._camera->getViewMatrix()(2,1) << ", " << slave._camera->getViewMatrix()(2,2) <<  ", " << slave._camera->getViewMatrix()(2,3) << "]," << std::endl;
+    std::cout << "[" << slave._camera->getViewMatrix()(3,0) << ", " << slave._camera->getViewMatrix()(3,1) << ", " << slave._camera->getViewMatrix()(3,2) <<  ", " << slave._camera->getViewMatrix()(3,3) << "]" << std::endl;
+#endif
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -447,7 +469,8 @@ osg::Camera* CreateRTTCamera(const int& eye, osg::Texture2D* texture, const osg:
     camera->getViewMatrixAsLookAt(eyePos, center, up);
     std::cout << eyePos.ToString() << std::endl;
     std::cout << center.ToString() << std::endl;
-    std::cout << up.ToString() << std::endl;std::cout << "[" << camera->getProjectionMatrix()(0, 0) << ", " << camera->getProjectionMatrix()(1, 0) << ", " << camera->getProjectionMatrix()(2, 0) << ", " << camera->getProjectionMatrix()(3, 0) << "]," << std::endl;
+    std::cout << up.ToString() << std::endl;
+    std::cout << "[" << camera->getProjectionMatrix()(0, 0) << ", " << camera->getProjectionMatrix()(1, 0) << ", " << camera->getProjectionMatrix()(2, 0) << ", " << camera->getProjectionMatrix()(3, 0) << "]," << std::endl;
     std::cout << "[" << camera->getProjectionMatrix()(0, 1) << ", " << camera->getProjectionMatrix()(1, 1) << ", " << camera->getProjectionMatrix()(2, 1) << ", " << camera->getProjectionMatrix()(3, 1) << "]," << std::endl;
     std::cout << "[" << camera->getProjectionMatrix()(0, 2) << ", " << camera->getProjectionMatrix()(1, 2) << ", " << camera->getProjectionMatrix()(2, 2) << ", " << camera->getProjectionMatrix()(3, 2) << "]," << std::endl;
     std::cout << "[" << camera->getProjectionMatrix()(0, 3) << ", " << camera->getProjectionMatrix()(1, 3) << ", " << camera->getProjectionMatrix()(2, 3) << ", " << camera->getProjectionMatrix()(3, 3) << "]" << std::endl;
@@ -547,8 +570,10 @@ bool ConfigureViewer(osgViewer::Viewer& viewer, trBase::SmrtPtr<trVR::VrBase>& v
     osg::ref_ptr<osg::Camera> leftCamera 
         = CreateRTTCamera(vr::Eye_Left, mTestL, clearColorL.GetOSGVector(), gc, scene);
     leftCamera->setName("Left Eye Camera");
+    osg::Matrix leftProjOffset;// = vrInstance->GetLeftProjectionMatrix();
+    leftProjOffset.makeTranslate(vrInstance->CalculateProjectionOffset(vr::Eye_Left));
     viewer.addSlave(leftCamera.get(),
-                    vrInstance->CalculateProjectionMatrixOffset(vr::Eye_Left),
+                    leftProjOffset,
                     vrInstance->GetLeftViewMatrix(),
                     false);
     viewer.getSlave(0)._updateSlaveCallback
@@ -564,6 +589,7 @@ bool ConfigureViewer(osgViewer::Viewer& viewer, trBase::SmrtPtr<trVR::VrBase>& v
     std::cout << "[" << leftCam->getProjectionMatrix()(0, 1) << ", " << leftCam->getProjectionMatrix()(1, 1) << ", " << leftCam->getProjectionMatrix()(2, 1) << ", " << leftCam->getProjectionMatrix()(3, 1) << "]," << std::endl;
     std::cout << "[" << leftCam->getProjectionMatrix()(0, 2) << ", " << leftCam->getProjectionMatrix()(1, 2) << ", " << leftCam->getProjectionMatrix()(2, 2) << ", " << leftCam->getProjectionMatrix()(3, 2) << "]," << std::endl;
     std::cout << "[" << leftCam->getProjectionMatrix()(0, 3) << ", " << leftCam->getProjectionMatrix()(1, 3) << ", " << leftCam->getProjectionMatrix()(2, 3) << ", " << leftCam->getProjectionMatrix()(3, 3) << "]" << std::endl;
+    leftCam->setViewMatrixAsLookAt(osg::Vec3(0.0, 0.0, 0.0), center, up);
     #endif
 
     // Create right RTT Camera
@@ -571,8 +597,10 @@ bool ConfigureViewer(osgViewer::Viewer& viewer, trBase::SmrtPtr<trVR::VrBase>& v
     osg::ref_ptr<osg::Camera> rightCamera
         = CreateRTTCamera(vr::Eye_Right, mTestR, clearColorR.GetOSGVector(), gc, scene);
     rightCamera->setName("Right Eye Camera");
+    osg::Matrix rightProjOffset = vrInstance->GetCenterProjectionMatrix();
+    rightProjOffset.makeTranslate(vrInstance->CalculateProjectionOffset(vr::Eye_Right));
     viewer.addSlave(rightCamera.get(),
-                    vrInstance->CalculateProjectionMatrixOffset(vr::Eye_Right),
+                    rightProjOffset,
                     vrInstance->GetRightViewMatrix(),
                     false);
     viewer.getSlave(1)._updateSlaveCallback
@@ -587,6 +615,7 @@ bool ConfigureViewer(osgViewer::Viewer& viewer, trBase::SmrtPtr<trVR::VrBase>& v
     std::cout << "[" << rightCam->getProjectionMatrix()(0, 1) << ", " << rightCam->getProjectionMatrix()(1, 1) << ", " << rightCam->getProjectionMatrix()(2, 1) << ", " << rightCam->getProjectionMatrix()(3, 1) << "]," << std::endl;
     std::cout << "[" << rightCam->getProjectionMatrix()(0, 2) << ", " << rightCam->getProjectionMatrix()(1, 2) << ", " << rightCam->getProjectionMatrix()(2, 2) << ", " << rightCam->getProjectionMatrix()(3, 2) << "]," << std::endl;
     std::cout << "[" << rightCam->getProjectionMatrix()(0, 3) << ", " << rightCam->getProjectionMatrix()(1, 3) << ", " << rightCam->getProjectionMatrix()(2, 3) << ", " << rightCam->getProjectionMatrix()(3, 3) << "]" << std::endl;
+    rightCam->setViewMatrixAsLookAt(osg::Vec3(0.0, 0.0, 0.0), osg::Vec3(0.0, 0.0, 1.0), up);
     #endif
 #endif
     
@@ -646,10 +675,8 @@ int main(int argc, char** argv)
 
         if (!skyBox->LoadFile(SKY_BOX_MODEL))
         {
-            LOG_E("Cannot load the skybox model. Something went wrong")
-#ifndef _DEBUG
+            LOG_E("Cannot load the sky box model. Something went wrong")
             return 0;
-#endif
         }
         
         // Add sky box to the nodes
@@ -660,10 +687,8 @@ int main(int argc, char** argv)
         
         if (!skySphere->LoadFile(SKY_SPHERE_MODEL))
         {
-            LOG_E("Cannot load the skybox model. Something went wrong")
-#ifndef _DEBUG
+            LOG_E("Cannot load the sky sphere model. Something went wrong")
             return 0;
-#endif
         }
 
         // Add sky sphere to the nodes
@@ -694,7 +719,7 @@ int main(int argc, char** argv)
         headsetNode->addChild(transformRing);
         
         osg::ref_ptr<osg::PositionAttitudeTransform> transformCube = new osg::PositionAttitudeTransform();
-        transformCube->setPosition(osg::Vec3(0.0, 0.0, -0.000001));
+        transformCube->setPosition(osg::Vec3(0.0, 0.0, -10.0));
         transformCube->setScale(osg::Vec3(5.0, 5.0, 5.0));
         transformCube->addChild(osgDB::readNodeFile(COLOR_CUBE_MODEL));
         headsetNode->addChild(transformCube);
@@ -734,7 +759,7 @@ int main(int argc, char** argv)
 #endif
 
         // Create Trackball manipulator
-        osg::ref_ptr<osgGA::CameraManipulator> cameraManipulator = new osgGA::TrackballManipulator;
+        osg::ref_ptr<osgGA::CameraManipulator> cameraManipulator = new osgGA::AnimationPathManipulator;
 
         //Set up the viewer
         osgViewer::Viewer viewer;
