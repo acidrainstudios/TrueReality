@@ -76,9 +76,18 @@ namespace trVR
         /**
          * Initializes the VR instance
          */
-        void Init();
+        void Init(const double zNear, const double zFar);
 
+        /**
+         * Initializes the render targets needed for the headset
+         * @return Status of whether this completed successfully
+         */
         bool InitializeRenderTargets();
+        
+        /**
+         * Resets the headset orientation of the headset.
+         */
+        void ResetHeadsetOrientation() const;
         
         /**
          * Calculates and stores the left and right eye adjustment distances
@@ -97,6 +106,15 @@ namespace trVR
          * for the cameras to render the correct scene data
          */
         void CalculateViewMatrices();
+        
+        /**
+         * Calculates the projection matrix offset used to setup the cameras
+         * in the scene
+         * @param eye Either vr::Eye_Left or vr::Eye_Right to determine which
+         * eye we are calculating the projection offset
+         * @return Vector containing the projection offset for the camera
+         */
+        trBase::Vec3 CalculateProjectionOffset(const int& eye);
         
         /**
          * Returns the center projection matrix of the headset
@@ -145,6 +163,18 @@ namespace trVR
          * @return vector containing the position of the device.
          */
         trBase::Vec3 GetPosition() const;
+        
+        /**
+         * Returns the far clipping plane value
+         * @return Far clipping plane value
+         */
+        double GetFarClippingPlane() const;
+        
+        /**
+         * Returns the near clipping plane value
+         * @return Near clipping plane value
+         */
+        double GetNearClippingPlane() const;
         
         /**
          * Gets the current pose of the headset and sets the member variables.
@@ -254,5 +284,7 @@ namespace trVR
         trBase::Vec3 mRightEyeAdjustment; /// View adjustment for right eye
         FramebufferDesc mLeftEyeDesc;
         FramebufferDesc mRightEyeDesc;
+        double mZFar = 1.0e6;
+        double mZNear = 1.0e-2;
     };
 }

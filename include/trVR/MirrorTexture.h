@@ -28,7 +28,7 @@
 #include <trVR/OpenVRTexture.h>
 
 #include <trBase/Base.h>
-#include <trBase/SmrtPtr.h>
+#include <trBase/ObsrvrPtr.h>
 
 #include <osg/State>
 
@@ -84,6 +84,8 @@ namespace trVR
         void Destroy(osg::GraphicsContext* gc);
         
         void BlitTexture(osg::GraphicsContext* gc);
+        
+        void SetEyeTextures(trVR::OpenVRTexture* leftEye, trVR::OpenVRTexture* rightEye);
     protected:
         /**
          * @fn MirrorTexture::~MirrorTexture()
@@ -96,7 +98,7 @@ namespace trVR
         GLuint mMirrorFBO;
         GLuint mMirrorTex;
         GLuint mWidth;
-        trBase::SmrtPtr<trVR::OpenVRTexture> mLeftEyeTex;
-        trBase::SmrtPtr<trVR::OpenVRTexture> mRightEyeTex;
+        trBase::ObsrvrPtr<trVR::OpenVRTexture> mLeftEyeTex;
+        trBase::ObsrvrPtr<trVR::OpenVRTexture> mRightEyeTex;
     };
 }

@@ -24,6 +24,9 @@
 #include <trVR/OpenVRTexture.h>
 
 #include <trUtil/Logging/Log.h>
+#include <trUtil/StringUtils.h>
+
+#include <osg/RenderInfo>
 
 namespace trVR
 {
@@ -47,7 +50,7 @@ namespace trVR
     }
     
     //////////////////////////////////////////////////////////////////////////
-    bool OpenVRTexture::Initialize(osg::State& state, int width, int height)
+    bool OpenVRTexture::Initialize(osg::State& state, const int width, const int height)
     {
         mWidth = width;
         mHeight = height;
@@ -56,13 +59,33 @@ namespace trVR
     
         if (fbo_ext)
         {
+            float* test = new float[4*width*height];
+            static int i = 0;
+            
+            for (int y = 0; y < height; ++y)
+            {
+                for (int x = 0; x < width;)
+                {
+                    test[y*4*width + x] = x + y + i * 3.0;
+                    ++x;
+                    test[y*4*width + x] = 128 + y + i * 2.0;
+                    ++x;
+                    test[y*4*width + x] = 64 + x + i * 5.0;
+                    ++x;
+                    test[y*4*width + x] = 1.0;
+                    ++x;
+                }
+            }
+            
             fbo_ext->glGenFramebuffers(1, &mResolveFbo);
 
             glGenTextures(1, &mColorTex);
             glBindTexture(GL_TEXTURE_2D, mColorTex);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+//            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, test);
             
             // check FBO status
             GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
@@ -79,6 +102,48 @@ namespace trVR
               "graphics context is not available during the initialization.")
 
         return false;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    void OpenVRTexture::PostRenderUpdate(osg::RenderInfo& info)
+    {
+        const osg::GLExtensions* fbo_ext = info.getState()->get<osg::GLExtensions>();
+    
+        if (fbo_ext)
+        {
+            //fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, mResolveFbo);
+
+#ifdef _DEBUG
+            GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
+
+            if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+            {
+                LOG_W("GL status of buffer: " + trUtil::StringUtils::ToString(status))
+            }
+#endif
+
+            fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, 0);
+        }
+    }
+    
+    //////////////////////////////////////////////////////////////////////////
+    void OpenVRTexture::PreRenderUpdate(osg::RenderInfo& info)
+    {
+        const osg::GLExtensions* fbo_ext = info.getState()->get<osg::GLExtensions>();
+    
+        if (fbo_ext)
+        {
+            fbo_ext->glBindFramebuffer(GL_FRAMEBUFFER_EXT, mResolveFbo);
+
+#ifdef _DEBUG
+            GLenum status = fbo_ext->glCheckFramebufferStatus(GL_FRAMEBUFFER_EXT);
+
+            if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+            {
+                LOG_W("GL status of buffer: " + trUtil::StringUtils::ToString(status))
+            }
+#endif
+        }
     }
     
     //////////////////////////////////////////////////////////////////////////

@@ -118,12 +118,17 @@ namespace trVR
             // Blit mirror texture to back buffer
             fbo_ext->glBindFramebuffer(GL_READ_FRAMEBUFFER_EXT, mMirrorFBO);
             fbo_ext->glBindFramebuffer(GL_DRAW_FRAMEBUFFER_EXT, 0);
-            GLint w = mWidth;
-            GLint h = mHeight;
-            fbo_ext->glBlitFramebuffer(0, 0, w, h,
-                                       0, 0, w, h,
+            fbo_ext->glBlitFramebuffer(0, 0, mWidth, mHeight,
+                                       0, 0, mWidth, mHeight,
                                        GL_COLOR_BUFFER_BIT, GL_NEAREST);
             fbo_ext->glBindFramebuffer(GL_READ_FRAMEBUFFER_EXT, 0);
         }
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void MirrorTexture::SetEyeTextures(trVR::OpenVRTexture* leftEye, trVR::OpenVRTexture* rightEye)
+    {
+        mLeftEyeTex = leftEye;
+        mRightEyeTex = rightEye;
     }
 }
