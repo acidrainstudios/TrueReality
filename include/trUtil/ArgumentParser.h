@@ -391,6 +391,151 @@ namespace trUtil
          */
         bool Match(int pos, const std::string& str) const;
 
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str The String to read.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1, Parameter value2);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         * @param   value6  The value 6.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         * @param   value6  The value 6.
+         * @param   value7  The value 7.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7);
+
+        /**
+         * @fn  bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7, Parameter value8);
+         *
+         * @brief   Search for an occurrence of a string in the argument list. If found,
+         *              remove that occurrence and return true. Otherwise, return false.
+         *
+         * @param   str     The String to read.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         * @param   value6  The value 6.
+         * @param   value7  The value 7.
+         * @param   value8  The value 8.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7, Parameter value8);
+
+
     protected:
 
         std::unique_ptr<osg::ArgumentParser> mArgParser;

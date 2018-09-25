@@ -232,4 +232,58 @@ namespace trUtil
     {
         return mArgParser->match(pos, str);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str)
+    {
+        return mArgParser->read(str);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1)
+    {
+        return mArgParser->read(str, value1);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2)
+    {
+        return mArgParser->read(str, value1, value2);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3)
+    {
+        return mArgParser->read(str, value1, value2, value3);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4)
+    {
+        return mArgParser->read(str, value1, value2, value3, value4);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5)
+    {
+        return mArgParser->read(str, value1, value2, value3, value4, value5);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6)
+    {
+        return mArgParser->read(str, value1, value2, value3, value4, value5, value6);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7)
+    {
+        return mArgParser->read(str, value1, value2, value3, value4, value5, value6, value7);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7, Parameter value8)
+    {
+        return mArgParser->read(str, value1, value2, value3, value4, value5, value6, value7, value8);
+    }
 }
