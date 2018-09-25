@@ -368,6 +368,28 @@ namespace trUtil
          */
         bool ContainsOptions() const;
 
+        /**
+         * @fn  void ArgumentParser::Remove(int pos, int num = 1);
+         *
+         * @brief   Remove one or more arguments from the argv argument list, and decrement the argc
+         *          respectively.
+         *
+         * @param   pos The position.
+         * @param   num (Optional) Number of.
+         */
+        void Remove(int pos, int num = 1);
+
+        /**
+         * @fn  bool ArgumentParser::Match(int pos, const std::string& str) const;
+         *
+         * @brief   Return true if the specified argument matches the given string.
+         *
+         * @param   pos The position.
+         * @param   str The string.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Match(int pos, const std::string& str) const;
 
     protected:
 

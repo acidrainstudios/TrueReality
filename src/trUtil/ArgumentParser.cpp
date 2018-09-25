@@ -220,4 +220,16 @@ namespace trUtil
     {
         return mArgParser->containsOptions();
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::Remove(int pos, int num)
+    {
+        mArgParser->remove(pos, num);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Match(int pos, const std::string& str) const
+    {
+        return mArgParser->match(pos, str);
+    }
 }
