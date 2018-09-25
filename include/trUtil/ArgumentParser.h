@@ -325,6 +325,29 @@ namespace trUtil
          */
         int Find(const std::string& str) const;
 
+        /**
+         * @fn  bool ArgumentParser::IsOption(int pos) const;
+         *
+         * @brief   Return true if the specified parameter is an option in the form of
+         *          -option or --option.
+         *
+         * @param   pos The position.
+         *
+         * @return  True if option, false if not.
+         */
+        bool IsOption(int pos) const;
+
+        /**
+         * @fn  bool ArgumentParser::IsString(int pos) const;
+         *
+         * @brief   Return true if the specified parameter is a string not in the form of an option.
+         *
+         * @param   pos The position.
+         *
+         * @return  True if string, false if not.
+         */
+        bool IsString(int pos) const;
+
 
     protected:
 

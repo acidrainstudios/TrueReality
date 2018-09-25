@@ -196,4 +196,16 @@ namespace trUtil
     {
         return mArgParser->find(str);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::IsOption(int pos) const
+    {
+        return mArgParser->isOption(pos);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::IsString(int pos) const
+    {
+        return mArgParser->isString(pos);
+    }
 }
