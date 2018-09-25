@@ -208,4 +208,16 @@ namespace trUtil
     {
         return mArgParser->isString(pos);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::IsNumber(int pos) const
+    {
+        return mArgParser->isNumber(pos);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::ContainsOptions() const
+    {
+        return mArgParser->containsOptions();
+    }
 }

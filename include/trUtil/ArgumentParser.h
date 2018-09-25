@@ -348,6 +348,26 @@ namespace trUtil
          */
         bool IsString(int pos) const;
 
+        /**
+         * @fn  bool ArgumentParser::IsNumber(int pos) const;
+         *
+         * @brief   Return true if the specified parameter is a number.
+         *
+         * @param   pos The position.
+         *
+         * @return  True if number, false if not.
+         */
+        bool IsNumber(int pos) const;
+
+        /**
+         * @fn  bool ArgumentParser::ContainsOptions() const;
+         *
+         * @brief   Query if this object contains options.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool ContainsOptions() const;
+
 
     protected:
 
