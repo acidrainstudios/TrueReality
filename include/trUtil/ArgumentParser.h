@@ -54,6 +54,8 @@ namespace trUtil
             CRITICAL = osg::ArgumentParser::ErrorSeverity::CRITICAL
         };
 
+        using ErrorMessageMap = std::map<std::string, ErrorSeverity>;
+
         class TR_UTIL_EXPORT Parameter
         {
         public:
