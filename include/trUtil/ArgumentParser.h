@@ -706,7 +706,16 @@ namespace trUtil
          */
         bool Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7, Parameter value8);
 
-
+        /**
+         * @fn  bool ArgumentParser::Errors(ErrorSeverity severity = BENIGN) const;
+         *
+         * @brief   Return the error flag, true if an error has occurred when reading arguments.
+         *
+         * @param   severity    (Optional) The severity.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Errors(ErrorSeverity severity = ErrorSeverity::BENIGN) const;
 
     protected:
 

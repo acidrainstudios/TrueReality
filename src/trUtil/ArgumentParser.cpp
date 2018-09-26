@@ -340,4 +340,10 @@ namespace trUtil
     {
         return mArgParser->read(pos, str, value1, value2, value3, value4, value5, value6, value7, value8);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool ArgumentParser::Errors(ErrorSeverity severity) const
+    {
+        return mArgParser->errors(static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
+    }
 }
