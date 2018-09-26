@@ -346,4 +346,10 @@ namespace trUtil
     {
         return mArgParser->errors(static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::ReportError(const std::string& message, ErrorSeverity severity)
+    {
+        mArgParser->reportError(message, static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
+    }
 }

@@ -717,6 +717,16 @@ namespace trUtil
          */
         bool Errors(ErrorSeverity severity = ErrorSeverity::BENIGN) const;
 
+        /**
+         * @fn  void ArgumentParser::ReportError(const std::string& message, ErrorSeverity severity = ErrorSeverity::CRITICAL);
+         *
+         * @brief   Report an error message by adding to the ErrorMessageMap.
+         *
+         * @param   message     The message.
+         * @param   severity    (Optional) The severity.
+         */
+        void ReportError(const std::string& message, ErrorSeverity severity = ErrorSeverity::CRITICAL);
+
     protected:
 
         std::unique_ptr<osg::ArgumentParser> mArgParser;
