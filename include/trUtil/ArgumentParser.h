@@ -727,6 +727,15 @@ namespace trUtil
          */
         void ReportError(const std::string& message, ErrorSeverity severity = ErrorSeverity::CRITICAL);
 
+        /**
+         * @fn  void ArgumentParser::ReportRemainingOptionsAsUnrecognized(ErrorSeverity severity = ErrorSeverity::BENIGN);
+         *
+         * @brief   For each remaining option, report it as unrecognized.
+         *
+         * @param   severity    (Optional) The severity.
+         */
+        void ReportRemainingOptionsAsUnrecognized(ErrorSeverity severity = ErrorSeverity::BENIGN);
+
     protected:
 
         std::unique_ptr<osg::ArgumentParser> mArgParser;

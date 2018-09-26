@@ -352,4 +352,10 @@ namespace trUtil
     {
         mArgParser->reportError(message, static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::ReportRemainingOptionsAsUnrecognized(ErrorSeverity severity)
+    {
+        mArgParser->reportRemainingOptionsAsUnrecognized(static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
+    }
 }
