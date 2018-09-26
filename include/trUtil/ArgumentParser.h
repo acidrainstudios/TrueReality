@@ -754,6 +754,17 @@ namespace trUtil
          */
         void ReportRemainingOptionsAsUnrecognized(ErrorSeverity severity = ErrorSeverity::BENIGN);
 
+        /**
+         * @fn  void ArgumentParser::WriteErrorMessages(std::ostream& output, ErrorSeverity severity = ErrorSeverity::BENIGN);
+         *
+         * @brief   Write error messages to the given ostream, if at or above the given severity.
+         *
+         * @param [in,out]  output      The output.
+         * @param           severity    (Optional) The severity.
+         */
+        void WriteErrorMessages(std::ostream& output, ErrorSeverity severity = ErrorSeverity::BENIGN);
+
+
     protected:
 
         std::unique_ptr<osg::ArgumentParser> mArgParser;

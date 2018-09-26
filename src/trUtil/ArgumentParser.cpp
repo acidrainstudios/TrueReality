@@ -370,4 +370,10 @@ namespace trUtil
     {
         mArgParser->reportRemainingOptionsAsUnrecognized(static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::WriteErrorMessages(std::ostream & output, ErrorSeverity severity)
+    {
+        mArgParser->writeErrorMessages(output, static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
+    }
 }
