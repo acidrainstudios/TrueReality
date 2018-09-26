@@ -535,6 +535,169 @@ namespace trUtil
          */
         bool Read(const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7, Parameter value8);
 
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos The position.
+         * @param   str The string.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1, Parameter value2);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1, Parameter value2);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         * @param   value6  The sixth value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         * @param   value6  The sixth value.
+         * @param   value7  The seventh value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7);
+
+        /**
+         * @fn  bool ArgumentParser::Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7, Parameter value8);
+         *
+         * @brief   If the argument value at the specified position matches the given string, and
+         *          subsequent parameters are also matched, then set the parameter values, remove the
+         *          arguments from the list, and return true. Otherwise, return false.
+         *
+         * @param   pos     The position.
+         * @param   str     The string.
+         * @param   value1  The first value.
+         * @param   value2  The second value.
+         * @param   value3  The third value.
+         * @param   value4  The fourth value.
+         * @param   value5  The fifth value.
+         * @param   value6  The sixth value.
+         * @param   value7  The seventh value.
+         * @param   value8  The eighth value.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        bool Read(int pos, const std::string& str, Parameter value1, Parameter value2, Parameter value3, Parameter value4, Parameter value5, Parameter value6, Parameter value7, Parameter value8);
+
+
 
     protected:
 
