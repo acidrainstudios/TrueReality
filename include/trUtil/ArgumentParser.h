@@ -30,6 +30,7 @@
 #include <osg/ref_ptr>
 
 #include <memory>
+#include <map>
 
 /**
  * @namespace   trUtil
@@ -46,6 +47,12 @@ namespace trUtil
     class TR_UTIL_EXPORT ArgumentParser
     {
     public:
+
+        enum class ErrorSeverity
+        {
+            BENIGN = osg::ArgumentParser::ErrorSeverity::BENIGN,
+            CRITICAL = osg::ArgumentParser::ErrorSeverity::CRITICAL
+        };
 
         class TR_UTIL_EXPORT Parameter
         {
