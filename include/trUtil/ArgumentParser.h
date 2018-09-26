@@ -223,6 +223,24 @@ namespace trUtil
         ~ArgumentParser();
 
         /**
+         * @fn  osg::ArgumentParser& ArgumentParser::GetOSGArgumentParser();
+         *
+         * @brief   Gets internal osg argument parser.
+         *
+         * @return  The osg argument parser.
+         */
+        osg::ArgumentParser& GetOSGArgumentParser();
+
+        /**
+         * @fn  const osg::ArgumentParser& ArgumentParser::GetOSGArgumentParser() const;
+         *
+         * @brief   Gets the internal osg argument parser.
+         *
+         * @return  The osg argument parser.
+         */
+        const osg::ArgumentParser& GetOSGArgumentParser() const;
+
+        /**
          * @fn  bool ArgumentParser::IsOption(const char* str) const;
          *
          * @brief   Return true if the specified string is an option in the form
