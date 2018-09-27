@@ -412,4 +412,10 @@ namespace trUtil
     {
         mAppUsage->SetDescription(desc);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    const std::string& ArgumentParser::GetDescription() const
+    {
+        return mAppUsage->GetDescription();
+    }
 }

@@ -795,6 +795,15 @@ namespace trUtil
          */
         void SetDescription(const std::string& desc);
 
+        /**
+         * @fn  const std::string& ArgumentParser::GetDescription() const;
+         *
+         * @brief   Gets the description.
+         *
+         * @return  The description.
+         */
+        const std::string& GetDescription() const;
+
     protected:
 
         std::unique_ptr<osg::ArgumentParser> mArgParser;
