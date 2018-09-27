@@ -418,4 +418,10 @@ namespace trUtil
     {
         return mAppUsage->GetDescription();
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::AddUsageExplanation(ApplicationUsage::Type type, const std::string& option, const std::string& explanation)
+    {
+        mAppUsage->AddUsageExplanation(type, option, explanation);
+    }
 }

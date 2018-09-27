@@ -804,8 +804,21 @@ namespace trUtil
          */
         const std::string& GetDescription() const;
 
+        /**
+         * @fn  void ArgumentParser::AddUsageExplanation(ApplicationUsage::Type type, const std::string& option, const std::string& explanation);
+         *
+         * @brief   Adds an usage explanation.
+         *
+         * @param   type        The type.
+         * @param   option      The option.
+         * @param   explanation The explanation.
+         */
+        void AddUsageExplanation(ApplicationUsage::Type type, const std::string& option, const std::string& explanation);
+
+
     protected:
 
+        /** @brief   The argument parser. */
         std::unique_ptr<osg::ArgumentParser> mArgParser;
         std::unique_ptr<ApplicationUsage> mAppUsage;
     };
