@@ -136,7 +136,9 @@ namespace trUtil
                 //Writing the file
                 LOG_D("Writing file");
                 outputStream << writer.write(mRoot);
+                LOG_D("Closing file");
                 outputStream.close();
+                LOG_D("File Closed");
 
                 return true;
             }
