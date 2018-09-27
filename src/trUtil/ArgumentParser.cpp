@@ -496,4 +496,16 @@ namespace trUtil
     {
         return mAppUsage->GetEnvironmentalVariablesDefaults();
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::AddKeyboardMouseBinding(const std::string& prefix, int key, const std::string& explanation)
+    {
+        mAppUsage->AddKeyboardMouseBinding(prefix, key, explanation);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::AddKeyboardMouseBinding(int key, const std::string& explanation)
+    {
+        mAppUsage->AddKeyboardMouseBinding(key, explanation);
+    }
 }
