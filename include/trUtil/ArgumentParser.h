@@ -909,6 +909,24 @@ namespace trUtil
          */
         const ApplicationUsage::UsageMap& GetEnvironmentalVariables() const;
 
+        /**
+         * @fn  void ArgumentParser::SetEnvironmentalVariablesDefaults(const ApplicationUsage::UsageMap& usageMap);
+         *
+         * @brief   Sets environmental variables usage default usage map.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetEnvironmentalVariablesDefaults(const ApplicationUsage::UsageMap& usageMap);
+
+        /**
+         * @fn  const ApplicationUsage::UsageMap& ArgumentParser::GetEnvironmentalVariablesDefaults() const;
+         *
+         * @brief   Gets environmental variables usage default usage map.
+         *
+         * @return  The environmental variables defaults.
+         */
+        const ApplicationUsage::UsageMap& GetEnvironmentalVariablesDefaults() const;
+
     protected:
 
         /** @brief   The argument parser. */

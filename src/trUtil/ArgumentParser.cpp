@@ -484,4 +484,16 @@ namespace trUtil
     {
         return mAppUsage->GetEnvironmentalVariables();
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetEnvironmentalVariablesDefaults(const ApplicationUsage::UsageMap& usageMap)
+    {
+        mAppUsage->SetEnvironmentalVariablesDefaults(usageMap);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap& ArgumentParser::GetEnvironmentalVariablesDefaults() const
+    {
+        return mAppUsage->GetEnvironmentalVariablesDefaults();
+    }
 }
