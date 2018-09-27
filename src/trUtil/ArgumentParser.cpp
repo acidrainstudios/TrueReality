@@ -406,4 +406,10 @@ namespace trUtil
     {
         mAppUsage->SetApplicationName(name);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetDescription(const std::string& desc)
+    {
+        mAppUsage->SetDescription(desc);
+    }
 }

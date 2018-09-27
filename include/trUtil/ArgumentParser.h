@@ -776,6 +776,25 @@ namespace trUtil
          */
         ApplicationUsage::Type ReadHelpType();
 
+        /**
+         * @fn  void ArgumentParser::SetApplicationName(const std::string& name);
+         *
+         * @brief   Sets the Applications Name. It is used in Application description.
+         *
+         * @param   name    The name.
+         */
+        void SetApplicationName(const std::string& name);
+
+        /**
+         * @fn  void ArgumentParser::SetDescription(const std::string& desc);
+         *
+         * @brief   If non-empty, the Description is typically shown by the Help Handler as text on the
+         *          Help display (which also lists keyboard abbreviations.)
+         *
+         * @param   desc    The description.
+         */
+        void SetDescription(const std::string& desc);
+
     protected:
 
         std::unique_ptr<osg::ArgumentParser> mArgParser;
