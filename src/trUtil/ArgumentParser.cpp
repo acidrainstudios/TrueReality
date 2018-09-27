@@ -472,4 +472,16 @@ namespace trUtil
     {
         mAppUsage->AddEnvironmentalVariable(option, explanation, defaultValue);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetEnvironmentalVariables(const ApplicationUsage::UsageMap& usageMap)
+    {
+        mAppUsage->SetEnvironmentalVariables(usageMap);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap & ArgumentParser::GetEnvironmentalVariables() const
+    {
+        return mAppUsage->GetEnvironmentalVariables();
+    }
 }

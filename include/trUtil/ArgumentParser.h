@@ -891,6 +891,23 @@ namespace trUtil
          */
         void AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue = "");
 
+        /**
+         * @fn  void ArgumentParser::SetEnvironmentalVariables(const ApplicationUsage::UsageMap& usageMap);
+         *
+         * @brief   Sets environmental variables usage.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetEnvironmentalVariables(const ApplicationUsage::UsageMap& usageMap);
+
+        /**
+         * @fn  const ApplicationUsage::UsageMap& ArgumentParser::GetEnvironmentalVariables() const;
+         *
+         * @brief   Gets environmental variables usage.
+         *
+         * @return  The environmental variables.
+         */
+        const ApplicationUsage::UsageMap& GetEnvironmentalVariables() const;
 
     protected:
 
