@@ -400,4 +400,10 @@ namespace trUtil
             return ApplicationUsage::Type::NO_HELP;
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetApplicationName(const std::string& name)
+    {
+        mAppUsage->SetApplicationName(name);
+    }
 }
