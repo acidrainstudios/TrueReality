@@ -508,4 +508,16 @@ namespace trUtil
     {
         mAppUsage->AddKeyboardMouseBinding(key, explanation);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::AddKeyboardMouseBinding(const std::string& option, const std::string& explanation)
+    {
+        mAppUsage->AddKeyboardMouseBinding(option, explanation);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetKeyboardMouseBindings(const ApplicationUsage::UsageMap& usageMap)
+    {
+        mAppUsage->SetKeyboardMouseBindings(usageMap);
+    }
 }

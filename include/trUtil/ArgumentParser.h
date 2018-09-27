@@ -948,6 +948,25 @@ namespace trUtil
          */
         void AddKeyboardMouseBinding(int key, const std::string& explanation);
 
+        /**
+         * @fn  void ArgumentParser::AddKeyboardMouseBinding(const std::string& option, const std::string& explanation);
+         *
+         * @brief   Adds a keyboard mouse binding usage.
+         *
+         * @param   option      The option.
+         * @param   explanation The explanation.
+         */
+        void AddKeyboardMouseBinding(const std::string& option, const std::string& explanation);
+
+        /**
+         * @fn  void ArgumentParser::SetKeyboardMouseBindings(const ApplicationUsage::UsageMap& usageMap);
+         *
+         * @brief   Sets keyboard mouse bindings usage.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetKeyboardMouseBindings(const ApplicationUsage::UsageMap& usageMap);
+
     protected:
 
         /** @brief   The argument parser. */
