@@ -53,7 +53,7 @@ namespace trUtil
         File::File(std::string fileName)
         {
             mFileName = fileName;
-            mFilePath = PathUtils::GetUserDataPath() + PathUtils::CONFIG_PATH;
+            mFilePath = PathUtils::GetUserConfigPath();
         }
 
         //////////////////////////////////////////////////////////////////////////
