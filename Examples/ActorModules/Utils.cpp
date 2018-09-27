@@ -21,13 +21,13 @@
 
 #include "Utils.h"
 
-#include <iostream>
-#include <cstdlib>
-#include <sstream>
-
 #include <trUtil/ArgumentParser.h>
 #include <trUtil/Exception.h>
 #include <trUtil/Logging/Log.h>
+
+#include <iostream>
+#include <cstdlib>
+#include <sstream>
 
 /*
 * Parses the command line variables that are passed in to the executable
