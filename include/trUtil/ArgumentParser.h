@@ -967,6 +967,29 @@ namespace trUtil
          */
         void SetKeyboardMouseBindings(const ApplicationUsage::UsageMap& usageMap);
 
+        /**
+         * @fn  const ApplicationUsage::UsageMap& ArgumentParser::GetKeyboardMouseBindings() const;
+         *
+         * @brief   Gets keyboard mouse bindings usage.
+         *
+         * @return  The keyboard mouse bindings.
+         */
+        const ApplicationUsage::UsageMap& GetKeyboardMouseBindings() const;
+
+        /**
+         * @fn  void ArgumentParser::GetFormattedString(std::string& str, const ApplicationUsage::UsageMap& usageMap, unsigned int widthOfOutput = 80, bool showDefaults = false, const ApplicationUsage::UsageMap& usageMapDef = ApplicationUsage::UsageMap());
+         *
+         * @brief   Gets formatted string.
+         *
+         * @param [in,out]  str             The string.
+         * @param           usageMap        The usage map.
+         * @param           widthOfOutput   (Optional) Width of the output.
+         * @param           showDefaults    (Optional) True to show, false to hide the defaults.
+         * @param           usageMapDef     (Optional) The usage map default.
+         */
+        void GetFormattedString(std::string& str, const ApplicationUsage::UsageMap& usageMap, unsigned int widthOfOutput = 80, bool showDefaults = false, const ApplicationUsage::UsageMap& usageMapDef = ApplicationUsage::UsageMap());
+
+
     protected:
 
         /** @brief   The argument parser. */

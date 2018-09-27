@@ -520,4 +520,16 @@ namespace trUtil
     {
         mAppUsage->SetKeyboardMouseBindings(usageMap);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap& ArgumentParser::GetKeyboardMouseBindings() const
+    {
+        return mAppUsage->GetKeyboardMouseBindings();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::GetFormattedString(std::string& str, const ApplicationUsage::UsageMap& usageMap, unsigned int widthOfOutput, bool showDefaults, const ApplicationUsage::UsageMap& usageMapDef)
+    {
+        mAppUsage->GetFormattedString(str, usageMap, widthOfOutput, showDefaults, usageMapDef);
+    }
 }
