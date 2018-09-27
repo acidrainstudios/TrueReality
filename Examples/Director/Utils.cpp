@@ -19,7 +19,7 @@
 * @author Maxim Serebrennik
 */
 
-#include "Utils.h"
+#include <Examples/Director/Utils.h>
 
 #include <trUtil/ArgumentParser.h>
 #include <trUtil/Exception.h>
