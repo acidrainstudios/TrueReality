@@ -21,42 +21,39 @@
 
 #include "Utils.h"
 
-#include <iostream>
-#include <cstdlib>
-#include <sstream>
-
-#include <osg/ArgumentParser>
-#include <osgDB/FileNameUtils>
-
+#include <trUtil/ArgumentParser.h>
 #include <trUtil/Exception.h>
 #include <trUtil/Logging/Log.h>
 
+#include <iostream>
+#include <cstdlib>
+#include <sstream>
 /*
 * Parses the command line variables that are passed in to the executable
 */
 void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::string& logLevel)
 {
-    osg::ArgumentParser arguments(&argc, argv);
+    trUtil::ArgumentParser arguments(&argc, argv);
 
-    arguments.getApplicationUsage()->setApplicationName(PROGRAM_NAME);
+    arguments.SetApplicationName(PROGRAM_NAME);
 
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueRealityLog.html");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
+    arguments.AddCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueRealityLog.html");
+    arguments.AddCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
         trUtil::Logging::LOG_INFO_STR + ", " +
         trUtil::Logging::LOG_WARNING_STR + ", " +
         trUtil::Logging::LOG_ERROR_STR + "");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--help, /help, -h, /h, /?  ", "Show this help screen.");
+    arguments.AddCommandLineOption("\n--help, /help, -h, /h, /?  ", "Show this help screen.");
 
-    if (arguments.read("--help") == true ||
-        arguments.read("/help") == true ||
-        arguments.read("-h") == true ||
-        arguments.read("/h") == true ||
-        arguments.read("/?") == true)
+    if (arguments.Read("--help") == true ||
+        arguments.Read("/help") == true ||
+        arguments.Read("-h") == true ||
+        arguments.Read("/h") == true ||
+        arguments.Read("/?") == true)
     {
-        arguments.getApplicationUsage()->write(std::cout);
+        arguments.Write(std::cout);
         exit(0);
     }
 
-    arguments.read("--logFileName", logFileName);
-    arguments.read("--logLevel", logLevel);
+    arguments.Read("--logFileName", logFileName);
+    arguments.Read("--logLevel", logLevel);
 }
