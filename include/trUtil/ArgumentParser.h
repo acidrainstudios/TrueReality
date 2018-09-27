@@ -852,6 +852,46 @@ namespace trUtil
          * @param   usageMap    The usage map.
          */
         void SetCommandLineOptions(const ApplicationUsage::UsageMap& usageMap);
+
+        /**
+         * @fn  const ApplicationUsage::UsageMap& ArgumentParser::GetCommandLineOptions() const;
+         *
+         * @brief   Gets command line options.
+         *
+         * @return  The command line options.
+         */
+        const ApplicationUsage::UsageMap& GetCommandLineOptions() const;
+
+        /**
+         * @fn  void ArgumentParser::SetCommandLineOptionsDefaults(const ApplicationUsage::UsageMap& usageMap);
+         *
+         * @brief   Sets command line options defaults.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetCommandLineOptionsDefaults(const ApplicationUsage::UsageMap& usageMap);
+
+        /**
+         * @fn  const ApplicationUsage::UsageMap& ArgumentParser::GetCommandLineOptionsDefaults() const;
+         *
+         * @brief   Gets command line options defaults.
+         *
+         * @return  The command line options defaults.
+         */
+        const ApplicationUsage::UsageMap& GetCommandLineOptionsDefaults() const;
+
+        /**
+         * @fn  void ArgumentParser::AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue = "");
+         *
+         * @brief   Adds an environmental variable usage explanation.
+         *
+         * @param   option          The option.
+         * @param   explanation     The explanation.
+         * @param   defaultValue    (Optional) The default value.
+         */
+        void AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue = "");
+
+
     protected:
 
         /** @brief   The argument parser. */

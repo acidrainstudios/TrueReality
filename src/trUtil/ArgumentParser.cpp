@@ -448,4 +448,28 @@ namespace trUtil
     {
         mAppUsage->SetCommandLineOptions(usageMap);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap& ArgumentParser::GetCommandLineOptions() const
+    {
+        return mAppUsage->GetCommandLineOptions();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetCommandLineOptionsDefaults(const ApplicationUsage::UsageMap& usageMap)
+    {
+        mAppUsage->SetCommandLineOptionsDefaults(usageMap);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const ApplicationUsage::UsageMap& ArgumentParser::GetCommandLineOptionsDefaults() const
+    {
+        return mAppUsage->GetCommandLineOptionsDefaults();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::AddEnvironmentalVariable(const std::string& option, const std::string& explanation, const std::string& defaultValue)
+    {
+        mAppUsage->AddEnvironmentalVariable(option, explanation, defaultValue);
+    }
 }
