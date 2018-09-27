@@ -764,6 +764,17 @@ namespace trUtil
          */
         void WriteErrorMessages(std::ostream& output, ErrorSeverity severity = ErrorSeverity::BENIGN);
 
+        /**
+         * @fn  ApplicationUsage::Type ArgumentParser::ReadHelpType();
+         *
+         * @brief   This convenience method handles help requests on the command line. Return the type(s)
+         *          of help requested. The return value of this function is suitable for passing into
+         *          getApplicationUsage()->write(). If ApplicationUsage::NO_HELP is returned then no help
+         *          commandline option was found on the command line.
+         *
+         * @return  The help type.
+         */
+        ApplicationUsage::Type ReadHelpType();
 
     protected:
 

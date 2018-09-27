@@ -376,4 +376,28 @@ namespace trUtil
     {
         mArgParser->writeErrorMessages(output, static_cast<osg::ArgumentParser::ErrorSeverity>(severity));
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    ApplicationUsage::Type ArgumentParser::ReadHelpType()
+    {
+        osg::ApplicationUsage::Type ret = mArgParser->readHelpType();
+
+        switch (ret)
+        {
+        case osg::ApplicationUsage::NO_HELP:
+            return ApplicationUsage::Type::NO_HELP;
+            break;
+        case osg::ApplicationUsage::COMMAND_LINE_OPTION:
+            return ApplicationUsage::Type::COMMAND_LINE_OPTION;
+            break;
+        case osg::ApplicationUsage::ENVIRONMENTAL_VARIABLE:
+            return ApplicationUsage::Type::ENVIRONMENTAL_VARIABLE;
+            break;
+        case osg::ApplicationUsage::KEYBOARD_MOUSE_BINDING:
+            return ApplicationUsage::Type::KEYBOARD_MOUSE_BINDING;
+            break;
+        default:
+            return ApplicationUsage::Type::NO_HELP;
+        }
+    }
 }
