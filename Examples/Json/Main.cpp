@@ -117,8 +117,8 @@ int main(int argc, char** argv)
 
         std::cout << "Writing out JSON File" << std::endl;
         configFile.WriteToFile();
-
-
+        std::cout << "Done Writing out JSON File" << std::endl;
+        
         trUtil::JSON::File readFile(CONFIG_FILE_NAME);
         std::cout << "\n\nReading JSON File" << std::endl;
         readFile.ReadFromFile();
