@@ -824,6 +824,34 @@ namespace trUtil
          */
         void SetCommandLineUsage(const std::string& explanation);
 
+        /**
+         * @fn  const std::string& ArgumentParser::GetCommandLineUsage() const;
+         *
+         * @brief   Gets command line usage.
+         *
+         * @return  The command line usage.
+         */
+        const std::string& GetCommandLineUsage() const;
+
+        /**
+         * @fn  void ArgumentParser::AddCommandLineOption(const std::string& option, const std::string& explanation, const std::string &defaultValue = "");
+         *
+         * @brief   Adds a command line option.
+         *
+         * @param   option          The option.
+         * @param   explanation     The explanation.
+         * @param   defaultValue    (Optional) The default value.
+         */
+        void AddCommandLineOption(const std::string& option, const std::string& explanation, const std::string &defaultValue = "");
+
+        /**
+         * @fn  void ArgumentParser::SetCommandLineOptions(const ApplicationUsage::UsageMap& usageMap);
+         *
+         * @brief   Sets command line options.
+         *
+         * @param   usageMap    The usage map.
+         */
+        void SetCommandLineOptions(const ApplicationUsage::UsageMap& usageMap);
     protected:
 
         /** @brief   The argument parser. */
