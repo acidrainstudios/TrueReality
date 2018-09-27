@@ -989,6 +989,39 @@ namespace trUtil
          */
         void GetFormattedString(std::string& str, const ApplicationUsage::UsageMap& usageMap, unsigned int widthOfOutput = 80, bool showDefaults = false, const ApplicationUsage::UsageMap& usageMapDef = ApplicationUsage::UsageMap());
 
+        /**
+         * @fn  void ArgumentParser::Write(std::ostream& output, const ApplicationUsage::UsageMap& usageMap, unsigned int widthOfOutput = 80, bool showDefaults = false, const ApplicationUsage::UsageMap& usageMapDef = ApplicationUsage::UsageMap());
+         *
+         * @brief   Writes out all the settings to the screen.
+         *
+         * @param [in,out]  output          The output stream.
+         * @param           usageMap        The usage map.
+         * @param           widthOfOutput   (Optional) Width of the output.
+         * @param           showDefaults    (Optional) True to show, false to hide the defaults.
+         * @param           usageMapDef     (Optional) The ud.
+         */
+        void Write(std::ostream& output, const ApplicationUsage::UsageMap& usageMap, unsigned int widthOfOutput = 80, bool showDefaults = false, const ApplicationUsage::UsageMap& usageMapDef = ApplicationUsage::UsageMap());
+
+        /**
+         * @fn  void ArgumentParser::Write(std::ostream& output, ApplicationUsage::Type type = ApplicationUsage::Type::COMMAND_LINE_OPTION, unsigned int widthOfOutput = 80, bool showDefaults = false);
+         *
+         * @brief   Writes.
+         *
+         * @param [in,out]  output          The output stream.
+         * @param           type            (Optional) The type.
+         * @param           widthOfOutput   (Optional) Width of the output.
+         * @param           showDefaults    (Optional) True to show, false to hide the defaults.
+         */
+        void Write(std::ostream& output, ApplicationUsage::Type type = ApplicationUsage::Type::COMMAND_LINE_OPTION, unsigned int widthOfOutput = 80, bool showDefaults = false);
+
+        /**
+         * @fn  void ArgumentParser::WriteEnvironmentSettings(std::ostream& output);
+         *
+         * @brief   Writes out the environment settings.
+         *
+         * @param [in,out]  output  The output.
+         */
+        void WriteEnvironmentSettings(std::ostream& output);
 
     protected:
 

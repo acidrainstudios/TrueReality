@@ -532,4 +532,22 @@ namespace trUtil
     {
         mAppUsage->GetFormattedString(str, usageMap, widthOfOutput, showDefaults, usageMapDef);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::Write(std::ostream& output, const ApplicationUsage::UsageMap& usageMap, unsigned int widthOfOutput, bool showDefaults, const ApplicationUsage::UsageMap& usageMapDef)
+    {
+        mAppUsage->Write(output, usageMap, widthOfOutput, showDefaults, usageMapDef);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::Write(std::ostream& output, ApplicationUsage::Type type, unsigned int widthOfOutput, bool showDefaults)
+    {
+        mAppUsage->Write(output, type, widthOfOutput, showDefaults);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::WriteEnvironmentSettings(std::ostream& output)
+    {
+        mAppUsage->WriteEnvironmentSettings(output);
+    }
 }
