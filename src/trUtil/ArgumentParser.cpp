@@ -424,4 +424,10 @@ namespace trUtil
     {
         mAppUsage->AddUsageExplanation(type, option, explanation);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    void ArgumentParser::SetCommandLineUsage(const std::string& explanation)
+    {
+        mAppUsage->SetCommandLineUsage(explanation);
+    }
 }

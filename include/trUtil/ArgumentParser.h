@@ -815,6 +815,14 @@ namespace trUtil
          */
         void AddUsageExplanation(ApplicationUsage::Type type, const std::string& option, const std::string& explanation);
 
+        /**
+         * @fn  void ArgumentParser::SetCommandLineUsage(const std::string& explanation);
+         *
+         * @brief   Sets command line usage.
+         *
+         * @param   explanation The explanation.
+         */
+        void SetCommandLineUsage(const std::string& explanation);
 
     protected:
 
