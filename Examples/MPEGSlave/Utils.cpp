@@ -21,12 +21,11 @@
 
 #include <Examples/MPEGServer/Utils.h>
 
+#include <trUtil/ArgumentParser.h>
 #include <trUtil/Exception.h>
 #include <trUtil/Logging/Log.h>
 
-#include <osg/ArgumentParser>
 #include <osg/Light>
-#include <osgDB/FileNameUtils>
 
 #include <iostream>
 #include <cstdlib>
@@ -34,31 +33,31 @@
 
 void ParseCmdLineArgs(int& argc, char** argv, std::string& ip, std::string& logFileName, std::string& logLevel)
 {
-    osg::ArgumentParser arguments(&argc, argv);
+    trUtil::ArgumentParser arguments(&argc, argv);
 
-    arguments.getApplicationUsage()->setApplicationName(PROGRAM_NAME);
+    arguments.SetApplicationName(PROGRAM_NAME);
         
-    arguments.getApplicationUsage()->addCommandLineOption("\n--help, /help, -h, /h, /?  ", "Show this help screen.");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueRealityLog.html");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
+    arguments.AddCommandLineOption("\n--help, /help, -h, /h, /?  ", "Show this help screen.");
+    arguments.AddCommandLineOption("\n--logFileName <filename>   ", "The name of the log file to use.  Defaults to TrueRealityLog.html");
+    arguments.AddCommandLineOption("\n--logLevel <level>         ", "Logging level to use. \nLevel options are: " + trUtil::Logging::LOG_DEBUG_STR + ", " +
         trUtil::Logging::LOG_INFO_STR + ", " +
         trUtil::Logging::LOG_WARNING_STR + ", " +
         trUtil::Logging::LOG_ERROR_STR + "");
-    arguments.getApplicationUsage()->addCommandLineOption("\n--ip <IP:PORT>", "Sets the IP and Port for input stream");
+    arguments.AddCommandLineOption("\n--ip <IP:PORT>", "Sets the IP and Port for input stream");
 
-    arguments.getApplicationUsage()->addCommandLineOption("Example: " + std::string(argv[0]) + " --ip 130.46.208.38:7000", "Opens an Mpeg stream through UDP on 130.46.208.38:7000 and reads the data");
+    arguments.AddCommandLineOption("Example: " + std::string(argv[0]) + " --ip 130.46.208.38:7000", "Opens an Mpeg stream through UDP on 130.46.208.38:7000 and reads the data");
 
-    if (arguments.read("--help") == true ||
-        arguments.read("/help") == true ||
-        arguments.read("-h") == true ||
-        arguments.read("/h") == true ||
-        arguments.read("/?") == true)
+    if (arguments.Read("--help") == true ||
+        arguments.Read("/help") == true ||
+        arguments.Read("-h") == true ||
+        arguments.Read("/h") == true ||
+        arguments.Read("/?") == true)
     {
-        arguments.getApplicationUsage()->write(std::cout);
+        arguments.Write(std::cout);
         exit(1);
     }
 
-    arguments.read("--logFileName", logFileName);
-    arguments.read("--logLevel", logLevel);
-    arguments.read("--ip", ip);
+    arguments.Read("--logFileName", logFileName);
+    arguments.Read("--logLevel", logLevel);
+    arguments.Read("--ip", ip);
 }
