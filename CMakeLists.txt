@@ -48,8 +48,9 @@ PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR} VERSION ${TR_VERSIO
 # *****************************************************************************
 OPTION (TR_UTIL "Enables the building of trUtil" ON)
 CMAKE_DEPENDENT_OPTION (TR_BASE "Enables the building of trBase library" ON "TR_UTIL" OFF)
+CMAKE_DEPENDENT_OPTION (TR_SG "Enables the building of trSG library that wraps OSG" ON "TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_MANAGER "Enables the building of trManager library" ON "TR_UTIL; TR_BASE" OFF)
-CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_MANAGER; TR_UTIL; TR_BASE" OFF)
+CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_MANAGER; TR_SG; TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_MPEG "Enables the building of trMPEG library" ON "TR_CORE; TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_VR "Enables the building of trVR library" OFF "TR_CORE; TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_APP "Enables the building of trApp library" ON "TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE" OFF)
