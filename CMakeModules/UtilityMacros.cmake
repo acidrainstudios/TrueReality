@@ -32,6 +32,11 @@ MACRO (ADD_TR_SUBFOLDERS)
         ADD_SUBDIRECTORY (src/trBase)
         SET (TR_BASE_AVAILABLE "YES")
     ENDIF ()
+
+    IF (TR_SG)
+        ADD_SUBDIRECTORY (src/trSG)
+        SET (TR_SG_AVAILABLE "YES")
+    ENDIF ()
     
     IF (TR_MANAGER)
         ADD_SUBDIRECTORY (src/trManager)
