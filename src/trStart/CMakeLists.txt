@@ -32,24 +32,18 @@ FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
 FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
 SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS}")
 
-# Sets the libraries
-SET (EXTERNAL_LIBS)
-IF (TR_BUILD_WITH_RELEASE)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        optimized ${OpenThreads_LIBRARY}
-        optimized ${OSG_LIBRARY} 
-        optimized ${OSG_DB_LIBRARY} 
-    )
-ENDIF ()
-IF (TR_BUILD_WITH_DEBUG)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        debug ${OpenThreads_LIBRARY_DEBUG}
-        debug ${OSG_LIBRARY_DEBUG}
-        debug ${OSG_DB_LIBRARY_DEBUG} 
-    )
-ENDIF ()
+# Sets the dependency libraries
+SET (EXTERNAL_LIBS
+    ${EXTERNAL_LIBS}
+    optimized ${OpenThreads_LIBRARY}
+    debug ${OpenThreads_LIBRARY_DEBUG}
+
+    optimized ${OSG_LIBRARY} 
+    debug ${OSG_LIBRARY_DEBUG}
+
+    optimized ${OSG_DB_LIBRARY} 
+    debug ${OSG_DB_LIBRARY_DEBUG} 
+)
 
 # *****************************************************************************
 # Project Folder Setup ********************************************************
