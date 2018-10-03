@@ -84,7 +84,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Log::LogMessage(const std::string& file, const std::string& method, int line, const std::string& msg, LogLevel logLevel) const
+        void Log::LogMessage(const std::string& cppFile, const std::string& method, int line, const std::string& msg, LogLevel logLevel) const
         {
             if (mImpl->mOutputStreamBit == Log::NO_OUTPUT)
             {
@@ -113,7 +113,7 @@ namespace trUtil
 
             logData.logLevel = logLevel;
             logData.logName = mImpl->mName;
-            logData.file = osgDB::getSimpleFileName(file);
+            logData.file = osgDB::getSimpleFileName(cppFile);
             logData.method = method;
             logData.line = line;
             logData.msg = msg;

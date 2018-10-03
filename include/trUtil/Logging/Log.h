@@ -197,17 +197,17 @@ namespace trUtil
             static const std::string LOG_DEFAULT_NAME;
 
             /**
-             * @fn  void Log::LogMessage(const std::string& file, const std::string& method, int line, const std::string& msg, LogLevel logLevel) const;
+             * @fn  void Log::LogMessage(const std::string& cppFile, const std::string& method, int line, const std::string& msg, LogLevel logLevel) const;
              *
              * @brief   Logs a time-stamped message.
              *
-             * @param   file        - The source file name which generated this message.
+             * @param   cppFile     The source file name which generated this message.
              * @param   method      The calling method which generated this message.
              * @param   line        The source code line number.
              * @param   msg         The message to display.
              * @param   logLevel    Level of message being displayed. (error,warning,info, etc)
              */
-            void LogMessage(const std::string& file, const std::string& method, int line, const std::string& msg, LogLevel logLevel) const;
+            void LogMessage(const std::string& cppFile, const std::string& method, int line, const std::string& msg, LogLevel logLevel) const;
 
             /**
              * @fn  void Log::LogMessage(LogLevel logLevel, const std::string& source, int line, const char* msg, ...) const;
