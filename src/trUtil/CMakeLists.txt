@@ -79,26 +79,21 @@ SOURCE_GROUP (${SOURCES_JSON_GROUP} FILES ${JSON_SOURCES})
 # *****************************************************************************
 # *****************************************************************************
 
-# Sets the libraries
-SET (EXTERNAL_LIBS)
-IF (TR_BUILD_WITH_RELEASE)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        optimized ${OpenThreads_LIBRARY}
-        optimized ${OSG_LIBRARY} 
-        optimized ${OSG_DB_LIBRARY} 
-        optimized ${JsonCpp_LIBRARY}
-    )
-ENDIF ()
-IF (TR_BUILD_WITH_DEBUG)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        debug ${OpenThreads_LIBRARY_DEBUG}
-        debug ${OSG_LIBRARY_DEBUG}
-        debug ${OSG_DB_LIBRARY_DEBUG}
-        debug ${JsonCpp_LIBRARY_DEBUG} 
-    )
-ENDIF ()
+# Sets the dependency libraries
+SET (EXTERNAL_LIBS
+    ${EXTERNAL_LIBS}
+    optimized ${OpenThreads_LIBRARY}
+    debug ${OpenThreads_LIBRARY_DEBUG}
+
+    optimized ${OSG_LIBRARY} 
+    debug ${OSG_LIBRARY_DEBUG}
+
+    optimized ${OSG_DB_LIBRARY} 
+    debug ${OSG_DB_LIBRARY_DEBUG}
+
+    optimized ${JsonCpp_LIBRARY}
+    debug ${JsonCpp_LIBRARY_DEBUG}
+)
 
 # Defines necessary preprocessor variables for project
 ADD_DEFINITIONS (-D${PRE_PROCESSING})
