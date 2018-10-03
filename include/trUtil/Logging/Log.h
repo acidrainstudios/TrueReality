@@ -70,9 +70,9 @@ namespace trUtil
  */
 #define LOG_FULL(level, name, msg) \
         {\
-        trUtil::Logging::Log& _logger = trUtil::Logging::Log::GetInstance(name); \
-        if (_logger.IsLevelEnabled(level)) \
-        _logger.LogMessage(TR_LOG_SOURCE, msg, level); \
+        trUtil::Logging::Log& logger = trUtil::Logging::Log::GetInstance(name); \
+        if (logger.IsLevelEnabled(level)) \
+        logger.LogMessage(TR_LOG_SOURCE, msg, level); \
         }\
 
 /**

@@ -84,8 +84,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Log::LogMessage(const std::string& file, const std::string& method,
-            int line, const std::string& msg, LogLevel logLevel) const
+        void Log::LogMessage(const std::string& file, const std::string& method, int line, const std::string& msg, LogLevel logLevel) const
         {
             if (mImpl->mOutputStreamBit == Log::NO_OUTPUT)
             {
@@ -142,8 +141,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Log::LogMessage(LogLevel logLevel, const std::string& source, int line,
-            const char* msg, va_list list) const
+        void Log::LogMessage(LogLevel logLevel, const std::string& source, int line, const char* msg, va_list list) const
         {
             char buffer[2049];
 
@@ -153,8 +151,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Log::LogMessage(LogLevel logLevel, const std::string& source,
-            const char* msg, ...) const
+        void Log::LogMessage(LogLevel logLevel, const std::string& source, const char* msg, ...) const
         {
             va_list list;
 
@@ -164,8 +161,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Log::LogMessage(LogLevel logLevel, const std::string& source, int line,
-            const char* msg, ...) const
+        void Log::LogMessage(LogLevel logLevel, const std::string& source, int line, const char* msg, ...) const
         {
             va_list list;
 
@@ -175,10 +171,7 @@ namespace trUtil
         }
 
         //////////////////////////////////////////////////////////////////////////
-        void Log::LogMessage(LogLevel logLevel,
-            const std::string& source,
-            int line,
-            const std::string& msg) const
+        void Log::LogMessage(LogLevel logLevel, const std::string& source, int line, const std::string& msg) const
         {
             LogMessage("", source, line, msg, logLevel);
         }
