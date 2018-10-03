@@ -47,44 +47,49 @@ SOURCE_GROUP (${SOURCES_GROUP} FILES ${PROJECT_SOURCES})
 # *****************************************************************************
 # *****************************************************************************
 
-# Sets the libraries
-SET (EXTERNAL_LIBS)
-IF (TR_BUILD_WITH_RELEASE)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        optimized ${OpenThreads_LIBRARY}
-        optimized ${OSG_LIBRARY} 
-        optimized ${OSG_DB_LIBRARY} 
-        optimized ${OSG_GA_LIBRARY} 
-        optimized ${OSG_VIEWER_LIBRARY} 
-        optimized ${FFMPEG_LIBAVUTIL_LIBRARY} 
-        optimized ${FFMPEG_LIBAVCODEC_LIBRARY} 
-        optimized ${FFMPEG_LIBAVFORMAT_LIBRARY}
-        optimized ${FFMPEG_LIBAVDEVICE_LIBRARY}        
-        optimized ${FFMPEG_LIBSWRESAMPLE_LIBRARY}   
-        optimized ${FFMPEG_LIBSWSCALE_LIBRARY} 
-        optimized ${GLEW_LIBRARY_RELEASE}
-        optimized ${OPENGL_gl_LIBRARY}    
-    )
-ENDIF ()
-IF (TR_BUILD_WITH_DEBUG)
-    SET (EXTERNAL_LIBS
-        ${EXTERNAL_LIBS}
-        debug ${OpenThreads_LIBRARY_DEBUG}
-        debug ${OSG_LIBRARY_DEBUG}
-        debug ${OSG_DB_LIBRARY_DEBUG} 
-        debug ${OSG_GA_LIBRARY_DEBUG}
-        debug ${OSG_VIEWER_LIBRARY_DEBUG}
-        debug ${FFMPEG_LIBAVUTIL_LIBRARY} 
-        debug ${FFMPEG_LIBAVCODEC_LIBRARY}
-        debug ${FFMPEG_LIBAVFORMAT_LIBRARY}
-        debug ${FFMPEG_LIBAVDEVICE_LIBRARY} 
-        debug ${FFMPEG_LIBSWRESAMPLE_LIBRARY}
-        debug ${FFMPEG_LIBSWSCALE_LIBRARY}  
-        debug ${GLEW_LIBRARY_DEBUG}
-        debug ${OPENGL_gl_LIBRARY}  
-    )
-ENDIF ()
+# Sets the dependency libraries
+SET (EXTERNAL_LIBS
+    ${EXTERNAL_LIBS}
+    optimized ${OpenThreads_LIBRARY}
+    debug ${OpenThreads_LIBRARY_DEBUG}
+
+    optimized ${OSG_LIBRARY} 
+    debug ${OSG_LIBRARY_DEBUG}
+
+    optimized ${OSG_DB_LIBRARY} 
+    debug ${OSG_DB_LIBRARY_DEBUG} 
+
+    optimized ${OSG_GA_LIBRARY} 
+    debug ${OSG_GA_LIBRARY_DEBUG}
+
+    optimized ${OSG_VIEWER_LIBRARY} 
+    debug ${OSG_VIEWER_LIBRARY_DEBUG}
+
+    optimized ${FFMPEG_LIBAVUTIL_LIBRARY} 
+    debug ${FFMPEG_LIBAVUTIL_LIBRARY} 
+
+    optimized ${FFMPEG_LIBAVCODEC_LIBRARY} 
+    debug ${FFMPEG_LIBAVCODEC_LIBRARY}
+
+    optimized ${FFMPEG_LIBAVFORMAT_LIBRARY}
+    debug ${FFMPEG_LIBAVFORMAT_LIBRARY}
+
+    optimized ${FFMPEG_LIBAVDEVICE_LIBRARY}        
+    debug ${FFMPEG_LIBAVDEVICE_LIBRARY} 
+
+    optimized ${FFMPEG_LIBSWRESAMPLE_LIBRARY}   
+    debug ${FFMPEG_LIBSWRESAMPLE_LIBRARY}
+
+    optimized ${FFMPEG_LIBSWSCALE_LIBRARY} 
+    debug ${FFMPEG_LIBSWSCALE_LIBRARY}  
+
+    optimized ${GLEW_LIBRARY_RELEASE}
+    debug ${GLEW_LIBRARY_DEBUG}
+
+    optimized ${OPENGL_gl_LIBRARY}    
+    debug ${OPENGL_gl_LIBRARY}  
+)
+
 
 # Defines necessary preprocessor variables for project
 ADD_DEFINITIONS (-D${PRE_PROCESSING})
