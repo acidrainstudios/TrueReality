@@ -65,7 +65,7 @@ SET (EXTERNAL_LIBS
 
     optimized ${OSG_VIEWER_LIBRARY} 
     debug ${OSG_VIEWER_LIBRARY_DEBUG}
-    )
+)
 
 # Defines necessary preprocessor variables for project
 ADD_DEFINITIONS (-D${PRE_PROCESSING})
