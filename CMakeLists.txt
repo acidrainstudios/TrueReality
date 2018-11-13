@@ -51,8 +51,6 @@ CMAKE_DEPENDENT_OPTION (TR_BASE "Enables the building of trBase library" ON "TR_
 CMAKE_DEPENDENT_OPTION (TR_SG "Enables the building of trSG library that wraps OSG" ON "TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_MANAGER "Enables the building of trManager library" ON "TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_CORE "Enables the building of trCore library" ON "TR_MANAGER; TR_SG; TR_UTIL; TR_BASE" OFF)
-CMAKE_DEPENDENT_OPTION (TR_MPEG "Enables the building of trMPEG library" ON "TR_CORE; TR_UTIL; TR_BASE" OFF)
-CMAKE_DEPENDENT_OPTION (TR_VR "Enables the building of trVR library" OFF "TR_CORE; TR_UTIL; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TR_APP "Enables the building of trApp library" ON "TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE" OFF)
 
 # *****************************************************************************
@@ -90,9 +88,6 @@ CMAKE_DEPENDENT_OPTION (EXAMPLES_ACTOR_MODULES "Enables the building of exampleA
 CMAKE_DEPENDENT_OPTION (EXAMPLES_DIRECTOR "Enables the building of exampleDirector project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_MANAGER; TR_UTIL; TR_BASE; TR_APP" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_JSON "Enables the building of exampleJSON project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (EXAMPLES_LOGGING "Enables the building of exampleLogging project" ON "TR_BUILD_EXAMPLES; TR_UTIL" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_MPEG_SERVER "Enables the building of exampleMPEGServer project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_UTIL; TR_BASE; TR_MPEG" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_MPEG_SLAVE "Enables the building of exampleMPEGSlave project" ON "TR_BUILD_EXAMPLES; TR_CORE; TR_UTIL; TR_BASE; TR_MPEG" OFF)
-CMAKE_DEPENDENT_OPTION (EXAMPLES_VIRTUAL_REALITY "Enables the building of exampleVR project" ON "TR_BUILD_EXAMPLES; TR_UTIL; TR_VR" OFF)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
@@ -128,27 +123,7 @@ IF (TR_BASE)
     INCLUDE_DIRECTORIES (SYSTEM ${Boost_INCLUDE_DIRS})
 ENDIF ()
 
-# trMPEG packages
-IF (TR_MPEG)
-    TR_DETECT_DEPENDENCY (FFMPEG)
-    INCLUDE_DIRECTORIES (SYSTEM ${FFMPEG_INCLUDE_DIRS})
-ENDIF ()
-
-IF (TR_MPEG OR TR_VR)
-    TR_DETECT_DEPENDENCY (OpenGL)
-    INCLUDE_DIRECTORIES (SYSTEM ${OPENGL_INCLUDE_DIR})
-
-    TR_DETECT_DEPENDENCY (GLEW)
-    INCLUDE_DIRECTORIES (SYSTEM ${GLEW_INCLUDE_DIRS})
-ENDIF ()
-
-# trBase packages
-IF (TR_VR)
-    TR_DETECT_DEPENDENCY (OpenVR 1.0.14)
-    INCLUDE_DIRECTORIES (SYSTEM ${OpenVR_INCLUDE_DIRS})
-ENDIF ()
-
-# UNIT Tests
+# Unit Tests
 IF (TR_BUILD_TESTS)
     TR_DETECT_DEPENDENCY (GoogleTest)
     INCLUDE_DIRECTORIES (SYSTEM ${GOOGLE_TEST_INCLUDE_DIR})
