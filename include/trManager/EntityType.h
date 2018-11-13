@@ -1,0 +1,58 @@
+/*
+* True Reality Open Source Game and Simulation Engine
+* Copyright © 2018 Acid Rain Studios LLC
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 3.0 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Lesser General Public License
+* along with this library; if not, write to the Free Software Foundation, Inc.,
+* 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+*
+* @author Maxim Serebrennik
+*/
+
+#pragma once
+
+#include <trManager/Export.h>
+
+#include <trUtil/EnumerationString.h>
+
+#include <string>
+
+namespace trManager
+{
+    /**
+     * @class   EntityType
+     *
+     * @brief   A class that specifies what kind of entity an object is in the Entity System. 
+     */
+    class TR_MANAGER_EXPORT EntityType : public trUtil::EnumerationString
+    {
+        DECLARE_ENUM(EntityType)
+
+    public:
+        static const EntityType ACTOR;
+        static const EntityType DIRECTOR;
+        static const EntityType ACTOR_MODULE;
+        static const EntityType INVALID;
+
+    protected:
+        /*virtual*/ ~EntityType() {}
+
+    private:
+
+        EntityType(const std::string& name) : trUtil::EnumerationString(name)
+        {
+            AddInstance(this);
+        }
+    };
+}
+
