@@ -25,302 +25,299 @@
 
 #include <iostream>
 
-namespace trUtil
+namespace trUtil::JSON
 {
-    namespace JSON
+    //////////////////////////////////////////////////////////////////////////
+    Object::Object()
+    {}
+
+    //////////////////////////////////////////////////////////////////////////
+    Object::Object(const Value &Object)
     {
-        //////////////////////////////////////////////////////////////////////////
-        Object::Object()
-        {}
+        mRoot = Object;
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        Object::Object(const Value &Object)
+    //////////////////////////////////////////////////////////////////////////
+    Object::~Object()
+    {}
+
+    //////////////////////////////////////////////////////////////////////////
+    const Value::Members Object::GetMemberNames() const
+    {
+        return mRoot.GetMemberNames();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetComment(const std::string& comment)
+    {
+        mRoot.SetComment(comment);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::HasComment() const
+    {
+        return mRoot.HasComment();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    std::string Object::GetComment() const
+    {
+        return mRoot.GetComment();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void Object::Clear()
+    {
+        mRoot.Clear();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    Value& Object::GetJSONRoot()
+    {
+        return mRoot;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void Object::PrintJSONRoot()
+    {
+        std::cout << mRoot << std::endl;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::KeyPresent(const std::string &key) const
+    {
+        return mRoot.KeyPresent(key);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsNull(const std::string &key) const
+    {
+        return mRoot.IsNull(key);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetNull(const std::string &key)
+    {
+        mRoot.SetNull(key);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsBool(const std::string &key) const
+    {
+        return mRoot.IsBool(key);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::GetBool(const std::string &key) const
+    {
+        return mRoot.GetBool(key);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetBool(const std::string &key, const bool &value)
+    {
+        mRoot.SetBool(key, value);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsTrue(const std::string &key) const
+    {
+        if (KeyPresent(key))
         {
-            mRoot = Object;
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        Object::~Object()
-        {}
-
-        //////////////////////////////////////////////////////////////////////////
-        const Value::Members Object::GetMemberNames() const
-        {
-            return mRoot.GetMemberNames();
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetComment(const std::string& comment)
-        {
-            mRoot.SetComment(comment);
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::HasComment() const
-        {
-            return mRoot.HasComment();
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        std::string Object::GetComment() const
-        {
-            return mRoot.GetComment();
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        void Object::Clear()
-        {
-            mRoot.Clear();
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        Value& Object::GetJSONRoot()
-        {
-            return mRoot;
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        void Object::PrintJSONRoot()
-        {
-            std::cout << mRoot << std::endl;
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::KeyPresent(const std::string &key) const
-        {
-            return mRoot.KeyPresent(key);
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsNull(const std::string &key) const
-        {
-            return mRoot.IsNull(key);
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetNull(const std::string &key)
-        {
-            mRoot.SetNull(key);
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsBool(const std::string &key) const
-        {
-            return mRoot.IsBool(key);
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::GetBool(const std::string &key) const
-        {
-            return mRoot.GetBool(key);
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetBool(const std::string &key, const bool &value)
-        {
-            mRoot.SetBool(key, value);
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsTrue(const std::string &key) const
-        {
-            if (KeyPresent(key))
+            if (GetBool(key) == true)
             {
-                if (GetBool(key) == true)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-            return false;
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsFalse(const std::string &key) const
-        {
-            if (KeyPresent(key))
+            else
             {
-                if (GetBool(key) == false)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            return false;
         }
+        return false;
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsNumber(const std::string &key) const
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsFalse(const std::string &key) const
+    {
+        if (KeyPresent(key))
         {
-            return mRoot.IsNumber(key);
+            if (GetBool(key) == false)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+        return false;
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsInt(const std::string &key) const
-        {
-            return mRoot.IsInt(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsNumber(const std::string &key) const
+    {
+        return mRoot.IsNumber(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        int Object::GetInt(const std::string &key) const
-        {
-            return mRoot.GetInt(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsInt(const std::string &key) const
+    {
+        return mRoot.IsInt(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetInt(const std::string &key, const int &value)
-        {
-            mRoot.SetInt(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    int Object::GetInt(const std::string &key) const
+    {
+        return mRoot.GetInt(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsDouble(const std::string &key) const
-        {
-            return mRoot.IsDouble(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetInt(const std::string &key, const int &value)
+    {
+        mRoot.SetInt(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        double Object::GetDouble(const std::string &key) const
-        {
-            return mRoot.GetDouble(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsDouble(const std::string &key) const
+    {
+        return mRoot.IsDouble(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetDouble(const std::string &key, const double &value)
-        {
-            mRoot.SetDouble(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    double Object::GetDouble(const std::string &key) const
+    {
+        return mRoot.GetDouble(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsUInt(const std::string &key) const
-        {
-            return mRoot.IsUInt(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetDouble(const std::string &key, const double &value)
+    {
+        mRoot.SetDouble(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        unsigned int Object::GetUInt(const std::string &key) const
-        {
-            return mRoot.GetUInt(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsUInt(const std::string &key) const
+    {
+        return mRoot.IsUInt(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetUInt(const std::string &key, const unsigned int &value)
-        {
-            mRoot.SetUInt(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    unsigned int Object::GetUInt(const std::string &key) const
+    {
+        return mRoot.GetUInt(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsInt64(const std::string &key) const
-        {
-            return mRoot.IsInt64(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetUInt(const std::string &key, const unsigned int &value)
+    {
+        mRoot.SetUInt(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        Int64 Object::GetInt64(const std::string &key) const
-        {
-            return mRoot.GetInt64(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsInt64(const std::string &key) const
+    {
+        return mRoot.IsInt64(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetInt64(const std::string &key, const Int64 &value)
-        {
-            mRoot.SetInt64(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    Int64 Object::GetInt64(const std::string &key) const
+    {
+        return mRoot.GetInt64(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsUInt64(const std::string &key) const
-        {
-            return mRoot.IsUInt64(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetInt64(const std::string &key, const Int64 &value)
+    {
+        mRoot.SetInt64(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        UInt64 Object::GetUInt64(const std::string &key) const
-        {
-            return mRoot.GetUInt64(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsUInt64(const std::string &key) const
+    {
+        return mRoot.IsUInt64(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetUInt64(const std::string &key, const UInt64 &value)
-        {
-            mRoot.SetUInt64(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    UInt64 Object::GetUInt64(const std::string &key) const
+    {
+        return mRoot.GetUInt64(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsFloat(const std::string &key) const
-        {
-            return mRoot.IsFloat(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetUInt64(const std::string &key, const UInt64 &value)
+    {
+        mRoot.SetUInt64(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        float Object::GetFloat(const std::string &key) const
-        {
-            return mRoot.GetFloat(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsFloat(const std::string &key) const
+    {
+        return mRoot.IsFloat(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetFloat(const std::string &key, const float &value)
-        {
-            mRoot.SetFloat(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    float Object::GetFloat(const std::string &key) const
+    {
+        return mRoot.GetFloat(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsString(const std::string &key) const
-        {
-            return mRoot.IsString(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetFloat(const std::string &key, const float &value)
+    {
+        mRoot.SetFloat(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        const std::string Object::GetString(const std::string &key) const
-        {
-            return mRoot.GetString(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsString(const std::string &key) const
+    {
+        return mRoot.IsString(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetString(const std::string &key, const std::string &value)
-        {
-            mRoot.SetString(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    const std::string Object::GetString(const std::string &key) const
+    {
+        return mRoot.GetString(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsArray(const std::string &key) const
-        {
-            return mRoot.IsArray(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetString(const std::string &key, const std::string &value)
+    {
+        mRoot.SetString(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        Array Object::GetArray(const std::string &key) const
-        {
-            return mRoot.GetArray(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsArray(const std::string &key) const
+    {
+        return mRoot.IsArray(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetArray(const std::string &key, Array& value)
-        {
-            mRoot.SetArray(key, value);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    Array Object::GetArray(const std::string &key) const
+    {
+        return mRoot.GetArray(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool Object::IsObject(const std::string &key) const
-        {
-            return mRoot.IsObject(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetArray(const std::string &key, Array& value)
+    {
+        mRoot.SetArray(key, value);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        Object Object::GetObject(const std::string &key) const
-        {
-            return mRoot.GetObject(key);
-        }
+    //////////////////////////////////////////////////////////////////////////
+    bool Object::IsObject(const std::string &key) const
+    {
+        return mRoot.IsObject(key);
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void Object::SetObject(const std::string &key, Object& value)
-        {
-            mRoot.SetObject(key, value);
-        }
-    }    
+    //////////////////////////////////////////////////////////////////////////
+    Object Object::GetObject(const std::string &key) const
+    {
+        return mRoot.GetObject(key);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void Object::SetObject(const std::string &key, Object& value)
+    {
+        mRoot.SetObject(key, value);
+    }
 }
