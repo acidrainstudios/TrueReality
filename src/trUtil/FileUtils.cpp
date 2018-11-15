@@ -466,7 +466,7 @@ namespace trUtil
     }
 
     //we use cleanup string on the path so this accept becomes very simple
-    class IsFileSeparator : public std::unary_function<char, bool>
+    class IsFileSeparator : public trUtil::UnaryFunction<char, bool>
     {
     public:
         IsFileSeparator() {}

@@ -29,6 +29,7 @@
 #include <trUtil/Export.h>
 
 #include <trUtil/Exception.h>
+#include <trUtil/UnaryFunction.h>
 
 #include <osg/Referenced>
 #include <osg/Version>
@@ -738,7 +739,7 @@ namespace trUtil
      *
      * @brief   For tokenizing paths.
      */
-    class IsPathSeparator : public std::unary_function<char, bool>
+    class IsPathSeparator : public trUtil::UnaryFunction<char, bool>
     {
     public:
         bool operator()(char c) const { return c == '/' || c == '\\' || c == FileUtils::PATH_SEPARATOR; }
