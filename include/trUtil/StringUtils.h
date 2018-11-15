@@ -31,6 +31,7 @@
 
 #include <trUtil/Export.h>
 
+#include <trUtil/UnaryFunction.h>
 #include <trUtil/WarningUtils.h>
 
 #include <string>
@@ -135,7 +136,7 @@ namespace trUtil
          * @brief   A functor which tests if a character is whitespace. This "predicate" needed to
          *          have 'state', the locale member.
          */
-        class TR_UTIL_EXPORT IsSpace : public std::unary_function<char, bool>
+        class TR_UTIL_EXPORT IsSpace : public trUtil::UnaryFunction<char, bool>
         {
             TR_DISABLE_WARNING_START_MSVC(4251)
         public:
@@ -154,7 +155,7 @@ namespace trUtil
          *
          * @brief   Determines if the current character is a forward slash.
          */
-        class IsSlash : public std::unary_function<char, bool>
+        class IsSlash : public trUtil::UnaryFunction<char, bool>
         {
         public:
             bool operator()(char c) const { return c == '/'; }
@@ -166,7 +167,7 @@ namespace trUtil
          * @brief   Generic string delimeter check function class.  Based on the character passed to the
          *          constructor, this class will check for that character.
          */
-        class IsDelimeter : public std::unary_function<char, bool>
+        class IsDelimeter : public trUtil::UnaryFunction<char, bool>
         {
         public:
             IsDelimeter(char delim) : mDelimeter(delim) { }
