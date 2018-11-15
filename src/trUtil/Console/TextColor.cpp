@@ -28,150 +28,147 @@
 #include <iostream>
 
 
-namespace trUtil
+namespace trUtil::Console
 {
-    namespace Console
+    //////////////////////////////////////////////////////////////////////////
+    void TextColor(TXT_COLOR TextColor)
     {
-        //////////////////////////////////////////////////////////////////////////
-        void TextColor(TXT_COLOR TextColor)
-        {
 #if defined(_WIN32)
-            HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // Get handle to standard output 
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);  // Get handle to standard output 
 #endif
 
-            switch (TextColor)
-            {
-            case BRIGHT_RED:
+        switch (TextColor)
+        {
+        case BRIGHT_RED:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
 #else
-                std::cout << "\033[0;31m";
+            std::cout << "\033[0;31m";
 #endif //defined(_WIN32))
-                break;
-            case RED:
+            break;
+        case RED:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
 #else
-                std::cout << "\033[2;31m";
+            std::cout << "\033[2;31m";
 #endif
-                break;
-            case BRIGHT_GREEN:
+            break;
+        case BRIGHT_GREEN:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 #else
-                std::cout << "\033[0;32m";
+            std::cout << "\033[0;32m";
 #endif
-                break;
-            case GREEN:
+            break;
+        case GREEN:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
 #else
-                std::cout << "\033[2;32m";
+            std::cout << "\033[2;32m";
 #endif
-                break;
-            case BRIGHT_BLUE:
+            break;
+        case BRIGHT_BLUE:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 #else
-                std::cout << "\033[0;34m";
+            std::cout << "\033[0;34m";
 #endif
-                break;
-            case BLUE:
+            break;
+        case BLUE:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
 #else
-                std::cout << "\033[3;34m";
+            std::cout << "\033[3;34m";
 #endif
-                break;
-            case BRIGHT_YELLOW:
+            break;
+        case BRIGHT_YELLOW:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
 #else
-                std::cout << "\033[0;33m";
+            std::cout << "\033[0;33m";
 #endif
-                break;
-            case YELLOW:
+            break;
+        case YELLOW:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_RED);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_RED);
 #else
-                std::cout << "\033[2;33m";
+            std::cout << "\033[2;33m";
 #endif
-                break;
-            case WHITE:
+            break;
+        case WHITE:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY);
 #else
-                std::cout << "\033[0;37m";
+            std::cout << "\033[0;37m";
 #endif
-                break;
-            case BRIGHT_CYAN:
+            break;
+        case BRIGHT_CYAN:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 #else
-                std::cout << "\033[0;36m";
+            std::cout << "\033[0;36m";
 #endif
-                break;
-            case CYAN:
+            break;
+        case CYAN:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE);
 #else
-                std::cout << "\033[2;36m";
+            std::cout << "\033[2;36m";
 #endif
-                break;
-            case BRIGHT_MAGENTA:
+            break;
+        case BRIGHT_MAGENTA:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 #else
-                std::cout << "\033[0;35m";
+            std::cout << "\033[0;35m";
 #endif
-                break;
-            case MAGENTA:
+            break;
+        case MAGENTA:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE);
 #else
-                std::cout << "\033[2;35m";
+            std::cout << "\033[2;35m";
 #endif
-                break;
-            case GRAY:
+            break;
+        case GRAY:
 #if defined(_WIN32)
 #else
-                std::cout << "\033[2;37m";
-                break;
+            std::cout << "\033[2;37m";
+            break;
 #endif
-            default:
+        default:
 #if defined(_WIN32)
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 #else
-                std::cout << "\033[0m";
+            std::cout << "\033[0m";
 #endif
-                break;
-            }
+            break;
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void PrintAllColors()
-        {
-            //Print a sample of colors on the screen
-            TextColor(DEFAULT);          std::cout << "DEFAULT" << std::endl;
-            TextColor(BRIGHT_RED);       std::cout << "BRIGHT_RED" << std::endl;
-            TextColor(RED);              std::cout << "RED" << std::endl;
-            TextColor(BRIGHT_GREEN);     std::cout << "BRIGHT_GREEN" << std::endl;
-            TextColor(GREEN);            std::cout << "GREEN" << std::endl;
-            TextColor(BRIGHT_BLUE);      std::cout << "BRIGHT_BLUE" << std::endl;
-            TextColor(BLUE);             std::cout << "BLUE" << std::endl;
-            TextColor(BRIGHT_YELLOW);    std::cout << "BRIGHT_YELLOW" << std::endl;
-            TextColor(YELLOW);           std::cout << "YELLOW" << std::endl;
-            TextColor(WHITE);            std::cout << "WHITE" << std::endl;
-            TextColor(BRIGHT_CYAN);      std::cout << "BRIGHT_CYAN" << std::endl;
-            TextColor(CYAN);             std::cout << "CYAN" << std::endl;
-            TextColor(BRIGHT_MAGENTA);   std::cout << "BRIGHT_MAGENTA" << std::endl;
-            TextColor(MAGENTA);          std::cout << "MAGENTA" << std::endl;
-            TextColor(GRAY);             std::cout << "GRAY" << std::endl;
+    //////////////////////////////////////////////////////////////////////////
+    void PrintAllColors()
+    {
+        //Print a sample of colors on the screen
+        TextColor(DEFAULT);          std::cout << "DEFAULT" << std::endl;
+        TextColor(BRIGHT_RED);       std::cout << "BRIGHT_RED" << std::endl;
+        TextColor(RED);              std::cout << "RED" << std::endl;
+        TextColor(BRIGHT_GREEN);     std::cout << "BRIGHT_GREEN" << std::endl;
+        TextColor(GREEN);            std::cout << "GREEN" << std::endl;
+        TextColor(BRIGHT_BLUE);      std::cout << "BRIGHT_BLUE" << std::endl;
+        TextColor(BLUE);             std::cout << "BLUE" << std::endl;
+        TextColor(BRIGHT_YELLOW);    std::cout << "BRIGHT_YELLOW" << std::endl;
+        TextColor(YELLOW);           std::cout << "YELLOW" << std::endl;
+        TextColor(WHITE);            std::cout << "WHITE" << std::endl;
+        TextColor(BRIGHT_CYAN);      std::cout << "BRIGHT_CYAN" << std::endl;
+        TextColor(CYAN);             std::cout << "CYAN" << std::endl;
+        TextColor(BRIGHT_MAGENTA);   std::cout << "BRIGHT_MAGENTA" << std::endl;
+        TextColor(MAGENTA);          std::cout << "MAGENTA" << std::endl;
+        TextColor(GRAY);             std::cout << "GRAY" << std::endl;
 
 
-            //Change the color back to normal
-            TextColor(DEFAULT);
+        //Change the color back to normal
+        TextColor(DEFAULT);
             
-        }
     }
 }
