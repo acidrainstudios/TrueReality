@@ -29,124 +29,121 @@
 
 #include <algorithm>
 
-namespace trUtil
+namespace trUtil::Logging
 {
-    namespace Logging
+    ////////////////////////////////////////////////////////////////
+    LogManager::LogManager()
+        : mLogWriterConsole(new LogWriterConsole())
+        , mLogWriterFile(new LogWriterFile())
+        , mLogTimeProvider(nullptr)
     {
-        ////////////////////////////////////////////////////////////////
-        LogManager::LogManager()
-            : mLogWriterConsole(new LogWriterConsole())
-            , mLogWriterFile(new LogWriterFile())
-            , mLogTimeProvider(nullptr)
-        {
-        }
+    }
 
-        ////////////////////////////////////////////////////////////////
-        LogManager::~LogManager()
-        {
-            mInstances.clear();
-            mLogWriterConsole = nullptr;
-            mLogWriterFile = nullptr;
-        }
+    ////////////////////////////////////////////////////////////////
+    LogManager::~LogManager()
+    {
+        mInstances.clear();
+        mLogWriterConsole = nullptr;
+        mLogWriterFile = nullptr;
+    }
 
-        ////////////////////////////////////////////////////////////////
-        bool LogManager::AddInstance(const std::string& name, Log* log)
-        {
-            return mInstances.insert(std::make_pair(name, osg::ref_ptr<Log>(log))).second;
-        }
+    ////////////////////////////////////////////////////////////////
+    bool LogManager::AddInstance(const std::string& name, Log* log)
+    {
+        return mInstances.insert(std::make_pair(name, osg::ref_ptr<Log>(log))).second;
+    }
 
-        ////////////////////////////////////////////////////////////////
-        Log* LogManager::GetInstance(const std::string& name)
+    ////////////////////////////////////////////////////////////////
+    Log* LogManager::GetInstance(const std::string& name)
+    {
+        trUtil::HashMap<std::string, osg::ref_ptr<Log> >::iterator i = mInstances.find(name);
+        if (i == mInstances.end())
         {
-            trUtil::HashMap<std::string, osg::ref_ptr<Log> >::iterator i = mInstances.find(name);
-            if (i == mInstances.end())
-            {
-                return nullptr;
-            }
-            return i->second.get();
+            return nullptr;
         }
+        return i->second.get();
+    }
 
-        ////////////////////////////////////////////////////////////////
-        void LogManager::SetAllLogLevels(const LogLevel& newLevel)
+    ////////////////////////////////////////////////////////////////
+    void LogManager::SetAllLogLevels(const LogLevel& newLevel)
+    {
+        std::for_each(mInstances.begin(), mInstances.end(), [this, &newLevel](trUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
         {
-            std::for_each(mInstances.begin(), mInstances.end(), [this, &newLevel](trUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
-            {
-                Log* log = value.second.get();
-                log->SetLogLevel(newLevel);
-            });
-        }
+            Log* log = value.second.get();
+            log->SetLogLevel(newLevel);
+        });
+    }
 
-        ////////////////////////////////////////////////////////////////
-        void LogManager::SetAllOutputStreamBits(unsigned int option)
+    ////////////////////////////////////////////////////////////////
+    void LogManager::SetAllOutputStreamBits(unsigned int option)
+    {
+        std::for_each(mInstances.begin(), mInstances.end(), [this, option](trUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
         {
-            std::for_each(mInstances.begin(), mInstances.end(), [this, option](trUtil::HashMap<std::string, osg::ref_ptr<Log> >::value_type& value)
-            {
-                Log* log = value.second.get();
-                log->SetOutputStreamBit(option);
-            });
-        }
+            Log* log = value.second.get();
+            log->SetOutputStreamBit(option);
+        });
+    }
 
-        ////////////////////////////////////////////////////////////////
-        bool LogManager::IsLogTimeProviderValid() const
-        {
-            return mLogTimeProviderAsRef.valid() && mLogTimeProvider != nullptr;
-        }
+    ////////////////////////////////////////////////////////////////
+    bool LogManager::IsLogTimeProviderValid() const
+    {
+        return mLogTimeProviderAsRef.valid() && mLogTimeProvider != nullptr;
+    }
 
-        ////////////////////////////////////////////////////////////////
-        void LogManager::ReOpenFile()
-        {
-            mLogWriterFile->ResetOpenFail();
-            mLogWriterFile->OpenFile();
-        }
+    ////////////////////////////////////////////////////////////////
+    void LogManager::ReOpenFile()
+    {
+        mLogWriterFile->ResetOpenFail();
+        mLogWriterFile->OpenFile();
+    }
 
-        ////////////////////////////////////////////////////////////////
-        void LogManager::LogHorizRule()
-        {
-            mLogWriterFile->LogHorizRule();
-        }
+    ////////////////////////////////////////////////////////////////
+    void LogManager::LogHorizRule()
+    {
+        mLogWriterFile->LogHorizRule();
+    }
 
-        ////////////////////////////////////////////////////////////////
-        void LogManager::LogMessageToFile(const LogWriter::LogData& logData)
-        {
-            mLogWriterFile->LogMessage(logData);
-        }
+    ////////////////////////////////////////////////////////////////
+    void LogManager::LogMessageToFile(const LogWriter::LogData& logData)
+    {
+        mLogWriterFile->LogMessage(logData);
+    }
 
-        ////////////////////////////////////////////////////////////////
-        void LogManager::LogMessageToConsole(const LogWriter::LogData& logData)
-        {
-            mLogWriterConsole->LogMessage(logData);
-        }
+    ////////////////////////////////////////////////////////////////
+    void LogManager::LogMessageToConsole(const LogWriter::LogData& logData)
+    {
+        mLogWriterConsole->LogMessage(logData);
+    }
 
-        ////////////////////////////////////////////////////////////////
-        void LogManager::SetLogTimeProvider(LogTimeProvider* ltp)
+    ////////////////////////////////////////////////////////////////
+    void LogManager::SetLogTimeProvider(LogTimeProvider* ltp)
+    {
+        mLogTimeProvider = ltp;
+        if (ltp != nullptr)
         {
-            mLogTimeProvider = ltp;
-            if (ltp != nullptr)
-            {
-                mLogTimeProviderAsRef = ltp->AsReferenced();
-            }
-            else
-            {
-                mLogTimeProviderAsRef = nullptr;
-            }
+            mLogTimeProviderAsRef = ltp->AsReferenced();
         }
+        else
+        {
+            mLogTimeProviderAsRef = nullptr;
+        }
+    }
 
-        ////////////////////////////////////////////////////////////////
-        unsigned int LogManager::GetFrameNumber()
-        {
-            return mLogTimeProvider->GetFrameNumber();
-        }
+    ////////////////////////////////////////////////////////////////
+    unsigned int LogManager::GetFrameNumber()
+    {
+        return mLogTimeProvider->GetFrameNumber();
+    }
 
-        ////////////////////////////////////////////////////////////////
-        const trUtil::DateTime& LogManager::GetDateTime()
-        {
-            return mLogTimeProvider->GetDateTime();
-        }
+    ////////////////////////////////////////////////////////////////
+    const trUtil::DateTime& LogManager::GetDateTime()
+    {
+        return mLogTimeProvider->GetDateTime();
+    }
 
-        ////////////////////////////////////////////////////////////////
-        OpenThreads::Mutex& LogManager::GetMutex()
-        {
-            return mMutex;
-        }
+    ////////////////////////////////////////////////////////////////
+    OpenThreads::Mutex& LogManager::GetMutex()
+    {
+        return mMutex;
     }
 }
