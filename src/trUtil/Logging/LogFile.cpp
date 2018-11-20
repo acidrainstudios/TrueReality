@@ -29,50 +29,45 @@
 #include <trUtil/Logging/Log.h>
 #include <trUtil/Logging/LogManager.h>
 
-namespace trUtil
-{
-    namespace Logging
-    {
-        
-
+namespace trUtil::Logging
+{       
 #ifdef _DEBUG
-        std::string LogFile::mTitle("True Reality SDK Log File (<font color=#A000A0>DEBUG LIBs)</font>");
+    std::string LogFile::mTitle("True Reality SDK Log File (<font color=#A000A0>DEBUG LIBs)</font>");
 #else
-        std::string LogFile::mTitle("True Reality SDK Log File");
+    std::string LogFile::mTitle("True Reality SDK Log File");
 #endif
 
-        const std::string LogFile::LOG_FILE_DEFAULT_NAME("TrueRealityLog.html");
-        std::string LogFile::mLogFileName = LOG_FILE_DEFAULT_NAME;
+    const std::string LogFile::LOG_FILE_DEFAULT_NAME("TrueRealityLog.html");
+    std::string LogFile::mLogFileName = LOG_FILE_DEFAULT_NAME;
 
-        //////////////////////////////////////////////////////////////////////////
-        void LogFile::SetFileName(const std::string& name)
+    //////////////////////////////////////////////////////////////////////////
+    void LogFile::SetFileName(const std::string& name)
+    {
+        bool sameName = name == mLogFileName;
+
+        mLogFileName = name;
+        if (!sameName)
         {
-            bool sameName = name == mLogFileName;
-
-            mLogFileName = name;
-            if (!sameName)
-            {
-                //Reset open failed if the file name changes.
-                Log::GetInstance().GetLogManagerRef().ReOpenFile();
-            }
+            //Reset open failed if the file name changes.
+            Log::GetInstance().GetLogManagerRef().ReOpenFile();
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        const std::string LogFile::GetFileName()
-        {
-            return mLogFileName;
-        }
+    //////////////////////////////////////////////////////////////////////////
+    const std::string LogFile::GetFileName()
+    {
+        return mLogFileName;
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void LogFile::SetTitle(const std::string& title)
-        {
-            mTitle = title;
-        }
+    //////////////////////////////////////////////////////////////////////////
+    void LogFile::SetTitle(const std::string& title)
+    {
+        mTitle = title;
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        const std::string& LogFile::GetTitle()
-        {
-            return mTitle;
-        }
+    //////////////////////////////////////////////////////////////////////////
+    const std::string& LogFile::GetTitle()
+    {
+        return mTitle;
     }
 }

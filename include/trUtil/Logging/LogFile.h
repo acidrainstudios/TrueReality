@@ -39,65 +39,56 @@
  *
  * @brief   .
  */
-namespace trUtil
+namespace trUtil::Logging
 {
-/**
- * @namespace   Logging
- *
- * @brief   .
- */
-    namespace Logging
+    /**
+        * @class   LogFile
+        *
+        * @brief   A log file.
+        */
+    class TR_UTIL_EXPORT LogFile
     {
+    public:
+        /** @brief   Log file default name. */
+        static const std::string LOG_FILE_DEFAULT_NAME;
+
         /**
-         * @class   LogFile
-         *
-         * @brief   A log file.
-         */
-        class TR_UTIL_EXPORT LogFile
-        {
-        public:
-            /** @brief   Log file default name. */
-            static const std::string LOG_FILE_DEFAULT_NAME;
+            * @fn  static void LogFile::SetFileName(const std::string& name);
+            *
+            * @brief   Change the name of the log file (defaults to "TrueRealityLog.html")
+            *
+            * @param   name    The name.
+            */
+        static void SetFileName(const std::string& name);
 
-            /**
-             * @fn  static void LogFile::SetFileName(const std::string& name);
-             *
-             * @brief   Change the name of the log file (defaults to "TrueRealityLog.html")
-             *
-             * @param   name    The name.
-             */
-            static void SetFileName(const std::string& name);
+        /**
+            * @fn  static const std::string LogFile::GetFileName();
+            *
+            * @brief   Get the current filename of the log file.
+            *
+            * @return  The file name.
+            */
+        static const std::string GetFileName();
 
-            /**
-             * @fn  static const std::string LogFile::GetFileName();
-             *
-             * @brief   Get the current filename of the log file.
-             *
-             * @return  The file name.
-             */
-            static const std::string GetFileName();
+        /**
+            * @fn  static void LogFile::SetTitle(const std::string& title);
+            *
+            * @brief   Change the title string used in HTML.
+            *
+            * @param   title   The title.
+            */
+        static void SetTitle(const std::string& title);
 
-            /**
-             * @fn  static void LogFile::SetTitle(const std::string& title);
-             *
-             * @brief   Change the title string used in HTML.
-             *
-             * @param   title   The title.
-             */
-            static void SetTitle(const std::string& title);
-
-            /**
-             * @fn  static const std::string& LogFile::GetTitle();
-             *
-             * @brief   Get the current HTML title string.
-             *
-             * @return  The title.
-             */
-            static const std::string& GetTitle();  
-        private:
-            static std::string mLogFileName;
-            static std::string mTitle;
-        };
-    }
+        /**
+            * @fn  static const std::string& LogFile::GetTitle();
+            *
+            * @brief   Get the current HTML title string.
+            *
+            * @return  The title.
+            */
+        static const std::string& GetTitle();  
+    private:
+        static std::string mLogFileName;
+        static std::string mTitle;
+    };
 }
-
