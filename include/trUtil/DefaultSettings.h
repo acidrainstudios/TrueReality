@@ -29,52 +29,44 @@
  *
  * @brief   .
  */
-namespace trUtil
+namespace trUtil::DefaultSettings
 {
-/**
- * @namespace   DefaultSettings
- *
- * @brief   .
- */
-    namespace DefaultSettings
-    {
-        /**
-         * @fn  void SetDefaultSettings(dtABC::BaseABC& app);
-         *
-         * @brief   Sets the default Scene, Camera, and Window Settings.
-         *
-         * @param [in,out]  app The application.
-         */
-        //void TR_UTIL_EXPORT SetDefaultSettings(dtABC::BaseABC& app);
+    /**
+        * @fn  void SetDefaultSettings(dtABC::BaseABC& app);
+        *
+        * @brief   Sets the default Scene, Camera, and Window Settings.
+        *
+        * @param [in,out]  app The application.
+        */
+    //void TR_UTIL_EXPORT SetDefaultSettings(dtABC::BaseABC& app);
 
-        /**
-         * @fn  void ParseMapNameArgument(int argc, char** argv, std::string &mapName);
-         *
-         * @brief   Finds and returns the name of the map to be loaded from the command line.
-         *
-         * @param           argc    The argc.
-         * @param [in,out]  argv    If non-null, the argv.
-         * @param [in,out]  mapName Name of the map.
-         */
-        void TR_UTIL_EXPORT ParseMapNameArgument(int argc, char** argv, std::string &mapName);
+    /**
+        * @fn  void ParseMapNameArgument(int argc, char** argv, std::string &mapName);
+        *
+        * @brief   Finds and returns the name of the map to be loaded from the command line.
+        *
+        * @param           argc    The argc.
+        * @param [in,out]  argv    If non-null, the argv.
+        * @param [in,out]  mapName Name of the map.
+        */
+    void TR_UTIL_EXPORT ParseMapNameArgument(int argc, char** argv, std::string &mapName);
 
-        /**
-         * @fn  void SetDefaultPaths();
-         *
-         * @brief   Sets engines default paths and project context.
-         */
-        //void TR_UTIL_EXPORT SetDefaultPaths();
+    /**
+        * @fn  void SetDefaultPaths();
+        *
+        * @brief   Sets engines default paths and project context.
+        */
+    //void TR_UTIL_EXPORT SetDefaultPaths();
 
-        /**
-         * @fn  void SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel);
-         *
-         * @brief   Sets up all the default logging options for the software.
-         *
-         * @return  A TR_UTIL_EXPORT.
-         *
-         * @param   logFileName Filename of the log file.
-         * @param   logLevel    The log level.
-         */
-        void TR_UTIL_EXPORT SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel);
-    }
+    /**
+        * @fn  void SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel);
+        *
+        * @brief   Sets up all the default logging options for the software.
+        *
+        * @return  A TR_UTIL_EXPORT.
+        *
+        * @param   logFileName Filename of the log file.
+        * @param   logLevel    The log level.
+        */
+    void TR_UTIL_EXPORT SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel);
 }
