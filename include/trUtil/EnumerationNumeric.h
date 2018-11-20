@@ -39,6 +39,8 @@ namespace trUtil
      * @brief   This class represents a type-safe Enumeration pattern.  It allows one to also
      *          enumerate an Enumeration thus looking up values in a list fashion. Unlike
      *          EnumerationString, EnumerationNumeric also stores an integer value with each Enum.
+     *          
+     * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT EnumerationNumeric : public EnumerationString
     {
