@@ -38,6 +38,8 @@ namespace trUtil
      * @class   VersionUtil
      *
      * @brief   A utility to read and control the engines version numbers.
+     *          
+     * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT VersionUtil
     {
