@@ -22,10 +22,7 @@
 */
 #include <trUtil/Logging/LogWriter.h>
 
-namespace trUtil
+namespace trUtil::Logging
 {
-    namespace Logging
-    {
-        //Left empty for reporting tools
-    }
+    //Left empty for reporting tools
 }
