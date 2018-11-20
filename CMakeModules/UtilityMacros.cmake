@@ -48,11 +48,6 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (TR_CORE_AVAILABLE "YES")
     ENDIF ()
     
-    IF (TR_VR)
-        ADD_SUBDIRECTORY (src/trVR)
-        SET (TR_VR_AVAILABLE "YES")
-    ENDIF (TR_VR)
-    
     IF (TR_APP)
         ADD_SUBDIRECTORY (src/trApp)
         SET (TR_APP_AVAILABLE "YES")
@@ -61,11 +56,6 @@ MACRO (ADD_TR_SUBFOLDERS)
     IF (TR_START)
         ADD_SUBDIRECTORY (src/trStart)
         SET (TR_START_AVAILABLE "YES")
-    ENDIF ()
-
-    IF (TR_MPEG)
-    	ADD_SUBDIRECTORY (src/trMPEG)
-        SET (TR_MPEG_AVAILABLE "YES")
     ENDIF ()
 
 # Utilities folders
@@ -98,24 +88,9 @@ MACRO (ADD_TR_SUBFOLDERS)
         SET (EXAMPLES_JSON_AVAILABLE "YES")
     ENDIF ()  
 
-    IF (EXAMPLES_MPEG_SERVER)
-        ADD_SUBDIRECTORY (Examples/MPEGServer)
-        SET (EXAMPLES_MPEG_SERVER_AVAILABLE "YES")
-    ENDIF ()
-
-    IF (EXAMPLES_MPEG_SLAVE)
-        ADD_SUBDIRECTORY (Examples/MPEGSlave)
-        SET (EXAMPLES_MPEG_SLAVE_AVAILABLE "YES")
-    ENDIF ()
-
     IF (EXAMPLES_LOGGING)
         ADD_SUBDIRECTORY (Examples/Logging)
         SET (EXAMPLES_LOGGING_AVAILABLE "YES")
-    ENDIF ()
-
-    IF (EXAMPLES_VIRTUAL_REALITY)
-        ADD_SUBDIRECTORY (Examples/VirtualReality)
-        SET (EXAMPLES_VIRTUAL_REALITY_AVAILABLE "YES")
     ENDIF ()
 
  # Unit Test Folders
