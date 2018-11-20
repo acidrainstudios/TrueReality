@@ -21,7 +21,7 @@
 
 #include <trUtil/Math.h>
 
-namespace trUtil
+namespace trUtil::Math
 {
     //Left Empty for reporting tools
 }
