@@ -37,66 +37,58 @@
  *
  * @brief   .
  */
-namespace trUtil
+namespace trUtil::Logging
 {
-/**
- * @namespace   Logging
- *
- * @brief   .
- */
-    namespace Logging
+    /** @brief   String value for DEBUG Logging level. */
+    const static std::string LOG_DEBUG_STR("Debug");
+
+    /** @brief   String value for INFO Logging level. */
+    const static std::string LOG_INFO_STR("Info");
+        
+    /** @brief   String value for WARNING Logging level. */
+    const static std::string LOG_WARNING_STR("Warning");
+        
+    /** @brief   String value for ERROR Logging level. */
+    const static std::string LOG_ERROR_STR("Error");
+
+    /** @brief   String value for ALWAYS Logging level. */
+    const static std::string LOG_ALWAYS_STR("Always");
+
+    /**
+        * @enum    LogLevel
+        *
+        * @brief   Identifies the Logging level for an individual Logger and Log message.
+        */
+    enum TR_UTIL_EXPORT LogLevel
     {
-        /** @brief   String value for DEBUG Logging level. */
-        const static std::string LOG_DEBUG_STR("Debug");
+        LOG_DEBUG,
+        LOG_INFO,
+        LOG_WARNING,
+        LOG_ERROR,
+        LOG_ALWAYS
+    };
 
-        /** @brief   String value for INFO Logging level. */
-        const static std::string LOG_INFO_STR("Info");
-        
-        /** @brief   String value for WARNING Logging level. */
-        const static std::string LOG_WARNING_STR("Warning");
-        
-        /** @brief   String value for ERROR Logging level. */
-        const static std::string LOG_ERROR_STR("Error");
+    /**
+        * @fn  LogLevel LogLevelFromString(const std::string& levelString);
+        *
+        * @brief   Logs level from string.
+        *
+        * @param   levelString The level string.
+        *
+        * @return  the LogLevel matching a string or WARNING if there is no match. The values that are
+        *          checked against are the LogLevel Strings: LOG_DEBUG_STR, LOG_INFO_STR,
+        *          LOG_WARNING_STR, LOG_ERROR_STR, LOG_ALWAYS_STR.
+        */
+    TR_UTIL_EXPORT LogLevel LogLevelFromString(const std::string& levelString);
 
-        /** @brief   String value for ALWAYS Logging level. */
-        const static std::string LOG_ALWAYS_STR("Always");
-
-        /**
-         * @enum    LogLevel
-         *
-         * @brief   Identifies the Logging level for an individual Logger and Log message.
-         */
-        enum TR_UTIL_EXPORT LogLevel
-        {
-            LOG_DEBUG,
-            LOG_INFO,
-            LOG_WARNING,
-            LOG_ERROR,
-            LOG_ALWAYS
-        };
-
-        /**
-         * @fn  LogLevel LogLevelFromString(const std::string& levelString);
-         *
-         * @brief   Logs level from string.
-         *
-         * @param   levelString The level string.
-         *
-         * @return  the LogLevel matching a string or WARNING if there is no match. The values that are
-         *          checked against are the LogLevel Strings: LOG_DEBUG_STR, LOG_INFO_STR,
-         *          LOG_WARNING_STR, LOG_ERROR_STR, LOG_ALWAYS_STR.
-         */
-        TR_UTIL_EXPORT LogLevel LogLevelFromString(const std::string& levelString);
-
-        /**
-         * @fn  const std::string& LogLevelToString(LogLevel logLevel);
-         *
-         * @brief   Logs level to string.
-         *
-         * @param   logLevel    The log level.
-         *
-         * @return  a string version of a LogLevel. LOG_WARNING_STR is returned if there is no match.
-         */
-        const TR_UTIL_EXPORT std::string& LogLevelToString(LogLevel logLevel);
-    }
+    /**
+        * @fn  const std::string& LogLevelToString(LogLevel logLevel);
+        *
+        * @brief   Logs level to string.
+        *
+        * @param   logLevel    The log level.
+        *
+        * @return  a string version of a LogLevel. LOG_WARNING_STR is returned if there is no match.
+        */
+    const TR_UTIL_EXPORT std::string& LogLevelToString(LogLevel logLevel);
 }
