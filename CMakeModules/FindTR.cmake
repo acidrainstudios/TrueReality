@@ -67,5 +67,68 @@
 SET (DEPENDENCY "TR")
 # ********************************************************************************
 # Macro to find header and lib directories ***************************************
-# example: TR_FIND_LIB(UTIL_DEBUG trUtil Export.h) *************************
+# Example: TR_FIND_LIB(UTIL_DEBUG trUtil "YES") **********************************
+# Searches for trUtild library and sets TR_UTIL_DEBUG_LIBRARY_FOUND **************
 # ********************************************************************************
+MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
+    FIND_PATH(${DEPENDENCY}_${VARNAME}_INCLUDE_DIR ${MYLIBRARYNAME}/Export.h
+        HINTS
+        $ENV{TR_INC}
+        $ENV{TR_ROOT}/include
+        $ENV{TR_ROOT}
+        PATHS
+        /usr/include
+        /usr/local/include
+        /opt/include
+        /opt/local/include
+        ~/Library/Frameworks
+        /Library/Frameworks
+    )
+    MARK_AS_ADVANCED (${DEPENDENCY}_${VARNAME}_INCLUDE_DIR)
+
+    IF (${DEBUG})
+        SET (LIB_NAME ${MYLIBRARYNAME}d)
+    ELSE ()
+        SET (LIB_NAME ${MYLIBRARYNAME})
+    ENDIF ()
+
+    FIND_LIBRARY(${DEPENDENCY}_${VARNAME}_LIBRARY
+        NAMES ${LIB_NAME}
+        HINTS
+        $ENV{TR_LIB}
+        $ENV{TR_ROOT}/lib
+        $ENV{TR_ROOT}
+        PATHS
+        /usr/lib64
+        /usr/lib
+        /usr/local/lib64
+        /usr/local/lib
+        /opt/lib64
+        /opt/lib
+        /opt/local/lib64
+        /opt/local/lib
+        ~/Library/Frameworks
+        /Library/Frameworks
+    )
+    MARK_AS_ADVANCED (${DEPENDENCY}_${VARNAME}_LIBRARY)
+
+    IF (${DEPENDENCY}_${VARNAME}_LIBRARY AND ${DEPENDENCY}_${VARNAME}_INCLUDE_DIR)
+        SET (${DEPENDENCY}_${VARNAME}_FOUND "YES")
+    ENDIF ()
+ENDMACRO ()
+
+# ********************************************************************************
+# Macro to find header and lib directories for both debug and release libs *******
+# example: TR_FIND_LIBRARY(UTIL trUtil)  *****************************************
+# ********************************************************************************
+MACRO (TR_FIND_LIBRARY VARNAME MYLIBRARYNAME)
+    TR_FIND_LIB(${VARNAME} ${MYLIBRARYNAME} "NO")
+    TR_FIND_LIB(${VARNAME}_DEBUG ${MYLIBRARYNAME} "YES")
+ENDMACRO ()
+
+TR_FIND_LIBRARY(APP     trApp)
+TR_FIND_LIBRARY(BASE    trBase)
+TR_FIND_LIBRARY(CORE    trCore)
+TR_FIND_LIBRARY(MANAGER trManager)       
+TR_FIND_LIBRARY(SG      trSG)
+TR_FIND_LIBRARY(UTIL    trUtil)
