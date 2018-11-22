@@ -1,4 +1,4 @@
-# True Reality Open Source Game and Simulation Engine
+﻿# True Reality Open Source Game and Simulation Engine
 # Copyright © 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
@@ -135,3 +135,12 @@ TR_FIND_LIBRARY(CORE    trCore)
 TR_FIND_LIBRARY(MANAGER trManager)       
 TR_FIND_LIBRARY(SG      trSG)
 TR_FIND_LIBRARY(UTIL    trUtil)
+
+# Sets TR_FOUND flag
+SET (${DEPENDENCY}_FOUND "NO")
+IF (${DEPENDENCY}_APP_LIBRARY_FOUND AND ${DEPENDENCY}_BASE_LIBRARY_FOUND AND ${DEPENDENCY}_CORE_LIBRARY_FOUND AND ${DEPENDENCY}_MANAGER_LIBRARY_FOUND AND ${DEPENDENCY}_SG_LIBRARY_FOUND AND ${DEPENDENCY}_UTIL_LIBRARY_FOUND )
+    
+    # All the library header folders should be in the same place, so we can just use the Core libraries path
+    SET(${DEPENDENCY}_INCLUDE_DIR ${DEPENDENCY}_CORE_INCLUDE_DIR)   
+    SET (${DEPENDENCY}_FOUND "YES")
+ENDIF ()
