@@ -29,85 +29,82 @@
 #include <iostream>
 #include <iomanip>
 
-namespace trUtil
-{
-    namespace Logging
+namespace trUtil::Logging
+{    
+    ////////////////////////////////////////////////////////////////////////////////
+    LogWriterConsole::LogWriterConsole()
     {
-        ////////////////////////////////////////////////////////////////////////////////
-        LogWriterConsole::LogWriterConsole()
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    LogWriterConsole::~LogWriterConsole()
+    {
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void LogWriterConsole::LogMessage(const LogData& logData)
+    {
+        // Change the color of the text on the screen according to the Logging Level
+        switch (logData.logLevel)
         {
+        case Logging::LogLevel::LOG_DEBUG:
+            Console::TextColor(Console::TXT_COLOR::BRIGHT_MAGENTA);
+            break;
+
+        case Logging::LogLevel::LOG_INFO:
+            Console::TextColor(Console::TXT_COLOR::BRIGHT_GREEN);
+            break;
+
+        case Logging::LogLevel::LOG_ERROR:
+            Console::TextColor(Console::TXT_COLOR::BRIGHT_RED);
+            break;
+
+        case Logging::LogLevel::LOG_WARNING:
+            Console::TextColor(Console::TXT_COLOR::BRIGHT_YELLOW);
+            break;
+
+        case Logging::LogLevel::LOG_ALWAYS:
+            Console::TextColor(Console::TXT_COLOR::DEFAULT);
+            break;
         }
-
-        ////////////////////////////////////////////////////////////////////////////////
-        LogWriterConsole::~LogWriterConsole()
-        {
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        void LogWriterConsole::LogMessage(const LogData& logData)
-        {
-            // Change the color of the text on the screen according to the Logging Level
-            switch (logData.logLevel)
-            {
-            case Logging::LogLevel::LOG_DEBUG:
-                Console::TextColor(Console::TXT_COLOR::BRIGHT_MAGENTA);
-                break;
-
-            case Logging::LogLevel::LOG_INFO:
-                Console::TextColor(Console::TXT_COLOR::BRIGHT_GREEN);
-                break;
-
-            case Logging::LogLevel::LOG_ERROR:
-                Console::TextColor(Console::TXT_COLOR::BRIGHT_RED);
-                break;
-
-            case Logging::LogLevel::LOG_WARNING:
-                Console::TextColor(Console::TXT_COLOR::BRIGHT_YELLOW);
-                break;
-
-            case Logging::LogLevel::LOG_ALWAYS:
-                Console::TextColor(Console::TXT_COLOR::DEFAULT);
-                break;
-            }
 
             
 
-            // Print out the time, the message, the log level, then where it came from
-            std::cerr << "[" << logData.time.ToString(trUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT);
+        // Print out the time, the message, the log level, then where it came from
+        std::cerr << "[" << logData.time.ToString(trUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT);
 
-            if (logData.frameNumber > 0)
-            {
-                std::cerr << " Frm# " << logData.frameNumber;
-            }
-
-            std::cerr << " " << trUtil::Logging::Log::GetLogLevelString(logData.logLevel) << "] ";
-
-            std::cerr << logData.msg << " [";
-
-            if (!logData.logName.empty())
-            {
-                std::cerr << "'" << logData.logName << "' ";
-            }
-
-            if (!logData.method.empty())
-            {
-                std::cerr << logData.method << "()";
-            }
-
-            if (!logData.file.empty())
-            {
-                std::cerr << " " << logData.file;
-
-                if (logData.line > 0)
-                {
-                    std::cerr << "(" << logData.line << ")";
-                }
-            }
-
-            std::cerr << "]" << std::endl;
-
-            //Change the color back to normal
-            Console::TextColor(Console::TXT_COLOR::DEFAULT);
+        if (logData.frameNumber > 0)
+        {
+            std::cerr << " Frm# " << logData.frameNumber;
         }
-    }    
+
+        std::cerr << " " << trUtil::Logging::Log::GetLogLevelString(logData.logLevel) << "] ";
+
+        std::cerr << logData.msg << " [";
+
+        if (!logData.logName.empty())
+        {
+            std::cerr << "'" << logData.logName << "' ";
+        }
+
+        if (!logData.method.empty())
+        {
+            std::cerr << logData.method << "()";
+        }
+
+        if (!logData.file.empty())
+        {
+            std::cerr << " " << logData.file;
+
+            if (logData.line > 0)
+            {
+                std::cerr << "(" << logData.line << ")";
+            }
+        }
+
+        std::cerr << "]" << std::endl;
+
+        //Change the color back to normal
+        Console::TextColor(Console::TXT_COLOR::DEFAULT);
+    }
 }

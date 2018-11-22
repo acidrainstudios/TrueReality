@@ -43,6 +43,8 @@ namespace trUtil
      * @class   EnvVariables
      *
      * @brief   An environment variables.
+     *          
+     * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT EnvVariables
     {

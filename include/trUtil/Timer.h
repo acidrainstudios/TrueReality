@@ -48,6 +48,8 @@ namespace trUtil
      * @return  A TR_UTIL_EXPORT.
      *
      * @param   milliseconds    The milliseconds.
+     *                          
+     * @author Maxim Serebrennik
      */
     void TR_UTIL_EXPORT AppSleep(unsigned int milliseconds);
 
@@ -55,6 +57,8 @@ namespace trUtil
      * @class   Timer
      *
      * @brief   Timer class is used for measuring elapsed time or time between two points.
+     *          
+     * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT Timer
     {

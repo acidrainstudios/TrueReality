@@ -38,74 +38,64 @@
  *
  * @brief   .
  */
-namespace trUtil
+namespace trUtil::Logging
 {
-/**
- * @namespace   Logging
- *
- * @brief   .
- */
-    namespace Logging
+    /**
+        * @class   LogWriter
+        *
+        * @brief   Interface class to receive messages from the Log.  Derive and implement
+        *            the LogMessage() method to support custom handling of Log messages.
+        *
+        * @sa  trUtil::Logging::Log::AddWriter()
+        */
+    class TR_UTIL_EXPORT LogWriter : public osg::Referenced
     {
+    public:
+
         /**
-         * @class   LogWriter
-         *
-         * @brief   Interface class to receive messages from the Log.  Derive and implement
-         *            the LogMessage() method to support custom handling of Log messages.
-         *
-         * @sa  trUtil::Logging::Log::AddWriter()
-         */
-        class TR_UTIL_EXPORT LogWriter : public osg::Referenced
+            * @struct  LogData
+            *
+            * @brief   A log data.
+            */
+        struct LogData
         {
-        public:
-
             /**
-             * @struct  LogData
-             *
-             * @brief   A log data.
-             */
-            struct LogData
-            {
-                /**
-                 * @fn  LogData() : logLevel(trUtil::Logging::LogLevel::LOG_DEBUG) , frameNumber() , line()
-                 *
-                 * @brief   Default constructor.
-                 */
-                LogData()
-                : logLevel(trUtil::Logging::LogLevel::LOG_DEBUG)
-                , frameNumber()
-                , line(){};
+                * @fn  LogData() : logLevel(trUtil::Logging::LogLevel::LOG_DEBUG) , frameNumber() , line()
+                *
+                * @brief   Default constructor.
+                */
+            LogData()
+            : logLevel(trUtil::Logging::LogLevel::LOG_DEBUG)
+            , frameNumber()
+            , line(){};
 
-                trUtil::Logging::LogLevel logLevel; ///<Log level
-                trUtil::DateTime time;    ///<Time of message
-                unsigned frameNumber;
-                std::string logName;      ///<The name of the Log instance (could be empty)
-                std::string file;         ///<The source file of the message
-                std::string method;       ///<The callng method of the message
-                int line;                 ///<The line number of the source code of the message
-                std::string msg;          ///<The message itself
-            };
-
-            /**
-             * @fn  virtual void LogWriter::LogMessage(const LogData& logData) = 0;
-             *
-             * @brief   Logs a message.
-             *
-             * @param   logData Information describing the log.
-             */
-            virtual void LogMessage(const LogData& logData) = 0;
-
-        protected:
-
-            /**
-             * @fn  virtual LogWriter::~LogWriter()
-             *
-             * @brief   Destructor.
-             */
-            virtual ~LogWriter() {}
-
+            trUtil::Logging::LogLevel logLevel; ///<Log level
+            trUtil::DateTime time;    ///<Time of message
+            unsigned frameNumber;
+            std::string logName;      ///<The name of the Log instance (could be empty)
+            std::string file;         ///<The source file of the message
+            std::string method;       ///<The callng method of the message
+            int line;                 ///<The line number of the source code of the message
+            std::string msg;          ///<The message itself
         };
-    }    
+
+        /**
+            * @fn  virtual void LogWriter::LogMessage(const LogData& logData) = 0;
+            *
+            * @brief   Logs a message.
+            *
+            * @param   logData Information describing the log.
+            */
+        virtual void LogMessage(const LogData& logData) = 0;
+
+    protected:
+
+        /**
+            * @fn  virtual LogWriter::~LogWriter()
+            *
+            * @brief   Destructor.
+            */
+        virtual ~LogWriter() {}
+
+    };  
 }
-
-

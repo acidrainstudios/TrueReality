@@ -28,10 +28,7 @@
 */
 #include <trUtil/Bits.h>
 
-namespace trUtil
+namespace trUtil::Bits
 {
-    namespace Bits
-    {
-        //Left Empty for reporting tools
-    }
+    //Left Empty for reporting tools
 }

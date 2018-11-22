@@ -44,6 +44,8 @@ namespace trUtil
      * @brief   A string wrapper that will make sure that all of the strings with the same value will
      *          point to the same memory.  The strings are only accessible as const, but a new string
      *          may be assigned to the reference string.
+     *          
+     * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT RefStr
     {

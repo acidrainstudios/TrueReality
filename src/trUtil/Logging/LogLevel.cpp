@@ -26,51 +26,48 @@
 
 #include <trUtil/Logging/LogLevel.h>
 
-namespace trUtil
+namespace trUtil::Logging
 {
-    namespace Logging
+    //////////////////////////////////////////////////////////////////////////
+    LogLevel LogLevelFromString(const std::string& levelString)
     {
-        //////////////////////////////////////////////////////////////////////////
-        LogLevel LogLevelFromString(const std::string& levelString)
+        if (levelString == LOG_ALWAYS_STR)
         {
-            if (levelString == LOG_ALWAYS_STR)
-            {
-                return LogLevel::LOG_ALWAYS;
-            }
-            else if (levelString == LOG_ERROR_STR)
-            {
-                return LogLevel::LOG_ERROR;
-            }
-            else if (levelString == LOG_WARNING_STR)
-            {
-                return LogLevel::LOG_WARNING;
-            }
-            else if (levelString == LOG_INFO_STR)
-            {
-                return LogLevel::LOG_INFO;
-            }
-            else if (levelString == LOG_DEBUG_STR)
-            {
-                return LogLevel::LOG_DEBUG;
-            }
-            else
-            {
-                return LogLevel::LOG_WARNING;
-            }
+            return LogLevel::LOG_ALWAYS;
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        const std::string& LogLevelToString(LogLevel logLevel)
+        else if (levelString == LOG_ERROR_STR)
         {
-            switch (logLevel)
-            {
-            case LogLevel::LOG_ALWAYS:  return LOG_ALWAYS_STR;
-            case LogLevel::LOG_ERROR:   return LOG_ERROR_STR;
-            case LogLevel::LOG_WARNING: return LOG_WARNING_STR;
-            case LogLevel::LOG_INFO:    return LOG_INFO_STR;
-            case LogLevel::LOG_DEBUG:   return LOG_DEBUG_STR;
-            default:                    return LOG_WARNING_STR;
-            }
+            return LogLevel::LOG_ERROR;
+        }
+        else if (levelString == LOG_WARNING_STR)
+        {
+            return LogLevel::LOG_WARNING;
+        }
+        else if (levelString == LOG_INFO_STR)
+        {
+            return LogLevel::LOG_INFO;
+        }
+        else if (levelString == LOG_DEBUG_STR)
+        {
+            return LogLevel::LOG_DEBUG;
+        }
+        else
+        {
+            return LogLevel::LOG_WARNING;
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const std::string& LogLevelToString(LogLevel logLevel)
+    {
+        switch (logLevel)
+        {
+        case LogLevel::LOG_ALWAYS:  return LOG_ALWAYS_STR;
+        case LogLevel::LOG_ERROR:   return LOG_ERROR_STR;
+        case LogLevel::LOG_WARNING: return LOG_WARNING_STR;
+        case LogLevel::LOG_INFO:    return LOG_INFO_STR;
+        case LogLevel::LOG_DEBUG:   return LOG_DEBUG_STR;
+        default:                    return LOG_WARNING_STR;
         }
     }
 }

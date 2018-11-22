@@ -27,55 +27,52 @@
  *
  * @brief   .
  */
-namespace trUtil
+namespace trUtil::Console
 {
-/**
- * @namespace   Console
- *
- * @brief   .
- */
-    namespace Console
+    /**
+        * @enum    TXT_COLOR
+        *
+        * @brief   Color Modes for the Console Window
+        *          
+        * @author Maxim Serebrennik
+        */
+    enum TR_UTIL_EXPORT TXT_COLOR
     {
-        /**
-         * @enum    TXT_COLOR
-         *
-         * @brief   Color Modes for the Console Window
-         */
-        enum TR_UTIL_EXPORT TXT_COLOR
-        {
-            DEFAULT,
-            BRIGHT_RED,
-            RED,
-            BRIGHT_GREEN,
-            GREEN,
-            BRIGHT_BLUE,
-            BLUE,
-            BRIGHT_YELLOW,
-            YELLOW,
-            WHITE,
-            BRIGHT_CYAN,
-            CYAN,
-            BRIGHT_MAGENTA,
-            MAGENTA,
-            GRAY
-        };
+        DEFAULT,
+        BRIGHT_RED,
+        RED,
+        BRIGHT_GREEN,
+        GREEN,
+        BRIGHT_BLUE,
+        BLUE,
+        BRIGHT_YELLOW,
+        YELLOW,
+        WHITE,
+        BRIGHT_CYAN,
+        CYAN,
+        BRIGHT_MAGENTA,
+        MAGENTA,
+        GRAY
+    };
 
-        /**
-         * @fn  void TextColor(TXT_COLOR TextColor);
-         *
-         * @brief   Changes Text color in the console window....
-         *
-         * @param   TextColor   The text color.
-         */
-        void TR_UTIL_EXPORT TextColor(TXT_COLOR TextColor);
+    /**
+        * @fn  void TextColor(TXT_COLOR TextColor);
+        *
+        * @brief   Changes Text color in the console window....
+        *          
+        * @author Maxim Serebrennik
+        *
+        * @param   TextColor   The text color.
+        */
+    void TR_UTIL_EXPORT TextColor(TXT_COLOR TextColor);
 
-        /**
-         * @fn  void PrintAllColors();
-         *
-         * @brief   Prints an example of all available colors This is usually used for testing and
-         *          development.
-         */
-        void TR_UTIL_EXPORT PrintAllColors();
-    }
+    /**
+        * @fn  void PrintAllColors();
+        *
+        * @brief   Prints an example of all available colors This is usually used for testing and
+        *          development.
+        *          
+        * @author Maxim Serebrennik
+        */
+    void TR_UTIL_EXPORT PrintAllColors();    
 }
-

@@ -35,52 +35,42 @@
  *
  * @brief   .
  */
-namespace trUtil
+namespace trUtil::Logging
 {
-/**
- * @namespace   Logging
- *
- * @brief   .
- */
-    namespace Logging
+    /**
+        * @class   LogWriterConsole
+        *
+        * @brief   Specialized LogWriter used to display Log messages in the console window.
+        *
+        * @sa  Log::AddObserver()
+        */
+    class TR_UTIL_EXPORT LogWriterConsole : public Logging::LogWriter
     {
+    public:
+
         /**
-         * @class   LogWriterConsole
-         *
-         * @brief   Specialized LogWriter used to display Log messages in the console window.
-         *
-         * @sa  Log::AddObserver()
-         */
-        class TR_UTIL_EXPORT LogWriterConsole : public Logging::LogWriter
-        {
-        public:
+            * @fn  LogWriterConsole::LogWriterConsole();
+            *
+            * @brief   Default constructor.
+            */
+        LogWriterConsole();
 
-            /**
-             * @fn  LogWriterConsole::LogWriterConsole();
-             *
-             * @brief   Default constructor.
-             */
-            LogWriterConsole();
+        /**
+            * @fn  virtual void LogWriterConsole::LogMessage(const LogData& logData);
+            *
+            * @brief   Logs a message.
+            *
+            * @param   logData Information describing the log.
+            */
+        virtual void LogMessage(const LogData& logData);
 
-            /**
-             * @fn  virtual void LogWriterConsole::LogMessage(const LogData& logData);
-             *
-             * @brief   Logs a message.
-             *
-             * @param   logData Information describing the log.
-             */
-            virtual void LogMessage(const LogData& logData);
+    protected:
 
-        protected:
-
-            /**
-             * @fn  virtual LogWriterConsole::~LogWriterConsole();
-             *
-             * @brief   Destructor.
-             */
-            virtual ~LogWriterConsole();
-        };
-    }    
+        /**
+            * @fn  virtual LogWriterConsole::~LogWriterConsole();
+            *
+            * @brief   Destructor.
+            */
+        virtual ~LogWriterConsole();
+    };
 }
-
-
