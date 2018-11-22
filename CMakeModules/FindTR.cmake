@@ -38,30 +38,34 @@
 # TR_LIBRARY_DIR - Holds the paths to all found libraries ************************
 # ********************************************************************************
 # TR_APP_LIBRARY           - Holds the path to the trApp library *****************
-# TR_APP_LIBRARY_DEBUG     - Holds the path to the trApp debug library ***********
+# TR_APP_DEBUG_LIBRARY     - Holds the path to the trApp debug library ***********
 # TR_BASE_LIBRARY          - Holds the path to the trBase library ****************
-# TR_BASE_LIBRARY_DEBUG    - Holds the path to the trBase debug library **********
+# TR_BASE_DEBUG_LIBRARY    - Holds the path to the trBase debug library **********
 # TR_CORE_LIBRARY          - Holds the path to the trCore library ****************
-# TR_CORE_LIBRARY_DEBUG    - Holds the path to the trCore debug library **********
+# TR_CORE_DEBUG_LIBRARY    - Holds the path to the trCore debug library **********
 # TR_MANAGER_LIBRARY       - Holds the path to the trManager library *************
-# TR_MANAGER_LIBRARY_DEBUG - Holds the path to the trManager debug library *******
+# TR_MANAGER_DEBUG_LIBRARY - Holds the path to the trManager debug library *******
 # TR_SG_LIBRARY            - Holds the path to the trSG library ******************
-# TR_SG_LIBRARY_DEBUG      - Holds the path to the trSG debug library ************
+# TR_SG_DEBUG_LIBRARY      - Holds the path to the trSG debug library ************
 # TR_UTIL_LIBRARY          - Holds the path to the trUtil library ****************
-# TR_UTIL_LIBRARY_DEBUG    - Holds the path to the trUtil debug library **********
+# TR_UTIL_DEBUG_LIBRARY    - Holds the path to the trUtil debug library **********
 # ********************************************************************************
 # TR_APP_LIBRARY_FOUND           - Defined if the library is found ***************
-# TR_APP_LIBRARY_DEBUG_FOUND     - Defined if the library is found ***************
+# TR_APP_DEBUG_LIBRARY_FOUND     - Defined if the library is found ***************
 # TR_BASE_LIBRARY_FOUND          - Defined if the library is found ***************
-# TR_BASE_LIBRARY_DEBUG_FOUND    - Defined if the library is found ***************
+# TR_BASE_DEBUG_LIBRARY_FOUND    - Defined if the library is found ***************
 # TR_CORE_LIBRARY_FOUND          - Defined if the library is found ***************
-# TR_CORE_LIBRARY_DEBUG_FOUND    - Defined if the library is found ***************
+# TR_CORE_DEBUG_LIBRARY_FOUND    - Defined if the library is found ***************
 # TR_MANAGER_LIBRARY_FOUND       - Defined if the library is found ***************
-# TR_MANAGER_LIBRARY_DEBUG_FOUND - Defined if the library is found ***************
+# TR_MANAGER_DEBUG_LIBRARY_FOUND - Defined if the library is found ***************
 # TR_SG_LIBRARY_FOUND            - Defined if the library is found ***************
-# TR_SG_LIBRARY_DEBUG_FOUND      - Defined if the library is found ***************
+# TR_SG_DEBUG_LIBRARY_FOUND      - Defined if the library is found ***************
 # TR_UTIL_LIBRARY_FOUND          - Defined if the library is found ***************
-# TR_UTIL_LIBRARY_DEBUG_FOUND    - Defined if the library is found ***************
+# TR_UTIL_DEBUG_LIBRARY_FOUND    - Defined if the library is found ***************
 # ********************************************************************************
 
 SET (DEPENDENCY "TR")
+# ********************************************************************************
+# Macro to find header and lib directories ***************************************
+# example: TR_FIND_LIB(UTIL_DEBUG trUtil Export.h) *************************
+# ********************************************************************************
