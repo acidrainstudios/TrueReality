@@ -1,4 +1,4 @@
-﻿# True Reality Open Source Game and Simulation Engine
+# True Reality Open Source Game and Simulation Engine
 # Copyright © 2018 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
@@ -26,7 +26,7 @@
 # ********************************************************************************
 # TR_FOUND - Defined if the dependency is found **********************************
 # ********************************************************************************
-# TR_INCLUDE_DIRS - Holds the paths to the TR Headers ****************************
+# TR_INCLUDE_DIR - Holds the paths to the TR Headers *****************************
 # ********************************************************************************
 # TR_APP_INCLUDE_DIR     - Holds the path to library headers *********************
 # TR_BASE_INCLUDE_DIR    - Holds the path to library headers *********************
@@ -34,8 +34,6 @@
 # TR_MANAGER_INCLUDE_DIR - Holds the path to library headers *********************
 # TR_SG_INCLUDE_DIR      - Holds the path to library headers *********************
 # TR_UTIL_INCLUDE_DIR    - Holds the path to library headers *********************
-# ********************************************************************************
-# TR_LIBRARY_DIR - Holds the paths to all found libraries ************************
 # ********************************************************************************
 # TR_APP_LIBRARY           - Holds the path to the trApp library *****************
 # TR_APP_DEBUG_LIBRARY     - Holds the path to the trApp debug library ***********
@@ -67,8 +65,10 @@
 SET (DEPENDENCY "TR")
 # ********************************************************************************
 # Macro to find header and lib directories ***************************************
-# Example: TR_FIND_LIB(UTIL_DEBUG trUtil "YES") **********************************
+# Example 1: TR_FIND_LIB(UTIL_DEBUG trUtil "YES") ********************************
 # Searches for trUtild library and sets TR_UTIL_DEBUG_LIBRARY_FOUND **************
+# Example 2: TR_FIND_LIB(UTIL trUtil "NO") ***************************************
+# Searches for trUtil library and sets TR_UTIL_LIBRARY_FOUND *********************
 # ********************************************************************************
 MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
     FIND_PATH(${DEPENDENCY}_${VARNAME}_INCLUDE_DIR ${MYLIBRARYNAME}/Export.h
@@ -119,13 +119,16 @@ ENDMACRO ()
 
 # ********************************************************************************
 # Macro to find header and lib directories for both debug and release libs *******
-# example: TR_FIND_LIBRARY(UTIL trUtil)  *****************************************
+# Example: TR_FIND_LIBRARY(UTIL trUtil)  *****************************************
+# Searches for trUtild library, if found sets TR_UTIL_DEBUG_LIBRARY_FOUND and ****
+# for trUtil library setting TR_UTIL_LIBRARY_FOUND *******************************
 # ********************************************************************************
 MACRO (TR_FIND_LIBRARY VARNAME MYLIBRARYNAME)
     TR_FIND_LIB(${VARNAME} ${MYLIBRARYNAME} "NO")
     TR_FIND_LIB(${VARNAME}_DEBUG ${MYLIBRARYNAME} "YES")
 ENDMACRO ()
 
+# Find the individual libraries
 TR_FIND_LIBRARY(APP     trApp)
 TR_FIND_LIBRARY(BASE    trBase)
 TR_FIND_LIBRARY(CORE    trCore)
