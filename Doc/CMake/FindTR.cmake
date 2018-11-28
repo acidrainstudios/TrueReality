@@ -1,4 +1,4 @@
-﻿# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 #
 # @author Acid Rain Studios LLC
@@ -165,5 +165,7 @@ IF (${DEPENDENCY}_FOUND)
         ELSE ()
             SET (${DEPENDENCY}_FOUND "YES")
         ENDIF ()
+    ELSE ()
+        SET (${DEPENDENCY}_FOUND "YES")
     ENDIF ()
 ENDIF ()
