@@ -1,4 +1,4 @@
-# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+﻿# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 #
 # @author Acid Rain Studios LLC
@@ -129,4 +129,41 @@ IF (${DEPENDENCY}_APP_LIBRARY_FOUND AND ${DEPENDENCY}_BASE_LIBRARY_FOUND AND ${D
     # All the library header folders should be in the same place, so we can just use the Core libraries path
     SET(${DEPENDENCY}_INCLUDE_DIR ${${DEPENDENCY}_CORE_INCLUDE_DIR})   
     SET (${DEPENDENCY}_FOUND "YES")
+ENDIF ()
+
+# Detect what version of True Reality was found, if any
+IF (${DEPENDENCY}_FOUND)
+    SET (TR_VERSION_FILE "${${DEPENDENCY}_INCLUDE_DIR}/../Data/Config/Version.trver")
+    FILE (READ ${TR_VERSION_FILE} TR_VERSION_CONTENT)
+
+    IF ("${TR_VERSION_CONTENT}" STREQUAL "")
+        MESSAGE("Missing the version file")
+    ENDIF ()
+
+    STRING (REGEX MATCH "Build\" : ([0-9]+)" TR_VERSION_TWEAK ${TR_VERSION_CONTENT})
+    STRING (REGEX MATCH "Major\" : ([0-9]+)" TR_VERSION_MAJOR ${TR_VERSION_CONTENT})
+    STRING (REGEX MATCH "Minor\" : ([0-9]+)" TR_VERSION_MINOR ${TR_VERSION_CONTENT})
+    STRING (REGEX MATCH "YYMM\" : \"([0-9]+)" TR_VERSION_PATCH ${TR_VERSION_CONTENT})
+    STRING (REGEX REPLACE "([^0-9]+)([0-9]+)" "\\2" TR_VERSION_TWEAK ${TR_VERSION_TWEAK})
+    STRING (REGEX REPLACE "([^0-9]+)([0-9]+)" "\\2" TR_VERSION_MAJOR ${TR_VERSION_MAJOR})
+    STRING (REGEX REPLACE "([^0-9]+)([0-9]+)" "\\2" TR_VERSION_MINOR ${TR_VERSION_MINOR})
+    STRING (REGEX REPLACE "([^0-9]+)([0-9]+)" "\\2" TR_VERSION_PATCH ${TR_VERSION_PATCH})
+
+    SET (TR_VERSION ${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_PATCH}.${TR_VERSION_TWEAK})
+    SET (TR_SOVERSION ${TR_VERSION_MAJOR}${TR_VERSION_MINOR})
+
+    MESSAGE (STATUS "True Reality Engine version is ${${DEPENDENCY}_VERSION}")
+
+    # Check if we have the right version 
+    IF (${DEPENDENCY}_FIND_VERSION)
+        IF ("${${DEPENDENCY}_VERSION}" VERSION_LESS "${${DEPENDENCY}_FIND_VERSION}")
+            SET (${DEPENDENCY}_FOUND "NO")
+            MESSAGE ("Detected version of ${DEPENDENCY} is too low. Requested version was ${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}.${${DEPENDENCY}_FIND_VERSION_TWEAK}")
+        ELSEIF (${DEPENDENCY}_FIND_VERSION_EXACT AND NOT "$${DEPENDENCY}_VERSION}" VERSION_EQUAL "${${DEPENDENCY}_FIND_VERSION}")
+            MESSAGE ("Detected version of ${DEPENDENCY} does not equal the requested. Requested version was ${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}.${${DEPENDENCY}_FIND_VERSION_TWEAK} and the detected one is ${${DEPENDENCY}_VERSION}")
+            SET (${DEPENDENCY}_FOUND "NO")
+        ELSE ()
+            SET (${DEPENDENCY}_FOUND "YES")
+        ENDIF ()
+    ENDIF ()
 ENDIF ()
