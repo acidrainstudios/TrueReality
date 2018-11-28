@@ -1,4 +1,4 @@
-# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+﻿# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 #
 # @author Acid Rain Studios LLC
@@ -122,17 +122,14 @@ TR_FIND_LIBRARY(MANAGER trManager)
 TR_FIND_LIBRARY(SG      trSG)
 TR_FIND_LIBRARY(UTIL    trUtil)
 
-# Sets TR_FOUND flag
+# Sets TR_FOUND flag if we have TR of the version the user asked for
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_APP_LIBRARY_FOUND AND ${DEPENDENCY}_BASE_LIBRARY_FOUND AND ${DEPENDENCY}_CORE_LIBRARY_FOUND AND ${DEPENDENCY}_MANAGER_LIBRARY_FOUND AND ${DEPENDENCY}_SG_LIBRARY_FOUND AND ${DEPENDENCY}_UTIL_LIBRARY_FOUND )
     
     # All the library header folders should be in the same place, so we can just use the Core libraries path
     SET(${DEPENDENCY}_INCLUDE_DIR ${${DEPENDENCY}_CORE_INCLUDE_DIR})   
-    SET (${DEPENDENCY}_FOUND "YES")
-ENDIF ()
 
-# Detect what version of True Reality was found, if any
-IF (${DEPENDENCY}_FOUND)
+    # Detect what version of True Reality was found, if any
     SET (TR_VERSION_FILE "${${DEPENDENCY}_INCLUDE_DIR}/../Data/Config/Version.trver")
     FILE (READ ${TR_VERSION_FILE} TR_VERSION_CONTENT)
 
@@ -140,6 +137,7 @@ IF (${DEPENDENCY}_FOUND)
         MESSAGE("Missing the version file")
     ENDIF ()
 
+    # Parse the version file
     STRING (REGEX MATCH "Build\" : ([0-9]+)" TR_VERSION_TWEAK ${TR_VERSION_CONTENT})
     STRING (REGEX MATCH "Major\" : ([0-9]+)" TR_VERSION_MAJOR ${TR_VERSION_CONTENT})
     STRING (REGEX MATCH "Minor\" : ([0-9]+)" TR_VERSION_MINOR ${TR_VERSION_CONTENT})
