@@ -1,4 +1,4 @@
-﻿# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 #
 # @author Acid Rain Studios LLC
@@ -8,7 +8,7 @@
 # Finds the True Reality libraries. **********************************************
 # ********************************************************************************
 # ********************************************************************************
-# Creates and sets variables to use through out cmake **************************** 
+# Creates and sets variables to use through out cmake ****************************
 # ********************************************************************************
 # TR_FOUND - Defined if the dependency is found **********************************
 # ********************************************************************************
@@ -104,7 +104,7 @@ MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
         ~/Library/Frameworks
         /Library/Frameworks
     )
-    MARK_AS_ADVANCED (${DEPENDENCY}_${VARNAME}_LIBRARY)  
+    MARK_AS_ADVANCED (${DEPENDENCY}_${VARNAME}_LIBRARY)
 
     IF (${DEPENDENCY}_${VARNAME}_LIBRARY AND ${DEPENDENCY}_${VARNAME}_INCLUDE_DIR)
         SET (${DEPENDENCY}_${VARNAME}_LIBRARY_FOUND "YES")
@@ -126,16 +126,16 @@ ENDMACRO ()
 TR_FIND_LIBRARY(APP     trApp)
 TR_FIND_LIBRARY(BASE    trBase)
 TR_FIND_LIBRARY(CORE    trCore)
-TR_FIND_LIBRARY(MANAGER trManager)       
+TR_FIND_LIBRARY(MANAGER trManager)
 TR_FIND_LIBRARY(SG      trSG)
 TR_FIND_LIBRARY(UTIL    trUtil)
 
 # Sets TR_FOUND flag if we have TR of the version the user asked for
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_APP_LIBRARY_FOUND AND ${DEPENDENCY}_BASE_LIBRARY_FOUND AND ${DEPENDENCY}_CORE_LIBRARY_FOUND AND ${DEPENDENCY}_MANAGER_LIBRARY_FOUND AND ${DEPENDENCY}_SG_LIBRARY_FOUND AND ${DEPENDENCY}_UTIL_LIBRARY_FOUND )
-    
+ 
     # All the library header folders should be in the same place, so we can just use the Core libraries path
-    SET(${DEPENDENCY}_INCLUDE_DIR ${${DEPENDENCY}_CORE_INCLUDE_DIR})   
+    SET(${DEPENDENCY}_INCLUDE_DIR ${${DEPENDENCY}_CORE_INCLUDE_DIR})
 
     # Detect what version of True Reality was found, if any
     SET (TR_VERSION_FILE "${${DEPENDENCY}_INCLUDE_DIR}/../Data/Config/Version.trver")
@@ -160,7 +160,7 @@ IF (${DEPENDENCY}_APP_LIBRARY_FOUND AND ${DEPENDENCY}_BASE_LIBRARY_FOUND AND ${D
 
     MESSAGE (STATUS "True Reality Engine version is ${${DEPENDENCY}_VERSION}")
 
-    # Check if we have the right version 
+    # Check if we have the right version
     IF (${DEPENDENCY}_FIND_VERSION)
         IF ("${${DEPENDENCY}_VERSION}" VERSION_LESS "${${DEPENDENCY}_FIND_VERSION}")
             SET (${DEPENDENCY}_FOUND "NO")
