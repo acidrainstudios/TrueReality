@@ -63,6 +63,10 @@ MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
         $ENV{TR_ROOT}/include
         $ENV{TR_ROOT}
         PATHS
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/include
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/include
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
         /usr/include
         /usr/local/include
         /opt/include
@@ -85,6 +89,10 @@ MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
         $ENV{TR_ROOT}/lib
         $ENV{TR_ROOT}
         PATHS
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/lib
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/lib
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
         /usr/lib64
         /usr/lib
         /usr/local/lib64
