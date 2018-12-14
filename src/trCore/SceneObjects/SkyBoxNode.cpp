@@ -25,67 +25,64 @@
 #include <osgDB/ReadFile>
 #include <osgUtil/CullVisitor>
 
-namespace trCore
+namespace trCore::SceneObjects
 {
-    namespace SceneObjects
+    //////////////////////////////////////////////////////////////////////////
+    SkyBoxNode::SkyBoxNode()
+    {           
+        setCullingActive(false);
+        getOrCreateStateSet()->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+        getStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+        getStateSet()->setRenderBinDetails(INT_MIN, "RenderBin");
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    bool SkyBoxNode::computeLocalToWorldMatrix(osg::Matrix & matrix, osg::NodeVisitor * nv) const
     {
-        //////////////////////////////////////////////////////////////////////////
-        SkyBoxNode::SkyBoxNode()
-        {           
-            setCullingActive(false);
-            getOrCreateStateSet()->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
-            getStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
-            getStateSet()->setRenderBinDetails(INT_MIN, "RenderBin");
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool SkyBoxNode::computeLocalToWorldMatrix(osg::Matrix & matrix, osg::NodeVisitor * nv) const
+        if (nv && nv->getVisitorType() == osg::NodeVisitor::CULL_VISITOR)
         {
-            if (nv && nv->getVisitorType() == osg::NodeVisitor::CULL_VISITOR)
-            {
-                osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
-                matrix.preMult(osg::Matrix::translate(cv->getEyeLocal()));
-                return true;
-            }
-            else
-            {
-                return BaseClass::computeLocalToWorldMatrix(matrix, nv);
-            }
+            osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
+            matrix.preMult(osg::Matrix::translate(cv->getEyeLocal()));
+            return true;
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        bool SkyBoxNode::computeWorldToLocalMatrix(osg::Matrix & matrix, osg::NodeVisitor * nv) const
+        else
         {
-            if (nv && nv->getVisitorType() == osg::NodeVisitor::CULL_VISITOR)
-            {
-                osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
-                matrix.postMult(osg::Matrix::translate(cv->getEyeLocal()));
-                return true;
-            }
-            else
-            {
-                return BaseClass::computeWorldToLocalMatrix(matrix, nv);
-            }
+            return BaseClass::computeLocalToWorldMatrix(matrix, nv);
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        bool SkyBoxNode::LoadFile(std::string fileName)
+    //////////////////////////////////////////////////////////////////////////
+    bool SkyBoxNode::computeWorldToLocalMatrix(osg::Matrix & matrix, osg::NodeVisitor * nv) const
+    {
+        if (nv && nv->getVisitorType() == osg::NodeVisitor::CULL_VISITOR)
         {
-            mNode = osgDB::readNodeFile(fileName);
-            if (mNode.Valid())
-            {
-                addChild(mNode);
-                return true;
-            }
-            else
-            {
-                return false;
-            }            
+            osgUtil::CullVisitor* cv = static_cast<osgUtil::CullVisitor*>(nv);
+            matrix.postMult(osg::Matrix::translate(cv->getEyeLocal()));
+            return true;
         }
+        else
+        {
+            return BaseClass::computeWorldToLocalMatrix(matrix, nv);
+        }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        SkyBoxNode::~SkyBoxNode()
+    //////////////////////////////////////////////////////////////////////////
+    bool SkyBoxNode::LoadFile(std::string fileName)
+    {
+        mNode = osgDB::readNodeFile(fileName);
+        if (mNode.Valid())
         {
+            addChild(mNode);
+            return true;
         }
+        else
+        {
+            return false;
+        }            
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    SkyBoxNode::~SkyBoxNode()
+    {
     }
 }

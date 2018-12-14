@@ -30,74 +30,74 @@
 #include <osg/NodeVisitor>
 #include <osg/Transform>
 
-namespace trCore
+namespace trCore::SceneObjects
 {
-    namespace SceneObjects
+
+    /**
+        * @class   SkyBoxNode
+        *          
+        * @author Maxim Serebrennik
+        *
+        * @brief   A sky box class that creates an object that is always positioned around the camera.
+        *          This class can load any geometry, box or dome...
+        */
+    class TR_CORE_EXPORT SkyBoxNode : public osg::Transform
     {
+    public:
+
+        using BaseClass = osg::Transform;           /// Adds an easy and swappable access to the base class
+
         /**
-         * @class   SkyBoxNode
-         *
-         * @brief   A sky box class that creates an object that is always positioned around the camera.
-         *          This class can load any geometry, box or dome...
-         */
-        class TR_CORE_EXPORT SkyBoxNode : public osg::Transform
-        {
-        public:
+            * @fn  SkyBoxNode::SkyBoxNode();
+            *
+            * @brief   Default constructor.
+            */
+        SkyBoxNode();
 
-            using BaseClass = osg::Transform;           /// Adds an easy and swappable access to the base class
+        /**
+            * @fn  virtual bool SkyBoxNode::computeLocalToWorldMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
+            *
+            * @brief   Calculates the local to world matrix.
+            *
+            * @param [in,out]  matrix  The matrix.
+            * @param [in,out]  nv      If non-null, the nv.
+            *
+            * @return  True if it succeeds, false if it fails.
+            */
+        virtual bool computeLocalToWorldMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
 
-            /**
-             * @fn  SkyBoxNode::SkyBoxNode();
-             *
-             * @brief   Default constructor.
-             */
-            SkyBoxNode();
+        /**
+            * @fn  virtual bool SkyBoxNode::computeWorldToLocalMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
+            *
+            * @brief   Calculates the world to local matrix.
+            *
+            * @param [in,out]  matrix  The matrix.
+            * @param [in,out]  nv      If non-null, the nv.
+            *
+            * @return  True if it succeeds, false if it fails.
+            */
+        virtual bool computeWorldToLocalMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
 
-            /**
-             * @fn  virtual bool SkyBoxNode::computeLocalToWorldMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
-             *
-             * @brief   Calculates the local to world matrix.
-             *
-             * @param [in,out]  matrix  The matrix.
-             * @param [in,out]  nv      If non-null, the nv.
-             *
-             * @return  True if it succeeds, false if it fails.
-             */
-            virtual bool computeLocalToWorldMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
+        /**
+            * @fn  bool SkyBoxNode::LoadFile(std::string fileName);
+            *
+            * @brief   Loads a  geometry file. Path and file name should be passed in
+            *
+            * @param   fileName    Filename of the file.
+            *
+            * @return  True if it succeeds, false if it fails.
+            */
+        bool LoadFile(std::string fileName);
 
-            /**
-             * @fn  virtual bool SkyBoxNode::computeWorldToLocalMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
-             *
-             * @brief   Calculates the world to local matrix.
-             *
-             * @param [in,out]  matrix  The matrix.
-             * @param [in,out]  nv      If non-null, the nv.
-             *
-             * @return  True if it succeeds, false if it fails.
-             */
-            virtual bool computeWorldToLocalMatrix(osg::Matrix& matrix, osg::NodeVisitor* nv) const override;
+    protected:
 
-            /**
-             * @fn  bool SkyBoxNode::LoadFile(std::string fileName);
-             *
-             * @brief   Loads a  geometry file. Path and file name should be passed in
-             *
-             * @param   fileName    Filename of the file.
-             *
-             * @return  True if it succeeds, false if it fails.
-             */
-            bool LoadFile(std::string fileName);
+        trBase::SmrtPtr<osg::Node> mNode = nullptr;
 
-        protected:
-
-            trBase::SmrtPtr<osg::Node> mNode = nullptr;
-
-            /**
-             * @fn  SkyBoxNode::~SkyBoxNode();
-             *
-             * @brief   Destructor.
-             */
-            ~SkyBoxNode();
-        };
-    }
+        /**
+            * @fn  SkyBoxNode::~SkyBoxNode();
+            *
+            * @brief   Destructor.
+            */
+        ~SkyBoxNode();
+    };
 }
