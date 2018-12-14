@@ -32,260 +32,257 @@
 
 #include <iostream>
 
-namespace trCore
+namespace trCore::SceneObjects
 {
-    namespace SceneObjects
+    const std::string RingArray::RING_1_FILE_NAME("/RingArray/Ring1.osgb");
+    const std::string RingArray::RING_2_FILE_NAME("/RingArray/Ring2.osgb");
+    const std::string RingArray::RING_3_FILE_NAME("/RingArray/Ring3.osgb");
+    const std::string RingArray::RING_4_FILE_NAME("/RingArray/Ring4.osgb");
+
+    //////////////////////////////////////////////////////////////////////////
+    RingArray::RingArray()
     {
-        const std::string RingArray::RING_1_FILE_NAME("/RingArray/Ring1.osgb");
-        const std::string RingArray::RING_2_FILE_NAME("/RingArray/Ring2.osgb");
-        const std::string RingArray::RING_3_FILE_NAME("/RingArray/Ring3.osgb");
-        const std::string RingArray::RING_4_FILE_NAME("/RingArray/Ring4.osgb");
+        LoadModels();
+        SetupModelTree();
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        RingArray::RingArray()
+    //////////////////////////////////////////////////////////////////////////
+    RingArray::RingArray(double angleCorrection) : RingArray()
+    {
+        mAngleCorrection->setAttitude(*new trBase::Quat(trUtil::Math::Deg2Rad(angleCorrection), trBase::Z_AXIS));
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::Update(double deltaTime)
+    {
+        UpdateRing1Slide(deltaTime);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    RingArray::~RingArray()
+    {
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::LoadModels()
+    {
+        //Creates nodes for the first ring
+        mRing1 = new osg::Group();
+        mRing1->addChild(osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_1_FILE_NAME));
+        mRing1Slide = new osg::PositionAttitudeTransform();
+
+        //Creates nodes for the second ring
+        mRing2Rotation = new osg::PositionAttitudeTransform();
+        mRing2 = new osg::Group();
+        mRing2->addChild(osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_2_FILE_NAME));
+        mRing2Slide = new osg::PositionAttitudeTransform();
+
+        //Creates Nodes for the third ring
+        mRing3Rotation = new osg::PositionAttitudeTransform();
+        mRing3 = new osg::Group();
+        mRing3->addChild(osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_3_FILE_NAME));
+        mRing3Slide = new osg::PositionAttitudeTransform();
+
+        //Creates nodes for the smallest, internal ring. 
+        mRing4Rotation = new osg::PositionAttitudeTransform();
+        mRing4 = osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_4_FILE_NAME);
+
+        //Creates the angle correction transform. 
+        mAngleCorrection = new osg::PositionAttitudeTransform();
+
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::SetupModelTree()
+    {
+        //Create the Ring tree		
+        mRing1->addChild(mRing1Slide);
+        mRing1Slide->addChild(mRing2Rotation);
+        mRing2Rotation->addChild(mRing2);
+        mRing2->addChild(mRing2Slide);
+        mRing2Slide->addChild(mRing3Rotation);
+        mRing3Rotation->addChild(mRing3);
+        mRing3->addChild(mRing3Slide);
+        mRing3Slide->addChild(mRing4Rotation);
+        mRing4Rotation->addChild(mRing4);
+
+        //Add the initial angle correction. 
+        mAngleCorrection->addChild(mRing1);
+
+        //Add the tree to root
+        addChild(mAngleCorrection);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::UpdateRing1Slide(double deltaTime)
+    {
+        if (mRing1SlideDelay > START_DELAY)
         {
-            LoadModels();
-            SetupModelTree();
+            //Calculate the speed
+            if (mRing1SlideSpeed < MAX_RING_SPEED)
+            {
+                mRing1SlideSpeed += RING_ACCEL * deltaTime;
+            }
+
+            //Calculate the new position
+            mRing1SlideAngle += mRing1SlideSpeed * deltaTime;
+
+            if (mRing1SlideAngle > trUtil::Math::TWO_PI)
+            {
+                mRing1SlideAngle -= trUtil::Math::TWO_PI;
+            }
+
+            mRing1Slide->setAttitude(trBase::Quat(mRing1SlideAngle, trBase::X_AXIS));
+
+            UpdateRing2Angle(deltaTime);
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        RingArray::RingArray(double angleCorrection) : RingArray()
+        else
         {
-            mAngleCorrection->setAttitude(*new trBase::Quat(trUtil::Math::Deg2Rad(angleCorrection), trBase::Z_AXIS));
+            mRing1SlideDelay += deltaTime;
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::Update(double deltaTime)
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::UpdateRing2Angle(double deltaTime)
+    {
+        if (mRing2RotationDelay > START_DELAY)
         {
-            UpdateRing1Slide(deltaTime);
+            //Calculate the speed
+            if (mRing2RotationSpeed < MAX_RING_SPEED)
+            {
+                mRing2RotationSpeed += RING_ACCEL * deltaTime;
+            }
+
+            //Calculate the new position
+            mRing2RotationAngle += mRing2RotationSpeed * deltaTime;
+
+            if (mRing2RotationAngle > trUtil::Math::TWO_PI)
+            {
+                mRing2RotationAngle -= trUtil::Math::TWO_PI;
+            }
+
+
+            mRing2Rotation->setAttitude(trBase::Quat(mRing2RotationAngle, trBase::Y_AXIS));
+
+            UpdateRing2Slide(deltaTime);
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        RingArray::~RingArray()
+        else
         {
+            mRing2RotationDelay += deltaTime;
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::LoadModels()
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::UpdateRing2Slide(double deltaTime)
+    {
+        if (mRing2SlideDelay > START_DELAY)
         {
-            //Creates nodes for the first ring
-            mRing1 = new osg::Group();
-            mRing1->addChild(osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_1_FILE_NAME));
-            mRing1Slide = new osg::PositionAttitudeTransform();
+            //Calculate the speed
+            if (mRing2SlideSpeed < MAX_RING_SPEED)
+            {
+                mRing2SlideSpeed += RING_ACCEL * deltaTime;
+            }
 
-            //Creates nodes for the second ring
-            mRing2Rotation = new osg::PositionAttitudeTransform();
-            mRing2 = new osg::Group();
-            mRing2->addChild(osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_2_FILE_NAME));
-            mRing2Slide = new osg::PositionAttitudeTransform();
+            //Calculate the new position
+            mRing2SlideAngle += mRing2SlideSpeed * deltaTime;
 
-            //Creates Nodes for the third ring
-            mRing3Rotation = new osg::PositionAttitudeTransform();
-            mRing3 = new osg::Group();
-            mRing3->addChild(osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_3_FILE_NAME));
-            mRing3Slide = new osg::PositionAttitudeTransform();
+            if (mRing2SlideAngle > trUtil::Math::TWO_PI)
+            {
+                mRing2SlideAngle -= trUtil::Math::TWO_PI;
+            }
 
-            //Creates nodes for the smallest, internal ring. 
-            mRing4Rotation = new osg::PositionAttitudeTransform();
-            mRing4 = osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_4_FILE_NAME);
+            mRing2Slide->setAttitude(trBase::Quat(mRing2SlideAngle, trBase::X_AXIS));
 
-            //Creates the angle correction transform. 
-            mAngleCorrection = new osg::PositionAttitudeTransform();
-
+            UpdateRing3Angle(deltaTime);
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::SetupModelTree()
+        else
         {
-            //Create the Ring tree		
-            mRing1->addChild(mRing1Slide);
-            mRing1Slide->addChild(mRing2Rotation);
-            mRing2Rotation->addChild(mRing2);
-            mRing2->addChild(mRing2Slide);
-            mRing2Slide->addChild(mRing3Rotation);
-            mRing3Rotation->addChild(mRing3);
-            mRing3->addChild(mRing3Slide);
-            mRing3Slide->addChild(mRing4Rotation);
-            mRing4Rotation->addChild(mRing4);
-
-            //Add the initial angle correction. 
-            mAngleCorrection->addChild(mRing1);
-
-            //Add the tree to root
-            addChild(mAngleCorrection);
+            mRing2SlideDelay += deltaTime;
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::UpdateRing1Slide(double deltaTime)
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::UpdateRing3Angle(double deltaTime)
+    {
+        if (mRing3RotationDelay > START_DELAY)
         {
-            if (mRing1SlideDelay > START_DELAY)
+            //Calculate the speed
+            if (mRing3RotationSpeed < MAX_RING_SPEED)
             {
-                //Calculate the speed
-                if (mRing1SlideSpeed < MAX_RING_SPEED)
-                {
-                    mRing1SlideSpeed += RING_ACCEL * deltaTime;
-                }
-
-                //Calculate the new position
-                mRing1SlideAngle += mRing1SlideSpeed * deltaTime;
-
-                if (mRing1SlideAngle > trUtil::Math::TWO_PI)
-                {
-                    mRing1SlideAngle -= trUtil::Math::TWO_PI;
-                }
-
-                mRing1Slide->setAttitude(trBase::Quat(mRing1SlideAngle, trBase::X_AXIS));
-
-                UpdateRing2Angle(deltaTime);
+                mRing3RotationSpeed += RING_ACCEL * deltaTime;
             }
-            else
+
+            //Calculate the new position
+            mRing3RotationAngle += mRing3RotationSpeed * deltaTime;
+
+            if (mRing3RotationAngle > trUtil::Math::TWO_PI)
             {
-                mRing1SlideDelay += deltaTime;
+                mRing3RotationAngle -= trUtil::Math::TWO_PI;
             }
+
+            mRing3Rotation->setAttitude(trBase::Quat(mRing3RotationAngle, trBase::Y_AXIS));
+
+            UpdateRing3Slide(deltaTime);
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::UpdateRing2Angle(double deltaTime)
+        else
         {
-            if (mRing2RotationDelay > START_DELAY)
-            {
-                //Calculate the speed
-                if (mRing2RotationSpeed < MAX_RING_SPEED)
-                {
-                    mRing2RotationSpeed += RING_ACCEL * deltaTime;
-                }
-
-                //Calculate the new position
-                mRing2RotationAngle += mRing2RotationSpeed * deltaTime;
-
-                if (mRing2RotationAngle > trUtil::Math::TWO_PI)
-                {
-                    mRing2RotationAngle -= trUtil::Math::TWO_PI;
-                }
-
-
-                mRing2Rotation->setAttitude(trBase::Quat(mRing2RotationAngle, trBase::Y_AXIS));
-
-                UpdateRing2Slide(deltaTime);
-            }
-            else
-            {
-                mRing2RotationDelay += deltaTime;
-            }
+            mRing3RotationDelay += deltaTime;
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::UpdateRing2Slide(double deltaTime)
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::UpdateRing3Slide(double deltaTime)
+    {
+        if (mRing3SlideDelay > START_DELAY)
         {
-            if (mRing2SlideDelay > START_DELAY)
+            //Calculate the speed
+            if (mRing3SlideSpeed < MAX_RING_SPEED)
             {
-                //Calculate the speed
-                if (mRing2SlideSpeed < MAX_RING_SPEED)
-                {
-                    mRing2SlideSpeed += RING_ACCEL * deltaTime;
-                }
-
-                //Calculate the new position
-                mRing2SlideAngle += mRing2SlideSpeed * deltaTime;
-
-                if (mRing2SlideAngle > trUtil::Math::TWO_PI)
-                {
-                    mRing2SlideAngle -= trUtil::Math::TWO_PI;
-                }
-
-                mRing2Slide->setAttitude(trBase::Quat(mRing2SlideAngle, trBase::X_AXIS));
-
-                UpdateRing3Angle(deltaTime);
+                mRing3SlideSpeed += RING_ACCEL * deltaTime;
             }
-            else
+
+            //Calculate the new position
+            mRing3SlideAngle += mRing3SlideSpeed * deltaTime;
+
+            if (mRing3SlideAngle > trUtil::Math::TWO_PI)
             {
-                mRing2SlideDelay += deltaTime;
+                mRing3SlideAngle -= trUtil::Math::TWO_PI;
             }
+
+            mRing3Slide->setAttitude(trBase::Quat(mRing3SlideAngle, trBase::X_AXIS));
+
+            UpdateRing4Angle(deltaTime);
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::UpdateRing3Angle(double deltaTime)
+        else
         {
-            if (mRing3RotationDelay > START_DELAY)
-            {
-                //Calculate the speed
-                if (mRing3RotationSpeed < MAX_RING_SPEED)
-                {
-                    mRing3RotationSpeed += RING_ACCEL * deltaTime;
-                }
-
-                //Calculate the new position
-                mRing3RotationAngle += mRing3RotationSpeed * deltaTime;
-
-                if (mRing3RotationAngle > trUtil::Math::TWO_PI)
-                {
-                    mRing3RotationAngle -= trUtil::Math::TWO_PI;
-                }
-
-                mRing3Rotation->setAttitude(trBase::Quat(mRing3RotationAngle, trBase::Y_AXIS));
-
-                UpdateRing3Slide(deltaTime);
-            }
-            else
-            {
-                mRing3RotationDelay += deltaTime;
-            }
+            mRing3SlideDelay += deltaTime;
         }
+    }
 
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::UpdateRing3Slide(double deltaTime)
+    //////////////////////////////////////////////////////////////////////////
+    void RingArray::UpdateRing4Angle(double deltaTime)
+    {
+        if (mRing4RotationDelay > START_DELAY)
         {
-            if (mRing3SlideDelay > START_DELAY)
+            //Calculate the speed
+            if (mRing4RotationSpeed < MAX_RING_SPEED)
             {
-                //Calculate the speed
-                if (mRing3SlideSpeed < MAX_RING_SPEED)
-                {
-                    mRing3SlideSpeed += RING_ACCEL * deltaTime;
-                }
-
-                //Calculate the new position
-                mRing3SlideAngle += mRing3SlideSpeed * deltaTime;
-
-                if (mRing3SlideAngle > trUtil::Math::TWO_PI)
-                {
-                    mRing3SlideAngle -= trUtil::Math::TWO_PI;
-                }
-
-                mRing3Slide->setAttitude(trBase::Quat(mRing3SlideAngle, trBase::X_AXIS));
-
-                UpdateRing4Angle(deltaTime);
+                mRing4RotationSpeed += RING_ACCEL * deltaTime;
             }
-            else
+
+            //Calculate the new position
+            mRing4RotationAngle += mRing4RotationSpeed * deltaTime;
+
+            if (mRing4RotationAngle > trUtil::Math::TWO_PI)
             {
-                mRing3SlideDelay += deltaTime;
+                mRing4RotationAngle -= trUtil::Math::TWO_PI;
             }
+
+            mRing4Rotation->setAttitude(trBase::Quat(mRing4RotationAngle, trBase::Y_AXIS));
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        void RingArray::UpdateRing4Angle(double deltaTime)
+        else
         {
-            if (mRing4RotationDelay > START_DELAY)
-            {
-                //Calculate the speed
-                if (mRing4RotationSpeed < MAX_RING_SPEED)
-                {
-                    mRing4RotationSpeed += RING_ACCEL * deltaTime;
-                }
-
-                //Calculate the new position
-                mRing4RotationAngle += mRing4RotationSpeed * deltaTime;
-
-                if (mRing4RotationAngle > trUtil::Math::TWO_PI)
-                {
-                    mRing4RotationAngle -= trUtil::Math::TWO_PI;
-                }
-
-                mRing4Rotation->setAttitude(trBase::Quat(mRing4RotationAngle, trBase::Y_AXIS));
-            }
-            else
-            {
-                mRing4RotationDelay += deltaTime;
-            }
+            mRing4RotationDelay += deltaTime;
         }
     }
 }
