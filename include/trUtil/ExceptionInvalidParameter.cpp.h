@@ -31,6 +31,8 @@ namespace trUtil
      * @class   ExceptionInvalidParameter
      *
      * @brief   Exception used for methods invalid parameters.
+     *
+     * @author  Maxim Serebrennik
      */
     class TR_UTIL_EXPORT ExceptionInvalidParameter : public trUtil::Exception
     {
