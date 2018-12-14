@@ -31,38 +31,38 @@
 namespace trCore::SceneObjects
 {
     /**
-        * @class   RingArrayCallback
-        *          
-        * @author Maxim Serebrennik
-        *
-        * @brief   A ring array callback that is used to rotate the ring array (RingArray.h)
-        */
+     * @class   RingArrayCallback
+     *
+     * @brief   A ring array callback that is used to rotate the ring array (RingArray.h)
+     *
+     * @author  Maxim Serebrennik
+     */
     class TR_CORE_EXPORT RingArrayCallback : public osg::NodeCallback
     {
     public:
 
         /**
-            * @fn  RingArrayCallback::RingArrayCallback();
-            *
-            * @brief   Default constructor.
-            */
+         * @fn  RingArrayCallback::RingArrayCallback();
+         *
+         * @brief   Default constructor.
+         */
         RingArrayCallback();
 
         /**
-            * @fn  RingArrayCallback::~RingArrayCallback();
-            *
-            * @brief   Destructor.
-            */
+         * @fn  RingArrayCallback::~RingArrayCallback();
+         *
+         * @brief   Destructor.
+         */
         ~RingArrayCallback();
 
         /**
-            * @fn  virtual void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr) override;
-            *
-            * @brief   Callback method called by the NodeVisitor when visiting a node.
-            *
-            * @param [in,out]  nodePtr If non-null, the node.
-            * @param [in,out]  nvPtr   If non-null, the nv.
-            */
+         * @fn  virtual void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr) override;
+         *
+         * @brief   Callback method called by the NodeVisitor when visiting a node.
+         *
+         * @param [in,out]  nodePtr If non-null, the node.
+         * @param [in,out]  nvPtr   If non-null, the nv.
+         */
         virtual void operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr) override;
 
     private:
