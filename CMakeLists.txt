@@ -154,3 +154,4 @@ TR_INSTALL_BUILD_OPTIONS ()
 # Displays the current version of True Reality ********************************
 PRINT_TR_VERSION ()
 MESSAGE(STATUS "True Reality Source directory: ${CMAKE_CURRENT_SOURCE_DIR}")
+MESSAGE(STATUS "True Reality Build directory: ${PROJECT_BINARY_DIR}")
