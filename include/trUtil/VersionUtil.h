@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright ï¿½ 2018 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -57,6 +57,16 @@ namespace trUtil
          * @brief   ctor.
          */
         VersionUtil();
+
+        /**
+         * @fn  VersionUtil::VersionUtil(std::string fileName, std::string filePath);
+         *
+         * @brief   Constructor.
+         *
+         * @param   fileName    Filename of the custom version file.
+         * @param   filePath    Full path to where the version file is located. 
+         */
+        VersionUtil(std::string fileName, std::string filePath);
 
         /**
          * @fn  VersionUtil::~VersionUtil();

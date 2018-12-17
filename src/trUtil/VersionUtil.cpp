@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright ï¿½ 2018 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -63,6 +63,28 @@ namespace trUtil
         }
     }
     
+    //////////////////////////////////////////////////////////////////////////
+    VersionUtil::VersionUtil(std::string fileName, std::string filePath)
+    {
+        mVersion.SetFileName(fileName);
+        mVersion.SetFilePath(filePath);
+
+        //If there is no version file, create one
+        if (mVersion.FileExists())
+        {
+            mVersion.ReadFromFile(fileName);
+        }
+        else
+        {
+            std::string errMsg = "Version File does not exist, generating a new one...";
+            LOG_W("Looking for file in : " + mVersion.GetFilePath())
+                LOG_W(errMsg)
+                std::cerr << errMsg << std::endl;
+            GenerateVersionStructure();
+            SaveVersionFile();
+        }
+    }
+
     //////////////////////////////////////////////////////////////////////////
     VersionUtil::~VersionUtil()
     {
