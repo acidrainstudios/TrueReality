@@ -42,27 +42,13 @@ namespace trUtil
     const std::string VersionUtil::BUILD_VERSION = std::string("Build");
     
     //////////////////////////////////////////////////////////////////////////
-    VersionUtil::VersionUtil()
-    {
-        mVersion.SetFileName(VERSION_FILE_NAME);
-        mVersion.SetFilePath(trUtil::PathUtils::GetConfigPath());
-        
-        //If there is no version file, create one
-        if (mVersion.FileExists())
-        {
-            mVersion.ReadFromFile(VERSION_FILE_NAME);
-        }
-        else
-        {
-            std::string errMsg = "Version File does not exist, generating a new one...";            
-            LOG_W("Looking for file in : " + mVersion.GetFilePath())
-            LOG_W(errMsg)
-            std::cerr << errMsg << std::endl;
-            GenerateVersionStructure();
-            SaveVersionFile();
-        }
-    }
+    VersionUtil::VersionUtil() : VersionUtil(VERSION_FILE_NAME, trUtil::PathUtils::GetConfigPath())
+    {}
     
+    //////////////////////////////////////////////////////////////////////////
+    VersionUtil::VersionUtil(std::string fileName) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath())
+    {}
+
     //////////////////////////////////////////////////////////////////////////
     VersionUtil::VersionUtil(std::string fileName, std::string filePath)
     {

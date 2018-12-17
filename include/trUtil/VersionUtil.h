@@ -59,6 +59,15 @@ namespace trUtil
         VersionUtil();
 
         /**
+         * @fn  VersionUtil::VersionUtil(std::string fileName);
+         *
+         * @brief   Constructor.
+         *
+         * @param   fileName    Filename of the custom version file.
+         */
+        VersionUtil(std::string fileName);
+
+        /**
          * @fn  VersionUtil::VersionUtil(std::string fileName, std::string filePath);
          *
          * @brief   Constructor.
