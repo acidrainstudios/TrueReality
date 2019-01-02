@@ -1,3 +1,5 @@
+| [View as Website](https://acidrainstudios.github.io/TrueReality/) |  [View as GitHub repository](https://github.com/acidrainstudios/TrueReality) |
+
 # TrueReality (pre-Alpha)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/acidrainstudios/truereality.svg?style=for-the-badge)
