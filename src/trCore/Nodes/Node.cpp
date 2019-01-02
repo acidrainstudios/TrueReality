@@ -28,7 +28,7 @@
 
 namespace trCore::Nodes
 {
-    const trUtil::RefStr Node::CLASS_TYPE = trUtil::RefStr("trCore::Node");
+    const trUtil::RefStr Node::CLASS_TYPE = trUtil::RefStr("trCore::Nodes::Node");
 
     //////////////////////////////////////////////////////////////////////////
     Node::Node(const std::string name) : BaseClass(name)
