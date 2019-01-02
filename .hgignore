@@ -16,12 +16,11 @@ CMakeFiles/*
 *.log
 *.stamp
 *.depend
+*.zip
 cmake_install.cmake
 CMakeCache.txt
 include/trUtil/TypeConfig.h
 build/*
-TR_Ext_0.2_msvc14.15_x64.zip
-Data.zip
 Data/GUI/*
 Data/Particles/*
 Data/SkeletalMeshes/*
@@ -29,5 +28,4 @@ Data/Sounds/*
 Data/StaticMeshes/*
 Data/Terrains/*
 Data/Textures/*
-DataSrc.zip
 DataSrc/*
