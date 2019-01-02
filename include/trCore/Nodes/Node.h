@@ -126,8 +126,14 @@ namespace trCore::Nodes
          */
         virtual void Accept(osg::NodeVisitor& nv);
 
-        /** Traverse upwards : calls parents' accept method with NodeVisitor.*/
-        //virtual void ascend(NodeVisitor& nv);
+        /**
+         * @fn  virtual void Node::Ascend(osg::NodeVisitor& nv);
+         *
+         * @brief   Traverse upwards : calls parents' accept method with NodeVisitor.
+         *
+         * @param [in,out]  nv  The nv.
+         */
+        virtual void Ascend(osg::NodeVisitor& nv);
 
         /** Traverse downwards : calls children's accept method with NodeVisitor.*/
         //virtual void traverse(NodeVisitor& /*nv*/) {}
