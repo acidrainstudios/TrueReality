@@ -117,8 +117,14 @@ namespace trCore::Nodes
          */
         virtual const osg::Node* AsOSGNode() const;
 
-        /** Visitor Pattern : calls the apply method of a NodeVisitor with this node's type.*/
-        //virtual void accept(NodeVisitor& nv);
+        /**
+         * @fn  virtual void Node::Accept(osg::NodeVisitor& nv);
+         *
+         * @brief   Visitor Pattern : calls the apply method of a NodeVisitor with this node's type.
+         *
+         * @param [in,out]  nv  The nv.
+         */
+        virtual void Accept(osg::NodeVisitor& nv);
 
         /** Traverse upwards : calls parents' accept method with NodeVisitor.*/
         //virtual void ascend(NodeVisitor& nv);
