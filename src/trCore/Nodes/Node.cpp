@@ -74,11 +74,15 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void Node::Ascend(osg::NodeVisitor & nv)
+    void Node::Ascend(osg::NodeVisitor& nv)
     {
         mNode->ascend(nv);
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void Node::Traverse(osg::NodeVisitor& nv)
+    {
+        mNode->traverse(nv);
+    }
 }
 
