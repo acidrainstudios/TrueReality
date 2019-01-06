@@ -23,16 +23,16 @@
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
     IF (TR_DATA_INSTALLED EQUAL 0)      
-        SET (TR_DATA_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
         INSTALL (CODE "MESSAGE(\"Installing the Data folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
+        SET (TR_DATA_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
     ENDIF ()
 
     IF (TR_HEADERS_INSTALLED EQUAL 0)      
-        SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
         INSTALL (CODE "MESSAGE(\"Installing the SDKs headers folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
         INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
+        SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
     ENDIF ()
     
     INSTALL (CODE "MESSAGE(\"Installing the ${arg} project.\")")
