@@ -83,3 +83,23 @@ TEST_F(JsonTests, JSONValueType)
     EXPECT_EQ(trUtil::JSON::ValueType::ArrayValue, 6);
     EXPECT_EQ(trUtil::JSON::ValueType::ObjectValue, 7);
 }
+
+/**
+ * @fn  TEST_F(JsonTests, JSONJsonValueType)
+ *
+ * @brief   Constructor.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(JsonTests, JSONJsonValueType)
+{
+    EXPECT_EQ(trUtil::JSON::ValueType::NullValue, Json::ValueType::nullValue);
+    EXPECT_EQ(trUtil::JSON::ValueType::IntValue, Json::ValueType::intValue);
+    EXPECT_EQ(trUtil::JSON::ValueType::UintValue, Json::ValueType::uintValue);
+    EXPECT_EQ(trUtil::JSON::ValueType::RealValue, Json::ValueType::realValue);
+    EXPECT_EQ(trUtil::JSON::ValueType::StringValue, Json::ValueType::stringValue);
+    EXPECT_EQ(trUtil::JSON::ValueType::BooleanValue, Json::ValueType::booleanValue);
+    EXPECT_EQ(trUtil::JSON::ValueType::ArrayValue, Json::ValueType::arrayValue);
+    EXPECT_EQ(trUtil::JSON::ValueType::ObjectValue, Json::ValueType::objectValue);
+}
