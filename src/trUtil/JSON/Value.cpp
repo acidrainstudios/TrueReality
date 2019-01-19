@@ -138,7 +138,15 @@ namespace trUtil::JSON
     //////////////////////////////////////////////////////////////////////////
     std::string Value::GetComment() const
     {
-        return mValuePtr->getComment(Json::CommentPlacement::commentAfterOnSameLine);
+        //Get the comment in a tem variable so we can remove the // prefix
+        std::string comment = mValuePtr->getComment(Json::CommentPlacement::commentAfterOnSameLine);
+
+        if (comment.size() > 1)
+        {
+            comment.erase(0, 2);
+        }
+
+        return comment;
     }
 
     //////////////////////////////////////////////////////////////////////////
