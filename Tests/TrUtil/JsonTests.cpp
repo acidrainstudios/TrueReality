@@ -21,6 +21,10 @@
 
 #include "JsonTests.h"
 
+#include <trUtil/JSON/Value.h>
+
+#include <json/value.h>
+
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////
@@ -31,4 +35,36 @@ JsonTests::JsonTests()
 //////////////////////////////////////////////////////////////////////////
 JsonTests::~JsonTests()
 {
+}
+
+//enum ValueType
+//{
+//    NullValue = Json::ValueType::nullValue, ///'null' value
+//    IntValue = Json::ValueType::intValue,      ///signed integer value
+//    UintValue = Json::ValueType::uintValue,     ///unsigned integer value
+//    RealValue = Json::ValueType::realValue,     ///double value
+//    StringValue = Json::ValueType::stringValue,   ///UTF-8 string value
+//    BooleanValue = Json::ValueType::booleanValue,  ///bool value
+//    ArrayValue = Json::ValueType::arrayValue,    ///array value (ordered list)
+//    ObjectValue = Json::ValueType::objectValue    ///object value (collection of name/value pairs).
+//};
+
+/**
+ * @fn  TEST_F(JsonTests, TestJsonValueType)
+ *
+ * @brief   Constructor.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(JsonTests, TestJsonValueType)
+{
+    EXPECT_EQ(Json::ValueType::nullValue, 0);
+    EXPECT_EQ(Json::ValueType::intValue, 1);
+    EXPECT_EQ(Json::ValueType::uintValue, 2);
+    EXPECT_EQ(Json::ValueType::realValue, 3);
+    EXPECT_EQ(Json::ValueType::stringValue, 4);
+    EXPECT_EQ(Json::ValueType::booleanValue, 5);
+    EXPECT_EQ(Json::ValueType::arrayValue, 6);
+    EXPECT_EQ(Json::ValueType::objectValue, 7);
 }
