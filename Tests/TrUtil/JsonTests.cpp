@@ -37,27 +37,15 @@ JsonTests::~JsonTests()
 {
 }
 
-//enum ValueType
-//{
-//    NullValue = Json::ValueType::nullValue, ///'null' value
-//    IntValue = Json::ValueType::intValue,      ///signed integer value
-//    UintValue = Json::ValueType::uintValue,     ///unsigned integer value
-//    RealValue = Json::ValueType::realValue,     ///double value
-//    StringValue = Json::ValueType::stringValue,   ///UTF-8 string value
-//    BooleanValue = Json::ValueType::booleanValue,  ///bool value
-//    ArrayValue = Json::ValueType::arrayValue,    ///array value (ordered list)
-//    ObjectValue = Json::ValueType::objectValue    ///object value (collection of name/value pairs).
-//};
-
 /**
- * @fn  TEST_F(JsonTests, TestJsonValueType)
+ * @fn  TEST_F(JsonTests, JsonValueType)
  *
  * @brief   Constructor.
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
  */
-TEST_F(JsonTests, TestJsonValueType)
+TEST_F(JsonTests, JsonValueType)
 {
     EXPECT_EQ(Json::ValueType::nullValue, 0);
     EXPECT_EQ(Json::ValueType::intValue, 1);
@@ -70,14 +58,14 @@ TEST_F(JsonTests, TestJsonValueType)
 }
 
 /**
- * @fn  TEST_F(JsonTests, TestJSONValueType)
+ * @fn  TEST_F(JsonTests, JSONValueType)
  *
  * @brief   Constructor.
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
  */
-TEST_F(JsonTests, TestJSONValueType)
+TEST_F(JsonTests, JSONValueType)
 {
     EXPECT_EQ(trUtil::JSON::ValueType::NullValue, 0);
     EXPECT_EQ(trUtil::JSON::ValueType::IntValue, 1);
