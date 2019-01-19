@@ -22,14 +22,21 @@
 #include "JsonTests.h"
 
 #include <trUtil/JSON/Value.h>
+#include <trUtil/PathUtils.h>
 
 #include <json/value.h>
 
 #include <iostream>
+#include <string>
+
+//////////////////////////////////////////////////////////////////////////
+const std::string JsonTests::CONFIG_FILE_NAME("Tests/JsonTest.gtest");
 
 //////////////////////////////////////////////////////////////////////////
 JsonTests::JsonTests()
 {
+    //Creates the default folders in the User Data folder. 
+    trUtil::PathUtils::CreateUserDataPathTree();
 }
 
 //////////////////////////////////////////////////////////////////////////

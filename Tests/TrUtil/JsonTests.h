@@ -31,9 +31,11 @@
  * @author  Maxim Serebrennik
  */
 class JsonTests : public ::testing::Test
-{   
+{
 
 public:
+
+    const static std::string CONFIG_FILE_NAME;
 
     /**
      * @fn  public::JsonTests();
