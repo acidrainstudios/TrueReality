@@ -96,6 +96,11 @@ MACRO (ADD_TR_SUBFOLDERS)
  # Unit Test Folders
     MESSAGE (STATUS "Creating Selected Tests Folders")
     
+    IF (TESTS_TR_UTIL)
+        ADD_SUBDIRECTORY (Tests/TrUtil)
+        SET (TESTS_TR_UTIL_AVAILABLE "YES")
+    ENDIF ()
+
     IF (TESTS_TR_BASE)
         ADD_SUBDIRECTORY (Tests/TrBase)
         SET (TESTS_TR_BASE_AVAILABLE "YES")
