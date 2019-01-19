@@ -126,17 +126,7 @@ namespace trUtil::JSON
     //////////////////////////////////////////////////////////////////////////
     void Value::SetComment(const std::string & comment)
     {
-        std::string finalComment;
-        if (comment[0] != '/')
-        {
-            //in Json::Value::setComment(): Comments must start with /
-            finalComment = "/" + comment;
-        }
-        else
-        {
-            finalComment = comment;
-        }
-        mValuePtr->setComment(finalComment, Json::CommentPlacement::commentAfterOnSameLine);
+        mValuePtr->setComment("//" + comment, Json::CommentPlacement::commentAfterOnSameLine);
     }
 
     //////////////////////////////////////////////////////////////////////////
