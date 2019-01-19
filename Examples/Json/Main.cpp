@@ -148,6 +148,12 @@ int main(int argc, char** argv)
 
         std::cout << "\nJSON Array Size: " << jsArr.Size() << std::endl;
 
+        trUtil::JSON::Object jsObj = configFile.GetObject("MyObject");
+        std::cout << "\nJSON Object in RAM:\n" << std::endl;
+        jsObj.PrintJSONRoot();
+
+        std::cout << "\nPrinting the Object Comment: " << jsObj.GetComment() << "\n\n" << std::endl;
+
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
         std::cerr << "True Reality is now shutting down ... " << std::endl;
