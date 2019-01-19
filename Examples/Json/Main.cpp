@@ -131,6 +131,8 @@ int main(int argc, char** argv)
         std::cout << "\nJSON Array in RAM:\n" << std::endl;
         jsArr.PrintJSONRoot();
 
+        std::cout << "\nPrinting the Array Comment: " << jsArr.GetComment() << std::endl;
+
         std::cout << "\nJSON Array Size: " << jsArr.Size() << std::endl;
         std::cout << "\nIterating through JSON Array in RAM:\n" << std::endl;
         for (int i = 0; i < jsArr.Size(); i++)
