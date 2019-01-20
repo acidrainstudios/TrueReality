@@ -200,4 +200,17 @@ TEST_F(JsonTests, SaveLoadFile)
     EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetUInt64("MyUint64"), 12098);
     EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetFloat("MyFloat"), 567.54f);
     EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetComment(), "This is the Object Comment");
+
+    // Test all the values in the Array of the file
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[0].GetInt(), 55);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[1].GetInt(), 3456);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[2].GetInt64(), 63752);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[3].IsNull(), true);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[4].GetBool(), true);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[5].GetString(), "StringValue");
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[6].GetDouble(), 45.6);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[7].GetUInt(), 4567);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[8].GetUInt64(), 12098);
+    EXPECT_EQ(readFile.GetObject("MyObject_OnRoot").GetArray("MyArray")[9].GetFloat(), 567.54f);
+    EXPECT_EQ(jsArray.GetComment(), "///This is the Array Comment");
 }
