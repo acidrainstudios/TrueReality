@@ -8,5 +8,8 @@
     <GoogleTest>
         <ForceListContent>true</ForceListContent>
     </GoogleTest>
+    <BoostTest>
+        <ForceListContent>true</ForceListContent>
+    </BoostTest>
     <ForceListContent>true</ForceListContent>
 </RunSettings>
