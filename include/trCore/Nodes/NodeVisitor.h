@@ -132,6 +132,15 @@ namespace trCore::Nodes
          */
         virtual const osg::NodeVisitor* AsOSGVisitor() const;
 
+        /**
+         * @fn  virtual void NodeVisitor::Reset();
+         *
+         * @brief   Method to call to reset visitor. Useful if your visitor accumulates state during a
+         *          traversal, and you plan to reuse the visitor. To flush that state for the next
+         *          traversal: call reset() prior to each traversal.
+         */
+        virtual void Reset();
+
     protected:
 
         trBase::SmrtPtr<osg::NodeVisitor> mNodeVisitor;
