@@ -35,10 +35,19 @@ namespace trCore::Nodes
 {
     /**
      * @class   NodeVisitor
-     *          
-     * @author Maxim Serebrennik
      *
-     * @brief   A node visitor.
+     * @brief   Visitor for type safe operations on trCore::Nodes. Based on GOF's Visitor pattern. The
+     *          NodeVisitor is useful for developing type safe operations to nodes in the scene graph
+     *          (as per Visitor pattern), and adds to this support for optional scene graph traversal
+     *          to allow operations to be applied to whole scenes at once. The Visitor pattern uses a
+     *          technique of double dispatch as a mechanism to call the appropriate Apply(..) method
+     *          of the NodeVisitor.  To use this feature one must use the Node::Accept(NodeVisitor)
+     *          which is extended in each Node subclass, rather than the NodeVisitor apply directly.
+     *          So use root->Accept(myVisitor); instead of myVisitor.Apply(*root).  The later method
+     *          will bypass the double dispatch and the appropriate NodeVisitor::Apply(..) method
+     *          will not be called.
+     *
+     * @author  Maxim Serebrennik
      */
     class TR_CORE_EXPORT NodeVisitor : public trBase::Base
     {
