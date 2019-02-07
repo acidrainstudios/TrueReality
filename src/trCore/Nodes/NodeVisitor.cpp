@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -35,6 +35,33 @@ namespace trCore::Nodes
      */
     osg::NodeVisitor::VisitorType ToVisitorType(NodeVisitor::VisitorType type)
     {
+        switch (type)
+        {
+        case NodeVisitor::VisitorType::NODE_VISITOR:
+            return osg::NodeVisitor::VisitorType::NODE_VISITOR;
+            break;
+        case NodeVisitor::VisitorType::UPDATE_VISITOR:
+            return osg::NodeVisitor::VisitorType::UPDATE_VISITOR;
+            break;
+        case NodeVisitor::VisitorType::EVENT_VISITOR:
+            return osg::NodeVisitor::VisitorType::EVENT_VISITOR;
+            break;
+        case NodeVisitor::VisitorType::COLLECT_OCCLUDER_VISITOR:
+            return osg::NodeVisitor::VisitorType::COLLECT_OCCLUDER_VISITOR;
+            break;
+        case NodeVisitor::VisitorType::CULL_VISITOR:
+            return osg::NodeVisitor::VisitorType::CULL_VISITOR;
+            break;
+        case NodeVisitor::VisitorType::INTERSECTION_VISITOR:
+            return osg::NodeVisitor::VisitorType::INTERSECTION_VISITOR;
+            break;
+        default:
+            return osg::NodeVisitor::VisitorType::NODE_VISITOR;
+            break;
+        }
+        return osg::NodeVisitor::VisitorType();
+    }
+
 
         enum VisitorType
         {
