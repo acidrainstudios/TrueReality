@@ -24,6 +24,7 @@
 #include <trUtil/JSON/Array.h>
 #include <trUtil/JSON/Object.h>
 
+#include <json/value.h>
 #include <json/writer.h>
 
 namespace trUtil::JSON
