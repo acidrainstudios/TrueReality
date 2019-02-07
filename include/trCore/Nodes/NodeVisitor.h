@@ -67,7 +67,14 @@ namespace trCore::Nodes
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
         /**
-         * @fn  NodeVisitor::NodeVisitor(const std::string name = CLASS_TYPE);
+         * @fn  NodeVisitor::NodeVisitor(TraversalMode tm = TRAVERSE_NONE, const std::string name = CLASS_TYPE);
+         *
+         * @brief   Constructor.
+         *
+         * @param   tm      (Optional) The time.
+         * @param   name    (Optional) The name.
+         */
+        NodeVisitor(TraversalMode tm = TRAVERSE_NONE, const std::string name = CLASS_TYPE);
 
         /**
          * @fn  NodeVisitor::NodeVisitor(VisitorType type, TraversalMode tm = TRAVERSE_NONE, const std::string name = CLASS_TYPE);
