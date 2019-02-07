@@ -141,6 +141,26 @@ namespace trCore::Nodes
          */
         virtual void Reset();
 
+        /**
+         * @fn  inline void NodeVisitor::SetVisitorType(VisitorType type);
+         *
+         * @brief   Set the VisitorType, used to distinguish different visitors during traversal of the
+         *          scene, typically used in the Node:Traverse() method to select which behavior to use
+         *          for different types of traversal/visitors.
+         *
+         * @param   type    The type.
+         */
+        inline void SetVisitorType(VisitorType type);
+
+        /**
+         * @fn  inline VisitorType NodeVisitor::GetVisitorType() const;
+         *
+         * @brief   Get the VisitorType.
+         *
+         * @return  The visitor type.
+         */
+        inline VisitorType GetVisitorType() const;
+
     protected:
 
         trBase::SmrtPtr<osg::NodeVisitor> mNodeVisitor;
