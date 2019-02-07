@@ -157,6 +157,18 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    inline void NodeVisitor::SetTraversalNumber(unsigned int fn)
+    {
+        mNodeVisitor->setTraversalNumber(fn);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline unsigned int NodeVisitor::GetTraversalNumber() const
+    {
+        return mNodeVisitor->getTraversalNumber();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     NodeVisitor::~NodeVisitor()
     {
     }

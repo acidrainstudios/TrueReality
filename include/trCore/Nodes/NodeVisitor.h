@@ -161,6 +161,24 @@ namespace trCore::Nodes
          */
         inline VisitorType GetVisitorType() const;
 
+        /**
+         * @fn  inline void NodeVisitor::SetTraversalNumber(unsigned int fn);
+         *
+         * @brief   Set the traversal number. Typically used to denote the frame count.
+         *
+         * @param   fn  The function.
+         */
+        inline void SetTraversalNumber(unsigned int fn);
+
+        /**
+         * @fn  inline unsigned int NodeVisitor::GetTraversalNumber() const;
+         *
+         * @brief   Get the traversal number. Typically used to denote the frame count.
+         *
+         * @return  The traversal number.
+         */
+        inline unsigned int GetTraversalNumber() const;
+
     protected:
 
         trBase::SmrtPtr<osg::NodeVisitor> mNodeVisitor;
