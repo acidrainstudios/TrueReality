@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -24,6 +24,55 @@
 
 namespace trCore::Nodes
 {
+    /**
+     * @fn  osg::NodeVisitor::VisitorType ToVisitorType(VisitorType type);
+     *
+     * @brief   Converts a TR visitor type to an osg visitor type.
+     *
+     * @param   type    The visitor type.
+     *
+     * @return  Type as an osg::NodeVisitor::VisitorType.
+     */
+    osg::NodeVisitor::VisitorType ToVisitorType(NodeVisitor::VisitorType type)
+    {
+
+        enum VisitorType
+        {
+            NODE_VISITOR = 0,
+            UPDATE_VISITOR = 1,
+            EVENT_VISITOR = 2,
+            COLLECT_OCCLUDER_VISITOR = 3,
+            CULL_VISITOR = 4,
+            INTERSECTION_VISITOR = 5
+        };
+
+        switch (type)
+        {
+        case VisitorType::NODE_VISITOR:
+            return osg::NodeVisitor::VisitorType::NODE_VISITOR;
+            break;
+        case VisitorType::UPDATE_VISITOR:
+            return osg::NodeVisitor::VisitorType::UPDATE_VISITOR;
+            break;
+        case VisitorType::EVENT_VISITOR:
+            return osg::NodeVisitor::VisitorType::EVENT_VISITOR;
+            break;
+        case VisitorType::COLLECT_OCCLUDER_VISITOR:
+            return osg::NodeVisitor::VisitorType::COLLECT_OCCLUDER_VISITOR;
+            break;
+        case VisitorType::CULL_VISITOR:
+            return osg::NodeVisitor::VisitorType::CULL_VISITOR;
+            break;
+        case VisitorType::INTERSECTION_VISITOR:
+            return osg::NodeVisitor::VisitorType::INTERSECTION_VISITOR;
+            break;
+        default:
+            return osg::NodeVisitor::VisitorType::NODE_VISITOR;
+            break;
+        }
+        return osg::NodeVisitor::VisitorType();
+    }
+
     const trUtil::RefStr NodeVisitor::CLASS_TYPE = trUtil::RefStr("trCore::Nodes::NodeVisitor");
 
     //////////////////////////////////////////////////////////////////////////
