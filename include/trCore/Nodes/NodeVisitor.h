@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -43,6 +43,15 @@ namespace trCore::Nodes
     class TR_CORE_EXPORT NodeVisitor : public trBase::Base
     {
     public:
+
+        enum TraversalMode
+        {
+            TRAVERSE_NONE = 0,
+            TRAVERSE_PARENTS = 1,
+            TRAVERSE_ALL_CHILDREN = 2,
+            TRAVERSE_ACTIVE_CHILDREN = 3
+        };
+
         using BaseClass = trBase::Base;                 /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
