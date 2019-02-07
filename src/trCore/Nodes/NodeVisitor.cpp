@@ -77,8 +77,10 @@ namespace trCore::Nodes
 
     //////////////////////////////////////////////////////////////////////////
     NodeVisitor::NodeVisitor(const std::string name) : BaseClass(name)
+    //////////////////////////////////////////////////////////////////////////
+    NodeVisitor::NodeVisitor(VisitorType type, TraversalMode tm, const std::string name)
     {
-        mNodeVisitor = new osg::NodeVisitor(); //Creates our internal OSG class. 
+        mNodeVisitor = new osg::NodeVisitor(ToVisitorType(type), tm);
         mNodeVisitor->setName(name);
     }
 

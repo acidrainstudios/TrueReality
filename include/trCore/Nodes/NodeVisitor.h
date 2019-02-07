@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -68,12 +68,17 @@ namespace trCore::Nodes
 
         /**
          * @fn  NodeVisitor::NodeVisitor(const std::string name = CLASS_TYPE);
+
+        /**
+         * @fn  NodeVisitor::NodeVisitor(VisitorType type, TraversalMode tm = TRAVERSE_NONE, const std::string name = CLASS_TYPE);
          *
-         * @brief   Default constructor.
+         * @brief   Constructor.
          *
+         * @param   type    The type.
+         * @param   tm      (Optional) The time.
          * @param   name    (Optional) The name.
          */
-        NodeVisitor(const std::string name = CLASS_TYPE);
+        NodeVisitor(VisitorType type, TraversalMode tm = TRAVERSE_NONE, const std::string name = CLASS_TYPE);
 
         /**
          * @fn  virtual const std::string& NodeVisitor::GetType() const override;
