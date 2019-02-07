@@ -61,42 +61,41 @@ namespace trCore::Nodes
         }
     }
 
-
-        enum VisitorType
-        {
-            NODE_VISITOR = 0,
-            UPDATE_VISITOR = 1,
-            EVENT_VISITOR = 2,
-            COLLECT_OCCLUDER_VISITOR = 3,
-            CULL_VISITOR = 4,
-            INTERSECTION_VISITOR = 5
-        };
-
+    /**
+     * @fn  NodeVisitor::VisitorType ToVisitorType(osg::NodeVisitor::VisitorType type)
+     *
+     * @brief   Converts an osg visitor type to a TR visitor type.
+     *
+     * @param   type    The type.
+     *
+     * @return  Type as a NodeVisitor::VisitorType.
+     */
+    NodeVisitor::VisitorType ToVisitorType(osg::NodeVisitor::VisitorType type)
+    {
         switch (type)
         {
-        case VisitorType::NODE_VISITOR:
-            return osg::NodeVisitor::VisitorType::NODE_VISITOR;
+        case osg::NodeVisitor::VisitorType::NODE_VISITOR:
+            return NodeVisitor::VisitorType::NODE_VISITOR;
             break;
-        case VisitorType::UPDATE_VISITOR:
-            return osg::NodeVisitor::VisitorType::UPDATE_VISITOR;
+        case osg::NodeVisitor::VisitorType::UPDATE_VISITOR:
+            return NodeVisitor::VisitorType::UPDATE_VISITOR;
             break;
-        case VisitorType::EVENT_VISITOR:
-            return osg::NodeVisitor::VisitorType::EVENT_VISITOR;
+        case osg::NodeVisitor::VisitorType::EVENT_VISITOR:
+            return NodeVisitor::VisitorType::EVENT_VISITOR;
             break;
-        case VisitorType::COLLECT_OCCLUDER_VISITOR:
-            return osg::NodeVisitor::VisitorType::COLLECT_OCCLUDER_VISITOR;
+        case osg::NodeVisitor::VisitorType::COLLECT_OCCLUDER_VISITOR:
+            return NodeVisitor::VisitorType::COLLECT_OCCLUDER_VISITOR;
             break;
-        case VisitorType::CULL_VISITOR:
-            return osg::NodeVisitor::VisitorType::CULL_VISITOR;
+        case osg::NodeVisitor::VisitorType::CULL_VISITOR:
+            return NodeVisitor::VisitorType::CULL_VISITOR;
             break;
-        case VisitorType::INTERSECTION_VISITOR:
-            return osg::NodeVisitor::VisitorType::INTERSECTION_VISITOR;
+        case osg::NodeVisitor::VisitorType::INTERSECTION_VISITOR:
+            return NodeVisitor::VisitorType::INTERSECTION_VISITOR;
             break;
         default:
-            return osg::NodeVisitor::VisitorType::NODE_VISITOR;
+            return NodeVisitor::VisitorType::NODE_VISITOR;
             break;
         }
-        return osg::NodeVisitor::VisitorType();
     }
 
     const trUtil::RefStr NodeVisitor::CLASS_TYPE = trUtil::RefStr("trCore::Nodes::NodeVisitor");
