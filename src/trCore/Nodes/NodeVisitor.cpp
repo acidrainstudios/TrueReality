@@ -59,7 +59,6 @@ namespace trCore::Nodes
             return osg::NodeVisitor::VisitorType::NODE_VISITOR;
             break;
         }
-        return osg::NodeVisitor::VisitorType();
     }
 
 
