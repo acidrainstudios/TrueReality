@@ -50,6 +50,12 @@ namespace trBase
     {
         return mName;
     }
+    
+    //////////////////////////////////////////////////////////////////////////
+    const std::string & Base::GetName() const
+    {
+        return mName;
+    }
 
     //////////////////////////////////////////////////////////////////////////
     void Base::SetUUID(const trBase::UniqueId& id)

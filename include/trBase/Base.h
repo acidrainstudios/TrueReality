@@ -78,6 +78,15 @@ namespace trBase
         virtual const std::string& GetName();
 
         /**
+         * @fn  virtual const std::string& Base::GetName() const;
+         *
+         * @brief   Returns this instances name.
+         *
+         * @return  The name.
+         */
+        virtual const std::string& GetName() const;
+
+        /**
          * @fn  virtual void Base::SetUUID(const trBase::UniqueId& id);
          *
          * @brief   Overwrites the default internal UUID with the passed in one. This should be done very
