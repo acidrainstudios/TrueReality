@@ -78,6 +78,12 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    double FrameStamp::GetReferenceTime() const
+    {
+        return mFrameStamp->getReferenceTime();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     void FrameStamp::SetSimulationTime(double refTime)
     {
         mFrameStamp->setSimulationTime(refTime);
@@ -90,9 +96,15 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
-    double FrameStamp::GetReferenceTime() const
+    void FrameStamp::SetCalendarTime(const tm & calendarTime)
     {
-        return mFrameStamp->getReferenceTime();
+        mFrameStamp->setCalendarTime(calendarTime);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void FrameStamp::GetCalendarTime(tm & calendarTime) const
+    {
+        mFrameStamp->getCalendarTime(calendarTime);
     }
 
     //////////////////////////////////////////////////////////////////////////

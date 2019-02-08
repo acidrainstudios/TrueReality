@@ -27,6 +27,12 @@
 #include <trBase/SmrtPtr.h>
 #include <trUtil/RefStr.h>
 
+#if defined(__sgi) || (defined(WIN32) && !defined(__MWERKS__))
+#include <time.h>
+#else
+#include <ctime>
+using std::tm;
+#endif
 
 namespace osg
 {
@@ -126,6 +132,15 @@ namespace trCore::Nodes
         void SetReferenceTime(double refTime);
 
         /**
+         * @fn  double FrameStamp::GetReferenceTime() const;
+         *
+         * @brief   Gets reference time.
+         *
+         * @return  The reference time.
+         */
+        double GetReferenceTime() const;
+
+        /**
          * @fn  void FrameStamp::SetSimulationTime(double refTime);
          *
          * @brief   Sets simulation time.
@@ -144,13 +159,22 @@ namespace trCore::Nodes
         double GetSimulationTime() const;
 
         /**
-         * @fn  double FrameStamp::GetReferenceTime() const;
+         * @fn  void FrameStamp::SetCalendarTime(const tm& calendarTime);
          *
-         * @brief   Gets reference time.
+         * @brief   Sets calendar time.
          *
-         * @return  The reference time.
+         * @param   calendarTime    The calendar time.
          */
-        double GetReferenceTime() const;
+        void SetCalendarTime(const tm& calendarTime);
+
+        /**
+         * @fn  void FrameStamp::GetCalendarTime(tm& calendarTime) const;
+         *
+         * @brief   Gets calendar time.
+         *
+         * @param [in,out]  calendarTime    The calendar time.
+         */
+        void GetCalendarTime(tm& calendarTime) const;
 
         /**
          * @fn  FrameStamp& FrameStamp::operator= (const FrameStamp& fs);
