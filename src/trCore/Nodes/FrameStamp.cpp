@@ -60,6 +60,18 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void FrameStamp::SetFrameNumber(unsigned int fnum)
+    {
+        mFrameStamp->setFrameNumber(fnum);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    unsigned int FrameStamp::GetFrameNumber() const
+    {
+        return mFrameStamp->getFrameNumber();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     FrameStamp& FrameStamp::operator=(const FrameStamp & fs)
     {
         mFrameStamp = fs.mFrameStamp;

@@ -99,6 +99,24 @@ namespace trCore::Nodes
         virtual const osg::FrameStamp* AsOSGClass() const;
 
         /**
+         * @fn  void FrameStamp::SetFrameNumber(unsigned int fnum);
+         *
+         * @brief   Sets frame number.
+         *
+         * @param   fnum    The fnum.
+         */
+        void SetFrameNumber(unsigned int fnum);
+
+        /**
+         * @fn  unsigned int FrameStamp::GetFrameNumber() const;
+         *
+         * @brief   Gets frame number.
+         *
+         * @return  The frame number.
+         */
+        unsigned int GetFrameNumber() const;
+
+        /**
          * @fn  FrameStamp& FrameStamp::operator= (const FrameStamp& fs);
          *
          * @brief   Assignment operator.
