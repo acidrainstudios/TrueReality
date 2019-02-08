@@ -98,6 +98,17 @@ namespace trCore::Nodes
          */
         virtual const osg::FrameStamp* AsOSGClass() const;
 
+        /**
+         * @fn  FrameStamp& FrameStamp::operator= (const FrameStamp& fs);
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   fs  The file system.
+         *
+         * @return  A shallow copy of this object.
+         */
+        FrameStamp& operator = (const FrameStamp& fs);
+
     protected:
 
         /** @brief   The frame stamp. */

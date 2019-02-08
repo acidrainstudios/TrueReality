@@ -58,6 +58,16 @@ namespace trCore::Nodes
     {
         return mFrameStamp.Get();
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    FrameStamp& FrameStamp::operator=(const FrameStamp & fs)
+    {
+        mFrameStamp = fs.mFrameStamp;
+        SetName(fs.GetName());
+        return *this;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     FrameStamp::~FrameStamp()
     {
     }
