@@ -36,6 +36,12 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    FrameStamp::FrameStamp(const osg::FrameStamp fs, const std::string name)
+    {
+        mFrameStamp = new osg::FrameStamp(fs);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     const std::string& FrameStamp::GetType() const
     {
         return CLASS_TYPE;

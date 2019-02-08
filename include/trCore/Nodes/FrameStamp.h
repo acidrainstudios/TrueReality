@@ -69,6 +69,16 @@ namespace trCore::Nodes
         FrameStamp(const std::string name = CLASS_TYPE);
 
         /**
+         * @fn  FrameStamp::FrameStamp(const osg::FrameStamp fs, const std::string name = CLASS_TYPE);
+         *
+         * @brief   Constructor.
+         *
+         * @param   fs      The file system.
+         * @param   name    (Optional) The name.
+         */
+        FrameStamp(const osg::FrameStamp fs, const std::string name = CLASS_TYPE);
+
+        /**
          * @fn  virtual const std::string& FrameStamp::GetType() const override;
          *
          * @brief   Returns the class type.
