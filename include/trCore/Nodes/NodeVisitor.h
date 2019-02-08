@@ -191,4 +191,3 @@ namespace trCore::Nodes
         ~NodeVisitor();
     };
 }
-

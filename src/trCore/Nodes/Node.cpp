@@ -85,4 +85,3 @@ namespace trCore::Nodes
         mNode->traverse(nv);
     }
 }
-
