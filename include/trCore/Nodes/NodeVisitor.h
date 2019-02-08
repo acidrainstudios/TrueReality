@@ -24,6 +24,7 @@
 
 #include <trBase/Base.h>
 #include <trBase/SmrtPtr.h>
+#include <trCore/Nodes/FrameStamp.h>
 #include <trUtil/RefStr.h>
 
 namespace osg
@@ -178,6 +179,25 @@ namespace trCore::Nodes
          * @return  The traversal number.
          */
         inline unsigned int GetTraversalNumber() const;
+
+        /**
+         * @fn  inline void NodeVisitor::SetFrameStamp(FrameStamp* fs);
+         *
+         * @brief   Set the FrameStamp that this traversal is associated with.
+         *
+         * @param [in,out]  fs  If non-null, the file system.
+         */
+        inline void SetFrameStamp(FrameStamp* fs);
+
+        /**
+         * @fn  inline const FrameStamp* NodeVisitor::GetFrameStamp() const;
+         *
+         * @brief   Get the FrameStamp that this traversal is associated with.
+         *          NOTE: The user must handle the destruction of the returned pointer
+         *
+         * @return  Null if it fails, else the frame stamp.
+         */
+        inline const FrameStamp* GetFrameStamp() const;
 
     protected:
 

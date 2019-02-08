@@ -169,6 +169,18 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    inline void NodeVisitor::SetFrameStamp(FrameStamp * fs)
+    {
+        mNodeVisitor->setFrameStamp(fs->AsOSGClass());
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline const FrameStamp* NodeVisitor::GetFrameStamp() const
+    {
+        return new FrameStamp(*mNodeVisitor->getFrameStamp());
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     NodeVisitor::~NodeVisitor()
     {
     }
