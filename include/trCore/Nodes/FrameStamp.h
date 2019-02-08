@@ -126,6 +126,24 @@ namespace trCore::Nodes
         void SetReferenceTime(double refTime);
 
         /**
+         * @fn  void FrameStamp::SetSimulationTime(double refTime);
+         *
+         * @brief   Sets simulation time.
+         *
+         * @param   refTime The reference time.
+         */
+        void SetSimulationTime(double refTime);
+
+        /**
+         * @fn  double FrameStamp::GetSimulationTime() const;
+         *
+         * @brief   Gets simulation time.
+         *
+         * @return  The simulation time.
+         */
+        double GetSimulationTime() const;
+
+        /**
          * @fn  double FrameStamp::GetReferenceTime() const;
          *
          * @brief   Gets reference time.

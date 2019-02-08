@@ -78,6 +78,18 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void FrameStamp::SetSimulationTime(double refTime)
+    {
+        mFrameStamp->setSimulationTime(refTime);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    double FrameStamp::GetSimulationTime() const
+    {
+        return mFrameStamp->getSimulationTime();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     double FrameStamp::GetReferenceTime() const
     {
         return mFrameStamp->getReferenceTime();
