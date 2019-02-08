@@ -72,6 +72,18 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void FrameStamp::SetReferenceTime(double refTime)
+    {
+        mFrameStamp->setReferenceTime(refTime);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    double FrameStamp::GetReferenceTime() const
+    {
+        return mFrameStamp->getReferenceTime();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     FrameStamp& FrameStamp::operator=(const FrameStamp & fs)
     {
         mFrameStamp = fs.mFrameStamp;

@@ -117,6 +117,24 @@ namespace trCore::Nodes
         unsigned int GetFrameNumber() const;
 
         /**
+         * @fn  void FrameStamp::SetReferenceTime(double refTime);
+         *
+         * @brief   Sets reference time.
+         *
+         * @param   refTime The reference time.
+         */
+        void SetReferenceTime(double refTime);
+
+        /**
+         * @fn  double FrameStamp::GetReferenceTime() const;
+         *
+         * @brief   Gets reference time.
+         *
+         * @return  The reference time.
+         */
+        double GetReferenceTime() const;
+
+        /**
          * @fn  FrameStamp& FrameStamp::operator= (const FrameStamp& fs);
          *
          * @brief   Assignment operator.
