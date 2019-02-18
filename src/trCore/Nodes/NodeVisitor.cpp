@@ -129,6 +129,38 @@ namespace trCore::Nodes
             break;
         }
     }
+
+    /**
+     * @fn  NodeVisitor::TraversalMode ToTraversalMode(osg::NodeVisitor::TraversalMode type)
+     *
+     * @brief   Converts a osg TraversalMode to a TR TraversalMode.
+     *
+     * @param   type    The type.
+     *
+     * @return  Type as a NodeVisitor::TraversalMode.
+     */
+    NodeVisitor::TraversalMode ToTraversalMode(osg::NodeVisitor::TraversalMode mode)
+    {
+        switch (mode)
+        {
+        case osg::NodeVisitor::TraversalMode::TRAVERSE_NONE:
+            return NodeVisitor::TraversalMode::TRAVERSE_NONE;
+            break;
+        case osg::NodeVisitor::TraversalMode::TRAVERSE_PARENTS:
+            return NodeVisitor::TraversalMode::TRAVERSE_PARENTS;
+            break;
+        case osg::NodeVisitor::TraversalMode::TRAVERSE_ALL_CHILDREN:
+            return NodeVisitor::TraversalMode::TRAVERSE_ALL_CHILDREN;
+            break;
+        case osg::NodeVisitor::TraversalMode::TRAVERSE_ACTIVE_CHILDREN:
+            return NodeVisitor::TraversalMode::TRAVERSE_ACTIVE_CHILDREN;
+            break;
+        default:
+            return NodeVisitor::TraversalMode::TRAVERSE_NONE;
+            break;
+        }
+    }
+
     const trUtil::RefStr NodeVisitor::CLASS_TYPE = trUtil::RefStr("trCore::Nodes::NodeVisitor");
 
     //////////////////////////////////////////////////////////////////////////
