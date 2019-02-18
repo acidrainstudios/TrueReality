@@ -246,8 +246,25 @@ namespace trCore::Nodes
          */
         inline Node::NodeMask GetNodeMaskOverride() const;
 
+        /**
+         * @fn  inline bool NodeVisitor::ValidNodeMask(const Nodes::Node& node) const;
+         *
+         * @brief   Method to called by Node and its subclass' Node::Accept() method, if the result is
+         *          true it is used to cull operations of nodes and their subgraphs. Return true if the
+         *          result of a bit wise and of the NodeVisitor::_traversalMask with the bit or between
+         *          NodeVistor::_nodeMaskOverride and the Node::_nodeMask. Default values for
+         *          _traversalMask is 0xffffffff, _nodeMaskOverride is 0x0, and osg::Node::_nodeMask is
+         *          0xffffffff.
+         *
+         * @param   node    The node.
+         *
+         * @return  True if it succeeds, false if it fails.
+         */
+        inline bool ValidNodeMask(const Nodes::Node& node) const;
+
     protected:
 
+        /** @brief   The node visitor. */
         trBase::SmrtPtr<osg::NodeVisitor> mNodeVisitor;
 
         /**

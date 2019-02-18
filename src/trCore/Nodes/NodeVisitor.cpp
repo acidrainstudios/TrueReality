@@ -206,6 +206,12 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    inline bool NodeVisitor::ValidNodeMask(const Nodes::Node & node) const
+    {
+        return mNodeVisitor->validNodeMask(*node.AsOSGNode());
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     NodeVisitor::~NodeVisitor()
     {
     }
