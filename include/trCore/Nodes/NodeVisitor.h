@@ -262,6 +262,27 @@ namespace trCore::Nodes
          */
         inline bool ValidNodeMask(const Nodes::Node& node) const;
 
+        /**
+         * @fn  inline void NodeVisitor::SetTraversalMode(TraversalMode mode);
+         *
+         * @brief   Set the traversal mode for Node::Traverse() to use when deciding which children of a
+         *          node to traverse. If a NodeVisitor has been attached via SetTraverseVisitor()
+         *          and the new mode is not TRAVERSE_VISITOR then the attached visitor is detached.
+         *          Default mode is TRAVERSE_NONE.
+         *
+         * @param   mode    The mode.
+         */
+        inline void SetTraversalMode(TraversalMode mode);
+
+        /**
+         * @fn  inline TraversalMode NodeVisitor::GetTraversalMode() const;
+         *
+         * @brief   Get the traversal mode.
+         *
+         * @return  The traversal mode.
+         */
+        inline TraversalMode GetTraversalMode() const;
+
     protected:
 
         /** @brief   The node visitor. */
