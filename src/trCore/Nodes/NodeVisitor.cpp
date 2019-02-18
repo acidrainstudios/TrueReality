@@ -20,6 +20,7 @@
 */
 #include <trCore/Nodes/NodeVisitor.h>
 
+#include <osg/Group>
 #include <osg/NodeVisitor>
 
 namespace trCore::Nodes
@@ -178,6 +179,18 @@ namespace trCore::Nodes
     inline const FrameStamp* NodeVisitor::GetFrameStamp() const
     {
         return new FrameStamp(*mNodeVisitor->getFrameStamp());
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline void NodeVisitor::SetTraversalMask(Node::NodeMask mask)
+    {
+        mNodeVisitor->setTraversalMask(mask);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline Node::NodeMask NodeVisitor::GetTraversalMask() const
+    {
+        return mNodeVisitor->getTraversalMask();
     }
 
     //////////////////////////////////////////////////////////////////////////

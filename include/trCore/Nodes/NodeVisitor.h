@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -25,6 +25,7 @@
 #include <trBase/Base.h>
 #include <trBase/SmrtPtr.h>
 #include <trCore/Nodes/FrameStamp.h>
+#include <trCore/Nodes/Node.h>
 #include <trUtil/RefStr.h>
 
 namespace osg
@@ -198,6 +199,31 @@ namespace trCore::Nodes
          * @return  Null if it fails, else the frame stamp.
          */
         inline const FrameStamp* GetFrameStamp() const;
+
+        /**
+         * @fn  inline void NodeVisitor::SetTraversalMask(Node::NodeMask mask);
+         *
+         * @brief   Set the TraversalMask of this NodeVisitor. The TraversalMask is used by the
+         *          NodeVisitor::ValidNodeMask() method to determine whether to operate on a node and its
+         *          subgraph. ValidNodeMask() is called automatically in the Node::Accept() method before
+         *          any call to NodeVisitor::Apply(), Apply() is only ever called if ValidNodeMask
+         *          returns true. Note, if NodeVisitor::_traversalMask is 0 then all operations will be
+         *          switched off for all nodes.  Whereas setting both _traversalMask and
+         *          _nodeMaskOverride to 0xffffffff will allow a visitor to work on all nodes regardless
+         *          of their own Node::_nodeMask state.
+         *
+         * @param   mask    The mask.
+         */
+        inline void SetTraversalMask(Node::NodeMask mask);
+
+        /**
+         * @fn  inline Node::NodeMask NodeVisitor::GetTraversalMask() const;
+         *
+         * @brief   Get the TraversalMask.
+         *
+         * @return  The traversal mask.
+         */
+        inline Node::NodeMask GetTraversalMask() const;
 
     protected:
 
