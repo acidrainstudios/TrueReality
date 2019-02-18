@@ -225,6 +225,27 @@ namespace trCore::Nodes
          */
         inline Node::NodeMask GetTraversalMask() const;
 
+        /**
+         * @fn  inline void NodeVisitor::setNodeMaskOverride(Node::NodeMask mask);
+         *
+         * @brief   Set the NodeMaskOverride mask. Used in ValidNodeMask() to determine whether to
+         *          operate on a node or its subgraph, by OR'ing NodeVisitor::_nodeMaskOverride with the
+         *          Node's own Node::_nodeMask. Typically used to force on nodes which may have been
+         *          switched off by their own Node::_nodeMask.
+         *
+         * @param   mask    The mask.
+         */
+        inline void SetNodeMaskOverride(Node::NodeMask mask);
+
+        /**
+         * @fn  inline Node::NodeMask NodeVisitor::getNodeMaskOverride() const;
+         *
+         * @brief   Get the NodeMaskOverride mask.
+         *
+         * @return  The node mask override.
+         */
+        inline Node::NodeMask GetNodeMaskOverride() const;
+
     protected:
 
         trBase::SmrtPtr<osg::NodeVisitor> mNodeVisitor;

@@ -194,6 +194,18 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    inline void NodeVisitor::SetNodeMaskOverride(Node::NodeMask mask)
+    {
+        mNodeVisitor->setNodeMaskOverride(mask);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    inline Node::NodeMask NodeVisitor::GetNodeMaskOverride() const
+    {
+        return mNodeVisitor->getNodeMaskOverride();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     NodeVisitor::~NodeVisitor()
     {
     }
