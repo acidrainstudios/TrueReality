@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -99,6 +99,36 @@ namespace trCore::Nodes
         }
     }
 
+    /**
+     * @fn  osg::NodeVisitor::TraversalMode ToTraversalMode(NodeVisitor::TraversalMode type)
+     *
+     * @brief   Converts TR traversal mode to a osg traversal mode.
+     *
+     * @param   type    The type.
+     *
+     * @return  Type as an osg::NodeVisitor::TraversalMode.
+     */
+    osg::NodeVisitor::TraversalMode ToTraversalMode(NodeVisitor::TraversalMode mode)
+    {
+        switch (mode)
+        {
+        case NodeVisitor::TraversalMode::TRAVERSE_NONE:
+            return osg::NodeVisitor::TraversalMode::TRAVERSE_NONE;
+            break;
+        case NodeVisitor::TraversalMode::TRAVERSE_PARENTS:
+            return osg::NodeVisitor::TraversalMode::TRAVERSE_PARENTS;
+            break;
+        case NodeVisitor::TraversalMode::TRAVERSE_ALL_CHILDREN:
+            return osg::NodeVisitor::TraversalMode::TRAVERSE_ALL_CHILDREN;
+            break;
+        case NodeVisitor::TraversalMode::TRAVERSE_ACTIVE_CHILDREN:
+            return osg::NodeVisitor::TraversalMode::TRAVERSE_ACTIVE_CHILDREN;
+            break;
+        default:
+            return osg::NodeVisitor::TraversalMode::TRAVERSE_NONE;
+            break;
+        }
+    }
     const trUtil::RefStr NodeVisitor::CLASS_TYPE = trUtil::RefStr("trCore::Nodes::NodeVisitor");
 
     //////////////////////////////////////////////////////////////////////////
