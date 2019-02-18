@@ -294,6 +294,20 @@ namespace trCore::Nodes
          */
         inline void Traverse(Node& node);
 
+        /**
+         * @fn  inline void NodeVisitor::PushOntoNodePath(Node* node) protected: trBase::SmrtPtr<osg::NodeVisitor> mNodeVisitor;
+         *
+         * @brief   Method called by Node::Accept() method before a call to the
+         *          NodeVisitor::Apply(..).  The back of the list will, therefore, be the current node
+         *          being visited inside the Apply(..), and the rest of the list will be the parental
+         *          sequence of nodes from the top most node applied down the graph to the current node.
+         *          Note, the user does not typically call PushNodeOnPath() as it will be called
+         *          automatically by the Node::Accept() method.
+         *
+         * @param [in,out]  node    If non-null, the node.
+         */
+        inline void PushOntoNodePath(Node* node);
+
     protected:
 
         /** @brief   The node visitor. */

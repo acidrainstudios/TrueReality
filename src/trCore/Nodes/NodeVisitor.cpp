@@ -292,6 +292,12 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    inline void NodeVisitor::PushOntoNodePath(Node * node)
+    {
+        mNodeVisitor->pushOntoNodePath(node->AsOSGNode());
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     NodeVisitor::~NodeVisitor()
     {
     }
