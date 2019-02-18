@@ -283,6 +283,17 @@ namespace trCore::Nodes
          */
         inline TraversalMode GetTraversalMode() const;
 
+        /**
+         * @fn  inline void NodeVisitor::Traverse(Node& node);
+         *
+         * @brief   Method for handling traversal of a nodes. If you intend to use the visitor for
+         *          actively traversing the scene graph then make sure the Accept() methods call this
+         *          method unless they handle traversal directly.
+         *
+         * @param [in,out]  node    The node.
+         */
+        inline void Traverse(Node& node);
+
     protected:
 
         /** @brief   The node visitor. */

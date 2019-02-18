@@ -286,6 +286,12 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
+    inline void NodeVisitor::Traverse(Node & node)
+    {
+        mNodeVisitor->traverse(*node.AsOSGNode());
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     NodeVisitor::~NodeVisitor()
     {
     }
