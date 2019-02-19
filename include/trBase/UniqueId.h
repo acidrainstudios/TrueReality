@@ -23,9 +23,6 @@
 
 #include "Export.h"
 
-#include <trUtil/WarningUtils.h>
-TR_DISABLE_WARNING_START_MSVC(4996)
-
 #include <trBase/SmrtClass.h>
 #include <trUtil/RefStr.h>
 #include <trUtil/Hash.h>
@@ -130,8 +127,6 @@ namespace trBase
 
     TR_BASE_EXPORT std::istream& operator >> (std::istream& i, UniqueId& id);
 }
-
-TR_DISABLE_WARNING_END
 
 namespace trUtil
 {
