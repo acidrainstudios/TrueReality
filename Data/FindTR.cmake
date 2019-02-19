@@ -61,6 +61,7 @@ MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
         HINTS
         $ENV{TR_INC}
         $ENV{TR_ROOT}/include
+        $ENV{TR_ROOT}/build/include
         $ENV{TR_ROOT}
         PATHS
         C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/include
@@ -87,6 +88,7 @@ MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
         HINTS
         $ENV{TR_LIB}
         $ENV{TR_ROOT}/lib
+        $ENV{TR_ROOT}/build/lib
         $ENV{TR_ROOT}
         PATHS
         C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/lib
