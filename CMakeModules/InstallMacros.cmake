@@ -31,7 +31,10 @@ MACRO (TR_INSTALL_OPTIONS arg)
     IF (TR_HEADERS_INSTALLED EQUAL 0)      
         INSTALL (CODE "MESSAGE(\"Installing the SDKs headers folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
-        INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
+		IF(EXISTS "${PROJECT_BINARY_DIR}/include")
+			INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
+		ENDIF ()
+        
         SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
     ENDIF ()
     
