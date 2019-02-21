@@ -23,6 +23,7 @@
 
 #include <trUtil/Export.h>
 
+#include <trUtil/StringUtils.h>
 #include <trUtil/JSON/File.h>
 
 #include <string>
@@ -76,6 +77,17 @@ namespace trUtil
          * @param   filePath    Full path to where the version file is located. 
          */
         VersionUtil(std::string fileName, std::string filePath);
+
+        /**
+         * @fn  VersionUtil::VersionUtil(std::string fileName, std::string filePath, std::string repoPath);
+         *
+         * @brief   Constructor.
+         *
+         * @param   fileName    Filename of the file.
+         * @param   filePath    Full pathname of the file.
+         * @param   repoPath    Full pathname of the repo.
+         */
+        VersionUtil(std::string fileName, std::string filePath, std::string repoPath);
 
         /**
          * @fn  VersionUtil::~VersionUtil();
@@ -228,6 +240,8 @@ namespace trUtil
         
     private:
         JSON::File mVersion;
+
+        std::string mRepoPath = trUtil::StringUtils::STR_BLANK;
 
         /**
          * @fn  std::string VersionUtil::GetTodaysVersionDate();

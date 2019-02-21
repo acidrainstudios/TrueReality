@@ -42,16 +42,22 @@ namespace trUtil
     const std::string VersionUtil::BUILD_VERSION = std::string("Build");
     
     //////////////////////////////////////////////////////////////////////////
-    VersionUtil::VersionUtil() : VersionUtil(VERSION_FILE_NAME, trUtil::PathUtils::GetConfigPath())
+    VersionUtil::VersionUtil() : VersionUtil(VERSION_FILE_NAME, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
     {}
     
     //////////////////////////////////////////////////////////////////////////
-    VersionUtil::VersionUtil(std::string fileName) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath())
+    VersionUtil::VersionUtil(std::string fileName) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
     {}
 
     //////////////////////////////////////////////////////////////////////////
-    VersionUtil::VersionUtil(std::string fileName, std::string filePath)
+    VersionUtil::VersionUtil(std::string fileName, std::string filePath) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
+    {}
+
+    //////////////////////////////////////////////////////////////////////////
+    VersionUtil::VersionUtil(std::string fileName, std::string filePath, std::string repoPath)
     {
+        mRepoPath = repoPath;
+
         mVersion.SetFileName(fileName);
         mVersion.SetFilePath(filePath);
 
@@ -219,17 +225,17 @@ namespace trUtil
             
             //Get the revision number string from the HG repo
             std::cerr << "\nChecking for an HG repo..." << std::endl;
-            std::string rev = trUtil::FileUtils::GetInstance().RunCommand("hg -R " + PathUtils::GetRootPath() + " identify --num");
+            std::string rev = trUtil::FileUtils::GetInstance().RunCommand("hg -R " + mRepoPath + " identify --num");
             
             if (rev == trUtil::StringUtils::STR_BLANK)
             {
                 //Get the revision number string from the GIT repo
                 std::cerr << "\nChecking for a GIT repo..." << std::endl;
-                rev = trUtil::FileUtils::GetInstance().RunCommand("git -C " + PathUtils::GetRootPath() + " rev-list --count HEAD");
+                rev = trUtil::FileUtils::GetInstance().RunCommand("git -C " + mRepoPath + " rev-list --count HEAD");
 
                 if (rev == trUtil::StringUtils::STR_BLANK)
                 {
-                    LOG_E("No .hg or .git folders found at the TR_ROOT path. \nTR_ROOT: " + PathUtils::GetRootPath());
+                    LOG_E("No .hg or .git folders found at the repo path. \nRepo Path: " + mRepoPath);
 
                     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
                     std::cerr << ".hg (HG Repo) or .git (GIT Repo) is needed for this to work" << std::endl;
