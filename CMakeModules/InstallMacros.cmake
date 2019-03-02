@@ -22,13 +22,25 @@
 # Configures the installation options for the given project *******************
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
-    IF (TR_DATA_INSTALLED EQUAL 0)      
+    IF (TR_DATA_INSTALLED EQUAL 0)
         INSTALL (CODE "MESSAGE(\"Installing the Data folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
         SET (TR_DATA_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
     ENDIF ()
 
-    IF (TR_HEADERS_INSTALLED EQUAL 0)      
+    IF (TR_EXT_INSTALLED EQUAL 0)
+        INSTALL (CODE "MESSAGE(\"Installing the External Dependencies.\")")
+        IF(EXISTS "${CMAKE_SOURCE_DIR}/Ext")
+			INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Ext/include"    DESTINATION include)
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Ext/bin"        DESTINATION bin)
+            INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Ext/lib"        DESTINATION lib)
+        ELSE()
+            INSTALL (CODE "MESSAGE(\"Ext folder is missing from ${CMAKE_SOURCE_DIR}\")")
+		ENDIF ()
+        SET (TR_EXT_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that the Ext folder was installed" FORCE)
+    ENDIF ()
+
+    IF (TR_HEADERS_INSTALLED EQUAL 0)
         INSTALL (CODE "MESSAGE(\"Installing the SDKs headers folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
 		IF(EXISTS "${PROJECT_BINARY_DIR}/include")
