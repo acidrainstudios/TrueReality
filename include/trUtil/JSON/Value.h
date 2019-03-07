@@ -1244,29 +1244,7 @@ namespace trUtil::JSON
          * @param [in,out]  value   The value.
          */
         virtual void SetObject(const std::string& key, Object& value);
-
-        /**
-         * @fn  Json::ValueType Value::ToValueType(ValueType val);
-         *
-         * @brief   Converts JSON::ValueType to Json::ValueType.
-         *
-         * @param   val The value.
-         *
-         * @return  Val as a Json::ValueType.
-         */
-        Json::ValueType ToValueType(ValueType val);
-
-        /**
-         * @fn  ValueType Value::ToValueType(Json::ValueType val);
-         *
-         * @brief   Converts Json::ValueType to JSON::ValueType.
-         *
-         * @param   val The value.
-         *
-         * @return  Val as a ValueType.
-         */
-        ValueType ToValueType(Json::ValueType val);
-
+        
         /**
          * @fn  operator Json::Value() const;
          *
