@@ -60,9 +60,9 @@ MACRO (ADD_TR_SUBFOLDERS)
 
 # Utilities folders
     MESSAGE (STATUS "Creating Selected Utility Folders")
-    IF (TR_VERSION)
+    IF (TR_VERSION_UTIL)
         ADD_SUBDIRECTORY (src/trVersion)
-        SET (TR_VERSION_AVAILABLE "YES")
+        SET (TR_VERSION_UTIL_AVAILABLE "YES")
     ENDIF ()
 
 # Examples folders
