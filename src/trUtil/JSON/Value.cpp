@@ -29,7 +29,15 @@
 
 namespace trUtil::JSON
 {
-    //////////////////////////////////////////////////////////////////////////
+    /**
+     * @fn  Json::ValueType ToValueType(ValueType val)
+     *
+     * @brief   Converts JSON::ValueType to Json::ValueType. 
+     *
+     * @param   val The value.
+     *
+     * @return  Val as a Json::ValueType.
+     */
     Json::ValueType ToValueType(ValueType val)
     {
         switch (val)
@@ -64,7 +72,15 @@ namespace trUtil::JSON
         }
     }
 
-    //////////////////////////////////////////////////////////////////////////
+    /**
+     * @fn  ValueType ToValueType(Json::ValueType val)
+     *
+     * @brief   Converts Json::ValueType to JSON::ValueType. 
+     *
+     * @param   val The value.
+     *
+     * @return  Val as a ValueType.
+     */
     ValueType ToValueType(Json::ValueType val)
     {
         switch (val)
