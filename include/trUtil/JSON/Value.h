@@ -36,13 +36,6 @@ namespace Json
      * @brief   A value.
      */
     class Value;
-
-    /**
-     * @enum    ValueType
-     *
-     * @brief   Values that represent value types.
-     */
-    enum ValueType;
 }
 
 /**
