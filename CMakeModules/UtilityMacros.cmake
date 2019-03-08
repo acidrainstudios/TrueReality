@@ -160,12 +160,17 @@ ENDMACRO ()
 # Reads the installed GCC version *********************************************
 # *****************************************************************************
 MACRO (READ_GCC_VERSION)
-    IF (CMAKE_COMPILER_IS_GNUCC)
-        EXECUTE_PROCESS(COMMAND ${CMAKE_C_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
-		STRING(REGEX MATCHALL "[0-9]+" GCC_VERSION_COMPONENTS ${GCC_VERSION})
-	    LIST(GET GCC_VERSION_COMPONENTS 0 GCC_MAJOR)
-		LIST(GET GCC_VERSION_COMPONENTS 1 GCC_MINOR)
-	ENDIF ()
+    IF (CMAKE_COMPILER_IS_GNUCXX)
+        EXECUTE_PROCESS (COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
+        STRING (REGEX MATCHALL "[0-9]+" GCC_VERSION_COMPONENTS ${GCC_VERSION})
+        LIST (GET GCC_VERSION_COMPONENTS 0 GCC_MAJOR)
+        LIST (LENGTH GCC_VERSION_COMPONENTS LIST_LEN)
+        IF (LIST_LEN GREATER 1)
+            LIST (GET GCC_VERSION_COMPONENTS 1 GCC_MINOR)
+        ELSE ()
+            SET(GCC_MINOR "X")
+        ENDIF ()
+    ENDIF ()
 ENDMACRO ()
 
 # *****************************************************************************
