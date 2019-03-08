@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2019 Acid Rain Studios LLC
+# Copyright ï¿½ 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -102,8 +102,9 @@ IF (UNIX)
     READ_GCC_VERSION()
     SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
     IF (GCC_VERSION LESS 6.0.0)
-        MESSAGE (STATUS "GCC Version: " ${GCC_VERSION})
-        MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
+
+    MESSAGE (STATUS "GCC Version: ${GCC_MAJOR}.${GCC_MINOR}")
+    MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
     ENDIF ()
     OPTION (CMAKE_VERBOSE_MAKEFILE "Users may enable the option in their local build tree to get more verbose output from Makefile builds and show each command line as it is launched." ON)
     OPTION (CMAKE_COLOR_MAKEFILE "When enabled, the generated Makefiles will produce colored output. Default is ON" ON)
