@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright ï¿½ 2019 Acid Rain Studios LLC
+# Copyright © 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -101,11 +101,12 @@ IF (UNIX)
     MESSAGE (STATUS "\nConfiguring for Unix")
     READ_GCC_VERSION()
     SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
-    IF (GCC_VERSION LESS 6.0.0)
+    SET (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lpthread")
 
     MESSAGE (STATUS "GCC Version: ${GCC_MAJOR}.${GCC_MINOR}")
     MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
-    ENDIF ()
+    MESSAGE (STATUS "Linker FLAGS: " ${CMAKE_EXE_LINKER_FLAGS})
+
     OPTION (CMAKE_VERBOSE_MAKEFILE "Users may enable the option in their local build tree to get more verbose output from Makefile builds and show each command line as it is launched." ON)
     OPTION (CMAKE_COLOR_MAKEFILE "When enabled, the generated Makefiles will produce colored output. Default is ON" ON)
 
@@ -178,6 +179,7 @@ SET (CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} CACHE STRING "You may add addition
 SET (CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} CACHE STRING "CXX Flags" FORCE)
+SET (CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} CACHE STRING "Linker Flags" FORCE)
 
 
 MESSAGE(STATUS "Configuring to use C++ ${CMAKE_CXX_STANDARD} standard with a ${CMAKE_BUILD_TYPE} build.")
