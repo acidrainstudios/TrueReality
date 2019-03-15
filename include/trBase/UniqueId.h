@@ -117,7 +117,7 @@ namespace trBase
         bool operator> (const UniqueId& id) const { return mGUID >  id.mGUID; }
 
     protected:
-        boost::uuids::uuid mGUID;
+        trBoost::uuids::uuid mGUID;
     };
 
     ////////////////////////////////////////////////////

@@ -40,13 +40,13 @@ namespace trBase
         if (createNewId)
         {
             //Create a random GUID
-            mGUID = boost::uuids::random_generator()();
+            mGUID = trBoost::uuids::random_generator()();
 
         }
         else
         {
             //Create a NULL GUID
-            mGUID = boost::uuids::nil_uuid();
+            mGUID = trBoost::uuids::nil_uuid();
         }
     }
 
@@ -59,7 +59,7 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const std::string& toCopy)
     {
-        mGUID = boost::uuids::string_generator()(toCopy);
+        mGUID = trBoost::uuids::string_generator()(toCopy);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -71,13 +71,13 @@ namespace trBase
     ////////////////////////////////////////////////
     const std::string UniqueId::ToString() const
     {
-        return boost::uuids::to_string(mGUID);
+        return trBoost::uuids::to_string(mGUID);
     }
 
     ////////////////////////////////////////////////
     void UniqueId::FromString(std::string& idString)
     {
-        mGUID = boost::uuids::string_generator()(idString);
+        mGUID = trBoost::uuids::string_generator()(idString);
     }
 
     ////////////////////////////////////////////////
@@ -113,7 +113,7 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const std::string& id)
     {
-        mGUID = boost::uuids::string_generator()(id);
+        mGUID = trBoost::uuids::string_generator()(id);
         return *this;
     }
 
