@@ -30,6 +30,11 @@
 #include <osg/NodeVisitor>
 #include <osg/PositionAttitudeTransform>
 
+/**
+ * @namespace   trCore::SceneObjects
+ *
+ * @brief   Namespace that contains controls for sample scene objects.
+ */
 namespace trCore::SceneObjects
 {
     /**

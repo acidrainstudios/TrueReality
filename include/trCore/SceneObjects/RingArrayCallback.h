@@ -28,6 +28,11 @@
 #include <osg/NodeCallback>
 #include <osg/NodeVisitor>
 
+/**
+ * @namespace   trCore::SceneObjects
+ *
+ * @brief   Namespace that contains controls for sample scene objects.
+ */
 namespace trCore::SceneObjects
 {
     /**
