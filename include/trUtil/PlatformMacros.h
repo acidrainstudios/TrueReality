@@ -22,15 +22,37 @@
 */
 #pragma once
 
+#include <trUtil/Export.h>
+
 #include <trUtil/TypeConfig.h>
 
 
 namespace trUtil
 {
+    /**
+     * @enum    BuildType
+     *
+     * @brief   An Enum that represent build types. This enum should be used instead of using #ifdef
+     *          statements to test if TR is in Debug or Release build.
+     *
+     * @author   Maxim Serebrennik.
+     */
+    enum class TR_UTIL_EXPORT BuildType
+    {
+        DEBUG,
+        RELEASE,
+        REL_WITH_DEB_INFO,
+        OTHER
+    };
+
+    
+
+///Defines Build Types
+
+
 /// OS Defines
 #if defined (WIN32) || defined (_WIN32) || defined (__WIN32__)
     #define TR_WIN
-
     #if _MSC_VER < 1900
         #ifndef snprintf
             #define snprintf _snprintf
