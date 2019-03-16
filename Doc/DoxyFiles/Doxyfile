@@ -83,8 +83,8 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = https://github.com/acidrainstudios/TrueReality/tree/0.2-Dev/include \
-                         https://github.com/acidrainstudios/TrueReality/tree/0.2-Dev/src
+INPUT                  = include \
+                         src
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *include* \
                          *.cpp
