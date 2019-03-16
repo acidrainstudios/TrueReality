@@ -21,6 +21,7 @@
 #include <trUtil/DefaultSettings.h>
 
 #include <trUtil/PathUtils.h>
+#include <trUtil/PlatformMacros.h>
 #include <trUtil/Logging/Log.h>
 
 #include <osg/ArgumentParser>
@@ -78,11 +79,14 @@ namespace trUtil::DefaultSettings
         //Set the log level
         if (logLevel.empty())
         {
-#ifdef _DEBUG
-            trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
-#else
-            trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_WARNING);
-#endif
+            if (TR_BUILD_TYPE == BuildType::DEBUG)
+            {
+                trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
+            }
+            else
+            {
+                trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_WARNING);
+            }
         }
         else
         {
