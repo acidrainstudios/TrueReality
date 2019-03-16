@@ -26,11 +26,12 @@
 
 #include <trUtil/Logging/LogFile.h>
 
+#include <trUtil/PlatformMacros.h>
 #include <trUtil/Logging/Log.h>
 #include <trUtil/Logging/LogManager.h>
 
 namespace trUtil::Logging
-{       
+{
 #ifdef _DEBUG
     std::string LogFile::mTitle("True Reality SDK Log File (<font color=#A000A0>DEBUG LIBs)</font>");
 #else
