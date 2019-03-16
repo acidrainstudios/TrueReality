@@ -117,12 +117,15 @@ namespace trUtil::DefaultSettings
         }
 
         //Set Log file options
-#ifdef _DEBUG
-        trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::STANDARD);
-#else
-        trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::TO_FILE);
+        if (TR_BUILD_TYPE == BuildType::DEBUG)
+        {
+            trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::STANDARD);
+    }
+        else
+        {
+            trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::TO_FILE);
+        }
 
-#endif
         LOG_A("\n*\n*\nLOG Level is set to: '" + trUtil::Logging::Log::GetInstance().GetLogLevelString(trUtil::Logging::Log::GetInstance().GetLogLevel()) + "'\n*\n*\n");
     }        
 }
