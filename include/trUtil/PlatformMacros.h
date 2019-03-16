@@ -45,10 +45,12 @@ namespace trUtil
         OTHER
     };
 
-    
-
-///Defines Build Types
-
+///Defines TR Build Types
+#ifdef _DEBUG
+    const BuildType TR_BUILD_TYPE = BuildType::DEBUG;
+#else
+    const BuildType TR_BUILD_TYPE = BuildType::RELEASE;
+#endif
 
 /// OS Defines
 #if defined (WIN32) || defined (_WIN32) || defined (__WIN32__)
