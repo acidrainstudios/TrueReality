@@ -350,6 +350,16 @@ namespace trCore::Nodes
          */
         virtual trBase::Vec3 GetEyePoint() const { return trBase::Vec3(0.0f, 0.0f, 0.0f); }
 
+        /**
+         * @fn  virtual trBase::Vec3 NodeVisitor::GetViewPoint() const
+         *
+         * @brief   Get the view point in local coordinates. Note, not all NodeVisitor implement this
+         *          method, it is mainly cull visitors which will implement.
+         *
+         * @return  The view point.
+         */
+        virtual trBase::Vec3 GetViewPoint() const { return GetEyePoint(); }
+
     protected:
 
         /** @brief   The node visitor. */
