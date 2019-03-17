@@ -360,6 +360,21 @@ namespace trCore::Nodes
          */
         virtual trBase::Vec3 GetViewPoint() const { return GetEyePoint(); }
 
+        /**
+         * @fn  virtual float NodeVisitor::GetDistanceToEyePoint(const trBase::Vec3& , bool ) const
+         *
+         * @brief   Get the distance from a point to the eye point, distance value in local coordinate
+         *          system. Note, not all NodeVisitor implement this method, it is mainly cull visitors
+         *          which will implement. If the GetDistanceFromEyePoint(pos) is not implemented then a
+         *          default value of 0.0 is returned.
+         *
+         * @param   parameter1  The first parameter.
+         * @param   parameter2  True to parameter 2.
+         *
+         * @return  The distance to eye point.
+         */
+        virtual float GetDistanceToEyePoint(const trBase::Vec3& /*pos*/, bool /*useLODScale*/) const { return 0.0f; }
+
     protected:
 
         /** @brief   The node visitor. */
