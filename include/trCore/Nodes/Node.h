@@ -173,5 +173,5 @@ namespace trCore::Nodes
      * @brief   A vector of Nodes pointers which is used to describe the path from a root node to a
      *          descendant.
      */
-    using NodePath = std::vector<Node*>;
+    using NodePath = std::vector<trBase::SmrtPtr<Node>>;
 }
