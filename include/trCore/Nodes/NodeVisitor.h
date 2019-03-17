@@ -326,6 +326,17 @@ namespace trCore::Nodes
          * @return  The node path.
          */
         NodePath& GetNodePath();
+
+        /**
+         * @fn  const NodePath& NodeVisitor::getNodePath() const;
+         *
+         * @brief   Get the const NodePath from the top most node applied down to the current Node being
+         *          visited.
+         *
+         * @return  The node path.
+         */
+        const NodePath& GetNodePath() const;
+
     protected:
 
         /** @brief   The node visitor. */
