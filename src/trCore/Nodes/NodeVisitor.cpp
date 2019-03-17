@@ -305,7 +305,7 @@ namespace trCore::Nodes
     }
 
     //////////////////////////////////////////////////////////////////////////
-    NodePath & NodeVisitor::GetNodePath()
+    NodePath * NodeVisitor::GetNodePath()
     {
         osg::NodePath* osgNodes = &mNodeVisitor->getNodePath();
         NodePath* path = new NodePath;
@@ -317,11 +317,11 @@ namespace trCore::Nodes
             path->push_back(newNode);
         }
 
-        return *path;
+        return path;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    const NodePath & NodeVisitor::GetNodePath() const
+    const NodePath * NodeVisitor::GetNodePath() const
     {
         osg::NodePath* osgNodes = &mNodeVisitor->getNodePath();
         NodePath* path = new NodePath;
@@ -333,7 +333,7 @@ namespace trCore::Nodes
             path->push_back(newNode);
         }
 
-        return *path;
+        return path;
     }
 
     //////////////////////////////////////////////////////////////////////////

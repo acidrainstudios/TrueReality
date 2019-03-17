@@ -318,24 +318,26 @@ namespace trCore::Nodes
         inline void PopFromNodePath();
 
         /**
-         * @fn  NodePath& NodeVisitor::getNodePath();
+         * @fn  NodePath* NodeVisitor::GetNodePath();
          *
          * @brief   Get the non const NodePath from the top most node applied down to the current Node
          *          being visited.
          *
-         * @return  The node path.
+         * @return  The node path. It is up to the user to take control of the pointers life cycle to
+         *          make sure there are no memory leaks.
          */
-        NodePath& GetNodePath();
+        NodePath* GetNodePath();
 
         /**
-         * @fn  const NodePath& NodeVisitor::getNodePath() const;
+         * @fn  const NodePath* NodeVisitor::GetNodePath() const;
          *
          * @brief   Get the const NodePath from the top most node applied down to the current Node being
          *          visited.
          *
-         * @return  The node path.
+         * @return  The node path. It is up to the user to take control of the pointers life cycle to
+         *          make sure there are no memory leaks.
          */
-        const NodePath& GetNodePath() const;
+        const NodePath* GetNodePath() const;
 
     protected:
 
