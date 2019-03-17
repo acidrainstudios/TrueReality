@@ -84,6 +84,16 @@ namespace trCore::Nodes
         Node(const std::string name = CLASS_TYPE);
 
         /**
+         * @fn  Node::Node(osg::Node& node, std::string name = CLASS_TYPE);
+         *
+         * @brief   Constructor.
+         *
+         * @param [in,out]  node    The node.
+         * @param           name    (Optional) The name.
+         */
+        Node(osg::Node& node, std::string name = CLASS_TYPE);
+
+        /**
          * @fn  virtual const std::string& Node::GetType() const override;
          *
          * @brief   Returns the class type.
@@ -149,7 +159,7 @@ namespace trCore::Nodes
     protected:
 
         /** @brief   The node. */
-        trBase::SmrtPtr<osg::Group> mNode;
+        trBase::SmrtPtr<osg::Node> mNode;
 
         /**
          * @fn  Node::~Node();

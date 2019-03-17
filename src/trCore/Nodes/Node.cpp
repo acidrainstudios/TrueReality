@@ -25,6 +25,7 @@
 
 #include <osg/Group>
 #include <osg/Node>
+#include "..\..\..\include\trCore\Nodes\Node.h"
 
 namespace trCore::Nodes
 {
@@ -35,6 +36,12 @@ namespace trCore::Nodes
     {
         mNode = new osg::Group(); //Creates our internal OSG node. 
         mNode->setName(name);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    Node::Node(osg::Node& node, std::string name) : Node(name)
+    {
+        mNode = &node;
     }
 
     //////////////////////////////////////////////////////////////////////////
