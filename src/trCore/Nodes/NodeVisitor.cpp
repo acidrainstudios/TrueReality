@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,6 +21,7 @@
 #include <trCore/Nodes/NodeVisitor.h>
 
 #include <osg/Group>
+#include <osg/Node>
 #include <osg/NodeVisitor>
 
 namespace trCore::Nodes
@@ -301,6 +302,22 @@ namespace trCore::Nodes
     inline void NodeVisitor::PopFromNodePath()
     {
         mNodeVisitor->popFromNodePath();
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    NodePath & NodeVisitor::GetNodePath()
+    {
+        osg::NodePath* osgNodes = &mNodeVisitor->getNodePath();
+        NodePath* path = new NodePath;
+
+        // Copy the node path from osg nodes to TR
+        for (int i = 0; osgNodes->size() - 1; ++i)
+        {
+            trBase::SmrtPtr<trCore::Nodes::Node> newNode = new trCore::Nodes::Node(*osgNodes->at(i), osgNodes->at(i)->getName());
+            path->push_back(newNode);
+        }
+
+        return *path;
     }
 
     //////////////////////////////////////////////////////////////////////////

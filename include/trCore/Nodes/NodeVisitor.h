@@ -317,6 +317,15 @@ namespace trCore::Nodes
          */
         inline void PopFromNodePath();
 
+        /**
+         * @fn  NodePath& NodeVisitor::getNodePath();
+         *
+         * @brief   Get the non const NodePath from the top most node applied down to the current Node
+         *          being visited.
+         *
+         * @return  The node path.
+         */
+        NodePath& GetNodePath();
     protected:
 
         /** @brief   The node visitor. */
