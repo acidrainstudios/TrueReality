@@ -24,6 +24,7 @@
 
 #include <trBase/Base.h>
 #include <trBase/SmrtPtr.h>
+#include <trBase/Vec3.h>
 #include <trCore/Nodes/FrameStamp.h>
 #include <trCore/Nodes/Node.h>
 #include <trUtil/RefStr.h>
@@ -338,6 +339,16 @@ namespace trCore::Nodes
          *          make sure there are no memory leaks.
          */
         const NodePath* GetNodePath() const;
+
+        /**
+         * @fn  virtual trBase::Vec3 NodeVisitor::GetEyePoint() const
+         *
+         * @brief   Get the eye point in local coordinates. Note, not all NodeVisitor implement this
+         *          method, it is mainly cull visitors which will implement.
+         *
+         * @return  The eye point.
+         */
+        virtual trBase::Vec3 GetEyePoint() const { return trBase::Vec3(0.0f, 0.0f, 0.0f); }
 
     protected:
 
