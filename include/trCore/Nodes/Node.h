@@ -27,6 +27,8 @@
 #include <trBase/SmrtPtr.h>
 #include <trUtil/RefStr.h>
 
+#include <vector>
+
 namespace trBase
 {
     class UserDataContainer;
@@ -156,4 +158,10 @@ namespace trCore::Nodes
          */
         ~Node();
     };
+
+    /**
+     * @brief   A vector of Nodes pointers which is used to describe the path from a root node to a
+     *          descendant.
+     */
+    using NodePath = std::vector<Node*>;
 }
