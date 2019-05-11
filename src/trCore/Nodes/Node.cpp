@@ -25,7 +25,6 @@
 
 #include <osg/Group>
 #include <osg/Node>
-#include "..\..\..\include\trCore\Nodes\Node.h"
 
 namespace trCore::Nodes
 {
