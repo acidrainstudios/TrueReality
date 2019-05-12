@@ -148,7 +148,7 @@ namespace trCore::Nodes
         virtual void Ascend(osg::NodeVisitor& nv);
 
         /**
-         * @fn  virtual void Node::Traverse(osg::NodeVisitor& nv) protected: trBase::SmrtPtr<osg::Group> mNode;
+         * @fn  virtual void Node::Traverse(osg::NodeVisitor& nv);
          *
          * @brief   Traverse downwards : calls children's accept method with NodeVisitor.
          *
