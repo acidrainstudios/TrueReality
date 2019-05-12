@@ -238,7 +238,7 @@ namespace trUtil
                     LOG_E("No .hg or .git folders found at the repo path. \nRepo Path: " + mRepoPath);
 
                     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-                    std::cerr << ".hg (HG Repo) or .git (GIT Repo) is needed for this to work" << std::endl;
+                    std::cerr << ".hg (HG Repo) or .git (Git Repo) is needed for this to work. Check that an HG or Git command line client is present." << std::endl;
                     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
                 }
                 
