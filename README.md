@@ -32,7 +32,7 @@ True Reality (TR) is an open source LGPL Game and Simulation Engine written enti
 ### Who do I talk to? ###
 
 If you need information on the project, please contact one of the engine's lead designers:
- 
-* @DieSlower 
 
-* @exoticDFT
+* @AcidRainStudios
+
+* @DieSlower 
