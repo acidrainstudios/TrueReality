@@ -24,10 +24,10 @@
 #include <trUtil/PlatformMacros.h>
 #include <trUtil/Logging/Log.h>
 
-#include <boost/uuid/random_generator.hpp>
-#include <boost/uuid/string_generator.hpp>
-#include <boost/uuid/nil_generator.hpp>
-#include <boost/uuid/uuid_io.hpp>
+#include <bID/uuid/random_generator.hpp>
+#include <bID/uuid/string_generator.hpp>
+#include <bID/uuid/nil_generator.hpp>
+#include <bID/uuid/uuid_io.hpp>
 
 #include <iostream>
 
@@ -40,13 +40,13 @@ namespace trBase
         if (createNewId)
         {
             //Create a random GUID
-            mGUID = trBoost::uuids::random_generator()();
+            mGUID = bID::uuids::random_generator()();
 
         }
         else
         {
             //Create a NULL GUID
-            mGUID = trBoost::uuids::nil_uuid();
+            mGUID = bID::uuids::nil_uuid();
         }
     }
 
@@ -59,7 +59,7 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const std::string& toCopy)
     {
-        mGUID = trBoost::uuids::string_generator()(toCopy);
+        mGUID = bID::uuids::string_generator()(toCopy);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -71,13 +71,13 @@ namespace trBase
     ////////////////////////////////////////////////
     const std::string UniqueId::ToString() const
     {
-        return trBoost::uuids::to_string(mGUID);
+        return bID::uuids::to_string(mGUID);
     }
 
     ////////////////////////////////////////////////
     void UniqueId::FromString(std::string& idString)
     {
-        mGUID = trBoost::uuids::string_generator()(idString);
+        mGUID = bID::uuids::string_generator()(idString);
     }
 
     ////////////////////////////////////////////////
@@ -113,7 +113,7 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const std::string& id)
     {
-        mGUID = trBoost::uuids::string_generator()(id);
+        mGUID = bID::uuids::string_generator()(id);
         return *this;
     }
 

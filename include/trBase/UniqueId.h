@@ -27,7 +27,7 @@
 #include <trUtil/RefStr.h>
 #include <trUtil/Hash.h>
 
-#include <boost/uuid/uuid.hpp>
+#include <bID/uuid/uuid.hpp>
 
 #include <string>
 #include <sstream>
@@ -117,7 +117,7 @@ namespace trBase
         bool operator> (const UniqueId& id) const { return mGUID >  id.mGUID; }
 
     protected:
-        trBoost::uuids::uuid mGUID;
+        bID::uuids::uuid mGUID;
     };
 
     ////////////////////////////////////////////////////
