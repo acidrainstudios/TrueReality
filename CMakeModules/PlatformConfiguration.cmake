@@ -127,6 +127,7 @@ IF (WIN32)
 	
         # Set all the initial CXX options
         SET (CMAKE_CXX_FLAGS " /DWIN32 /D_WINDOWS /W3 /GR /EHsc /nologo")
+        SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /std:c++17") #This is used because cmake 3.14.3 has a bug. Check later if it can be removed
 
         # Enable multi-core builds
         OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
@@ -179,7 +180,7 @@ SET (CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} CACHE STRING "You may add addition
 SET (CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} CACHE STRING "CXX Flags" FORCE)
+SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO ${CMAKE_CXX_FLAGS_RELWITHDEBINFO} CACHE STRING "CXX Flags Rel with Debug" FORCE)
 SET (CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} CACHE STRING "Linker Flags" FORCE)
-
 
 MESSAGE(STATUS "Configuring to use C++ ${CMAKE_CXX_STANDARD} standard with a ${CMAKE_BUILD_TYPE} build.")
