@@ -101,6 +101,18 @@ namespace trBase
             return bID::uuids::to_string(mGUID);
         }
 
+        /**
+         * @fn  void implId::FromString(std::string& idString)
+         *
+         * @brief   Initializes this object from the given string.
+         *
+         * @param [in,out]  idString    The identifier string.
+         */
+        void implId::FromString(std::string& idString)
+        {
+            mGUID = bID::uuids::string_generator()(idString);
+        }
+
     private:
         bID::uuids::uuid mGUID;
     };
