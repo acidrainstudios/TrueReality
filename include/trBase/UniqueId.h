@@ -35,6 +35,9 @@
 
 namespace trBase
 {
+    // Forward declarations of the pimpl class
+    class implId;
+
     /**
     * This class creates a GUID, or a Unique ID that is used through out TR to identify and distinguish one object from another. 
     */
