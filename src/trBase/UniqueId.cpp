@@ -125,6 +125,61 @@ namespace trBase
             return mGUID.is_nil();
         }
 
+        /**
+         * @fn  implId& implId::operator=(const implId& id)
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  A shallow copy of this object.
+         */
+        implId& implId::operator=(const implId& id)
+        {
+            if (this == &id)
+            {
+                return *this;
+            }
+
+            mGUID = id.mGUID;
+            return *this;
+        }
+
+        /**
+         * @fn  implId& implId::operator=(const implId* id)
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  A shallow copy of this object.
+         */
+        implId& implId::operator=(const implId* id)
+        {
+            if (this == id)
+            {
+                return *this;
+            }
+
+            mGUID = id->mGUID;
+            return *this;
+        }
+
+        /**
+         * @fn  implId& implId::operator=(const std::string& id)
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  A shallow copy of this object.
+         */
+        implId& implId::operator=(const std::string& id)
+        {
+            mGUID = bID::uuids::string_generator()(id);
+            return *this;
+        }
+
     private:
         bID::uuids::uuid mGUID;
     };
