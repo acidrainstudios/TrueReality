@@ -194,6 +194,20 @@ namespace trBase
             return mGUID == id.mGUID;
         }
 
+        /**
+         * @fn  bool implId::operator!=(const implId & id) const
+         *
+         * @brief   Inequality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are not considered equivalent.
+         */
+        bool implId::operator!=(const implId & id) const
+        {
+            return mGUID != id.mGUID;
+        }
+
     private:
         bID::uuids::uuid mGUID;
     };
