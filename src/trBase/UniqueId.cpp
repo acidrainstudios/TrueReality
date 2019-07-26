@@ -113,6 +113,18 @@ namespace trBase
             mGUID = bID::uuids::string_generator()(idString);
         }
 
+        /**
+         * @fn  bool implId::IsNull() const
+         *
+         * @brief   Returns true if the GUID is equal to 00000000-0000-0000-0000-000000000000.
+         *
+         * @return  True if null, false if not.
+         */
+        bool implId::IsNull() const
+        {
+            return mGUID.is_nil();
+        }
+
     private:
         bID::uuids::uuid mGUID;
     };
