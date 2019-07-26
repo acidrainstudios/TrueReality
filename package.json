@@ -6,24 +6,8 @@
   "repository": { "type": "git", "url": "https://github.com/acidrainstudios/TrueReality.git" },
   "author": { "name": "Acid Rain Studios", "email": "AcidRainStudios@gmail.com", "url": "" },
   "contributors": [
-    { "name": "Maxim Serebrennik", "email": "Maximster@gmail.com", "url": "" },
-    { "name": "Alexander Koufos", "email": "akoufos@gmail.com", "url": "" }
+    { "name": "Maxim Serebrennik", "email": "Maximster@gmail.com", "url": "" }
   ],
-  "dependencies": {
-    "nigels-com/glew": "^2.1.0",
-    "OpenSceneGraph": "git://github.com/openscenegraph/OpenSceneGraph.git#OpenSceneGraph-3.6.3",
-    "openscenegraph/OpenSceneGraph": "^3.6.3",
-    "boostorg/boost": "^boost-1.66.0",
-    "freetype": "^2.9",
-    "FFmpeg/FFmpeg": "^3.4.2",
-    "gdal": "^2.2.4",
-    "google/googletest": "^1.8.1",
-    "jpeg": "^9c",
-    "open-source-parsers/jsoncpp": "^1.8.4",    
-    "libpng": "^1.6.32",
-    "tiff": "^4.0.9",
-    "madler/zlib": "^1.2.11"
-  },
   "os": ["win32", "linux"],
   "cpu": ["x64"]
 }
