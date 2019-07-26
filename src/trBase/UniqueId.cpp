@@ -180,6 +180,20 @@ namespace trBase
             return *this;
         }
 
+        /**
+         * @fn  bool implId::operator==(const implId & id) const
+         *
+         * @brief   Equality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are considered equivalent.
+         */
+        bool implId::operator==(const implId & id) const
+        {
+            return mGUID == id.mGUID;
+        }
+
     private:
         bID::uuids::uuid mGUID;
     };
