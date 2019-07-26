@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright ï¿½ 2019 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -78,6 +78,18 @@ namespace trBase
         }
 
         /**
+         * @fn  implId::implId(const std::string& toCopy)
+         *
+         * @brief   Constructor.
+         *
+         * @param   toCopy  to copy.
+         */
+        implId::implId(const std::string& toCopy)
+        {
+            mGUID = bID::uuids::string_generator()(toCopy);
+        }
+
+        /**
          * @fn  const std::string implId::ToString() const
          *
          * @brief   Convert this object into a string representation.
@@ -88,6 +100,7 @@ namespace trBase
         {
             return bID::uuids::to_string(mGUID);
         }
+
     private:
         bID::uuids::uuid mGUID;
     };
