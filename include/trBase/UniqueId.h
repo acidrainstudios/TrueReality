@@ -111,7 +111,7 @@ namespace trBase
         */
         UniqueId& operator=(const std::string& id);
 
-        bool operator==(const UniqueId& id) const { return mGUID == id.mGUID; }
+        bool operator==(const UniqueId& id) const;
         bool operator!=(const UniqueId& id) const { return mGUID != id.mGUID; }
         bool operator< (const UniqueId& id) const { return mGUID <  id.mGUID; }
         bool operator> (const UniqueId& id) const { return mGUID >  id.mGUID; }
