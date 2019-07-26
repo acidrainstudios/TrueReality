@@ -42,7 +42,14 @@ namespace trBase
     class implId
     {
     public:
-        
+
+        /**
+         * @fn  implId::implId(bool createNewId)
+         *
+         * @brief   Constructor.
+         *
+         * @param   createNewId if true, generates a new id.  If not, it sets the id to empty.
+         */
         implId::implId(bool createNewId)
         {
             if (createNewId)
@@ -56,6 +63,18 @@ namespace trBase
                 //Create a NULL GUID
                 mGUID = bID::uuids::nil_uuid();
             }
+        }
+
+        /**
+         * @fn  implId::implId(const implId& toCopy)
+         *
+         * @brief   Makes a copy of the passed in Unique ID GUID.
+         *
+         * @param   toCopy  to copy.
+         */
+        implId::implId(const implId& toCopy)
+        {
+            mGUID = toCopy.mGUID;
         }
 
     private:
