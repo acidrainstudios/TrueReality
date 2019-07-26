@@ -111,9 +111,38 @@ namespace trBase
         */
         UniqueId& operator=(const std::string& id);
 
+        /**
+         * @fn  bool UniqueId::operator==(const UniqueId& id) const;
+         *
+         * @brief   Equality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are considered equivalent.
+         */
         bool operator==(const UniqueId& id) const;
+
+        /**
+         * @fn  bool UniqueId::operator!=(const UniqueId& id) const;
+         *
+         * @brief   Inequality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are not considered equivalent.
+         */
         bool operator!=(const UniqueId& id) const;
-        bool operator< (const UniqueId& id) const { return mGUID <  id.mGUID; }
+
+        /**
+         * @fn  bool UniqueId::operator< (const UniqueId& id) const;
+         *
+         * @brief   Less-than comparison operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is less than the second.
+         */
+        bool operator< (const UniqueId& id) const;
         bool operator> (const UniqueId& id) const { return mGUID >  id.mGUID; }
 
     protected:

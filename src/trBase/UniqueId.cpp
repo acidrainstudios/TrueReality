@@ -161,6 +161,12 @@ namespace trBase
     }
 
     ////////////////////////////////////////////////
+    bool UniqueId::operator<(const UniqueId & id) const
+    {
+        return mGUID < id.mGUID;
+    }
+
+    ////////////////////////////////////////////////
     std::ostream& operator << (std::ostream& o, const UniqueId& id)
     {
         o << id.ToString();
