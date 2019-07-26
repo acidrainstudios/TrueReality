@@ -143,7 +143,17 @@ namespace trBase
          * @return  True if the first parameter is less than the second.
          */
         bool operator< (const UniqueId& id) const;
-        bool operator> (const UniqueId& id) const { return mGUID >  id.mGUID; }
+
+        /**
+         * @fn  bool UniqueId::operator> (const UniqueId& id) const;
+         *
+         * @brief   Greater-than comparison operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is greater than to the second.
+         */
+        bool operator> (const UniqueId& id) const;
 
     protected:
         bID::uuids::uuid mGUID;
