@@ -222,6 +222,20 @@ namespace trBase
             return mGUID < id.mGUID;
         }
 
+        /**
+         * @fn  bool implId::operator>(const implId & id) const
+         *
+         * @brief   Greater-than comparison operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is greater than to the second.
+         */
+        bool implId::operator>(const implId & id) const
+        {
+            return mGUID > id.mGUID;
+        }
+
     private:
         bID::uuids::uuid mGUID;
     };
