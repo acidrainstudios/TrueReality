@@ -27,14 +27,45 @@
 #include <bID/uuid/random_generator.hpp>
 #include <bID/uuid/string_generator.hpp>
 #include <bID/uuid/nil_generator.hpp>
+#include <bID/uuid/uuid.hpp>
 #include <bID/uuid/uuid_io.hpp>
 
 #include <iostream>
 
 namespace trBase
 {
+    /**
+     * @class   implId
+     *
+     * @brief   An implementation class for GUID.
+     */
+    class implId
+    {
+    public:
+        
+        implId::implId(bool createNewId)
+        {
+            if (createNewId)
+            {
+                //Create a random GUID
+                mGUID = bID::uuids::random_generator()();
+
+            }
+            else
+            {
+                //Create a NULL GUID
+                mGUID = bID::uuids::nil_uuid();
+            }
+        }
+
+    private:
+        bID::uuids::uuid mGUID;
+    };
+
+    ////////////////////////////////////////////////
     const trUtil::RefStr UniqueId::CLASS_TYPE = trUtil::RefStr("trBase::UniqueId");
 
+    ////////////////////////////////////////////////
     UniqueId::UniqueId(bool createNewId)
     {
         if (createNewId)
