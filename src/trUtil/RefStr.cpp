@@ -131,17 +131,10 @@ namespace trUtil
         return RefStr(*mString + str);
     }
 
-    /////////////////////////////////////////////////////////////
-    trUtil::RefStr& RefStr::operator=(const trUtil::RefStr& value)
+    /////////////////////////////////////////////////////////////	
+    trUtil::RefStr& RefStr::operator=(const std::string& value)
     {
-        if (this == &value)
-            return *this;
-#if USE_TABLE
-        //If we are using the table, we'll get the same pointer anyway.
-        mString = value.mString;
-#else
-        Intern(*value.mString);
-#endif
+        Intern(value);
         return *this;
     }
 
