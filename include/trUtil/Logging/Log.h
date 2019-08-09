@@ -426,11 +426,11 @@ namespace trUtil::Logging
             */
         enum OutputStreamOptions
         {
-            NO_OUTPUT = 0x00000000, ///<Log messages don't get written to any device
-            TO_FILE = 0x00000001,   ///<Log messages get sent to the output file
-            TO_CONSOLE = 0x00000002,///<Log messages get sent to the console
-            TO_WRITER = 0x00000004,///<Log messages get sent to all registered writers
-            STANDARD = TO_FILE | TO_CONSOLE | TO_WRITER ///<The default setting
+            NO_OUTPUT = 0x00000000, /* Log messages don't get written to any device*/
+            TO_FILE = 0x00000001,   /* Log messages get sent to the output file*/
+            TO_CONSOLE = 0x00000002,/* Log messages get sent to the console*/
+            TO_WRITER = 0x00000004,/* Log messages get sent to all registered writers*/
+            STANDARD = TO_FILE | TO_CONSOLE | TO_WRITER /* The default setting*/
         };
 
         /**
