@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright ï¿½ 2019 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -231,10 +231,10 @@ namespace trUtil::Logging
     }
 
     //////////////////////////////////////////////////////////////////////////
-    const std::string * Log::GetLastLogMessage() const
+    const Log::LogTestData * Log::GetLastLogData() const
     {
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(LOG_MANAGER->GetMutex());
-        return &mLogTestMessage;
+        return &mLogTestData;
     }
 
     //////////////////////////////////////////////////////////////////////////
