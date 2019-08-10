@@ -488,6 +488,15 @@ namespace trUtil::Logging
             */
         LogManager& GetLogManagerRef();
 
+        /**
+         * @fn  void Log::SetTestMode(bool state);
+         *
+         * @brief   Enables the use of unit test mode which enables capturing of certain data.
+         *
+         * @param   state   True to state.
+         */
+        void SetTestMode(bool state);
+
         //std::ostream& operator()(const std::string& file, const std::string& method, int line, LogLevel logLevel);
 
     protected:
@@ -511,6 +520,8 @@ namespace trUtil::Logging
 
     private:
         LogImpl* mImpl;
+
+        bool mTestingMode = false;
     };
 
     /**

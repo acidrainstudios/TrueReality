@@ -213,6 +213,12 @@ namespace trUtil::Logging
     }
 
     //////////////////////////////////////////////////////////////////////////
+    void Log::SetTestMode(bool state)
+    {
+        mTestingMode = state;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     void Log::SetDefaultLogLevel(LogLevel newLevel)
     {
         DEFAULT_LOG_LEVEL = newLevel;
