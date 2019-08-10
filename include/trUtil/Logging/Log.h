@@ -29,13 +29,14 @@
 #pragma once
 #include <trUtil/Export.h>
 
+#include <trUtil/DateTime.h>
 #include <trUtil/Logging/LogFile.h>
 #include <trUtil/Logging/LogLevel.h>
 
 #include <string>
 #include <cstdarg>
 #include <vector>
-#include <ostream>
+#include <sstream>
 
 #include <osg/Referenced>
 #include <osg/ref_ptr>
@@ -68,9 +69,13 @@ namespace trUtil::Logging
 */
 #define LOG_FULL(level, name, msg) \
     {\
-    trUtil::Logging::Log& logger = trUtil::Logging::Log::GetInstance(name); \
-    if (logger.IsLevelEnabled(level)) \
-    logger.LogMessage(TR_LOG_SOURCE, msg, level); \
+        trUtil::Logging::Log& logger = trUtil::Logging::Log::GetInstance(name); \
+        if (logger.IsLevelEnabled(level)) \
+        {\
+            std::ostringstream st;\
+            st << msg;\
+            logger.LogMessage(TR_LOG_SOURCE, st.str(), level); \
+        }\
     }\
 
 /**
@@ -192,6 +197,24 @@ namespace trUtil::Logging
     class TR_UTIL_EXPORT Log : public osg::Referenced
     {
     public:
+
+        /**
+         * @struct  LogTestData
+         *
+         * @brief   A data structure that is used for Unit Tests
+         */
+        struct LogTestData
+        {            
+            trUtil::Logging::LogLevel logLevel; /** @brief   Log level. */
+            trUtil::DateTime time;              /** @brief   Time of message. */
+            unsigned frameNumber;               /** @brief   The frame number. */
+            std::string logName;                /** @brief   The name of the Log instance (could be empty) */
+            std::string file;                   /** @brief   The source file of the message. */
+            std::string method;                 /** @brief   The calling method of the message. */
+            int line;                           /** @brief   The line number of the source code of the message. */
+            std::string msg;                    /** @brief   The message itself. */
+        };
+
         static const std::string LOG_DEFAULT_NAME;
 
         /**
@@ -484,6 +507,24 @@ namespace trUtil::Logging
             */
         LogManager& GetLogManagerRef();
 
+        /**
+         * @fn  void Log::SetTestMode(bool state);
+         *
+         * @brief   Enables the use of unit test mode which enables capturing of certain data.
+         *
+         * @param   state   True to state.
+         */
+        void SetTestMode(bool state);
+
+        /**
+         * @fn  const LogTestData* Log::GetLastLogData() const;
+         *
+         * @brief   Gets the last log data that was in the queue for testing.
+         *
+         * @return  Null if it fails, else the last log data.
+         */
+        const LogTestData* GetLastLogData() const;
+
         //std::ostream& operator()(const std::string& file, const std::string& method, int line, LogLevel logLevel);
 
     protected:
@@ -507,6 +548,9 @@ namespace trUtil::Logging
 
     private:
         LogImpl* mImpl;
+
+        bool mTestingMode = false;
+        mutable LogTestData mLogTestData;
     };
 
     /**

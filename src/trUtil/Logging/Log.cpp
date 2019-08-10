@@ -94,7 +94,6 @@ namespace trUtil::Logging
             return;
         }
 
-
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(LOG_MANAGER->GetMutex());
         bool hasLogTimeProvider = LOG_MANAGER->IsLogTimeProviderValid();
 
@@ -116,6 +115,18 @@ namespace trUtil::Logging
         logData.line = line;
         logData.msg = msg;
 
+        // If testing is enabled, copy the logg data to an accessible variable
+        if (mTestingMode)
+        {
+            mLogTestData.frameNumber = logData.frameNumber;
+            mLogTestData.time = logData.time;
+            mLogTestData.logLevel = logData.logLevel;
+            mLogTestData.logName = logData.logName;
+            mLogTestData.file = logData.file;
+            mLogTestData.method = logData.method;
+            mLogTestData.line = logData.line;
+            mLogTestData.msg = logData.msg;
+        }
 
         if (trUtil::Bits::Has(mImpl->mOutputStreamBit, Log::TO_FILE))
         {
@@ -210,6 +221,20 @@ namespace trUtil::Logging
     LogManager& Log::GetLogManagerRef()
     {
         return *LOG_MANAGER;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void Log::SetTestMode(bool state)
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(LOG_MANAGER->GetMutex());
+        mTestingMode = state;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const Log::LogTestData * Log::GetLastLogData() const
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(LOG_MANAGER->GetMutex());
+        return &mLogTestData;
     }
 
     //////////////////////////////////////////////////////////////////////////
