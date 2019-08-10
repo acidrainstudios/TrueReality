@@ -196,6 +196,24 @@ namespace trUtil::Logging
     class TR_UTIL_EXPORT Log : public osg::Referenced
     {
     public:
+
+        /**
+         * @struct  LogTestData
+         *
+         * @brief   A data structure that is used for Unit Tests
+         */
+        struct LogTestData
+        {            
+            trUtil::Logging::LogLevel logLevel; /** @brief   Log level. */
+            trUtil::DateTime time;              /** @brief   Time of message. */
+            unsigned frameNumber;               /** @brief   The frame number. */
+            std::string logName;                /** @brief   The name of the Log instance (could be empty) */
+            std::string file;                   /** @brief   The source file of the message. */
+            std::string method;                 /** @brief   The calling method of the message. */
+            int line;                           /** @brief   The line number of the source code of the message. */
+            std::string msg;                    /** @brief   The message itself. */
+        };
+
         static const std::string LOG_DEFAULT_NAME;
 
         /**
