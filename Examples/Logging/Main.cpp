@@ -24,11 +24,13 @@
 #include <trUtil/DefaultSettings.h>
 #include <trUtil/Exception.h>
 #include <trUtil/PathUtils.h>
+#include <trUtil/StringUtils.h>
 #include <trUtil/Console/Logo.h>
 #include <trUtil/Console/TextColor.h>
 #include <trUtil/Logging/Log.h>
 
 #include <iostream>
+#include <sstream>
 
 static const std::string LOG_FILE_NAME = "LoggingExample.html";
 
@@ -79,6 +81,27 @@ int main(int argc, char** argv)
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 
         trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
+        
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "\nTesting << and + operators " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+
+        //Testing << and + operators
+        std::string tstMsg = "Log String";
+        char tstChar[] = "Log Char";
+        int numInt = 5;
+        double dbNum = 6.69696969696969696969;
+        LOG_D("Message" << " " << tstMsg << " " << tstChar << " " << numInt++ << " " << dbNum)
+        LOG_I("Message" << " " + tstMsg + " " << tstChar << " " << numInt++ << " " << dbNum);
+        LOG_W(tstMsg + " Message " + tstChar + " " << ++numInt << " " << dbNum)
+        LOG_E("Message" << " " + tstMsg + " " + tstChar + " " << numInt++ << " " + trUtil::StringUtils::ToString<double>(dbNum, 20));
+        LOG_A("Message" << " " << tstMsg << " " << tstChar << " " << ++numInt << " " << trUtil::StringUtils::ToString<double>(dbNum, 2))
+
+        std::cerr << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
+        std::cerr << "\nTesting Logging Level at DEBUG " << std::endl;
+        trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
+
         LOG_D("Sending a Debug Log Message")
         LOG_I("Sending an Info Log Message")
         LOG_W("Sending a Warning Log Message")
