@@ -35,7 +35,7 @@
 #include <string>
 #include <cstdarg>
 #include <vector>
-#include <ostream>
+#include <sstream>
 
 #include <osg/Referenced>
 #include <osg/ref_ptr>
@@ -68,9 +68,13 @@ namespace trUtil::Logging
 */
 #define LOG_FULL(level, name, msg) \
     {\
-    trUtil::Logging::Log& logger = trUtil::Logging::Log::GetInstance(name); \
-    if (logger.IsLevelEnabled(level)) \
-    logger.LogMessage(TR_LOG_SOURCE, msg, level); \
+        trUtil::Logging::Log& logger = trUtil::Logging::Log::GetInstance(name); \
+        if (logger.IsLevelEnabled(level)) \
+        {\
+            std::ostringstream st;\
+            st << msg;\
+            logger.LogMessage(TR_LOG_SOURCE, st.str(), level); \
+        }\
     }\
 
 /**
