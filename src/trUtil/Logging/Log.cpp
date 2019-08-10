@@ -118,7 +118,7 @@ namespace trUtil::Logging
         // If testing is enabled, copy the logg data to an accessible variable
         if (mTestingMode)
         {
-            mLogTestData = logData;
+            mLogTestMessage = logData.msg;
         }
 
         if (trUtil::Bits::Has(mImpl->mOutputStreamBit, Log::TO_FILE))
@@ -221,6 +221,13 @@ namespace trUtil::Logging
     {
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(LOG_MANAGER->GetMutex());
         mTestingMode = state;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    const std::string * Log::GetLastLogMessage() const
+    {
+        OpenThreads::ScopedLock<OpenThreads::Mutex> lock(LOG_MANAGER->GetMutex());
+        return &mLogTestMessage;
     }
 
     //////////////////////////////////////////////////////////////////////////

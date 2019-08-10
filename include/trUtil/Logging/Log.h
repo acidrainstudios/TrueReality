@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -497,6 +497,16 @@ namespace trUtil::Logging
          */
         void SetTestMode(bool state);
 
+        /**
+         * @fn  const std::string* Log::GetLastLogMessage() const;
+         *
+         * @brief   Gets the last raw log message with no time stamps, line numbers, etc, etc, that was
+         *          in the queue for testing.
+         *
+         * @return  Null if it fails, else the last log data.
+         */
+        const std::string* GetLastLogMessage() const;
+
         //std::ostream& operator()(const std::string& file, const std::string& method, int line, LogLevel logLevel);
 
     protected:
@@ -522,6 +532,7 @@ namespace trUtil::Logging
         LogImpl* mImpl;
 
         bool mTestingMode = false;
+        mutable std::string mLogTestMessage;
     };
 
     /**
