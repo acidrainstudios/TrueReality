@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright ï¿½ 2019 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -115,6 +115,11 @@ namespace trUtil::Logging
         logData.line = line;
         logData.msg = msg;
 
+        // If testing is enabled, copy the logg data to an accessible variable
+        if (mTestingMode)
+        {
+            mLogTestData = logData;
+        }
 
         if (trUtil::Bits::Has(mImpl->mOutputStreamBit, Log::TO_FILE))
         {
