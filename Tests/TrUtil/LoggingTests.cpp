@@ -155,6 +155,7 @@ TEST_F(LoggingTests, LoggingLevelTests)
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_DEBUG);    
 }
+
 /**
  * @fn  TEST_F(LoggingTests, LoggingNameTests)
  *
@@ -168,4 +169,19 @@ TEST_F(LoggingTests, LoggingNameTests)
     LOG_A("Test Message")
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.logName, trUtil::Logging::Log::LOG_DEFAULT_NAME);
+}
+
+/**
+ * @fn  TEST_F(LoggingTests, LoggingMethodTests)
+ *
+ * @brief   Constructor.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(LoggingTests, LoggingMethodTests)
+{
+    LOG_A("Test Message")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    EXPECT_EQ(mTestData.method, "LoggingTests_LoggingMethodTests_Test::TestBody");
 }
