@@ -21,6 +21,8 @@
 
 #pragma once
 
+#include <trUtil/Logging/Log.h>
+
 #include <gtest/gtest.h>
 
 #include <string>
@@ -52,4 +54,6 @@ public:
      * @brief   Destructor.
      */
     ~LoggingTests();
+
+    trUtil::Logging::Log::LogTestData mTestData;
 };
