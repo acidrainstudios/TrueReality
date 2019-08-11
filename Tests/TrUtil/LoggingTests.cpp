@@ -101,3 +101,21 @@ TEST_F(LoggingTests, LoggingFileTests)
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.file, "LoggingTests.cpp");
 }
+
+/**
+ * @fn  TEST_F(LoggingTests, LoggingLineTests)
+ *
+ * @brief   Constructor.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(LoggingTests, LoggingLineTests)
+{
+    LOG_D("Test Message")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    
+    // This Test is specific to the Line the LOG_D is located in this file. 
+    // If the line changes due to code being added or removed, this test needs to be adjusted
+    EXPECT_EQ(mTestData.line, 115);
+}
