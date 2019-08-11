@@ -39,8 +39,11 @@ LoggingTests::LoggingTests()
     // Sets the log filename
     trUtil::Logging::LogFile::SetFileName(LOG_FILE_NAME);
 
-    //Turn on Unit Test Data collection
+    // Turn on Unit Test Data collection
     trUtil::Logging::Log::GetInstance().SetTestMode(true);
+
+    // Set Logging output to file only
+    trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::TO_FILE);
 }
 
 //////////////////////////////////////////////////////////////////////////
