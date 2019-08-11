@@ -26,7 +26,7 @@
 /**
  * @class   JsonTests
  *
- * @brief   Sets up test environment for Matrix class tests.
+ * @brief   Sets up test environment for Json class tests.
  *
  * @author  Maxim Serebrennik
  */

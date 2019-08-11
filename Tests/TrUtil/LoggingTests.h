@@ -30,11 +30,11 @@
 /**
  * @class   LoggingTests
  *
- * @brief   Sets up test environment for Matrix class tests.
+ * @brief   Sets up test environment for Logging class tests.
  *
  * @author  Maxim Serebrennik
  */
-class LoggingTests : public ::testing::Test
+class LoggingTests : public testing::Test
 {
 
 public:
