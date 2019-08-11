@@ -67,8 +67,6 @@ LoggingTests::~LoggingTests()
 TEST_F(LoggingTests, LoggingStringTests)
 {
     LOG_D("Message" << " " << mTstMsg << " " << mTstChar << " " << mNumInt++ << " " << mDbNum)
-
-    LOG_D("Message" << " " << mTstMsg << " " << mTstChar << " " << mNumInt++ << " " << mDbNum)
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.msg, "Message Log String Log Char 5 6.69697");
 
@@ -87,4 +85,19 @@ TEST_F(LoggingTests, LoggingStringTests)
     LOG_A("Message" << " " << mTstMsg << " " << mTstChar << " " << ++mNumInt << " " << trUtil::StringUtils::ToString<double>(mDbNum, 2))
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.msg, "Message Log String Log Char 10 6.7");
+}
+
+/**
+ * @fn  TEST_F(LoggingTests, LoggingFileTests)
+ *
+ * @brief   Constructor.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(LoggingTests, LoggingFileTests)
+{
+    LOG_D("Test Message")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    EXPECT_EQ(mTestData.file, "LoggingTests.cpp");
 }
