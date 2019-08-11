@@ -115,7 +115,43 @@ TEST_F(LoggingTests, LoggingLineTests)
     LOG_D("Test Message")
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     
-    // This Test is specific to the Line the LOG_D is located in this file. 
+    // This Test is specific to the Line the LOG_D is located on in this file. 
     // If the line changes due to code being added or removed, this test needs to be adjusted
     EXPECT_EQ(mTestData.line, 115);
+}
+
+/**
+ * @fn  TEST_F(LoggingTests, LoggingLineLevel)
+ *
+ * @brief   Constructor.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(LoggingTests, LoggingLevelTests)
+{
+    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_ALWAYS);
+    LOG_A("Test Message")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_ALWAYS);
+
+    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_ERROR);
+    LOG_E("Test Message2")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_ERROR);
+
+    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_INFO);
+    LOG_I("Test Message3")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_INFO);
+
+    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_WARNING);
+    LOG_W("Test Message4")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_WARNING);
+
+    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
+    LOG_D("Test Message5")
+    mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_DEBUG);    
 }
