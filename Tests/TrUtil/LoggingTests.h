@@ -56,4 +56,8 @@ public:
     ~LoggingTests();
 
     trUtil::Logging::Log::LogTestData mTestData;
+    const char *mTstChar;
+    std::string mTstMsg = "Log String";
+    int mNumInt = 5;
+    double mDbNum = 6.69696969696969696969;
 };

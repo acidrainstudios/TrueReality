@@ -33,6 +33,8 @@ const std::string LoggingTests::LOG_FILE_NAME("LoggingTests.html");
 //////////////////////////////////////////////////////////////////////////
 LoggingTests::LoggingTests()
 {
+    mTstChar = "Log Char";
+
     // Creates the default folders in the User Data folder. 
     trUtil::PathUtils::CreateUserDataPathTree();
 
@@ -61,31 +63,25 @@ LoggingTests::~LoggingTests()
  */
 TEST_F(LoggingTests, LoggingStringTests)
 {
-    std::string tstMsg = "Log String";
-    char tstChar[] = "Log Char";
-    int numInt = 5;
-    double dbNum = 6.69696969696969696969;
-    
- 
     trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
 
-    LOG_D("Message" << " " << tstMsg << " " << tstChar << " " << numInt++ << " " << dbNum)
+    LOG_D("Message" << " " << mTstMsg << " " << mTstChar << " " << mNumInt++ << " " << mDbNum)
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.msg, "Message Log String Log Char 5 6.69697");
 
-    LOG_I("Message" << " " + tstMsg + " " << tstChar << " " << numInt++ << " " << dbNum);
+    LOG_I("Message" << " " + mTstMsg + " " << mTstChar << " " << mNumInt++ << " " << mDbNum);
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.msg, "Message Log String Log Char 6 6.69697");
 
-    LOG_W(tstMsg + " Message " + tstChar + " " << ++numInt << " " << dbNum)
+    LOG_W(mTstMsg + " Message " + mTstChar + " " << ++mNumInt << " " << mDbNum)
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.msg, "Log String Message Log Char 8 6.69697");
 
-    LOG_E("Message" << " " + tstMsg + " " + tstChar + " " << numInt++ << " " + trUtil::StringUtils::ToString<double>(dbNum, 10));
+    LOG_E("Message" << " " + mTstMsg + " " + mTstChar + " " << mNumInt++ << " " + trUtil::StringUtils::ToString<double>(mDbNum, 10));
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.msg, "Message Log String Log Char 8 6.696969697");
 
-    LOG_A("Message" << " " << tstMsg << " " << tstChar << " " << ++numInt << " " << trUtil::StringUtils::ToString<double>(dbNum, 2))
+    LOG_A("Message" << " " << mTstMsg << " " << mTstChar << " " << ++mNumInt << " " << trUtil::StringUtils::ToString<double>(mDbNum, 2))
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
     EXPECT_EQ(mTestData.msg, "Message Log String Log Char 10 6.7");
 }
