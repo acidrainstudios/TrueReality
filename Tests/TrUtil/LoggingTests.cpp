@@ -46,6 +46,9 @@ LoggingTests::LoggingTests()
 
     // Set Logging output to file only
     trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::TO_FILE);
+
+    // Set the log level to DEBUG
+    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -63,7 +66,7 @@ LoggingTests::~LoggingTests()
  */
 TEST_F(LoggingTests, LoggingStringTests)
 {
-    trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
+    LOG_D("Message" << " " << mTstMsg << " " << mTstChar << " " << mNumInt++ << " " << mDbNum)
 
     LOG_D("Message" << " " << mTstMsg << " " << mTstChar << " " << mNumInt++ << " " << mDbNum)
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
