@@ -517,13 +517,13 @@ namespace trUtil::Logging
         void SetTestMode(bool state);
 
         /**
-         * @fn  const LogTestData* Log::GetLastLogData() const;
+         * @fn  LogTestData* Log::GetLastLogData() const;
          *
          * @brief   Gets the last log data that was in the queue for testing.
          *
          * @return  Null if it fails, else the last log data.
          */
-        const LogTestData* GetLastLogData() const;
+        LogTestData* GetLastLogData() const;
 
     protected:
 

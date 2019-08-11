@@ -231,7 +231,7 @@ namespace trUtil::Logging
     }
 
     //////////////////////////////////////////////////////////////////////////
-    const Log::LogTestData * Log::GetLastLogData() const
+    Log::LogTestData * Log::GetLastLogData() const
     {
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(LOG_MANAGER->GetMutex());
         return &mLogTestData;
