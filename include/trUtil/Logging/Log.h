@@ -525,8 +525,6 @@ namespace trUtil::Logging
          */
         const LogTestData* GetLastLogData() const;
 
-        //std::ostream& operator()(const std::string& file, const std::string& method, int line, LogLevel logLevel);
-
     protected:
 
         /**
