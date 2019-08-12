@@ -127,6 +127,27 @@ MACRO (TR_DETECT_DEPENDENCY arg)
 ENDMACRO ()
 
 # *****************************************************************************
+# Attempts to find out if the generator system can support ********************
+# multi config builds, and sets build options appropriately. ******************
+# *****************************************************************************
+MACRO (TR_BUILD_TYPE_OPTIONS)
+    # Configures what builds are active depending on the generator platform
+    GET_PROPERTY(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+    IF (IS_MULTI_CONFIG)
+        OPTION (TR_BUILD_WITH_RELEASE "Enables the building of the release version of the project" ON)
+        MARK_AS_ADVANCED (TR_BUILD_WITH_RELEASE)
+        OPTION (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of the project" ON)
+        MARK_AS_ADVANCED (TR_BUILD_WITH_DEBUG)
+    ELSE ()
+        IF (CMAKE_BUILD_TYPE STREQUAL "Release" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+            SET (TR_BUILD_WITH_RELEASE "ON" CACHE INTERNAL  "Enables the building of the release version of the project" FORCE)
+        ELSEIF (CMAKE_BUILD_TYPE STREQUAL "Debug")
+            SET (TR_BUILD_WITH_DEBUG "ON" CACHE INTERNAL  "Enables the building of the debug version of the project" FORCE)
+        ENDIF ()
+    ENDIF ()
+ENDMACRO ()
+
+# *****************************************************************************
 # Configures the given projects build options *********************************
 # *****************************************************************************
 MACRO (TR_TARGET_OPTIONS arg)
