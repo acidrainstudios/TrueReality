@@ -75,7 +75,6 @@ IF (TR_BUILD_WITH_DEBUG)
     )
 ENDIF ()
 
-
 # Defines necessary preprocessor variables for project
 ADD_DEFINITIONS (-D${PRE_PROCESSING})
 
