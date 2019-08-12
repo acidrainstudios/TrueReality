@@ -25,10 +25,10 @@ IF (POLICY CMP0074)
 ENDIF ()
 
 
-# Sets the path to custom CMake modules. 
+# Sets the path to custom CMake modules.
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 
-# Sets a check to make sure cmake does change the source files.  
+# Sets a check to make sure cmake does change the source files.
 SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 SET (CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 INCLUDE (InSourceBuild)
@@ -43,10 +43,13 @@ INCLUDE (InstallMacros)
 INCLUDE (UtilityMacros)
 
 #Sets up all the versioning information
-INCLUDE (Version) 
+INCLUDE (Version)
 
 # Defines the project name
 PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR} VERSION ${TR_VERSION} LANGUAGES CXX)
+
+# Sets the build options
+TR_BUILD_TYPE_OPTIONS()
 
 # *****************************************************************************
 # Sets user options ***********************************************************
@@ -67,10 +70,6 @@ OPTION (TR_USE_DOUBLE_VECTOR "Set to OFF to build TR with float Vector instead o
 MARK_AS_ADVANCED (TR_USE_DOUBLE_VECTOR)
 OPTION (TR_BUILD_VERSIONED_LIBRARIES "Enables the building of unique versioned shared libraries" ON)
 MARK_AS_ADVANCED (TR_BUILD_VERSIONED_LIBRARIES)
-OPTION (TR_BUILD_WITH_RELEASE "Enables the building of the release version of True Reality" ON)
-MARK_AS_ADVANCED (TR_BUILD_WITH_RELEASE)
-OPTION (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of True Reality" ON)
-MARK_AS_ADVANCED (TR_BUILD_WITH_DEBUG)
 OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
 MARK_AS_ADVANCED (CMAKE_USE_RELATIVE_PATHS)
 
@@ -111,7 +110,7 @@ CMAKE_DEPENDENT_OPTION (TESTS_TR_MANAGER "Enables the building of trManager Unit
 # *****************************************************************************
 # Sets Library Specific Dependencies*******************************************
 # *****************************************************************************
-IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
+IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
     TR_DETECT_DEPENDENCY (OSG 3.6.0)
     TR_DETECT_DEPENDENCY (OpenThreads)
     INCLUDE_DIRECTORIES (SYSTEM ${OSG_INCLUDE_DIR} ${OpenThreads_INCLUDE_DIR})
