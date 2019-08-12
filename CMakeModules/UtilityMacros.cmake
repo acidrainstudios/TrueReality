@@ -20,7 +20,7 @@
 # *****************************************************************************
 # Adds subfolders in the True Reality build folder ****************************
 # *****************************************************************************
-MACRO (ADD_TR_SUBFOLDERS)    
+MACRO (ADD_TR_SUBFOLDERS)
 # Optional dependencies
     MESSAGE (STATUS "Creating Selected Source Folders")
     IF (TR_UTIL)
@@ -37,17 +37,17 @@ MACRO (ADD_TR_SUBFOLDERS)
         ADD_SUBDIRECTORY (src/trSG)
         SET (TR_SG_AVAILABLE "YES")
     ENDIF ()
-    
+
     IF (TR_MANAGER)
         ADD_SUBDIRECTORY (src/trManager)
         SET (TR_MANAGER_AVAILABLE "YES")
     ENDIF ()
-    
+
     IF (TR_CORE)
         ADD_SUBDIRECTORY (src/trCore)
         SET (TR_CORE_AVAILABLE "YES")
     ENDIF ()
-    
+
     IF (TR_APP)
         ADD_SUBDIRECTORY (src/trApp)
         SET (TR_APP_AVAILABLE "YES")
@@ -67,17 +67,17 @@ MACRO (ADD_TR_SUBFOLDERS)
 
 # Examples folders
     MESSAGE (STATUS "Creating Selected Example Folders")
-    
+
     IF (EXAMPLES_ACTORS)
         ADD_SUBDIRECTORY (Examples/Actors)
         SET (EXAMPLES_ACTORS_AVAILABLE "YES")
     ENDIF ()
-    
+
     IF (EXAMPLES_ACTOR_MODULES)
         ADD_SUBDIRECTORY (Examples/ActorModules)
         SET (EXAMPLES_ACTOR_MODULES_AVAILABLE "YES")
     ENDIF ()
-    
+
     IF (EXAMPLES_DIRECTOR)
         ADD_SUBDIRECTORY (Examples/Director)
         SET (EXAMPLES_DIRECTOR_AVAILABLE "YES")
@@ -86,7 +86,7 @@ MACRO (ADD_TR_SUBFOLDERS)
     IF (EXAMPLES_JSON)
         ADD_SUBDIRECTORY (Examples/Json)
         SET (EXAMPLES_JSON_AVAILABLE "YES")
-    ENDIF ()  
+    ENDIF ()
 
     IF (EXAMPLES_LOGGING)
         ADD_SUBDIRECTORY (Examples/Logging)
@@ -95,7 +95,7 @@ MACRO (ADD_TR_SUBFOLDERS)
 
  # Unit Test Folders
     MESSAGE (STATUS "Creating Selected Tests Folders")
-    
+
     IF (TESTS_TR_UTIL)
         ADD_SUBDIRECTORY (Tests/TrUtil)
         SET (TESTS_TR_UTIL_AVAILABLE "YES")
@@ -134,15 +134,15 @@ MACRO (TR_BUILD_TYPE_OPTIONS)
     # Configures what builds are active depending on the generator platform
     GET_PROPERTY(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
     IF (IS_MULTI_CONFIG)
-        OPTION (TR_BUILD_WITH_RELEASE "Enables the building of the release version of the project" ON)
+        OPTION (TR_BUILD_WITH_RELEASE "Enables the building of the release version of True Reality" ON)
         MARK_AS_ADVANCED (TR_BUILD_WITH_RELEASE)
-        OPTION (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of the project" ON)
+        OPTION (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of True Reality" ON)
         MARK_AS_ADVANCED (TR_BUILD_WITH_DEBUG)
     ELSE ()
         IF (CMAKE_BUILD_TYPE STREQUAL "Release" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-            SET (TR_BUILD_WITH_RELEASE "ON" CACHE INTERNAL  "Enables the building of the release version of the project" FORCE)
+            SET (TR_BUILD_WITH_RELEASE "ON" CACHE INTERNAL  "Enables the building of the release version of True Reality" FORCE)
         ELSEIF (CMAKE_BUILD_TYPE STREQUAL "Debug")
-            SET (TR_BUILD_WITH_DEBUG "ON" CACHE INTERNAL  "Enables the building of the debug version of the project" FORCE)
+            SET (TR_BUILD_WITH_DEBUG "ON" CACHE INTERNAL  "Enables the building of the debug version of True Reality" FORCE)
         ENDIF ()
     ENDIF ()
 ENDMACRO ()
@@ -161,9 +161,9 @@ MACRO (TR_TARGET_OPTIONS arg)
     )
     IF (MSVC_IDE)
         TARGET_COMPILE_OPTIONS (
-            ${arg} PRIVATE            
+            ${arg} PRIVATE
             $<$<CONFIG:Debug>:/Od /Ob0 /RTC1 /D_DEBUG /Zi>
-            $<$<CONFIG:RelWithDebInfo>:/MD /Zi /O2 /Ob1 /D>            
+            $<$<CONFIG:RelWithDebInfo>:/MD /Zi /O2 /Ob1 /D>
             $<$<CONFIG:Release>:/O2 /Ob2 /MD>
         )
     ELSEIF (UNIX)
@@ -199,7 +199,7 @@ ENDMACRO ()
 # *****************************************************************************
 MACRO (CHECK_VERSION packName packVer verToFind)
     IF("${packVer}" VERSION_LESS "${verToFind}")
-        MESSAGE(SEND_ERROR "Found version is too old!         
+        MESSAGE(SEND_ERROR "Found version is too old!
         Required: v${verToFind}         Found: v${packVer}
         ")
     ELSE ()
@@ -211,9 +211,9 @@ ENDMACRO ()
 # Adds a post build process to create a Google Test info file *****************
 # in a build project **********************************************************
 # *****************************************************************************
-MACRO (SET_GOOGLE_TEST_OPTIONS projectName)    
+MACRO (SET_GOOGLE_TEST_OPTIONS projectName)
     IF (MSVC_IDE)
-		ADD_CUSTOM_COMMAND(TARGET ${projectName} 
+		ADD_CUSTOM_COMMAND(TARGET ${projectName}
 		POST_BUILD
 		COMMAND echo "This is used for Google Test Adapter in MS Visual Studio" > $<TARGET_FILE:${projectName}>".is_google_test"
 		)
