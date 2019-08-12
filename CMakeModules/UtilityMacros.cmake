@@ -131,6 +131,19 @@ ENDMACRO ()
 # multi config builds, and sets build options appropriately. ******************
 # *****************************************************************************
 MACRO (TR_BUILD_TYPE_OPTIONS)
+    # Sets Available Build Types
+    IF ("MinSizeRel" IN_LIST CMAKE_CONFIGURATION_TYPES)
+        SET (CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo" CACHE STRING "TrueReality multi-config types" FORCE)
+    ELSEIF (NOT "Debug" IN_LIST CMAKE_CONFIGURATION_TYPES AND NOT "Release" IN_LIST CMAKE_CONFIGURATION_TYPES AND
+        NOT "RelWithDebInfo" IN_LIST CMAKE_CONFIGURATION_TYPES)
+        SET (CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo" CACHE STRING "TrueReality multi-config types" FORCE)
+    ENDIF ()
+
+    IF (NOT CMAKE_BUILD_TYPE STREQUAL "Release" AND NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+        SET (CMAKE_BUILD_TYPE "Release" CACHE STRING "TrueReality default build type" FORCE)
+    ENDIF ()
+    SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
+
     # Configures what builds are active depending on the generator platform
     GET_PROPERTY(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
     IF (IS_MULTI_CONFIG)
