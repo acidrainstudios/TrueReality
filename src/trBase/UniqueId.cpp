@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -44,13 +44,13 @@ namespace trBase
     public:
 
         /**
-         * @fn  implId::implId(bool createNewId)
+         * @fn  implId(bool createNewId)
          *
          * @brief   Constructor.
          *
          * @param   createNewId if true, generates a new id.  If not, it sets the id to empty.
          */
-        explicit implId::implId(bool createNewId)
+        implId(bool createNewId)
         {
             if (createNewId)
             {
@@ -66,25 +66,25 @@ namespace trBase
         }
 
         /**
-         * @fn  implId::implId(const implId& toCopy)
+         * @fn  implId(const implId& toCopy)
          *
          * @brief   Makes a copy of the passed in Unique ID GUID.
          *
          * @param   toCopy  to copy.
          */
-        implId::implId(const implId& toCopy)
+        implId(const implId& toCopy)
         {
             mGUID = toCopy.mGUID;
         }
 
         /**
-         * @fn  implId::implId(const std::string& toCopy)
+         * @fn  implId(const std::string& toCopy)
          *
          * @brief   Constructor.
          *
          * @param   toCopy  to copy.
          */
-        explicit implId::implId(const std::string& toCopy)
+        implId(const std::string& toCopy)
         {
             mGUID = bID::uuids::string_generator()(toCopy);
         }
@@ -96,7 +96,7 @@ namespace trBase
          *
          * @return  A const std::string that represents this object.
          */
-        const std::string implId::ToString() const
+        const std::string ToString() const
         {
             return bID::uuids::to_string(mGUID);
         }
@@ -108,7 +108,7 @@ namespace trBase
          *
          * @param [in,out]  idString    The identifier string.
          */
-        void implId::FromString(std::string& idString)
+        void FromString(std::string& idString)
         {
             mGUID = bID::uuids::string_generator()(idString);
         }
@@ -120,7 +120,7 @@ namespace trBase
          *
          * @return  True if null, false if not.
          */
-        bool implId::IsNull() const
+        bool IsNull() const
         {
             return mGUID.is_nil();
         }
@@ -134,7 +134,7 @@ namespace trBase
          *
          * @return  A shallow copy of this object.
          */
-        implId& implId::operator=(const implId& id)
+        implId& operator=(const implId& id)
         {
             if (this == &id)
             {
@@ -154,7 +154,7 @@ namespace trBase
          *
          * @return  A shallow copy of this object.
          */
-        implId& implId::operator=(const implId* id)
+        implId& operator=(const implId* id)
         {
             if (this == id)
             {
@@ -174,7 +174,7 @@ namespace trBase
          *
          * @return  A shallow copy of this object.
          */
-        implId& implId::operator=(const std::string& id)
+        implId& operator=(const std::string& id)
         {
             mGUID = bID::uuids::string_generator()(id);
             return *this;
@@ -189,7 +189,7 @@ namespace trBase
          *
          * @return  True if the parameters are considered equivalent.
          */
-        bool implId::operator==(const implId & id) const
+        bool operator==(const implId & id) const
         {
             return mGUID == id.mGUID;
         }
@@ -203,7 +203,7 @@ namespace trBase
          *
          * @return  True if the parameters are not considered equivalent.
          */
-        bool implId::operator!=(const implId & id) const
+        bool operator!=(const implId & id) const
         {
             return mGUID != id.mGUID;
         }
@@ -217,7 +217,7 @@ namespace trBase
          *
          * @return  True if the first parameter is less than the second.
          */
-        bool implId::operator<(const implId & id) const
+        bool operator<(const implId & id) const
         {
             return mGUID < id.mGUID;
         }
@@ -231,7 +231,7 @@ namespace trBase
          *
          * @return  True if the first parameter is greater than to the second.
          */
-        bool implId::operator>(const implId & id) const
+        bool operator>(const implId & id) const
         {
             return mGUID > id.mGUID;
         }
@@ -335,7 +335,7 @@ namespace trBase
     ////////////////////////////////////////////////
     bool UniqueId::operator!=(const UniqueId & id) const
     {
-        return mGUID != id.mGUID;        
+        return mGUID != id.mGUID;
     }
 
     ////////////////////////////////////////////////
@@ -364,5 +364,5 @@ namespace trBase
         i >> value;
         id = value;
         return i;
-    }    
+    }
 }

@@ -31,23 +31,27 @@ FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
 FILE (GLOB PROJECT_HEADERS "${HEADER_PATH}/*.h")
 
 # Sets the dependency libraries
-SET (EXTERNAL_LIBS
-    ${EXTERNAL_LIBS}
-    optimized ${OpenThreads_LIBRARY}
-    debug ${OpenThreads_LIBRARY_DEBUG}
+IF (TR_BUILD_WITH_RELEASE)
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        optimized ${OpenThreads_LIBRARY}
+        optimized ${OSG_LIBRARY}
+        optimized ${OSG_DB_LIBRARY}
+        optimized ${GoogleTest_LIBRARY}
+        optimized ${GoogleTest_LIBRARY_MAIN}
+    )
+ENDIF ()
 
-    optimized ${OSG_LIBRARY} 
-    debug ${OSG_LIBRARY_DEBUG}
-
-    optimized ${OSG_DB_LIBRARY}
-    debug ${OSG_DB_LIBRARY_DEBUG} 
-
-    optimized ${GoogleTest_LIBRARY}
-    debug ${GoogleTest_LIBRARY_DEBUG}
-
-    optimized ${GoogleTest_LIBRARY_MAIN} 
-    debug ${GoogleTest_LIBRARY_MAIN_DEBUG}
-)
+IF (TR_BUILD_WITH_DEBUG)
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        debug ${OpenThreads_LIBRARY_DEBUG}
+        debug ${OSG_LIBRARY_DEBUG}
+        debug ${OSG_DB_LIBRARY_DEBUG}
+        debug ${GoogleTest_LIBRARY_DEBUG}
+        debug ${GoogleTest_LIBRARY_MAIN_DEBUG}
+    )
+ENDIF ()
 
 # Sets the headers file directory in IDEs
 SET (HEADERS_GROUP "Header Files")
