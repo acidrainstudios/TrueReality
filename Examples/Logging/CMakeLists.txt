@@ -31,7 +31,6 @@ FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/*.cpp")
 FILE (GLOB PROJECT_HEADERS "${HEADER_PATH}/*.h")
 
 # Sets the dependency libraries
-# Sets the dependency libraries
 IF (TR_BUILD_WITH_RELEASE)
     SET (EXTERNAL_LIBS
         ${EXTERNAL_LIBS}
