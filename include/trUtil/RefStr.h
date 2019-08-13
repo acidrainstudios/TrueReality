@@ -112,18 +112,27 @@ namespace trUtil
          */
         operator const char*() const { return mString->c_str(); }
 
-        trUtil::RefStr& operator=(const std::string& value);
-
         /**
-         * @fn  trUtil::RefStr& RefStr::operator=(const trUtil::RefStr& value) = delete;
+         * @fn  trUtil::RefStr& RefStr::operator=(const std::string& value);
          *
-         * @brief   Deleting the default copy operator to avoid ambiguous conflicts
+         * @brief   Assignment operator that takes a string.
          *
          * @param   value   The value.
          *
          * @return  A shallow copy of this object.
          */
-        trUtil::RefStr& operator=(const trUtil::RefStr& value) = delete;
+        trUtil::RefStr& operator=(const std::string& value);
+
+        /**
+         * @fn  trUtil::RefStr& RefStr::operator=(const trUtil::RefStr& value);
+         *
+         * @brief   Assignment operator that takes a Ref String.
+         *
+         * @param   value   The value.
+         *
+         * @return  A shallow copy of this object.
+         */
+        trUtil::RefStr& operator=(const trUtil::RefStr& value);
 
         RefStr operator+(const std::string& string) const;
         RefStr operator+(const RefStr& RefStr) const;
