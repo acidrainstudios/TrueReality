@@ -44,7 +44,7 @@ namespace trUtil
      * @brief   A string wrapper that will make sure that all of the strings with the same value will
      *          point to the same memory.  The strings are only accessible as const, but a new string
      *          may be assigned to the reference string.
-     *          
+     *
      * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT RefStr
@@ -111,8 +111,19 @@ namespace trUtil
          * @return  A const.
          */
         operator const char*() const { return mString->c_str(); }
-        
+
         trUtil::RefStr& operator=(const std::string& value);
+
+        /**
+         * @fn  trUtil::RefStr& RefStr::operator=(const trUtil::RefStr& value) = delete;
+         *
+         * @brief   Deleting the default copy operator to avoid ambiguous conflicts
+         *
+         * @param   value   The value.
+         *
+         * @return  A shallow copy of this object.
+         */
+        trUtil::RefStr& operator=(const trUtil::RefStr& value) = delete;
 
         RefStr operator+(const std::string& string) const;
         RefStr operator+(const RefStr& RefStr) const;
