@@ -43,9 +43,6 @@ INCLUDE (Version)
 PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR} VERSION ${TR_VERSION} LANGUAGES CXX)
 
 # Sets up the install options
-SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
-SET (TR_EXT_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Ext was installed" FORCE)
-SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
 INCLUDE (InstallMacros)
 
 # Sets the build options

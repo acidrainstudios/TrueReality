@@ -19,6 +19,13 @@
 
 
 # *****************************************************************************
+# Sets up flags to track what folders and objects have been installed *********
+# *****************************************************************************
+SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+SET (TR_EXT_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Ext was installed" FORCE)
+SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
+
+# *****************************************************************************
 # Configures the installation options for the given project *******************
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
@@ -44,10 +51,10 @@ MACRO (TR_INSTALL_OPTIONS arg)
 		IF(EXISTS "${PROJECT_BINARY_DIR}/include")
 			INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
 		ENDIF ()
-        
+
         SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
     ENDIF ()
-    
+
     INSTALL (CODE "MESSAGE(\"Installing the ${arg} project.\")")
     INSTALL (
             TARGETS ${arg}
