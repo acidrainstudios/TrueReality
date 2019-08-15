@@ -19,6 +19,26 @@
 
 
 # *****************************************************************************
+# Sets up flags to track what folders and objects have been installed *********
+# *****************************************************************************
+SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+SET (TR_EXT_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Ext was installed" FORCE)
+SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
+
+# *****************************************************************************
+# Sets up default Windows install folders
+# *****************************************************************************
+
+IF(WIN32 AND NOT PATH_IS_SET)
+    IF (CMAKE_SIZEOF_VOID_P MATCHES "8")
+        SET (CMAKE_INSTALL_PREFIX "C:/Program Files/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
+    ELSE ()
+        SET (CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
+    ENDIF ()
+    SET (PATH_IS_SET "YES" CACHE STRING "Install Path Flag" FORCE)
+ENDIF ()
+
+# *****************************************************************************
 # Configures the installation options for the given project *******************
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
@@ -44,10 +64,10 @@ MACRO (TR_INSTALL_OPTIONS arg)
 		IF(EXISTS "${PROJECT_BINARY_DIR}/include")
 			INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
 		ENDIF ()
-        
+
         SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
     ENDIF ()
-    
+
     INSTALL (CODE "MESSAGE(\"Installing the ${arg} project.\")")
     INSTALL (
             TARGETS ${arg}
