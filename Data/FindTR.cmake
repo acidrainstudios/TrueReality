@@ -140,8 +140,12 @@ ENDMACRO ()
 # for trUtil library setting TR_UTIL_LIBRARY_FOUND *******************************
 # ********************************************************************************
 MACRO (TR_FIND_LIBRARY VARNAME MYLIBRARYNAME)
-    TR_FIND_LIB(${VARNAME} ${MYLIBRARYNAME} "NO")
-    TR_FIND_LIB(${VARNAME}_DEBUG ${MYLIBRARYNAME} "YES")
+    IF (TR_BUILD_WITH_RELEASE)
+        TR_FIND_LIB(${VARNAME} ${MYLIBRARYNAME} "NO")
+    ENDIF ()
+    IF (TR_BUILD_WITH_DEBUG)
+        TR_FIND_LIB(${VARNAME}_DEBUG ${MYLIBRARYNAME} "YES")
+    ENDIF ()
 ENDMACRO ()
 
 # Find the individual libraries
