@@ -25,7 +25,7 @@
 # ********************************************************************************
 # Creates and sets variables to use through out cmake ****************************
 # FFmpeg is usually build in Release or Debug, but not both, so these variables **
-# will link to the one version that is present on the system ********************* 
+# will link to the one version that is present on the system *********************
 # ********************************************************************************
 # FFMPEG_INCLUDE_DIRS - Holds the paths to the FFMPEG Headers ********************
 # ********************************************************************************
@@ -84,25 +84,18 @@ MACRO (FFMPEG_FIND_LIB VARNAME MYLIBRARYNAME HEADERNAME)
     FIND_LIBRARY(${DEPENDENCY}_${VARNAME}_LIBRARY
         NAMES ${MYLIBRARYNAME}
         HINTS
-        $ENV{FFMPEG_ROOT}/lib64
-        $ENV{FFMPEG_ROOT}/lib
+        $ENV{FFMPEG_ROOT}/lib*
         $ENV{FFMPEG_ROOT}
         $ENV{TR_LIB}
-        $ENV{TR_ROOT}/Ext/lib64
-        $ENV{TR_ROOT}/Ext/lib
+        $ENV{TR_ROOT}/Ext/lib*
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_ROOT}/lib64
-        $ENV{TR_ROOT}/lib
+        $ENV{TR_ROOT}/lib*
         $ENV{TR_ROOT}
         PATHS
-        /usr/lib64
-        /usr/lib
-        /usr/local/lib64
-        /usr/local/lib
-        /opt/lib64
-        /opt/lib
-        /opt/local/lib64
-        /opt/local/lib
+        /usr/lib*
+        /usr/local/lib*
+        /opt/lib*
+        /opt/local/lib*
         ~/Library/Frameworks
         /Library/Frameworks
     )
@@ -137,13 +130,13 @@ ENDIF ()
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_LIBAVFORMAT_FOUND AND ${DEPENDENCY}_LIBAVDEVICE_FOUND AND ${DEPENDENCY}_LIBAVCODEC_FOUND AND ${DEPENDENCY}_LIBAVUTIL_FOUND AND ( ${DEPENDENCY}_LIBSWRESAMPLE_FOUND OR ${DEPENDENCY}_LIBAVRESAMPLE_FOUND ) )
     # Note we don't check FFMPEG_LIBSWSCALE_FOUND here, it's optional.
-    
+
     SET(${DEPENDENCY}_INCLUDE_DIRS
         ${${DEPENDENCY}_LIBAVFORMAT_INCLUDE_DIR}
         ${${DEPENDENCY}_LIBAVDEVICE_INCLUDE_DIR}
         ${${DEPENDENCY}_LIBAVCODEC_INCLUDE_DIR}
         ${${DEPENDENCY}_LIBAVUTIL_INCLUDE_DIR}
-        )   
+        )
 
     SET (FFMPEG_LIBRARY_DIR ${FFMPEG_LIBAVFORMAT_LIBRARY_DIRS})
 
