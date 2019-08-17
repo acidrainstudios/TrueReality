@@ -35,7 +35,7 @@ IF(WIN32 AND NOT PATH_IS_SET)
     ELSE ()
         SET (CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
     ENDIF ()
-    SET (PATH_IS_SET "YES" CACHE STRING "Install Path Flag" FORCE)
+    SET (PATH_IS_SET "YES" CACHE INTERNAL "Install Path Flag" FORCE)
 ENDIF ()
 
 # *****************************************************************************
