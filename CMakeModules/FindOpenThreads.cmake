@@ -59,25 +59,19 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         NAMES ${MYLIBRARYNAME}
         HINTS
         $ENV{OPENTHREADS_LIB}
-        $ENV{OPENTHREADS_ROOT}/lib64
-        $ENV{OPENTHREADS_ROOT}/lib
+        $ENV{OPENTHREADS_ROOT}/lib*
         $ENV{OPENTHREADS_ROOT}
         $ENV{OSG_INC}
-        $ENV{OSG_ROOT}/lib64
-        $ENV{OSG_ROOT}/lib
+        $ENV{OSG_ROOT}/lib*
         $ENV{OSG_ROOT}
         $ENV{TR_LIB}
-        $ENV{TR_ROOT}/Ext/lib64
-        $ENV{TR_ROOT}/Ext/lib
+        $ENV{TR_ROOT}/Ext/lib*
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_ROOT}/lib64
-        $ENV{TR_ROOT}/lib
+        $ENV{TR_ROOT}/lib*
         $ENV{TR_ROOT}
         PATHS
-        /usr/lib64
-        /usr/lib
-        /usr/local/lib64
-        /usr/local/lib
+        /usr/lib*
+        /usr/local/lib*
         ~/Library/Frameworks
         /Library/Frameworks
     )
