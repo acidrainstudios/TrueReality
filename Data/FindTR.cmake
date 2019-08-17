@@ -64,10 +64,24 @@ MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
         $ENV{TR_ROOT}/build/include
         $ENV{TR_ROOT}
         PATHS
-        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/include
-        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
-        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/include
-        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}/include
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*/include
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*
+        C:/Program Files/TrueReality-*/include
+        C:/Program Files/TrueReality-*
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}/include
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*/include
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*
+        /usr/local/TrueReality-*/include
+        /usr/local/TrueReality-*
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}.${${DEPENDENCY}_FIND_VERSION_TWEAK}/include
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}.${${DEPENDENCY}_FIND_VERSION_TWEAK}
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}*/include
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}*
+        /usr/local/TrueReality/*/include
+        /usr/local/TrueReality/*
         /usr/include
         /usr/local/include
         /opt/include
@@ -91,18 +105,28 @@ MACRO (TR_FIND_LIB VARNAME MYLIBRARYNAME DEBUG)
         $ENV{TR_ROOT}/build/lib
         $ENV{TR_ROOT}
         PATHS
-        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/lib
-        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
-        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}/lib
-        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}
-        /usr/lib64
-        /usr/lib
-        /usr/local/lib64
-        /usr/local/lib
-        /opt/lib64
-        /opt/lib
-        /opt/local/lib64
-        /opt/local/lib
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}/lib
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*/lib
+        C:/Program Files/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*
+        C:/Program Files/TrueReality-*/lib
+        C:/Program Files/TrueReality-*
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}/lib
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*/lib
+        /usr/local/TrueReality-${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}*
+        /usr/local/TrueReality-*/lib
+        /usr/local/TrueReality-*
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}.${${DEPENDENCY}_FIND_VERSION_TWEAK}/lib
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}.${${DEPENDENCY}_FIND_VERSION_TWEAK}
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}*/lib
+        /usr/local/TrueReality/${${DEPENDENCY}_FIND_VERSION_MAJOR}.${${DEPENDENCY}_FIND_VERSION_MINOR}.${${DEPENDENCY}_FIND_VERSION_PATCH}*
+        /usr/local/TrueReality/*/lib
+        /usr/local/TrueReality/*
+        /usr/lib*
+        /usr/local/lib*
+        /opt/lib*
+        /opt/local/lib*
         ~/Library/Frameworks
         /Library/Frameworks
     )
@@ -120,8 +144,16 @@ ENDMACRO ()
 # for trUtil library setting TR_UTIL_LIBRARY_FOUND *******************************
 # ********************************************************************************
 MACRO (TR_FIND_LIBRARY VARNAME MYLIBRARYNAME)
-    TR_FIND_LIB(${VARNAME} ${MYLIBRARYNAME} "NO")
-    TR_FIND_LIB(${VARNAME}_DEBUG ${MYLIBRARYNAME} "YES")
+    IF (TR_BUILD_WITH_RELEASE)
+        TR_FIND_LIB(${VARNAME} ${MYLIBRARYNAME} "NO")
+    ENDIF ()
+    IF (TR_BUILD_WITH_DEBUG)
+        TR_FIND_LIB(${VARNAME}_DEBUG ${MYLIBRARYNAME} "YES")
+    ENDIF ()
+    IF (NOT TR_BUILD_WITH_RELEASE AND NOT TR_BUILD_WITH_DEBUG)
+        TR_FIND_LIB(${VARNAME} ${MYLIBRARYNAME} "NO")
+        TR_FIND_LIB(${VARNAME}_DEBUG ${MYLIBRARYNAME} "YES")
+    ENDIF ()
 ENDMACRO ()
 
 # Find the individual libraries
@@ -135,7 +167,7 @@ TR_FIND_LIBRARY(UTIL    trUtil)
 # Sets TR_FOUND flag if we have TR of the version the user asked for
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_APP_LIBRARY_FOUND AND ${DEPENDENCY}_BASE_LIBRARY_FOUND AND ${DEPENDENCY}_CORE_LIBRARY_FOUND AND ${DEPENDENCY}_MANAGER_LIBRARY_FOUND AND ${DEPENDENCY}_SG_LIBRARY_FOUND AND ${DEPENDENCY}_UTIL_LIBRARY_FOUND )
- 
+
     # All the library header folders should be in the same place, so we can just use the Core libraries path
     SET(${DEPENDENCY}_INCLUDE_DIR ${${DEPENDENCY}_CORE_INCLUDE_DIR})
 

@@ -33,12 +33,6 @@ SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 SET (CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 INCLUDE (InSourceBuild)
 
-# Sets up the install options
-SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
-SET (TR_EXT_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Ext was installed" FORCE)
-SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
-INCLUDE (InstallMacros)
-
 # Loads extra CMake modules for the projects
 INCLUDE (UtilityMacros)
 
@@ -47,6 +41,9 @@ INCLUDE (Version)
 
 # Defines the project name
 PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR} VERSION ${TR_VERSION} LANGUAGES CXX)
+
+# Sets up the install options
+INCLUDE (InstallMacros)
 
 # Sets the build options
 TR_BUILD_TYPE_OPTIONS()
