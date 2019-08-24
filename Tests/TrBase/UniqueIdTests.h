@@ -23,7 +23,8 @@
 
 #include <gtest/gtest.h>
 
-#include <trBase/SmrtPtr.h>
+#include <trBase/UniqueId.h>
+#include <trUtil/RefStr.h>
 
 /**
  * @class   UniqueIdTests
@@ -34,6 +35,9 @@ class UniqueIdTests : public ::testing::Test
 {
 
 public:
+
+    const static trUtil::RefStr NULL_ID;
+    const static trUtil::RefStr TEST_ID;
 
     /**
      * @fn  public::MatrixTests();

@@ -21,16 +21,50 @@
 
 #include "UniqueIdTests.h"
 
+#include <trBase/UniqueId.h>
+#include <trUtil/RefStr.h>
+
 #include <iostream>
+#include <string>
+
+const trUtil::RefStr UniqueIdTests::NULL_ID = trUtil::RefStr("00000000-0000-0000-0000-000000000000");
+const trUtil::RefStr UniqueIdTests::TEST_ID = trUtil::RefStr("1020ac56-6732-6969-ffd0-fdabc4376cca");
 
 //////////////////////////////////////////////////////////////////////////
 UniqueIdTests::UniqueIdTests()
 {
+
 }
 
 //////////////////////////////////////////////////////////////////////////
 UniqueIdTests::~UniqueIdTests()
 {
+}
+
+/**
+ * @fn  TEST_F(UniqueIdTests, NULL)
+ *
+ * @brief   Test NULL ID creation.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(UniqueIdTests, NULLTests)
+{
+    trBase::UniqueId nullID(false);
+    trBase::UniqueId newID1(NULL_ID);
+    trBase::UniqueId newID2(TEST_ID);
+    trBase::UniqueId newID3;
+
+    // Test equality to string
+    EXPECT_EQ(nullID.ToString(), "00000000-0000-0000-0000-000000000000");
+
+    // Test equality to RefString
+    EXPECT_EQ(nullID.ToString(), NULL_ID);
+
+    //Test equality to another null id
+    EXPECT_EQ(nullID.ToString(), newID1.ToString());
+
 }
 
 
