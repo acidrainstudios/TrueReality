@@ -64,7 +64,7 @@ namespace trBase
         * Makes the Unique ID equal to the ID in the passes in string.
         * The string should be in 00000000-0000-0000-0000-000000000000 format.
         */
-        UniqueId(const std::string& toCopy);
+        explicit UniqueId(const std::string& toCopy);
 
         /**
         * dtor
