@@ -21,6 +21,7 @@
 
 #include "UniqueIdTests.h"
 
+#include <trBase/SmrtPtr.h>
 #include <trBase/UniqueId.h>
 #include <trUtil/RefStr.h>
 
@@ -190,4 +191,46 @@ TEST_F(UniqueIdTests, IsNullTests)
     EXPECT_EQ(!newID2.IsNull(), true);
     EXPECT_EQ(newID3.IsNull(), true);
     EXPECT_EQ(newID1 == newID3, true);
+}
+
+/**
+ * @fn  TEST_F(UniqueIdTests, AssignmentTests)
+ *
+ * @brief   IsNull function tests.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(UniqueIdTests, AssignmentTests)
+{
+    trBase::SmrtPtr<trBase::UniqueId> newID1 = new trBase::UniqueId();
+    trBase::UniqueId newID2;
+    trBase::UniqueId newID3(false);
+    trBase::UniqueId testID;
+
+    newID1->FromString("1020ac56-0000-0000-0000-fdabc4376cca");
+    newID2.FromString("1020ac56-6732-6969-ffd0-fdabc4376cca");
+
+    // Tests the = *
+    testID = newID1.Get();
+    EXPECT_EQ(testID == *newID1, true);
+    EXPECT_EQ(testID != newID2, true);
+    EXPECT_EQ(testID != newID3, true);
+    EXPECT_EQ(testID.IsNull(), false);
+
+    // Tests the = &
+    testID = newID2;
+    EXPECT_EQ(testID != *newID1, true);
+    EXPECT_EQ(testID == newID2, true);
+    EXPECT_EQ(testID != newID3, true);
+    EXPECT_EQ(testID.IsNull(), false);
+
+    // Tests the = std::string
+    trBase::UniqueId testID4("00022000-6732-6969-ffd0-000069600000");
+    testID = "00022000-6732-6969-ffd0-000069600000";
+    EXPECT_EQ(testID != *newID1, true);
+    EXPECT_EQ(testID != newID2, true);
+    EXPECT_EQ(testID != newID3, true);
+    EXPECT_EQ(testID == testID4, true);
+    EXPECT_EQ(testID.IsNull(), false);
 }
