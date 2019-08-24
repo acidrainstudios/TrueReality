@@ -33,7 +33,10 @@ const trUtil::RefStr UniqueIdTests::TEST_ID = trUtil::RefStr("1020ac56-6732-6969
 //////////////////////////////////////////////////////////////////////////
 UniqueIdTests::UniqueIdTests()
 {
-
+    mNullID = trBase::UniqueId(false);
+    mNewID1 = trBase::UniqueId(NULL_ID);
+    mNewID2 = trBase::UniqueId(TEST_ID);
+    mNewID3 = trBase::UniqueId();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -51,55 +54,18 @@ UniqueIdTests::~UniqueIdTests()
  */
 TEST_F(UniqueIdTests, NULLTests)
 {
-    trBase::UniqueId nullID(false);
-    trBase::UniqueId newID1(NULL_ID);
-    trBase::UniqueId newID2(TEST_ID);
-    trBase::UniqueId newID3;
-
     // Test equality to string
-    EXPECT_EQ(nullID.ToString(), "00000000-0000-0000-0000-000000000000");
+    EXPECT_EQ(mNullID.ToString(), "00000000-0000-0000-0000-000000000000");
 
     // Test equality to RefString
-    EXPECT_EQ(nullID.ToString(), NULL_ID);
+    EXPECT_EQ(mNullID.ToString(), NULL_ID);
 
     //Test equality to another null id
-    EXPECT_EQ(nullID.ToString(), newID1.ToString());
+    EXPECT_EQ(mNullID.ToString(), mNewID1.ToString());
 
+    // Test equality to string
+    EXPECT_NE(mNewID3.ToString(), "00000000-0000-0000-0000-000000000000");
+
+    // Test equality to RefString
+    EXPECT_NE(mNewID3.ToString(), NULL_ID);
 }
-
-
-//
-///**
-// * @fn  TEST_F(MatrixTests, GetPointer)
-// *
-// * @brief   Test the method for returning a Matrix pointer
-// *
-// * @param   parameter1  The first parameter.
-// * @param   parameter2  The second parameter.
-// */
-//TEST_F(MatrixTests, GetPointer)
-//{
-//    // Test if the matrix is valid
-//    EXPECT_EQ(mTestMatrixF1.Valid(), true);
-//
-//    // Test if the pointer is NULL
-//    EXPECT_EQ(nullptr, mMatPtrF);
-//
-//    // Get the float pointer holding the float matrix
-//    mMatPtrF = mTestMatrixF1.Ptr();
-//
-//    // Test if the pointer is NULL
-//    EXPECT_NE(nullptr, mMatPtrF);
-//
-//    // Test if the matrix is valid
-//    EXPECT_EQ(mTestMatrixD1.Valid(), true);
-//
-//    // Test if the pointer is NULL
-//    EXPECT_EQ(nullptr, mMatPtrD);
-//
-//    // Get the double pointer holding the double matrix
-//    mMatPtrD = mTestMatrixD1.Ptr();
-//
-//    // Test if the pointer is NULL
-//    EXPECT_NE(nullptr, mMatPtrD);
-//}

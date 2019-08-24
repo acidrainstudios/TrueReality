@@ -39,6 +39,12 @@ public:
     const static trUtil::RefStr NULL_ID;
     const static trUtil::RefStr TEST_ID;
 
+    trBase::UniqueId mNullID;
+    trBase::UniqueId mNewID1;
+    trBase::UniqueId mNewID2;
+    trBase::UniqueId mNewID3;
+
+
     /**
      * @fn  public::MatrixTests();
      *
@@ -52,4 +58,6 @@ public:
      * @brief   Destructor.
      */
     ~UniqueIdTests();
+
+
 };
