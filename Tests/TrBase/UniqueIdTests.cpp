@@ -63,7 +63,7 @@ TEST_F(UniqueIdTests, ClassTypeTests)
 /**
  * @fn  TEST_F(UniqueIdTests, ClassTypeTests)
  *
- * @brief   Testing of the class type definition
+ * @brief   Constructor Tests
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
@@ -146,4 +146,25 @@ TEST_F(UniqueIdTests, ComparisonTests)
 
     // Test the equality operator
     EXPECT_EQ(mNullID == mNewID1, true);
+}
+
+/**
+ * @fn  TEST_F(UniqueIdTests, FromStringTests)
+ *
+ * @brief   From String function tests.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(UniqueIdTests, FromStringTests)
+{
+    trBase::UniqueId newID1;
+    trBase::UniqueId newID2;
+
+    newID1.FromString("00000000-0000-0000-0000-000000000000");
+    newID2.FromString("1020ac56-6732-6969-ffd0-fdabc4376cca");
+
+    EXPECT_EQ(newID1 == mNewID1, true);
+    EXPECT_EQ(newID2 == mNewID2, true);
+    EXPECT_EQ(newID1 != newID2, true);
 }
