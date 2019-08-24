@@ -61,6 +61,34 @@ TEST_F(UniqueIdTests, ClassTypeTests)
 }
 
 /**
+ * @fn  TEST_F(UniqueIdTests, ClassTypeTests)
+ *
+ * @brief   Testing of the class type definition
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(UniqueIdTests, ConstructorTests)
+{
+    trBase::UniqueId newID1(NULL_ID);
+    trBase::UniqueId newID2(TEST_ID);
+    trBase::UniqueId newID3(true);
+    trBase::UniqueId newID4(false);
+
+    EXPECT_EQ(newID1.ToString(), "00000000-0000-0000-0000-000000000000");
+    EXPECT_EQ(newID2.ToString(), "1020ac56-6732-6969-ffd0-fdabc4376cca");
+    EXPECT_NE(newID3.ToString(), "1020ac56-6732-6969-ffd0-fdabc4376cca");
+    EXPECT_NE(newID3.ToString(), "00000000-0000-0000-0000-000000000000");
+    EXPECT_EQ(newID3 != mNullID, true);
+    EXPECT_EQ(newID3 != mNewID1, true);
+    EXPECT_EQ(newID3 != mNewID2, true);
+    EXPECT_EQ(newID3 != mNewID3, true);
+    EXPECT_EQ(newID4.ToString(), "00000000-0000-0000-0000-000000000000");
+    EXPECT_EQ(newID4 == mNullID, true);
+
+}
+
+/**
  * @fn  TEST_F(UniqueIdTests, NULL)
  *
  * @brief   Test NULL ID creation.
