@@ -39,11 +39,11 @@ namespace trBase
     class implId;
 
     /**
-    * This class creates a GUID, or a Unique ID that is used through out TR to identify and distinguish one object from another. 
+    * This class creates a GUID, or a Unique ID that is used through out TR to identify and distinguish one object from another.
     */
     class TR_BASE_EXPORT UniqueId : public trBase::SmrtClass
     {
-        
+
     public:
 
         using BaseClass = trBase::SmrtClass;            /// Adds an easy and swappable access to the base class
@@ -61,15 +61,15 @@ namespace trBase
         UniqueId(const UniqueId& toCopy);
 
         /**
-        * Makes the Unique ID equal to the ID in the passes in string. 
-        * The string should be in 00000000-0000-0000-0000-000000000000 format. 
+        * Makes the Unique ID equal to the ID in the passes in string.
+        * The string should be in 00000000-0000-0000-0000-000000000000 format.
         */
         UniqueId(const std::string& toCopy);
 
         /**
         * dtor
         */
-        virtual ~UniqueId() {}             
+        virtual ~UniqueId() {}
 
         /**
         * Returns the class type
@@ -82,11 +82,11 @@ namespace trBase
         const std::string ToString() const;
 
         /**
-        * Assign the GUID value to this instance from a string. 
+        * Assign the GUID value to this instance from a string.
         * The = operator can be used to accomplish the same thing.
-        * The string should be in 00000000-0000-0000-0000-000000000000 format. 
+        * The string should be in 00000000-0000-0000-0000-000000000000 format.
         */
-        void FromString(std::string& idString);
+        void FromString(const std::string& idString);
 
         /**
         * Returns true if the GUID is equal to 00000000-0000-0000-0000-000000000000
