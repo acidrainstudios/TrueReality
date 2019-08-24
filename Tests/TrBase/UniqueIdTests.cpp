@@ -69,3 +69,27 @@ TEST_F(UniqueIdTests, NULLTests)
     // Test equality to RefString
     EXPECT_NE(mNewID3.ToString(), NULL_ID);
 }
+
+TEST_F(UniqueIdTests, ComparisonTests)
+{
+    //Test inequality to another null id
+    EXPECT_NE(mNewID3.ToString(), mNewID1.ToString());
+
+    //Test inequality operator to another null id
+    EXPECT_EQ(mNewID3 != mNewID1, true);
+
+    //Test equality operator to another null id
+    EXPECT_EQ(mNewID3 == mNewID1, false);
+
+    //Test inequality operator to another null id
+    EXPECT_EQ(mNewID3 != mNewID1, true);
+
+    //Test equality operator to another null id
+    EXPECT_EQ(mNewID3 == mNewID2, false);
+
+    // Test the equality operator
+    EXPECT_EQ(mNullID != mNewID2, true);
+
+    // Test the equality operator
+    EXPECT_EQ(mNullID == mNewID1, true);
+}
