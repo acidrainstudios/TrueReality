@@ -74,6 +74,7 @@ TEST_F(UniqueIdTests, ConstructorTests)
     trBase::UniqueId newID2(TEST_ID);
     trBase::UniqueId newID3(true);
     trBase::UniqueId newID4(false);
+    trBase::UniqueId newID5(mNewID2);
 
     EXPECT_EQ(newID1.ToString(), "00000000-0000-0000-0000-000000000000");
     EXPECT_EQ(newID2.ToString(), "1020ac56-6732-6969-ffd0-fdabc4376cca");
@@ -85,7 +86,8 @@ TEST_F(UniqueIdTests, ConstructorTests)
     EXPECT_EQ(newID3 != mNewID3, true);
     EXPECT_EQ(newID4.ToString(), "00000000-0000-0000-0000-000000000000");
     EXPECT_EQ(newID4 == mNullID, true);
-
+    EXPECT_EQ(newID5 == mNewID2, true);
+    EXPECT_EQ(newID5.ToString(), "1020ac56-6732-6969-ffd0-fdabc4376cca");
 }
 
 /**
