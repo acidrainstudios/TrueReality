@@ -226,8 +226,8 @@ TEST_F(UniqueIdTests, AssignmentTests)
     EXPECT_EQ(testID.IsNull(), false);
 
     // Tests the = std::string
-    trBase::UniqueId testID4("00022000-6732-6969-ffd0-000069600000");
-    testID = "00022000-6732-6969-ffd0-000069600000";
+    trBase::UniqueId testID4(static_cast<std::string>("00696000-6732-6969-ffd0-000006960000"));
+    testID = static_cast<std::string>("00696000-6732-6969-ffd0-000006960000");
     EXPECT_EQ(testID != *newID1, true);
     EXPECT_EQ(testID != newID2, true);
     EXPECT_EQ(testID != newID3, true);
