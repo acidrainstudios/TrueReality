@@ -45,6 +45,22 @@ UniqueIdTests::~UniqueIdTests()
 }
 
 /**
+ * @fn  TEST_F(UniqueIdTests, ClassTypeTests)
+ *
+ * @brief   Testing of the class type definition
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
+TEST_F(UniqueIdTests, ClassTypeTests)
+{
+    EXPECT_EQ(mNullID.GetType(), trBase::UniqueId::CLASS_TYPE);
+    EXPECT_EQ(mNewID1.GetType(), trBase::UniqueId::CLASS_TYPE);
+    EXPECT_EQ(mNewID2.GetType(), trBase::UniqueId::CLASS_TYPE);
+    EXPECT_EQ(mNewID3.GetType(), trBase::UniqueId::CLASS_TYPE);
+}
+
+/**
  * @fn  TEST_F(UniqueIdTests, NULL)
  *
  * @brief   Test NULL ID creation.
@@ -70,6 +86,14 @@ TEST_F(UniqueIdTests, NULLTests)
     EXPECT_NE(mNewID3.ToString(), NULL_ID);
 }
 
+/**
+ * @fn  TEST_F(UniqueIdTests, ComparisonTests)
+ *
+ * @brief   Comparison tests.
+ *
+ * @param   parameter1  The first parameter.
+ * @param   parameter2  The second parameter.
+ */
 TEST_F(UniqueIdTests, ComparisonTests)
 {
     //Test inequality to another null id
