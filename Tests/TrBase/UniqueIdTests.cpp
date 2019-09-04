@@ -152,6 +152,9 @@ TEST_F(UniqueIdTests, ComparisonTests)
 
     // Tests the grater then operator
     EXPECT_EQ(mNewID4 > mNewID2, true);
+
+    // Tests the less then operator
+    EXPECT_EQ(mNewID4 < mNewID2, false);
 }
 
 /**
