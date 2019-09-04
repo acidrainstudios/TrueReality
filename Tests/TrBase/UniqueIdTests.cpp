@@ -30,6 +30,7 @@
 
 const trUtil::RefStr UniqueIdTests::NULL_ID = trUtil::RefStr("00000000-0000-0000-0000-000000000000");
 const trUtil::RefStr UniqueIdTests::TEST_ID = trUtil::RefStr("1020ac56-6732-6969-ffd0-fdabc4376cca");
+const trUtil::RefStr UniqueIdTests::TEST_ID2 = trUtil::RefStr("1ff0ac56-6732-1919-ffd0-fdaff4376cca");
 
 //////////////////////////////////////////////////////////////////////////
 UniqueIdTests::UniqueIdTests()
@@ -38,6 +39,7 @@ UniqueIdTests::UniqueIdTests()
     mNewID1 = trBase::UniqueId(static_cast<std::string>(NULL_ID));
     mNewID2 = trBase::UniqueId(static_cast<std::string>(TEST_ID));
     mNewID3 = trBase::UniqueId();
+    mNewID4 = trBase::UniqueId(static_cast<std::string>(TEST_ID2));
 }
 
 //////////////////////////////////////////////////////////////////////////
