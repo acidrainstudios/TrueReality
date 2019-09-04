@@ -147,6 +147,9 @@ TEST_F(UniqueIdTests, ComparisonTests)
 
     // Test the equality operator
     EXPECT_EQ(mNullID == mNewID1, true);
+
+    // Tests the grater then operator
+    EXPECT_EQ(mNewID3 > mNewID1, true);
 }
 
 /**
