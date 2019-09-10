@@ -158,6 +158,11 @@ MACRO (TR_BUILD_TYPE_OPTIONS)
             SET (TR_BUILD_WITH_DEBUG "ON" CACHE INTERNAL  "Enables the building of the debug version of True Reality" FORCE)
         ENDIF ()
     ENDIF ()
+
+    # Tell CMake to look for libraries in 'lib64' as well as in 'lib' (when building x86_64 on Linux)
+    IF (UNIX)
+        SET_PROPERTY (GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS ON)
+    ENDIF ()
 ENDMACRO ()
 
 # *****************************************************************************
