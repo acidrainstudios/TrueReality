@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2019 Acid Rain Studios LLC
+# Copyright ï¿½ 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -56,16 +56,16 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         NAMES ${MYLIBRARYNAME}
         HINTS
         $ENV{JSON_LIB}
-        $ENV{JSON_ROOT}/lib*
+        $ENV{JSON_ROOT}/lib
         $ENV{JSON_ROOT}
         $ENV{TR_LIB}
-        $ENV{TR_ROOT}/Ext/lib*
+        $ENV{TR_ROOT}/Ext/lib
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_ROOT}/lib*
+        $ENV{TR_ROOT}/lib
         $ENV{TR_ROOT}
         PATHS
-        /usr/lib*
-        /usr/local/lib*
+        /usr/lib
+        /usr/local/lib
         ~/Library/Frameworks
         /Library/Frameworks
     )
