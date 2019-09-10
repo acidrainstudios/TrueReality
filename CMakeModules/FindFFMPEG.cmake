@@ -84,18 +84,18 @@ MACRO (FFMPEG_FIND_LIB VARNAME MYLIBRARYNAME HEADERNAME)
     FIND_LIBRARY(${DEPENDENCY}_${VARNAME}_LIBRARY
         NAMES ${MYLIBRARYNAME}
         HINTS
-        $ENV{FFMPEG_ROOT}/lib*
+        $ENV{FFMPEG_ROOT}/lib
         $ENV{FFMPEG_ROOT}
         $ENV{TR_LIB}
-        $ENV{TR_ROOT}/Ext/lib*
+        $ENV{TR_ROOT}/Ext/lib
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_ROOT}/lib*
+        $ENV{TR_ROOT}/lib
         $ENV{TR_ROOT}
         PATHS
-        /usr/lib*
-        /usr/local/lib*
-        /opt/lib*
-        /opt/local/lib*
+        /usr/lib
+        /usr/local/lib
+        /opt/lib
+        /opt/local/lib
         ~/Library/Frameworks
         /Library/Frameworks
     )
