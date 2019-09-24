@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -108,7 +108,7 @@ namespace trBase
          *
          * @param [in,out]  idString    The identifier string.
          */
-        void FromString(std::string& idString)
+        void FromString(const std::string& idString)
         {
             mGUID = bID::uuids::string_generator()(idString);
         }
@@ -123,6 +123,18 @@ namespace trBase
         bool IsNull() const
         {
             return mGUID.is_nil();
+        }
+
+        /**
+         * @fn  uint8_t* GetData()
+         *
+         * @brief   Gets the internal data array that holds the GUID bits.
+         *
+         * @return  Null if it fails, else the data.
+         */
+        uint8_t* GetData()
+        {
+            return mGUID.data;
         }
 
         /**
@@ -246,29 +258,35 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId::UniqueId(bool createNewId)
     {
-        if (createNewId)
-        {
-            //Create a random GUID
-            mGUID = bID::uuids::random_generator()();
-
-        }
-        else
-        {
-            //Create a NULL GUID
-            mGUID = bID::uuids::nil_uuid();
-        }
+        mGUIDPtr = new implId(createNewId);
     }
 
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const UniqueId& toCopy)
     {
-        mGUID = toCopy.mGUID;
+        // Create a NULL ID then copy the passed in IDs bits.
+        mGUIDPtr = new implId(false);
+        for (int i = 0; i < 16; ++i)
+        {
+            mGUIDPtr->GetData()[i] = toCopy.mGUIDPtr->GetData()[i];
+        }
+
     }
 
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const std::string& toCopy)
     {
-        mGUID = bID::uuids::string_generator()(toCopy);
+        mGUIDPtr = new implId(toCopy);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    UniqueId::~UniqueId()
+    {
+        if (mGUIDPtr)
+        {
+            delete mGUIDPtr;
+            mGUIDPtr = nullptr;
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -280,74 +298,64 @@ namespace trBase
     ////////////////////////////////////////////////
     const std::string UniqueId::ToString() const
     {
-        return bID::uuids::to_string(mGUID);
+        return mGUIDPtr->ToString();
     }
 
     ////////////////////////////////////////////////
     void UniqueId::FromString(const std::string& idString)
     {
-        mGUID = bID::uuids::string_generator()(idString);
+        mGUIDPtr->FromString(idString);
     }
 
     ////////////////////////////////////////////////
     bool UniqueId::IsNull() const
     {
-        return mGUID.is_nil();
+        return mGUIDPtr->IsNull();
     }
 
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const UniqueId& id)
     {
-        if (this == &id)
-        {
-            return *this;
-        }
-
-        mGUID = id.mGUID;
+        mGUIDPtr->operator= (*id.mGUIDPtr);
         return *this;
     }
 
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const UniqueId* id)
     {
-        if (this == id)
-        {
-            return *this;
-        }
-
-        mGUID = id->mGUID;
+        mGUIDPtr->operator= (id->mGUIDPtr);
         return *this;
     }
 
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const std::string& id)
     {
-        mGUID = bID::uuids::string_generator()(id);
+        mGUIDPtr->operator=(id);
         return *this;
     }
 
     ////////////////////////////////////////////////
     bool UniqueId::operator==(const UniqueId & id) const
     {
-        return mGUID == id.mGUID;
+        return mGUIDPtr->operator== (*id.mGUIDPtr);
     }
 
     ////////////////////////////////////////////////
     bool UniqueId::operator!=(const UniqueId & id) const
     {
-        return mGUID != id.mGUID;
+        return mGUIDPtr->operator!= (*id.mGUIDPtr);
     }
 
     ////////////////////////////////////////////////
     bool UniqueId::operator<(const UniqueId & id) const
     {
-        return mGUID < id.mGUID;
+        return mGUIDPtr->operator< (*id.mGUIDPtr);
     }
 
     ////////////////////////////////////////////////
     bool UniqueId::operator>(const UniqueId & id) const
     {
-        return mGUID > id.mGUID;
+        return mGUIDPtr->operator> (*id.mGUIDPtr);
     }
 
     ////////////////////////////////////////////////
