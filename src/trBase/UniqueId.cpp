@@ -108,7 +108,7 @@ namespace trBase
          *
          * @param [in,out]  idString    The identifier string.
          */
-        void FromString(std::string& idString)
+        void FromString(const std::string& idString)
         {
             mGUID = bID::uuids::string_generator()(idString);
         }
