@@ -69,7 +69,7 @@ namespace trBase
         /**
         * dtor
         */
-        virtual ~UniqueId() {}
+        virtual ~UniqueId();
 
         /**
         * Returns the class type
@@ -160,6 +160,7 @@ namespace trBase
 
     protected:
         bID::uuids::uuid mGUID;
+        implId* mGUIDPtr = nullptr;
     };
 
     ////////////////////////////////////////////////////

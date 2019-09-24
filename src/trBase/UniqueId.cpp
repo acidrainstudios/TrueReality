@@ -272,6 +272,16 @@ namespace trBase
     }
 
     //////////////////////////////////////////////////////////////////////////
+    UniqueId::~UniqueId()
+    {
+        if (mGUIDPtr)
+        {
+            delete mGUIDPtr;
+            mGUIDPtr = nullptr;
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     const std::string& UniqueId::GetType() const
     {
         return CLASS_TYPE;
