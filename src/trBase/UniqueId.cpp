@@ -258,25 +258,12 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId::UniqueId(bool createNewId)
     {
-        if (createNewId)
-        {
-            //Create a random GUID
-            mGUID = bID::uuids::random_generator()();
-        }
-        else
-        {
-            //Create a NULL GUID
-            mGUID = bID::uuids::nil_uuid();
-        }
-
         mGUIDPtr = new implId(createNewId);
     }
 
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const UniqueId& toCopy)
     {
-        mGUID = toCopy.mGUID;
-
         // Create a NULL ID then copy the passed in IDs bits.
         mGUIDPtr = new implId(false);
         for (int i = 0; i < 16; ++i)
@@ -289,8 +276,6 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const std::string& toCopy)
     {
-        mGUID = bID::uuids::string_generator()(toCopy);
-
         mGUIDPtr = new implId(toCopy);
     }
 
