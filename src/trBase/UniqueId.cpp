@@ -277,7 +277,13 @@ namespace trBase
     {
         mGUID = toCopy.mGUID;
 
-        mGUIDPtr = new implId(toCopy.ToString());
+        // Create a NULL ID then copy the passed in.
+        mGUIDPtr = new implId(false);
+        for (int i = 0; i < 16; ++i)
+        {
+            mGUIDPtr->GetData()[i] = toCopy.mGUIDPtr->GetData()[i];
+        }
+
     }
 
     ////////////////////////////////////////////////
