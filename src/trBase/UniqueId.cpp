@@ -313,7 +313,7 @@ namespace trBase
     ////////////////////////////////////////////////
     const std::string UniqueId::ToString() const
     {
-        return bID::uuids::to_string(mGUID);
+        return mGUIDPtr->ToString();
     }
 
     ////////////////////////////////////////////////
