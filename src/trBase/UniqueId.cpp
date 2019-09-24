@@ -126,6 +126,18 @@ namespace trBase
         }
 
         /**
+         * @fn  uint8_t* GetData()
+         *
+         * @brief   Gets the internal data array that holds the GUID bits.
+         *
+         * @return  Null if it fails, else the data.
+         */
+        uint8_t* GetData()
+        {
+            return mGUID.data;
+        }
+
+        /**
          * @fn  implId& implId::operator=(const implId& id)
          *
          * @brief   Assignment operator.
