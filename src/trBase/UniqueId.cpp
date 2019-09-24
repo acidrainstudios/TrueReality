@@ -277,7 +277,7 @@ namespace trBase
     {
         mGUID = toCopy.mGUID;
 
-        // Create a NULL ID then copy the passed in.
+        // Create a NULL ID then copy the passed in IDs bits.
         mGUIDPtr = new implId(false);
         for (int i = 0; i < 16; ++i)
         {
@@ -290,6 +290,8 @@ namespace trBase
     UniqueId::UniqueId(const std::string& toCopy)
     {
         mGUID = bID::uuids::string_generator()(toCopy);
+
+        mGUIDPtr = new implId(toCopy);
     }
 
     //////////////////////////////////////////////////////////////////////////
