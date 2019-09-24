@@ -264,6 +264,8 @@ namespace trBase
     UniqueId::UniqueId(const UniqueId& toCopy)
     {
         mGUID = toCopy.mGUID;
+
+        mGUIDPtr = new implId(toCopy.ToString());
     }
 
     ////////////////////////////////////////////////
