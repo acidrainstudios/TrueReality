@@ -319,7 +319,7 @@ namespace trBase
     ////////////////////////////////////////////////
     void UniqueId::FromString(const std::string& idString)
     {
-        mGUID = bID::uuids::string_generator()(idString);
+        mGUIDPtr->FromString(idString);
     }
 
     ////////////////////////////////////////////////
