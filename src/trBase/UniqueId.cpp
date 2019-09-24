@@ -352,7 +352,7 @@ namespace trBase
     ////////////////////////////////////////////////
     bool UniqueId::operator==(const UniqueId & id) const
     {
-        return mGUID == id.mGUID;
+        return mGUIDPtr->operator== (*id.mGUIDPtr);
     }
 
     ////////////////////////////////////////////////
