@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -24,29 +24,238 @@
 #include <trUtil/PlatformMacros.h>
 #include <trUtil/Logging/Log.h>
 
-#include <boost/uuid/random_generator.hpp>
-#include <boost/uuid/string_generator.hpp>
-#include <boost/uuid/nil_generator.hpp>
-#include <boost/uuid/uuid_io.hpp>
+#include <bID/uuid/random_generator.hpp>
+#include <bID/uuid/string_generator.hpp>
+#include <bID/uuid/nil_generator.hpp>
+#include <bID/uuid/uuid.hpp>
+#include <bID/uuid/uuid_io.hpp>
 
 #include <iostream>
 
 namespace trBase
 {
+    /**
+     * @class   implId
+     *
+     * @brief   An implementation class for GUID.
+     */
+    class implId
+    {
+    public:
+
+        /**
+         * @fn  implId(bool createNewId)
+         *
+         * @brief   Constructor.
+         *
+         * @param   createNewId if true, generates a new id.  If not, it sets the id to empty.
+         */
+        implId(bool createNewId)
+        {
+            if (createNewId)
+            {
+                //Create a random GUID
+                mGUID = bID::uuids::random_generator()();
+
+            }
+            else
+            {
+                //Create a NULL GUID
+                mGUID = bID::uuids::nil_uuid();
+            }
+        }
+
+        /**
+         * @fn  implId(const implId& toCopy)
+         *
+         * @brief   Makes a copy of the passed in Unique ID GUID.
+         *
+         * @param   toCopy  to copy.
+         */
+        implId(const implId& toCopy)
+        {
+            mGUID = toCopy.mGUID;
+        }
+
+        /**
+         * @fn  implId(const std::string& toCopy)
+         *
+         * @brief   Constructor.
+         *
+         * @param   toCopy  to copy.
+         */
+        implId(const std::string& toCopy)
+        {
+            mGUID = bID::uuids::string_generator()(toCopy);
+        }
+
+        /**
+         * @fn  const std::string implId::ToString() const
+         *
+         * @brief   Convert this object into a string representation.
+         *
+         * @return  A const std::string that represents this object.
+         */
+        const std::string ToString() const
+        {
+            return bID::uuids::to_string(mGUID);
+        }
+
+        /**
+         * @fn  void implId::FromString(std::string& idString)
+         *
+         * @brief   Initializes this object from the given string.
+         *
+         * @param [in,out]  idString    The identifier string.
+         */
+        void FromString(std::string& idString)
+        {
+            mGUID = bID::uuids::string_generator()(idString);
+        }
+
+        /**
+         * @fn  bool implId::IsNull() const
+         *
+         * @brief   Returns true if the GUID is equal to 00000000-0000-0000-0000-000000000000.
+         *
+         * @return  True if null, false if not.
+         */
+        bool IsNull() const
+        {
+            return mGUID.is_nil();
+        }
+
+        /**
+         * @fn  implId& implId::operator=(const implId& id)
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  A shallow copy of this object.
+         */
+        implId& operator=(const implId& id)
+        {
+            if (this == &id)
+            {
+                return *this;
+            }
+
+            mGUID = id.mGUID;
+            return *this;
+        }
+
+        /**
+         * @fn  implId& implId::operator=(const implId* id)
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  A shallow copy of this object.
+         */
+        implId& operator=(const implId* id)
+        {
+            if (this == id)
+            {
+                return *this;
+            }
+
+            mGUID = id->mGUID;
+            return *this;
+        }
+
+        /**
+         * @fn  implId& implId::operator=(const std::string& id)
+         *
+         * @brief   Assignment operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  A shallow copy of this object.
+         */
+        implId& operator=(const std::string& id)
+        {
+            mGUID = bID::uuids::string_generator()(id);
+            return *this;
+        }
+
+        /**
+         * @fn  bool implId::operator==(const implId & id) const
+         *
+         * @brief   Equality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are considered equivalent.
+         */
+        bool operator==(const implId & id) const
+        {
+            return mGUID == id.mGUID;
+        }
+
+        /**
+         * @fn  bool implId::operator!=(const implId & id) const
+         *
+         * @brief   Inequality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are not considered equivalent.
+         */
+        bool operator!=(const implId & id) const
+        {
+            return mGUID != id.mGUID;
+        }
+
+        /**
+         * @fn  bool implId::operator<(const implId & id) const
+         *
+         * @brief   Less-than comparison operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is less than the second.
+         */
+        bool operator<(const implId & id) const
+        {
+            return mGUID < id.mGUID;
+        }
+
+        /**
+         * @fn  bool implId::operator>(const implId & id) const
+         *
+         * @brief   Greater-than comparison operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is greater than to the second.
+         */
+        bool operator>(const implId & id) const
+        {
+            return mGUID > id.mGUID;
+        }
+
+    private:
+        bID::uuids::uuid mGUID;
+    };
+
+    ////////////////////////////////////////////////
     const trUtil::RefStr UniqueId::CLASS_TYPE = trUtil::RefStr("trBase::UniqueId");
 
+    ////////////////////////////////////////////////
     UniqueId::UniqueId(bool createNewId)
     {
         if (createNewId)
         {
             //Create a random GUID
-            mGUID = boost::uuids::random_generator()();
+            mGUID = bID::uuids::random_generator()();
 
         }
         else
         {
             //Create a NULL GUID
-            mGUID = boost::uuids::nil_uuid();
+            mGUID = bID::uuids::nil_uuid();
         }
     }
 
@@ -59,7 +268,7 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const std::string& toCopy)
     {
-        mGUID = boost::uuids::string_generator()(toCopy);
+        mGUID = bID::uuids::string_generator()(toCopy);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -71,13 +280,13 @@ namespace trBase
     ////////////////////////////////////////////////
     const std::string UniqueId::ToString() const
     {
-        return boost::uuids::to_string(mGUID);
+        return bID::uuids::to_string(mGUID);
     }
 
     ////////////////////////////////////////////////
-    void UniqueId::FromString(std::string& idString)
+    void UniqueId::FromString(const std::string& idString)
     {
-        mGUID = boost::uuids::string_generator()(idString);
+        mGUID = bID::uuids::string_generator()(idString);
     }
 
     ////////////////////////////////////////////////
@@ -113,8 +322,32 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const std::string& id)
     {
-        mGUID = boost::uuids::string_generator()(id);
+        mGUID = bID::uuids::string_generator()(id);
         return *this;
+    }
+
+    ////////////////////////////////////////////////
+    bool UniqueId::operator==(const UniqueId & id) const
+    {
+        return mGUID == id.mGUID;
+    }
+
+    ////////////////////////////////////////////////
+    bool UniqueId::operator!=(const UniqueId & id) const
+    {
+        return mGUID != id.mGUID;
+    }
+
+    ////////////////////////////////////////////////
+    bool UniqueId::operator<(const UniqueId & id) const
+    {
+        return mGUID < id.mGUID;
+    }
+
+    ////////////////////////////////////////////////
+    bool UniqueId::operator>(const UniqueId & id) const
+    {
+        return mGUID > id.mGUID;
     }
 
     ////////////////////////////////////////////////
@@ -131,5 +364,5 @@ namespace trBase
         i >> value;
         id = value;
         return i;
-    }    
+    }
 }

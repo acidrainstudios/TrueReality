@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,6 +21,7 @@
 #include <trUtil/DefaultSettings.h>
 
 #include <trUtil/PathUtils.h>
+#include <trUtil/PlatformMacros.h>
 #include <trUtil/Logging/Log.h>
 
 #include <osg/ArgumentParser>
@@ -78,11 +79,14 @@ namespace trUtil::DefaultSettings
         //Set the log level
         if (logLevel.empty())
         {
-#ifdef _DEBUG
-            trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
-#else
-            trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_WARNING);
-#endif
+            if (TR_BUILD_TYPE == BuildType::DEBUG)
+            {
+                trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
+            }
+            else
+            {
+                trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_WARNING);
+            }
         }
         else
         {
@@ -113,12 +117,15 @@ namespace trUtil::DefaultSettings
         }
 
         //Set Log file options
-#ifdef _DEBUG
-        trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::STANDARD);
-#else
-        trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::TO_FILE);
+        if (TR_BUILD_TYPE == BuildType::DEBUG)
+        {
+            trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::STANDARD);
+    }
+        else
+        {
+            trUtil::Logging::Log::GetInstance().SetAllOutputStreamBits(trUtil::Logging::Log::TO_FILE);
+        }
 
-#endif
         LOG_A("\n*\n*\nLOG Level is set to: '" + trUtil::Logging::Log::GetInstance().GetLogLevelString(trUtil::Logging::Log::GetInstance().GetLogLevel()) + "'\n*\n*\n");
     }        
 }

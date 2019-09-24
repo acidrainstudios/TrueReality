@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2018 Acid Rain Studios LLC
+# Copyright © 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -27,14 +27,16 @@ SET (SOURCE_PATH ${CMAKE_SOURCE_DIR}/src/${FILE_NAME})
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_SOURCES "${SOURCE_PATH}/*.cpp")
+FILE (GLOB NODES_SOURCES "${SOURCE_PATH}/Nodes/*.cpp")
 FILE (GLOB SCENE_OBJECTS_SOURCES "${SOURCE_PATH}/SceneObjects/*.cpp")
-SET (PROJECT_SOURCES "${BASE_SOURCES};${SCENE_OBJECTS_SOURCES}")
+SET (PROJECT_SOURCES "${BASE_SOURCES};${NODES_SOURCES};${SCENE_OBJECTS_SOURCES}")
 
 # Sets the sources using "GLOB"
 FILE (GLOB BASE_HEADERS "${HEADER_PATH}/*.h")
 FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
+FILE (GLOB NODES_HEADERS "${HEADER_PATH}/Nodes/*.h")
 FILE (GLOB SCENE_OBJECTS_HEADERS "${HEADER_PATH}/SceneObjects/*.h")
-SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS};${SCENE_OBJECTS_HEADERS}")
+SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS};${NODES_HEADERS};${SCENE_OBJECTS_HEADERS}")
 
 # *****************************************************************************
 # Project Folder Setup*********************************************************
@@ -48,9 +50,13 @@ SOURCE_GROUP (${SOURCES_GROUP} FILES ${BASE_SOURCES})
 
 # SceneObjects Groups***************************************************************
 # Sets the header file folders in IDEs
+SET (HEADERS_NODES_GROUP "${HEADERS_GROUP}\\Nodes")
+SOURCE_GROUP (${HEADERS_NODES_GROUP} FILES ${NODES_HEADERS})
 SET (HEADERS_SCENE_OBJECTS_GROUP "${HEADERS_GROUP}\\SceneObjects")
 SOURCE_GROUP (${HEADERS_SCENE_OBJECTS_GROUP} FILES ${SCENE_OBJECTS_HEADERS})
 # Sets the source file folders in IDEs
+SET (SOURCES_NODES_GROUP "${SOURCES_GROUP}\\Nodes")
+SOURCE_GROUP (${SOURCES_NODES_GROUP} FILES ${NODES_SOURCES})
 SET (SOURCES_SCENE_OBJECTS_GROUP "${SOURCES_GROUP}\\SceneObjects")
 SOURCE_GROUP (${SOURCES_SCENE_OBJECTS_GROUP} FILES ${SCENE_OBJECTS_SOURCES})
 
@@ -59,23 +65,27 @@ SOURCE_GROUP (${SOURCES_SCENE_OBJECTS_GROUP} FILES ${SCENE_OBJECTS_SOURCES})
 # *****************************************************************************
 
 # Sets the dependency libraries
-SET (EXTERNAL_LIBS
-    ${EXTERNAL_LIBS}
-    optimized ${OpenThreads_LIBRARY}
-    debug ${OpenThreads_LIBRARY_DEBUG}
+IF (TR_BUILD_WITH_RELEASE)
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        optimized ${OpenThreads_LIBRARY}
+        optimized ${OSG_LIBRARY}
+        optimized ${OSG_DB_LIBRARY}
+        optimized ${OSG_GA_LIBRARY}
+        optimized ${OSG_VIEWER_LIBRARY}
+    )
+ENDIF ()
 
-    optimized ${OSG_LIBRARY} 
-    debug ${OSG_LIBRARY_DEBUG}
-
-    optimized ${OSG_DB_LIBRARY} 
-    debug ${OSG_DB_LIBRARY_DEBUG} 
-
-    optimized ${OSG_GA_LIBRARY} 
-    debug ${OSG_GA_LIBRARY_DEBUG}
-
-    optimized ${OSG_VIEWER_LIBRARY} 
-    debug ${OSG_VIEWER_LIBRARY_DEBUG}
-)
+IF (TR_BUILD_WITH_DEBUG)
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        debug ${OpenThreads_LIBRARY_DEBUG}
+        debug ${OSG_LIBRARY_DEBUG}
+        debug ${OSG_DB_LIBRARY_DEBUG}
+        debug ${OSG_GA_LIBRARY_DEBUG}
+        debug ${OSG_VIEWER_LIBRARY_DEBUG}
+    )
+ENDIF ()
 
 # Defines necessary preprocessor variables for project
 ADD_DEFINITIONS (-D${PRE_PROCESSING})

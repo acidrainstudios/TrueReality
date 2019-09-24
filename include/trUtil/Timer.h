@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -22,6 +22,8 @@
 
 #include <trUtil/Export.h>
 
+#include <trUtil/PlatformMacros.h>
+
 #include <osg/Timer>
 
 /**
@@ -32,7 +34,7 @@
 namespace trUtil
 {    
 
-#if defined(_MSC_VER)
+#if defined(TR_WIN)
     /** @brief   64bit Integer to hold the Timers time ticks. */
     using TimeTicks = unsigned __int64;
 #else

@@ -1,3 +1,22 @@
+# True Reality Open Source Game and Simulation Engine
+# Copyright � 2019 Acid Rain Studios LLC
+#
+# This library is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free
+# Software Foundation; either version 3.0 of the License, or (at your option)
+# any later version.
+#
+# This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#
+# Author: Maxim Serebrennik
+
 # *****************************************************************************
 # Common global definitions.***************************************************
 # *****************************************************************************
@@ -49,14 +68,6 @@ SET (CMAKE_RELEASE_POSTFIX "" CACHE STRING "Set Release library postfix" FORCE)
 SET (CMAKE_RELWITHDEBINFO_POSTFIX "-rd" CACHE STRING "Set RelWithDebInfo library postfix" FORCE)
 SET (CMAKE_MINSIZEREL_POSTFIX "-rms" CACHE STRING "Set MinSizeRel library postfix" FORCE)
 
-# Sets Available Build Types
-SET (CMAKE_CONFIGURATION_TYPES "Debug;RelWithDebInfo;Release" CACHE STRING "TrueReality multi-config types" FORCE)
-
-IF (NOT CMAKE_BUILD_TYPE STREQUAL "Release" AND NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-    SET (CMAKE_BUILD_TYPE "Release" CACHE STRING "TrueReality default build type" FORCE)
-ENDIF ()
-
-
 # Sets the include directories; Visible to all CMakeLists.txt files
 INCLUDE_DIRECTORIES (
     ${CMAKE_SOURCE_DIR}
@@ -76,10 +87,12 @@ IF (UNIX)
     MESSAGE (STATUS "\nConfiguring for Unix")
     READ_GCC_VERSION()
     SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
-    IF (GCC_VERSION LESS 6.0.0)
-        MESSAGE (STATUS "GCC Version: " ${GCC_VERSION})
-        MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
-    ENDIF ()
+    SET (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lpthread")
+
+    MESSAGE (STATUS "GCC Version: ${GCC_MAJOR}.${GCC_MINOR}")
+    MESSAGE (STATUS "CXX FLAGS: " ${CMAKE_CXX_FLAGS})
+    MESSAGE (STATUS "Linker FLAGS: " ${CMAKE_EXE_LINKER_FLAGS})
+
     OPTION (CMAKE_VERBOSE_MAKEFILE "Users may enable the option in their local build tree to get more verbose output from Makefile builds and show each command line as it is launched." ON)
     OPTION (CMAKE_COLOR_MAKEFILE "When enabled, the generated Makefiles will produce colored output. Default is ON" ON)
 
@@ -100,6 +113,7 @@ IF (WIN32)
 	
         # Set all the initial CXX options
         SET (CMAKE_CXX_FLAGS " /DWIN32 /D_WINDOWS /W3 /GR /EHsc /nologo")
+        SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /std:c++17") #This is used because cmake 3.14.3 has a bug. Check later if it can be removed
 
         # Enable multi-core builds
         OPTION (TR_BUILD_WITH_MP "Enables the /MP multi-processor compiler option for Visual Studio 2005 and above" ON)		
@@ -152,6 +166,7 @@ SET (CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} CACHE STRING "You may add addition
 SET (CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} CACHE STRING "You may add additional search paths here. Use ; to separate multiple paths.")
 SET (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} CACHE STRING "CXX Flags" FORCE)
-
+SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO ${CMAKE_CXX_FLAGS_RELWITHDEBINFO} CACHE STRING "CXX Flags Rel with Debug" FORCE)
+SET (CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} CACHE STRING "Linker Flags" FORCE)
 
 MESSAGE(STATUS "Configuring to use C++ ${CMAKE_CXX_STANDARD} standard with a ${CMAKE_BUILD_TYPE} build.")

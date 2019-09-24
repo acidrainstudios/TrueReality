@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -25,43 +25,40 @@
 #include <trBase/SmrtPtr.h>
 #include <trUtil/Logging/Log.h>
 
-namespace trCore
+namespace trCore::SceneObjects
 {
-    namespace SceneObjects
+    //////////////////////////////////////////////////////////////////////////
+    RingArrayCallback::RingArrayCallback()
     {
-        //////////////////////////////////////////////////////////////////////////
-        RingArrayCallback::RingArrayCallback()
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    RingArrayCallback::~RingArrayCallback()
+    {
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr)
+    {            
+        if (mFirstFrame)
         {
+            //Set the timer at 0 on the first run. 
+            mTimer.SetStartTick(0);
+            mTimer.Tick();
+            mFirstFrame = false;          
         }
 
-        //////////////////////////////////////////////////////////////////////////
-        RingArrayCallback::~RingArrayCallback()
+        if (nodePtr != nullptr)
         {
+            //Update our timed loop
+            mTimer.Tick();
+
+            //Pass the frame time to the ring update
+            static_cast<RingArray*>(nodePtr)->Update(mTimer.GetSecondsPerTick());
         }
-
-        //////////////////////////////////////////////////////////////////////////
-        void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr)
-        {            
-            if (mFirstFrame)
-            {
-                //Set the timer at 0 on the first run. 
-                mTimer.SetStartTick(0);
-                mTimer.Tick();
-                mFirstFrame = false;          
-            }
-
-            if (nodePtr != nullptr)
-            {
-                //Update our timed loop
-                mTimer.Tick();
-
-                //Pass the frame time to the ring update
-                static_cast<RingArray*>(nodePtr)->Update(mTimer.GetSecondsPerTick());
-            }
-            else
-            {
-                LOG_E("Callback not connected to a RingArray")
-            }            
-        }
+        else
+        {
+            LOG_E("Callback not connected to a RingArray")
+        }            
     }
 }

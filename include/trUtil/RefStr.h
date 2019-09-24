@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -44,7 +44,7 @@ namespace trUtil
      * @brief   A string wrapper that will make sure that all of the strings with the same value will
      *          point to the same memory.  The strings are only accessible as const, but a new string
      *          may be assigned to the reference string.
-     *          
+     *
      * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT RefStr
@@ -111,8 +111,28 @@ namespace trUtil
          * @return  A const.
          */
         operator const char*() const { return mString->c_str(); }
-        
-        trUtil::RefStr& operator=(const RefStr& value);
+
+        /**
+         * @fn  trUtil::RefStr& RefStr::operator=(const std::string& value);
+         *
+         * @brief   Assignment operator that takes a string.
+         *
+         * @param   value   The value.
+         *
+         * @return  A shallow copy of this object.
+         */
+        trUtil::RefStr& operator=(const std::string& value);
+
+        /**
+         * @fn  trUtil::RefStr& RefStr::operator=(const trUtil::RefStr& value);
+         *
+         * @brief   Assignment operator that takes a Ref String.
+         *
+         * @param   value   The value.
+         *
+         * @return  A shallow copy of this object.
+         */
+        trUtil::RefStr& operator=(const trUtil::RefStr& value);
 
         RefStr operator+(const std::string& string) const;
         RefStr operator+(const RefStr& RefStr) const;

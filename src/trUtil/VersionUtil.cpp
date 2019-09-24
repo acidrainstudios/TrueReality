@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright Â© 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -42,27 +42,41 @@ namespace trUtil
     const std::string VersionUtil::BUILD_VERSION = std::string("Build");
     
     //////////////////////////////////////////////////////////////////////////
-    VersionUtil::VersionUtil()
+    VersionUtil::VersionUtil() : VersionUtil(VERSION_FILE_NAME, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
+    {}
+    
+    //////////////////////////////////////////////////////////////////////////
+    VersionUtil::VersionUtil(std::string fileName) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
+    {}
+
+    //////////////////////////////////////////////////////////////////////////
+    VersionUtil::VersionUtil(std::string fileName, std::string filePath) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
+    {}
+
+    //////////////////////////////////////////////////////////////////////////
+    VersionUtil::VersionUtil(std::string fileName, std::string filePath, std::string repoPath)
     {
-        mVersion.SetFileName(VERSION_FILE_NAME);
-        mVersion.SetFilePath(trUtil::PathUtils::GetConfigPath());
-        
+        mRepoPath = repoPath;
+
+        mVersion.SetFileName(fileName);
+        mVersion.SetFilePath(filePath);
+
         //If there is no version file, create one
         if (mVersion.FileExists())
         {
-            mVersion.ReadFromFile(VERSION_FILE_NAME);
+            mVersion.ReadFromFile(fileName);
         }
         else
         {
-            std::string errMsg = "Version File does not exist, generating a new one...";            
+            std::string errMsg = "Version File does not exist, generating a new one...";
             LOG_W("Looking for file in : " + mVersion.GetFilePath())
-            LOG_W(errMsg)
-            std::cerr << errMsg << std::endl;
+                LOG_W(errMsg)
+                std::cerr << errMsg << std::endl;
             GenerateVersionStructure();
             SaveVersionFile();
         }
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     VersionUtil::~VersionUtil()
     {
@@ -211,20 +225,20 @@ namespace trUtil
             
             //Get the revision number string from the HG repo
             std::cerr << "\nChecking for an HG repo..." << std::endl;
-            std::string rev = trUtil::FileUtils::GetInstance().RunCommand("hg -R " + PathUtils::GetRootPath() + " identify --num");
+            std::string rev = trUtil::FileUtils::GetInstance().RunCommand("hg -R " + mRepoPath + " identify --num");
             
             if (rev == trUtil::StringUtils::STR_BLANK)
             {
                 //Get the revision number string from the GIT repo
                 std::cerr << "\nChecking for a GIT repo..." << std::endl;
-                rev = trUtil::FileUtils::GetInstance().RunCommand("git -C " + PathUtils::GetRootPath() + " rev-list --count HEAD");
+                rev = trUtil::FileUtils::GetInstance().RunCommand("git -C " + mRepoPath + " rev-list --count HEAD");
 
                 if (rev == trUtil::StringUtils::STR_BLANK)
                 {
-                    LOG_E("No .hg or .git folders found at the TR_ROOT path. \nTR_ROOT: " + PathUtils::GetRootPath());
+                    LOG_E("No .hg or .git folders found at the repo path. \nRepo Path: " + mRepoPath);
 
                     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
-                    std::cerr << ".hg (HG Repo) or .git (GIT Repo) is needed for this to work" << std::endl;
+                    std::cerr << ".hg (HG Repo) or .git (Git Repo) is needed for this to work. Check that an HG or Git command line client is present." << std::endl;
                     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
                 }
                 

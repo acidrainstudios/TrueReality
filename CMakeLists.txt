@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright � 2018 Acid Rain Studios LLC
+# Copyright © 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -20,28 +20,33 @@
 INCLUDE (CMakeDependentOption)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.11.0 FATAL_ERROR)
 CMAKE_POLICY (VERSION 3.11.0)
+IF (POLICY CMP0074)
+  CMAKE_POLICY(SET CMP0074 NEW) # CMake 3.12 <package>_ROOT support
+ENDIF ()
 
-# Sets the path to custom CMake modules. 
+
+# Sets the path to custom CMake modules.
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 
-# Sets a check to make sure cmake does change the source files.  
+# Sets a check to make sure cmake does change the source files.
 SET (CMAKE_DISABLE_SOURCE_CHANGES ON)
 SET (CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 INCLUDE (InSourceBuild)
-
-# Sets up the install options
-SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
-SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
-INCLUDE (InstallMacros)
 
 # Loads extra CMake modules for the projects
 INCLUDE (UtilityMacros)
 
 #Sets up all the versioning information
-INCLUDE (Version) 
+INCLUDE (Version)
 
 # Defines the project name
-PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR} VERSION ${TR_VERSION})
+PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR} VERSION ${TR_VERSION} LANGUAGES CXX)
+
+# Sets up the install options
+INCLUDE (InstallMacros)
+
+# Sets the build options
+TR_BUILD_TYPE_OPTIONS()
 
 # *****************************************************************************
 # Sets user options ***********************************************************
@@ -62,10 +67,6 @@ OPTION (TR_USE_DOUBLE_VECTOR "Set to OFF to build TR with float Vector instead o
 MARK_AS_ADVANCED (TR_USE_DOUBLE_VECTOR)
 OPTION (TR_BUILD_VERSIONED_LIBRARIES "Enables the building of unique versioned shared libraries" ON)
 MARK_AS_ADVANCED (TR_BUILD_VERSIONED_LIBRARIES)
-OPTION (TR_BUILD_WITH_RELEASE "Enables the building of the release version of True Reality" ON)
-MARK_AS_ADVANCED (TR_BUILD_WITH_RELEASE)
-OPTION (TR_BUILD_WITH_DEBUG "Enables the building of the debug version of True Reality" ON)
-MARK_AS_ADVANCED (TR_BUILD_WITH_DEBUG)
 OPTION (CMAKE_USE_RELATIVE_PATHS "Uses relative paths in project settings" ON)
 MARK_AS_ADVANCED (CMAKE_USE_RELATIVE_PATHS)
 
@@ -74,7 +75,7 @@ MARK_AS_ADVANCED (CMAKE_USE_RELATIVE_PATHS)
 # *****************************************************************************
 OPTION (TR_BUILD_UTILITIES "Enables the building of TR tools and utilities" ON)
 CMAKE_DEPENDENT_OPTION (TR_START "Enables the building of trStart Utility" ON "TR_BUILD_UTILITIES; TR_UTIL; TR_CORE" OFF)
-CMAKE_DEPENDENT_OPTION (TR_VERSION "Enables the building of trVersion Utility" ON "TR_BUILD_UTILITIES; TR_UTIL" OFF)
+CMAKE_DEPENDENT_OPTION (TR_VERSION_UTIL "Enables the building of trVersion Utility" ON "TR_BUILD_UTILITIES; TR_UTIL" OFF)
 # *****************************************************************************
 # *****************************************************************************
 # *****************************************************************************
@@ -96,6 +97,7 @@ CMAKE_DEPENDENT_OPTION (EXAMPLES_LOGGING "Enables the building of exampleLogging
 # Sets Test options ***********************************************************
 # *****************************************************************************
 OPTION (TR_BUILD_TESTS "Enables the building of Unit Tests" ON)
+CMAKE_DEPENDENT_OPTION (TESTS_TR_UTIL "Enables the building of trUtil Unit Tests" ON "TR_BUILD_TESTS; TR_UTIL" OFF)
 CMAKE_DEPENDENT_OPTION (TESTS_TR_BASE "Enables the building of trBase Unit Tests" ON "TR_BUILD_TESTS; TR_BASE" OFF)
 CMAKE_DEPENDENT_OPTION (TESTS_TR_MANAGER "Enables the building of trManager Unit Tests" ON "TR_BUILD_TESTS; TR_CORE; TR_MANAGER; TR_BASE" OFF)
 # *****************************************************************************
@@ -105,7 +107,7 @@ CMAKE_DEPENDENT_OPTION (TESTS_TR_MANAGER "Enables the building of trManager Unit
 # *****************************************************************************
 # Sets Library Specific Dependencies*******************************************
 # *****************************************************************************
-IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)    
+IF (TR_BUILD_WITH_RELEASE OR TR_BUILD_WITH_DEBUG)
     TR_DETECT_DEPENDENCY (OSG 3.6.0)
     TR_DETECT_DEPENDENCY (OpenThreads)
     INCLUDE_DIRECTORIES (SYSTEM ${OSG_INCLUDE_DIR} ${OpenThreads_INCLUDE_DIR})
@@ -113,14 +115,9 @@ ENDIF ()
 
 # trUtil packages
 IF (TR_UTIL)
+    TR_DETECT_DEPENDENCY (bID)
     TR_DETECT_DEPENDENCY (JsonCpp)
-    INCLUDE_DIRECTORIES (SYSTEM ${JSON_CPP_INCLUDE_DIR})
-ENDIF ()
-
-# trBase packages
-IF (TR_BASE)
-    TR_DETECT_DEPENDENCY (BoostLibs 1.66.0)
-    INCLUDE_DIRECTORIES (SYSTEM ${Boost_INCLUDE_DIRS})
+    INCLUDE_DIRECTORIES (SYSTEM ${JSON_CPP_INCLUDE_DIR} ${bID_INCLUDE_DIR})
 ENDIF ()
 
 # Unit Tests
@@ -153,3 +150,7 @@ TR_INSTALL_BUILD_OPTIONS ()
 
 # Displays the current version of True Reality ********************************
 PRINT_TR_VERSION ()
+
+MESSAGE(STATUS "True Reality Source directory: ${CMAKE_CURRENT_SOURCE_DIR}")
+MESSAGE(STATUS "True Reality Build directory: ${PROJECT_BINARY_DIR}")
+MESSAGE(STATUS "True Reality Install directory: ${CMAKE_INSTALL_PREFIX}\n")

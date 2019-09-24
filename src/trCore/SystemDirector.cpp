@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -106,7 +106,7 @@ namespace trCore
         {
             if (IsRegistered())
             {
-                LOG_D("\n***************** Starting Frame #" + trUtil::StringUtils::ToString<int>(mTimeStruct.frameNumber))
+                LOG_D("\n***************** Starting Frame #" << mTimeStruct.frameNumber)
 
                 EventTraversal(mTimeStruct);
                 PostEventTraversal(mTimeStruct);
@@ -116,7 +116,7 @@ namespace trCore
                 Frame(mTimeStruct);
                 PostFrame(mTimeStruct);
 
-                LOG_D("\n***************** Ending Frame #" + trUtil::StringUtils::ToString<int>(mTimeStruct.frameNumber))
+                LOG_D("\n***************** Ending Frame #" << mTimeStruct.frameNumber)
 
                 //Get the time between frames in seconds
                 mSystemTimer.Tick();
@@ -143,7 +143,7 @@ namespace trCore
         {
             if (IsRegistered())
             {
-                LOG_D("\n***************** Starting Frame #" + trUtil::StringUtils::ToString<int>(mTimeStruct.frameNumber))
+                LOG_D("\n***************** Starting Frame #" << mTimeStruct.frameNumber)
 
                 EventTraversal(mTimeStruct);
                 PostEventTraversal(mTimeStruct);
@@ -153,7 +153,7 @@ namespace trCore
                 Frame(mTimeStruct);
                 PostFrame(mTimeStruct);
 
-                LOG_D("\n***************** Ending Frame #" + trUtil::StringUtils::ToString<int>(mTimeStruct.frameNumber))
+                LOG_D("\n***************** Ending Frame #" << mTimeStruct.frameNumber)
 
                     //Get the time between frames in seconds
                     mSystemTimer.Tick();
@@ -353,7 +353,7 @@ namespace trCore
         trBase::SmrtPtr<trCore::MessageSystemEvent> msg = new trCore::MessageSystemEvent(&this->GetUUID(), NULL, SystemEvents::TIME_SCALE_CHANGED);
         SendMessage(*msg);
 
-        LOG_D("Time Scale Changed to: " + trUtil::StringUtils::ToString<double>(mTimeStruct.timeScale))
+        LOG_D("Time Scale Changed to: " << mTimeStruct.timeScale)
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -377,7 +377,7 @@ namespace trCore
             }
         }
 
-        LOG_D("Time Scale Incremented to: " + trUtil::StringUtils::ToString<double>(mTimeStruct.timeScale))
+        LOG_D("Time Scale Incremented to: " << mTimeStruct.timeScale)
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -401,7 +401,7 @@ namespace trCore
             SetTimeScale(timeScale * 2.);            
         }
 
-        LOG_D("Time Scale Decremented to: " + trUtil::StringUtils::ToString<double>(mTimeStruct.timeScale))
+        LOG_D("Time Scale Decremented to: " << mTimeStruct.timeScale)
     }
 
     //////////////////////////////////////////////////////////////////////////

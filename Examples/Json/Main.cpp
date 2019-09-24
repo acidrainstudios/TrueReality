@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -76,7 +76,7 @@ int main(int argc, char** argv)
         jsArray.AddUInt(4567);
         jsArray.AddUInt64(12098);
         jsArray.AddFloat(567.54f);
-        jsArray.SetComment("This is the Array Comment");
+        jsArray.SetComment("///This is the Array Comment");
 
         std::cout << "JSON Array in RAM:\n" << std::endl;
         jsArray.PrintJSONRoot();
@@ -93,7 +93,7 @@ int main(int argc, char** argv)
         jsObject.SetUInt64("MyUint64", 12098);
         jsObject.SetFloat("MyFloat", 567.54f);
         jsObject.SetArray("MyArray", jsArray);
-        jsObject.SetComment("/This is the Object Comment");
+        jsObject.SetComment("This is the Object Comment");
 
         std::cout << "JSON jsObject in RAM:\n" << std::endl;
         jsObject.PrintJSONRoot();
@@ -131,6 +131,8 @@ int main(int argc, char** argv)
         std::cout << "\nJSON Array in RAM:\n" << std::endl;
         jsArr.PrintJSONRoot();
 
+        std::cout << "\nPrinting the Array Comment: " << jsArr.GetComment() << std::endl;
+
         std::cout << "\nJSON Array Size: " << jsArr.Size() << std::endl;
         std::cout << "\nIterating through JSON Array in RAM:\n" << std::endl;
         for (int i = 0; i < jsArr.Size(); i++)
@@ -145,6 +147,12 @@ int main(int argc, char** argv)
         jsArr.PrintJSONRoot();
 
         std::cout << "\nJSON Array Size: " << jsArr.Size() << std::endl;
+
+        trUtil::JSON::Object jsObj = configFile.GetObject("MyObject");
+        std::cout << "\nJSON Object in RAM:\n" << std::endl;
+        jsObj.PrintJSONRoot();
+
+        std::cout << "\nPrinting the Object Comment: " << jsObj.GetComment() << "\n\n" << std::endl;
 
         //Ending program
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);

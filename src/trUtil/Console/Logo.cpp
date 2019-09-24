@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,13 +34,15 @@ namespace trUtil::Console
         trUtil::VersionUtil ver;
 
 #ifdef TR_WIN
-#ifndef _DEBUG
+        if (TR_BUILD_TYPE == BuildType::DEBUG)
+        {
             system("cls");
-#endif
+        }
 #elif defined(TR_LINUX)
-#ifndef _DEBUG
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n " << std::endl;
-#endif
+        if (TR_BUILD_TYPE == BuildType::DEBUG)
+        {
+            std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n " << std::endl;
+        }
 #endif
 
         Console::TextColor(TXT_COLOR::BRIGHT_BLUE);

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -24,10 +24,97 @@
 #include <trUtil/JSON/Array.h>
 #include <trUtil/JSON/Object.h>
 
+#include <json/value.h>
 #include <json/writer.h>
 
 namespace trUtil::JSON
 {
+    /**
+     * @fn  Json::ValueType ToValueType(ValueType val)
+     *
+     * @brief   Converts JSON::ValueType to Json::ValueType. 
+     *
+     * @param   val The value.
+     *
+     * @return  Val as a Json::ValueType.
+     */
+    Json::ValueType ToValueType(ValueType val)
+    {
+        switch (val)
+        {
+        case ValueType::NullValue:
+            return Json::ValueType::nullValue;
+            break;
+        case ValueType::IntValue:
+            return Json::ValueType::intValue;
+            break;
+        case ValueType::UintValue:
+            return Json::ValueType::uintValue;
+            break;
+        case ValueType::RealValue:
+            return Json::ValueType::realValue;
+            break;
+        case ValueType::StringValue:
+            return Json::ValueType::stringValue;
+            break;
+        case ValueType::BooleanValue:
+            return Json::ValueType::booleanValue;
+            break;
+        case ValueType::ArrayValue:
+            return Json::ValueType::arrayValue;
+            break;
+        case ValueType::ObjectValue:
+            return Json::ValueType::objectValue;
+            break;
+        default:
+            return Json::ValueType::nullValue;
+            break;
+        }
+    }
+
+    /**
+     * @fn  ValueType ToValueType(Json::ValueType val)
+     *
+     * @brief   Converts Json::ValueType to JSON::ValueType. 
+     *
+     * @param   val The value.
+     *
+     * @return  Val as a ValueType.
+     */
+    ValueType ToValueType(Json::ValueType val)
+    {
+        switch (val)
+        {
+        case Json::ValueType::nullValue:
+            return ValueType::NullValue;
+            break;
+        case Json::ValueType::intValue:
+            return ValueType::IntValue;
+            break;
+        case Json::ValueType::uintValue:
+            return ValueType::UintValue;
+            break;
+        case Json::ValueType::realValue:
+            return ValueType::RealValue;
+            break;
+        case Json::ValueType::stringValue:
+            return ValueType::StringValue;
+            break;
+        case Json::ValueType::booleanValue:
+            return ValueType::BooleanValue;
+            break;
+        case Json::ValueType::arrayValue:
+            return ValueType::ArrayValue;
+            break;
+        case Json::ValueType::objectValue:
+            return ValueType::ObjectValue;
+            break;
+        default:
+            return ValueType::NullValue;
+            break;
+        }
+    }
+
     //////////////////////////////////////////////////////////////////////////
     Value::Value(Json::Value& value)
     {
@@ -126,17 +213,7 @@ namespace trUtil::JSON
     //////////////////////////////////////////////////////////////////////////
     void Value::SetComment(const std::string & comment)
     {
-        std::string finalComment;
-        if (comment[0] != '/')
-        {
-            //in Json::Value::setComment(): Comments must start with /
-            finalComment = "/" + comment;
-        }
-        else
-        {
-            finalComment = comment;
-        }
-        mValuePtr->setComment(finalComment, Json::CommentPlacement::commentAfterOnSameLine);
+        mValuePtr->setComment("//" + comment, Json::CommentPlacement::commentAfterOnSameLine);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -148,7 +225,15 @@ namespace trUtil::JSON
     //////////////////////////////////////////////////////////////////////////
     std::string Value::GetComment() const
     {
-        return mValuePtr->getComment(Json::CommentPlacement::commentAfterOnSameLine);
+        //Get the comment in a tem variable so we can remove the // prefix
+        std::string comment = mValuePtr->getComment(Json::CommentPlacement::commentAfterOnSameLine);
+
+        if (comment.size() > 1)
+        {
+            comment.erase(0, 2);
+        }
+
+        return comment;
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -695,76 +780,6 @@ namespace trUtil::JSON
     void Value::SetObject(const std::string& key, Object& value)
     {
         (*mValuePtr)[key] = value.GetJSONRoot();
-    }
-
-    //////////////////////////////////////////////////////////////////////////
-    Json::ValueType Value::ToValueType(ValueType val)
-    {
-        switch (val)
-        {
-        case ValueType::NullValue:
-            return Json::ValueType::nullValue;
-            break;
-        case ValueType::IntValue:
-            return Json::ValueType::intValue;
-            break;
-        case ValueType::UintValue:
-            return Json::ValueType::uintValue;
-            break;
-        case ValueType::RealValue:
-            return Json::ValueType::realValue;
-            break;
-        case ValueType::StringValue:
-            return Json::ValueType::stringValue;
-            break;
-        case ValueType::BooleanValue:
-            return Json::ValueType::booleanValue;
-            break;
-        case ValueType::ArrayValue:
-            return Json::ValueType::arrayValue;
-            break;
-        case ValueType::ObjectValue:
-            return Json::ValueType::objectValue;
-            break;
-        default:
-            return Json::ValueType::nullValue;
-            break;
-        }
-    }
-
-    //////////////////////////////////////////////////////////////////////////
-    ValueType Value::ToValueType(Json::ValueType val)
-    {
-        switch (val)
-        {
-        case Json::ValueType::nullValue:
-            return ValueType::NullValue;
-            break;
-        case Json::ValueType::intValue:
-            return ValueType::IntValue;
-            break;
-        case Json::ValueType::uintValue:
-            return ValueType::UintValue;
-            break;
-        case Json::ValueType::realValue:
-            return ValueType::RealValue;
-            break;
-        case Json::ValueType::stringValue:
-            return ValueType::StringValue;
-            break;
-        case Json::ValueType::booleanValue:
-            return ValueType::BooleanValue;
-            break;
-        case Json::ValueType::arrayValue:
-            return ValueType::ArrayValue;
-            break;
-        case Json::ValueType::objectValue:
-            return ValueType::ObjectValue;
-            break;
-        default:
-            return ValueType::NullValue;
-            break;
-        }
     }
 
     //////////////////////////////////////////////////////////////////////////

@@ -1,3 +1,5 @@
+| [View as Website](https://acidrainstudios.github.io/TrueReality/) |  [View as GitHub repository](https://github.com/acidrainstudios/TrueReality) |
+
 # TrueReality (pre-Alpha)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/acidrainstudios/truereality.svg?style=for-the-badge)
@@ -30,7 +32,7 @@ True Reality (TR) is an open source LGPL Game and Simulation Engine written enti
 ### Who do I talk to? ###
 
 If you need information on the project, please contact one of the engine's lead designers:
- 
-* @DieSlower 
 
-* @exoticDFT
+* @AcidRainStudios
+
+* @DieSlower 

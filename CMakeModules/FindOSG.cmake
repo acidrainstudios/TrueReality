@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright � 2018 Acid Rain Studios LLC
+# Copyright © 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -95,19 +95,15 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
 		NAMES ${MYLIBRARYNAME}
 		HINTS
 		$ENV{OSG_LIB}
-		$ENV{OSG_ROOT}/lib64
 		$ENV{OSG_ROOT}/lib
 		$ENV{OSG_ROOT}
 		$ENV{TR_LIB}
-		$ENV{TR_ROOT}/Ext/lib64
 		$ENV{TR_ROOT}/Ext/lib
 		$ENV{TR_ROOT}/Ext
 		$ENV{TR_ROOT}/lib
 		$ENV{TR_ROOT}
 		PATHS
-		/usr/lib64
 		/usr/lib
-		/usr/local/lib64
 		/usr/local/lib
 		~/Library/Frameworks
 		/Library/Frameworks
@@ -215,9 +211,9 @@ ENDIF ()
 SET (${DEPENDENCY}_FOUND "NO")
 IF (${DEPENDENCY}_LIBRARY AND ${DEPENDENCY}_INCLUDE_DIR)
     SET (${DEPENDENCY}_FOUND "YES")
-    
+
     IF (${DEPENDENCY}_FIND_VERSION)
-        CHECK_VERSION(${DEPENDENCY} ${OPENSCENEGRAPH_VERSION} ${OSG_FIND_VERSION})	
+        CHECK_VERSION(${DEPENDENCY} ${OPENSCENEGRAPH_VERSION} ${OSG_FIND_VERSION})
     ELSE ()
         MESSAGE (STATUS "OSG Version: ${OPENSCENEGRAPH_VERSION}")
     ENDIF ()

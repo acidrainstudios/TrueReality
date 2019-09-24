@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -432,7 +432,7 @@ namespace trUtil
         using Parm2 = P2;
         using Parm3 = P3;
         using Parm4 = P4;
-        using TypeListType = TYPELIST_4(P1, P2, P3, P4);e;
+        using TypeListType = TYPELIST_4(P1, P2, P3, P4);
     };
     template <class O, typename R, typename P1, typename P2, typename P3, typename P4, typename P5>
     struct FunTraits<R(__cdecl O::*)(P1, P2, P3, P4, P5) const>

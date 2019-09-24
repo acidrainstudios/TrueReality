@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
     <RunConfiguration> 
-        <MaxCpuCount>8</MaxCpuCount>  
+        <MaxCpuCount>32</MaxCpuCount>  
         <TargetPlatform>x64</TargetPlatform>  
         <ForceListContent>true</ForceListContent>
     </RunConfiguration>  
     <GoogleTest>
         <ForceListContent>true</ForceListContent>
     </GoogleTest>
+    <BoostTest>
+        <ForceListContent>true</ForceListContent>
+    </BoostTest>
     <ForceListContent>true</ForceListContent>
 </RunSettings>

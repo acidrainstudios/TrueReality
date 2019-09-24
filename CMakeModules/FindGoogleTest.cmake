@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright � 2018 Acid Rain Studios LLC
+# Copyright © 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -34,7 +34,7 @@
 SET (DEPENDENCY "GoogleTest")
 
 # Finds the include files necessary for compilation
-FIND_PATH (${DEPENDENCY}_INCLUDE_DIR gtest/gtest.h    
+FIND_PATH (${DEPENDENCY}_INCLUDE_DIR gtest/gtest.h
     HINTS
     $ENV{GOOGLETEST_INC}
     $ENV{GOOGLETEST_ROOT}/include
@@ -59,20 +59,15 @@ MACRO (FIND_DEPENDENCY_LIBRARY MYLIBRARY MYLIBRARYNAME)
         NAMES ${MYLIBRARYNAME}
         HINTS
         $ENV{GOOGLETEST_LIB}
-        $ENV{GOOGLETEST_ROOT}/lib64
         $ENV{GOOGLETEST_ROOT}/lib
         $ENV{GOOGLETEST_ROOT}
         $ENV{TR_LIB}
-        $ENV{TR_ROOT}/Ext/lib64
         $ENV{TR_ROOT}/Ext/lib
         $ENV{TR_ROOT}/Ext
-        $ENV{TR_ROOT}/lib64
         $ENV{TR_ROOT}/lib
         $ENV{TR_ROOT}
         PATHS
-        /usr/lib64
         /usr/lib
-        /usr/local/lib64
         /usr/local/lib
         ~/Library/Frameworks
         /Library/Frameworks

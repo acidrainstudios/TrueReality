@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright � 2018 Acid Rain Studios LLC
+# Copyright © 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -19,22 +19,55 @@
 
 
 # *****************************************************************************
+# Sets up flags to track what folders and objects have been installed *********
+# *****************************************************************************
+SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+SET (TR_EXT_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Ext was installed" FORCE)
+SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
+
+# *****************************************************************************
+# Sets up default Windows install folders
+# *****************************************************************************
+
+IF(WIN32 AND NOT PATH_IS_SET)
+    IF (CMAKE_SIZEOF_VOID_P MATCHES "8")
+        SET (CMAKE_INSTALL_PREFIX "C:/Program Files/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
+    ELSE ()
+        SET (CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
+    ENDIF ()
+    SET (PATH_IS_SET "YES" CACHE INTERNAL "Install Path Flag" FORCE)
+ENDIF ()
+
+# *****************************************************************************
 # Configures the installation options for the given project *******************
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
-    IF (TR_DATA_INSTALLED EQUAL 0)      
-        SET (TR_DATA_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+    IF (TR_DATA_INSTALLED EQUAL 0)
         INSTALL (CODE "MESSAGE(\"Installing the Data folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
+        SET (TR_DATA_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
     ENDIF ()
 
-    IF (TR_HEADERS_INSTALLED EQUAL 0)      
-        SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
+    IF (TR_EXT_INSTALLED EQUAL 0)
+        INSTALL (CODE "MESSAGE(\"Installing the External Dependencies.\")")
+        IF(EXISTS "${CMAKE_SOURCE_DIR}/Ext")
+		    INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Ext/"    DESTINATION .)
+            SET (TR_EXT_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that the Ext folder was installed" FORCE)
+        ELSE ()
+            INSTALL (CODE "MESSAGE(\"Ext folder is missing from ${CMAKE_SOURCE_DIR}\")")
+		ENDIF ()
+    ENDIF ()
+
+    IF (TR_HEADERS_INSTALLED EQUAL 0)
         INSTALL (CODE "MESSAGE(\"Installing the SDKs headers folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/include" DESTINATION .)
-        INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
+		IF(EXISTS "${PROJECT_BINARY_DIR}/include")
+			INSTALL (DIRECTORY "${PROJECT_BINARY_DIR}/include" DESTINATION .)
+		ENDIF ()
+
+        SET (TR_HEADERS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that headers were installed" FORCE)
     ENDIF ()
-    
+
     INSTALL (CODE "MESSAGE(\"Installing the ${arg} project.\")")
     INSTALL (
             TARGETS ${arg}

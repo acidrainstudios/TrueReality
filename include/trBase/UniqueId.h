@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -23,14 +23,11 @@
 
 #include "Export.h"
 
-#include <trUtil/WarningUtils.h>
-TR_DISABLE_WARNING_START_MSVC(4996)
-
 #include <trBase/SmrtClass.h>
 #include <trUtil/RefStr.h>
 #include <trUtil/Hash.h>
 
-#include <boost/uuid/uuid.hpp>
+#include <bID/uuid/uuid.hpp>
 
 #include <string>
 #include <sstream>
@@ -38,12 +35,15 @@ TR_DISABLE_WARNING_START_MSVC(4996)
 
 namespace trBase
 {
+    // Forward declarations of the pimpl class
+    class implId;
+
     /**
-    * This class creates a GUID, or a Unique ID that is used through out TR to identify and distinguish one object from another. 
+    * This class creates a GUID, or a Unique ID that is used through out TR to identify and distinguish one object from another.
     */
     class TR_BASE_EXPORT UniqueId : public trBase::SmrtClass
     {
-        
+
     public:
 
         using BaseClass = trBase::SmrtClass;            /// Adds an easy and swappable access to the base class
@@ -61,15 +61,15 @@ namespace trBase
         UniqueId(const UniqueId& toCopy);
 
         /**
-        * Makes the Unique ID equal to the ID in the passes in string. 
-        * The string should be in 00000000-0000-0000-0000-000000000000 format. 
+        * Makes the Unique ID equal to the ID in the passes in string.
+        * The string should be in 00000000-0000-0000-0000-000000000000 format.
         */
-        UniqueId(const std::string& toCopy);
+        explicit UniqueId(const std::string& toCopy);
 
         /**
         * dtor
         */
-        virtual ~UniqueId() {}             
+        virtual ~UniqueId() {}
 
         /**
         * Returns the class type
@@ -82,11 +82,11 @@ namespace trBase
         const std::string ToString() const;
 
         /**
-        * Assign the GUID value to this instance from a string. 
+        * Assign the GUID value to this instance from a string.
         * The = operator can be used to accomplish the same thing.
-        * The string should be in 00000000-0000-0000-0000-000000000000 format. 
+        * The string should be in 00000000-0000-0000-0000-000000000000 format.
         */
-        void FromString(std::string& idString);
+        void FromString(const std::string& idString);
 
         /**
         * Returns true if the GUID is equal to 00000000-0000-0000-0000-000000000000
@@ -114,13 +114,52 @@ namespace trBase
         */
         UniqueId& operator=(const std::string& id);
 
-        bool operator==(const UniqueId& id) const { return mGUID == id.mGUID; }
-        bool operator!=(const UniqueId& id) const { return mGUID != id.mGUID; }
-        bool operator< (const UniqueId& id) const { return mGUID <  id.mGUID; }
-        bool operator> (const UniqueId& id) const { return mGUID >  id.mGUID; }
+        /**
+         * @fn  bool UniqueId::operator==(const UniqueId& id) const;
+         *
+         * @brief   Equality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are considered equivalent.
+         */
+        bool operator==(const UniqueId& id) const;
+
+        /**
+         * @fn  bool UniqueId::operator!=(const UniqueId& id) const;
+         *
+         * @brief   Inequality operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the parameters are not considered equivalent.
+         */
+        bool operator!=(const UniqueId& id) const;
+
+        /**
+         * @fn  bool UniqueId::operator< (const UniqueId& id) const;
+         *
+         * @brief   Less-than comparison operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is less than the second.
+         */
+        bool operator< (const UniqueId& id) const;
+
+        /**
+         * @fn  bool UniqueId::operator> (const UniqueId& id) const;
+         *
+         * @brief   Greater-than comparison operator.
+         *
+         * @param   id  The identifier.
+         *
+         * @return  True if the first parameter is greater than to the second.
+         */
+        bool operator> (const UniqueId& id) const;
 
     protected:
-        boost::uuids::uuid mGUID;
+        bID::uuids::uuid mGUID;
     };
 
     ////////////////////////////////////////////////////
@@ -130,8 +169,6 @@ namespace trBase
 
     TR_BASE_EXPORT std::istream& operator >> (std::istream& i, UniqueId& id);
 }
-
-TR_DISABLE_WARNING_END
 
 namespace trUtil
 {

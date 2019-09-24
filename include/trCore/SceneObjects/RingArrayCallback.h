@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2018 Acid Rain Studios LLC
+* Copyright © 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -28,47 +28,51 @@
 #include <osg/NodeCallback>
 #include <osg/NodeVisitor>
 
-namespace trCore
+/**
+ * @namespace   trCore::SceneObjects
+ *
+ * @brief   Namespace that contains controls for sample scene objects.
+ */
+namespace trCore::SceneObjects
 {
-    namespace SceneObjects
+    /**
+     * @class   RingArrayCallback
+     *
+     * @brief   A ring array callback that is used to rotate the ring array (RingArray.h)
+     *
+     * @author  Maxim Serebrennik
+     */
+    class TR_CORE_EXPORT RingArrayCallback : public osg::NodeCallback
     {
+    public:
+
         /**
-         * @class   RingArrayCallback
+         * @fn  RingArrayCallback::RingArrayCallback();
          *
-         * @brief   A ring array callback that is used to rotate the ring array (RingArray.h)
+         * @brief   Default constructor.
          */
-        class TR_CORE_EXPORT RingArrayCallback : public osg::NodeCallback
-        {
-        public:
+        RingArrayCallback();
 
-            /**
-             * @fn  RingArrayCallback::RingArrayCallback();
-             *
-             * @brief   Default constructor.
-             */
-            RingArrayCallback();
+        /**
+         * @fn  RingArrayCallback::~RingArrayCallback();
+         *
+         * @brief   Destructor.
+         */
+        ~RingArrayCallback();
 
-            /**
-             * @fn  RingArrayCallback::~RingArrayCallback();
-             *
-             * @brief   Destructor.
-             */
-            ~RingArrayCallback();
+        /**
+         * @fn  virtual void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr) override;
+         *
+         * @brief   Callback method called by the NodeVisitor when visiting a node.
+         *
+         * @param [in,out]  nodePtr If non-null, the node.
+         * @param [in,out]  nvPtr   If non-null, the nv.
+         */
+        virtual void operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr) override;
 
-            /**
-             * @fn  virtual void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr) override;
-             *
-             * @brief   Callback method called by the NodeVisitor when visiting a node.
-             *
-             * @param [in,out]  nodePtr If non-null, the node.
-             * @param [in,out]  nvPtr   If non-null, the nv.
-             */
-            virtual void operator()(osg::Node* nodePtr, osg::NodeVisitor* nvPtr) override;
+    private:
 
-        private:
-
-            bool mFirstFrame = true;
-            trUtil::Timer mTimer;
-        };
-    }
+        bool mFirstFrame = true;
+        trUtil::Timer mTimer;
+    };
 }

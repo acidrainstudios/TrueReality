@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2018 Acid Rain Studios LLC
+# Copyright © 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -33,17 +33,24 @@ FILE (GLOB BASE_GEN_HEADERS "${PROJECT_BINARY_DIR}/include/${FILE_NAME}/*.h")
 SET (PROJECT_HEADERS "${BASE_HEADERS};${BASE_GEN_HEADERS}")
 
 # Sets the dependency libraries
-SET (EXTERNAL_LIBS
-    ${EXTERNAL_LIBS}
-    optimized ${OpenThreads_LIBRARY}
-    debug ${OpenThreads_LIBRARY_DEBUG}
+IF (TR_BUILD_WITH_RELEASE)
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        optimized ${OpenThreads_LIBRARY}
+        optimized ${OSG_LIBRARY}
+        optimized ${OSG_DB_LIBRARY}
+    )
+ENDIF ()
 
-    optimized ${OSG_LIBRARY} 
-    debug ${OSG_LIBRARY_DEBUG}
+IF (TR_BUILD_WITH_DEBUG)
+    SET (EXTERNAL_LIBS
+        ${EXTERNAL_LIBS}
+        debug ${OpenThreads_LIBRARY_DEBUG}
+        debug ${OSG_LIBRARY_DEBUG}
+        debug ${OSG_DB_LIBRARY_DEBUG}
+    )
+ENDIF ()
 
-    optimized ${OSG_DB_LIBRARY} 
-    debug ${OSG_DB_LIBRARY_DEBUG} 
-)
 
 # *****************************************************************************
 # Project Folder Setup ********************************************************
