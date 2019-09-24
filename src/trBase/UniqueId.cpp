@@ -250,13 +250,14 @@ namespace trBase
         {
             //Create a random GUID
             mGUID = bID::uuids::random_generator()();
-
         }
         else
         {
             //Create a NULL GUID
             mGUID = bID::uuids::nil_uuid();
         }
+
+        mGUIDPtr = new implId(createNewId);
     }
 
     ////////////////////////////////////////////////
