@@ -325,7 +325,7 @@ namespace trBase
     ////////////////////////////////////////////////
     bool UniqueId::IsNull() const
     {
-        return mGUID.is_nil();
+        return mGUIDPtr->IsNull();
     }
 
     ////////////////////////////////////////////////
