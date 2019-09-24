@@ -331,31 +331,21 @@ namespace trBase
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const UniqueId& id)
     {
-        if (this == &id)
-        {
-            return *this;
-        }
-
-        mGUID = id.mGUID;
+        mGUIDPtr->operator= (*id.mGUIDPtr);
         return *this;
     }
 
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const UniqueId* id)
     {
-        if (this == id)
-        {
-            return *this;
-        }
-
-        mGUID = id->mGUID;
+        mGUIDPtr->operator= (id->mGUIDPtr);
         return *this;
     }
 
     ////////////////////////////////////////////////
     UniqueId& UniqueId::operator=(const std::string& id)
     {
-        mGUID = bID::uuids::string_generator()(id);
+        mGUIDPtr->operator=(id);
         return *this;
     }
 
