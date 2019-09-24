@@ -27,8 +27,6 @@
 #include <trUtil/RefStr.h>
 #include <trUtil/Hash.h>
 
-#include <bID/uuid/uuid.hpp>
-
 #include <string>
 #include <sstream>
 #include <iosfwd>
@@ -159,7 +157,6 @@ namespace trBase
         bool operator> (const UniqueId& id) const;
 
     protected:
-        bID::uuids::uuid mGUID;
         implId* mGUIDPtr = nullptr;
     };
 
