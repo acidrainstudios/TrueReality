@@ -78,13 +78,13 @@ namespace trBase
         }
 
         /**
-         * @fn  implId(const std::string& toCopy)
+         * @fn  explicit implId(const std::string& toCopy)
          *
          * @brief   Constructor.
          *
          * @param   toCopy  to copy.
          */
-        implId(const std::string& toCopy)
+        explicit implId(const std::string& toCopy)
         {
             mGUID = bID::uuids::string_generator()(toCopy);
         }
