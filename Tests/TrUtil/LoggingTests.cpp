@@ -21,9 +21,10 @@
 
 #include "LoggingTests.h"
 
-#include <trUtil/PathUtils.h>
-#include <trUtil/StringUtils.h>
 #include <trUtil/Logging/Log.h>
+#include <trUtil/PathUtils.h>
+#include <trUtil/PlatformMacros.h>
+#include <trUtil/StringUtils.h>
 
 #include <iostream>
 #include <string>
@@ -35,7 +36,7 @@ LoggingTests::LoggingTests()
 {
     mTstChar = "Log Char";
 
-    // Creates the default folders in the User Data folder. 
+    // Creates the default folders in the User Data folder.
     trUtil::PathUtils::CreateUserDataPathTree();
 
     // Sets the log filename
@@ -114,10 +115,10 @@ TEST_F(LoggingTests, LoggingLineTests)
 {
     LOG_D("Test Message")
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
-    
-    // This Test is specific to the Line the LOG_D is located on in this file. 
+
+    // This Test is specific to the Line the LOG_D is located on in this file.
     // If the line changes due to code being added or removed, this test needs to be adjusted
-    EXPECT_EQ(mTestData.line, 115);
+    EXPECT_EQ(mTestData.line, 116);
 }
 
 /**
@@ -153,7 +154,7 @@ TEST_F(LoggingTests, LoggingLevelTests)
     trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
     LOG_D("Test Message5")
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
-    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_DEBUG);    
+    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_DEBUG);
 }
 
 /**
@@ -183,5 +184,12 @@ TEST_F(LoggingTests, LoggingMethodTests)
 {
     LOG_A("Test Message")
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+
+#if defined (TR_WIN)
     EXPECT_EQ(mTestData.method, "LoggingTests_LoggingMethodTests_Test::TestBody");
+#elif defined(TR_LINUX)
+    EXPECT_EQ(mTestData.method, "TestBody");
+#else
+    EXPECT_EQ(mTestData.method, "TestBody"); //This needs to be tested
+#endif
 }
