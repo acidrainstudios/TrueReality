@@ -44,13 +44,13 @@ namespace trBase
     public:
 
         /**
-         * @fn  implId(bool createNewId)
+         * @fn  explicit implId(bool createNewId)
          *
          * @brief   Constructor.
          *
          * @param   createNewId if true, generates a new id.  If not, it sets the id to empty.
          */
-        implId(bool createNewId)
+        explicit implId(bool createNewId)
         {
             if (createNewId)
             {
@@ -78,13 +78,13 @@ namespace trBase
         }
 
         /**
-         * @fn  implId(const std::string& toCopy)
+         * @fn  explicit implId(const std::string& toCopy)
          *
          * @brief   Constructor.
          *
          * @param   toCopy  to copy.
          */
-        implId(const std::string& toCopy)
+        explicit implId(const std::string& toCopy)
         {
             mGUID = bID::uuids::string_generator()(toCopy);
         }
