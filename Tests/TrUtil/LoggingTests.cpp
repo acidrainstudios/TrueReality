@@ -154,7 +154,7 @@ TEST_F(LoggingTests, LoggingLevelTests)
     trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
     LOG_D("Test Message5")
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
-    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_DEBUG);    
+    EXPECT_EQ(mTestData.logLevel, trUtil::Logging::LogLevel::LOG_DEBUG);
 }
 
 /**
@@ -184,5 +184,12 @@ TEST_F(LoggingTests, LoggingMethodTests)
 {
     LOG_A("Test Message")
     mTestData = *trUtil::Logging::Log::GetInstance().GetLastLogData();
+
+#if defined (TR_WIN)
     EXPECT_EQ(mTestData.method, "LoggingTests_LoggingMethodTests_Test::TestBody");
+#elif defined(TR_LINUX)
+    EXPECT_EQ(mTestData.method, "TestBody");
+#else
+    EXPECT_EQ(mTestData.method, "TestBody"); //This needs to be tested
+#endif
 }
