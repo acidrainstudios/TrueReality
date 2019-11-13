@@ -1,6 +1,7 @@
 .vs/*
 bin/*
 Ext/*
+Ext*
 lib/*
 x64/*
 CMakeFiles/*

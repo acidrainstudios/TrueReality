@@ -366,7 +366,7 @@ namespace trManager
 
             //Find this messages listener list
             MessageRegistrationMap::iterator listenerIt;
-            listenerIt = mDirectorGlobalMsgRegistrationMap.find(&message.GetMessageType());
+            listenerIt = mDirectorGlobalMsgRegistrationMap.find(const_cast<std::string*>(&message.GetMessageType()));
 
             //Send messages to all Directors in the list
             trBase::SmrtPtr<trManager::EntityBase> directorRef;
@@ -410,7 +410,7 @@ namespace trManager
     void SystemManager::SendMessageToActors(const trManager::MessageBase& message)
     {
         //Find this messages listener list
-        MessageRegistrationVectorMap::iterator listenerIt = mEntityGlobalMsgRegistrationMap.find(&message.GetMessageType());
+        MessageRegistrationVectorMap::iterator listenerIt = mEntityGlobalMsgRegistrationMap.find(const_cast<std::string*>(&message.GetMessageType()));
 
         //Check if anyone registered for this message
         if (listenerIt != mEntityGlobalMsgRegistrationMap.end())
@@ -459,7 +459,7 @@ namespace trManager
         MessageRegistrationVectorMap::iterator it;
 
         //Find if this message has listeners
-        it = mEntityGlobalMsgRegistrationMap.find(&message.GetMessageType());
+        it = mEntityGlobalMsgRegistrationMap.find(const_cast<std::string*>(&message.GetMessageType()));
         if (it != mEntityGlobalMsgRegistrationMap.end())
         {
             //Create an invokable pointer
@@ -617,7 +617,7 @@ namespace trManager
     void SystemManager::RegisterMsgWithMsgVectorMap(const std::string& messageType, EntityBase& listeningEntity, const std::string& invokableName, MessageRegistrationVectorMap& messageMap)
     {
         //Find the vector with message registrations, or create a new one
-        std::vector<EntityInvokablePair>* msgRegistrantsPtr = &messageMap[&messageType];
+        std::vector<EntityInvokablePair>* msgRegistrantsPtr = &messageMap[const_cast<std::string*>(&messageType)];
 
         //Check if we already have this entity with this invokable registered
         bool registrantFound = false;
@@ -644,7 +644,7 @@ namespace trManager
     void SystemManager::UnregisterMsgFromMsgVectorMap(const std::string& messageType, EntityBase& listeningEntity, MessageRegistrationVectorMap& messageMap)
     {
         //Find if this message has listeners
-        MessageRegistrationVectorMap::iterator it = messageMap.find(&messageType);
+        MessageRegistrationVectorMap::iterator it = messageMap.find(const_cast<std::string*>(&messageType));
         if (it != messageMap.end())
         {
             //Find if the entity  is registered
@@ -676,7 +676,7 @@ namespace trManager
     void SystemManager::RegisterMsgWithMsgMap(const std::string& messageType, EntityBase& listeningEntity, const std::string& invokableName, MessageRegistrationMap& messageMap)
     {
         //Find the map with message registrations, or create a new one
-        EntityInvokableMap* entityInvokableMapPtr = &messageMap[&messageType];
+        EntityInvokableMap* entityInvokableMapPtr = &messageMap[const_cast<std::string*>(&messageType)];
 
         //Check if we already have this entity with this invokable registered
         trBase::SmrtPtr<trManager::EntityBase> listeningEnt = &listeningEntity;
@@ -697,7 +697,7 @@ namespace trManager
     void SystemManager::UnregisterMsgFromMsgMap(const std::string& messageType, EntityBase& listeningEntity, MessageRegistrationMap& messageMap)
     {
         //Find the map with message registrations
-        MessageRegistrationMap::iterator it = messageMap.find(&messageType);
+        MessageRegistrationMap::iterator it = messageMap.find(const_cast<std::string*>(&messageType));
         if (it != messageMap.end())
         {
             //If message registration exists, check if the given Entity is registered
