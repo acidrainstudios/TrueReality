@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -68,15 +68,6 @@ namespace trBase
          */
         SmrtClass(const SmrtClass& inst) : osg::Referenced(inst)
         {}
-
-        /**
-         * @fn  virtual void SmrtClass::SetThreadSafeRefUnref(bool threadSafe);
-         *
-         * @brief   Set whether to use a mutex to ensure Ref() and UnRef() are thread safe.
-         *
-         * @param   threadSafe  True to thread safe.
-         */
-        virtual void SetThreadSafeRefUnref(bool threadSafe);
 
         /**
          * @fn  virtual bool SmrtClass::GetThreadSafeRefUnref();
