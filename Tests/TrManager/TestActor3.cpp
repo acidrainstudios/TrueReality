@@ -67,7 +67,7 @@ void TestActor3::OnTick(const trManager::MessageBase& /*msg*/)
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestActor3::AboutTestActor2(const trManager::MessageBase& msg)
+void TestActor3::AboutTestActor2(const trManager::MessageBase& /*msg*/)
 {
     ++mTestMsgCount;
 }
