@@ -50,7 +50,7 @@ namespace trUtil
     {}
 
     //////////////////////////////////////////////////////////////////////////
-    VersionUtil::VersionUtil(std::string fileName, std::string filePath) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
+    VersionUtil::VersionUtil(std::string fileName, std::string filePath) : VersionUtil(fileName, filePath, PathUtils::GetRootPath())
     {}
 
     //////////////////////////////////////////////////////////////////////////
