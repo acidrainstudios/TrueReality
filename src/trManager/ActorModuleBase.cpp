@@ -48,7 +48,7 @@ namespace trManager
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void ActorModuleBase::OnMessage(const trManager::MessageBase& msg)
+    void ActorModuleBase::OnMessage(const trManager::MessageBase& /*msg*/)
     {
         //Do Nothing
     }
