@@ -126,7 +126,9 @@ namespace trUtil::JSON
         {
             mFileName = fileName;
             std::string fullFilePath = mFilePath + "/" + mFileName;
-            Json::StyledWriter writer;
+            Json::StreamWriterBuilder builder;
+            builder["indentation"]="    ";
+            std::unique_ptr<Json::StreamWriter> streamWriter(builder.newStreamWriter());
 
             //Open a file for writing
             LOG_D("Opening JSON File for Writing: " + fullFilePath);
@@ -134,7 +136,7 @@ namespace trUtil::JSON
 
             //Writing the file
             LOG_D("Writing file");
-            outputStream << writer.write(mRoot);
+            streamWriter->write(mRoot, &outputStream);
             LOG_D("Closing file");
             outputStream.close();
             LOG_D("File Closed");
