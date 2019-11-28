@@ -63,7 +63,7 @@ void TestActor2::OnTick(const trManager::MessageBase & /*msg*/)
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestActor2::OnTest(const trManager::MessageBase & msg)
+void TestActor2::OnTest(const trManager::MessageBase & /*msg*/)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
     std::cout << GetName() << ": Received Test Message from TestActor1 " << std::endl;
