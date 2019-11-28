@@ -255,7 +255,7 @@ namespace trUtil
         {
             ex.LogException();
         }        
-        return NULL;
+        return -1;
     }
     
     //////////////////////////////////////////////////////////////////////////
