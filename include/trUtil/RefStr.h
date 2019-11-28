@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -102,15 +102,6 @@ namespace trUtil
          * @return  A const.
          */
         operator const std::string&() const { return *mString; }
-
-        /**
-         * @fn  operator const RefStr::char*() const
-         *
-         * @brief   Implicit conversion operator from RefStr to const char*.
-         *
-         * @return  A const.
-         */
-        operator const char*() const { return mString->c_str(); }
 
         /**
          * @fn  trUtil::RefStr& RefStr::operator=(const std::string& value);

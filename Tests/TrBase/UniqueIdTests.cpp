@@ -36,10 +36,10 @@ const trUtil::RefStr UniqueIdTests::TEST_ID2 = trUtil::RefStr("1ff0ac56-6732-191
 UniqueIdTests::UniqueIdTests()
 {
     mNullID = trBase::UniqueId(false);
-    mNewID1 = trBase::UniqueId(static_cast<std::string>(NULL_ID));
-    mNewID2 = trBase::UniqueId(static_cast<std::string>(TEST_ID));
+    mNewID1 = trBase::UniqueId(NULL_ID);
+    mNewID2 = trBase::UniqueId(TEST_ID);
     mNewID3 = trBase::UniqueId();
-    mNewID4 = trBase::UniqueId(static_cast<std::string>(TEST_ID2));
+    mNewID4 = trBase::UniqueId(TEST_ID2);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -73,8 +73,8 @@ TEST_F(UniqueIdTests, ClassTypeTests)
  */
 TEST_F(UniqueIdTests, ConstructorTests)
 {
-    trBase::UniqueId newID1(static_cast<std::string>(NULL_ID));
-    trBase::UniqueId newID2(static_cast<std::string>(TEST_ID));
+    trBase::UniqueId newID1(NULL_ID);
+    trBase::UniqueId newID2(TEST_ID);
     trBase::UniqueId newID3(true);
     trBase::UniqueId newID4(false);
     trBase::UniqueId newID5(mNewID2);
