@@ -273,7 +273,7 @@ namespace trManager
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void EntityBase::OnParentRemoved(trManager::EntityBase& parent)
+    void EntityBase::OnParentRemoved(trManager::EntityBase& /*parent*/)
     {
     }
 
