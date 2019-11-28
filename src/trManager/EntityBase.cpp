@@ -214,7 +214,7 @@ namespace trManager
     const trManager::EntityBase* EntityBase::FindChild(const trBase::UniqueId &childId)
     {
         //Find and remove the child from this entity
-        for (int i = 0; i < mChildren.size(); ++i)
+        for (unsigned int i = 0; i < mChildren.size(); ++i)
         {
             if (mChildren[i]->GetUUID() == childId)
             {
