@@ -59,7 +59,7 @@ void TestDirector2::OnAddedToSysMan()
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestDirector2::HandleTickMessage(const trManager::MessageBase& msg)
+void TestDirector2::HandleTickMessage(const trManager::MessageBase& /*msg*/)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::WHITE);
     std::cout << GetName() << ": Got Tick Message" << std::endl;
