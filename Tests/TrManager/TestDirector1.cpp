@@ -97,7 +97,7 @@ void TestDirector1::OnMessage(const trManager::MessageBase& msg)
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestDirector1::OnTick(const trManager::MessageBase &msg)
+void TestDirector1::OnTick(const trManager::MessageBase & /*msg*/)
 {
     ++mTickMsg;
 }
