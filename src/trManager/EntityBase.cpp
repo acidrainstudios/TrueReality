@@ -306,7 +306,7 @@ namespace trManager
     {        
         if (mParent.Valid())
         {
-            for (int i = 0; i < mChildren.size(); ++i)
+            for (unsigned int i = 0; i < mChildren.size(); ++i)
             {
                 //Remove the child's parent (this entity)
                 mChildren[i]->ForgetParent();
