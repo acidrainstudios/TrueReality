@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -26,22 +26,9 @@
 
 #include <ostream>
 
-#if defined( _LIBCPP_VERSION ) || (defined(_MSC_VER) && _MSC_VER >= 1700)
+#if defined( _LIBCPP_VERSION ) || (defined(_MSC_VER) && _MSC_VER >= 1700) || defined(__GNUG__)
 #  include <unordered_set>
 #  define _UNORDERED_MAP
-#elif defined(__GNUG__)
-#  include <ext/hash_set>
-namespace __gnu_cxx
-{
-    template<>
-    struct hash<std::string>
-    {
-        size_t operator()(const std::string& string) const
-        {
-            return trUtil::__hash_string(string.c_str());
-        }
-    };
-}
 #elif defined(_MSC_VER)
 #  include <hash_set>
 #else
