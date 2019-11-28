@@ -73,7 +73,7 @@ namespace trManager
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void DirectorBase::OnMessage(const trManager::MessageBase& msg)
+    void DirectorBase::OnMessage(const trManager::MessageBase& /*msg*/)
     {
         //Do Nothing
     }
