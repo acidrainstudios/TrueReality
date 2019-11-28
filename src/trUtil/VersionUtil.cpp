@@ -50,7 +50,7 @@ namespace trUtil
     {}
 
     //////////////////////////////////////////////////////////////////////////
-    VersionUtil::VersionUtil(std::string fileName, std::string filePath) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
+    VersionUtil::VersionUtil(std::string fileName, std::string filePath) : VersionUtil(fileName, filePath, PathUtils::GetRootPath())
     {}
 
     //////////////////////////////////////////////////////////////////////////
@@ -255,7 +255,7 @@ namespace trUtil
         {
             ex.LogException();
         }        
-        return NULL;
+        return -1;
     }
     
     //////////////////////////////////////////////////////////////////////////

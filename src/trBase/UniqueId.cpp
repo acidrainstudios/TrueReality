@@ -262,8 +262,8 @@ namespace trBase
     }
 
     ////////////////////////////////////////////////
-    UniqueId::UniqueId(const UniqueId& toCopy)
-    {
+    UniqueId::UniqueId(const UniqueId& toCopy) : BaseClass()
+    { 
         // Create a NULL ID then copy the passed in IDs bits.
         mGUIDPtr = new implId(false);
         for (int i = 0; i < 16; ++i)

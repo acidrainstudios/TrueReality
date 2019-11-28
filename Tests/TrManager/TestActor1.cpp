@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -67,7 +67,7 @@ void TestActor1::BuildInvokables()
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestActor1::OnTick(const trManager::MessageBase& msg)
+void TestActor1::OnTick(const trManager::MessageBase& /*msg*/)
 {
     ++mTickMsgCount;
 }
