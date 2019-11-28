@@ -278,7 +278,7 @@ namespace trManager
         BaseClass::OnAddedToSysMan();
 
         //ReAttach all modules, if we have any saved in the reattach list. 
-        for (int index = 0; index < mActModReAttachStore.size(); ++index)
+        for (unsigned int index = 0; index < mActModReAttachStore.size(); ++index)
         {
             AddActorModule(*mActModReAttachStore[index]);
         }
@@ -296,7 +296,7 @@ namespace trManager
         mActModReAttachStore.reserve(mActorModules.size()); 
 
         //Store all the registered modules so we can re-attach them if we re-register with System Manager
-        for (int index = 0; index < mActorModules.size(); ++index)
+        for (unsigned int index = 0; index < mActorModules.size(); ++index)
         {
             mActModReAttachStore.push_back(mActorModules[index]);
         }
