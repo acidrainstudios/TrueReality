@@ -278,7 +278,7 @@ namespace trManager
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void EntityBase::OnParentSet(trManager::EntityBase& parent)
+    void EntityBase::OnParentSet(trManager::EntityBase& /*parent*/)
     {
     }
 
