@@ -34,12 +34,12 @@ const trUtil::RefStr UniqueIdTests::TEST_ID2 = trUtil::RefStr("1ff0ac56-6732-191
 
 //////////////////////////////////////////////////////////////////////////
 UniqueIdTests::UniqueIdTests()
+: mNullID(trBase::UniqueId(false))
+, mNewID1(trBase::UniqueId(NULL_ID))
+, mNewID2(trBase::UniqueId(TEST_ID))
+, mNewID3(trBase::UniqueId())
+, mNewID4(trBase::UniqueId(TEST_ID2))
 {
-    mNullID = trBase::UniqueId(false);
-    mNewID1 = trBase::UniqueId(NULL_ID);
-    mNewID2 = trBase::UniqueId(TEST_ID);
-    mNewID3 = trBase::UniqueId();
-    mNewID4 = trBase::UniqueId(TEST_ID2);
 }
 
 //////////////////////////////////////////////////////////////////////////

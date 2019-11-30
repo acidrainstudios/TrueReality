@@ -51,14 +51,9 @@ namespace trBase
          * @param   createNewId if true, generates a new id.  If not, it sets the id to empty.
          */
         explicit implId(bool createNewId)
+		: mGUID(bID::uuids::random_generator()())	//Create a random GUID
         {
-            if (createNewId)
-            {
-                //Create a random GUID
-                mGUID = bID::uuids::random_generator()();
-
-            }
-            else
+            if (!createNewId)
             {
                 //Create a NULL GUID
                 mGUID = bID::uuids::nil_uuid();
@@ -73,8 +68,8 @@ namespace trBase
          * @param   toCopy  to copy.
          */
         implId(const implId& toCopy)
-        {
-            mGUID = toCopy.mGUID;
+		: mGUID(toCopy.mGUID)
+		{            
         }
 
         /**
@@ -85,8 +80,8 @@ namespace trBase
          * @param   toCopy  to copy.
          */
         explicit implId(const std::string& toCopy)
-        {
-            mGUID = bID::uuids::string_generator()(toCopy);
+		: mGUID(bID::uuids::string_generator()(toCopy))
+		{            
         }
 
         /**
