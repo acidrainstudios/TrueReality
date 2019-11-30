@@ -44,12 +44,10 @@ int TestActor1::mInstCount = 0;
 
 //////////////////////////////////////////////////////////////////////////
 TestActor1::TestActor1(const std::string& name) : BaseClass(name)
+, mActor2Id(new trBase::UniqueId(false))	//NULL the actor ID
 {
     ++mInstCount;
-
-    //NULL the actor ID
-    mActor2Id = new trBase::UniqueId(false);
-
+	
     BuildInvokables();
 }
 
