@@ -86,7 +86,7 @@ ENDIF ()
 IF (UNIX)
     MESSAGE (STATUS "\nConfiguring for Unix")
     READ_GCC_VERSION()
-    SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type")
+    SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-non-virtual-dtor -Wreturn-type -Werror")
     SET (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lpthread")
 
     MESSAGE (STATUS "GCC Version: ${GCC_MAJOR}.${GCC_MINOR}")
