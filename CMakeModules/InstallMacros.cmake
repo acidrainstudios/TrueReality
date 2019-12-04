@@ -22,6 +22,7 @@
 # Sets up flags to track what folders and objects have been installed *********
 # *****************************************************************************
 SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
+SET (TR_ENV_SCRIPTS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Environmental Scripts were installed" FORCE)
 SET (TR_EXT_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Ext was installed" FORCE)
 SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
 
@@ -29,7 +30,7 @@ SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that
 # Sets up default Windows install folders
 # *****************************************************************************
 
-IF(WIN32 AND NOT PATH_IS_SET)
+IF (WIN32 AND NOT PATH_IS_SET)
     IF (CMAKE_SIZEOF_VOID_P MATCHES "8")
         SET (CMAKE_INSTALL_PREFIX "C:/Program Files/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
     ELSE ()
