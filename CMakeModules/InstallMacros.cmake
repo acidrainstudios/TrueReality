@@ -49,11 +49,11 @@ MACRO (TR_INSTALL_OPTIONS arg)
 			IF (WIN32)
 				INSTALL (CODE "MESSAGE(\"Installing the Environmental Scripts.\")")
 				SET (
-					PATH_CMD "@echo off\n@echo.\n@echo Setting up True Reality ${TR_VERSION} Build Environment\n@echo ...\nSET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_INSTALL_PREFIX}/include;%PATH%\n@echo Done!"
+					PATH_CMD "@echo off\necho.\necho Setting up True Reality ${TR_VERSION} Build Environment\necho ...\nSET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_INSTALL_PREFIX}/include;%PATH%\necho Done!"
 					)
 				CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/src/Scripts/EnvScript.in" "${CMAKE_INSTALL_PREFIX}/trEnv${TR_VERSION}.cmd" NEWLINE_STYLE LF)
 				SET (
-					PATH_CMD "@echo off\n@echo.\n@echo Setting up True Reality ${TR_VERSION} Build Environment\n@echo ...\nSET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;%PATH%\n@echo Done!"
+					PATH_CMD "@echo off\necho.\necho Setting up True Reality ${TR_VERSION} Runtime Environment\necho ...\nSET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;%PATH%\necho Done!"
 					)
 				CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/src/Scripts/EnvScript.in" "${CMAKE_INSTALL_PREFIX}/trEnvRT${TR_VERSION}.cmd" NEWLINE_STYLE LF)
 				SET (TR_ENV_SCRIPTS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that the environment scripts were installed" FORCE)
