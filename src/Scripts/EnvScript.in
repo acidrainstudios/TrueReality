@@ -8,6 +8,7 @@ IF %ERRORLEVEL% EQU 0 goto :ISPOWERSHELL
 echo Command Prompt detected ...
 echo ...
 ${PATH_CMD}
+${PATH_TR_ROOT}
 echo Done!
 GOTO :EOF
 
