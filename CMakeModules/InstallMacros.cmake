@@ -86,7 +86,7 @@ ENDMACRO ()
 # *****************************************************************************
 MACRO (TR_INSTALL_SCRIPT_FILES filesList)
 	INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
-	INSTALL (FILES ${filesList} DESTINATION TestScr)
+	INSTALL (FILES ${filesList} DESTINATION $ENV{windir})
 ENDMACRO ()
 
 # *****************************************************************************
