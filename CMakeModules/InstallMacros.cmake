@@ -22,7 +22,6 @@
 # Sets up flags to track what folders and objects have been installed *********
 # *****************************************************************************
 SET (TR_DATA_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Data was installed" FORCE)
-SET (TR_ENV_SCRIPTS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Environmental Scripts were installed" FORCE)
 SET (TR_EXT_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Ext was installed" FORCE)
 SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that Headers were installed" FORCE)
 
