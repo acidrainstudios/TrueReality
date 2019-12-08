@@ -43,26 +43,6 @@ ENDIF ()
 # Configures the installation options for the given project *******************
 # *****************************************************************************
 MACRO (TR_INSTALL_OPTIONS arg)
-	IF (TR_INSTALL_ENVIRONMENT_SCRIPTS)
-		IF (TR_ENV_SCRIPTS_INSTALLED EQUAL 0)
-			IF (WIN32)
-				INSTALL (CODE "MESSAGE(\"Installing the Environmental Scripts.\")")
-
-				SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Build Environment")
-				SET (PATH_CMD "SET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_INSTALL_PREFIX}/include;%PATH%")
-				SET (PATH_TR_ROOT "SET TR_ROOT=${CMAKE_INSTALL_PREFIX}")
-				CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/src/Scripts/EnvScript.in" "${CMAKE_INSTALL_PREFIX}/trEnv-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
-
-				SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Runtime Environment")
-				SET (PATH_CMD "SET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;%PATH%")
-				SET (PATH_TR_ROOT "SET TR_ROOT=${CMAKE_INSTALL_PREFIX}")
-				CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/src/Scripts/EnvScript.in" "${CMAKE_INSTALL_PREFIX}/trEnvRT-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
-
-				SET (TR_ENV_SCRIPTS_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that the environment scripts were installed" FORCE)
-			ENDIF ()
-		ENDIF ()
-	ENDIF ()
-
     IF (TR_DATA_INSTALLED EQUAL 0)
         INSTALL (CODE "MESSAGE(\"Installing the Data folder.\")")
         INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Data" DESTINATION .)
