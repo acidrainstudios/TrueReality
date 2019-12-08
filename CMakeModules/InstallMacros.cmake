@@ -82,6 +82,14 @@ MACRO (TR_INSTALL_OPTIONS arg)
 ENDMACRO ()
 
 # *****************************************************************************
+# Configures the installation options for the environment scripts project *****
+# *****************************************************************************
+MACRO (TR_INSTALL_SCRIPT_FILES filesList)
+	INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
+	INSTALL (FILES ${filesList} DESTINATION TestScr)
+ENDMACRO ()
+
+# *****************************************************************************
 # Configures the build folder, making sure it has all the needed data files ***
 # *****************************************************************************
 MACRO (TR_INSTALL_BUILD_OPTIONS)
