@@ -29,7 +29,7 @@ SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that
 # Sets up default Windows install folders
 # *****************************************************************************
 
-IF(WIN32 AND NOT PATH_IS_SET)
+IF (WIN32 AND NOT PATH_IS_SET)
     IF (CMAKE_SIZEOF_VOID_P MATCHES "8")
         SET (CMAKE_INSTALL_PREFIX "C:/Program Files/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
     ELSE ()
@@ -79,6 +79,14 @@ MACRO (TR_INSTALL_OPTIONS arg)
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib
             )
+ENDMACRO ()
+
+# *****************************************************************************
+# Configures the installation options for the environment scripts project *****
+# *****************************************************************************
+MACRO (TR_INSTALL_SCRIPT_FILES filesList)
+	INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
+	INSTALL (FILES ${filesList} DESTINATION $ENV{windir})
 ENDMACRO ()
 
 # *****************************************************************************

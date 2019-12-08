@@ -1,0 +1,17 @@
+@echo off
+echo.
+${PATH_TITLE}
+
+echo %PSModulePath% | findstr %USERPROFILE% >NUL
+IF %ERRORLEVEL% EQU 0 goto :ISPOWERSHELL
+
+echo Command Prompt detected ...
+echo ...
+${PATH_CMD}
+${PATH_TR_ROOT}
+echo Done!
+GOTO :EOF
+
+:ISPOWERSHELL
+echo ERROR: Power Shell Not Supported ...
+echo Please use Command Prompt to run this script
