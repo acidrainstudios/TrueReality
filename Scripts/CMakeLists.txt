@@ -23,21 +23,21 @@ SET (FILE_NAME Scripts)
 # Create Environment Scripts **************************************************
 # *****************************************************************************
 IF (WIN32)
-	MESSAGE (STATUS "Creating Windows Environment Scripts (Admin rights are needed to install scripts)")
+	MESSAGE (STATUS "Creating Windows Environment Scripts ***(Admin rights are needed to install scripts)***")
 
 	SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Build Environment")
 	SET (PATH_CMD "SET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_INSTALL_PREFIX}/include;%PATH%")
 	SET (PATH_TR_ROOT "SET TR_ROOT=${CMAKE_INSTALL_PREFIX}")
-	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/src/Scripts/EnvScript.in" "${PROJECT_BINARY_DIR}/src/${FILE_NAME}/trEnv-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
+	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/${FILE_NAME}/EnvScript.in" "${PROJECT_BINARY_DIR}/${FILE_NAME}/trEnv-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
 
 	SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Runtime Environment")
 	SET (PATH_CMD "SET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;%PATH%")
 	SET (PATH_TR_ROOT "SET TR_ROOT=${CMAKE_INSTALL_PREFIX}")
-	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/src/Scripts/EnvScript.in" "${PROJECT_BINARY_DIR}/src/${FILE_NAME}/trEnvRT-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
+	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/${FILE_NAME}/EnvScript.in" "${PROJECT_BINARY_DIR}/${FILE_NAME}/trEnvRT-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
 ENDIF ()
 
 # Set the source paths
-SET (SOURCE_PATH ${PROJECT_BINARY_DIR}/src/${FILE_NAME})
+SET (SOURCE_PATH ${PROJECT_BINARY_DIR}/${FILE_NAME})
 
 # Sets the sources using "GLOB"
 FILE (GLOB PROJECT_SOURCES "${SOURCE_PATH}/trEnv*.*")
