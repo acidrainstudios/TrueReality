@@ -1,0 +1,7 @@
+#!/bin/bash
+echo.
+${PATH_TITLE}
+echo ...
+${PATH_CMD}
+${PATH_TR_ROOT}
+echo Done!
