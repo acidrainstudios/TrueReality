@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ${PATH_TITLE}
 echo ...
 ${PATH_CMD}
 ${PATH_TR_ROOT}
+${LD_PATH_CMD}
 echo Done!
+echo Type 'exit' to exit the subshell 
+exec bash
