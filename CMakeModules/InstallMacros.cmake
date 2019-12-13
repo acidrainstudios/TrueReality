@@ -85,8 +85,13 @@ ENDMACRO ()
 # Configures the installation options for the environment scripts project *****
 # *****************************************************************************
 MACRO (TR_INSTALL_SCRIPT_FILES filesList)
-	INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
-	INSTALL (FILES ${filesList} DESTINATION $ENV{windir})
+    IF (WIN32)
+        INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
+	    INSTALL (FILES ${filesList} DESTINATION $ENV{windir})
+    ELSEIF (UNIX)
+        INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
+	    INSTALL (FILES ${filesList} DESTINATION /usr/local/bin PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+    ENDIF ()
 ENDMACRO ()
 
 # *****************************************************************************

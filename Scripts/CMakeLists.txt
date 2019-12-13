@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2019 Acid Rain Studios LLC
+# Copyright ï¿½ 2019 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -25,15 +25,34 @@ SET (FILE_NAME Scripts)
 IF (WIN32)
 	MESSAGE (STATUS "Creating Windows Environment Scripts ***(Admin rights are needed to install scripts)***")
 
+	# Configures the Build environment script
 	SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Build Environment")
 	SET (PATH_CMD "SET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_INSTALL_PREFIX}/include;%PATH%")
 	SET (PATH_TR_ROOT "SET TR_ROOT=${CMAKE_INSTALL_PREFIX}")
 	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/${FILE_NAME}/EnvScript.in" "${PROJECT_BINARY_DIR}/${FILE_NAME}/trEnv-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
 
+	# Configures the RunTime environment script
 	SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Runtime Environment")
 	SET (PATH_CMD "SET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;%PATH%")
 	SET (PATH_TR_ROOT "SET TR_ROOT=${CMAKE_INSTALL_PREFIX}")
 	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/${FILE_NAME}/EnvScript.in" "${PROJECT_BINARY_DIR}/${FILE_NAME}/trEnvRT-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
+	
+ELSEIF (UNIX)
+	MESSAGE (STATUS "Creating Linux Environment Scripts ***(Admin rights are needed to install scripts)***")
+
+	# Configures the Build environment script
+	SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Subshell Build Environment")
+	SET (PATH_CMD "export PATH=${CMAKE_INSTALL_PREFIX}/bin:${CMAKE_INSTALL_PREFIX}/lib:${CMAKE_INSTALL_PREFIX}/include:$PATH")
+	SET (PATH_TR_ROOT "export TR_ROOT=${CMAKE_INSTALL_PREFIX}")
+	SET (LD_PATH_CMD "export LD_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib:$LD_LIBRARY_PATH")
+	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/${FILE_NAME}/EnvScriptLinux.in" "${PROJECT_BINARY_DIR}/${FILE_NAME}/trEnv-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.sh" NEWLINE_STYLE LF)
+
+	# Configures the RunTime environment script
+	SET (PATH_TITLE "echo Setting up True Reality ${TR_VERSION} Subshell Runtime Environment")
+	SET (PATH_CMD "export PATH=${CMAKE_INSTALL_PREFIX}/bin:${CMAKE_INSTALL_PREFIX}/lib:$PATH")
+	SET (PATH_TR_ROOT "export TR_ROOT=${CMAKE_INSTALL_PREFIX}")
+	SET (LD_PATH_CMD "export LD_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib:$LD_LIBRARY_PATH")
+	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/${FILE_NAME}/EnvScriptLinux.in" "${PROJECT_BINARY_DIR}/${FILE_NAME}/trEnvRT-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.sh" NEWLINE_STYLE LF)
 ENDIF ()
 
 # Set the source paths
