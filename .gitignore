@@ -1,6 +1,8 @@
 .vs/*
+.vscode/*
 bin/*
 Ext/*
+Ext*
 lib/*
 x64/*
 CMakeFiles/*

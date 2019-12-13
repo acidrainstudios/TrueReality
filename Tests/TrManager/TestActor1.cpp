@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -44,12 +44,10 @@ int TestActor1::mInstCount = 0;
 
 //////////////////////////////////////////////////////////////////////////
 TestActor1::TestActor1(const std::string& name) : BaseClass(name)
+, mActor2Id(new trBase::UniqueId(false))	//NULL the actor ID
 {
     ++mInstCount;
-
-    //NULL the actor ID
-    mActor2Id = new trBase::UniqueId(false);
-
+	
     BuildInvokables();
 }
 
@@ -67,7 +65,7 @@ void TestActor1::BuildInvokables()
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestActor1::OnTick(const trManager::MessageBase& msg)
+void TestActor1::OnTick(const trManager::MessageBase& /*msg*/)
 {
     ++mTickMsgCount;
 }

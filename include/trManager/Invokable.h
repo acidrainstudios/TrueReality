@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -106,6 +106,13 @@ namespace trManager
         }
 
         /**
+         * @fn  Invokable(const Invokable&)
+         *
+         * @brief   Deleted copy constructor.
+         */
+        Invokable(const Invokable&) = delete;
+
+        /**
         * @return the name of this invokable.
         */
         const std::string& GetName() const { return mName; }
@@ -123,7 +130,6 @@ namespace trManager
 
         trBase::SmrtPtr<InvokableFunctorCallerBase> mCaller;
 
-        Invokable(const Invokable&) {}
         Invokable& operator=(const Invokable&) { return *this; }
     };
 }

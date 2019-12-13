@@ -35,13 +35,9 @@
 
 //////////////////////////////////////////////////////////////////////////
 ActorTests::ActorTests()
+: mSysMan(&trManager::SystemManager::GetInstance())	//Create an instance of the System Manager
+, mSysDirector(new trCore::SystemDirector())		//Create and register the System Director
 {
-    //Create an instance of the System Manager
-    mSysMan = &trManager::SystemManager::GetInstance();
-
-    //Create and register the System Director
-    mSysDirector = new trCore::SystemDirector();
-
     //We want the System Director to get and handle all messages before any other Director. 
     mSysMan->RegisterDirector(*mSysDirector, trManager::DirectorPriority::HIGHEST);
 

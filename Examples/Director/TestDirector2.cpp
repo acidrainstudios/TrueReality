@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -41,7 +41,7 @@ TestDirector2::~TestDirector2()
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestDirector2::OnMessage(const trManager::MessageBase& msg)
+void TestDirector2::OnMessage(const trManager::MessageBase& /*msg*/)
 {
 }
 
@@ -59,7 +59,7 @@ void TestDirector2::OnAddedToSysMan()
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestDirector2::HandleTickMessage(const trManager::MessageBase& msg)
+void TestDirector2::HandleTickMessage(const trManager::MessageBase& /*msg*/)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::WHITE);
     std::cout << GetName() << ": Got Tick Message" << std::endl;

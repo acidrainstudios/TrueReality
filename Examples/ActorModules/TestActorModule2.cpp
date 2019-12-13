@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -52,7 +52,7 @@ void TestActorModule2::BuildInvokables()
 }
 
 //////////////////////////////////////////////////////////////////////////
-void TestActorModule2::OnTick(const trManager::MessageBase& msg)
+void TestActorModule2::OnTick(const trManager::MessageBase& /*msg*/)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_GREEN);
     std::cout << GetName() << ": Received Tick Message " << std::endl;

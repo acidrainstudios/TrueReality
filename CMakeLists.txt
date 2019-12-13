@@ -40,7 +40,7 @@ INCLUDE (UtilityMacros)
 INCLUDE (Version)
 
 # Defines the project name
-PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR} VERSION ${TR_VERSION} LANGUAGES CXX)
+PROJECT (TrueReality-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM} VERSION ${TR_VERSION} LANGUAGES CXX)
 
 # Sets up the install options
 INCLUDE (InstallMacros)
@@ -61,6 +61,11 @@ CMAKE_DEPENDENT_OPTION (TR_APP "Enables the building of trApp library" ON "TR_CO
 # *****************************************************************************
 # Sets Advanced options ***********************************************************
 # *****************************************************************************
+OPTION (TR_INSTALL_INTEGRATED_EXT "Sets the Ext folder to be integrated on Install into bin/lib/install folders of TR. \
+If OFF the folder will be copied unchanged as the whole Ext folder and the user will need to manually setup paths to the Ext resources." ON)
+MARK_AS_ADVANCED (TR_INSTALL_INTEGRATED_EXT)
+OPTION (TR_INSTALL_ENVIRONMENT_SCRIPTS "Install TR environment scripts into a System folder. You need Admin privleges for this." OFF)
+MARK_AS_ADVANCED (TR_INSTALL_ENVIRONMENT_SCRIPTS)
 OPTION (TR_USE_DOUBLE_MATRIX "Set to OFF to build TR with float Matrix instead of double." ON)
 MARK_AS_ADVANCED (TR_USE_DOUBLE_MATRIX)
 OPTION (TR_USE_DOUBLE_VECTOR "Set to OFF to build TR with float Vector instead of double." ON)

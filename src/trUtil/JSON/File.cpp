@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -72,11 +72,10 @@ namespace trUtil::JSON
         {
             mFileName = fileName;
             std::string fullFilePath = mFilePath + "/" + mFileName;
-            Json::Reader reader;
+            Json::CharReaderBuilder reader;
 
             //Open a file for reading. 
             LOG_D("Opening JSON File for Reading: " + fullFilePath);
-
 
             //Read the file into the input stream. 
             LOG_D("Reading JSON File: " + fullFilePath);
@@ -89,9 +88,11 @@ namespace trUtil::JSON
 
                 //Parse the stream into the document
                 LOG_D("Parsing JSON File");
-                if (!reader.parse(inputStream, mRoot))
+
+                JSONCPP_STRING errs;
+                if (!Json::parseFromStream(reader, inputStream, &mRoot.GetJsonValue(), &errs))
                 {
-                    LOG_E("JSON Parsing Error: " + reader.getFormattedErrorMessages());
+                    LOG_E("JSON Parsing Error: " + errs);
                     return false;
                 }
 
@@ -125,7 +126,9 @@ namespace trUtil::JSON
         {
             mFileName = fileName;
             std::string fullFilePath = mFilePath + "/" + mFileName;
-            Json::StyledWriter writer;
+            Json::StreamWriterBuilder builder;
+            builder["indentation"]="    ";
+            std::unique_ptr<Json::StreamWriter> streamWriter(builder.newStreamWriter());
 
             //Open a file for writing
             LOG_D("Opening JSON File for Writing: " + fullFilePath);
@@ -133,7 +136,7 @@ namespace trUtil::JSON
 
             //Writing the file
             LOG_D("Writing file");
-            outputStream << writer.write(mRoot);
+            streamWriter->write(mRoot, &outputStream);
             LOG_D("Closing file");
             outputStream.close();
             LOG_D("File Closed");

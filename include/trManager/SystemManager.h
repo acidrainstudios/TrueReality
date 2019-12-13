@@ -428,25 +428,25 @@ namespace trManager
 
         // Storage for all the registered Directors       
         using DirectorList = std::list<trBase::SmrtPtr<trManager::EntityBase>>;           //Needs to be a std::list so the directors can be priority sorted 
-        using DirectorNameMap = trUtil::HashMap<const std::string, trBase::SmrtPtr<trManager::EntityBase>>;
-        using DirectorIDMap = trUtil::HashMap<const trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
+        using DirectorNameMap = trUtil::HashMap<std::string, trBase::SmrtPtr<trManager::EntityBase>>;
+        using DirectorIDMap = trUtil::HashMap<trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
         DirectorList mDirectorList;   
         DirectorNameMap mDirectorNameMap;
         DirectorIDMap mDirectorIDMap;
 
         //Message registration structures.. 
         using EntityInvokablePair = std::pair<trBase::SmrtPtr<trManager::EntityBase>, std::string>;                     //<entity, invokableName>        
-        using MessageRegistrationVectorMap = trUtil::HashMap<const std::string*, std::vector<EntityInvokablePair>>;     //<messageName, vector of registered entityPairs>
-        using UUIDRegistrationVectorMap = trUtil::HashMap<const trBase::UniqueId, std::vector<EntityInvokablePair>>;    //<UUID, vector of registered entityPairs>
+        using MessageRegistrationVectorMap = trUtil::HashMap<std::string*, std::vector<EntityInvokablePair>>;     //<messageName, vector of registered entityPairs>
+        using UUIDRegistrationVectorMap = trUtil::HashMap<trBase::UniqueId, std::vector<EntityInvokablePair>>;    //<UUID, vector of registered entityPairs>
         using EntityInvokableMap = trUtil::HashMap<trBase::SmrtPtr<trManager::EntityBase>, std::string>;                //<entity, invokableName>
-        using MessageRegistrationMap = trUtil::HashMap<const std::string*, EntityInvokableMap>;                         //<messageName, <entity, invokableName>>
+        using MessageRegistrationMap = trUtil::HashMap<std::string*, EntityInvokableMap>;                         //<messageName, <entity, invokableName>>
         MessageRegistrationVectorMap mEntityGlobalMsgRegistrationMap;
         MessageRegistrationMap mDirectorGlobalMsgRegistrationMap;
         UUIDRegistrationVectorMap mListenerRegistrationMap;
         
         //Storage for all registered Actors and Actor Modules
         using ActorList = std::vector<trBase::SmrtPtr<trManager::EntityBase>>;
-        using ActorIDMap = trUtil::HashMap<const trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
+        using ActorIDMap = trUtil::HashMap<trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
         ActorList mActorList;
         ActorIDMap mActorIDMap; 
 

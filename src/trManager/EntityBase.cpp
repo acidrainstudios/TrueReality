@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright ï¿½ 2019 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -168,7 +168,7 @@ namespace trManager
     bool EntityBase::RemoveChild(trManager::EntityBase &child)
     {
         //Find and remove the child from this entity
-        for (int i = 0; i < mChildren.size(); ++i)
+        for (unsigned int i = 0; i < mChildren.size(); ++i)
         {
             if (mChildren[i].Get() == &child)
             {
@@ -214,7 +214,7 @@ namespace trManager
     const trManager::EntityBase* EntityBase::FindChild(const trBase::UniqueId &childId)
     {
         //Find and remove the child from this entity
-        for (int i = 0; i < mChildren.size(); ++i)
+        for (unsigned int i = 0; i < mChildren.size(); ++i)
         {
             if (mChildren[i]->GetUUID() == childId)
             {
@@ -273,12 +273,12 @@ namespace trManager
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void EntityBase::OnParentRemoved(trManager::EntityBase& parent)
+    void EntityBase::OnParentRemoved(trManager::EntityBase& /*parent*/)
     {
     }
 
     //////////////////////////////////////////////////////////////////////////
-    void EntityBase::OnParentSet(trManager::EntityBase& parent)
+    void EntityBase::OnParentSet(trManager::EntityBase& /*parent*/)
     {
     }
 
@@ -306,7 +306,7 @@ namespace trManager
     {        
         if (mParent.Valid())
         {
-            for (int i = 0; i < mChildren.size(); ++i)
+            for (unsigned int i = 0; i < mChildren.size(); ++i)
             {
                 //Remove the child's parent (this entity)
                 mChildren[i]->ForgetParent();

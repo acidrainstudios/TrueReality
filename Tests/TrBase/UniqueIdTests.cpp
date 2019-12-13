@@ -30,14 +30,16 @@
 
 const trUtil::RefStr UniqueIdTests::NULL_ID = trUtil::RefStr("00000000-0000-0000-0000-000000000000");
 const trUtil::RefStr UniqueIdTests::TEST_ID = trUtil::RefStr("1020ac56-6732-6969-ffd0-fdabc4376cca");
+const trUtil::RefStr UniqueIdTests::TEST_ID2 = trUtil::RefStr("1ff0ac56-6732-1919-ffd0-fdaff4376cca");
 
 //////////////////////////////////////////////////////////////////////////
 UniqueIdTests::UniqueIdTests()
+: mNullID(trBase::UniqueId(false))
+, mNewID1(trBase::UniqueId(NULL_ID))
+, mNewID2(trBase::UniqueId(TEST_ID))
+, mNewID3(trBase::UniqueId())
+, mNewID4(trBase::UniqueId(TEST_ID2))
 {
-    mNullID = trBase::UniqueId(false);
-    mNewID1 = trBase::UniqueId(static_cast<std::string>(NULL_ID));
-    mNewID2 = trBase::UniqueId(static_cast<std::string>(TEST_ID));
-    mNewID3 = trBase::UniqueId();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -71,8 +73,8 @@ TEST_F(UniqueIdTests, ClassTypeTests)
  */
 TEST_F(UniqueIdTests, ConstructorTests)
 {
-    trBase::UniqueId newID1(static_cast<std::string>(NULL_ID));
-    trBase::UniqueId newID2(static_cast<std::string>(TEST_ID));
+    trBase::UniqueId newID1(NULL_ID);
+    trBase::UniqueId newID2(TEST_ID);
     trBase::UniqueId newID3(true);
     trBase::UniqueId newID4(false);
     trBase::UniqueId newID5(mNewID2);
@@ -147,6 +149,12 @@ TEST_F(UniqueIdTests, ComparisonTests)
 
     // Test the equality operator
     EXPECT_EQ(mNullID == mNewID1, true);
+
+    // Tests the grater then operator
+    EXPECT_EQ(mNewID4 > mNewID2, true);
+
+    // Tests the less then operator
+    EXPECT_EQ(mNewID4 < mNewID2, false);
 }
 
 /**

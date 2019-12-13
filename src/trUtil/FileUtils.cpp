@@ -1620,8 +1620,6 @@ namespace trUtil
         {
             osgDB::Registry* reg = osgDB::Registry::instance();
 
-            osgDB::ReaderWriter::ReadResult result = osgDB::ReaderWriter::ReadResult::FILE_NOT_HANDLED;
-
             std::string archiveFilename;
             std::string strippedFilename;
             std::string absoluteFilename = filename;

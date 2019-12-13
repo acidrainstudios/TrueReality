@@ -29,7 +29,7 @@ SET (TR_HEADERS_INSTALLED "0" CACHE INTERNAL "System Use only: flag to show that
 # Sets up default Windows install folders
 # *****************************************************************************
 
-IF(WIN32 AND NOT PATH_IS_SET)
+IF (WIN32 AND NOT PATH_IS_SET)
     IF (CMAKE_SIZEOF_VOID_P MATCHES "8")
         SET (CMAKE_INSTALL_PREFIX "C:/Program Files/${CMAKE_PROJECT_NAME}" CACHE STRING "Install Path" FORCE)
     ELSE ()
@@ -50,8 +50,12 @@ MACRO (TR_INSTALL_OPTIONS arg)
 
     IF (TR_EXT_INSTALLED EQUAL 0)
         INSTALL (CODE "MESSAGE(\"Installing the External Dependencies.\")")
-        IF(EXISTS "${CMAKE_SOURCE_DIR}/Ext")
-		    INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Ext/"    DESTINATION .)
+        IF (EXISTS "${CMAKE_SOURCE_DIR}/Ext")
+			IF (TR_INSTALL_INTEGRATED_EXT)
+				INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Ext/"    DESTINATION .)
+			ELSE ()
+				INSTALL (DIRECTORY "${CMAKE_SOURCE_DIR}/Ext"    DESTINATION .)
+			ENDIF ()
             SET (TR_EXT_INSTALLED "1" CACHE INTERNAL "System Use only: flag to show that the Ext folder was installed" FORCE)
         ELSE ()
             INSTALL (CODE "MESSAGE(\"Ext folder is missing from ${CMAKE_SOURCE_DIR}\")")
@@ -75,6 +79,19 @@ MACRO (TR_INSTALL_OPTIONS arg)
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib
             )
+ENDMACRO ()
+
+# *****************************************************************************
+# Configures the installation options for the environment scripts project *****
+# *****************************************************************************
+MACRO (TR_INSTALL_SCRIPT_FILES filesList)
+    IF (WIN32)
+        INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
+	    INSTALL (FILES ${filesList} DESTINATION $ENV{windir})
+    ELSEIF (UNIX)
+        INSTALL (CODE "MESSAGE(\"Installing the Environment Scripts.\")")
+	    INSTALL (FILES ${filesList} DESTINATION /usr/local/bin PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+    ENDIF ()
 ENDMACRO ()
 
 # *****************************************************************************
