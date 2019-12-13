@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2020 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -72,7 +72,7 @@ void TestActor3::AboutTestActor2(const trManager::MessageBase& msg)
 void TestActor3::OnAddedToSysMan()
 {
     //Register for Tick Message
-    RegisterForMessage(trManager::MessageTick::MESSAGE_TYPE, ON_TICK_INVOKABLE);  
+    RegisterForMessage(trManager::MessageTick::MESSAGE_TYPE, ON_TICK_INVOKABLE);
 }
 
 //////////////////////////////////////////////////////////////////////////

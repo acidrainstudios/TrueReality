@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2020 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -74,10 +74,10 @@ namespace trUtil::JSON
             std::string fullFilePath = mFilePath + "/" + mFileName;
             Json::CharReaderBuilder reader;
 
-            //Open a file for reading. 
+            //Open a file for reading.
             LOG_D("Opening JSON File for Reading: " + fullFilePath);
 
-            //Read the file into the input stream. 
+            //Read the file into the input stream.
             LOG_D("Reading JSON File: " + fullFilePath);
             osgDB::ifstream inputStream(fullFilePath.c_str(), std::ifstream::binary);
 

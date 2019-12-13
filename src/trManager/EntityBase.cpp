@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2020 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -48,7 +48,7 @@ namespace trManager
     void EntityBase::SetSystemManager(trManager::SystemManager *sysMan)
     {
         mSysMan = sysMan;
-    }   
+    }
 
     //////////////////////////////////////////////////////////////////////////
     const bool & EntityBase::IsRegistered()
@@ -144,7 +144,7 @@ namespace trManager
     {
         if (child.GetParent() == nullptr)
         {
-            //Make sure that the only entities that can attach to one another are actors. 
+            //Make sure that the only entities that can attach to one another are actors.
             if (GetEntityType() == EntityType::ACTOR && child.GetEntityType() == EntityType::ACTOR)
             {
                 mChildren.push_back(*new trBase::SmrtPtr<trManager::EntityBase>(&child));
@@ -161,7 +161,7 @@ namespace trManager
         {
             LOG_E("You can not add " + child.GetEntityType().GetName() + " to " + GetEntityType().GetName() + " because the child already has a parent " + child.GetParent()->GetName())
             return false;
-        }        
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -191,7 +191,7 @@ namespace trManager
         for (int i = mChildren.size() - 1; i >= 0; --i)
         {
             //Remove the parental link to this entity.
-            mChildren[i]->ForgetParent();                                  
+            mChildren[i]->ForgetParent();
         }
         //Clear the children list
         mChildren.clear();
@@ -239,7 +239,7 @@ namespace trManager
         {
             //Set the new parent
             mParent = &parent;
-            
+
             //Call the On Parent Set callback
             OnParentSet(parent);
         }
@@ -252,9 +252,9 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     void EntityBase::ForgetParent()
     {
-        //Make a copy of the parent before disconnecting from it. 
+        //Make a copy of the parent before disconnecting from it.
         trBase::SmrtPtr<trManager::EntityBase> parent = mParent;
-        
+
         mParent = nullptr;
 
         OnParentRemoved(*parent);
@@ -285,11 +285,11 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     void EntityBase::Emancipate()
     {
-        //Make a copy of the parent before disconnecting from it. 
+        //Make a copy of the parent before disconnecting from it.
         trBase::SmrtPtr<trManager::EntityBase> parent = mParent;
-        
 
-        //Remove this Entity from its previous parent. 
+
+        //Remove this Entity from its previous parent.
         if (!parent.Valid())
         {
             ForgetParent();
@@ -303,7 +303,7 @@ namespace trManager
 
     //////////////////////////////////////////////////////////////////////////
     bool EntityBase::RemoveFromHierarchy()
-    {        
+    {
         if (mParent.Valid())
         {
             for (unsigned int i = 0; i < mChildren.size(); ++i)
@@ -311,7 +311,7 @@ namespace trManager
                 //Remove the child's parent (this entity)
                 mChildren[i]->ForgetParent();
 
-                //Add the child to this entities previous parent. 
+                //Add the child to this entities previous parent.
                 if (!mParent->AddChild(*mChildren[i]))
                 {
                     return false;
@@ -321,16 +321,16 @@ namespace trManager
             //Delete all references to the children;
             mChildren.clear();
 
-            //Remove this entities parent. 
+            //Remove this entities parent.
             ForgetParent();
-            
+
             return true;
         }
         else
         {
             LOG_E(GetName() + " is not attached to a parent. Can't remove it from Hierarchy.")
             return false;
-        }        
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////

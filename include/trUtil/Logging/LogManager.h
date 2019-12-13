@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2020 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -107,10 +107,10 @@ namespace trUtil::Logging
             * @fn  void LogManager::SetAllOutputStreamBits(unsigned int option);
             *
             * @brief   Set the OutputStreamOptions bits for all stored Loggers The bits correspond to:
-            *          NO_OUTPUT = 0x00000000, /// Log messages don't get written to any device 
-            *          TO_FILE = 0x00000001,   /// Log messages get sent to the output file 
-            *          TO_CONSOLE = 0x00000002,/// Log messages get sent to the console 
-            *          TO_WRITER = 0x00000004,/// Log messages get sent to all registered writers 
+            *          NO_OUTPUT = 0x00000000, /// Log messages don't get written to any device
+            *          TO_FILE = 0x00000001,   /// Log messages get sent to the output file
+            *          TO_CONSOLE = 0x00000002,/// Log messages get sent to the console
+            *          TO_WRITER = 0x00000004,/// Log messages get sent to all registered writers
             *          STANDARD = TO_FILE | TO_CONSOLE | TO_WRITER /// The default setting.
             *
             * @param   option  The option.
