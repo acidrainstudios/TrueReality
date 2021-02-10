@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -26,7 +26,7 @@
 #include <trBase/Vec2d.h>
 
 namespace trBase
-{    
+{
 #ifdef TR_USE_DOUBLE_VECTOR
     /**
     * General purpose 2D Vector

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -106,8 +106,8 @@ public:
     /**
      * @fn  virtual int TestDirector1::GetTickMsgNumber();
      *
-     * @brief   Gets the number of messages this class received. 
-     *          
+     * @brief   Gets the number of messages this class received.
+     *
      *
      * @return  The tick message number.
      */

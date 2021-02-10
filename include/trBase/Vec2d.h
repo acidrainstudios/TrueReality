@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -86,17 +86,17 @@ namespace trBase
         */
         const osg::Vec2d& GetOSGVector() const;
 
-        /** 
-        * Length of the vector = sqrt( vec . vec ) 
+        /**
+        * Length of the vector = sqrt( vec . vec )
         */
         value_type Length() const;
 
-        /** 
-        * Length squared of the vector = vec . vec 
+        /**
+        * Length squared of the vector = vec . vec
         */
         value_type Length2() const;
 
-        /** 
+        /**
         * Normalize the vector so that it has length unity.
         * Returns the previous length of the vector.
         */
@@ -106,7 +106,7 @@ namespace trBase
         * Returns the X component of the vector
         */
         value_type& X();
-        
+
         /**
         * Returns the Y component of the vector
         */
@@ -116,7 +116,7 @@ namespace trBase
         * Returns the X component of the vector
         */
         value_type X() const;
-        
+
         /**
         * Returns the Y component of the vector
         */
@@ -159,7 +159,7 @@ namespace trBase
         *  Pointer to the internal Vector array.
         */
         value_type* Ptr();
-        
+
         /**
         *  Pointer to the internal Vector array.
         */
@@ -169,14 +169,14 @@ namespace trBase
         * Index operator
         */
         value_type& operator [] (int i);
-        
+
         /**
         * Index operator
         */
         value_type operator [] (int i) const;
 
         /**
-        * Set operator 
+        * Set operator
         */
         void operator = (const Vec2d& v);
 
@@ -210,54 +210,54 @@ namespace trBase
         */
         bool operator >  (const Vec2d& v) const;
 
-        /** 
-        * Dot product operator. 
+        /**
+        * Dot product operator.
         */
         value_type operator * (const Vec2d& rhs) const;
-  
-        /**   
-        * Scalar multiplication operator. 
+
+        /**
+        * Scalar multiplication operator.
         */
         const Vec2d operator * (value_type rhs) const;
 
-        /** 
-        * Unary scalar multiplication operator. 
+        /**
+        * Unary scalar multiplication operator.
         */
         Vec2d& operator *= (value_type rhs);
 
-        /** 
-        * Divide by scalar operator. 
+        /**
+        * Divide by scalar operator.
         */
         const Vec2d operator / (value_type rhs) const;
 
         /**
-        * Unary divide by scalar operator. 
+        * Unary divide by scalar operator.
         */
         Vec2d& operator /= (value_type rhs);
 
-        /** 
-        * Binary vector add operator. 
+        /**
+        * Binary vector add operator.
         */
         const Vec2d operator + (const Vec2d& rhs) const;
 
-        /** 
-        * Unary vector add operator. Slightly more efficient because it has 
+        /**
+        * Unary vector add operator. Slightly more efficient because it has
         * no temporary intermediate objects.
         */
         Vec2d& operator += (const Vec2d& rhs);
 
-        /** 
-        * Binary vector subtraction operator. 
+        /**
+        * Binary vector subtraction operator.
         */
         const Vec2d operator - (const Vec2d& rhs) const;
 
-        /** 
-        * Unary vector subtraction operator. 
+        /**
+        * Unary vector subtraction operator.
         */
         Vec2d& operator -= (const Vec2d& rhs);
 
-        /** 
-        * Negation operator. Returns the negative of the Vec2d. 
+        /**
+        * Negation operator. Returns the negative of the Vec2d.
         */
         const Vec2d operator - () const;
 
@@ -296,13 +296,13 @@ namespace trBase
     */
     TR_BASE_EXPORT std::ostream& operator << (std::ostream& ios, const Vec2d& vec);
 
-    /** 
-    * Multiply individual vector components. 
+    /**
+    * Multiply individual vector components.
     */
     TR_BASE_EXPORT Vec2d ComponentMultiply(const Vec2d& lhs, const Vec2d& rhs);
 
-    /** 
-    * Divide rhs components by rhs vector components. 
+    /**
+    * Divide rhs components by rhs vector components.
     */
     TR_BASE_EXPORT Vec2d ComponentDivide(const Vec2d& lhs, const Vec2d& rhs);
 }

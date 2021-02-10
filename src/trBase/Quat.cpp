@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -203,7 +203,7 @@ namespace trBase
 
     //////////////////////////////////////////////////////////////////////////
     bool Quat::IsZeroRotation() const
-    { 
+    {
         return mQuat._v[0] == 0.0 && mQuat._v[1] == 0.0 && mQuat._v[2] == 0.0 && mQuat._v[3] == 1.0;
     }
 
@@ -304,8 +304,8 @@ namespace trBase
     }
 
     //////////////////////////////////////////////////////////////////////////
-    Quat::value_type& Quat::X() 
-    { 
+    Quat::value_type& Quat::X()
+    {
         return mQuat._v[0];
     }
 
@@ -346,15 +346,15 @@ namespace trBase
     }
 
     //////////////////////////////////////////////////////////////////////////
-    Quat::value_type Quat::W() const 
+    Quat::value_type Quat::W() const
     {
         return mQuat._v[3];
     }
 
     //////////////////////////////////////////////////////////////////////////
-    Quat::value_type& Quat::operator [] (int i) 
-    { 
-        return mQuat._v[i]; 
+    Quat::value_type& Quat::operator [] (int i)
+    {
+        return mQuat._v[i];
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -365,20 +365,20 @@ namespace trBase
 
     //////////////////////////////////////////////////////////////////////////
     Quat& Quat::operator = (const Quat& v)
-    { 
+    {
         mQuat._v[0] = v[0];  mQuat._v[1] = v[1]; mQuat._v[2] = v[2]; mQuat._v[3] = v[3];
-        return *this; 
+        return *this;
     }
 
     //////////////////////////////////////////////////////////////////////////
-    bool Quat::operator == (const Quat& v) const 
-    { 
+    bool Quat::operator == (const Quat& v) const
+    {
         return mQuat._v[0] == v[0] && mQuat._v[1] == v[1] && mQuat._v[2] == v[2] && mQuat._v[3] == v[3];
     }
 
     //////////////////////////////////////////////////////////////////////////
-    bool Quat::operator != (const Quat& v) const 
-    { 
+    bool Quat::operator != (const Quat& v) const
+    {
         return  mQuat._v[0] != v[0] || mQuat._v[1] != v[1] || mQuat._v[2] != v[2] || mQuat._v[3] != v[3];
     }
 

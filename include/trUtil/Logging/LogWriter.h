@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -68,14 +68,14 @@ namespace trUtil::Logging
             : logLevel(trUtil::Logging::LogLevel::LOG_DEBUG)
             , frameNumber()
             , line(){};
-            
-            trUtil::Logging::LogLevel logLevel; /** @brief   Log level. */            
-            trUtil::DateTime time;              /** @brief   Time of message. */            
+
+            trUtil::Logging::LogLevel logLevel; /** @brief   Log level. */
+            trUtil::DateTime time;              /** @brief   Time of message. */
             unsigned frameNumber;               /** @brief   The frame number. */
-            std::string logName;                /** @brief   The name of the Log instance (could be empty) */           
-            std::string file;                   /** @brief   The source file of the message. */         
+            std::string logName;                /** @brief   The name of the Log instance (could be empty) */
+            std::string file;                   /** @brief   The source file of the message. */
             std::string method;                 /** @brief   The calling method of the message. */
-            int line;                           /** @brief   The line number of the source code of the message. */  
+            int line;                           /** @brief   The line number of the source code of the message. */
             std::string msg;                    /** @brief   The message itself. */
         };
 
@@ -97,5 +97,5 @@ namespace trUtil::Logging
             */
         virtual ~LogWriter() {}
 
-    };  
+    };
 }

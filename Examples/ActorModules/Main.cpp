@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -33,22 +33,22 @@
 #include <iostream>
 
 /**
-* Software's main function. 
+* Software's main function.
 */
 int main(int argc, char** argv)
 {
     std::string logFileName;
     std::string logLevel;
-    
+
     //Parse command line arguments
     ParseCmdLineArgs(argc, argv, logFileName, logLevel);
 
-    //Creates the default folders in the User Data folder. 
+    //Creates the default folders in the User Data folder.
     trUtil::PathUtils::CreateUserDataPathTree();
 
     //Setup our Logging options
     trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
-    
+
     try
     {
         //Show Logo

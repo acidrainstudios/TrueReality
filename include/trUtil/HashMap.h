@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -28,7 +28,7 @@
 #if defined( _LIBCPP_VERSION ) || (defined(_MSC_VER) && _MSC_VER >= 1700) || defined(__GNUG__)
 #  include <unordered_map>
 #  define _UNORDERED_MAP
-#elif defined(_MSC_VER) 
+#elif defined(_MSC_VER)
 #  include <hash_map>
 #else
 #  include <map>

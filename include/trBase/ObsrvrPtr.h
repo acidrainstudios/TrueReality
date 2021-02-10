@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -28,20 +28,20 @@
 namespace trBase
 {
     /**
-    * An Observer Pointer. It holds a pointer to an object but does not own it, and does not delete it when destroyed. 
+    * An Observer Pointer. It holds a pointer to an object but does not own it, and does not delete it when destroyed.
     * If the owner destroys the referenced pointer, the Observer Pointer is set to NULL
     */
     template <class T>
     class ObsrvrPtr : public osg::observer_ptr<T>
     {
     public:
-        ObsrvrPtr() : osg::observer_ptr<T>() 
+        ObsrvrPtr() : osg::observer_ptr<T>()
         {}
 
-        ObsrvrPtr(T* t) : osg::observer_ptr<T>(t) 
+        ObsrvrPtr(T* t) : osg::observer_ptr<T>(t)
         {}
 
-        ObsrvrPtr(const osg::observer_ptr<T>& rp) : osg::observer_ptr<T>(rp) 
+        ObsrvrPtr(const osg::observer_ptr<T>& rp) : osg::observer_ptr<T>(rp)
         {}
 
         /**

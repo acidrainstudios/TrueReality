@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -37,13 +37,13 @@ namespace trUtil
      * @brief   Disable warning for stl classes Needs to have dll-interface to be used by clients of
      *          class.
      */
-    TR_DISABLE_WARNING_START_MSVC(4251)   
+    TR_DISABLE_WARNING_START_MSVC(4251)
 
     /**
      * @class   EnvVariables
      *
      * @brief   An environment variables.
-     *          
+     *
      * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT EnvVariables
@@ -52,7 +52,7 @@ namespace trUtil
 
         /** @brief   Environmental Variable that points to the Root folder of the engine. */
         const static std::string TR_ROOT;
-        
+
         /** @brief   Environmental Variable that points to the Library folders of the engine. */
         const static std::string TR_LIB;
 

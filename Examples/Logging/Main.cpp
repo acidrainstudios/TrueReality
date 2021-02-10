@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -35,7 +35,7 @@
 static const std::string LOG_FILE_NAME = "LoggingExample.html";
 
 /**
-* Software's main function. 
+* Software's main function.
 */
 int main(int argc, char** argv)
 {
@@ -43,10 +43,10 @@ int main(int argc, char** argv)
     //Parse command line arguments
     ParseCmdLineArgs(argc, argv);
 
-    //Creates the default folders in the User Data folder. 
+    //Creates the default folders in the User Data folder.
     trUtil::PathUtils::CreateUserDataPathTree();
 
-    
+
     try
     {
         //Show Logo
@@ -81,7 +81,7 @@ int main(int argc, char** argv)
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 
         trUtil::Logging::Log::GetInstance().SetAllLogLevels(trUtil::Logging::LogLevel::LOG_DEBUG);
-        
+
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_CYAN);
         std::cerr << "\nTesting << and + operators " << std::endl;
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
@@ -107,7 +107,7 @@ int main(int argc, char** argv)
         LOG_W("Sending a Warning Log Message")
         LOG_E("Sending an Error Log Message")
         LOG_A("Sending a Always Log Message")
-        
+
         std::cerr << std::endl;
         LOG_PRINT_TEST
 

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -141,12 +141,12 @@ void TestDirector::HandleTickMessage(const trManager::MessageBase& msg)
             trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_GREEN);
             std::cout << GetName() << ": Adding TestActorModule2 to TestActor" << std::endl;
 
-            //In this case we know we can only have one of TestActor types, so we use the first one and add a Module to it. 
+            //In this case we know we can only have one of TestActor types, so we use the first one and add a Module to it.
             trManager::EntityBase* module = new TestActorModule2;
             mActorsModuleId = module->GetUUID();
             mSysMan->RegisterActor(*static_cast<trManager::ActorModuleBase*>(module));
 
-            //We know the vector is filled with classes of TestActor::CLASS_TYPE, so we can directly cast it without a check. 
+            //We know the vector is filled with classes of TestActor::CLASS_TYPE, so we can directly cast it without a check.
             static_cast<trManager::ActorBase*>(actor[0])->AddActorModule(*module);
         }
     }
@@ -164,12 +164,12 @@ void TestDirector::HandleTickMessage(const trManager::MessageBase& msg)
             //In this case we know we can only have one of TestActor types, so we use the first one and Remove a Module from it
             mSysMan->UnregisterActor(mActorsModuleId);
 
-            //We know the vector is filled with classes of TestActor::CLASS_TYPE, so we can directly cast it without a check. 
+            //We know the vector is filled with classes of TestActor::CLASS_TYPE, so we can directly cast it without a check.
             static_cast<trManager::ActorBase*>(actor[0])->RemoveActorModule(mActorsModuleId);
         }
     }
 
     //Send out a Test Message
     trBase::SmrtPtr<MessageTest> msgTst = new MessageTest(&this->GetUUID(), &mActorsModuleId);
-    mSysMan->SendMessage(*msgTst);    
+    mSysMan->SendMessage(*msgTst);
 }

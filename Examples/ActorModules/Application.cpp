@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,7 +34,7 @@ Application::Application(const std::string& name) : BaseClass(name)
     //Create Test Actor 1
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_GREEN);
     std::cerr << "Creating Test Actor. " << std::endl;
-    mSysMan->RegisterActor(*new TestActor()); 
+    mSysMan->RegisterActor(*new TestActor());
 
     //Create Test Director
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_GREEN);

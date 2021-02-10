@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -38,7 +38,7 @@
  * @brief   .
  */
 namespace trUtil::Bits
-{    
+{
     /**
         * @fn  template < class N, class B > inline bool Has(N number, B bits)
         *

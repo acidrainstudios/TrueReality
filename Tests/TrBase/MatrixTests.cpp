@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -91,7 +91,7 @@ TEST_F(MatrixTests, CreateMatrix)
     EXPECT_EQ(mTestMatrix(3, 1), 0.0);
     EXPECT_EQ(mTestMatrix(3, 2), 0.0);
     EXPECT_EQ(mTestMatrix(3, 3), 1.0);
-    
+
     // Create a new matrix using the default constructor
     mTestMatrixF1 = trBase::Matrixf();
 
@@ -121,7 +121,7 @@ TEST_F(MatrixTests, CreateMatrix)
     EXPECT_EQ(mTestMatrixF1(3, 1), 0.0);
     EXPECT_EQ(mTestMatrixF1(3, 2), 0.0);
     EXPECT_EQ(mTestMatrixF1(3, 3), 1.0);
-    
+
     // Create a new matrix using the default constructor
     mTestMatrixD1 = trBase::Matrixd();
 
@@ -163,12 +163,12 @@ TEST_F(MatrixTests, CreateMatrix)
  */
 TEST_F(MatrixTests, CreateMatrixFromNum)
 {
-    // Create a matrix 
+    // Create a matrix
     mTestMatrix = trBase::Matrix(   1.2, 1.3, 1.4, 0.5,
                                     1.6, 1.7, 1.8, 0.6,
                                     2.0, 2.1, 2.2, 0.7,
                                     2.4, 2.5, 2.6, 0.8);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrix.Valid(), true);
 
@@ -228,7 +228,7 @@ TEST_F(MatrixTests, CreateMatrixFromNum)
     EXPECT_EQ(mTestMatrixD1(3, 1), 4.0);
     EXPECT_EQ(mTestMatrixD1(3, 2), 3.0);
     EXPECT_EQ(mTestMatrixD1(3, 3), 2.0);
-    
+
     // Create a float matrix
     mTestMatrixF1 = trBase::Matrixf(9.0, 8.0, 7.0, 6.0,
                                     5.0, 4.0, 3.0, 2.0,
@@ -278,7 +278,7 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
                                     5.0, 4.0, 3.0, 2.0,
                                     1.0, 2.0, 3.0, 4.0,
                                     5.0, 6.0, 7.0, 8.0);
-    
+
     // Create a double matrix
     mTestMatrixD1 = trBase::Matrixd(1.0, 2.0, 3.0, 4.0,
                                     5.0, 6.0, 7.0, 8.0,
@@ -287,7 +287,7 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
 
     // Create a float matrix from float matrix
     mTestMatrixF2 = trBase::Matrixf(mTestMatrixF1);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixF2.Valid(), true);
 
@@ -314,7 +314,7 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
     EXPECT_EQ(mTestMatrixF2(3, 1), 6.0);
     EXPECT_EQ(mTestMatrixF2(3, 2), 7.0);
     EXPECT_EQ(mTestMatrixF2(3, 3), 8.0);
-    
+
     // Create a float matrix from double matrix
     mTestMatrixF2 = trBase::Matrixf(mTestMatrixD1);
 
@@ -347,7 +347,7 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
 
     // Create a double matrix from float matrix
     mTestMatrixD2 = trBase::Matrixd(mTestMatrixF1);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixD2.Valid(), true);
 
@@ -374,7 +374,7 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
     EXPECT_EQ(mTestMatrixD2(3, 1), 6.0);
     EXPECT_EQ(mTestMatrixD2(3, 2), 7.0);
     EXPECT_EQ(mTestMatrixD2(3, 3), 8.0);
-    
+
     // Create a double matrix from double matrix
     mTestMatrixD2 = trBase::Matrixd(mTestMatrixD1);
 
@@ -407,7 +407,7 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
 
     // Create a matrix from float matrix
     mTestMatrix = trBase::Matrix(mTestMatrixF1);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrix.Valid(), true);
 
@@ -434,7 +434,7 @@ TEST_F(MatrixTests, CreateMatrixFromMatrix)
     EXPECT_EQ(mTestMatrix(3, 1), 6.0);
     EXPECT_EQ(mTestMatrix(3, 2), 7.0);
     EXPECT_EQ(mTestMatrix(3, 3), 8.0);
-    
+
     // Create a matrix from double matrix
     mTestMatrix = trBase::Matrix(mTestMatrixD1);
 
@@ -505,7 +505,7 @@ TEST_F(MatrixTests, CreateMatrixFromArray)
     EXPECT_NEAR(mTestMatrixF1(3, 1), 0.3, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 3), 0.1, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrixF1 = trBase::Matrixf(mArrayD);
 
@@ -535,7 +535,7 @@ TEST_F(MatrixTests, CreateMatrixFromArray)
     EXPECT_NEAR(mTestMatrixF1(3, 1), 3.3, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 2), 2.6, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 3), 8.3, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrixD1 = trBase::Matrixd(mArrayF);
 
@@ -565,7 +565,7 @@ TEST_F(MatrixTests, CreateMatrixFromArray)
     EXPECT_NEAR(mTestMatrixD1(3, 1), 0.3, 1e-6);
     EXPECT_NEAR(mTestMatrixD1(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatrixD1(3, 3), 0.1, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrixD1 = trBase::Matrixd(mArrayD);
 
@@ -595,7 +595,7 @@ TEST_F(MatrixTests, CreateMatrixFromArray)
     EXPECT_EQ(mTestMatrixD1(3, 1), 3.3);
     EXPECT_EQ(mTestMatrixD1(3, 2), 2.6);
     EXPECT_EQ(mTestMatrixD1(3, 3), 8.3);
-    
+
     // Create a new matrix
     mTestMatrix = trBase::Matrix(mArrayF);
 
@@ -625,7 +625,7 @@ TEST_F(MatrixTests, CreateMatrixFromArray)
     EXPECT_NEAR(mTestMatrix(3, 1), 0.3, 1e-6);
     EXPECT_NEAR(mTestMatrix(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatrix(3, 3), 0.1, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrix = trBase::Matrix(mArrayD);
 
@@ -674,7 +674,7 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
         (2*x*y + 2*w*z)      (w*w - x*x + y*y - z*z)      (2*y*z - 2*w*x)      0
         (2*x*z - 2*w*y)          (2*y*z + 2*w*x)      (w*w - x*x - y*y + z*z)  0
                0                        0                        0             1
-    
+
     L = length(q)^2
     True Reality & Open Scene Graph use normalized matrices for the conversion, therefore
      all values in the matrix above (except M(4,4)) needs to be divided by L
@@ -685,7 +685,7 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     // Create a test quaternion
     mTestQuat.Set(1.0, 0.0, 0.0, 0.0);
 
-    // Create a matrix 
+    // Create a matrix
     mTestMatrix = trBase::Matrix(mTestQuat);
 
     // Test if the matrix is valid
@@ -714,11 +714,11 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrix(3, 1), 0.0);
     EXPECT_EQ(mTestMatrix(3, 2), 0.0);
     EXPECT_EQ(mTestMatrix(3, 3), 1.0);
-    
+
     // Create a test quaternion
     mTestQuat.Set(0.0, 1.0, 0.0, 0.0);
-    
-    // Create a matrix 
+
+    // Create a matrix
     mTestMatrix = trBase::Matrix(mTestQuat);
 
     // Test if the matrix is valid
@@ -748,10 +748,10 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrix(3, 2), 0.0);
     EXPECT_EQ(mTestMatrix(3, 3), 1.0);
 
-    // Create a test quaternion 
+    // Create a test quaternion
     mTestQuat.Set(0.0, 0.0, 1.0, 0.0);
-    
-    // Create a matrix 
+
+    // Create a matrix
     mTestMatrix = trBase::Matrix(mTestQuat);
 
     // Test if the matrix is valid
@@ -784,8 +784,8 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
 
     // Create a test quaternion
     mTestQuat.Set(0.0, 0.0, 0.0, 1.0);
-    
-    // Create a matrix 
+
+    // Create a matrix
     mTestMatrix = trBase::Matrix(mTestQuat);
 
     // Test if the matrix is valid
@@ -818,8 +818,8 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
 
     // Create a test quaternion
     mTestQuat.Set(2.3, 3.4, 5.6, 7.8);
-    
-    // Create a matrix 
+
+    // Create a matrix
     mTestMatrix = trBase::Matrix(mTestQuat);
 
     // Test if the matrix is valid
@@ -848,8 +848,8 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrix(3, 1), 0);
     EXPECT_EQ(mTestMatrix(3, 2), 0);
     EXPECT_EQ(mTestMatrix(3, 3), 1.0);
-    
-    // Create a matrix 
+
+    // Create a matrix
     mTestMatrixF1 = trBase::Matrixf(mTestQuat);
 
     // Test if the matrix is valid
@@ -878,8 +878,8 @@ TEST_F(MatrixTests, CreateMatrixFromQuat)
     EXPECT_EQ(mTestMatrixF1(3, 1), 0);
     EXPECT_EQ(mTestMatrixF1(3, 2), 0);
     EXPECT_EQ(mTestMatrixF1(3, 3), 1.0);
-    
-    // Create a matrix 
+
+    // Create a matrix
     mTestMatrixD1 = trBase::Matrixd(mTestQuat);
 
     // Test if the matrix is valid
@@ -925,7 +925,7 @@ TEST_F(MatrixTests, GetOSGMatrix)
 
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixF1.Valid(), true);
-    
+
     // Get the OSG matrix
     mTestMatOsgF = mTestMatrixF1.GetOSGMatrix();
 
@@ -955,13 +955,13 @@ TEST_F(MatrixTests, GetOSGMatrix)
     EXPECT_NEAR(mTestMatOsgF(3, 1), 0.3, 1e-6);
     EXPECT_NEAR(mTestMatOsgF(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatOsgF(3, 3), 0.1, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrixD1 = trBase::Matrixd(mArrayD);
 
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixD1.Valid(), true);
-    
+
     // Get the OSG matrix
     mTestMatOsgD = mTestMatrixD1.GetOSGMatrix();
 
@@ -991,13 +991,13 @@ TEST_F(MatrixTests, GetOSGMatrix)
     EXPECT_EQ(mTestMatOsgD(3, 1), 3.3);
     EXPECT_EQ(mTestMatOsgD(3, 2), 2.6);
     EXPECT_EQ(mTestMatOsgD(3, 3), 8.3);
-    
+
     // Create a new matrix
     mTestMatrix = trBase::Matrix(mArrayF);
 
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrix.Valid(), true);
-    
+
     // Get the OSG matrix
     mTestMatOsg = mTestMatrix.GetOSGMatrix();
 
@@ -1042,13 +1042,13 @@ TEST_F(MatrixTests, CompareMatrix)
     // Test if the matrices are valid
     EXPECT_EQ(mTestMatrixF1.Valid(), true);
     EXPECT_EQ(mTestMatrixF2.Valid(), true);
-    
+
     // Compare the matrices
     EXPECT_EQ(mTestMatrixF1.Compare(mTestMatrixF2), 0);
-    
+
     // Create a new matrix
     mTestMatrixF1 = trBase::Matrixf(mArrayF);
-    
+
     // Compare the matrices
     EXPECT_EQ(mTestMatrixF1.Compare(mTestMatrixF2), 1);
     EXPECT_EQ(mTestMatrixF2.Compare(mTestMatrixF1), -1);
@@ -1056,27 +1056,27 @@ TEST_F(MatrixTests, CompareMatrix)
     // Test if the matrices are valid
     EXPECT_EQ(mTestMatrixD1.Valid(), true);
     EXPECT_EQ(mTestMatrixD2.Valid(), true);
-    
+
     // Compare the matrices
     EXPECT_EQ(mTestMatrixD1.Compare(mTestMatrixD2), 0);
-    
+
     // Create a new matrix
     mTestMatrixD1 = trBase::Matrixd(mArrayD);
-    
+
     // Compare the matrices
     EXPECT_EQ(mTestMatrixD1.Compare(mTestMatrixD2), 1);
     EXPECT_EQ(mTestMatrixD2.Compare(mTestMatrixD1), -1);
-    
+
     // Test if the matrices are valid
     EXPECT_EQ(mTestMatrix.Valid(), true);
     EXPECT_EQ(mTestMatrix2.Valid(), true);
-    
+
     // Compare the matrices
     EXPECT_EQ(mTestMatrix.Compare(mTestMatrix2), 0);
-    
+
     // Create a new matrix
     mTestMatrix2 = trBase::Matrix(mArrayD);
-    
+
     // Compare the matrices
     EXPECT_EQ(mTestMatrix.Compare(mTestMatrix2), -1);
     EXPECT_EQ(mTestMatrix2.Compare(mTestMatrix), 1);
@@ -1097,7 +1097,7 @@ TEST_F(MatrixTests, SetMatrixFromNum)
                     1.6, 1.7, 1.8, 0.6,
                     2.0, 2.1, 2.2, 0.7,
                     2.4, 2.5, 2.6, 0.8);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrix.Valid(), true);
 
@@ -1157,7 +1157,7 @@ TEST_F(MatrixTests, SetMatrixFromNum)
     EXPECT_EQ(mTestMatrixD1(3, 1), 4.0);
     EXPECT_EQ(mTestMatrixD1(3, 2), 3.0);
     EXPECT_EQ(mTestMatrixD1(3, 3), 2.0);
-    
+
     // Set the float matrix
     mTestMatrixF1.Set(9.0, 8.0, 7.0, 6.0,
                       5.0, 4.0, 3.0, 2.0,
@@ -1207,7 +1207,7 @@ TEST_F(MatrixTests, SetMatrixFromMatrix)
                       5.0, 4.0, 3.0, 2.0,
                       1.0, 2.0, 3.0, 4.0,
                       5.0, 6.0, 7.0, 8.0);
-    
+
     // Set a double matrix
     mTestMatrixD1.Set(1.0, 2.0, 3.0, 4.0,
                       5.0, 6.0, 7.0, 8.0,
@@ -1216,7 +1216,7 @@ TEST_F(MatrixTests, SetMatrixFromMatrix)
 
     // Set a float matrix from float matrix
     mTestMatrixF2.Set(mTestMatrixF1);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixF2.Valid(), true);
 
@@ -1243,7 +1243,7 @@ TEST_F(MatrixTests, SetMatrixFromMatrix)
     EXPECT_EQ(mTestMatrixF2(3, 1), 6.0);
     EXPECT_EQ(mTestMatrixF2(3, 2), 7.0);
     EXPECT_EQ(mTestMatrixF2(3, 3), 8.0);
-    
+
     // Set a float matrix from double matrix
     mTestMatrixF2.Set(mTestMatrixD1);
 
@@ -1276,7 +1276,7 @@ TEST_F(MatrixTests, SetMatrixFromMatrix)
 
     // Set a double matrix from float matrix
     mTestMatrixD2.Set(mTestMatrixF1);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixD2.Valid(), true);
 
@@ -1303,7 +1303,7 @@ TEST_F(MatrixTests, SetMatrixFromMatrix)
     EXPECT_EQ(mTestMatrixD2(3, 1), 6.0);
     EXPECT_EQ(mTestMatrixD2(3, 2), 7.0);
     EXPECT_EQ(mTestMatrixD2(3, 3), 8.0);
-    
+
     // Set a double matrix from double matrix
     mTestMatrixD2.Set(mTestMatrixD1);
 
@@ -1336,7 +1336,7 @@ TEST_F(MatrixTests, SetMatrixFromMatrix)
 
     // Set a matrix from float matrix
     mTestMatrix.Set(mTestMatrixF1);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrix.Valid(), true);
 
@@ -1363,7 +1363,7 @@ TEST_F(MatrixTests, SetMatrixFromMatrix)
     EXPECT_EQ(mTestMatrix(3, 1), 6.0);
     EXPECT_EQ(mTestMatrix(3, 2), 7.0);
     EXPECT_EQ(mTestMatrix(3, 3), 8.0);
-    
+
     // Set a matrix from double matrix
     mTestMatrix.Set(mTestMatrixD1);
 
@@ -1434,7 +1434,7 @@ TEST_F(MatrixTests, SetMatrixFromArray)
     EXPECT_NEAR(mTestMatrixF1(3, 1), 0.3, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 3), 0.1, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrixF1.Set(mArrayD);
 
@@ -1464,7 +1464,7 @@ TEST_F(MatrixTests, SetMatrixFromArray)
     EXPECT_NEAR(mTestMatrixF1(3, 1), 3.3, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 2), 2.6, 1e-6);
     EXPECT_NEAR(mTestMatrixF1(3, 3), 8.3, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrixD1.Set(mArrayF);
 
@@ -1494,7 +1494,7 @@ TEST_F(MatrixTests, SetMatrixFromArray)
     EXPECT_NEAR(mTestMatrixD1(3, 1), 0.3, 1e-6);
     EXPECT_NEAR(mTestMatrixD1(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatrixD1(3, 3), 0.1, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrixD1.Set(mArrayD);
 
@@ -1524,7 +1524,7 @@ TEST_F(MatrixTests, SetMatrixFromArray)
     EXPECT_EQ(mTestMatrixD1(3, 1), 3.3);
     EXPECT_EQ(mTestMatrixD1(3, 2), 2.6);
     EXPECT_EQ(mTestMatrixD1(3, 3), 8.3);
-    
+
     // Create a new matrix
     mTestMatrix.Set(mArrayF);
 
@@ -1554,7 +1554,7 @@ TEST_F(MatrixTests, SetMatrixFromArray)
     EXPECT_NEAR(mTestMatrix(3, 1), 0.3, 1e-6);
     EXPECT_NEAR(mTestMatrix(3, 2), 0.2, 1e-6);
     EXPECT_NEAR(mTestMatrix(3, 3), 0.1, 1e-6);
-    
+
     // Create a new matrix
     mTestMatrix.Set(mArrayD);
 
@@ -1598,25 +1598,25 @@ TEST_F(MatrixTests, GetPointer)
 {
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixF1.Valid(), true);
-    
+
     // Test if the pointer is NULL
     EXPECT_EQ(nullptr, mMatPtrF);
-    
+
     // Get the float pointer holding the float matrix
     mMatPtrF = mTestMatrixF1.Ptr();
-    
+
     // Test if the pointer is NULL
     EXPECT_NE(nullptr, mMatPtrF);
-    
+
     // Test if the matrix is valid
     EXPECT_EQ(mTestMatrixD1.Valid(), true);
-    
+
     // Test if the pointer is NULL
     EXPECT_EQ(nullptr, mMatPtrD);
-    
+
     // Get the double pointer holding the double matrix
     mMatPtrD = mTestMatrixD1.Ptr();
-    
+
     // Test if the pointer is NULL
     EXPECT_NE(nullptr, mMatPtrD);
 }

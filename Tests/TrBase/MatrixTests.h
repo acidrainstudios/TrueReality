@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -41,10 +41,10 @@
  * @brief   Sets up test environment for Matrix class tests
  */
 class MatrixTests : public ::testing::Test
-{   
+{
 
 public:
-    
+
     /** @brief   The test matrices. */
     trBase::Matrix mTestMatrix;
     trBase::Matrix mTestMatrix2;
@@ -52,11 +52,11 @@ public:
     trBase::Matrixd mTestMatrixD2;
     trBase::Matrixf mTestMatrixF1;
     trBase::Matrixf mTestMatrixF2;
-    
+
     osg::Matrix mTestMatOsg;
     osg::Matrixd mTestMatOsgD;
     osg::Matrixf mTestMatOsgF;
-    
+
     /** @brief  The test arrays. */
     double mArrayD [16] = { 2.1, 4.3, 5.6, 4.5,
                             7.8, 8.7, 8.9, 0.5,
@@ -69,7 +69,7 @@ public:
 
     /** @brief   The test quaternion. */
     trBase::Quat mTestQuat;
-    
+
     /** @brief    The test pointers. */
     double* mMatPtrD = nullptr;
     float* mMatPtrF = nullptr;

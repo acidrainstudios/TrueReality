@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -39,7 +39,7 @@ namespace trUtil::DefaultSettings
     //    //Setting up camera options
     //    app.GetCamera()->SetNearFarCullingMode(dtCore::Camera::NO_AUTO_NEAR_FAR);
 
-    //    //Set the window name. 
+    //    //Set the window name.
     //    app.GetWindow()->SetWindowTitle("True Reality");
     //}
 
@@ -53,12 +53,12 @@ namespace trUtil::DefaultSettings
     ////////////////////////////////////////////////////////////////////////////
     //void SetDefaultPaths()
     //{
-    //    //Setup data and file paths. 
+    //    //Setup data and file paths.
     //    std::string dataPath = trUtil::GetDataPathList();
 
     //    trUtil::SetDataFilePathList(dataPath + ";" + trUtil::GetRootPath() + ";../" + ";./" + ";./Data"); //kept arround from D3D
 
-    //    //Setup data and file paths. 
+    //    //Setup data and file paths.
     //    //dataPath = trUtil::PathUtils::GetDataPath();
     //    //trUtil::PathUtils::SetDataFilePathList(dataPath + ";" + trUtil::PathUtils::GetRootPath() + ";../" + ";./" + ";./Data" + trUtil::GetDataFilePathList());
 
@@ -70,7 +70,7 @@ namespace trUtil::DefaultSettings
     //////////////////////////////////////////////////////////////////////////
     void SetupLoggingOptions(const std::string& logFileName, const std::string& logLevel)
     {
-        //Set the Log file name. 
+        //Set the Log file name.
         if (!logFileName.empty())
         {
             trUtil::Logging::LogFile::SetFileName(logFileName);
@@ -127,5 +127,5 @@ namespace trUtil::DefaultSettings
         }
 
         LOG_A("\n*\n*\nLOG Level is set to: '" + trUtil::Logging::Log::GetInstance().GetLogLevelString(trUtil::Logging::Log::GetInstance().GetLogLevel()) + "'\n*\n*\n");
-    }        
+    }
 }
