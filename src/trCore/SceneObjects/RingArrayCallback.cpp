@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -39,13 +39,13 @@ namespace trCore::SceneObjects
 
     //////////////////////////////////////////////////////////////////////////
     void RingArrayCallback::operator()(osg::Node* nodePtr, osg::NodeVisitor* /*nvPtr*/)
-    {            
+    {
         if (mFirstFrame)
         {
-            //Set the timer at 0 on the first run. 
+            //Set the timer at 0 on the first run.
             mTimer.SetStartTick(0);
             mTimer.Tick();
-            mFirstFrame = false;          
+            mFirstFrame = false;
         }
 
         if (nodePtr != nullptr)
@@ -59,6 +59,6 @@ namespace trCore::SceneObjects
         else
         {
             LOG_E("Callback not connected to a RingArray")
-        }            
+        }
     }
 }

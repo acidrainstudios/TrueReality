@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -39,7 +39,7 @@ namespace trManager
 
     // System Manager singleton holder
     trBase::SmrtPtr<trManager::SystemManager> SystemManager::mInstance = nullptr;
-    
+
 
     //////////////////////////////////////////////////////////////////////////
     SystemManager::SystemManager(const std::string name) : BaseClass(name)
@@ -90,7 +90,7 @@ namespace trManager
         //Sends the passed in message to appropriate actors
         SendMessageToActors(message);
 
-        //Sends the passed in message to Entities that are listening for intercepts. 
+        //Sends the passed in message to Entities that are listening for intercepts.
         SendMessageToListeners(message);
     }
 
@@ -100,7 +100,7 @@ namespace trManager
         //Go through all stored messages and send them out...
         while (!mMessageQueue.empty())
         {
-            ProcessMessage(*mMessageQueue.front().Get());            
+            ProcessMessage(*mMessageQueue.front().Get());
 
             //Removed the handled message
             mMessageQueue.pop();
@@ -124,7 +124,7 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     void SystemManager::RegisterForMessage(const std::string& messageType, EntityBase& listeningActor, const std::string& invokableName)
     {
-        //Determine what kind of entity we are dealing with. 
+        //Determine what kind of entity we are dealing with.
         if (listeningActor.GetEntityType() == EntityType::ACTOR)
         {
             RegisterMsgWithMsgVectorMap(messageType, listeningActor, invokableName, mEntityGlobalMsgRegistrationMap);
@@ -142,7 +142,7 @@ namespace trManager
     //////////////////////////////////////////////////////////////////////////
     void SystemManager::UnregisterFromMessage(const std::string& messageType, EntityBase& listeningActor)
     {
-        //Determine what kind of entity we are dealing with. 
+        //Determine what kind of entity we are dealing with.
         if (listeningActor.GetEntityType() == EntityType::ACTOR)
         {
             UnregisterMsgFromMsgVectorMap(messageType, listeningActor, mEntityGlobalMsgRegistrationMap);
@@ -233,12 +233,12 @@ namespace trManager
 
         mActorList.push_back(newActor);
         mActorIDMap[actor.GetUUID()] = newActor;
-        
+
         //Set the director registration status
         actor.SetSystemManager(this);
         actor.SetRegistration(true);
 
-        //Call the OnAddedToSysMan callback. 
+        //Call the OnAddedToSysMan callback.
         actor.OnAddedToSysMan();
 
         //Notify everyone that a new Entity was added
@@ -269,10 +269,10 @@ namespace trManager
 
             UnregisterActorFromGlobalMessages(*found->Get());   // Unregister the entity from all messages
             UnregisterEntityFromAboutMessages(*found->Get());   // Unregister the entity from all About messages
-            
+
             mActorIDMap.erase((*found)->GetUUID());             // Erase the node from the list by ID key
             mActorList.erase(found);                            // Erase the node from the list
-        
+
             //Notify everyone that an Entity was removed
             SendMessage(*new trManager::MessageEntityUnregistered(&GetUUID(), &actor.GetUUID(), &actor.GetType(), &actor.GetName()));
             LOG_D("Unregistered " + actor.GetName() + " of type: " + actor.GetType() + " from System Manager.")
@@ -323,7 +323,7 @@ namespace trManager
         std::vector<trManager::EntityBase*> actorList;
 
         for (trBase::SmrtPtr<trManager::EntityBase> i : mActorList)
-        {            
+        {
             if (i->GetType() == actorType)
             {
                 if (i->GetEntityType() == EntityType::ACTOR)
@@ -342,7 +342,7 @@ namespace trManager
         std::vector<trManager::EntityBase*> actorList;
 
         for (trBase::SmrtPtr<trManager::EntityBase> i : mActorList)
-        {            
+        {
             if (i->GetName() == actorName)
             {
                 if (i->GetEntityType() == EntityType::ACTOR)
@@ -374,7 +374,7 @@ namespace trManager
             {
                 //Make sure the director is not sending a message to itself
                 if (dir->GetUUID() != *message.GetFromActorID())
-                {                   
+                {
                     directorRef = static_cast<trManager::EntityBase*>(dir.Get());
 
                     //If the listener list is not empty
@@ -383,11 +383,11 @@ namespace trManager
                         //Find if the entity is registered
                         entityInvokableMapPtr = &listenerIt->second;
 
-                        //Check if the Director is in the listener list         
+                        //Check if the Director is in the listener list
                         entityInvokableIt = entityInvokableMapPtr->find(directorRef);
                         if (entityInvokableIt != entityInvokableMapPtr->end())
                         {
-                            //If the director is on the list, send the message to the registered Invokable                           
+                            //If the director is on the list, send the message to the registered Invokable
                             CallInvokable(message, entityInvokableIt->second, *directorRef);
                         }
                         else
@@ -415,7 +415,7 @@ namespace trManager
         //Check if anyone registered for this message
         if (listenerIt != mEntityGlobalMsgRegistrationMap.end())
         {
-            //Go through the listener list, and send the message to each listening actor 
+            //Go through the listener list, and send the message to each listening actor
             std::vector<EntityInvokablePair>* listenerList = &listenerIt->second;
             for (EntityInvokablePair ent : *listenerList)
             {
@@ -423,7 +423,7 @@ namespace trManager
                 if (ent.first->GetUUID() != *message.GetFromActorID())
                 {
                     CallInvokable(message, ent.second, *ent.first.Get());
-                }                
+                }
             }
         }
     }
@@ -439,7 +439,7 @@ namespace trManager
             //Check if anyone registered for this message
             if (listenerIt != mListenerRegistrationMap.end())
             {
-                //Go through the listener list, and send the message to each listening actor 
+                //Go through the listener list, and send the message to each listening actor
                 std::vector<EntityInvokablePair>* listenerList = &listenerIt->second;
                 for (EntityInvokablePair ent : *listenerList)
                 {
@@ -450,7 +450,7 @@ namespace trManager
                     }
                 }
             }
-        }        
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -464,7 +464,7 @@ namespace trManager
         {
             //Create an invokable pointer
             trManager::Invokable* invokablePtr = nullptr;
-           
+
             //Get the vector of registered Entities for the message <entity, invokableName>
             std::vector<EntityInvokablePair>* msgRegistrantsPtr = &it->second;
 
@@ -475,7 +475,7 @@ namespace trManager
 
                 if (actor->IsRegistered())
                 {
-                    //Get the Invokable from the Entity by passing the Invokables name. 
+                    //Get the Invokable from the Entity by passing the Invokables name.
                     invokablePtr = actor->GetInvokable(msgRegistrantsPtr->at(i).second);
 
                     if (invokablePtr != nullptr)
@@ -526,7 +526,7 @@ namespace trManager
                 }
             }
 
-            //If the Entities-Invokables vector is empty, the message registration should be removed. 
+            //If the Entities-Invokables vector is empty, the message registration should be removed.
             if (msgRegistrantsPtr->empty())
             {
                 listenerIt = mEntityGlobalMsgRegistrationMap.erase(listenerIt);
@@ -578,7 +578,7 @@ namespace trManager
         else
         {
             LOG_E("The Entity: " + director.GetName() + " is not a Director.")
-        }        
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -586,7 +586,7 @@ namespace trManager
     {
         std::vector<EntityInvokablePair>* msgRegistrantsPtr = nullptr;
 
-        //Iterate through all Entities one by one to access their listener lists. 
+        //Iterate through all Entities one by one to access their listener lists.
         for (auto&& listenerIt = mListenerRegistrationMap.begin(); listenerIt != mListenerRegistrationMap.end();)
         {
             //Iterate through the vector of Entities-Invokables
@@ -601,7 +601,7 @@ namespace trManager
                 }
             }
 
-            //If the Entities-Invokables vector is empty, the message registration should be removed. 
+            //If the Entities-Invokables vector is empty, the message registration should be removed.
             if (msgRegistrantsPtr->empty())
             {
                 listenerIt = mListenerRegistrationMap.erase(listenerIt);
@@ -633,7 +633,7 @@ namespace trManager
 
         //If the registration does not exist, make one and create an Invokable
         if (!registrantFound)
-        {            
+        {
             //Register the Entity-Invokable pair
             msgRegistrantsPtr->push_back(EntityInvokablePair(trBase::SmrtPtr<EntityBase>(&listeningEntity), invokableName));
             LOG_D("Registering Entity: " + listeningEntity.GetName() + " for message: " + messageType + " through invokable: " + invokableName)
@@ -743,7 +743,7 @@ namespace trManager
                 return false;
             }
 
-            //Set the director Priority, overwriting anything that was there. 
+            //Set the director Priority, overwriting anything that was there.
             static_cast<trManager::DirectorBase*>(&director)->SetDirectorPriority(&priority);
 
             //Add the director to the storage containers.
@@ -759,7 +759,7 @@ namespace trManager
             director.SetSystemManager(this);
             director.SetRegistration(true);
 
-            //Call the OnAddedToSysMan callback. 
+            //Call the OnAddedToSysMan callback.
             director.OnAddedToSysMan();
 
             //Notify everyone that a new Entity was added
@@ -772,7 +772,7 @@ namespace trManager
         {
             LOG_E("The Entity: " + director.GetName() + " is not a Director.")
             return false;
-        }        
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -802,7 +802,7 @@ namespace trManager
 
                 mDirectorIDMap.erase((*found)->GetUUID());          // Erase the node from the list by ID key
                 mDirectorNameMap.erase((*found)->GetName());        // Erase the node from the list by Name key
-                mDirectorList.erase(found);                         // Erase the node from the list            
+                mDirectorList.erase(found);                         // Erase the node from the list
 
                                                                     //Notify everyone that an Entity was removed
                 SendMessage(*new trManager::MessageEntityUnregistered(&GetUUID(), &director.GetUUID(), &director.GetType(), &director.GetName()));
@@ -820,7 +820,7 @@ namespace trManager
         {
             LOG_E("The EntityBase: " + director.GetName() + " is not a Director.")
             return false;
-        }        
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -854,7 +854,7 @@ namespace trManager
     }
 
     //////////////////////////////////////////////////////////////////////////
-    trManager::EntityBase* SystemManager::FindDirector(const std::string& name) const 
+    trManager::EntityBase* SystemManager::FindDirector(const std::string& name) const
     {
         DirectorNameMap::const_iterator it = mDirectorNameMap.find(name);
         if (it != mDirectorNameMap.end()) //Make sure we have a found value and are not at the end
@@ -872,14 +872,14 @@ namespace trManager
     std::vector<trManager::EntityBase*> SystemManager::FindDirectors(const std::string& type) const
     {
         std::vector<trManager::EntityBase*> directorList;
-        
+
         for (trBase::SmrtPtr<trManager::EntityBase> i : mDirectorList)
         {
             if (i->GetType() == type)
             {
                 directorList.push_back(i);
             }
-        }       
+        }
 
         return directorList;
     }

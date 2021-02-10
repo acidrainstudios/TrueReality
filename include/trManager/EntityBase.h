@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -40,8 +40,8 @@ namespace trManager
     /**
      * @class   EntityBase
      *
-     * @brief   This serves as the base class for the Entity class and removes 
-     *          a circular dependency between Entity and System Manager. 
+     * @brief   This serves as the base class for the Entity class and removes
+     *          a circular dependency between Entity and System Manager.
      */
     class  TR_MANAGER_EXPORT EntityBase : public trBase::Base
     {
@@ -274,7 +274,7 @@ namespace trManager
          * @fn  virtual void EntityBase::SetParent(trManager::EntityBase &parent);
          *
          * @brief   Sets the hierarchal parent of this Entity. This is for system use only.
-         *          Use AddChild() if you want to attach entities. 
+         *          Use AddChild() if you want to attach entities.
          *
          * @param [in,out]  parent  The parent.
          */
@@ -283,7 +283,7 @@ namespace trManager
         /**
          * @fn  virtual void EntityBase::ForgetParent() trManager::EntityBase* GetParent();
          *
-         * @brief   Forgets the hierarchal parent of this Entiry. This is for system use only. 
+         * @brief   Forgets the hierarchal parent of this Entiry. This is for system use only.
          *          Used Emancipate() if you want to disconnect your entity.
          */
         virtual void ForgetParent();
@@ -310,7 +310,7 @@ namespace trManager
          * @fn  virtual void EntityBase::OnParentRemoved(trManager::EntityBase &parent);
          *
          * @brief   Convenience function that will be called by the system when the Entities parent is
-         *          removed. Overwrite to capture the event. 
+         *          removed. Overwrite to capture the event.
          *
          * @param [in,out]  parent  The parent.
          */
@@ -320,7 +320,7 @@ namespace trManager
          * @fn  virtual void EntityBase::OnParentSet(trManager::EntityBase &parent) virtual void Emancipate();
          *
          * @brief   Convenience function that will be called by the system when a new parent is added or
-         *          set to the Entity. Overwrite to capture the event. 
+         *          set to the Entity. Overwrite to capture the event.
          *
          * @param [in,out]  parent  The parent.
          */
@@ -339,8 +339,8 @@ namespace trManager
         /**
          * @fn  virtual bool EntityBase::RemoveFromHierarchy();
          *
-         * @brief   Removes from this entity from the hierarchy tree attaching its children to its parent. 
-         *          Does nothing if this entity does not have a parent. 
+         * @brief   Removes from this entity from the hierarchy tree attaching its children to its parent.
+         *          Does nothing if this entity does not have a parent.
          *
          * @return  True if it succeeds, false if it fails.
          */
@@ -350,7 +350,7 @@ namespace trManager
 
         trBase::ObsrvrPtr<trManager::SystemManager> mSysMan;
         trUtil::EnumerationPointer<const trManager::EntityType> mEntityType;
-        trUtil::HashMap<std::string, trBase::SmrtPtr<trManager::Invokable>> mInvokables;  //<invokable name, invokable>   
+        trUtil::HashMap<std::string, trBase::SmrtPtr<trManager::Invokable>> mInvokables;  //<invokable name, invokable>
 
         ~EntityBase();
 

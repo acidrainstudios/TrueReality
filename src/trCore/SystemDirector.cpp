@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -40,7 +40,7 @@ namespace trCore
 {
     const trUtil::RefStr SystemDirector::CLASS_TYPE = trUtil::RefStr("trCore::SystemDirector");
 
-    const double SystemDirector::MAX_TIME_SCALE = 1048576;              /// Hold the maximum time scale the system can use for positive and negative time (2^20). 
+    const double SystemDirector::MAX_TIME_SCALE = 1048576;              /// Hold the maximum time scale the system can use for positive and negative time (2^20).
     const double SystemDirector::MIN_TIME_SCALE = 0.03125;              /// Hold the minimum time scale the system can use for positive and negative time (1/32).
 
     //////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ namespace trCore
     const std::string& SystemDirector::GetType() const
     {
         return CLASS_TYPE;
-    } 
+    }
 
     //////////////////////////////////////////////////////////////////////////
     void SystemDirector::OnMessage(const trManager::MessageBase& msg)
@@ -89,8 +89,8 @@ namespace trCore
             else if (message.GetSysControlType() == trCore::SystemControls::SHUT_DOWN)
             {
                 ShutDown();
-            }            
-        }    
+            }
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ namespace trCore
         if (!mIsRunning)
         {
             mSystemTimer.SetStartTick(0);
-        }        
+        }
 
         //Enable the run loop
         mIsRunning = true;
@@ -199,7 +199,7 @@ namespace trCore
         {
             timeStruct.deltaSimTime = 0.;
         }
-        
+
         timeStruct.deltaRealTime = dt;
         timeStruct.realTime += dt;
         timeStruct.simTime += timeStruct.deltaSimTime;
@@ -219,10 +219,10 @@ namespace trCore
         //Make the System Manager send out all its queued messages
         mSysMan->ProcessMessages();
 
-        //Make the System Manager send out all its queued messages after the Event Traversal and System Event messages got processed. 
+        //Make the System Manager send out all its queued messages after the Event Traversal and System Event messages got processed.
         mSysMan->ProcessMessages();
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void SystemDirector::PostEventTraversal(const trManager::TimingStructure& timeStruct)
     {
@@ -253,7 +253,7 @@ namespace trCore
         //Send out the two Queues messaged
         mSysMan->ProcessMessages();
 
-        //Make the System Manager send out all its queued messages after the PreFrame and Tick messages got processed. 
+        //Make the System Manager send out all its queued messages after the PreFrame and Tick messages got processed.
         mSysMan->ProcessMessages();
     }
 
@@ -324,7 +324,7 @@ namespace trCore
         //Make the System Manager send out all its queued messages after the Post Frame and System Event messages got processed.
         mSysMan->ProcessMessages();
 
-        //Removes all entities that were unregistered during this frame. 
+        //Removes all entities that were unregistered during this frame.
         mSysMan->RemoveMarkedEntities();
 
         //Check if we entered the shutdown phase.
@@ -398,7 +398,7 @@ namespace trCore
         }
         else
         {
-            SetTimeScale(timeScale * 2.);            
+            SetTimeScale(timeScale * 2.);
         }
 
         LOG_D("Time Scale Decremented to: " << mTimeStruct.timeScale)

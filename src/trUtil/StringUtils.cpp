@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -43,13 +43,13 @@ namespace trUtil::StringUtils
 #endif
 
 #ifdef TR_WIN
-#ifndef strCmp        
-#define strCmp _stricmp        
+#ifndef strCmp
+#define strCmp _stricmp
 #include <string.h>
 #endif
 #else
-#ifndef strCmp        
-#define strCmp strcasecmp        
+#ifndef strCmp
+#define strCmp strcasecmp
 #include <strings.h>
 #endif
 #endif
@@ -98,7 +98,7 @@ namespace trUtil::StringUtils
     std::string ToLowerCase(const std::string& str)
     {
         std::string newStr = str;
-            
+
         ToLowerCase(newStr);
         return newStr;
     }
@@ -128,7 +128,7 @@ namespace trUtil::StringUtils
         return u == "1" || u == "true" || u == "True" || u == "TRUE";
     }
 
-        
+
     /////////////////////////////////////////////////////////////////////////////
     static bool Scan(const char*& wildCards, const char*& str)
     {

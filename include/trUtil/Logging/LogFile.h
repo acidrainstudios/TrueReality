@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -86,7 +86,7 @@ namespace trUtil::Logging
             *
             * @return  The title.
             */
-        static const std::string& GetTitle();  
+        static const std::string& GetTitle();
     private:
         static std::string mLogFileName;
         static std::string mTitle;

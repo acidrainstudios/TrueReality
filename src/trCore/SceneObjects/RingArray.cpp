@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -83,11 +83,11 @@ namespace trCore::SceneObjects
         mRing3->addChild(osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_3_FILE_NAME));
         mRing3Slide = new osg::PositionAttitudeTransform();
 
-        //Creates nodes for the smallest, internal ring. 
+        //Creates nodes for the smallest, internal ring.
         mRing4Rotation = new osg::PositionAttitudeTransform();
         mRing4 = osgDB::readNodeFile(trUtil::PathUtils::GetStaticMeshesPath() + RING_4_FILE_NAME);
 
-        //Creates the angle correction transform. 
+        //Creates the angle correction transform.
         mAngleCorrection = new osg::PositionAttitudeTransform();
 
     }
@@ -95,7 +95,7 @@ namespace trCore::SceneObjects
     //////////////////////////////////////////////////////////////////////////
     void RingArray::SetupModelTree()
     {
-        //Create the Ring tree		
+        //Create the Ring tree
         mRing1->addChild(mRing1Slide);
         mRing1Slide->addChild(mRing2Rotation);
         mRing2Rotation->addChild(mRing2);
@@ -106,7 +106,7 @@ namespace trCore::SceneObjects
         mRing3Slide->addChild(mRing4Rotation);
         mRing4Rotation->addChild(mRing4);
 
-        //Add the initial angle correction. 
+        //Add the initial angle correction.
         mAngleCorrection->addChild(mRing1);
 
         //Add the tree to root

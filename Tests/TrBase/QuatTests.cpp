@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -397,5 +397,5 @@ TEST_F(QuatTests, CreateQuatFromAnglesAndAxisesD)
     /**
         trBase::Vec4d mTestQuatVec = trBase::Vec4d(0.635, 0.431, 0.390, 0.508);
         trBase::Vec3d mTestRadVec = trBase::Vec3d(-0.436, 1.204, 2.094);
-        trBase::Vec3d mTestDegVec = trBase::Vec3d(-25.000, 69.000, 120.000); 
+        trBase::Vec3d mTestDegVec = trBase::Vec3d(-25.000, 69.000, 120.000);
     */

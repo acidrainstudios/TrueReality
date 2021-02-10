@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -62,9 +62,9 @@ namespace trCore::Nodes
         /**
          * @brief   This is a set of bits (flags) that represent the Node. The default value is
          *          0xffffffff (all bits set).
-         *          
+         *
          *          The most common use of these is during traversal of the scene graph.
-         *          
+         *
          *          For example, if a Node has a NodeMask value of 0x02 (only 2nd bit set)
          *          and the Camera has a CullMask of 0x4 (2nd bit not set) then during cull traversal,
          *          which takes it's TraversalMask from the Camera's CullMask, the node and any children

@@ -177,8 +177,12 @@ IF ((${DEPENDENCY}_APP_LIBRARY_FOUND AND ${DEPENDENCY}_BASE_LIBRARY_FOUND AND ${
         SET(${DEPENDENCY}_INCLUDE_DIR ${${DEPENDENCY}_CORE_DEBUG_INCLUDE_DIR})
     ENDIF ()
 
+    # Sets the path to the found TR Version file and reads it
+    SET (TR_VERSION_FILE "${CMAKE_CURRENT_LIST_DIR}/Config/Version.trver")
+    FILE (READ ${TR_VERSION_FILE} TR_VERSION_CONTENT)
+
     IF ("${TR_VERSION_CONTENT}" STREQUAL "")
-        MESSAGE("Missing the version file")
+        MESSAGE("Missing TR version file")
     ENDIF ()
 
     # Parse the version file

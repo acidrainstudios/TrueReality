@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -55,7 +55,7 @@ namespace trUtil::JSON
         * @class   ArrayBase
         *
         * @brief   An array base.
-        *          
+        *
         * @author Maxim Serebrennik
         */
     class TR_UTIL_EXPORT ArrayBase : osg::Referenced

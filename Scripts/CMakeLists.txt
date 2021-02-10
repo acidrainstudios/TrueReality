@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright � 2019 Acid Rain Studios LLC
+# Copyright © 2020 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -36,7 +36,7 @@ IF (WIN32)
 	SET (PATH_CMD "SET PATH=${CMAKE_INSTALL_PREFIX}/bin;${CMAKE_INSTALL_PREFIX}/lib;%PATH%")
 	SET (PATH_TR_ROOT "SET TR_ROOT=${CMAKE_INSTALL_PREFIX}")
 	CONFIGURE_FILE ("${CMAKE_SOURCE_DIR}/${FILE_NAME}/EnvScript.in" "${PROJECT_BINARY_DIR}/${FILE_NAME}/trEnvRT-${TR_VERSION_MAJOR}.${TR_VERSION_MINOR}.${TR_VERSION_YYMM}.cmd" NEWLINE_STYLE LF)
-	
+
 ELSEIF (UNIX)
 	MESSAGE (STATUS "Creating Linux Environment Scripts ***(Admin rights are needed to install scripts)***")
 

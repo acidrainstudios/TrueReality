@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -44,7 +44,7 @@ namespace trUtil::Logging
         * @brief   Interface class get the time for the logger.
         *           There is probably no need to override this yourself. It is provided as a means for
         *           other parts of the system to provide the time.
-        *          
+        *
         *           @note  The Log time provided does not extend osg::Referenced so that it can be used
         *                  easily as an interface on other referenced classes, but the log code assumes
         *                  that a dynamic_cast to reference will succeed.

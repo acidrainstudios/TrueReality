@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -40,7 +40,7 @@ void IncremenetVersion(trUtil::VersionUtil &ver);
 void SetVersion(trUtil::VersionUtil &ver, int maj, int min, std::string yymm, int build);
 
 /**
- * Software's main function. 
+ * Software's main function.
  */
 int main(int argc, char** argv)
 {
@@ -53,17 +53,17 @@ int main(int argc, char** argv)
     int majVer = -1;
     int minVer = -1;
     std::string yymmVer = "";
-    int buildVer = -1;  
-    
+    int buildVer = -1;
+
     //Parse command line arguments
     ParseCmdLineArgs(argc, argv, logFileName, logLevel, updateVer, incVer, majVer, minVer, yymmVer, buildVer);
-    
-    //Creates the default folders in the User Data folder. 
+
+    //Creates the default folders in the User Data folder.
     trUtil::PathUtils::CreateUserDataPathTree();
-    
+
     //Setup our Logging options
     trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
-    
+
     try
     {
         trUtil::VersionUtil ver;
@@ -77,7 +77,7 @@ int main(int argc, char** argv)
         }
         else if (majVer != -1 && minVer != -1 && yymmVer != "" && buildVer != -1)
         {
-            SetVersion(ver, majVer, minVer, yymmVer, buildVer);            
+            SetVersion(ver, majVer, minVer, yymmVer, buildVer);
         }
         else if (majVer != -1 || minVer != -1 || yymmVer != "" || buildVer != -1)
         {
@@ -87,24 +87,24 @@ int main(int argc, char** argv)
             {
                 ver.SetMajorVersion(majVer);
             }
-            
+
             if (minVer != -1)
             {
                 ver.SetMinorVersion(minVer);
             }
-            
+
             if (yymmVer != "")
             {
                 ver.SetYYMMVersion(yymmVer);
             }
-            
+
             if (buildVer != -1)
             {
                 ver.SetBuildVersion(buildVer);
             }
-            
+
             ver.SaveVersionFile();
-            
+
             std::cerr << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
             trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         }
@@ -114,7 +114,7 @@ int main(int argc, char** argv)
             std::cerr << TR_VERSION << ver.GetVersionString() << std::endl;
             trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
         }
-        
+
     }
     catch (const trUtil::Exception& ex)
     {
@@ -126,7 +126,7 @@ int main(int argc, char** argv)
 }
 
 /**
- * Increments the version in the version file. 
+ * Increments the version in the version file.
  * Build version gets incremented by 1
  * YYMM gets set to the current year and month
  */
@@ -134,7 +134,7 @@ void IncremenetVersion(trUtil::VersionUtil &ver)
 {
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
     std::cerr << TR_CURRENT_VERSION << ver.GetVersionString() << std::endl;
-    
+
     ver.IncrementVersion();
     ver.SaveVersionFile();
 
@@ -152,7 +152,7 @@ void SetVersion(trUtil::VersionUtil &ver, int maj, int min, std::string yymm, in
 
     ver.SetVersion(maj, min, yymm, build);
     ver.SaveVersionFile();
-    
+
     std::cerr << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
 }
@@ -168,7 +168,7 @@ void UpdateVersion(trUtil::VersionUtil &ver)
 
     ver.UpdateVersion();
     ver.SaveVersionFile();
-    
+
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_YELLOW);
     std::cerr << TR_NEW_VERSION << ver.GetVersionString() << std::endl;
     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -33,7 +33,7 @@ namespace trUtil::Console
         * @enum    TXT_COLOR
         *
         * @brief   Color Modes for the Console Window
-        *          
+        *
         * @author Maxim Serebrennik
         */
     enum TR_UTIL_EXPORT TXT_COLOR
@@ -59,7 +59,7 @@ namespace trUtil::Console
         * @fn  void TextColor(TXT_COLOR TextColor);
         *
         * @brief   Changes Text color in the console window....
-        *          
+        *
         * @author Maxim Serebrennik
         *
         * @param   TextColor   The text color.
@@ -71,8 +71,8 @@ namespace trUtil::Console
         *
         * @brief   Prints an example of all available colors This is usually used for testing and
         *          development.
-        *          
+        *
         * @author Maxim Serebrennik
         */
-    void TR_UTIL_EXPORT PrintAllColors();    
+    void TR_UTIL_EXPORT PrintAllColors();
 }

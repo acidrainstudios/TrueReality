@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -32,7 +32,7 @@
 #include <vector>
 
 namespace trManager
-{   
+{
     /**
      * @class   ActorBase
      *
@@ -154,10 +154,10 @@ namespace trManager
         /**
          * @fn  virtual bool ActorBase::AddActorModule(trManager::EntityBase& actorModule);
          *
-         * @brief   Adds an Actor Module to the current Actor. NOTE: If this actor is never 
+         * @brief   Adds an Actor Module to the current Actor. NOTE: If this actor is never
          *             registered with the System Manager, you manually need to remove attached Actor Modules, or
-         *             there could be a memory leak. Use RemoveAllActorModules() to remove all at once or 
-         *             RemoveActorModule(...) to remove them one at a time. 
+         *             there could be a memory leak. Use RemoveAllActorModules() to remove all at once or
+         *             RemoveActorModule(...) to remove them one at a time.
          *
          * @param [in,out]  actorModule The actor module.
          *
@@ -228,7 +228,7 @@ namespace trManager
          *
          * @brief   dtor.
          */
-        ~ActorBase(); 
+        ~ActorBase();
 
         /**
          * @fn  virtual void ActorBase::ActorModuleTick(const trManager::MessageBase& tickMsg);
@@ -250,7 +250,7 @@ namespace trManager
         using ActorModules = std::vector<trBase::SmrtPtr<trManager::EntityBase>>;
         ActorModules mActorModules; //Actor Module Storage
 
-        //Temp Storage for actor modules if this actor is disconnected and reconnected from and to System Manager. 
+        //Temp Storage for actor modules if this actor is disconnected and reconnected from and to System Manager.
         ActorModules mActModReAttachStore;
     };
 }

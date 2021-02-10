@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,7 +34,7 @@ namespace trCore
     /**
      * @class   SystemDirector
      *
-     * @brief   A System director. This Director does all the timing for TR. It controls the frame loop and keeps track of real and sim time. 
+     * @brief   A System director. This Director does all the timing for TR. It controls the frame loop and keeps track of real and sim time.
      */
     class TR_CORE_EXPORT SystemDirector : public trManager::DirectorBase
     {
@@ -43,8 +43,8 @@ namespace trCore
 
         const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
-        const static double MAX_TIME_SCALE;             /// Hold the maximum time scale the system can use for positive and negaive time. 
-        const static double MIN_TIME_SCALE;             /// Hold the minimum time scale the system can use for positive and negaive time. 
+        const static double MAX_TIME_SCALE;             /// Hold the maximum time scale the system can use for positive and negaive time.
+        const static double MIN_TIME_SCALE;             /// Hold the minimum time scale the system can use for positive and negaive time.
 
         /**
          * @fn  SystemDirector::SystemDirector(const std::string name = CLASS_TYPE);
@@ -83,7 +83,7 @@ namespace trCore
         /**
          * @fn  virtual void SystemDirector::RunOnce();
          *
-         * @brief   Advanced the game loop by one frame. Used for testing. 
+         * @brief   Advanced the game loop by one frame. Used for testing.
          */
         virtual void RunOnce();
 
@@ -120,7 +120,7 @@ namespace trCore
          * @brief   Destructor.
          */
         ~SystemDirector();
-        
+
         /**
          * @fn  virtual void SystemDirector::UpdateTiming(trManager::TimingStructure& timeStruct, double dt);
          *

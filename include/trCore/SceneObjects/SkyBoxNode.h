@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -35,7 +35,7 @@ namespace trCore::SceneObjects
 
     /**
         * @class   SkyBoxNode
-        *          
+        *
         * @author Maxim Serebrennik
         *
         * @brief   A sky box class that creates an object that is always positioned around the camera.

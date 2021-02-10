@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -121,7 +121,7 @@ namespace trUtil::StringUtils
                 it = itTokenEnd;
             }
         }
-    }        
+    }
 
     /**
         * @class   IsSpace
@@ -320,7 +320,7 @@ namespace trUtil::StringUtils
         *          the type you'd like to convert.
         *
         * @param   t           the instance of the type to converted.
-        *                      
+        *
         *                      Typical use:
         *                      @code
         *                      float num = 5.67f;
@@ -341,7 +341,7 @@ namespace trUtil::StringUtils
         ss << t;
         return ss.str();
     }
-        
+
 
     /**
         * @fn  T FromString(const std::string& u)
@@ -351,7 +351,7 @@ namespace trUtil::StringUtils
         * @param   u   string to be converted to the specified template argument type.
         *
         * @return  the type that you specify as the template argument.
-        *          
+        *
         *          Typical use:
         *          @code
         *          std::string mystring("0");

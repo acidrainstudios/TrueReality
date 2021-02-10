@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -45,16 +45,16 @@ namespace trCore
 
         /** @brief   The pre frame event. */
         const static SystemEvents PRE_FRAME;
-        
+
         /** @brief   The camera synchronization event. */
         const static SystemEvents CAMERA_SYNCH;
-        
+
         /** @brief   The frame synchronization event. */
         const static SystemEvents FRAME_SYNCH;
-        
+
         /** @brief   The frame event. */
         const static SystemEvents FRAME;
-        
+
         /** @brief   The post frame event. */
         const static SystemEvents POST_FRAME;
 

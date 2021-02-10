@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,13 +34,13 @@
 namespace trManager
 {
     /**
-    * This is the base class for all the messages in TR. It is immutable, 
-    * and all messages derived from it should keep that tradition. 
+    * This is the base class for all the messages in TR. It is immutable,
+    * and all messages derived from it should keep that tradition.
     */
     class TR_MANAGER_EXPORT MessageBase : public trBase::SmrtClass
     {
     public:
-        
+
         using BaseClass = trBase::SmrtClass;                /// Adds an easy and swappable access to the base class
 
         const static trUtil::RefStr MESSAGE_TYPE;           /// Holds the class/message type name for efficient comparisons

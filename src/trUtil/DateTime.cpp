@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -402,11 +402,11 @@ namespace trUtil
     {
 #ifdef TR_WIN
         _tzset();
-        long tz; 
+        long tz;
         _get_timezone(&tz);
         tz = tz * -1;
         float result = tz / 3600.0f;
-        
+
         if (factorLocalDayLightSavingsIntoGMTOffset)
         {
             result += timeParts.tm_isdst;
@@ -417,7 +417,7 @@ namespace trUtil
         // subtract it back out.
         long tz = timeParts.tm_gmtoff;
         float result = tz / 3600.0f;
-        
+
         if (!factorLocalDayLightSavingsIntoGMTOffset)
         {
             result -= timeParts.tm_isdst;
@@ -430,12 +430,12 @@ namespace trUtil
     void DateTime::SetGMTOffset(double /*latitude*/, double longitude, bool dayLightSavings)
     {
         double offset = 7.5;
-        
-        if (longitude < 0.0f) 
+
+        if (longitude < 0.0f)
         {
             offset = -offset;
         }
-        
+
         mGMTOffset = float(int(dayLightSavings) + int((longitude + offset) / 15.0));
     }
 

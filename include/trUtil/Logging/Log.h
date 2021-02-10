@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -204,7 +204,7 @@ namespace trUtil::Logging
          * @brief   A data structure that is used for Unit Tests
          */
         struct LogTestData
-        {            
+        {
             trUtil::Logging::LogLevel logLevel; /** @brief   Log level. */
             trUtil::DateTime time;              /** @brief   Time of message. */
             unsigned frameNumber;               /** @brief   The frame number. */

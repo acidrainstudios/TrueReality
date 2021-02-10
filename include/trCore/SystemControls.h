@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -50,14 +50,14 @@ namespace trCore
         const static SystemControls SPEED_DOWN;
 
         /**
-         * @brief   The set speed of the system.  
+         * @brief   The set speed of the system.
          *          Needs to have a systemValue passed in with the MessageSystemControl for actual speed.
          */
         const static SystemControls SET_TIME_SCALE;
 
         /** @brief   Shuts down the system loop and exits the program. */
         const static SystemControls SHUT_DOWN;
-        
+
     protected:
 
         /**

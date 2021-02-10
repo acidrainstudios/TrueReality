@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -466,7 +466,7 @@ namespace trUtil
          *
          * @brief   It is possible for two different path strings to point at the same file on disk.
          *          (Things like relative paths and filesystem links make this possible).
-         *          
+         *
          *          This function makes absolutely certain that the two files aren't the same by checking
          *          the inodes of the two files -- preventing things like having the FileUtils::FileCopy
          *          accidentally blow away a file by copying it onto itself.

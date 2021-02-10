@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -69,7 +69,7 @@ namespace trBase
          */
         implId(const implId& toCopy)
 		: mGUID(toCopy.mGUID)
-		{            
+		{
         }
 
         /**
@@ -81,7 +81,7 @@ namespace trBase
          */
         explicit implId(const std::string& toCopy)
 		: mGUID(bID::uuids::string_generator()(toCopy))
-		{            
+		{
         }
 
         /**
@@ -258,7 +258,7 @@ namespace trBase
 
     ////////////////////////////////////////////////
     UniqueId::UniqueId(const UniqueId& toCopy) : BaseClass()
-    { 
+    {
         // Create a NULL ID then copy the passed in IDs bits.
         mGUIDPtr = new implId(false);
         for (int i = 0; i < 16; ++i)

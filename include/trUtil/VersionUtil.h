@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -39,7 +39,7 @@ namespace trUtil
      * @class   VersionUtil
      *
      * @brief   A utility to read and control the engines version numbers.
-     *          
+     *
      * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT VersionUtil
@@ -74,7 +74,7 @@ namespace trUtil
          * @brief   Constructor.
          *
          * @param   fileName    Filename of the custom version file.
-         * @param   filePath    Full path to where the version file is located. 
+         * @param   filePath    Full path to where the version file is located.
          */
         VersionUtil(std::string fileName, std::string filePath);
 
@@ -229,7 +229,7 @@ namespace trUtil
          *
          * @return  The version string.
          */
-        std::string GetVersionString();  
+        std::string GetVersionString();
 
         /**
          * @fn  void VersionUtil::UpdateVersion();
@@ -237,7 +237,7 @@ namespace trUtil
          * @brief   Updates the version file to the most recent HG/Git Revision and YTMM.
          */
         void UpdateVersion();
-        
+
     private:
         JSON::File mVersion;
 
@@ -262,6 +262,6 @@ namespace trUtil
          *
          * @return  The current commit number.
          */
-        int GetCurrentCommitNum();        
+        int GetCurrentCommitNum();
     };
 }

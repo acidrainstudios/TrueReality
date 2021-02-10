@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -40,11 +40,11 @@ namespace trUtil
     const std::string VersionUtil::MIN_VERSION = std::string("Minor");
     const std::string VersionUtil::YYMM_VERSION = std::string("YYMM");
     const std::string VersionUtil::BUILD_VERSION = std::string("Build");
-    
+
     //////////////////////////////////////////////////////////////////////////
     VersionUtil::VersionUtil() : VersionUtil(VERSION_FILE_NAME, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
     {}
-    
+
     //////////////////////////////////////////////////////////////////////////
     VersionUtil::VersionUtil(std::string fileName) : VersionUtil(fileName, trUtil::PathUtils::GetConfigPath(), PathUtils::GetRootPath())
     {}
@@ -81,13 +81,13 @@ namespace trUtil
     VersionUtil::~VersionUtil()
     {
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SaveVersionFile()
     {
         mVersion.WriteToFile();
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SetVersion(int maj, int min, std::string yymm, int build)
     {
@@ -96,7 +96,7 @@ namespace trUtil
         SetYYMMVersion(yymm);
         SetBuildVersion(build);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SetVersion(int maj, int min, int yymm, int build)
     {
@@ -105,69 +105,69 @@ namespace trUtil
         SetYYMMVersion(yymm);
         SetBuildVersion(build);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::GenerateVersionStructure()
     {
         SetVersion(0, 0, GetTodaysVersionDate(), GetCurrentCommitNum());
-        
+
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::IncrementVersion()
     {
         SetYYMMVersion(GetTodaysVersionDate());
         SetBuildVersion(GetBuildVersion()+1);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SetMajorVersion(int maj)
     {
         mVersion.SetInt(MAJ_VERSION, maj);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     int VersionUtil::GetMajorVersion()
     {
         return mVersion.GetInt(MAJ_VERSION);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SetMinorVersion(int min)
     {
         mVersion.SetInt(MIN_VERSION, min);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     int VersionUtil::GetMinorVersion()
     {
         return mVersion.GetInt(MIN_VERSION);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SetYYMMVersion(std::string yymm)
     {
         mVersion.SetString(YYMM_VERSION, yymm);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SetYYMMVersion(int yymm)
     {
         mVersion.SetInt(YYMM_VERSION, yymm);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     std::string VersionUtil::GetYYMMVersion()
     {
         return mVersion.GetString(YYMM_VERSION);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::SetBuildVersion(int build)
     {
         mVersion.SetInt(BUILD_VERSION, build);
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     int VersionUtil::GetBuildVersion()
     {
@@ -177,27 +177,27 @@ namespace trUtil
     std::string VersionUtil::GetVersionString()
     {
         std::stringstream ver;
-        
+
         ver << GetMajorVersion() << "." << GetMinorVersion() << "." << GetYYMMVersion() << "." << GetBuildVersion();
-        
+
         if (GetMajorVersion() == 0 && GetMinorVersion() == 0)
         {
             LOG_E("Version should not be 0.0, something is wrong...")
         }
         return ver.str();
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     std::string VersionUtil::GetTodaysVersionDate()
     {
         DateTime date(time(0)); //Gets todays date
         std::stringstream ver;
         std::string temp;
-        
+
         //Convert the year to a string
         ver << date.GetYear();
         temp = ver.str();
-        
+
         //Check if we have the full year format of 4 characters ex: "1999" and grab the last two
         if (temp.size() == 4)
         {
@@ -209,24 +209,24 @@ namespace trUtil
             //If the format is wrong, return nothing
             return "";
         }
-        
+
         //Appends the month value, making the month always have 2 digits. Ex 6 would be 06
         ver << std::setfill('0') << std::setw(2) << date.GetMonth();
-        
+
         return ver.str();
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     int VersionUtil::GetCurrentCommitNum()
     {
         try
         {
-            //Try to get the version number from HG or GIT repo. If HG repo is not present, try GIT, if GIT is not present, fail. 
-            
+            //Try to get the version number from HG or GIT repo. If HG repo is not present, try GIT, if GIT is not present, fail.
+
             //Get the revision number string from the HG repo
             std::cerr << "\nChecking for an HG repo..." << std::endl;
             std::string rev = trUtil::FileUtils::GetInstance().RunCommand("hg -R " + mRepoPath + " identify --num");
-            
+
             if (rev == trUtil::StringUtils::STR_BLANK)
             {
                 //Get the revision number string from the GIT repo
@@ -241,27 +241,27 @@ namespace trUtil
                     std::cerr << ".hg (HG Repo) or .git (Git Repo) is needed for this to work. Check that an HG or Git command line client is present." << std::endl;
                     trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::DEFAULT);
                 }
-                
+
             }
-            
+
             //Extract the revision number from the string
             trUtil::StringUtils::FindAndReplace(rev, "\n", "");
-            trUtil::StringUtils::FindAndReplace(rev, "+", ""); 
-            
+            trUtil::StringUtils::FindAndReplace(rev, "+", "");
+
             //Convert the string to an integer
             return trUtil::StringUtils::FromString<int>(rev);
         }
         catch (trUtil::Exception &ex)
         {
             ex.LogException();
-        }        
+        }
         return -1;
     }
-    
+
     //////////////////////////////////////////////////////////////////////////
     void VersionUtil::UpdateVersion()
     {
-        //Adds +1 to the current commit number to encompass the version commit. 
+        //Adds +1 to the current commit number to encompass the version commit.
         SetVersion(GetMajorVersion(), GetMinorVersion(), GetTodaysVersionDate(), GetCurrentCommitNum()+1);
     }
 }

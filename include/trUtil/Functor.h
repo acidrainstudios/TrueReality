@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -37,11 +37,11 @@
  */
 namespace trUtil
 {
-    // Generalized functor implementation. Concept inspired by Andrei Alexandrescu. 
-    // Copyright Aleksei Trunov 2005 
+    // Generalized functor implementation. Concept inspired by Andrei Alexandrescu.
+    // Copyright Aleksei Trunov 2005
     // Use, copy, modify, distribute and sell it for free.
-    // 
-    // Generalized functor class template 
+    //
+    // Generalized functor class template
 
 
     /**
@@ -151,7 +151,7 @@ namespace trUtil
             using StoredType = MemberFnImpl<P, MF>;
             vptr_ = _init<StoredType>(std::pair<P, MF>(pobj, memfun));
         }
-        // calls 
+        // calls
         using Parm1 = typename trUtil::TypeAtNonStrict<TList, 0, trUtil::NullType>::Result;
         using Parm2 = typename trUtil::TypeAtNonStrict<TList, 1, trUtil::NullType>::Result;
         using Parm3 = typename trUtil::TypeAtNonStrict<TList, 2, trUtil::NullType>::Result;

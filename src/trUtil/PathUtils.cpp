@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -51,9 +51,9 @@
 namespace trUtil::PathUtils
 {
     static OpenThreads::Mutex gDatapathMutex;
-        
+
     static std::string mDataPath = trUtil::StringUtils::STR_BLANK;
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string GetUserHomeDirectory()
     {
@@ -77,12 +77,12 @@ namespace trUtil::PathUtils
 #endif
         return homedir;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string GetDataPath()
     {
         std::string result;
-            
+
         if (mDataPath != trUtil::StringUtils::STR_BLANK)
         {
             result = mDataPath;
@@ -102,7 +102,7 @@ namespace trUtil::PathUtils
 #ifdef TR_APPLE
         // Have to recheck because the get environment call doesn't currently return empty when it doesn't exist.
         char* ptr = getenv(EnvVariables::TR_DATA);
-            
+
         if (mDataPath != trUtil::StringUtils::STR_BLANK)
         {
             result = mDataPath;
@@ -112,16 +112,16 @@ namespace trUtil::PathUtils
             result = GetBundleResourcesPath() + DATA_PATH_DEFAULT;
         }
 #endif
-            
+
         return result;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     void SetDataPath(std::string& path)
     {
         mDataPath = path;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     void CreateDataPathTree()
     {
@@ -142,7 +142,7 @@ namespace trUtil::PathUtils
             ex.LogException();
         }
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     void CreateUserDataPathTree()
     {
@@ -163,7 +163,7 @@ namespace trUtil::PathUtils
             ex.LogException();
         }
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     void CreateDataPathTrees()
     {
@@ -201,7 +201,7 @@ namespace trUtil::PathUtils
 #endif
         return result;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string GetLogPath()
     {
@@ -235,14 +235,14 @@ namespace trUtil::PathUtils
             userDir = GetUserHomeDirectory() + DEFAULT_TR_FOLDER;
 #endif
             return userDir;
-        }           
+        }
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     void SetDataFilePathList(const std::string& pathList)
     {
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(gDatapathMutex);
-            
+
         std::string modpath = pathList;
         std::string::size_type pathLength = pathList.size();
         for (std::string::size_type i = 0; i < pathLength; ++i)
@@ -272,21 +272,21 @@ namespace trUtil::PathUtils
         }
         osgDB::setDataFilePathList(modpath);
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string GetDataFilePathList()
     {
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(gDatapathMutex);
-            
+
         osgDB::FilePathList pathList = osgDB::getDataFilePathList();
-            
+
         std::string pathString = "";
-            
+
         using StringDeque = std::deque<std::string>;
         for (StringDeque::iterator itr = pathList.begin(); itr != pathList.end(); ++itr)
         {
             pathString += *itr;
-                
+
             StringDeque::iterator next = itr + 1;         if (next != pathList.end())
             {
 #ifdef TR_WIN
@@ -296,17 +296,17 @@ namespace trUtil::PathUtils
 #endif
             }
         }
-            
+
         return pathString;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string FindFile(const std::string& fileName)
     {
         OpenThreads::ScopedLock<OpenThreads::Mutex> lock(gDatapathMutex);
-            
+
         std::string filePath = osgDB::findDataFile(fileName, osgDB::CASE_INSENSITIVE);
-            
+
         // In some cases, filePath will contain a url that is
         // relative to the current working directory so for
         // consistency, be sure to return the full path every time
@@ -314,16 +314,16 @@ namespace trUtil::PathUtils
         {
             filePath = osgDB::getRealPath(filePath);
         }
-            
+
         return filePath;
-            
+
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string FindFile(const std::string& fileName, std::vector<std::string> pathList, bool caseInsensitive)
     {
         std::vector<std::string>::const_iterator itor;
-            
+
         trUtil::FileUtils& fileUtils = trUtil::FileUtils::GetInstance();
         std::string path;
         for (itor = pathList.begin(); itor != pathList.end(); ++itor)
@@ -332,17 +332,17 @@ namespace trUtil::PathUtils
             //Make sure we remove any trailing slashes from the cache path.
             if (path[path.length() - 1] == '/' || path[path.length() - 1] == '\\')
                 path = path.substr(0, path.length() - 1);
-                
+
             FileInfo fi = fileUtils.GetFileInfo(path + FileUtils::PATH_SEPARATOR + fileName, caseInsensitive);
             if (fi.fileType != FILE_NOT_FOUND)
             {
                 return fi.fileName;
             }
         }
-            
+
         return std::string();
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string GetEnvironment(const std::string& env)
     {
@@ -366,7 +366,7 @@ namespace trUtil::PathUtils
             return std::string("./");
         }
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     void SetEnvironment(const std::string& name, const std::string& value)
     {
@@ -378,9 +378,9 @@ namespace trUtil::PathUtils
         setenv(name.c_str(), value.c_str(), true);
 #endif
     }
-        
+
 #ifdef TR_APPLE
-    /////////////////////////////////////////////////////////////////////////////              
+    /////////////////////////////////////////////////////////////////////////////
     std::string GetBundleResourcesPath()
     {
         // Since this is currently the only Objective-C code in the
@@ -390,18 +390,18 @@ namespace trUtil::PathUtils
         // so I don't think there will be a problem if multiple pools
         // exist at a time.
         NSAutoreleasePool* mypool = [[NSAutoreleasePool alloc] init];
-            
+
         // This is the path to the resources inside the app bundle.
         NSString* resourcePathNS = [[NSBundle mainBundle] resourcePath];
-            
+
         // Make a c string from the cocoa one tack data on the end.
         std::string result = std::string([resourcePathNS UTF8String]);
-            
+
         // Clean up the autorelease pool
         [mypool release];
         return result;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string GetBundlePlugInsPath()
     {
@@ -412,18 +412,18 @@ namespace trUtil::PathUtils
         // so I don't think there will be a problem if multiple pools
         // exist at a time.
         NSAutoreleasePool* mypool = [[NSAutoreleasePool alloc] init];
-            
+
         // This is the path to the resources inside the app bundle.
         NSString* resourcePathNS = [[NSBundle mainBundle] builtInPlugInsPath];
-            
+
         // Make a c string from the cocoa one tack data on the end.
         std::string result = std::string([resourcePathNS UTF8String]);
-            
+
         // Clean up the autorelease pool
         [mypool release];
         return result;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     std::string GetBundlePath()
     {
@@ -434,18 +434,18 @@ namespace trUtil::PathUtils
         // so I don't think there will be a problem if multiple pools
         // exist at a time.
         NSAutoreleasePool* mypool = [[NSAutoreleasePool alloc] init];
-            
+
         // This is the path to the resources inside the app bundle.
         NSString* resourcePathNS = [[NSBundle mainBundle] bundlePath];
-            
+
         // Make a c string from the cocoa one tack data on the end.
         std::string result = std::string([resourcePathNS UTF8String]);
-            
+
         // Clean up the autorelease pool
         [mypool release];
         return result;
     }
-        
+
     /////////////////////////////////////////////////////////////////////////////
     void RemovePSNCommandLineOption(int& argc, char**& argv)
     {
@@ -470,7 +470,7 @@ namespace trUtil::PathUtils
         }
     }
 #endif
-        
+
     /////////////////////////////////////////////////////////////////////////////
     bool IsEnvironment(const std::string& env)
     {

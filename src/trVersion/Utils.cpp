@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -37,9 +37,9 @@
 void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::string& logLevel, bool &updateVer, bool &incVer, int &majVer, int &minVer, std::string &yymmVer, int &buildVer)
 {
     osg::ArgumentParser arguments(&argc, argv);
-    
+
     arguments.getApplicationUsage()->setApplicationName(PROGRAM_NAME);
-    
+
     arguments.getApplicationUsage()->addCommandLineOption("\n--setBuild                 ", "Sets the softwares Build version");
     arguments.getApplicationUsage()->addCommandLineOption("\n--setYYMM                  ", "Sets the softwares YYMM version");
     arguments.getApplicationUsage()->addCommandLineOption("\n--setMinor                 ", "Sets the softwares Minor version");
@@ -53,7 +53,7 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::str
     trUtil::Logging::LOG_WARNING_STR + ", " +
     trUtil::Logging::LOG_ERROR_STR + "");
     arguments.getApplicationUsage()->addCommandLineOption("\n--help, /help, -h, /h, /?  ", "Show this help screen.");
-    
+
     if (arguments.read("--help") == true ||
         arguments.read("/help") == true ||
         arguments.read("-h") == true ||
@@ -63,20 +63,20 @@ void ParseCmdLineArgs(int& argc, char** argv, std::string& logFileName, std::str
         arguments.getApplicationUsage()->write(std::cout);
         exit(0);
     }
-    
+
     if (arguments.read("--updateVer") == true)
     {
         updateVer = true;
     }
-    
+
     if (arguments.read("--incVer") == true)
     {
         incVer = true;
     }
-    
+
     arguments.read("--logFileName", logFileName);
     arguments.read("--logLevel", logLevel);
-    
+
     arguments.read("--setBuild", buildVer);
     arguments.read("--setYYMM",  yymmVer);
     arguments.read("--setMinor", minVer);

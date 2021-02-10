@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright � 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -247,7 +247,7 @@ namespace trManager
         {
             if (!RemoveActorModule(*mActorModules[index]))
             {
-                //If one of the removals fail, stop and return a failure. 
+                //If one of the removals fail, stop and return a failure.
                 LOG_E("Error in removing " + mActorModules[index]->GetEntityType().GetName())
                 return false;
             }
@@ -277,7 +277,7 @@ namespace trManager
     {
         BaseClass::OnAddedToSysMan();
 
-        //ReAttach all modules, if we have any saved in the reattach list. 
+        //ReAttach all modules, if we have any saved in the reattach list.
         for (unsigned int index = 0; index < mActModReAttachStore.size(); ++index)
         {
             AddActorModule(*mActModReAttachStore[index]);
@@ -292,8 +292,8 @@ namespace trManager
     {
         BaseClass::OnRemovedFromSysMan();
 
-        //Make the vector a needed size to speed up assignment. 
-        mActModReAttachStore.reserve(mActorModules.size()); 
+        //Make the vector a needed size to speed up assignment.
+        mActModReAttachStore.reserve(mActorModules.size());
 
         //Store all the registered modules so we can re-attach them if we re-register with System Manager
         for (unsigned int index = 0; index < mActorModules.size(); ++index)
@@ -301,7 +301,7 @@ namespace trManager
             mActModReAttachStore.push_back(mActorModules[index]);
         }
 
-        //Remove all Modules to make sure we don't have a memory leak if this instance is deleted. 
+        //Remove all Modules to make sure we don't have a memory leak if this instance is deleted.
         RemoveAllActorModules();
     }
 }

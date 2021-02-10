@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -28,7 +28,7 @@
 
 namespace trUtil::Console
 {
-    
+
     void Logo(void)
     {
         trUtil::VersionUtil ver;
@@ -56,7 +56,7 @@ namespace trUtil::Console
         std::cout << "                        ----------------------------\n\n\n " << std::endl;
         Console::TextColor(TXT_COLOR::BRIGHT_BLUE);
 
-            
+
         std::cout << "       True Reality " << ver.GetMajorVersion() << "." << ver.GetMinorVersion();
         std::cout << " is an Open Source SDK of Virtual Reality" << std::endl;
         std::cout << "       Simulation Modules created and Copyright by Acid Rain Studios LLC" << std::endl;
@@ -67,5 +67,5 @@ namespace trUtil::Console
         std::cout << "    ***********************************************************************\n\n\n " << std::endl;
         Console::TextColor(TXT_COLOR::DEFAULT);
 
-    }        
+    }
 }

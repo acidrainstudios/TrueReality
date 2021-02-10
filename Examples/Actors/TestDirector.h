@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -33,10 +33,10 @@ public:
 
     const static trUtil::RefStr CLASS_TYPE;                 /// Holds the class type name for efficient comparisons
 
-    const static int MAX_FRAME_NUMBER = 25;                 ///Number of frames for the loop to run. 
-    const static int NEW_ACTOR_FRAME_NUMBER = 5;            ///Number of frames when a new actor is created. 
-    const static int INTERCEPT_ACTOR_FRAME_NUMBER = 10;     ///Number of frames when the intercept actor is created. 
-    const static int KILL_INTERCEPT_ACTOR_FRAME_NUMBER = 15;///Number of frames when the intercept actor is created. 
+    const static int MAX_FRAME_NUMBER = 25;                 ///Number of frames for the loop to run.
+    const static int NEW_ACTOR_FRAME_NUMBER = 5;            ///Number of frames when a new actor is created.
+    const static int INTERCEPT_ACTOR_FRAME_NUMBER = 10;     ///Number of frames when the intercept actor is created.
+    const static int KILL_INTERCEPT_ACTOR_FRAME_NUMBER = 15;///Number of frames when the intercept actor is created.
     const static int KILL_ACTOR_FRAME_NUMBER = 20;          ///Number of frames when the created actor is removed.
 
     /**

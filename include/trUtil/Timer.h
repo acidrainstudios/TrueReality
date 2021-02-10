@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2019 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -32,7 +32,7 @@
  * @brief   .
  */
 namespace trUtil
-{    
+{
 
 #if defined(TR_WIN)
     /** @brief   64bit Integer to hold the Timers time ticks. */
@@ -50,7 +50,7 @@ namespace trUtil
      * @return  A TR_UTIL_EXPORT.
      *
      * @param   milliseconds    The milliseconds.
-     *                          
+     *
      * @author Maxim Serebrennik
      */
     void TR_UTIL_EXPORT AppSleep(unsigned int milliseconds);
@@ -59,7 +59,7 @@ namespace trUtil
      * @class   Timer
      *
      * @brief   Timer class is used for measuring elapsed time or time between two points.
-     *          
+     *
      * @author Maxim Serebrennik
      */
     class TR_UTIL_EXPORT Timer
@@ -97,7 +97,7 @@ namespace trUtil
          *
          * @return  The TimeTicks.
          */
-        TimeTicks Tick() 
+        TimeTicks Tick()
         {
             mOldTicks = mNewTicks;
             mNewTicks = (mTimer.tick() + mCustomTicks);
