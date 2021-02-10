@@ -1,5 +1,5 @@
 # True Reality Open Source Game and Simulation Engine
-# Copyright © 2020 Acid Rain Studios LLC
+# Copyright © 2021 Acid Rain Studios LLC
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -30,7 +30,7 @@
 SET (DEPENDENCY "bID")
 
 # Finds the include files necessary for compilation
-FIND_PATH (${DEPENDENCY}_INCLUDE_DIR bID/version.hpp    
+FIND_PATH (${DEPENDENCY}_INCLUDE_DIR bID/version.hpp
     HINTS
     $ENV{bID_INC}
     $ENV{bID_ROOT}/include

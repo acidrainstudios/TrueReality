@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -36,7 +36,7 @@ namespace trBase
     class Matrixd;
 
     /**
-    * A float Matrix class to be used for generic matrix operations. 
+    * A float Matrix class to be used for generic matrix operations.
     */
     class TR_BASE_EXPORT Matrixf
     {
@@ -83,7 +83,7 @@ namespace trBase
          *
          * @param   mat The matrix.
          */
-        Matrixf(const Matrixd& mat);      
+        Matrixf(const Matrixd& mat);
 
         /**
          * @fn  explicit Matrixf::Matrixf(float const * const ptr);

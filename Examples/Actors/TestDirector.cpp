@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -97,7 +97,7 @@ void TestDirector::OnMessage(const trManager::MessageBase& msg)
     }
     else if (msg.GetMessageType() == trManager::MessageEntityRegistered::MESSAGE_TYPE)
     {
-        
+
     }
 }
 
@@ -161,7 +161,7 @@ void TestDirector::HandleSystemEvent(const trManager::MessageBase& msg)
     {
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_RED);
         std::cout << "Event Type " << trCore::SystemEvents::SHUTTING_DOWN << std::endl;
-    }  
+    }
     else if (msgPtr->GetSysEventType() == trCore::SystemEvents::TIME_SCALE_CHANGED)
     {
         trUtil::Console::TextColor(trUtil::Console::TXT_COLOR::BRIGHT_BLUE);
@@ -202,7 +202,7 @@ void TestDirector::HandleTickMessage(const trManager::MessageBase& msg)
 
         //Register a new actor
         trBase::SmrtPtr<TestActor2> actor = new TestActor2();
-        mActorsId = actor->GetUUID(); //Save the actors ID for later use. 
+        mActorsId = actor->GetUUID(); //Save the actors ID for later use.
         mSysMan->RegisterActor(*actor);
 
     }
@@ -220,7 +220,7 @@ void TestDirector::HandleTickMessage(const trManager::MessageBase& msg)
         std::cout << GetName() << ": Creating TestActor3" << std::endl;
 
         //Register a new actor
-        trBase::SmrtPtr<TestActor3> actor = new TestActor3();        
+        trBase::SmrtPtr<TestActor3> actor = new TestActor3();
         mSysMan->RegisterActor(*actor);
 
         //Make the actor listen to messages about another actor

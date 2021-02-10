@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -128,8 +128,8 @@ namespace trManager
 
     private:
 
-        const int* mFrameNumber;       //Holds the current frame number. 
-        const double* mDeltaSimTime;   //Scaled Time between frames in seconds. 
+        const int* mFrameNumber;       //Holds the current frame number.
+        const double* mDeltaSimTime;   //Scaled Time between frames in seconds.
         const double* mDeltaRealTime;  //Non-scaled Time between frames.
         const double* mSimTime;        //Scaled time of the current simulation run.
         const double* mRealTime;       //Non-scaled time of the current simulation run.

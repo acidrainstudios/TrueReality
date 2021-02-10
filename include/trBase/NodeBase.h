@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -32,10 +32,10 @@
 
 namespace trBase
 {
-    
+
     /**
     * Base class for creating all the scenegraphs nodes.
-    * Internally it contains an OSG Node, that can be accessed by user if additional functionality is required. 
+    * Internally it contains an OSG Node, that can be accessed by user if additional functionality is required.
     */
     class TR_BASE_EXPORT NodeBase : public trBase::Base
     {
@@ -79,7 +79,7 @@ namespace trBase
         * Returns a pointer to the internal OSG Node
         */
         virtual osg::Node* AsOSGNode();
-        
+
         /**
         * Returns a constant pointer to the internal OSG Node
         */
@@ -98,7 +98,7 @@ namespace trBase
         virtual const trBase::UserDataContainer* GetUserData() const;
 
         /**
-        * Sets the user data for the current instance 
+        * Sets the user data for the current instance
         */
         virtual void SetUserData(trBase::UserDataContainer* data);
 

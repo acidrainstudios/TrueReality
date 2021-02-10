@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -33,8 +33,8 @@ namespace trManager
     /**
      * @class   DirectorBase
      *
-     * @brief   A director base. Serves as the base class for all directors in the Entity System. A director should be used as 
-     *          a general manager for an overarching subsystem in the software. 
+     * @brief   A director base. Serves as the base class for all directors in the Entity System. A director should be used as
+     *          a general manager for an overarching subsystem in the software.
      */
     class TR_MANAGER_EXPORT DirectorBase : public trManager::ActorBase
     {

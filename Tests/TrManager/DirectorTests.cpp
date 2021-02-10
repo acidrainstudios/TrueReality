@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -37,7 +37,7 @@ DirectorTests::DirectorTests()
 : mSysMan(&trManager::SystemManager::GetInstance())	//Create an instance of the System Manager
 , mSysDirector(new trCore::SystemDirector())		//Create and register the System Director
 {
-    //We want the System Director to get and handle all messages before any other Director. 
+    //We want the System Director to get and handle all messages before any other Director.
     mSysMan->RegisterDirector(*mSysDirector, trManager::DirectorPriority::HIGHEST);
 }
 
@@ -68,7 +68,7 @@ DirectorTests::~DirectorTests()
 TEST_F(DirectorTests, AddRemoveDirector)
 {
     //Make sure we have no instances of this director
-    EXPECT_EQ(TestDirector2::GetInstCount(), 0);  
+    EXPECT_EQ(TestDirector2::GetInstCount(), 0);
 
     //Add a Director to the system
     trBase::SmrtPtr<TestDirector2> director = new TestDirector2();
@@ -80,7 +80,7 @@ TEST_F(DirectorTests, AddRemoveDirector)
     //We should have one director in the system of this type
     EXPECT_EQ(TestDirector2::GetInstCount(), 1);
 
-    //Unregister the director. 
+    //Unregister the director.
     EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time
@@ -93,7 +93,7 @@ TEST_F(DirectorTests, AddRemoveDirector)
 /**
  * @fn  TEST_F(DirectorTest, TimeScale)
  *
- * @brief   Tests the change of time scale. 
+ * @brief   Tests the change of time scale.
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
@@ -110,8 +110,8 @@ TEST_F(DirectorTests, TimeScale)
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 
-    //Check that the time scale has changed 
-    EXPECT_EQ(mSysDirector->GetTimeStructure().timeScale, 20.69);    
+    //Check that the time scale has changed
+    EXPECT_EQ(mSysDirector->GetTimeStructure().timeScale, 20.69);
 
     //Send a message to change time scale
     msg = new trCore::MessageSystemControl(new trBase::UniqueId(), trCore::SystemControls::SET_TIME_SCALE, 1.0);
@@ -153,7 +153,7 @@ TEST_F(DirectorTests, TickMessage)
     //Check for the number of tick messages
     EXPECT_EQ(director->GetTickMsgNumber(), 2);
 
-    //Unregister the director. 
+    //Unregister the director.
     EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time
@@ -163,7 +163,7 @@ TEST_F(DirectorTests, TickMessage)
 /**
  * @fn  TEST_F(DirectorTest, SystemEventMsg)
  *
- * @brief   Tests the System Event Message and its content. 
+ * @brief   Tests the System Event Message and its content.
  *
  * @param   parameter1  The first parameter.
  * @param   parameter2  The second parameter.
@@ -174,7 +174,7 @@ TEST_F(DirectorTests, SystemEventMsg)
     trBase::SmrtPtr<TestDirector1> director = new TestDirector1();
     EXPECT_EQ(mSysMan->RegisterDirector(*director, trManager::DirectorPriority::NORMAL), true);
 
-    //Check the number of frame events received. 
+    //Check the number of frame events received.
     EXPECT_EQ(director->GetEventTraversalEventMsgNum(), 0);
     EXPECT_EQ(director->GetPostEventTraversalEventMsgNum(), 0);
     EXPECT_EQ(director->GetPreFrameEventMsgNum(), 0);
@@ -186,7 +186,7 @@ TEST_F(DirectorTests, SystemEventMsg)
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 
-    //Check the number of frame events received. 
+    //Check the number of frame events received.
     EXPECT_EQ(director->GetEventTraversalEventMsgNum(), 1);
     EXPECT_EQ(director->GetPostEventTraversalEventMsgNum(), 1);
     EXPECT_EQ(director->GetPreFrameEventMsgNum(), 1);
@@ -199,7 +199,7 @@ TEST_F(DirectorTests, SystemEventMsg)
     mSysDirector->RunOnce();
     mSysDirector->RunOnce();
 
-    //Check the number of frame events received. 
+    //Check the number of frame events received.
     EXPECT_EQ(director->GetEventTraversalEventMsgNum(), 3);
     EXPECT_EQ(director->GetPostEventTraversalEventMsgNum(), 3);
     EXPECT_EQ(director->GetPreFrameEventMsgNum(), 3);
@@ -208,7 +208,7 @@ TEST_F(DirectorTests, SystemEventMsg)
     EXPECT_EQ(director->GetFrameEventMsgNum(), 3);
     EXPECT_EQ(director->GetPostFrameEventMsgNum(), 3);
 
-    //Unregister the director. 
+    //Unregister the director.
     EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
     //Advance System Manager one frame at a time
@@ -229,7 +229,7 @@ TEST_F(DirectorTests, FrameEventMsg)
     trBase::SmrtPtr<TestDirector1> director = new TestDirector1();
     EXPECT_EQ(mSysMan->RegisterDirector(*director, trManager::DirectorPriority::NORMAL), true);
 
-    //Check the number of frame events received. 
+    //Check the number of frame events received.
     EXPECT_EQ(director->GetEventTraversalMsgNum(), 0);
     EXPECT_EQ(director->GetPostEventTraversalMsgNum(), 0);
     EXPECT_EQ(director->GetCameraSynchMsgNum(), 0);
@@ -240,7 +240,7 @@ TEST_F(DirectorTests, FrameEventMsg)
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 
-    //Check the number of frame events received. 
+    //Check the number of frame events received.
     EXPECT_EQ(director->GetEventTraversalMsgNum(), 1);
     EXPECT_EQ(director->GetPostEventTraversalMsgNum(), 1);
     EXPECT_EQ(director->GetCameraSynchMsgNum(), 1);
@@ -252,7 +252,7 @@ TEST_F(DirectorTests, FrameEventMsg)
     mSysDirector->RunOnce();
     mSysDirector->RunOnce();
 
-    //Check the number of frame events received. 
+    //Check the number of frame events received.
     EXPECT_EQ(director->GetEventTraversalMsgNum(), 3);
     EXPECT_EQ(director->GetPostEventTraversalMsgNum(), 3);
     EXPECT_EQ(director->GetCameraSynchMsgNum(), 3);
@@ -260,10 +260,10 @@ TEST_F(DirectorTests, FrameEventMsg)
     EXPECT_EQ(director->GetFrameMsgNum(), 3);
     EXPECT_EQ(director->GetPostFrameMsgNum(), 3);
 
-    //Unregister the director. 
+    //Unregister the director.
     EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
-    //Advance System Manager one frame at a time  
+    //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 }
 
@@ -317,11 +317,11 @@ TEST_F(DirectorTests, SendReceiveMsg)
     //Check how many messages we have
     EXPECT_EQ(director->GetTestMessageNum(), 4);
 
-    //Unregister the director. 
+    //Unregister the director.
     EXPECT_EQ(mSysMan->UnregisterDirector(*director2.Release()), true);
     EXPECT_EQ(mSysMan->UnregisterDirector(*director.Release()), true);
 
-    //Advance System Manager one frame at a time  
+    //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 
     //We should have no director2 in the system of this type

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -31,7 +31,7 @@ namespace trBase
 {
     /**
     * Smart pointer for handling referenced counted objects.
-    */ 
+    */
     template<class T>
     class SmrtPtr
     {
@@ -202,7 +202,7 @@ namespace trBase
 
         osg::ref_ptr<T> mOSGSmartPtr;  //Pointer to the internal OSG smart pointer
 
-    };    
+    };
 }
 
 namespace trUtil

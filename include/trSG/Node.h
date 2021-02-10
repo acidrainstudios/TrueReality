@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -41,10 +41,10 @@ namespace osg
 
 namespace trSG
 {
-    
+
     /**
     * Class for wrapping the osg node
-    * Internally it contains an OSG Node, that can be accessed by user if additional functionality is required. 
+    * Internally it contains an OSG Node, that can be accessed by user if additional functionality is required.
     */
     class TR_SG_EXPORT Node : public trBase::Base
     {
@@ -57,9 +57,9 @@ namespace trSG
         /**
          * @brief   This is a set of bits (flags) that represent the Node. The default value is
          *          0xffffffff (all bits set).
-         *          
+         *
          *          The most common use of these is during traversal of the scene graph.
-         *          
+         *
          *          For example, if a Node has a NodeMask value of 0x02 (only 2nd bit set)
          *          and the Camera has a CullMask of 0x4 (2nd bit not set) then during cull traversal,
          *          which takes it's TraversalMask from the Camera's CullMask, the node and any children
@@ -116,10 +116,10 @@ namespace trSG
 
         /** Visitor Pattern : calls the apply method of a NodeVisitor with this node's type.*/
         //virtual void accept(NodeVisitor& nv);
-        
+
         /** Traverse upwards : calls parents' accept method with NodeVisitor.*/
         //virtual void ascend(NodeVisitor& nv);
-        
+
         /** Traverse downwards : calls children's accept method with NodeVisitor.*/
         //virtual void traverse(NodeVisitor& /*nv*/) {}
 

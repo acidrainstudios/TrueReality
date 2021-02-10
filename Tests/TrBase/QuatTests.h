@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -37,10 +37,10 @@
  * @brief   Sets up test environment for Quaternion class tests.
  */
 class QuatTests : public ::testing::Test
-{   
+{
 
 public:
-    
+
     /** @brief   The test quaternion. */
     trBase::Quat mTestQuat;
 

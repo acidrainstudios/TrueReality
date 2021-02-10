@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -32,8 +32,8 @@ public:
 
     const static trUtil::RefStr CLASS_TYPE;         /// Holds the class type name for efficient comparisons
 
-    const static int MAX_FRAME_NUMBER = 25;         ///Number of frames for the loop to run. 
-    const static int SPEED_FRAME_NUMBER = 5;        ///Number of frames on which the TimeScale should be increased. 
+    const static int MAX_FRAME_NUMBER = 25;         ///Number of frames for the loop to run.
+    const static int SPEED_FRAME_NUMBER = 5;        ///Number of frames on which the TimeScale should be increased.
 
     /**
      * @fn  TestDirector::TestDirector(const std::string& name = CLASS_TYPE);
