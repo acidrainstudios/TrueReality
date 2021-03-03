@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -31,12 +31,12 @@
 #include <string>
 #include <vector>
 
-namespace trBase 
+namespace trBase
 {
     /**
-    * This class hold custom user data. 
+    * This class hold custom user data.
     * Since all the objects in this class can be different, it is strongly encouraged to use
-    * the Description field to note what objects are stored in the instance. 
+    * the Description field to note what objects are stored in the instance.
     */
     class TR_BASE_EXPORT UserDataContainer : public trBase::Base
     {
@@ -60,7 +60,7 @@ namespace trBase
         * Returns the user data object
         */
         virtual trBase::SmrtClass* GetUserDataContainer();
-        
+
         /**
         * Returns the user data object
         */
@@ -97,7 +97,7 @@ namespace trBase
         virtual const std::string GetDescription(int index = 0) const;
 
         /**
-        * Adds a new description string to the list of descriptions 
+        * Adds a new description string to the list of descriptions
         */
         virtual void AddDescription(std::string description);
 
@@ -107,7 +107,7 @@ namespace trBase
         virtual void SetDescriptions(std::vector<std::string> descriptions);
 
         /**
-        * Returns the list of all the user objects cast down to Base class. 
+        * Returns the list of all the user objects cast down to Base class.
         */
         virtual std::vector<trBase::SmrtPtr<trBase::Base>> GetObjectList();
 
@@ -140,7 +140,7 @@ namespace trBase
         * Set a new list of objects
         */
         virtual void SetObjects(std::vector<trBase::SmrtPtr<trBase::Base>> objList);
-        
+
     protected:
 
         trBase::SmrtPtr<trBase::SmrtClass> mUserDataContainer;

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * The Base of this class has been adopted from the Delta3D engine
 *
@@ -184,7 +184,7 @@ namespace trUtil
         }
         return true;
     }
-    
+
     /////////////////////////////////////////////////////////////////////////////
     std::string FileUtils::RunCommand(const std::string cmd)
     {
@@ -196,12 +196,12 @@ namespace trUtil
     {
         char buffer[128];
         std::string result = "";
-        
-#ifdef TR_WIN   // If we are in windows        
+
+#ifdef TR_WIN   // If we are in windows
         std::shared_ptr<FILE> pipe(_popen(cmd, "r"), _pclose);
 #else
-    #ifdef TR_LINUX    // If we are in Linux        
-        std::shared_ptr<FILE> pipe(popen(cmd, "r"), pclose);                
+    #ifdef TR_LINUX    // If we are in Linux
+        std::shared_ptr<FILE> pipe(popen(cmd, "r"), pclose);
     #endif
 #endif
         if (!pipe) throw std::runtime_error("popen() failed!");
@@ -212,7 +212,7 @@ namespace trUtil
         }
         return result;
     }
-      
+
     /////////////////////////////////////////////////////////////////////////////
     bool FileUtils::FileExists(const std::string& strFile, bool caseInsensitive) const
     {
@@ -246,7 +246,7 @@ namespace trUtil
                         std::string("Unable to open source file for reading: \"") + strSrc + "\"", __FILE__, __LINE__);
                 }
 
-            
+
                 if (mLogger->IsLevelEnabled(trUtil::Logging::LogLevel::LOG_DEBUG))
                 {
                     mLogger->LogMessage(trUtil::Logging::LogLevel::LOG_DEBUG, __FUNCTION__, __LINE__, "Source file exists.");

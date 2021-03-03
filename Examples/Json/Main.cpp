@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,23 +34,23 @@
 #include <iostream>
 
 /**
-* Software's main function. 
+* Software's main function.
 */
 int main(int argc, char** argv)
 {
     const static std::string CONFIG_FILE_NAME = "JsonExampleConf.json";
     std::string logFileName;
     std::string logLevel;
-    
+
     //Parse command line arguments
     ParseCmdLineArgs(argc, argv, logFileName, logLevel);
 
-    //Creates the default folders in the User Data folder. 
+    //Creates the default folders in the User Data folder.
     trUtil::PathUtils::CreateUserDataPathTree();
 
     //Setup our Logging options
     trUtil::DefaultSettings::SetupLoggingOptions(logFileName, logLevel);
-    
+
     try
     {
         //Show Logo
@@ -110,7 +110,7 @@ int main(int argc, char** argv)
         configFile.SetUInt64("MyUint64", 12098);
         configFile.SetFloat("MyFloat", 567.54f);
         configFile.SetObject("MyObject", jsObject);
-        
+
         std::cout << "JSON File in RAM:\n" << std::endl;
         configFile.PrintJSONRoot();
         std::cout << std::endl;
@@ -118,7 +118,7 @@ int main(int argc, char** argv)
         std::cout << "Writing out JSON File" << std::endl;
         configFile.WriteToFile();
         std::cout << "Done Writing out JSON File" << std::endl;
-        
+
         trUtil::JSON::File readFile(CONFIG_FILE_NAME);
         std::cout << "\n\nReading JSON File" << std::endl;
         readFile.ReadFromFile();
@@ -127,7 +127,7 @@ int main(int argc, char** argv)
         readFile.PrintJSONRoot();
 
         trUtil::JSON::Array jsArr = configFile.GetObject("MyObject").GetArray("MyArray");
-        
+
         std::cout << "\nJSON Array in RAM:\n" << std::endl;
         jsArr.PrintJSONRoot();
 

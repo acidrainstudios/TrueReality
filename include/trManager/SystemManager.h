@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -40,8 +40,8 @@
 namespace trManager
 {
     /**
-    * System Manager class is a singleton that is responsible for all message routing and basic 
-    * operations between actors and directors throughout TR. 
+    * System Manager class is a singleton that is responsible for all message routing and basic
+    * operations between actors and directors throughout TR.
     */
     class TR_MANAGER_EXPORT SystemManager : public trBase::Base
     {
@@ -426,16 +426,16 @@ namespace trManager
         std::queue<trBase::SmrtPtr<const trManager::MessageBase>> mMessageQueue;
         std::queue<trBase::SmrtPtr<const trManager::MessageBase>> mNetworkMessageQueue;
 
-        // Storage for all the registered Directors       
-        using DirectorList = std::list<trBase::SmrtPtr<trManager::EntityBase>>;           //Needs to be a std::list so the directors can be priority sorted 
+        // Storage for all the registered Directors
+        using DirectorList = std::list<trBase::SmrtPtr<trManager::EntityBase>>;           //Needs to be a std::list so the directors can be priority sorted
         using DirectorNameMap = trUtil::HashMap<std::string, trBase::SmrtPtr<trManager::EntityBase>>;
         using DirectorIDMap = trUtil::HashMap<trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
-        DirectorList mDirectorList;   
+        DirectorList mDirectorList;
         DirectorNameMap mDirectorNameMap;
         DirectorIDMap mDirectorIDMap;
 
-        //Message registration structures.. 
-        using EntityInvokablePair = std::pair<trBase::SmrtPtr<trManager::EntityBase>, std::string>;                     //<entity, invokableName>        
+        //Message registration structures..
+        using EntityInvokablePair = std::pair<trBase::SmrtPtr<trManager::EntityBase>, std::string>;                     //<entity, invokableName>
         using MessageRegistrationVectorMap = trUtil::HashMap<std::string*, std::vector<EntityInvokablePair>>;     //<messageName, vector of registered entityPairs>
         using UUIDRegistrationVectorMap = trUtil::HashMap<trBase::UniqueId, std::vector<EntityInvokablePair>>;    //<UUID, vector of registered entityPairs>
         using EntityInvokableMap = trUtil::HashMap<trBase::SmrtPtr<trManager::EntityBase>, std::string>;                //<entity, invokableName>
@@ -443,12 +443,12 @@ namespace trManager
         MessageRegistrationVectorMap mEntityGlobalMsgRegistrationMap;
         MessageRegistrationMap mDirectorGlobalMsgRegistrationMap;
         UUIDRegistrationVectorMap mListenerRegistrationMap;
-        
+
         //Storage for all registered Actors and Actor Modules
         using ActorList = std::vector<trBase::SmrtPtr<trManager::EntityBase>>;
         using ActorIDMap = trUtil::HashMap<trBase::UniqueId, trBase::SmrtPtr<trManager::EntityBase>>;
         ActorList mActorList;
-        ActorIDMap mActorIDMap; 
+        ActorIDMap mActorIDMap;
 
         std::vector<trBase::SmrtPtr<trManager::EntityBase>> mEntityDeleteList;         //List of entities that will be deleted at the end of the frame
 

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -38,7 +38,7 @@ ActorTests::ActorTests()
 : mSysMan(&trManager::SystemManager::GetInstance())	//Create an instance of the System Manager
 , mSysDirector(new trCore::SystemDirector())		//Create and register the System Director
 {
-    //We want the System Director to get and handle all messages before any other Director. 
+    //We want the System Director to get and handle all messages before any other Director.
     mSysMan->RegisterDirector(*mSysDirector, trManager::DirectorPriority::HIGHEST);
 
 }
@@ -103,7 +103,7 @@ TEST_F(ActorTests, AddRemoveActor)
 /**
  * @fn    TEST_F(ActorTests, SendMessage)
  *
- * @brief    Tests the sending of messages between actors. 
+ * @brief    Tests the sending of messages between actors.
  *
  * @param    parameter1    The first parameter.
  * @param    parameter2    The second parameter.
@@ -126,7 +126,7 @@ TEST_F(ActorTests, SendMessage)
 
     //Make sure we have one instance of the actor
     EXPECT_EQ(TestActor2::GetInstCount(), 1);
-    
+
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 
@@ -199,11 +199,11 @@ TEST_F(ActorTests, Listener)
     //Add TestActor1 to the system
     trBase::SmrtPtr<TestActor1> actor = new TestActor1();
     EXPECT_EQ(mSysMan->RegisterActor(*actor), true);
-    
+
     //Add TestActor2 to the system
     trBase::SmrtPtr<TestActor2> actor2 = new TestActor2();
     EXPECT_EQ(mSysMan->RegisterActor(*actor2), true);
-    
+
     //Advance System Manager one frame at a time
     mSysDirector->RunOnce();
 

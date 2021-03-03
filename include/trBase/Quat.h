@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -39,12 +39,12 @@ namespace trBase
     /**
      * @class   Quat
      *
-     * @brief   Represents a quaternion, that is used for angular calculations and transformations. 
+     * @brief   Represents a quaternion, that is used for angular calculations and transformations.
      */
     class TR_BASE_EXPORT Quat
     {
     public:
-        
+
         using value_type = double;
 
         /**
@@ -342,7 +342,7 @@ namespace trBase
          *          cases when the vectors are co-incident or opposite in direction.
          *          This routine uses only fast geometric transforms, without costly acos/sin computations.
          *          It's exact, fast, and with less degenerate cases than the acos/sin method.
-         * 
+         *
          *          For an explanation of the math used, you may see for example:
          *          http://logiciels.cnes.fr/MARMOTTES/marmottes-mathematique.pdf
          *
@@ -432,7 +432,7 @@ namespace trBase
         * Returns the X component of the quaternion/
         */
         value_type X() const;
-        
+
         /**
         * Returns the Y component of the quaternion/
         */
@@ -442,7 +442,7 @@ namespace trBase
         * Returns the Z component of the quaternion/
         */
         value_type Z() const;
-        
+
         /**
         * Returns the W component of the quaternion/
         */
@@ -452,7 +452,7 @@ namespace trBase
         * Index operator
         */
         value_type & operator [] (int i);
-        
+
         /**
         * Index operator
         */
@@ -488,12 +488,12 @@ namespace trBase
         */
         const Quat operator * (value_type rhs) const;
 
-        /** 
+        /**
         * Rotate a vector by this quaternion.
         */
         Vec3f operator* (const Vec3f& v) const;
 
-        /** 
+        /**
         * Rotate a vector by this quaternion.
         */
         Vec3d operator* (const Vec3d& v) const;
@@ -553,9 +553,9 @@ namespace trBase
         */
         Quat& operator -= (const Quat& rhs);
 
-        /** 
+        /**
         * Negation operator - returns the negative of the quaternion.
-        * Basically just calls operator - () on the Vec4 
+        * Basically just calls operator - () on the Vec4
         */
         const Quat operator - () const;
 
@@ -605,4 +605,4 @@ namespace trBase
 
 
 
-   
+

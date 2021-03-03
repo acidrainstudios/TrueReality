@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -31,10 +31,10 @@ namespace trManager
     /**
      * @class   ActorModuleBase
      *
-     * @brief   An actor module base class that will serve as a base for all actor modules. 
-     *          This class is used to extend the functionality of actors. While you can register 
-     *          this class for messages, that should be used sparingly, and all communication 
-     *          most likely should be done through the parent actor. 
+     * @brief   An actor module base class that will serve as a base for all actor modules.
+     *          This class is used to extend the functionality of actors. While you can register
+     *          this class for messages, that should be used sparingly, and all communication
+     *          most likely should be done through the parent actor.
      */
     class TR_MANAGER_EXPORT ActorModuleBase : public trManager::ActorBase
     {
@@ -93,6 +93,6 @@ namespace trManager
          *
          * @brief   dtor.
          */
-        ~ActorModuleBase();        
+        ~ActorModuleBase();
     };
 }

@@ -1,6 +1,6 @@
 /*
 * True Reality Open Source Game and Simulation Engine
-* Copyright © 2020 Acid Rain Studios LLC
+* Copyright © 2021 Acid Rain Studios LLC
 *
 * This library is free software; you can redistribute it and/or modify it under
 * the terms of the GNU Lesser General Public License as published by the Free
@@ -83,10 +83,10 @@ namespace trUtil::JSON
      * @enum    ValueType
      *
      * @brief   Type of the value held by a Value object.
-     *          
+     *
      * @author Maxim Serebrennik
      */
-    enum ValueType 
+    enum ValueType
     {
         NullValue = 0,      ///'null' value
         IntValue = 1,       ///signed integer value
@@ -102,7 +102,7 @@ namespace trUtil::JSON
      * @class   Value
      *
      * @brief   Represents a JSON value.
-     *          
+     *
      *          This class is a discriminated union wrapper that can represents a:
      *          - signed integer [range: Value::MinInt - Value::MaxInt]
      *          - unsigned integer (range: 0 - Value::MaxUInt)
@@ -112,23 +112,23 @@ namespace trUtil::JSON
      *          - 'null'
      *          - an ordered list of Value
      *          - collection of name/value pairs (javascript object)
-     *          
+     *
      *          The type of the held value is represented by a #ValueType and can be obtained using
      *          Type().
-     *          
+     *
      *          Values of an #ObjectValue or #ArrayValue can be accessed using operator[]()
      *          methods. Non-const methods will automatically create the a #NullValue element if it
      *          does not exist. The sequence of an #ArrayValue will be automatically resized and
      *          initialized with
      *          #nNllValue. Resize() can be used to enlarge or truncate an #ArrayValue.
-     *          
+     *
      *          The Get() methods can be used to obtain default value in the case the required
      *          element does not exist.
-     *          
+     *
      *          It is possible to iterate over the list of a #ObjectValue values using the
      *          GetMemberNames()
      *          method.
-     *          
+     *
      *          @note #Value string-length fit in size_t, but keys must be &lt; 2^30. (The reason is
      *          an implementation detail.) A #CharReader will raise an exception if a bound is
      *          exceeded to avoid security holes in your app, but the Value API does *not* check
@@ -1237,7 +1237,7 @@ namespace trUtil::JSON
          * @param [in,out]  value   The value.
          */
         virtual void SetObject(const std::string& key, Object& value);
-        
+
         /**
          * @fn  operator Json::Value() const;
          *
@@ -1326,7 +1326,7 @@ namespace trUtil::JSON
      * @fn  TR_UTIL_EXPORT std::ostream& operator<<(std::ostream&, const Value& root);
      *
      * @brief   OStream operator.
-     *          
+     *
      * @author Maxim Serebrennik
      *
      * @param [in,out]  parameter1  The first parameter.
