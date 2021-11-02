@@ -127,7 +127,7 @@ namespace trUtil::Logging
     {
         trUtil::DateTime dt;
         dt.SetToLocalTime();
-        mLogFile << prefix << dt.ToString(trUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT) << std::endl;
+        mLogFile << prefix << dt.ToString(trUtil::DateTime::TimeFormat::LOCAL_DATE_AND_TIME_FORMAT) << std::endl;
         mLogFile.flush();
     }
 
@@ -179,7 +179,7 @@ namespace trUtil::Logging
             lineEnd += htmlNewline.size() + 1;
         }
 
-        mLogFile << color << "[" << logData.time.ToString(trUtil::DateTime::TimeFormat::CLOCK_TIME_24_HOUR_FORMAT);
+        mLogFile << color << "[" << logData.time.ToString(trUtil::DateTime::TimeFormat::LOCAL_DATE_AND_TIME_FORMAT);
 
         if (logData.frameNumber > 0)
         {
