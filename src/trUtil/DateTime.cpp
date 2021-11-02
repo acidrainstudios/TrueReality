@@ -606,9 +606,9 @@ namespace trUtil
             int tzMin = (int)(tz - float(tzHour));
 
 #ifdef TR_WIN
-            _snprintf_s(buffer, 80, "%04d-%02d-%02dT%02d:%02d:%02d%+03d:%02d",
+            _snprintf_s(buffer, 80, "%04d-%02d-%02d T%02d:%02d:%02d%+03d:%02d",
 #else
-            snprintf(buffer, 80, "%04d-%02d-%02dT%02d:%02d:%02d%+03d:%02d",    //Commented out because of deprecation warnings
+            snprintf(buffer, 80, "%04d-%02d-%02d T%02d:%02d:%02d%+03d:%02d",    //Commented out because of deprecation warnings
 #endif //TR_WIN
                 timeParts.tm_year + 1900, timeParts.tm_mon + 1, timeParts.tm_mday,
                 timeParts.tm_hour, timeParts.tm_min, timeParts.tm_sec,
