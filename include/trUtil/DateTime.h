@@ -145,7 +145,7 @@ namespace trUtil
 
         public:
 
-            /** @brief   LOCAL_DATE_AND_TIME_FORMAT: 04/18/08 13:22:50. */
+            /** @brief   LOCAL_DATE_AND_TIME_FORMAT: 04-18-08 13:22:50. */
             static const TimeFormat LOCAL_DATE_AND_TIME_FORMAT;
 
             /** @brief   LOCAL_DATE_FORMAT: 04/18/08. */

@@ -618,7 +618,7 @@ namespace trUtil
         {
             if (tf == TimeFormat::LOCAL_DATE_AND_TIME_FORMAT)
             {
-                strftime(buffer, 80, "%c", &timeParts);
+                strftime(buffer, 80, "%F %T", &timeParts);
             }
             else if (tf == TimeFormat::CLOCK_TIME_12_HOUR_FORMAT)
             {
