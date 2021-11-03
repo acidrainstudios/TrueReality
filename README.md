@@ -7,8 +7,7 @@
 ![90+%](https://img.shields.io/github/languages/top/acidrainstudios/truereality.svg?style=for-the-badge&colorB=green)
 [![License](https://img.shields.io/github/license/acidrainstudios/truereality.svg?style=for-the-badge)](https://github.com/acidrainstudios/TrueReality/blob/master/LICENSE)
 
-
-[![Codacy grade](https://img.shields.io/codacy/grade/f645559d5b974bdbaf564608c17a8bad.svg?style=for-the-badge)](https://app.codacy.com/project/acidrainstudiosllc/TrueReality/dashboard)
+[![Codacy Badge](https://img.shields.io/codacy/grade/51e08e081cd7479abc700a9bd9992407?style=for-the-badge)](https://www.codacy.com/gh/acidrainstudios/TrueReality/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=acidrainstudios/TrueReality&amp;utm_campaign=Badge_Grade;style=for-the-badge)
 
 
 True Reality (TR) is an open source LGPL Game and Simulation Engine written entirely in Standard C++ and OpenGL. It runs on all modern Windows platforms and GNU/Linux. OpenSceneGraph is used as its graphics engine, along with many other open source projects for support of various features.
